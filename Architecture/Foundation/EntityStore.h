@@ -6,6 +6,7 @@
 #define CLOUD_E_CPLUS_ENTITYSTORE_H
 
 #include "Identity.h"
+#include "Entity.h"
 
 namespace Cloude {
     namespace Architecture {
@@ -16,22 +17,35 @@ namespace Cloude {
 
             public:
                 EntityStore();
-
                 virtual ~EntityStore();
 
-                virtual TEntity& Get(Identity &identity) = 0;
+                virtual TEntity &Get(Identity &identity) = 0;
+                virtual TEntity &Create() = 0;
+                virtual TEntity &Create(Identity &identity) = 0;
+                virtual TEntity &Insert(TEntity &entity) = 0;
+                virtual TEntity &Save(TEntity &entity) = 0;
+                virtual TEntity &Delete(TEntity &entity) = 0;
 
-                virtual TEntity& Create() = 0;
+                bool HasIdentityInMap(Identity &identity);
 
-                virtual TEntity& Create(Identity& identity) = 0;
+                void RegisterClean(TEntity &entity);
+                void RegisterChanged(TEntity &entity);
+                void RegisterDeleted(TEntity &entity);
+                void UnRegister(TEntity &entity);
+                void Commit();
 
-                virtual TEntity& Insert(TEntity& entity) = 0;
+            protected:
+                unordered_map<Identity &, TEntity *> identityMap;
+                unordered_map<Identity &, TEntity *> changedMap;
+                unordered_map<Identity &, TEntity *> deletedMap;
 
-                virtual TEntity& Save(TEntity& entity) = 0;
-
-                virtual TEntity& Delete(TEntity& entity) = 0;
+                virtual Identity *NextPrimaryKey() = 0;
+                virtual TEntity *CreateEntityInstance(Identity &identity) = 0;
+                virtual void EstablishEntityRelationship(Identity &identity) = 0;
 
             private:
+                void CommitChanged();
+                void CommitDeleted();
 
             };
         }

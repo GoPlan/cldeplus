@@ -6,8 +6,6 @@
 #define CLOUD_E_CPLUS_IDENTITY_H
 
 #include <unordered_map>
-#include <vector>
-#include <string>
 #include "Field.h"
 
 using namespace std;
@@ -19,22 +17,19 @@ namespace Cloude {
             class Identity {
 
             public:
-                
                 Identity();
-
+                Identity(initializer_list<Field *> fields);
                 virtual ~Identity();
 
-                const unordered_map<string, const Field &> &getFieldsMap() const {
+                const unordered_map<string, const Field *> &FieldsMap() const {
                     return fieldsMap;
                 }
 
-                void Add(Field const &field);
-
+                void Add(Field &field);
                 void AddMultipleFields(initializer_list<Field *> fields);
 
-
-            private:
-                unordered_map<string, const Field &> fieldsMap;
+            protected:
+                unordered_map<string, const Field *> fieldsMap;
             };
 
         }

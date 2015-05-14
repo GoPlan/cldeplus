@@ -15,13 +15,11 @@ namespace Cloude {
 
             public:
                 Field(Column &column, void *value);
-
                 virtual ~Field();
 
                 Column &getColumn() const {
                     return column;
                 }
-
                 void *getValue() const {
                     return value;
                 }

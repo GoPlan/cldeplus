@@ -8,11 +8,12 @@ namespace Cloude {
     namespace Architecture {
         namespace Foundation {
 
-            Field::Field(Column &column, void *value)
-                    : column(column), value(value) {}
+            Field::Field(Column &column, void *value) :
+                    column(column),
+                    value(value) {
+            }
 
             Field::~Field() {
-
             }
         }
     }

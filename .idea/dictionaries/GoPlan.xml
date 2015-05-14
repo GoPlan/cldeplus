@@ -2,6 +2,10 @@
   <dictionary name="GoPlan">
     <words>
       <w>cloude</w>
+      <w>cplus</w>
+      <w>datasource</w>
+      <w>entitymap</w>
+      <w>entitystore</w>
     </words>
   </dictionary>
 </component>

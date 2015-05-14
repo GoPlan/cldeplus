@@ -8,35 +8,16 @@ namespace Cloude {
     namespace Architecture {
         namespace Foundation {
 
-            template <class T>
-            Entity<T>::Entity(EntityStore<T> &entityStore, Identity &identity) :
+
+            template<class T>
+            template<class TEntity>
+            Entity<T>::Entity(EntityStore<TEntity> &entityStore, Identity &identity) :
                     entityStore(entityStore),
                     identity(identity) {
             }
 
-            template <class T>
+            template<class T>
             Entity<T>::~Entity() {
-
-            }
-
-            template <class T>
-            void Entity<T>::Save() {
-
-            }
-
-            template <class T>
-            void Entity<T>::Delete() {
-
-            }
-
-            template <class T>
-            void Entity<T>::RegisterChanged() {
-
-            }
-
-            template <class T>
-            void Entity<T>::RegisterDeleted() {
-
             }
         }
     }
