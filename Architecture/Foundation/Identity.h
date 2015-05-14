@@ -19,21 +19,27 @@ namespace Cloude {
             class Identity {
 
             public:
+                
                 Identity();
+
                 virtual ~Identity();
 
+                const unordered_map<string, const Field &> &getFieldsMap() const {
+                    return fieldsMap;
+                }
+
                 void Add(Field const &field);
-                void AddMultipleFields(initializer_list<Field*> fields);
+
+                void AddMultipleFields(initializer_list<Field *> fields);
 
 
             private:
-                unordered_map<string, const Field&> field_map;
+                unordered_map<string, const Field &> fieldsMap;
             };
 
         }
     }
 }
-
 
 
 #endif //CLOUD_E_CPLUS_IDENTITY_H

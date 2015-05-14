@@ -10,9 +10,9 @@ namespace Cloude {
 
 
             Column::Column(string name, string dataSourceName, DbType dbType) :
-                    data_source_name(dataSourceName),
+                    dataSourceName(dataSourceName),
                     name(name),
-                    db_type(dbType) {
+                    dbType(dbType) {
             }
 
             Column::~Column() {

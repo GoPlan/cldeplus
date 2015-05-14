@@ -19,7 +19,7 @@ namespace Cloude {
                 auto column_name = field.getColumn().getName();
                 auto field_pair = make_pair(column_name, field);
 
-                this->field_map.insert(field_pair);
+                this->fieldsMap.insert(field_pair);
             }
 
             void Identity::AddMultipleFields(initializer_list<Field*> fields) {

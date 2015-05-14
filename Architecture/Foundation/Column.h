@@ -22,23 +22,23 @@ namespace Cloude {
                 Column(string name, string dataSourceName, DbType dbType);
 
                 virtual ~Column();
-
-                const string &getData_source_name() const {
-                    return data_source_name;
+                
+                const string &getDataSourceName() const {
+                    return dataSourceName;
                 }
 
                 const string &getName() const {
                     return name;
                 }
 
-                const DbType &getDb_type() const {
-                    return db_type;
+                const DbType &getDbType() const {
+                    return dbType;
                 }
 
             private:
-                string data_source_name;
+                string dataSourceName;
                 string name;
-                DbType db_type;
+                DbType dbType;
             };
 
         }
