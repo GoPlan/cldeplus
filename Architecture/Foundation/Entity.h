@@ -11,42 +11,18 @@
 namespace Cloude {
     namespace Architecture {
         namespace Foundation {
-
-            template<class TEntity>
-            class EntityStore;
-
-            template<class T>
             class Entity {
 
             public:
-                template<class TEntity>
-                Entity(EntityStore<TEntity> &entityStore, Identity &identity);
-                virtual ~Entity();
+                Entity(Identity &ident) : identity(ident) { };
+                virtual ~Entity() { };
 
                 Identity &getIdentity() const {
                     return identity;
                 }
-                EntityStore<T> &getEntity_store() const {
-                    return entityStore;
-                }
-
-                void Save() {
-                    entityStore.Save(*this);
-                };
-                void Delete() {
-                    entityStore.Delete(*this);
-                };
-                void RegisterChanged() {
-                    entityStore.RegisterChanged(*this);
-                };
-                void RegisterDeleted() {
-                    entityStore.RegisterDeleted(*this);
-                };
 
             private:
                 Identity &identity;
-                EntityStore<T> &entityStore;
-
             };
 
         }

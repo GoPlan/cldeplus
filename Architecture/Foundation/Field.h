@@ -20,6 +20,10 @@ namespace Cloude {
                 Column &getColumn() const {
                     return column;
                 }
+
+                void setValue(void *value) {
+                    Field::value = value;
+                }
                 void *getValue() const {
                     return value;
                 }

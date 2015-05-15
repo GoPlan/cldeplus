@@ -7,6 +7,8 @@
 
 #include "Identity.h"
 #include "Entity.h"
+#include "EntityMap.h"
+#include "EntityLoader.h"
 
 namespace Cloude {
     namespace Architecture {
@@ -16,37 +18,93 @@ namespace Cloude {
             class EntityStore {
 
             public:
-                EntityStore();
-                virtual ~EntityStore();
 
-                virtual TEntity &Get(Identity &identity) = 0;
-                virtual TEntity &Create() = 0;
-                virtual TEntity &Create(Identity &identity) = 0;
-                virtual TEntity &Insert(TEntity &entity) = 0;
-                virtual TEntity &Save(TEntity &entity) = 0;
-                virtual TEntity &Delete(TEntity &entity) = 0;
+                EntityStore(EntityMap &entityMap, EntityLoader &entityGenerator) :
+                        entityMap(entityMap),
+                        entityGenerator(entityGenerator) { };
 
-                bool HasIdentityInMap(Identity &identity);
+                virtual ~EntityStore() { };
 
-                void RegisterClean(TEntity &entity);
-                void RegisterChanged(TEntity &entity);
-                void RegisterDeleted(TEntity &entity);
-                void UnRegister(TEntity &entity);
-                void Commit();
+                virtual const TEntity *Get(Identity &identity) = 0;
+                virtual const TEntity *Create() = 0;
+                virtual const TEntity *Create(Identity &identity) = 0;
+                virtual int Insert(TEntity &entity) = 0;
+                virtual int Save(TEntity &entity) = 0;
+                virtual int Delete(TEntity &entity) = 0;
+
+                bool HasIdentityInMap(Identity &identity) {
+                    auto iterator = identityMap.find(&identity);
+                    return !(iterator == identityMap.end());
+                };
+
+                void RegisterClean(TEntity &entity) {
+                    UnRegister(entity);
+                    Identity &ident = ((Entity&)(entity)).getIdentity();
+                    identityMap[&ident] = &entity;
+                };
+
+                void RegisterChanged(TEntity &entity) {
+                    UnRegister(entity);
+                    Identity &ident = ((Entity&)(entity)).getIdentity();
+                    changedMap[&ident] = &entity;
+                };
+
+                void RegisterDeleted(TEntity &entity) {
+                    UnRegister(entity);
+                    Identity &ident = ((Entity&)(entity)).getIdentity();
+                    deletedMap[&ident] = &entity;
+                };
+
+                void UnRegister(TEntity &entity) {
+                    Identity &identity = ((Entity&)(entity)).getIdentity();
+                    identityMap.erase(&identity);
+                    changedMap.erase(&identity);
+                    deletedMap.erase(&identity);
+                };
+
+                void Commit() {
+                    CommitChanged();
+                    CommitChanged();
+                };
 
             protected:
-                unordered_map<Identity &, TEntity *> identityMap;
-                unordered_map<Identity &, TEntity *> changedMap;
-                unordered_map<Identity &, TEntity *> deletedMap;
+                EntityMap &entityMap;
+                EntityLoader &entityGenerator;
+                unordered_map<Identity *, TEntity *> identityMap;
+                unordered_map<Identity *, TEntity *> changedMap;
+                unordered_map<Identity *, TEntity *> deletedMap;
 
-                virtual Identity *NextPrimaryKey() = 0;
-                virtual TEntity *CreateEntityInstance(Identity &identity) = 0;
-                virtual void EstablishEntityRelationship(Identity &identity) = 0;
+                Identity *NextPrimaryKey() {
+                    return entityGenerator.NextPrimaryKey();
+                }
+
+                TEntity *CreateEntityInstance(Identity &ident) {
+                    auto entity = entityGenerator.CreateEntityInstance(ident);
+                    return (TEntity *) entity;
+                }
+
+                void EstablishEntityRelationShip(TEntity &entity) {
+                    entityGenerator.EstablishEntityRelationship((Entity &) entity);
+                }
+
+                void LoadEntity(TEntity &entity) {
+
+                }
 
             private:
-                void CommitChanged();
-                void CommitDeleted();
+                void CommitChanged() {
+                    for (auto item : changedMap) {
+                        auto entity = item.second;
+                        Save(*entity);
+                    }
+                };
 
+                void CommitDeleted() {
+                    for (auto item : deletedMap) {
+                        auto entity = item.second;
+                        Delete(*entity);
+                    }
+                };
             };
         }
     }

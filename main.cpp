@@ -1,28 +1,32 @@
 #include <iostream>
-#include "Architecture/Foundation/Column.h"
-#include "Architecture/Foundation/Identity.h"
+#include "Application/Mapper/StockGroupMap.h"
+#include "Application/Entity/StockGroup.h"
+#include "Application/Mapper/StockGroupLoader.h"
+#include "Infrastructure/MongoDbEntityStore.h"
 
 using namespace std;
 using namespace Cloude::Architecture::Foundation;
+using namespace Cloude::Infrastructure;
+using namespace Cloude::Application;
 
 int main() {
 
-	Column colId("Id", "_id", DbType::Int64);
-	Column colName("Name", "name", DbType::String);
+    StockGroupMap stockGroupMap;
+    StockGroupLoader stockGroupGenerator;
+    MongoDbEntityStore<StockGroup> stockGroupStore((EntityMap &) stockGroupMap,
+                                                   (EntityLoader &) stockGroupGenerator);
 
-	int itemId = 15;
-	string name = "Duc-Anh";
+    EntityStore<StockGroup> &store = (EntityStore<StockGroup> &) stockGroupStore;
 
-	Field Id(colId, &itemId);
-	Field Name(colName, &name);
+    Field fldId(stockGroupMap.Code, (void *) "VNM");
+    Identity ident{&fldId};
 
-	Identity ident{ &Id, &Name };
+    auto stock_group_ptr = store.Create(ident);
+    auto entity_ref = dynamic_cast<const Entity &>((Entity &) *stock_group_ptr);
+    auto field_ref = entity_ref.getIdentity().GetField("Code");
 
-	auto fldsMap = ident.FieldsMap();
-	auto fldId = (const Field *)fldsMap["Id"];
-	auto fldName = (const Field *)fldsMap["Name"];
+    cout << (char *) field_ref.getValue() << endl;
+    cout << (char *) stock_group_ptr->getCode().c_str() << endl;
 
-	cout << *((int *)fldId->getValue()) << " is " << *((string *)fldName->getValue()) << endl;
-
-	return 0;
+    return 0;
 };

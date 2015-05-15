@@ -9,16 +9,6 @@ namespace Cloude {
         namespace Foundation {
 
 
-            template<class T>
-            template<class TEntity>
-            Entity<T>::Entity(EntityStore<TEntity> &entityStore, Identity &identity) :
-                    entityStore(entityStore),
-                    identity(identity) {
-            }
-
-            template<class T>
-            Entity<T>::~Entity() {
-            }
         }
     }
 }

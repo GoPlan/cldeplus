@@ -3,3 +3,8 @@
 //
 
 #include "MongoDbEntityStore.h"
+
+namespace Cloude {
+    namespace Infrastructure {
+    }
+}

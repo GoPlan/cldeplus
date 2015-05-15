@@ -21,15 +21,15 @@ namespace Cloude {
                 Identity(initializer_list<Field *> fields);
                 virtual ~Identity();
 
-                const unordered_map<string, const Field *> &FieldsMap() const {
-                    return fieldsMap;
-                }
+                const unordered_map<string, const Field *> &FieldsMap();
+                const Field &GetField(string columnName);
 
                 void Add(Field &field);
                 void AddMultipleFields(initializer_list<Field *> fields);
 
             protected:
                 unordered_map<string, const Field *> fieldsMap;
+
             };
 
         }

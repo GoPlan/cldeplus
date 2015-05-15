@@ -32,6 +32,15 @@ namespace Cloude {
                     this->Add(*field);
                 }
             }
+
+            const unordered_map<string, const Field *> &Identity::FieldsMap() {
+                return fieldsMap;
+            }
+
+            const Field &Identity::GetField(string columnName) {
+                auto field_ptr = (fieldsMap[columnName]);
+                return *field_ptr;
+            }
         }
     }
 }

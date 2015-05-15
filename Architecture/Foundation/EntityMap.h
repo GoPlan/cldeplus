@@ -17,8 +17,8 @@ namespace Cloude {
             class EntityMap {
 
             public:
-                EntityMap();
-                virtual ~EntityMap();
+                EntityMap() { };
+                virtual ~EntityMap() { };
 
                 string TableName() {
                     return TableNameCore();
@@ -37,17 +37,13 @@ namespace Cloude {
                 }
 
             protected:
-                virtual string TableNameCore() = 0;
-
-
-            private:
                 vector<Column *> columnsForKey;
                 vector<Column *> columnsForSelect;
                 vector<Column *> columnsForUpdate;
                 unordered_map<string, Column *> columnsMap;
 
+                virtual string TableNameCore() = 0;
             };
-
         }
     }
 }

@@ -3,3 +3,9 @@
 //
 
 #include "MySqlEntityStore.h"
+
+namespace Cloude {
+    namespace Infrastructure {
+
+    }
+}
