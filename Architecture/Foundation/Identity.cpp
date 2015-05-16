@@ -20,11 +20,11 @@ namespace Cloude {
             }
 
             void Identity::Add(Field &field) {
-                auto column = field.getColumn();
-                auto column_name = column.getName();
+                auto column = field.column();
+                auto column_name = column.name();
                 auto field_pair = make_pair(column_name, &field);
 
-                this->fieldsMap.insert(field_pair);
+                this->_fields_map.insert(field_pair);
             }
 
             void Identity::AddMultipleFields(initializer_list<Field *> fields) {
@@ -34,11 +34,11 @@ namespace Cloude {
             }
 
             const unordered_map<string, const Field *> &Identity::FieldsMap() {
-                return fieldsMap;
+                return _fields_map;
             }
 
             const Field &Identity::GetField(string columnName) {
-                auto field_ptr = (fieldsMap[columnName]);
+                auto field_ptr = (_fields_map[columnName]);
                 return *field_ptr;
             }
         }

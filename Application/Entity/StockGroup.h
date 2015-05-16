@@ -6,7 +6,6 @@
 #define CLOUD_E_CPLUS_STOCKGROUP_H
 
 #include "../../Architecture/Foundation/Entity.h"
-#include "../../Architecture/Foundation/EntityStore.h"
 
 using namespace Cloude::Architecture::Foundation;
 
@@ -17,44 +16,43 @@ namespace Cloude {
 
         public:
             StockGroup(Identity &ident) : Entity(ident) {
-                id = 0;
-                code.clear();
-                name.clear();
-                defaultStockCode.clear();
+                _id = 0;
+                _code.clear();
+                _name.clear();
+                _defaultStockCode.clear();
             };
 
             virtual ~StockGroup() { };
 
-            long getId() const {
-                return id;
+            long id() const {
+                return _id;
             }
             void setId(long id) {
-                StockGroup::id = id;
+                _id = id;
             }
-            const string &getCode() const {
-                return code;
+            const string &code() const {
+                return _code;
             }
             void setCode(const string &code) {
-                StockGroup::code = code;
+                _code = code;
             }
-            const string &getName() const {
-                return name;
+            const string &name() const {
+                return _name;
             }
             void setName(const string &name) {
-                StockGroup::name = name;
+                _name = name;
             }
-            const string &getDefaultStockCode() const {
-                return defaultStockCode;
+            const string &defaultStockCode() const {
+                return _defaultStockCode;
             }
             void setDefaultStockCode(const string &defaultStockCode) {
-                StockGroup::defaultStockCode = defaultStockCode;
+                _defaultStockCode = defaultStockCode;
             }
-
         private:
-            long id;
-            string code;
-            string name;
-            string defaultStockCode;
+            long _id;
+            string _code;
+            string _name;
+            string _defaultStockCode;
         };
     }
 }

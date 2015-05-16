@@ -23,24 +23,24 @@ namespace Cloude {
                 string TableName() {
                     return TableNameCore();
                 }
-                const vector<Column *> &ColumnsForKey() const {
-                    return columnsForKey;
+                const vector<Column *> &columns_for_key() const {
+                    return _columns_for_key;
                 }
-                const vector<Column *> &ColumnsForSelect() const {
-                    return columnsForSelect;
+                const vector<Column *> &columns_for_select() const {
+                    return _columns_for_select;
                 }
-                const vector<Column *> &ColumnsForUpdate() const {
-                    return columnsForUpdate;
+                const vector<Column *> &columns_for_update() const {
+                    return _columns_for_update;
                 }
-                const unordered_map<string, Column *> &ColumnsMap() const {
-                    return columnsMap;
+                const unordered_map<string, Column *> &columns_map() const {
+                    return _columns_map;
                 }
-
+                
             protected:
-                vector<Column *> columnsForKey;
-                vector<Column *> columnsForSelect;
-                vector<Column *> columnsForUpdate;
-                unordered_map<string, Column *> columnsMap;
+                vector<Column *> _columns_for_key;
+                vector<Column *> _columns_for_select;
+                vector<Column *> _columns_for_update;
+                unordered_map<string, Column *> _columns_map;
 
                 virtual string TableNameCore() = 0;
             };

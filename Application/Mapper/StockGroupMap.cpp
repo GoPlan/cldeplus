@@ -14,28 +14,28 @@ namespace Cloude {
         string StockGroupMap::TableName("StockGroup");
 
         StockGroupMap::StockGroupMap() {
-            this->columnsMap[Id.getName()] = &Id;
-            this->columnsMap[Code.getName()] = &Code;
-            this->columnsMap[Name.getName()] = &Name;
-            this->columnsMap[DefaultStockCode.getName()] = &DefaultStockCode;
+            this->_columns_map[Id.name()] = &Id;
+            this->_columns_map[Code.name()] = &Code;
+            this->_columns_map[Name.name()] = &Name;
+            this->_columns_map[DefaultStockCode.name()] = &DefaultStockCode;
 
             // Keys
-            this->columnsForKey.push_back(&Code);
+            this->_columns_for_key.push_back(&Code);
 
             // Columns For Update
-            this->columnsForUpdate.push_back(&Name);
-            this->columnsForUpdate.push_back(&DefaultStockCode);
+            this->_columns_for_update.push_back(&Name);
+            this->_columns_for_update.push_back(&DefaultStockCode);
 
             // Columns For Select
-            this->columnsForSelect.push_back(&Id);
-            this->columnsForSelect.push_back(&Code);
+            this->_columns_for_select.push_back(&Id);
+            this->_columns_for_select.push_back(&Code);
         }
 
         StockGroupMap::~StockGroupMap() {
-            this->columnsMap.clear();
-            this->columnsForSelect.clear();
-            this->columnsForKey.clear();
-            this->columnsForUpdate.clear();
+            this->_columns_map.clear();
+            this->_columns_for_select.clear();
+            this->_columns_for_key.clear();
+            this->_columns_for_update.clear();
         }
 
         string StockGroupMap::TableNameCore() {

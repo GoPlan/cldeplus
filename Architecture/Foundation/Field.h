@@ -17,20 +17,22 @@ namespace Cloude {
                 Field(Column &column, void *value);
                 virtual ~Field();
 
-                Column &getColumn() const {
-                    return column;
+                Column &column() const {
+                    return _column;
                 }
-
+                void setColumn(Column &column) {
+                    _column = column;
+                }
+                void *value() const {
+                    return _value;
+                }
                 void setValue(void *value) {
-                    Field::value = value;
+                    _value = value;
                 }
-                void *getValue() const {
-                    return value;
-                }
-
+                
             private:
-                Column &column;
-                void *value;
+                Column &_column;
+                void *_value;
             };
 
         }

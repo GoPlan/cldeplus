@@ -14,15 +14,15 @@ namespace Cloude {
             class Entity {
 
             public:
-                Entity(Identity &ident) : identity(ident) { };
+                Entity(Identity &ident) : _identity(ident) { };
                 virtual ~Entity() { };
 
-                Identity &getIdentity() const {
-                    return identity;
+                Identity &identity() const {
+                    return _identity;
                 }
 
             private:
-                Identity &identity;
+                Identity &_identity;
             };
 
         }

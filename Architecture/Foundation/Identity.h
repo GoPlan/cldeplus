@@ -28,7 +28,7 @@ namespace Cloude {
                 void AddMultipleFields(initializer_list<Field *> fields);
 
             protected:
-                unordered_map<string, const Field *> fieldsMap;
+                unordered_map<string, const Field *> _fields_map;
 
             };
 

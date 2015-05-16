@@ -20,46 +20,79 @@ namespace Cloude {
             public:
 
                 EntityStore(EntityMap &entityMap, EntityLoader &entityGenerator) :
-                        entityMap(entityMap),
-                        entityGenerator(entityGenerator) { };
+                        _entity_map(entityMap),
+                        _entity_loader(entityGenerator) { };
 
                 virtual ~EntityStore() { };
 
-                virtual const TEntity *Get(Identity &identity) = 0;
-                virtual const TEntity *Create() = 0;
-                virtual const TEntity *Create(Identity &identity) = 0;
-                virtual int Insert(TEntity &entity) = 0;
-                virtual int Save(TEntity &entity) = 0;
-                virtual int Delete(TEntity &entity) = 0;
+                const TEntity *Get(Identity &identity) {
+
+                    if (HasIdentityInMap(identity)) {
+                        auto iter = _identity_map.find(&identity);
+                        auto pair_item = (pair<Identity *, TEntity *>) *iter;
+                        return pair_item.second;
+                    }
+
+                    auto entity = CreateEntityInstance(identity);
+
+                    LoadEntity(*entity);
+                    EstablishEntityRelationship(*entity);
+                    RegisterClean(*entity);
+
+                    return entity;
+                }
+
+                const TEntity *Create() {
+                    auto identity = NextPrimaryKey();
+                    auto entity = Create(*identity);
+                    return entity;
+                }
+
+                const TEntity *Create(Identity &identity) {
+                    auto entity = (TEntity *) (_entity_loader.CreateEntityInstance(identity));
+                    return (Insert(*entity) > 0) ? entity : nullptr;
+                }
+
+                int Insert(TEntity &entity) {
+                    return InsertEntity(entity);
+                };
+
+                int Save(TEntity &entity) {
+                    return SaveEntity(entity);
+                };
+
+                int Delete(TEntity &entity) {
+                    return DeleteEntity(entity);
+                };
 
                 bool HasIdentityInMap(Identity &identity) {
-                    auto iterator = identityMap.find(&identity);
-                    return !(iterator == identityMap.end());
+                    auto iterator = _identity_map.find(&identity);
+                    return !(iterator == _identity_map.end());
                 };
 
                 void RegisterClean(TEntity &entity) {
                     UnRegister(entity);
-                    Identity &ident = ((Entity&)(entity)).getIdentity();
-                    identityMap[&ident] = &entity;
+                    Identity &ident = ((Entity &) (entity)).identity();
+                    _identity_map[&ident] = &entity;
                 };
 
                 void RegisterChanged(TEntity &entity) {
                     UnRegister(entity);
-                    Identity &ident = ((Entity&)(entity)).getIdentity();
-                    changedMap[&ident] = &entity;
+                    Identity &ident = ((Entity &) (entity)).identity();
+                    _changed_map[&ident] = &entity;
                 };
 
                 void RegisterDeleted(TEntity &entity) {
                     UnRegister(entity);
-                    Identity &ident = ((Entity&)(entity)).getIdentity();
-                    deletedMap[&ident] = &entity;
+                    Identity &ident = ((Entity &) (entity)).identity();
+                    _deleted_map[&ident] = &entity;
                 };
 
                 void UnRegister(TEntity &entity) {
-                    Identity &identity = ((Entity&)(entity)).getIdentity();
-                    identityMap.erase(&identity);
-                    changedMap.erase(&identity);
-                    deletedMap.erase(&identity);
+                    Identity &identity = ((Entity &) (entity)).identity();
+                    _identity_map.erase(&identity);
+                    _changed_map.erase(&identity);
+                    _deleted_map.erase(&identity);
                 };
 
                 void Commit() {
@@ -68,39 +101,51 @@ namespace Cloude {
                 };
 
             protected:
-                EntityMap &entityMap;
-                EntityLoader &entityGenerator;
-                unordered_map<Identity *, TEntity *> identityMap;
-                unordered_map<Identity *, TEntity *> changedMap;
-                unordered_map<Identity *, TEntity *> deletedMap;
+                EntityMap &_entity_map;
+                EntityLoader &_entity_loader;
+                unordered_map<Identity *, TEntity *> _identity_map;
+                unordered_map<Identity *, TEntity *> _changed_map;
+                unordered_map<Identity *, TEntity *> _deleted_map;
 
-                Identity *NextPrimaryKey() {
-                    return entityGenerator.NextPrimaryKey();
+                virtual Identity *NextPrimaryKey() {
+                    return _entity_loader.NextPrimaryKey();
                 }
 
-                TEntity *CreateEntityInstance(Identity &ident) {
-                    auto entity = entityGenerator.CreateEntityInstance(ident);
+                virtual TEntity *CreateEntityInstance(Identity &ident) {
+                    auto entity = _entity_loader.CreateEntityInstance(ident);
                     return (TEntity *) entity;
                 }
 
-                void EstablishEntityRelationShip(TEntity &entity) {
-                    entityGenerator.EstablishEntityRelationship((Entity &) entity);
+                virtual void EstablishEntityRelationship(TEntity &entity) {
+                    _entity_loader.EstablishEntityRelationship((Entity &) entity);
                 }
 
-                void LoadEntity(TEntity &entity) {
+                virtual void LoadEntity(TEntity &entity) {
+                    _entity_loader.LoadEntity((Entity &) (entity));
+                }
 
+                virtual int InsertEntity(TEntity &entity) {
+                    return _entity_loader.InsertEntity((Entity &) (entity));
+                }
+
+                virtual int SaveEntity(TEntity &entity) {
+                    return _entity_loader.SaveEntity((Entity &) (entity));
+                }
+
+                virtual int DeleteEntity(TEntity &entity) {
+                    return _entity_loader.DeleteEntity((Entity &) (entity));
                 }
 
             private:
                 void CommitChanged() {
-                    for (auto item : changedMap) {
+                    for (auto item : _changed_map) {
                         auto entity = item.second;
                         Save(*entity);
                     }
                 };
 
                 void CommitDeleted() {
-                    for (auto item : deletedMap) {
+                    for (auto item : _deleted_map) {
                         auto entity = item.second;
                         Delete(*entity);
                     }

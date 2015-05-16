@@ -9,8 +9,8 @@ namespace Cloude {
         namespace Foundation {
 
             Field::Field(Column &column, void *value) :
-                    column(column),
-                    value(value) {
+                    _column(column),
+                    _value(value) {
             }
 
             Field::~Field() {

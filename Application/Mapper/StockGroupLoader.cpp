@@ -3,12 +3,11 @@
 //
 
 #include "StockGroupLoader.h"
-#include "../Entity/StockGroup.h"
 
 Entity *Cloude::Application::StockGroupLoader::CreateEntityInstance(Identity &ident) {
 
     auto field_ref = ident.GetField("Code");
-    auto value_ptr = (const char*)field_ref.getValue();
+    auto value_ptr = (const char*)field_ref.value();
 
     string value_str(value_ptr);
 
@@ -25,4 +24,13 @@ void Cloude::Application::StockGroupLoader::EstablishEntityRelationship(Entity &
 }
 void Cloude::Application::StockGroupLoader::LoadEntity(Entity &entity) {
     return;
+}
+int Cloude::Application::StockGroupLoader::InsertEntity(Entity &entity) {
+    return 1;
+}
+int Cloude::Application::StockGroupLoader::SaveEntity(Entity &entity) {
+    return 1;
+}
+int Cloude::Application::StockGroupLoader::DeleteEntity(Entity &entity) {
+    return 1;
 }
