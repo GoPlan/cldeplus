@@ -12,7 +12,7 @@ using namespace Cloude::Architecture::Foundation;
 namespace Cloude {
     namespace Application {
 
-        class StockGroup : Entity {
+        class StockGroup : public Entity {
 
         public:
             StockGroup(Identity &ident) : Entity(ident) {

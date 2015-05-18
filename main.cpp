@@ -12,19 +12,28 @@ int main() {
     StockGroupMap stockGroupMap;
     StockGroupLoader stockGroupGenerator;
     EntityStore<StockGroup> stockGroupStore((EntityMap &) stockGroupMap,
-                                                   (EntityLoader &) stockGroupGenerator);
+                                            (EntityLoader &) stockGroupGenerator);
 
     EntityStore<StockGroup> &store = (EntityStore<StockGroup> &) stockGroupStore;
 
-    Field fldId(stockGroupMap.Code, (void *) "VNM");
+    string code("VNM");
+
+    Field fldId(stockGroupMap.Code);
+    fldId.setString(code);
+
     Identity ident{&fldId};
 
     auto stockGroupPtr = store.Create(ident);
-    auto entityRef = dynamic_cast<const Entity &>((Entity &) *stockGroupPtr);
-    auto fieldRef = entityRef.identity().GetField("Code");
+    auto fieldPtr = stockGroupPtr->identity().GetFieldPtr("Code");
+    auto fieldsMap = ident.FieldsMap();
 
-    cout << (char *) fieldRef.value() << endl;
-    cout << (char *) stockGroupPtr->code().c_str() << endl;
+    cout << &ident << endl;
+    cout << &(stockGroupPtr->identity()) << endl;
+    cout << fieldPtr << endl;
+    cout << fieldsMap["Code"] << endl;
+    cout << &fldId << endl;
+    cout << fieldPtr->string() << endl;
+    cout << stockGroupPtr->code() << endl;
 
     return 0;
 };

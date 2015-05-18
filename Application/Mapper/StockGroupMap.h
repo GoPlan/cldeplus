@@ -12,7 +12,7 @@ using namespace Cloude::Architecture::Foundation;
 namespace Cloude {
     namespace Application {
 
-        class StockGroupMap : EntityMap {
+        class StockGroupMap : public EntityMap {
 
         public:
             static Column Id;

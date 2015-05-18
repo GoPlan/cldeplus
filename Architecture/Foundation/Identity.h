@@ -18,14 +18,15 @@ namespace Cloude {
 
             public:
                 Identity();
+                Identity(Field *fieldPtr);
                 Identity(initializer_list<Field *> fields);
                 virtual ~Identity();
 
                 const unordered_map<string, const Field *> &FieldsMap();
-                const Field &GetField(string columnName);
+                const Field *GetFieldPtr(string columnName);
 
-                void Add(Field &field);
-                void AddMultipleFields(initializer_list<Field *> fields);
+                void AddFieldPtr(Field *fieldPtr);
+                void AddMultipleFieldsPtr(initializer_list<Field *> fields);
 
             protected:
                 unordered_map<string, const Field *> _fields_map;

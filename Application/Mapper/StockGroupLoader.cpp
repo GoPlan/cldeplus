@@ -6,13 +6,10 @@
 
 Entity *Cloude::Application::StockGroupLoader::CreateEntityInstance(Identity &ident) {
 
-    auto field_ref = ident.GetField("Code");
-    auto value_ptr = (const char*)field_ref.value();
-
-    string value_str(value_ptr);
+    auto fldCodePtr = ident.GetFieldPtr("Code");
 
     StockGroup *entity = new StockGroup(ident);
-    entity->setCode(value_str);
+    entity->setCode(fldCodePtr->string());
 
     return (Entity *) entity;
 }
