@@ -16,14 +16,12 @@ namespace Cloude {
     namespace Application {
         namespace Mapper {
             class StockGroupLoader : public EntityLoader {
+            public:
                 virtual Entity *CreateEntityInstance(Identity &ident);
                 virtual Identity *NextPrimaryKey();
-
+                virtual void LoadEntityPrimaryKeyFields(Entity &entity);
                 virtual void LoadEntity(Entity &entity);
                 virtual void EstablishEntityRelationship(Entity &entity);
-
-            public:
-                virtual void LoadEntityPrimaryKeyFields();
 
                 virtual int InsertEntity(Entity &entity);
                 virtual int SaveEntity(Entity &entity);

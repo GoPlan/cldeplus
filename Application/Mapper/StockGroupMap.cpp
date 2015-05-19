@@ -7,6 +7,7 @@
 namespace Cloude {
     namespace Application {
         namespace Mapper {
+
             Column StockGroupMap::Id("Id", "_id", DbType::Int64);
             Column StockGroupMap::Code("Code", "Code", DbType::Int64);
             Column StockGroupMap::Name("Name", "Name", DbType::String);

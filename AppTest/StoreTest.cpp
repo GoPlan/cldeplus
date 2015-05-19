@@ -15,9 +15,9 @@ using namespace Cloude::Application::Mapper;
 int StoreTest() {
     {
         StockGroupMap stockGroupMap;
-        StockGroupLoader stockGroupGenerator;
+        StockGroupLoader stockGroupLoader;
         EntityStore <StockGroup> stockGroupStore((EntityMap &) stockGroupMap,
-                                                 (EntityLoader &) stockGroupGenerator);
+                                                 (EntityLoader &) stockGroupLoader);
 
         EntityStore <StockGroup> &store = (EntityStore <StockGroup> &) stockGroupStore;
 

@@ -8,8 +8,6 @@
 namespace Cloude {
     namespace Application {
         namespace Driver {
-
-
             class MySqlDriver {
 
             };

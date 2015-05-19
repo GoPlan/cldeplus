@@ -6,21 +6,30 @@
 
 Entity *Cloude::Application::Mapper::StockGroupLoader::CreateEntityInstance(Identity &ident) {
 
-    auto fldCodePtr = ident.GetFieldPtr("Code");
+    auto stockGroupPtr = new StockGroup(ident);
+    auto entityPtr = static_cast<Entity*>(stockGroupPtr);
 
-    StockGroup *entity = new StockGroup(ident);
-    entity->setCode(fldCodePtr->string());
+    LoadEntityPrimaryKeyFields(*entityPtr);
 
-    return (Entity *) entity;
+    return entityPtr;
 }
 Identity *Cloude::Application::Mapper::StockGroupLoader::NextPrimaryKey() {
     return nullptr;
 }
 void Cloude::Application::Mapper::StockGroupLoader::EstablishEntityRelationship(Entity &entity) {
+    auto stockGroup = static_cast<StockGroup&>(entity);
+    auto identity = entity.identity();
+    auto fldCodePtr = identity.GetFieldPtr("Code");
+
+    stockGroup.setCode(fldCodePtr->string());
+
     return;
 }
 void Cloude::Application::Mapper::StockGroupLoader::LoadEntity(Entity &entity) {
     return;
+}
+void Application::Mapper::StockGroupLoader::LoadEntityPrimaryKeyFields(Entity &entity) {
+
 }
 int Cloude::Application::Mapper::StockGroupLoader::InsertEntity(Entity &entity) {
     return 1;
@@ -30,8 +39,4 @@ int Cloude::Application::Mapper::StockGroupLoader::SaveEntity(Entity &entity) {
 }
 int Cloude::Application::Mapper::StockGroupLoader::DeleteEntity(Entity &entity) {
     return 1;
-}
-
-void Application::Mapper::StockGroupLoader::LoadEntityPrimaryKeyFields() {
-
 }
