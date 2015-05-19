@@ -4,7 +4,7 @@
 
 #include "StockGroupLoader.h"
 
-Entity *Cloude::Application::StockGroupLoader::CreateEntityInstance(Identity &ident) {
+Entity *Cloude::Application::Mapper::StockGroupLoader::CreateEntityInstance(Identity &ident) {
 
     auto fldCodePtr = ident.GetFieldPtr("Code");
 
@@ -13,21 +13,25 @@ Entity *Cloude::Application::StockGroupLoader::CreateEntityInstance(Identity &id
 
     return (Entity *) entity;
 }
-Identity *Cloude::Application::StockGroupLoader::NextPrimaryKey() {
+Identity *Cloude::Application::Mapper::StockGroupLoader::NextPrimaryKey() {
     return nullptr;
 }
-void Cloude::Application::StockGroupLoader::EstablishEntityRelationship(Entity &entity) {
+void Cloude::Application::Mapper::StockGroupLoader::EstablishEntityRelationship(Entity &entity) {
     return;
 }
-void Cloude::Application::StockGroupLoader::LoadEntity(Entity &entity) {
+void Cloude::Application::Mapper::StockGroupLoader::LoadEntity(Entity &entity) {
     return;
 }
-int Cloude::Application::StockGroupLoader::InsertEntity(Entity &entity) {
+int Cloude::Application::Mapper::StockGroupLoader::InsertEntity(Entity &entity) {
     return 1;
 }
-int Cloude::Application::StockGroupLoader::SaveEntity(Entity &entity) {
+int Cloude::Application::Mapper::StockGroupLoader::SaveEntity(Entity &entity) {
     return 1;
 }
-int Cloude::Application::StockGroupLoader::DeleteEntity(Entity &entity) {
+int Cloude::Application::Mapper::StockGroupLoader::DeleteEntity(Entity &entity) {
     return 1;
+}
+
+void Application::Mapper::StockGroupLoader::LoadEntityPrimaryKeyFields() {
+
 }

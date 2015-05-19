@@ -6,40 +6,41 @@
 
 namespace Cloude {
     namespace Application {
+        namespace Mapper {
+            Column StockGroupMap::Id("Id", "_id", DbType::Int64);
+            Column StockGroupMap::Code("Code", "Code", DbType::Int64);
+            Column StockGroupMap::Name("Name", "Name", DbType::String);
+            Column StockGroupMap::DefaultStockCode("DefaultStockCode", "DefaultStockCode", DbType::String);
+            string StockGroupMap::TableName("StockGroup");
 
-        Column StockGroupMap::Id("Id", "_id", DbType::Int64);
-        Column StockGroupMap::Code("Code", "Code", DbType::Int64);
-        Column StockGroupMap::Name("Name", "Name", DbType::String);
-        Column StockGroupMap::DefaultStockCode("DefaultStockCode", "DefaultStockCode", DbType::String);
-        string StockGroupMap::TableName("StockGroup");
+            StockGroupMap::StockGroupMap() {
+                this->_columns_map[Id.name()] = &Id;
+                this->_columns_map[Code.name()] = &Code;
+                this->_columns_map[Name.name()] = &Name;
+                this->_columns_map[DefaultStockCode.name()] = &DefaultStockCode;
 
-        StockGroupMap::StockGroupMap() {
-            this->_columns_map[Id.name()] = &Id;
-            this->_columns_map[Code.name()] = &Code;
-            this->_columns_map[Name.name()] = &Name;
-            this->_columns_map[DefaultStockCode.name()] = &DefaultStockCode;
+                // Keys
+                this->_columns_for_key.push_back(&Code);
 
-            // Keys
-            this->_columns_for_key.push_back(&Code);
+                // Columns For Update
+                this->_columns_for_update.push_back(&Name);
+                this->_columns_for_update.push_back(&DefaultStockCode);
 
-            // Columns For Update
-            this->_columns_for_update.push_back(&Name);
-            this->_columns_for_update.push_back(&DefaultStockCode);
+                // Columns For Select
+                this->_columns_for_select.push_back(&Id);
+                this->_columns_for_select.push_back(&Code);
+            }
 
-            // Columns For Select
-            this->_columns_for_select.push_back(&Id);
-            this->_columns_for_select.push_back(&Code);
-        }
+            StockGroupMap::~StockGroupMap() {
+                this->_columns_map.clear();
+                this->_columns_for_select.clear();
+                this->_columns_for_key.clear();
+                this->_columns_for_update.clear();
+            }
 
-        StockGroupMap::~StockGroupMap() {
-            this->_columns_map.clear();
-            this->_columns_for_select.clear();
-            this->_columns_for_key.clear();
-            this->_columns_for_update.clear();
-        }
-
-        string StockGroupMap::TableNameCore() {
-            return TableName;
+            string StockGroupMap::TableNameCore() {
+                return TableName;
+            }
         }
     }
 }

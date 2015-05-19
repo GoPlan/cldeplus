@@ -11,24 +11,25 @@ using namespace Cloude::Architecture::Foundation;
 
 namespace Cloude {
     namespace Application {
+        namespace Mapper {
+            class StockGroupMap : public EntityMap {
 
-        class StockGroupMap : public EntityMap {
+            public:
+                static Column Id;
+                static Column Code;
+                static Column Name;
+                static Column DefaultStockCode;
+                static string TableName;
 
-        public:
-            static Column Id;
-            static Column Code;
-            static Column Name;
-            static Column DefaultStockCode;
-            static string TableName;
+                StockGroupMap();
+                ~StockGroupMap();
 
-            StockGroupMap();
-            ~StockGroupMap();
-
-        protected:
-            virtual string TableNameCore();
+            protected:
+                virtual string TableNameCore();
 
 
-        };
+            };
+        }
     }
 }
 

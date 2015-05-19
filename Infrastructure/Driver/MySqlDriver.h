@@ -5,10 +5,17 @@
 #ifndef CLOUD_E_CPLUS_MYSQLDRIVER_H
 #define CLOUD_E_CPLUS_MYSQLDRIVER_H
 
+namespace Cloude {
+    namespace Application {
+        namespace Driver {
 
-class MySqlDriver {
 
-};
+            class MySqlDriver {
+
+            };
+        }
+    }
+}
 
 
 #endif //CLOUD_E_CPLUS_MYSQLDRIVER_H
