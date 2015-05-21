@@ -72,27 +72,38 @@ namespace Cloude {
 
                 void RegisterClean(TEntity &entity) {
                     UnRegister(entity);
-                    Identity &ident = ((Entity &) (entity)).identity();
-                    _identity_map[&ident] = &entity;
+
+                    auto tmpEntity = static_cast<Entity&>(entity);
+                    auto tmpIdent = tmpEntity.identity();
+
+                    _identity_map[&tmpIdent] = &tmpEntity;
                 };
 
                 void RegisterChanged(TEntity &entity) {
                     UnRegister(entity);
-                    Identity &ident = ((Entity &) (entity)).identity();
-                    _changed_map[&ident] = &entity;
+
+                    auto tmpEntity = static_cast<Entity&>(entity);
+                    auto tmpIdent = tmpEntity.identity();
+
+                    _changed_map[&tmpIdent] = &tmpEntity;
                 };
 
                 void RegisterDeleted(TEntity &entity) {
                     UnRegister(entity);
-                    Identity &ident = ((Entity &) (entity)).identity();
-                    _deleted_map[&ident] = &entity;
+
+                    auto tmpEntity = static_cast<Entity&>(entity);
+                    auto tmpIdent = tmpEntity.identity();
+
+                    _deleted_map[&tmpIdent] = &tmpEntity;
                 };
 
                 void UnRegister(TEntity &entity) {
-                    Identity &identity = ((Entity &) (entity)).identity();
-                    _identity_map.erase(&identity);
-                    _changed_map.erase(&identity);
-                    _deleted_map.erase(&identity);
+                    auto tmpEntity = static_cast<Entity&>(entity);
+                    auto tmpIdent = tmpEntity.identity();
+
+                    _identity_map.erase(&tmpIdent);
+                    _changed_map.erase(&tmpIdent);
+                    _deleted_map.erase(&tmpIdent);
                 };
 
                 void Commit() {
@@ -103,9 +114,9 @@ namespace Cloude {
             protected:
                 EntityMap &_entity_map;
                 EntityLoader &_entity_loader;
-                unordered_map<Identity *, TEntity *> _identity_map;
-                unordered_map<Identity *, TEntity *> _changed_map;
-                unordered_map<Identity *, TEntity *> _deleted_map;
+                unordered_map<const Identity *, unique_ptr<TEntity>> _identity_map;
+                unordered_map<const Identity *, TEntity *> _changed_map;
+                unordered_map<const Identity *, TEntity *> _deleted_map;
 
                 virtual Identity *NextPrimaryKey() {
                     return _entity_loader.NextPrimaryKey();

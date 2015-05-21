@@ -44,11 +44,11 @@ add_library(infrastructure STATIC
     Infrastructure/Driver/MySqlDriver.cpp
 )
 
-add_library(apptest STATIC
-    AppTest/StoreTest.h
-    AppTest/StoreTest.cpp
-)
+add_library(apptest STATIC AppTest/EntityStore/Simple.cpp AppTest/EntityStore/Simple.h)
+
+# GTEST
+include_directories(${CMAKE_SOURCE_DIR}/AppTest/gtest/include)
+LINK_DIRECTORIES(${CMAKE_SOURCE_DIR}/AppTest/gtest/lib/.libs)
 
 add_executable(cloud_e_cplus ${SOURCE_FILES})
-
-target_link_libraries(cloud_e_cplus architecture infrastructure application apptest)
+target_link_libraries(cloud_e_cplus architecture infrastructure application apptest gtest)
