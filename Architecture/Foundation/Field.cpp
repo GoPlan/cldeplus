@@ -9,13 +9,16 @@ namespace Cloude {
     namespace Architecture {
         namespace Foundation {
 
-            Field::Field(Column &column) :
-                    _column(column) {
+            Field::Field(Column &column) : _column(column) {
                 ResetField();
             }
 
+            Field::Field(Column &column, std::string &value) : _column(column),
+                                                               _string(value){
+
+            }
+
             Field::~Field() {
-                std::cout << "Destructor of Field: " << column().name() << " " << this << endl;
             }
 
             void Field::ResetField() {

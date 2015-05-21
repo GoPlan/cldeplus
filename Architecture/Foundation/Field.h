@@ -16,6 +16,8 @@ namespace Cloude {
 
             public:
                 Field(Column &column);
+                Field(Column &column, std::string &value);
+
                 virtual ~Field();
 
                 Column &column() const {

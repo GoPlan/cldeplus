@@ -9,7 +9,7 @@ namespace Cloude {
     namespace Architecture {
         namespace Enumeration {
 
-            enum DbType {
+            enum class DbType {
                 Int16,
                 Int32,
                 Int64,

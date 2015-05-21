@@ -19,13 +19,13 @@ namespace Cloude {
                 static Column Code;
                 static Column Name;
                 static Column DefaultStockCode;
-                static string TableName;
+                static std::string TableName;
 
                 StockGroupMap();
                 ~StockGroupMap();
 
             protected:
-                virtual string TableNameCore();
+                virtual std::string TableNameCore();
 
 
             };

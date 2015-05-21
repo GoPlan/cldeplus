@@ -5,6 +5,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_cplus_SOURCE_DIR}/Build/bin")
 set(SOURCE_FILES main.cpp)
 
+include_directories(${CMAKE_SOURCE_DIR})
+
 add_library(architecture STATIC
     Architecture/Enumeration/DbType.h
     Architecture/Contract/HasIdentity.h
@@ -26,6 +28,7 @@ add_library(architecture STATIC
     Architecture/Foundation/Proxy.h
     Architecture/Foundation/EntityLoader.cpp
     Architecture/Foundation/EntityLoader.h
+    Architecture/cloude.h
 )
 
 add_library(application STATIC
@@ -44,11 +47,20 @@ add_library(infrastructure STATIC
     Infrastructure/Driver/MySqlDriver.cpp
 )
 
-add_library(apptest STATIC AppTest/EntityStore/Simple.cpp AppTest/EntityStore/Simple.h)
+add_library(apptest STATIC
+    AppTest/Store/StoreSimple.cpp
+    AppTest/Store/StoreSimple.h
+    AppTest/Store/CreateTest.h
+    AppTest/main.cpp
+)
 
 # GTEST
+set(GTEST_SOURCE_FILE ${CMAKE_SOURCE_DIR}/AppTest/main.cpp)
 include_directories(${CMAKE_SOURCE_DIR}/AppTest/gtest/include)
-LINK_DIRECTORIES(${CMAKE_SOURCE_DIR}/AppTest/gtest/lib/.libs)
+LINK_DIRECTORIES(${CMAKE_SOURCE_DIR}/AppTest/gtest/lib)
 
 add_executable(cloud_e_cplus ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus architecture infrastructure application apptest gtest)
+target_link_libraries(cloud_e_cplus architecture infrastructure application)
+
+add_executable(cloud_e_cplus_test ${GTEST_SOURCE_FILE})
+target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest gtest)

@@ -18,18 +18,15 @@ namespace Cloude {
             class EntityStore {
 
             public:
-
-                EntityStore(EntityMap &entityMap, EntityLoader &entityGenerator) :
-                        _entity_map(entityMap),
-                        _entity_loader(entityGenerator) { };
-
+                EntityStore(EntityMap &entityMap, EntityLoader &entityLoader) : _entityMap(entityMap),
+                                                                                _entityLoader(entityLoader) { };
                 virtual ~EntityStore() { };
 
                 const TEntity *Get(Identity &identity) {
 
                     if (HasIdentityInMap(identity)) {
                         auto iter = _identity_map.find(&identity);
-                        auto pair_item = (pair<Identity *, TEntity *>) *iter;
+                        auto pair_item = (std::pair<Identity *, TEntity *>) *iter;
                         return pair_item.second;
                     }
 
@@ -49,7 +46,7 @@ namespace Cloude {
                 }
 
                 const TEntity *Create(Identity &identity) {
-                    auto entity = (TEntity *) (_entity_loader.CreateEntityInstance(identity));
+                    auto entity = (TEntity *) (_entityLoader.CreateEntityInstance(identity));
                     return (Insert(*entity) > 0) ? entity : nullptr;
                 }
 
@@ -73,7 +70,7 @@ namespace Cloude {
                 void RegisterClean(TEntity &entity) {
                     UnRegister(entity);
 
-                    auto tmpEntity = static_cast<Entity&>(entity);
+                    auto tmpEntity = static_cast<Entity &>(entity);
                     auto tmpIdent = tmpEntity.identity();
 
                     _identity_map[&tmpIdent] = &tmpEntity;
@@ -82,7 +79,7 @@ namespace Cloude {
                 void RegisterChanged(TEntity &entity) {
                     UnRegister(entity);
 
-                    auto tmpEntity = static_cast<Entity&>(entity);
+                    auto tmpEntity = static_cast<Entity &>(entity);
                     auto tmpIdent = tmpEntity.identity();
 
                     _changed_map[&tmpIdent] = &tmpEntity;
@@ -91,14 +88,14 @@ namespace Cloude {
                 void RegisterDeleted(TEntity &entity) {
                     UnRegister(entity);
 
-                    auto tmpEntity = static_cast<Entity&>(entity);
+                    auto tmpEntity = static_cast<Entity &>(entity);
                     auto tmpIdent = tmpEntity.identity();
 
                     _deleted_map[&tmpIdent] = &tmpEntity;
                 };
 
                 void UnRegister(TEntity &entity) {
-                    auto tmpEntity = static_cast<Entity&>(entity);
+                    auto tmpEntity = static_cast<Entity &>(entity);
                     auto tmpIdent = tmpEntity.identity();
 
                     _identity_map.erase(&tmpIdent);
@@ -112,39 +109,39 @@ namespace Cloude {
                 };
 
             protected:
-                EntityMap &_entity_map;
-                EntityLoader &_entity_loader;
-                unordered_map<const Identity *, unique_ptr<TEntity>> _identity_map;
-                unordered_map<const Identity *, TEntity *> _changed_map;
-                unordered_map<const Identity *, TEntity *> _deleted_map;
+                EntityMap &_entityMap;
+                EntityLoader &_entityLoader;
+                std::unordered_map<const Identity *, TEntity *> _identity_map;
+                std::unordered_map<const Identity *, TEntity *> _changed_map;
+                std::unordered_map<const Identity *, TEntity *> _deleted_map;
 
                 virtual Identity *NextPrimaryKey() {
-                    return _entity_loader.NextPrimaryKey();
+                    return _entityLoader.NextPrimaryKey();
                 }
 
                 virtual TEntity *CreateEntityInstance(Identity &ident) {
-                    auto entity = _entity_loader.CreateEntityInstance(ident);
+                    auto entity = _entityLoader.CreateEntityInstance(ident);
                     return (TEntity *) entity;
                 }
 
                 virtual void EstablishEntityRelationship(TEntity &entity) {
-                    _entity_loader.EstablishEntityRelationship((Entity &) entity);
+                    _entityLoader.EstablishEntityRelationship((Entity &) entity);
                 }
 
                 virtual void LoadEntity(TEntity &entity) {
-                    _entity_loader.LoadEntity((Entity &) (entity));
+                    _entityLoader.LoadEntity((Entity &) (entity));
                 }
 
                 virtual int InsertEntity(TEntity &entity) {
-                    return _entity_loader.InsertEntity((Entity &) (entity));
+                    return _entityLoader.InsertEntity((Entity &) (entity));
                 }
 
                 virtual int SaveEntity(TEntity &entity) {
-                    return _entity_loader.SaveEntity((Entity &) (entity));
+                    return _entityLoader.SaveEntity((Entity &) (entity));
                 }
 
                 virtual int DeleteEntity(TEntity &entity) {
-                    return _entity_loader.DeleteEntity((Entity &) (entity));
+                    return _entityLoader.DeleteEntity((Entity &) (entity));
                 }
 
             private:

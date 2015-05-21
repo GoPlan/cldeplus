@@ -33,35 +33,35 @@ namespace Cloude {
                     _id = id;
                 }
 
-                const string &code() const {
+                const std::string &code() const {
                     return _code;
                 }
 
-                void setCode(const string &code) {
+                void setCode(const std::string &code) {
                     _code = code;
                 }
 
-                const string &name() const {
+                const std::string &name() const {
                     return _name;
                 }
 
-                void setName(const string &name) {
+                void setName(const std::string &name) {
                     _name = name;
                 }
 
-                const string &defaultStockCode() const {
+                const std::string &defaultStockCode() const {
                     return _defaultStockCode;
                 }
 
-                void setDefaultStockCode(const string &defaultStockCode) {
+                void setDefaultStockCode(const std::string &defaultStockCode) {
                     _defaultStockCode = defaultStockCode;
                 }
 
             private:
                 long _id;
-                string _code;
-                string _name;
-                string _defaultStockCode;
+                std::string _code;
+                std::string _name;
+                std::string _defaultStockCode;
             };
         }
     }

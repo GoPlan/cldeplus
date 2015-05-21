@@ -12,7 +12,7 @@ namespace Cloude {
             Column StockGroupMap::Code("Code", "Code", DbType::Int64);
             Column StockGroupMap::Name("Name", "Name", DbType::String);
             Column StockGroupMap::DefaultStockCode("DefaultStockCode", "DefaultStockCode", DbType::String);
-            string StockGroupMap::TableName("StockGroup");
+            std::string StockGroupMap::TableName("StockGroup");
 
             StockGroupMap::StockGroupMap() {
                 this->_columns_map[Id.name()] = &Id;
@@ -39,7 +39,7 @@ namespace Cloude {
                 this->_columns_for_update.clear();
             }
 
-            string StockGroupMap::TableNameCore() {
+            std::string StockGroupMap::TableNameCore() {
                 return TableName;
             }
         }

@@ -8,7 +8,6 @@
 #include <string>
 #include "../Enumeration/DbType.h"
 
-using namespace std;
 using namespace Cloude::Architecture::Enumeration;
 
 namespace Cloude {
@@ -18,13 +17,13 @@ namespace Cloude {
             class Column {
 
             public:
-                Column(string name, string datasourceName, DbType dbtype);
+                Column(std::string name, std::string datasourceName, DbType dbtype);
                 virtual ~Column();
 
-                const string &datasource_name() const {
+                const std::string &datasource_name() const {
                     return _datasource_name;
                 }
-                const string &name() const {
+                const std::string &name() const {
                     return _name;
                 }
                 const DbType &db_type() const {
@@ -32,8 +31,8 @@ namespace Cloude {
                 }
 
             private:
-                string _datasource_name;
-                string _name;
+                std::string _datasource_name;
+                std::string _name;
                 DbType _db_type;
             };
 

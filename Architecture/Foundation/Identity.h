@@ -8,8 +8,6 @@
 #include <unordered_map>
 #include "Field.h"
 
-using namespace std;
-
 namespace Cloude {
     namespace Architecture {
         namespace Foundation {
@@ -19,17 +17,17 @@ namespace Cloude {
             public:
                 Identity();
                 Identity(Field *fieldPtr);
-                Identity(initializer_list<Field *> fields);
+                Identity(std::initializer_list<Field *> fields);
                 virtual ~Identity();
 
-                const unordered_map<string, const Field *> &FieldsMap();
-                const Field *GetFieldPtr(string columnName);
+                const std::unordered_map<std::string, Field *> &FieldsMap();
+                const Field *GetFieldPtr(std::string columnName);
 
                 void AddFieldPtr(Field *fieldPtr);
-                void AddMultipleFieldsPtr(initializer_list<Field *> fields);
+                void AddMultipleFieldsPtr(std::initializer_list<Field *> fields);
 
             protected:
-                unordered_map<string, const Field *> _fields_map;
+                std::unordered_map<std::string, Field *> _fieldsMap;
 
             };
 

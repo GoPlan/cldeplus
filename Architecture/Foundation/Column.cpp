@@ -9,13 +9,14 @@ namespace Cloude {
         namespace Foundation {
 
 
-            Column::Column(string name, string datasourceName, DbType dataType) :
-                    _name(name),
-                    _datasource_name(datasourceName),
-                    _db_type(dataType) {
+            Column::Column(std::string name, std::string datasourceName, DbType dataType) : _name(name),
+                                                                                            _datasource_name(datasourceName),
+                                                                                            _db_type(dataType) {
+                //
             }
 
             Column::~Column() {
+
             }
         }
     }

@@ -20,29 +20,29 @@ namespace Cloude {
                 EntityMap() { };
                 virtual ~EntityMap() { };
 
-                string TableName() {
+                std::string TableName() {
                     return TableNameCore();
                 }
-                const vector<Column *> &columns_for_key() const {
+                const std::vector<Column *> &columns_for_key() const {
                     return _columns_for_key;
                 }
-                const vector<Column *> &columns_for_select() const {
+                const std::vector<Column *> &columns_for_select() const {
                     return _columns_for_select;
                 }
-                const vector<Column *> &columns_for_update() const {
+                const std::vector<Column *> &columns_for_update() const {
                     return _columns_for_update;
                 }
-                const unordered_map<string, Column *> &columns_map() const {
+                const std::unordered_map<std::string, Column *> &columns_map() const {
                     return _columns_map;
                 }
                 
             protected:
-                vector<Column *> _columns_for_key;
-                vector<Column *> _columns_for_select;
-                vector<Column *> _columns_for_update;
-                unordered_map<string, Column *> _columns_map;
+                std::vector<Column *> _columns_for_key;
+                std::vector<Column *> _columns_for_select;
+                std::vector<Column *> _columns_for_update;
+                std::unordered_map<std::string, Column *> _columns_map;
 
-                virtual string TableNameCore() = 0;
+                virtual std::string TableNameCore() = 0;
             };
         }
     }
