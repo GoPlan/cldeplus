@@ -34,7 +34,6 @@ namespace Cloude {
 
                     LoadEntity(*entity);
                     EstablishEntityRelationship(*entity);
-                    RegisterClean(*entity);
 
                     return entity;
                 }
@@ -67,53 +66,12 @@ namespace Cloude {
                     return !(iterator == _identity_map.end());
                 };
 
-                void RegisterClean(TEntity &entity) {
-                    UnRegister(entity);
-
-                    auto tmpEntity = static_cast<Entity &>(entity);
-                    auto tmpIdent = tmpEntity.identity();
-
-                    _identity_map[&tmpIdent] = &tmpEntity;
-                };
-
-                void RegisterChanged(TEntity &entity) {
-                    UnRegister(entity);
-
-                    auto tmpEntity = static_cast<Entity &>(entity);
-                    auto tmpIdent = tmpEntity.identity();
-
-                    _changed_map[&tmpIdent] = &tmpEntity;
-                };
-
-                void RegisterDeleted(TEntity &entity) {
-                    UnRegister(entity);
-
-                    auto tmpEntity = static_cast<Entity &>(entity);
-                    auto tmpIdent = tmpEntity.identity();
-
-                    _deleted_map[&tmpIdent] = &tmpEntity;
-                };
-
-                void UnRegister(TEntity &entity) {
-                    auto tmpEntity = static_cast<Entity &>(entity);
-                    auto tmpIdent = tmpEntity.identity();
-
-                    _identity_map.erase(&tmpIdent);
-                    _changed_map.erase(&tmpIdent);
-                    _deleted_map.erase(&tmpIdent);
-                };
-
-                void Commit() {
-                    CommitChanged();
-                    CommitChanged();
-                };
-
             protected:
                 EntityMap &_entityMap;
+
                 EntityLoader &_entityLoader;
+
                 std::unordered_map<const Identity *, TEntity *> _identity_map;
-                std::unordered_map<const Identity *, TEntity *> _changed_map;
-                std::unordered_map<const Identity *, TEntity *> _deleted_map;
 
                 virtual Identity *NextPrimaryKey() {
                     return _entityLoader.NextPrimaryKey();
@@ -143,21 +101,6 @@ namespace Cloude {
                 virtual int DeleteEntity(TEntity &entity) {
                     return _entityLoader.DeleteEntity((Entity &) (entity));
                 }
-
-            private:
-                void CommitChanged() {
-                    for (auto item : _changed_map) {
-                        auto entity = item.second;
-                        Save(*entity);
-                    }
-                };
-
-                void CommitDeleted() {
-                    for (auto item : _deleted_map) {
-                        auto entity = item.second;
-                        Delete(*entity);
-                    }
-                };
             };
         }
     }

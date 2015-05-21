@@ -20,8 +20,10 @@ namespace Cloude {
                 Identity(std::initializer_list<Field *> fields);
                 virtual ~Identity();
 
-                const std::unordered_map<std::string, Field *> &FieldsMap();
                 const Field *GetFieldPtr(std::string columnName);
+                const std::unordered_map<std::string, Field *> &getFieldsMap() {
+                    return _fieldsMap;
+                }
 
                 void AddFieldPtr(Field *fieldPtr);
                 void AddMultipleFieldsPtr(std::initializer_list<Field *> fields);

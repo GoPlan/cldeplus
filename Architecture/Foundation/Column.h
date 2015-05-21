@@ -19,21 +19,20 @@ namespace Cloude {
             public:
                 Column(std::string name, std::string datasourceName, DbType dbtype);
                 virtual ~Column();
-
-                const std::string &datasource_name() const {
-                    return _datasource_name;
+                
+                const std::string &getDatasourceName() const {
+                    return _datasourceName;
                 }
-                const std::string &name() const {
+                const std::string &getName() const {
                     return _name;
                 }
-                const DbType &db_type() const {
-                    return _db_type;
+                const DbType &getDbType() const {
+                    return _dbType;
                 }
-
             private:
-                std::string _datasource_name;
+                std::string _datasourceName;
                 std::string _name;
-                DbType _db_type;
+                DbType _dbType;
             };
 
         }

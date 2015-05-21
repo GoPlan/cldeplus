@@ -24,20 +24,16 @@ namespace Cloude {
             }
 
             void Identity::AddFieldPtr(Field *fieldPtr) {
-                auto column = fieldPtr->column();
-                auto column_name = column.name();
-                auto field_pair = make_pair(column_name, fieldPtr);
-                this->_fieldsMap.insert(field_pair);
+                auto column = fieldPtr->getColumn();
+                auto columnName = column.getName();
+                auto fieldPair = make_pair(columnName, fieldPtr);
+                this->_fieldsMap.insert(fieldPair);
             }
 
             void Identity::AddMultipleFieldsPtr(std::initializer_list<Field *> fields) {
                 for (Field *fieldPtr : fields) {
                     this->AddFieldPtr(fieldPtr);
                 }
-            }
-
-            const std::unordered_map<std::string, Field *> &Identity::FieldsMap() {
-                return _fieldsMap;
             }
 
             const Field *Identity::GetFieldPtr(std::string columnName) {

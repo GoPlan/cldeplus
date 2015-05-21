@@ -7,7 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "StoreSimple.h"
-#include "../../Architecture/cloude.h"
+#include "../../Architecture/Cloude.h"
 
 using namespace Cloude::AppTest::Store;
 using namespace Cloude::Architecture::Foundation;
@@ -29,14 +29,14 @@ namespace Cloude {
                 Identity identity(&fieldId);
 
                 auto stockGroupPtr = _entityStore.Create(identity);
-                auto stockGroupIdentyPtr = &stockGroupPtr->identity();
-                auto stockGroupIdFieldPtr = stockGroupIdentyPtr->GetFieldPtr("Code");
+                auto stockGroupIdentyPtr = &stockGroupPtr->getIdentity();
+                auto stockGroupFieldIdPtr = stockGroupIdentyPtr->GetFieldPtr("Code");
 
                 EXPECT_EQ(true, stockGroupPtr != NULL && stockGroupPtr != nullptr);
                 EXPECT_EQ(&identity, stockGroupIdentyPtr);
-                EXPECT_EQ(&fieldId, stockGroupIdFieldPtr);
-                EXPECT_EQ(codeValue, stockGroupIdFieldPtr->string());
-
+                EXPECT_EQ(&fieldId, stockGroupFieldIdPtr);
+                EXPECT_EQ(codeName, stockGroupFieldIdPtr->getColumn().getName());
+                EXPECT_EQ(codeValue, stockGroupFieldIdPtr->getString());
             }
         }
     }

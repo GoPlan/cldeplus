@@ -5,10 +5,14 @@
 #ifndef CLOUD_E_CPLUS_PROXY_H
 #define CLOUD_E_CPLUS_PROXY_H
 
+namespace Cloude {
+    namespace Architecture {
+        namespace Foundation {
+            class Proxy {
 
-class Proxy {
-
-};
-
+            };
+        }
+    }
+}
 
 #endif //CLOUD_E_CPLUS_PROXY_H

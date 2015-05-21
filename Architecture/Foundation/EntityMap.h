@@ -23,24 +23,24 @@ namespace Cloude {
                 std::string TableName() {
                     return TableNameCore();
                 }
-                const std::vector<Column *> &columns_for_key() const {
-                    return _columns_for_key;
+
+                const std::vector<Column *> &getColumnsForKey() const {
+                    return _columnsForKey;
                 }
-                const std::vector<Column *> &columns_for_select() const {
-                    return _columns_for_select;
+                const std::vector<Column *> &getColumnsForSelect() const {
+                    return _columnsForSelect;
                 }
-                const std::vector<Column *> &columns_for_update() const {
-                    return _columns_for_update;
+                const std::vector<Column *> &getColumnsForUpdate() const {
+                    return _columnsForUpdate;
                 }
-                const std::unordered_map<std::string, Column *> &columns_map() const {
-                    return _columns_map;
+                const std::unordered_map<std::string, Column *> &getColumnsMap() const {
+                    return _columnsMap;
                 }
-                
             protected:
-                std::vector<Column *> _columns_for_key;
-                std::vector<Column *> _columns_for_select;
-                std::vector<Column *> _columns_for_update;
-                std::unordered_map<std::string, Column *> _columns_map;
+                std::vector<Column *> _columnsForKey;
+                std::vector<Column *> _columnsForSelect;
+                std::vector<Column *> _columnsForUpdate;
+                std::unordered_map<std::string, Column *> _columnsMap;
 
                 virtual std::string TableNameCore() = 0;
             };

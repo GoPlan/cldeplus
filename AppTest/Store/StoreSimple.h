@@ -6,7 +6,7 @@
 #define CLOUD_E_CPLUS_STORESIMPLE_H
 
 #include "gtest/gtest.h"
-#include "../../Architecture/cloude.h"
+#include "../../Architecture/Cloude.h"
 #include "../../Application/Model/StockGroup.h"
 #include "../../Application/Mapper/StockGroupLoader.h"
 #include "../../Application/Mapper/StockGroupMap.h"
@@ -32,7 +32,6 @@ namespace Cloude {
                 StockGroupLoader _stockGroupLoader;
                 EntityStore<StockGroup> _entityStore;
             };
-
         }
     }
 }

@@ -18,10 +18,10 @@ Identity *Cloude::Application::Mapper::StockGroupLoader::NextPrimaryKey() {
 }
 void Cloude::Application::Mapper::StockGroupLoader::EstablishEntityRelationship(Entity &entity) {
     auto stockGroup = static_cast<StockGroup&>(entity);
-    auto identity = entity.identity();
+    auto identity = entity.getIdentity();
     auto fldCodePtr = identity.GetFieldPtr("Code");
 
-    stockGroup.setCode(fldCodePtr->string());
+    stockGroup.setCode(fldCodePtr->getString());
 
     return;
 }

@@ -10,8 +10,8 @@ namespace Cloude {
 
 
             Column::Column(std::string name, std::string datasourceName, DbType dataType) : _name(name),
-                                                                                            _datasource_name(datasourceName),
-                                                                                            _db_type(dataType) {
+                                                                                            _datasourceName(datasourceName),
+                                                                                            _dbType(dataType) {
                 //
             }
 

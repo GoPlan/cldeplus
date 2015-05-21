@@ -17,7 +17,7 @@ namespace Cloude {
                 Entity(Identity &ident) : _identity(ident) { };
                 virtual ~Entity() { };
 
-                Identity &identity() const {
+                Identity &getIdentity() const {
                     return _identity;
                 }
 

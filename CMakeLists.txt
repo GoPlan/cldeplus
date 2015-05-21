@@ -28,8 +28,8 @@ add_library(architecture STATIC
     Architecture/Foundation/Proxy.h
     Architecture/Foundation/EntityLoader.cpp
     Architecture/Foundation/EntityLoader.h
-    Architecture/cloude.h
-)
+    Architecture/Cloude.h
+Architecture/Foundation/TransactionUnit.cpp Architecture/Foundation/TransactionUnit.h)
 
 add_library(application STATIC
     Application/Model/Account.cpp
