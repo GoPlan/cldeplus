@@ -14,6 +14,8 @@ namespace Cloude {
             pass = "cloud-e";
             schema = "cloud-e";
             query = "SELECT id, uniquename, accounttype, email FROM account";
+
+            result_bind_ptr = new MYSQL_BIND[4];
         }
 
         MySqlExample::~MySqlExample() {
@@ -47,7 +49,7 @@ namespace Cloude {
 
             setup_bind();
 
-            if (mysql_stmt_bind_result(mysql_stmt_ptr, result_bind)) {
+            if (mysql_stmt_bind_result(mysql_stmt_ptr, result_bind_ptr)) {
                 assert_error();
                 assert_stmt_error();
             }
@@ -115,7 +117,6 @@ namespace Cloude {
                 }
 
                 fprintf(stdout, "\t");
-
                 fprintf(stdout, "\n");
 
                 is_printing = false;
@@ -145,35 +146,35 @@ namespace Cloude {
         }
 
         void MySqlExample::setup_bind() {
-            memset(result_bind, 0, sizeof(result_bind));
+            memset(result_bind_ptr, 0, sizeof(MYSQL_BIND) * 4);
 
-            result_bind[0].buffer_type = MYSQL_TYPE_LONG;
-            result_bind[0].buffer = &id_buffer;
-            result_bind[0].buffer_length = sizeof(long);
-            result_bind[0].error = &id_error;
-            result_bind[0].is_null = &id_isnull;
-            result_bind[0].length = &id_length;
+            result_bind_ptr[0].buffer_type = MYSQL_TYPE_LONG;
+            result_bind_ptr[0].buffer = &id_buffer;
+            result_bind_ptr[0].buffer_length = sizeof(long);
+            result_bind_ptr[0].error = &id_error;
+            result_bind_ptr[0].is_null = &id_isnull;
+            result_bind_ptr[0].length = &id_length;
 
-            result_bind[1].buffer_type = MYSQL_TYPE_STRING;
-            result_bind[1].buffer = (char *) &uniquename_buffer;
-            result_bind[1].buffer_length = 255;
-            result_bind[1].error = &uniquename_error;
-            result_bind[1].is_null = &uniquename_isnull;
-            result_bind[1].length = &uniquename_length;
+            result_bind_ptr[1].buffer_type = MYSQL_TYPE_STRING;
+            result_bind_ptr[1].buffer = (char *) &uniquename_buffer;
+            result_bind_ptr[1].buffer_length = 255;
+            result_bind_ptr[1].error = &uniquename_error;
+            result_bind_ptr[1].is_null = &uniquename_isnull;
+            result_bind_ptr[1].length = &uniquename_length;
 
-            result_bind[2].buffer_type = MYSQL_TYPE_STRING;
-            result_bind[2].buffer = (char *) &accounttype_buffer;
-            result_bind[2].buffer_length = 255;
-            result_bind[2].error = &accounttype_error;
-            result_bind[2].is_null = &accounttype_isnull;
-            result_bind[2].length = &accounttype_length;
+            result_bind_ptr[2].buffer_type = MYSQL_TYPE_STRING;
+            result_bind_ptr[2].buffer = (char *) &accounttype_buffer;
+            result_bind_ptr[2].buffer_length = 255;
+            result_bind_ptr[2].error = &accounttype_error;
+            result_bind_ptr[2].is_null = &accounttype_isnull;
+            result_bind_ptr[2].length = &accounttype_length;
 
-            result_bind[3].buffer_type = MYSQL_TYPE_STRING;
-            result_bind[3].buffer = (char *) &email_buffer;
-            result_bind[3].buffer_length = 255;
-            result_bind[3].error = &email_error;
-            result_bind[3].is_null = &email_isnull;
-            result_bind[3].length = &email_length;
+            result_bind_ptr[3].buffer_type = MYSQL_TYPE_STRING;
+            result_bind_ptr[3].buffer = (char *) &email_buffer;
+            result_bind_ptr[3].buffer_length = 255;
+            result_bind_ptr[3].error = &email_error;
+            result_bind_ptr[3].is_null = &email_isnull;
+            result_bind_ptr[3].length = &email_length;
         }
     }
 }

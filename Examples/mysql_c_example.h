@@ -21,8 +21,9 @@ namespace Cloude {
         private:
             MYSQL *mysql_ptr;
             MYSQL_STMT *mysql_stmt_ptr;
-            MYSQL_BIND result_bind[4];
+            MYSQL_BIND *result_bind_ptr;
 
+            // Result Buffers
             bool is_printing;
             unsigned long id_length, uniquename_length, accounttype_length, email_length;
             long id_buffer;
@@ -34,6 +35,7 @@ namespace Cloude {
 
             // Connection Details
             unsigned int port;
+
             std::string host;
             std::string user;
             std::string pass;

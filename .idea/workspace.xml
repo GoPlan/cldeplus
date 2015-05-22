@@ -20,255 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Examples/mysql_c_example.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Examples/mysql_c_example.h" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/.idea/gtest-1.7.0.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/CHANGES" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/CMakeLists.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/CONTRIBUTORS" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/Makefile.am" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/Makefile.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/README" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/aclocal.m4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/build-aux/config.guess" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/build-aux/config.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/build-aux/config.h.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/build-aux/config.sub" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/build-aux/depcomp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/build-aux/install-sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/build-aux/ltmain.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/build-aux/missing" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/build-aux/stamp-h1" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/cmake/internal_utils.cmake" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/codegear/gtest.cbproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/codegear/gtest.groupproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/codegear/gtest_all.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/codegear/gtest_link.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/codegear/gtest_main.cbproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/codegear/gtest_unittest.cbproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/config.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/config.status" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/configure" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/configure.ac" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/fused-src/gtest/.deps/test_fused_gtest_test-gtest-all.Po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/fused-src/gtest/.deps/test_fused_gtest_test-gtest_main.Po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/fused-src/gtest/gtest-all.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/fused-src/gtest/gtest.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/fused-src/gtest/gtest_main.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest-death-test.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest-message.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest-param-test.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest-param-test.h.pump" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest-printers.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest-spi.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest-test-part.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest-typed-test.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest_pred_impl.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/gtest_prod.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-death-test-internal.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-filepath.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-internal.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-linked_ptr.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-param-util-generated.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-param-util-generated.h.pump" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-param-util.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-port.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-string.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-tuple.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-tuple.h.pump" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-type-util.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/include/gtest/internal/gtest-type-util.h.pump" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.dirstamp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest.0.dylib" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest.a" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest.dylib" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest.la" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest.lai" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest_main.0.dylib" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest_main.a" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest_main.dylib" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest_main.la" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/.libs/libgtest_main.lai" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/libgtest.a" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/libgtest.la" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/lib/libgtest_main.la" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/libtool" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/m4/acx_pthread.m4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/m4/gtest.m4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/m4/libtool.m4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/m4/ltoptions.m4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/m4/ltsugar.m4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/m4/ltversion.m4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/m4/lt~obsolete.m4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/make/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest-md.sln" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest-md.vcproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest.sln" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest.vcproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest_main-md.vcproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest_main.vcproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest_prod_test-md.vcproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest_prod_test.vcproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest_unittest-md.vcproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/msvc/gtest_unittest.vcproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.deps/.dirstamp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.deps/sample1.Plo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.deps/sample10_unittest.Po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.deps/sample1_unittest.Po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.deps/sample2.Plo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.deps/sample4.Plo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.deps/test_fused_gtest_test-sample1.Po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.deps/test_fused_gtest_test-sample1_unittest.Po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.dirstamp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.libs/libsamples.a" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.libs/libsamples.la" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.libs/sample1.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.libs/sample2.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/.libs/sample4.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/libsamples.la" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/prime_tables.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample1.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample1.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample1.lo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample1.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample10_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample1_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample2.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample2.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample2.lo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample2.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample2_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample3-inl.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample3_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample4.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample4.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample4.lo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample4.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample4_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample5_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample6_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample7_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample8_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/samples/sample9_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/scripts/fuse_gtest_files.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/scripts/gen_gtest_pred_impl.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/scripts/gtest-config" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/scripts/gtest-config.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/scripts/pump.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/scripts/test/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/.deps/.dirstamp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/.deps/gtest-all.Plo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/.deps/gtest_main.Plo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/.dirstamp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/.libs/gtest-all.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/.libs/gtest_main.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-all.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-all.lo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-all.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-death-test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-filepath.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-internal-inl.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-port.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-printers.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-test-part.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest-typed-test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest_main.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest_main.lo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/src/gtest_main.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/.deps/gtest_all_test.Po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-death-test_ex_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-death-test_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-filepath_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-linked_ptr_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-listener_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-message_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-options_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-param-test2_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-param-test_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-param-test_test.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-port_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-printers_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-test-part_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-tuple_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-typed-test2_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-typed-test_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-typed-test_test.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest-unittest-api_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_all_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_break_on_failure_unittest.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_break_on_failure_unittest_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_catch_exceptions_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_catch_exceptions_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_color_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_color_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_env_var_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_env_var_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_environment_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_filter_unittest.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_filter_unittest_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_help_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_help_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_list_tests_unittest.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_list_tests_unittest_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_main_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_no_test_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_output_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_output_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_output_test_golden_lin.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_pred_impl_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_premature_exit_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_prod_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_repeat_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_shuffle_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_shuffle_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_sole_header_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_stress_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_test_utils.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_throw_on_failure_ex_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_throw_on_failure_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_throw_on_failure_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_uninitialized_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_uninitialized_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_unittest.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_xml_outfile1_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_xml_outfile2_test_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_xml_outfiles_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_xml_output_unittest.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_xml_output_unittest_.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/gtest_xml_test_utils.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/production.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/test/production.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Config/DebugProject.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Config/FrameworkTarget.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Config/General.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Config/ReleaseProject.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Config/StaticLibraryTarget.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Config/TestTarget.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Resources/Info.plist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Samples/FrameworkSample/Info.plist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Samples/FrameworkSample/WidgetFramework.xcodeproj/project.pbxproj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Samples/FrameworkSample/runtests.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Samples/FrameworkSample/widget.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Samples/FrameworkSample/widget.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Samples/FrameworkSample/widget_test.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Scripts/runtests.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/Scripts/versiongenerate.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppTest/gtest/xcode/gtest.xcodeproj/project.pbxproj" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/Foundation/EntityStore.h" afterPath="$PROJECT_DIR$/Architecture/Foundation/EntityStore.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Mapper/StockGroupLoader.cpp" afterPath="$PROJECT_DIR$/Application/Mapper/StockGroupLoader.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Examples/mysql_c_example.cpp" afterPath="$PROJECT_DIR$/Examples/mysql_c_example.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Examples/mysql_c_example.h" afterPath="$PROJECT_DIR$/Examples/mysql_c_example.h" />
     </list>
     <ignored path="cloud-e-plus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -316,21 +69,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mysql_c_example.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mysql_c_example.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Examples/mysql_c_example.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="42" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="42" />
+            <state vertical-scroll-proportion="3.3147">
+              <caret line="124" column="13" selection-start-line="124" selection-start-column="13" selection-end-line="124" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mysql_c_example.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mysql_c_example.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/mysql_c_example.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3416149">
-              <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
               <folding>
                 <element signature="e#126#143#0" expanded="true" />
               </folding>
@@ -395,8 +148,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/main.cpp" />
-        <option value="$PROJECT_DIR$/Examples/mysql_c_example.cpp" />
         <option value="$PROJECT_DIR$/Examples/mysql_c_example.h" />
+        <option value="$PROJECT_DIR$/Examples/mysql_c_example.cpp" />
       </list>
     </option>
   </component>
@@ -476,6 +229,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Infrastructure" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Driver" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -667,7 +438,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Examples/mysql_c_example.cpp</url>
-          <line>24</line>
+          <line>26</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
@@ -1058,21 +829,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/mysql_c_example.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/mysql_c_example.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3416149">
-          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
           <folding>
             <element signature="e#126#143#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/mysql_c_example.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.3147">
+          <caret line="124" column="13" selection-start-line="124" selection-start-column="13" selection-end-line="124" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
