@@ -29,7 +29,9 @@ add_library(architecture STATIC
     Architecture/Foundation/EntityLoader.cpp
     Architecture/Foundation/EntityLoader.h
     Architecture/Cloude.h
-Architecture/Foundation/TransactionUnit.cpp Architecture/Foundation/TransactionUnit.h)
+    Architecture/Foundation/TransactionUnit.cpp
+    Architecture/Foundation/TransactionUnit.h
+)
 
 add_library(application STATIC
     Application/Model/Account.cpp
@@ -47,6 +49,11 @@ add_library(infrastructure STATIC
     Infrastructure/Driver/MySqlDriver.cpp
 )
 
+add_library(examples STATIC
+    Examples/mysql_c_example.h
+    Examples/mysql_c_example.cpp
+)
+
 add_library(apptest STATIC
     AppTest/Store/StoreSimple.cpp
     AppTest/Store/StoreSimple.h
@@ -54,13 +61,27 @@ add_library(apptest STATIC
     AppTest/main.cpp
 )
 
-# GTEST
-set(GTEST_SOURCE_FILE ${CMAKE_SOURCE_DIR}/AppTest/main.cpp)
-include_directories(${CMAKE_SOURCE_DIR}/AppTest/gtest/include)
-LINK_DIRECTORIES(${CMAKE_SOURCE_DIR}/AppTest/gtest/lib)
+# Libs
+set(LIBS_DIR ${CMAKE_SOURCE_DIR}/Libs)
 
+# MySql Client
+set(MYSQL_DIR ${LIBS_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64)
+include_directories(${MYSQL_DIR}/include)
+LINK_DIRECTORIES(${MYSQL_DIR}/lib)
+
+# Examples
+set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/Examples)
+
+
+# Sandbox Target
 add_executable(cloud_e_cplus ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus architecture infrastructure application)
+target_link_libraries(cloud_e_cplus architecture infrastructure application mysqlclient examples)
 
-add_executable(cloud_e_cplus_test ${GTEST_SOURCE_FILE})
+# AppTest Target (with Google Testing Framework)
+set(GTEST_LIB_DIR ${LIBS_DIR}/gtest-1.7.0)
+set(APPTEST_SOURCE_FILE ${CMAKE_SOURCE_DIR}/AppTest/main.cpp)
+include_directories(${GTEST_LIB_DIR}/include)
+LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
+
+add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
 target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest gtest)
