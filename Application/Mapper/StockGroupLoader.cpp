@@ -4,12 +4,12 @@
 
 #include "StockGroupLoader.h"
 
-shared_ptr<Entity> Cloude::Application::Mapper::StockGroupLoader::CreateEntityInstance(shared_ptr<Identity> ident) {
-    shared_ptr<Entity> entity;
+unique_ptr<Entity> Cloude::Application::Mapper::StockGroupLoader::CreateEntityInstance(shared_ptr<Identity> ident) {
+    unique_ptr<Entity> entity;
     return entity;
 }
-shared_ptr<Identity> Cloude::Application::Mapper::StockGroupLoader::NextPrimaryKey() {
-    shared_ptr<Identity> ident;
+unique_ptr<Identity> Cloude::Application::Mapper::StockGroupLoader::NextPrimaryKey() {
+    unique_ptr<Identity> ident;
     return ident;
 }
 void Cloude::Application::Mapper::StockGroupLoader::LoadEntity(Entity &entity) {

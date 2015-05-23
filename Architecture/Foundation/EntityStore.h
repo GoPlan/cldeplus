@@ -27,21 +27,20 @@ namespace Cloude {
                     Clear();
                 };
 
-                const shared_ptr<Entity> Get(shared_ptr<Identity> identity);
-                const shared_ptr<Entity> Create();
-                const shared_ptr<Entity> Create(shared_ptr<Identity> identity);
+                shared_ptr<Entity> Get(shared_ptr<Identity>& identity);
+                shared_ptr<Entity> Create();
+                shared_ptr<Entity> Create(shared_ptr<Identity> identity);
 
-                void Insert(shared_ptr<Entity> entity);
-                void Delete(shared_ptr<Entity> entity);
-                void Save(shared_ptr<Entity> entity) const;
+                void Insert(shared_ptr<Entity>& entity);
+                void Delete(shared_ptr<Entity>& entity);
+                void Save(shared_ptr<Entity>& entity) const;
                 void Clear();
 
             protected:
                 EntityMap &_entityMap;
                 EntityLoader &_entityLoader;
 
-                const shared_ptr<Entity> CreateEntityInstance(shared_ptr<Identity> identity) const;
-                void LoadEntity(shared_ptr<Entity> entity) const;
+                void LoadEntity(shared_ptr<Entity>& entity) const;
 
             private:
                 unordered_map<shared_ptr<Identity>, shared_ptr<Entity>> _identityMap;

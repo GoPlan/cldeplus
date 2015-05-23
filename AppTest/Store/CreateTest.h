@@ -26,7 +26,9 @@ namespace Cloude {
                 auto spColumnId = make_shared<Column>(codeName, codeSourceName, DbType::String);
                 auto spFieldId = make_shared<Field>(spColumnId, codeValue);
 
-                auto spIdentity = make_shared<Identity>()->SetField(spFieldId);
+                auto spIdentity = make_shared<Identity>()->SetField(spFieldId)
+                                                         ->SetField(spFieldId);
+
                 ASSERT_TRUE(spIdentity.get() != 0);
 
                 auto spIdentEntity = spIdentity->getSpEntity();

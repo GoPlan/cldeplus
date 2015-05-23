@@ -14,8 +14,8 @@ namespace Cloude {
 
             class EntityLoader {
             public:
-                virtual shared_ptr<Identity> NextPrimaryKey() = 0;
-                virtual shared_ptr<Entity> CreateEntityInstance(shared_ptr<Identity> ident) = 0;
+                virtual unique_ptr<Identity> NextPrimaryKey() = 0;
+                virtual unique_ptr<Entity> CreateEntityInstance(shared_ptr<Identity> ident) = 0;
                 virtual void LoadEntity(Entity &entity) = 0;
             };
         }

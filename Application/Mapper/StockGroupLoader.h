@@ -16,8 +16,8 @@ namespace Cloude {
         namespace Mapper {
             class StockGroupLoader : public EntityLoader {
             public:
-                shared_ptr<Entity> CreateEntityInstance(shared_ptr<Identity> ident) override;
-                shared_ptr<Identity> NextPrimaryKey() override;
+                unique_ptr<Entity> CreateEntityInstance(shared_ptr<Identity> ident) override;
+                unique_ptr<Identity> NextPrimaryKey() override;
                 void LoadEntity(Entity &entity) override;
             };
         }
