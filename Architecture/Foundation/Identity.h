@@ -5,37 +5,35 @@
 #ifndef CLOUD_E_CPLUS_IDENTITY_H
 #define CLOUD_E_CPLUS_IDENTITY_H
 
+#include <string>
 #include <unordered_map>
-#include "Field.h"
+#include "Entity.h"
+
+using namespace std;
 
 namespace Cloude {
     namespace Architecture {
         namespace Foundation {
 
-            class Identity {
+            class Field;
 
+            class EntityStore;
+
+            class Identity : public enable_shared_from_this<Identity> {
             public:
                 Identity();
-                Identity(Field *fieldPtr);
-                Identity(std::initializer_list<Field *> fields);
                 virtual ~Identity();
+                shared_ptr<Identity> SetField(shared_ptr<Field> spField);
 
-                const Field *GetFieldPtr(std::string columnName);
-                const std::unordered_map<std::string, Field *> &getFieldsMap() {
-                    return _fieldsMap;
+                const shared_ptr<Entity> &getSpEntity() const {
+                    return _spEntity;
                 }
 
-                void AddFieldPtr(Field *fieldPtr);
-                void AddMultipleFieldsPtr(std::initializer_list<Field *> fields);
-
             protected:
-                std::unordered_map<std::string, Field *> _fieldsMap;
-
+                shared_ptr<Entity> _spEntity;
             };
-
         }
     }
 }
-
 
 #endif //CLOUD_E_CPLUS_IDENTITY_H

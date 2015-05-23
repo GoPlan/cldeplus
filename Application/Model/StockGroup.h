@@ -13,10 +13,10 @@ namespace Cloude {
     namespace Application {
         namespace Model {
 
-            class StockGroup : public Architecture::Foundation::Entity {
+            class StockGroup {
 
             public:
-                StockGroup(Architecture::Foundation::Identity &ident) : Entity(ident) {
+                StockGroup() {
                     _id = 0;
                     _code.clear();
                     _name.clear();

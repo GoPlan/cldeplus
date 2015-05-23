@@ -23,14 +23,16 @@ namespace Cloude {
             public:
 
             protected:
-                StoreSimple() : _entityStore(_stockGroupMap, _stockGroupLoader) { };
+                StoreSimple() : _boundEntityStore(_stockGroupMap, _stockGroupLoader),
+                                _entityStore(_stockGroupMap, _stockGroupLoader) { };
 
                 virtual void SetUp();
                 virtual void TearDown();
 
                 StockGroupMap _stockGroupMap;
                 StockGroupLoader _stockGroupLoader;
-                EntityStore<StockGroup> _entityStore;
+                EntityStore _entityStore;
+                BoundEntityStore<StockGroup> _boundEntityStore;
             };
         }
     }

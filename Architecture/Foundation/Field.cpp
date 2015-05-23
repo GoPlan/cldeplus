@@ -9,12 +9,12 @@ namespace Cloude {
     namespace Architecture {
         namespace Foundation {
 
-            Field::Field(Column &column) : _column(column) {
+            Field::Field(shared_ptr<Column> spColumn) : _spColumn(spColumn) {
                 ResetField();
             }
 
-            Field::Field(Column &column, std::string &value) : _column(column),
-                                                               _string(value){
+            Field::Field(shared_ptr<Column> spColumn, const std::string &value) : _spColumn(spColumn),
+                                                                                  _string(value) {
 
             }
 
@@ -25,10 +25,8 @@ namespace Cloude {
                 _voidPtr = 0;
                 _bool = 0;
                 _string.empty();
-
                 _double = 0;
                 _float = 0;
-
                 _int8 = 0;
                 _int16 = 0;
                 _int32 = 0;

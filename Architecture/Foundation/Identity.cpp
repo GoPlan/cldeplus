@@ -9,36 +9,21 @@ namespace Cloude {
         namespace Foundation {
 
             Identity::Identity() {
-
-            }
-
-            Identity::Identity(Field *fieldPtr) {
-                this->AddFieldPtr(fieldPtr);
-            }
-
-            Identity::Identity(std::initializer_list<Field *> fields) {
-                AddMultipleFieldsPtr(fields);
+                //
             }
 
             Identity::~Identity() {
             }
 
-            void Identity::AddFieldPtr(Field *fieldPtr) {
-                auto column = fieldPtr->getColumn();
-                auto columnName = column.getName();
-                auto fieldPair = make_pair(columnName, fieldPtr);
-                this->_fieldsMap.insert(fieldPair);
-            }
+            shared_ptr<Identity> Identity::SetField(shared_ptr<Field> spField) {
 
-            void Identity::AddMultipleFieldsPtr(std::initializer_list<Field *> fields) {
-                for (Field *fieldPtr : fields) {
-                    this->AddFieldPtr(fieldPtr);
+                if (!_spEntity) {
+                    _spEntity = make_shared<Entity>(shared_from_this());
                 }
-            }
 
-            const Field *Identity::GetFieldPtr(std::string columnName) {
-                auto fieldPtr = _fieldsMap[columnName];
-                return fieldPtr;
+                _spEntity->InsertField(spField);
+
+                return shared_from_this();
             }
         }
     }

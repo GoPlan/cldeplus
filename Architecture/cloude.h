@@ -13,5 +13,8 @@
 #include "Foundation/EntityMap.h"
 #include "Foundation/EntityLoader.h"
 #include "Foundation/EntityStore.h"
+#include "Foundation/BoundEntity.h"
+#include "Foundation/BoundEntityMap.h"
+#include "Foundation/BoundEntityStore.h"
 
 #endif //CLOUD_E_CPLUS_CLOUDE_H

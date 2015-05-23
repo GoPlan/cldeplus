@@ -6,7 +6,6 @@
 #define CLOUD_E_CPLUS_STOCKGROUPLOADER_H
 
 #include "../../Architecture/Foundation/EntityLoader.h"
-#include "../../Architecture/Foundation/EntityStore.h"
 #include "../Model/StockGroup.h"
 
 using namespace Cloude::Architecture::Foundation;
@@ -17,15 +16,9 @@ namespace Cloude {
         namespace Mapper {
             class StockGroupLoader : public EntityLoader {
             public:
-                virtual Entity *CreateEntityInstance(Identity &ident);
-                virtual Identity *NextPrimaryKey();
-                virtual void LoadEntityPrimaryKeyFields(Entity &entity);
-                virtual void LoadEntity(Entity &entity);
-                virtual void EstablishEntityRelationship(Entity &entity);
-
-                virtual int InsertEntity(Entity &entity);
-                virtual int SaveEntity(Entity &entity);
-                virtual int DeleteEntity(Entity &entity);
+                shared_ptr<Entity> CreateEntityInstance(shared_ptr<Identity> ident) override;
+                shared_ptr<Identity> NextPrimaryKey() override;
+                void LoadEntity(Entity &entity) override;
             };
         }
     }

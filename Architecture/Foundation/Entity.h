@@ -5,26 +5,35 @@
 #ifndef CLOUD_E_CPLUS_ENTITY_H
 #define CLOUD_E_CPLUS_ENTITY_H
 
-#include "Column.h"
-#include "Identity.h"
+#include <unordered_map>
+#include "Field.h"
+
+using namespace std;
 
 namespace Cloude {
     namespace Architecture {
         namespace Foundation {
-            class Entity {
 
+            class Identity;
+
+            class Entity {
             public:
-                Entity(Identity &ident) : _identity(ident) { };
+                Entity(const shared_ptr<Identity>& identity) : _identity(identity) { };
+
                 virtual ~Entity() { };
 
-                Identity &getIdentity() const {
+                shared_ptr<Field> operator[](const string &columnName);
+                shared_ptr<Field> GetField(const string &columnName);
+                void InsertField(shared_ptr<Field> field);
+
+                weak_ptr<Identity> getIdentity() const {
                     return _identity;
                 }
 
             private:
-                Identity &_identity;
+                weak_ptr<Identity> _identity;
+                unordered_map<string, shared_ptr<Field>> _fieldsMap;
             };
-
         }
     }
 }

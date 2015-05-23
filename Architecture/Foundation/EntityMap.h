@@ -10,12 +10,13 @@
 #include <unordered_map>
 #include "Column.h"
 
+using namespace std;
+
 namespace Cloude {
     namespace Architecture {
         namespace Foundation {
 
             class EntityMap {
-
             public:
                 EntityMap() { };
                 virtual ~EntityMap() { };
@@ -23,24 +24,23 @@ namespace Cloude {
                 std::string TableName() {
                     return TableNameCore();
                 }
-
-                const std::vector<Column *> &getColumnsForKey() const {
+                const std::vector<shared_ptr<Column>> &getColumnsForKey() const {
                     return _columnsForKey;
                 }
-                const std::vector<Column *> &getColumnsForSelect() const {
+                const std::vector<shared_ptr<Column>> &getColumnsForSelect() const {
                     return _columnsForSelect;
                 }
-                const std::vector<Column *> &getColumnsForUpdate() const {
+                const std::vector<shared_ptr<Column>> &getColumnsForUpdate() const {
                     return _columnsForUpdate;
                 }
-                const std::unordered_map<std::string, Column *> &getColumnsMap() const {
+                const std::unordered_map<std::string, shared_ptr<Column>> &getColumnsMap() const {
                     return _columnsMap;
                 }
             protected:
-                std::vector<Column *> _columnsForKey;
-                std::vector<Column *> _columnsForSelect;
-                std::vector<Column *> _columnsForUpdate;
-                std::unordered_map<std::string, Column *> _columnsMap;
+                std::vector<shared_ptr<Column>> _columnsForKey;
+                std::vector<shared_ptr<Column>> _columnsForSelect;
+                std::vector<shared_ptr<Column>> _columnsForUpdate;
+                std::unordered_map<std::string, shared_ptr<Column>> _columnsMap;
 
                 virtual std::string TableNameCore() = 0;
             };

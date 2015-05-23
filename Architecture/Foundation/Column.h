@@ -15,20 +15,25 @@ namespace Cloude {
         namespace Foundation {
 
             class Column {
-
             public:
-                Column(std::string name, std::string datasourceName, DbType dbtype);
+                Column(const std::string name,
+                       const std::string datasourceName,
+                       DbType dbtype);
+
                 virtual ~Column();
-                
+
                 const std::string &getDatasourceName() const {
                     return _datasourceName;
                 }
+
                 const std::string &getName() const {
                     return _name;
                 }
+
                 const DbType &getDbType() const {
                     return _dbType;
                 }
+
             private:
                 std::string _datasourceName;
                 std::string _name;

@@ -4,38 +4,14 @@
 
 #include "StockGroupLoader.h"
 
-Entity *Cloude::Application::Mapper::StockGroupLoader::CreateEntityInstance(Identity &ident) {
-
-    auto stockGroupPtr = new StockGroup(ident);
-    auto entityPtr = static_cast<Entity*>(stockGroupPtr);
-
-    LoadEntityPrimaryKeyFields(*entityPtr);
-
-    return entityPtr;
+shared_ptr<Entity> Cloude::Application::Mapper::StockGroupLoader::CreateEntityInstance(shared_ptr<Identity> ident) {
+    shared_ptr<Entity> entity;
+    return entity;
 }
-Identity *Cloude::Application::Mapper::StockGroupLoader::NextPrimaryKey() {
-    return nullptr;
-}
-void Cloude::Application::Mapper::StockGroupLoader::EstablishEntityRelationship(Entity &entity) {
-
-    auto stockGroup = static_cast<StockGroup&>(entity);
-    auto identity = entity.getIdentity();
-    auto fldCodePtr = identity.GetFieldPtr("Code");
-
-    stockGroup.setCode(fldCodePtr->getString());
+shared_ptr<Identity> Cloude::Application::Mapper::StockGroupLoader::NextPrimaryKey() {
+    shared_ptr<Identity> ident;
+    return ident;
 }
 void Cloude::Application::Mapper::StockGroupLoader::LoadEntity(Entity &entity) {
     return;
-}
-void Application::Mapper::StockGroupLoader::LoadEntityPrimaryKeyFields(Entity &entity) {
-    return;
-}
-int Cloude::Application::Mapper::StockGroupLoader::InsertEntity(Entity &entity) {
-    return 1;
-}
-int Cloude::Application::Mapper::StockGroupLoader::SaveEntity(Entity &entity) {
-    return 1;
-}
-int Cloude::Application::Mapper::StockGroupLoader::DeleteEntity(Entity &entity) {
-    return 1;
 }

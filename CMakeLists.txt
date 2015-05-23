@@ -28,10 +28,16 @@ add_library(architecture STATIC
     Architecture/Foundation/Proxy.h
     Architecture/Foundation/EntityLoader.cpp
     Architecture/Foundation/EntityLoader.h
-    Architecture/Cloude.h
     Architecture/Foundation/TransactionUnit.cpp
     Architecture/Foundation/TransactionUnit.h
-)
+    Architecture/Foundation/BoundEntity.cpp
+    Architecture/Foundation/BoundEntity.h
+    Architecture/Foundation/BoundEntityMap.cpp
+    Architecture/Foundation/BoundEntityMap.h
+    Architecture/Foundation/BoundEntityStore.cpp
+    Architecture/Foundation/BoundEntityStore.h
+    Architecture/Cloude.h
+    )
 
 add_library(application STATIC
     Application/Model/Account.cpp
@@ -74,8 +80,8 @@ set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/Examples)
 
 
 # Sandbox Target
-add_executable(cloud_e_cplus ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus architecture infrastructure application mysqlclient examples)
+add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
+target_link_libraries(cloud_e_cplus_debug architecture infrastructure application mysqlclient examples)
 
 # AppTest Target (with Google Testing Framework)
 set(GTEST_LIB_DIR ${LIBS_DIR}/gtest-1.7.0)
