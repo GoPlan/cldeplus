@@ -13,11 +13,14 @@ namespace Cloude {
 
         class Column {
         public:
+            Column() = default;
+            Column(const Column& srcColumn) = default;
+            Column& operator=(const Column& srcColumn) = default;
+            virtual ~Column() = default;
+
             Column(const std::string name,
                    const std::string datasourceName,
                    Cloude::Architecture::Enumeration::DbType dbtype);
-
-            virtual ~Column() = default;
 
             const std::string &getDatasourceName() const {
                 return _datasourceName;

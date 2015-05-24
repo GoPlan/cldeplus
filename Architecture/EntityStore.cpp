@@ -76,7 +76,6 @@ namespace Cloude {
 
         void EntityStore::Save(shared_ptr<Entity> &entity) const {
 
-
         }
 
         void EntityStore::Clear() {

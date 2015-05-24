@@ -9,11 +9,11 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
-        shared_ptr<Field> Entity::operator[](const string &columnName) {
+        shared_ptr<Field> Entity::operator[](const string &columnName) const {
             return GetField(columnName);
         }
 
-        shared_ptr<Field> Entity::GetField(const string &columnName) {
+        shared_ptr<Field> Entity::GetField(const string &columnName) const {
 
             auto search = _fieldsMap.find(columnName);
 
@@ -30,6 +30,8 @@ namespace Cloude {
             _fieldsMap.insert(make_pair(field->getSpColumn()->getName(), field));
         }
 
-
+        void Entity::InsertField(Field *ptrField) {
+            _fieldsMap.insert(make_pair(ptrField->getSpColumn()->getName(), shared_ptr<Field>(ptrField)));
+        }
     }
 }

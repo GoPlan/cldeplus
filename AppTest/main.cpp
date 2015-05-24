@@ -2,7 +2,7 @@
 // Created by LE, Duc-Anh on 5/21/15.
 //
 
-#include "AppTest/Store/CreateTest.h"
+#include "Store/StoreCreateTest.h"
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);

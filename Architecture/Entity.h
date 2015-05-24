@@ -10,19 +10,21 @@
 
 namespace Cloude {
     namespace Architecture {
+
         class Identity;
 
         class Entity {
         public:
-
-            explicit Entity(const std::shared_ptr<Identity> &identity) : _identity(identity) { };
-            Entity(const Entity &srcEntity) = default;
-            Entity &operator=(Entity &srcEntity) = default;
+            Entity(const Entity &srcEntity) = delete;
+            Entity &operator=(Entity &srcEntity) = delete;
             virtual ~Entity() = default;
 
-            std::shared_ptr<Field> operator[](const std::string &columnName);
-            std::shared_ptr<Field> GetField(const std::string &columnName);
+            explicit Entity(const std::shared_ptr<Identity> &identity) : _identity(identity) { };
+
+            std::shared_ptr<Field> operator[](const std::string &columnName) const;
+            std::shared_ptr<Field> GetField(const std::string &columnName) const;
             void InsertField(std::shared_ptr<Field> field);
+            void InsertField(Field *ptrField);
 
             std::weak_ptr<Identity> getIdentity() const {
                 return _identity;

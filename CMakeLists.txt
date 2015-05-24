@@ -58,9 +58,9 @@ add_library(examples STATIC
 add_library(apptest STATIC
     AppTest/Store/StoreSimple.cpp
     AppTest/Store/StoreSimple.h
-    AppTest/Store/CreateTest.h
+    AppTest/Store/StoreCreateTest.h
     AppTest/main.cpp
-)
+AppTest/Store/StoreGetTest.h)
 
 
 # Libs

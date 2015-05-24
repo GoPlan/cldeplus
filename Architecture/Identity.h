@@ -5,7 +5,6 @@
 #ifndef CLOUD_E_CPLUS_IDENTITY_H
 #define CLOUD_E_CPLUS_IDENTITY_H
 
-#include <string>
 #include <unordered_map>
 #include "Entity.h"
 
@@ -23,7 +22,12 @@ namespace Cloude {
             Identity &operator=(const Identity &srcIdentity) = default;
             virtual ~Identity() = default;
 
+            explicit Identity(std::shared_ptr<Field> spField);
+            explicit Identity(Field *ptrField);
+
             std::shared_ptr<Identity> SetField(std::shared_ptr<Field> spField);
+            std::shared_ptr<Identity> SetField(Field *ptrField);
+            std::shared_ptr<Identity> SetField(const std::initializer_list<Field *> &ptrFieldList);
 
             const std::shared_ptr<Entity> &getSpEntity() const {
                 return _spEntity;
