@@ -22,20 +22,7 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="Architecture:&#10;- Added Explicit and Default keywords">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/Column.cpp" afterPath="$PROJECT_DIR$/Architecture/Column.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/Column.h" afterPath="$PROJECT_DIR$/Architecture/Column.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/Entity.cpp" afterPath="$PROJECT_DIR$/Architecture/Entity.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/Entity.h" afterPath="$PROJECT_DIR$/Architecture/Entity.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/EntityLoader.h" afterPath="$PROJECT_DIR$/Architecture/EntityLoader.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/EntityMap.cpp" afterPath="$PROJECT_DIR$/Architecture/EntityMap.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/EntityMap.h" afterPath="$PROJECT_DIR$/Architecture/EntityMap.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/EntityStore.cpp" afterPath="$PROJECT_DIR$/Architecture/EntityStore.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/EntityStore.h" afterPath="$PROJECT_DIR$/Architecture/EntityStore.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/Field.cpp" afterPath="$PROJECT_DIR$/Architecture/Field.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/Field.h" afterPath="$PROJECT_DIR$/Architecture/Field.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/Identity.cpp" afterPath="$PROJECT_DIR$/Architecture/Identity.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Architecture/Identity.h" afterPath="$PROJECT_DIR$/Architecture/Identity.h" />
+    <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cloud-e-plus.iws" />
@@ -396,7 +383,13 @@
       <option name="project" value="LOCAL" />
       <updated>1431580260251</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Architecture:&#10;- Added Explicit and Default keywords">
+      <created>1432477697518</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1432477697518</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -422,7 +415,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3254282" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18936035" sideWeight="0.50496453" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5104031" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4848485" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4848485" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.56916994" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
