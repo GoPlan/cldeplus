@@ -17,7 +17,7 @@ namespace Cloude {
                    const std::string datasourceName,
                    Cloude::Architecture::Enumeration::DbType dbtype);
 
-            virtual ~Column();
+            virtual ~Column() = default;
 
             const std::string &getDatasourceName() const {
                 return _datasourceName;

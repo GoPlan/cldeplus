@@ -9,18 +9,6 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
-        Entity::Entity(const Entity &srcEntity) {
-
-        }
-
-        Entity &Entity::operator=(Entity &srcEntity) {
-            return *this;
-        }
-
-        Entity::~Entity() {
-
-        }
-
         shared_ptr<Field> Entity::operator[](const string &columnName) {
             return GetField(columnName);
         }

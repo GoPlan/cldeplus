@@ -6,20 +6,6 @@
 
 namespace Cloude {
     namespace Architecture {
-        EntityMap::EntityMap() {
 
-        }
-
-        EntityMap::EntityMap(const EntityMap &srcEntityMap) {
-
-        }
-
-        EntityMap::~EntityMap() {
-
-        }
-
-        EntityMap &EntityMap::operator=(const EntityMap &srcEntityMap) {
-            return *this;
-        }
     }
 }

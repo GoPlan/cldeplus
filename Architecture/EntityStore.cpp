@@ -14,19 +14,6 @@ namespace Cloude {
             //
         }
 
-        EntityStore::EntityStore(const EntityStore &srcEntityStore) : _entityMap(srcEntityStore._entityMap),
-                                                                      _entityLoader(srcEntityStore._entityLoader) {
-            //
-        }
-
-        EntityStore::~EntityStore() {
-            //
-        }
-
-        EntityStore &EntityStore::operator=(const EntityStore &srcEntityStore) {
-            return *this;
-        }
-
         shared_ptr<Entity> EntityStore::Get(shared_ptr<Identity> &identity) {
 
             auto search = _identityMap.find(identity);

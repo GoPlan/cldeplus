@@ -18,10 +18,10 @@ namespace Cloude {
 
         class Identity : public std::enable_shared_from_this<Identity> {
         public:
-            Identity();
-            Identity(const Identity &srcIdentity);
-            Identity &operator=(const Identity &srcIdentity);
-            virtual ~Identity();
+            Identity() = default;
+            Identity(const Identity &srcIdentity) = default;
+            Identity &operator=(const Identity &srcIdentity) = default;
+            virtual ~Identity() = default;
 
             std::shared_ptr<Identity> SetField(std::shared_ptr<Field> spField);
 

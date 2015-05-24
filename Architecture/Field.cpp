@@ -19,17 +19,6 @@ namespace Cloude {
 
         }
 
-        Field::Field(const Field &srcField) {
-
-        }
-
-        Field &Field::operator=(const Field &srcField) {
-            return *this;
-        }
-
-        Field::~Field() {
-        }
-
         void Field::ResetField() {
             _voidPtr = 0;
             _bool = 0;

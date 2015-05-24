@@ -9,10 +9,6 @@ using namespace Cloude::Architecture::Enumeration;
 namespace Cloude {
     namespace Architecture {
 
-        Column::~Column() {
-            //
-        }
-
         Column::Column(const std::string name, const std::string datasourceName, DbType dbtype) : _name(name),
                                                                                                   _datasourceName(
                                                                                                           datasourceName),

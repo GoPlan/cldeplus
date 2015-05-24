@@ -16,9 +16,9 @@ namespace Cloude {
         class EntityStore {
         public:
             EntityStore(EntityMap &entityMap, EntityLoader &entityLoader);
-            EntityStore(const EntityStore& srcEntityStore);
-            EntityStore& operator = (const EntityStore& srcEntityStore);
-            virtual ~EntityStore();
+            EntityStore(const EntityStore& srcEntityStore) = default;
+            EntityStore& operator = (const EntityStore& srcEntityStore) = default;
+            virtual ~EntityStore() = default;
 
             std::shared_ptr<Entity> Get(std::shared_ptr <Identity> &identity);
             std::shared_ptr<Entity> Create();
