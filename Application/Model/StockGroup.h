@@ -5,9 +5,7 @@
 #ifndef CLOUD_E_CPLUS_STOCKGROUP_H
 #define CLOUD_E_CPLUS_STOCKGROUP_H
 
-#include "../../Architecture/Foundation/Entity.h"
-
-using namespace Cloude;
+#include "../../Architecture/Entity.h"
 
 namespace Cloude {
     namespace Application {

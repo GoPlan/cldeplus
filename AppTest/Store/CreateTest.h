@@ -7,15 +7,11 @@
 
 #include "gtest/gtest.h"
 #include "StoreSimple.h"
-#include "../../Architecture/Cloude.h"
-
-using namespace std;
-using namespace Cloude::AppTest::Store;
-using namespace Cloude::Architecture::Foundation;
+#include "../../Cloude.h"
 
 namespace Cloude {
     namespace AppTest {
-        namespace EntityStore {
+        namespace Store {
 
             TEST_F(StoreSimple, CreateEntity) {
 
@@ -23,11 +19,14 @@ namespace Cloude {
                 std::string codeSourceName = "Code";
                 std::string codeValue = "VNM";
 
-                auto spColumnId = make_shared<Column>(codeName, codeSourceName, DbType::String);
-                auto spFieldId = make_shared<Field>(spColumnId, codeValue);
+                auto spColumnId = std::make_shared<Cloude::Architecture::Column>(codeName,
+                                                                                 codeSourceName,
+                                                                                 Cloude::Architecture::Enumeration::DbType::String);
 
-                auto spIdentity = make_shared<Identity>()->SetField(spFieldId)
-                                                         ->SetField(spFieldId);
+                auto spFieldId = std::make_shared<Cloude::Architecture::Field>(spColumnId, codeValue);
+
+                auto spIdentity = std::make_shared<Cloude::Architecture::Identity>()->SetField(spFieldId)
+                                                                                    ->SetField(spFieldId);
 
                 ASSERT_TRUE(spIdentity.get() != 0);
 

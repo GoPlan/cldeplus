@@ -4,14 +4,17 @@
 
 #include "StockGroupMap.h"
 
+using namespace std;
+using namespace Cloude::Architecture;
+
 namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            std::shared_ptr<Column> StockGroupMap::Id = make_shared<Column>("Id", "_id", DbType::Int64);
-            std::shared_ptr<Column> StockGroupMap::Code = make_shared<Column>("Code", "Code", DbType::String);
-            std::shared_ptr<Column> StockGroupMap::Name = make_shared<Column>("Name", "Name", DbType::String);
-            std::shared_ptr<Column> StockGroupMap::DefaultStockCode = make_shared<Column>("DefaultStockCode", "DefaultStockCode", DbType::String);
+            std::shared_ptr<Column> StockGroupMap::Id = make_shared<Column>("Id", "_id", Enumeration::DbType::Int64);
+            std::shared_ptr<Column> StockGroupMap::Code = make_shared<Column>("Code", "Code", Enumeration::DbType::String);
+            std::shared_ptr<Column> StockGroupMap::Name = make_shared<Column>("Name", "Name", Enumeration::DbType::String);
+            std::shared_ptr<Column> StockGroupMap::DefaultStockCode = make_shared<Column>("DefaultStockCode", "DefaultStockCode", Enumeration::DbType::String);
 
             std::string StockGroupMap::TableName("StockGroup");
 

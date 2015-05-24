@@ -4,6 +4,9 @@
 
 #include "StockGroupLoader.h"
 
+using namespace std;
+using namespace Cloude::Architecture;
+
 unique_ptr<Entity> Cloude::Application::Mapper::StockGroupLoader::CreateEntityInstance(shared_ptr<Identity> ident) {
     unique_ptr<Entity> entity;
     return entity;

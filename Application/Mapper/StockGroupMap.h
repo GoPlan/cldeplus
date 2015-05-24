@@ -5,20 +5,18 @@
 #ifndef CLOUD_E_CPLUS_STOCKGROUPMAP_H
 #define CLOUD_E_CPLUS_STOCKGROUPMAP_H
 
-#include <Architecture/Foundation/EntityMap.h>
-
-using namespace Cloude::Architecture::Foundation;
+#include <Architecture/EntityMap.h>
 
 namespace Cloude {
     namespace Application {
         namespace Mapper {
-            class StockGroupMap : public EntityMap {
+            class StockGroupMap : public Cloude::Architecture::EntityMap {
 
             public:
-                static shared_ptr<Column> Id;
-                static shared_ptr<Column> Code;
-                static shared_ptr<Column> Name;
-                static shared_ptr<Column> DefaultStockCode;
+                static std::shared_ptr<Cloude::Architecture::Column> Id;
+                static std::shared_ptr<Cloude::Architecture::Column> Code;
+                static std::shared_ptr<Cloude::Architecture::Column> Name;
+                static std::shared_ptr<Cloude::Architecture::Column> DefaultStockCode;
                 static std::string TableName;
 
                 StockGroupMap();

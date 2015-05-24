@@ -5,20 +5,17 @@
 #ifndef CLOUD_E_CPLUS_STOCKGROUPLOADER_H
 #define CLOUD_E_CPLUS_STOCKGROUPLOADER_H
 
-#include "../../Architecture/Foundation/EntityLoader.h"
+#include "../../Architecture/EntityLoader.h"
 #include "../Model/StockGroup.h"
-
-using namespace Cloude::Architecture::Foundation;
-using namespace Cloude::Application::Model;
 
 namespace Cloude {
     namespace Application {
         namespace Mapper {
-            class StockGroupLoader : public EntityLoader {
+            class StockGroupLoader : public Cloude::Architecture::EntityLoader {
             public:
-                unique_ptr<Entity> CreateEntityInstance(shared_ptr<Identity> ident) override;
-                unique_ptr<Identity> NextPrimaryKey() override;
-                void LoadEntity(Entity &entity) override;
+                std::unique_ptr<Cloude::Architecture::Entity> CreateEntityInstance(std::shared_ptr<Cloude::Architecture::Identity> ident) override;
+                std::unique_ptr<Cloude::Architecture::Identity> NextPrimaryKey() override;
+                void LoadEntity(Cloude::Architecture::Entity &entity) override;
             };
         }
     }

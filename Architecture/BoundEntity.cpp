@@ -6,8 +6,5 @@
 
 namespace Cloude {
     namespace Architecture {
-        namespace Foundation {
-
-        }
     }
 }

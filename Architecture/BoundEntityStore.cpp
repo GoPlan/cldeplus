@@ -2,14 +2,9 @@
 // Created by GoPlan on 14/05/2015.
 //
 
-#include "EntityMap.h"
+#include "BoundEntityStore.h"
 
 namespace Cloude {
     namespace Architecture {
-        namespace Foundation {
-
-
-
-        }
     }
 }

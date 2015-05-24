@@ -8,6 +8,8 @@
 #include <string>
 #include "mysql.h"
 
+using namespace std;
+
 namespace Cloude {
     namespace Examples {
 

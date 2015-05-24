@@ -6,14 +6,10 @@
 #define CLOUD_E_CPLUS_STORESIMPLE_H
 
 #include "gtest/gtest.h"
-#include "../../Architecture/Cloude.h"
+#include "../../Cloude.h"
 #include "../../Application/Model/StockGroup.h"
 #include "../../Application/Mapper/StockGroupLoader.h"
 #include "../../Application/Mapper/StockGroupMap.h"
-
-using namespace Cloude::Application::Model;
-using namespace Cloude::Application::Mapper;
-using namespace Cloude::Architecture::Foundation;
 
 namespace Cloude {
     namespace AppTest {
@@ -29,10 +25,10 @@ namespace Cloude {
                 virtual void SetUp();
                 virtual void TearDown();
 
-                StockGroupMap _stockGroupMap;
-                StockGroupLoader _stockGroupLoader;
-                EntityStore _entityStore;
-                BoundEntityStore<StockGroup> _boundEntityStore;
+                Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
+                Cloude::Application::Mapper::StockGroupLoader _stockGroupLoader;
+                Cloude::Architecture::EntityStore _entityStore;
+                Cloude::Architecture::BoundEntityStore<Cloude::Application::Model::StockGroup> _boundEntityStore;
             };
         }
     }

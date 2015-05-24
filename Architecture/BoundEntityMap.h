@@ -7,11 +7,9 @@
 
 namespace Cloude {
     namespace Architecture {
-        namespace Foundation {
-            class BoundEntityMap {
+        class BoundEntityMap {
 
-            };
-        }
+        };
     }
 }
 

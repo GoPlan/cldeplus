@@ -5,8 +5,6 @@
 #ifndef CLOUD_E_CPLUS_HASIDENTITY_H
 #define CLOUD_E_CPLUS_HASIDENTITY_H
 
-#include <wincrypt.h>
-
 class HasIdentity {
 public:
 
