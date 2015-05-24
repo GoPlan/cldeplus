@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include "Examples/mysql_c_example.h"
-#include "main.h"
 
 int main(int argc, char **argv) {
 

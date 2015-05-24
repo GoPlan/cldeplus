@@ -14,9 +14,10 @@ namespace Cloude {
     namespace Architecture {
         class EntityMap {
         public:
-            EntityMap() { };
-
-            virtual ~EntityMap() { };
+            EntityMap();
+            EntityMap(const EntityMap &srcEntityMap);
+            EntityMap& operator=(const EntityMap &srcEntityMap);
+            virtual ~EntityMap();
 
             std::string TableName() {
                 return TableNameCore();

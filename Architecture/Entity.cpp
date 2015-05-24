@@ -9,6 +9,18 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
+        Entity::Entity(const Entity &srcEntity) {
+
+        }
+
+        Entity &Entity::operator=(Entity &srcEntity) {
+            return *this;
+        }
+
+        Entity::~Entity() {
+
+        }
+
         shared_ptr<Field> Entity::operator[](const string &columnName) {
             return GetField(columnName);
         }
@@ -29,5 +41,7 @@ namespace Cloude {
         void Entity::InsertField(shared_ptr<Field> field) {
             _fieldsMap.insert(make_pair(field->getSpColumn()->getName(), field));
         }
+
+
     }
 }

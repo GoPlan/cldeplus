@@ -12,7 +12,6 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 add_library(architecture STATIC
     Architecture/Enumeration/DbType.h
-    Architecture/Contract/HasIdentity.h
     Architecture/Identity.cpp
     Architecture/Identity.h
     Architecture/Column.cpp
@@ -25,20 +24,8 @@ add_library(architecture STATIC
     Architecture/EntityStore.h
     Architecture/EntityMap.cpp
     Architecture/EntityMap.h
-    Architecture/EntityQuery.cpp
-    Architecture/EntityQuery.h
-    Architecture/Proxy.cpp
-    Architecture/Proxy.h
     Architecture/EntityLoader.cpp
     Architecture/EntityLoader.h
-    Architecture/TransactionUnit.cpp
-    Architecture/TransactionUnit.h
-    Architecture/BoundEntity.cpp
-    Architecture/BoundEntity.h
-    Architecture/BoundEntityMap.cpp
-    Architecture/BoundEntityMap.h
-    Architecture/BoundEntityStore.cpp
-    Architecture/BoundEntityStore.h
     Cloude.h
 )
 
@@ -64,7 +51,6 @@ add_library(infrastructure STATIC
 add_library(examples STATIC
     Examples/mysql_c_example.h
     Examples/mysql_c_example.cpp
-    Examples/main.h
     Examples/main.cpp
 )
 

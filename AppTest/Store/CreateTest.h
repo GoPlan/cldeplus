@@ -23,7 +23,8 @@ namespace Cloude {
                                                                                  codeSourceName,
                                                                                  Cloude::Architecture::Enumeration::DbType::String);
 
-                auto spFieldId = std::make_shared<Cloude::Architecture::Field>(spColumnId, codeValue);
+                auto spFieldId = std::make_shared<Cloude::Architecture::Field>(spColumnId,
+                                                                               codeValue);
 
                 auto spIdentity = std::make_shared<Cloude::Architecture::Identity>()->SetField(spFieldId)
                                                                                     ->SetField(spFieldId);

@@ -15,7 +15,8 @@ namespace Cloude {
         public:
             Field(std::shared_ptr<Column>);
             Field(std::shared_ptr<Column>, const std::string &value);
-
+            Field(const Field &srcField);
+            Field &operator=(const Field &srcField);
             virtual ~Field();
 
             const std::shared_ptr<Column> &getSpColumn() const {

@@ -18,3 +18,7 @@ unique_ptr<Identity> Cloude::Application::Mapper::StockGroupLoader::NextPrimaryK
 void Cloude::Application::Mapper::StockGroupLoader::LoadEntity(Entity &entity) {
     return;
 }
+
+Cloude::Application::Mapper::StockGroupLoader::~StockGroupLoader() {
+
+}

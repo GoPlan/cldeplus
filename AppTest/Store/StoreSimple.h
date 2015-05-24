@@ -19,8 +19,7 @@ namespace Cloude {
             public:
 
             protected:
-                StoreSimple() : _boundEntityStore(_stockGroupMap, _stockGroupLoader),
-                                _entityStore(_stockGroupMap, _stockGroupLoader) { };
+                StoreSimple() : _entityStore(_stockGroupMap, _stockGroupLoader) { };
 
                 virtual void SetUp();
                 virtual void TearDown();
@@ -28,7 +27,6 @@ namespace Cloude {
                 Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
                 Cloude::Application::Mapper::StockGroupLoader _stockGroupLoader;
                 Cloude::Architecture::EntityStore _entityStore;
-                Cloude::Architecture::BoundEntityStore<Cloude::Application::Model::StockGroup> _boundEntityStore;
             };
         }
     }

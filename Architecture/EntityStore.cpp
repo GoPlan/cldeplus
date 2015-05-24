@@ -9,7 +9,25 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
-        shared_ptr <Entity> EntityStore::Get(shared_ptr < Identity > &identity) {
+        EntityStore::EntityStore(EntityMap &entityMap, EntityLoader &entityLoader) : _entityMap(entityMap),
+                                                                                     _entityLoader(entityLoader) {
+            //
+        }
+
+        EntityStore::EntityStore(const EntityStore &srcEntityStore) : _entityMap(srcEntityStore._entityMap),
+                                                                      _entityLoader(srcEntityStore._entityLoader) {
+            //
+        }
+
+        EntityStore::~EntityStore() {
+            //
+        }
+
+        EntityStore &EntityStore::operator=(const EntityStore &srcEntityStore) {
+            return *this;
+        }
+
+        shared_ptr<Entity> EntityStore::Get(shared_ptr<Identity> &identity) {
 
             auto search = _identityMap.find(identity);
 
@@ -34,16 +52,16 @@ namespace Cloude {
             return spEntity;
         }
 
-        shared_ptr <Entity> EntityStore::Create() {
+        shared_ptr<Entity> EntityStore::Create() {
             auto upIdent = _entityLoader.NextPrimaryKey();
             return Create(std::move(upIdent));
         }
 
-        shared_ptr <Entity> EntityStore::Create(shared_ptr < Identity > identity) {
+        shared_ptr<Entity> EntityStore::Create(shared_ptr<Identity> identity) {
 
             if (!identity) {
                 // TODO: Consider throwing an exception on nullptr Identity
-                shared_ptr <Entity> spEntity;
+                shared_ptr<Entity> spEntity;
                 return spEntity;
             }
 
@@ -57,19 +75,19 @@ namespace Cloude {
             return spEntity;
         }
 
-        void EntityStore::LoadEntity(shared_ptr < Entity > &entity) const {
+        void EntityStore::LoadEntity(shared_ptr<Entity> &entity) const {
 
         }
 
-        void EntityStore::Insert(shared_ptr < Entity > &entity) {
+        void EntityStore::Insert(shared_ptr<Entity> &entity) {
 
         }
 
-        void EntityStore::Delete(shared_ptr < Entity > &entity) {
+        void EntityStore::Delete(shared_ptr<Entity> &entity) {
 
         }
 
-        void EntityStore::Save(shared_ptr < Entity > &entity) const {
+        void EntityStore::Save(shared_ptr<Entity> &entity) const {
 
 
         }
@@ -77,6 +95,7 @@ namespace Cloude {
         void EntityStore::Clear() {
             _identityMap.clear();
         }
+
     }
 }
 

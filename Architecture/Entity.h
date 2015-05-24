@@ -15,8 +15,9 @@ namespace Cloude {
         class Entity {
         public:
             Entity(const std::shared_ptr<Identity> &identity) : _identity(identity) { };
-
-            virtual ~Entity() { };
+            Entity(const Entity &srcEntity);
+            Entity &operator=(Entity &srcEntity);
+            virtual ~Entity();
 
             std::shared_ptr<Field> operator[](const std::string &columnName);
             std::shared_ptr<Field> GetField(const std::string &columnName);

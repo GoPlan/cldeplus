@@ -13,8 +13,19 @@ namespace Cloude {
             //
         }
 
-        Identity::~Identity() {
+        Identity::Identity(const Identity &srcIdentity) {
+
         }
+
+        Identity &Identity::operator=(const Identity &srcIdentity) {
+            return *this;
+        }
+
+        Identity::~Identity() {
+            //
+        }
+
+
 
         shared_ptr<Identity> Identity::SetField(shared_ptr<Field> spField) {
 

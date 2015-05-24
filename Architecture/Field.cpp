@@ -19,6 +19,14 @@ namespace Cloude {
 
         }
 
+        Field::Field(const Field &srcField) {
+
+        }
+
+        Field &Field::operator=(const Field &srcField) {
+            return *this;
+        }
+
         Field::~Field() {
         }
 
@@ -37,5 +45,6 @@ namespace Cloude {
             _uint32 = 0;
             _uint64 = 0;
         }
+
     }
 }
