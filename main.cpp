@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include "Cloude.h"
 #include "Application/Mapper/StockGroupLoader.h"

@@ -2,6 +2,7 @@
 // Created by GoPlan on 14/05/2015.
 //
 
+#include <memory>
 #include "Entity.h"
 
 using namespace std;

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 project(cloud_e_cplus)
 
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_cplus_SOURCE_DIR}/Build/bin")
 set(SOURCE_FILES main.cpp)
 
@@ -11,6 +11,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 
 add_library(architecture STATIC
+    Cloude.h
     Architecture/Enumeration/DbType.h
     Architecture/Identity.cpp
     Architecture/Identity.h
@@ -26,7 +27,6 @@ add_library(architecture STATIC
     Architecture/EntityMap.h
     Architecture/EntityLoader.cpp
     Architecture/EntityLoader.h
-    Cloude.h
 )
 
 
@@ -49,18 +49,18 @@ add_library(infrastructure STATIC
 
 
 add_library(examples STATIC
+    Examples/main.cpp
     Examples/mysql_c_example.h
     Examples/mysql_c_example.cpp
-    Examples/main.cpp
 )
 
 
 add_library(apptest STATIC
+    AppTest/main.cpp
     AppTest/Store/StoreSimple.cpp
     AppTest/Store/StoreSimple.h
     AppTest/Store/StoreCreateTest.h
-    AppTest/main.cpp
-AppTest/Store/StoreGetTest.h)
+    AppTest/Store/StoreGetTest.h)
 
 
 # Libs
@@ -85,7 +85,7 @@ target_link_libraries(cloud_e_cplus_example mysqlclient examples)
 
 # Sandbox Target
 add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus_debug architecture infrastructure application mysqlclient examples)
+target_link_libraries(cloud_e_cplus_debug architecture infrastructure application)
 
 
 # AppTest Target (with Google Testing Framework)

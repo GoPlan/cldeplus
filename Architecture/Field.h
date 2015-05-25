@@ -5,8 +5,9 @@
 #ifndef CLOUD_E_CPLUS_FIELD_H
 #define CLOUD_E_CPLUS_FIELD_H
 
-#include "Column.h"
 #include <string>
+#include <memory>
+#include "Column.h"
 
 namespace Cloude {
     namespace Architecture {
