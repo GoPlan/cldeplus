@@ -15,15 +15,10 @@ namespace Cloude {
         }
 
         bool EntityStore::HasIdentityInMap(const shared_ptr<Identity> &identity) const {
-
-            if (auto search = _identityMap.find(identity) == _identityMap.end()) {
-                return false;
-            }
-
-            return true;
+            return !(_identityMap.find(identity) == _identityMap.end());
         }
 
-        shared_ptr<Entity> EntityStore::Get(const shared_ptr<Identity> &identity) {
+        shared_ptr<Entity> &EntityStore::Get(shared_ptr<Identity> &identity) {
 
             auto search = _identityMap.find(identity);
 
@@ -32,12 +27,12 @@ namespace Cloude {
                 return search->second;
             }
 
-            // Create instance if identity is found in source
-            auto spEntity = identity->getEntity();
-
             // Load spEntity fields
             // TODO: Query datasource for spEntity
-            _entityLoader.LoadEntity(*spEntity);
+            _entityLoader.LoadEntity(identity);
+
+            // Retrieve entity instance (from Identity)
+            auto spEntity = identity->getEntity();
 
             // Added found spEntity to identity map
             _identityMap.insert(make_pair(identity, spEntity));
@@ -45,11 +40,11 @@ namespace Cloude {
             return spEntity;
         }
 
-        shared_ptr<Entity> EntityStore::Create() {
+        shared_ptr<Entity> &EntityStore::Create() {
             return Create(_entityLoader.NextPrimaryKey());
         }
 
-        shared_ptr<Entity> EntityStore::Create(shared_ptr<Identity> identity) {
+        shared_ptr<Entity> &EntityStore::Create(shared_ptr<Identity> identity) {
 
             if (!identity) {
                 // TODO: Consider throwing an exception on nullptr Identity

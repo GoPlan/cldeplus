@@ -22,9 +22,9 @@ namespace Cloude {
 
             bool HasIdentityInMap(const std::shared_ptr<Identity> &identity) const;
 
-            std::shared_ptr<Entity> Get(const std::shared_ptr<Identity> &identity);
-            std::shared_ptr<Entity> Create();
-            std::shared_ptr<Entity> Create(std::shared_ptr<Identity> identity);
+            std::shared_ptr<Entity> &Get(std::shared_ptr<Identity> &identity);
+            std::shared_ptr<Entity> &Create();
+            std::shared_ptr<Entity> &Create(std::shared_ptr<Identity> identity);
 
             void Insert(std::shared_ptr<Entity> &entity);
             void Delete(std::shared_ptr<Entity> &entity);
@@ -34,8 +34,6 @@ namespace Cloude {
         protected:
             EntityMap &_entityMap;
             EntityLoader &_entityLoader;
-
-            void LoadEntity(std::shared_ptr<Entity> &entity) const;
 
         private:
             std::unordered_map<std::shared_ptr<Identity>, std::shared_ptr<Entity>> _identityMap;

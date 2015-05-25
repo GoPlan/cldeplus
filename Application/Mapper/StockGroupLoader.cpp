@@ -7,20 +7,56 @@
 using namespace std;
 using namespace Cloude::Architecture;
 
-unique_ptr<Entity> Cloude::Application::Mapper::StockGroupLoader::CreateEntityInstance(shared_ptr<Identity> ident) {
-    unique_ptr<Entity> entity;
-    return entity;
-}
+namespace Cloude {
+    namespace Application {
+        namespace Mapper {
 
-unique_ptr<Identity> Cloude::Application::Mapper::StockGroupLoader::NextPrimaryKey() {
-    unique_ptr<Identity> ident;
-    return ident;
-}
+            StockGroupLoader::~StockGroupLoader() {
 
-void Cloude::Application::Mapper::StockGroupLoader::LoadEntity(Entity &entity) {
-    return;
-}
+                if (ptrMySqlStmt != nullptr) {
+                    mysql_stmt_close(ptrMySqlStmt);
+                }
 
-Cloude::Application::Mapper::StockGroupLoader::~StockGroupLoader() {
+                if (ptrMySql != nullptr) {
+                    mysql_close(ptrMySql);
+                }
 
+            }
+
+            std::unique_ptr<Identity> StockGroupLoader::NextPrimaryKey() {
+                unique_ptr<Identity> identity;
+                return identity;
+            }
+
+            void StockGroupLoader::LoadEntity(std::shared_ptr<Identity> &identity) {
+
+                auto spEntity = identity->getEntity();
+
+                if (ptrMySql == nullptr) {
+                    // TODO: Validate MySQL initialization errors
+                    mysql_library_init;
+                    mysql_init(ptrMySql);
+                    mysql_real_connect(ptrMySql,
+                                       host.c_str(), user.c_str(), pass.c_str(), dbase.c_str(), port,
+                                       NULL, NULL);
+                }
+
+                if (ptrMySqlStmt == nullptr) {
+                    ptrMySqlStmt = mysql_stmt_init(ptrMySql);
+                }
+
+                if (mysql_stmt_prepare(ptrMySqlStmt, query.c_str(), query.length())) {
+                    // TODO: Validate MYSQL_STMT preparation errors
+                }
+
+                // Bind Params
+
+                // Bind Result
+
+                // Execute
+
+                // Load Entity
+            }
+        }
+    }
 }

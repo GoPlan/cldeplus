@@ -114,6 +114,7 @@ namespace Cloude {
 
                 auto spEntityAlt = _entityStore.Get(spIdentity);
                 ASSERT_TRUE(spEntity.get() != 0);
+                ASSERT_TRUE(spIdentEntity == spEntity);
                 ASSERT_TRUE(spEntity == spEntityAlt);
 
                 auto spIdField = spEntity->operator[](idName);

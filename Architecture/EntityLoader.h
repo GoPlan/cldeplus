@@ -15,8 +15,7 @@ namespace Cloude {
         public:
             virtual ~EntityLoader() = default;
             virtual std::unique_ptr<Identity> NextPrimaryKey() = 0;
-            virtual std::unique_ptr<Entity> CreateEntityInstance(std::shared_ptr<Identity> ident) = 0;
-            virtual void LoadEntity(Entity &entity) = 0;
+            virtual void LoadEntity(std::shared_ptr<Identity> &identity) = 0;
         };
     }
 }
