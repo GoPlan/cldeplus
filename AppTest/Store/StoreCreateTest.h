@@ -14,23 +14,27 @@ namespace Cloude {
     namespace AppTest {
         namespace Store {
 
+            using Column = Cloude::Architecture::Column;
+            using Field = Cloude::Architecture::Field;
+            using Identity = Cloude::Architecture::Identity;
+            using EnumDbType = Cloude::Architecture::Enumeration::DbType;
+
+            using StockGroupMap = Cloude::Application::Mapper::StockGroupMap;
+            using StockGroupLoader = Cloude::Application::Mapper::StockGroupLoader;
+
             TEST_F(StoreSimple, CreateEntity01_Shared_Pointer) {
 
                 std::string codeName = "Code";
                 std::string codeSourceName = "Code";
                 std::string codeValue = "VNM";
 
-                auto spColumnId = std::make_shared<Cloude::Architecture::Column>(codeName,
-                                                                                 codeSourceName,
-                                                                                 Cloude::Architecture::Enumeration::DbType::String);
+                auto spColumnId = std::make_shared<Column>(codeName, codeSourceName, EnumDbType::String);
+                auto spFieldId = std::make_shared<Field>(spColumnId, codeValue);
 
-                auto spFieldId = std::make_shared<Cloude::Architecture::Field>(spColumnId,
-                                                                               codeValue);
-
-                auto spIdentity = std::make_shared<Cloude::Architecture::Identity>()->SetField(spFieldId);
+                auto spIdentity = std::make_shared<Identity>()->SetField(spFieldId);
                 ASSERT_TRUE(spIdentity.get() != 0);
 
-                auto spIdentEntity = spIdentity->getSpEntity();
+                auto spIdentEntity = spIdentity->getEntity();
                 ASSERT_TRUE(spIdentEntity.get() != 0);
 
                 auto spIdentEntityField = spIdentEntity->operator[](codeName);
@@ -53,15 +57,12 @@ namespace Cloude {
                 std::string codeSourceName = "Code";
                 std::string codeValue = "VNM";
 
-                auto spColumnId = std::make_shared<Cloude::Architecture::Column>(codeName,
-                                                                                 codeSourceName,
-                                                                                 Cloude::Architecture::Enumeration::DbType::String);
-
-                auto ptrField = new Cloude::Architecture::Field(spColumnId, codeValue);
-                auto spIdentity = std::make_shared<Cloude::Architecture::Identity>()->SetField(ptrField);
+                auto spColumnId = std::make_shared<Column>(codeName, codeSourceName, EnumDbType::String);
+                auto ptrField = new Field(spColumnId, codeValue);
+                auto spIdentity = std::make_shared<Identity>()->SetField(ptrField);
                 ASSERT_TRUE(spIdentity.get() != 0);
 
-                auto spIdentEntity = spIdentity->getSpEntity();
+                auto spIdentEntity = spIdentity->getEntity();
                 ASSERT_TRUE(spIdentEntity.get() != 0);
 
                 auto spIdentEntityField = spIdentEntity->operator[](codeName);
@@ -80,24 +81,24 @@ namespace Cloude {
 
             TEST_F(StoreSimple, CreateEntity03_InitializerList) {
 
+                const std::string idName = "Id";
+                const long idValue = 1000;
+
                 const std::string codeName = "Code";
                 const std::string codeValue = "VNM";
 
                 const std::string nameName = "Name";
                 const std::string nameValue = "Vinamilk";
 
+                auto ptrFieldId = new Field(StockGroupMap::Id, idValue);
+                auto ptrFieldName = new Field(StockGroupMap::Name, nameValue);
+                auto ptrFieldCode = new Field(StockGroupMap::Code, codeValue);
 
-                auto ptrFieldName = new Cloude::Architecture::Field(Cloude::Application::Mapper::StockGroupMap::Name,
-                                                                    nameValue);
-
-                auto ptrFieldCode = new Cloude::Architecture::Field(Cloude::Application::Mapper::StockGroupMap::Code,
-                                                                    codeValue);
-
-                auto ptrFieldsList = std::initializer_list<Cloude::Architecture::Field *>{ptrFieldName, ptrFieldCode};
-                auto spIdentity = std::make_shared<Cloude::Architecture::Identity>()->SetField(ptrFieldsList);
+                auto initFieldList{ptrFieldId, ptrFieldName, ptrFieldCode};
+                auto spIdentity = std::make_shared<Identity>()->SetField(initFieldList);
                 ASSERT_TRUE(spIdentity.get() != 0);
 
-                auto spIdentEntity = spIdentity->getSpEntity();
+                auto spIdentEntity = spIdentity->getEntity();
                 ASSERT_TRUE(spIdentEntity.get() != 0);
 
                 auto spIdentEntityField = spIdentEntity->operator[](codeName);
@@ -109,6 +110,14 @@ namespace Cloude {
 
                 auto spEntity = _entityStore.Create(spIdentity);
                 ASSERT_TRUE(spEntity.get() != 0);
+                ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
+
+                auto spEntityAlt = _entityStore.Get(spIdentity);
+                ASSERT_TRUE(spEntity.get() != 0);
+                ASSERT_TRUE(spEntity == spEntityAlt);
+
+                auto spIdField = spEntity->operator[](idName);
+                ASSERT_TRUE(spIdField->getInt64() == 1000);
 
                 auto spNameField = spEntity->operator[](nameName);
                 ASSERT_TRUE(nameValue.compare(spNameField->getString()) == 0);
@@ -119,6 +128,5 @@ namespace Cloude {
         }
     }
 }
-
 
 #endif //CLOUD_E_CPLUS_STORECREATETEST_H

@@ -16,13 +16,15 @@ namespace Cloude {
         class EntityStore {
         public:
             EntityStore(EntityMap &entityMap, EntityLoader &entityLoader);
-            EntityStore(const EntityStore& srcEntityStore) = default;
-            EntityStore& operator = (const EntityStore& srcEntityStore) = default;
+            EntityStore(const EntityStore &srcEntityStore) = default;
+            EntityStore &operator=(const EntityStore &srcEntityStore) = default;
             virtual ~EntityStore() = default;
 
-            std::shared_ptr<Entity> Get(std::shared_ptr <Identity> &identity);
+            bool HasIdentityInMap(const std::shared_ptr<Identity> &identity) const;
+
+            std::shared_ptr<Entity> Get(const std::shared_ptr<Identity> &identity);
             std::shared_ptr<Entity> Create();
-            std::shared_ptr<Entity> Create(std::shared_ptr <Identity> identity);
+            std::shared_ptr<Entity> Create(std::shared_ptr<Identity> identity);
 
             void Insert(std::shared_ptr<Entity> &entity);
             void Delete(std::shared_ptr<Entity> &entity);

@@ -10,13 +10,28 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
-        Field::Field(shared_ptr<Column> spColumn) : _spColumn(spColumn) {
+        Field::Field(shared_ptr<Column> column) : _column(column) {
             ResetField();
         }
 
-        Field::Field(shared_ptr<Column> spColumn, const std::string &value) : _spColumn(spColumn),
-                                                                              _string(value) {
+        Field::Field(std::shared_ptr<Column> column, long value) : _column(column),
+                                                                   _int64(value) {
+            //
+        }
 
+        Field::Field(std::shared_ptr<Column> column, unsigned long value) : _column(column),
+                                                                            _uint64(value) {
+            //
+        }
+
+        Field::Field(std::shared_ptr<Column> column, double value) : _column(column),
+                                                                     _double(value) {
+            //
+        }
+
+        Field::Field(shared_ptr<Column> column, const std::string &value) : _column(column),
+                                                                            _string(value) {
+            //
         }
 
         void Field::ResetField() {
@@ -34,6 +49,5 @@ namespace Cloude {
             _uint32 = 0;
             _uint64 = 0;
         }
-
     }
 }

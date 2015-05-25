@@ -10,17 +10,20 @@
 namespace Cloude {
     namespace Application {
         namespace Mapper {
-            class StockGroupMap : public Cloude::Architecture::EntityMap {
 
+            using Column = Cloude::Architecture::Column;
+            using EntityMap = Cloude::Architecture::EntityMap;
+
+            class StockGroupMap : public EntityMap {
             public:
-                static std::shared_ptr<Cloude::Architecture::Column> Id;
-                static std::shared_ptr<Cloude::Architecture::Column> Code;
-                static std::shared_ptr<Cloude::Architecture::Column> Name;
-                static std::shared_ptr<Cloude::Architecture::Column> DefaultStockCode;
+                static std::shared_ptr<Column> Id;
+                static std::shared_ptr<Column> Code;
+                static std::shared_ptr<Column> Name;
+                static std::shared_ptr<Column> DefaultStockCode;
                 static std::string TableName;
 
                 StockGroupMap();
-                ~StockGroupMap();
+                virtual ~StockGroupMap();
 
             protected:
                 virtual std::string TableNameCore();

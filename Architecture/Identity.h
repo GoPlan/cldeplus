@@ -22,19 +22,19 @@ namespace Cloude {
             Identity &operator=(const Identity &srcIdentity) = default;
             virtual ~Identity() = default;
 
-            explicit Identity(std::shared_ptr<Field> spField);
+            explicit Identity(std::shared_ptr<Field> field);
             explicit Identity(Field *ptrField);
 
-            std::shared_ptr<Identity> SetField(std::shared_ptr<Field> spField);
+            std::shared_ptr<Identity> SetField(std::shared_ptr<Field> field);
             std::shared_ptr<Identity> SetField(Field *ptrField);
             std::shared_ptr<Identity> SetField(const std::initializer_list<Field *> &ptrFieldList);
 
-            const std::shared_ptr<Entity> &getSpEntity() const {
-                return _spEntity;
+            const std::shared_ptr<Entity> &getEntity() const {
+                return _entity;
             }
 
         protected:
-            std::shared_ptr<Entity> _spEntity;
+            std::shared_ptr<Entity> _entity;
         };
     }
 }

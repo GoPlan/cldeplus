@@ -9,32 +9,32 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
-        Identity::Identity(std::shared_ptr<Field> spField) {
-            SetField(spField);
+        Identity::Identity(std::shared_ptr<Field> field) {
+            SetField(field);
         }
 
         Identity::Identity(Field *ptrField) {
             SetField(ptrField);
         }
 
-        shared_ptr<Identity> Identity::SetField(shared_ptr<Field> spField) {
+        shared_ptr<Identity> Identity::SetField(shared_ptr<Field> field) {
 
-            if (!_spEntity) {
-                _spEntity = make_shared<Entity>(shared_from_this());
+            if (!_entity) {
+                _entity = make_shared<Entity>(shared_from_this());
             }
 
-            _spEntity->InsertField(spField);
+            _entity->InsertField(field);
 
             return shared_from_this();
         }
 
         std::shared_ptr<Identity> Identity::SetField(Field *ptrField) {
 
-            if (!_spEntity) {
-                _spEntity = make_shared<Entity>(shared_from_this());
+            if (!_entity) {
+                _entity = make_shared<Entity>(shared_from_this());
             }
 
-            _spEntity->InsertField(ptrField);
+            _entity->InsertField(ptrField);
 
             return shared_from_this();
         }

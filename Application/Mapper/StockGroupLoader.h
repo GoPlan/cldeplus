@@ -11,12 +11,17 @@
 namespace Cloude {
     namespace Application {
         namespace Mapper {
-            class StockGroupLoader : public Cloude::Architecture::EntityLoader {
+
+            using EntityLoader = Cloude::Architecture::EntityLoader;
+            using Entity = Cloude::Architecture::Entity;
+            using Identity = Cloude::Architecture::Identity;
+
+            class StockGroupLoader : public EntityLoader {
             public:
                 virtual ~StockGroupLoader();
-                std::unique_ptr<Cloude::Architecture::Entity> CreateEntityInstance(std::shared_ptr<Cloude::Architecture::Identity> ident) override;
-                std::unique_ptr<Cloude::Architecture::Identity> NextPrimaryKey() override;
-                void LoadEntity(Cloude::Architecture::Entity &entity) override;
+                std::unique_ptr<Entity> CreateEntityInstance(std::shared_ptr<Identity> ident) override;
+                std::unique_ptr<Identity> NextPrimaryKey() override;
+                void LoadEntity(Entity &entity) override;
             };
         }
     }

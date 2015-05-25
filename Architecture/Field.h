@@ -11,18 +11,24 @@
 namespace Cloude {
     namespace Architecture {
 
+        // TODO: Field class needs a function that converts long/ulong value to correct type based on Column::DbType
+
         class Field {
         public:
+            Field() = delete;
             Field(const Field &srcField) = delete;
             Field &operator=(const Field &srcField) = delete;
 
             virtual ~Field() { };
 
             explicit Field(std::shared_ptr<Column>);
-            Field(std::shared_ptr<Column>, const std::string &value);
+            Field(std::shared_ptr<Column> column, long value);
+            Field(std::shared_ptr<Column> column, unsigned long value);
+            Field(std::shared_ptr<Column> column, double value);
+            Field(std::shared_ptr<Column> column, const std::string &value);
 
-            const std::shared_ptr<Column> &getSpColumn() const {
-                return _spColumn;
+            const std::shared_ptr<Column> &getColumn() const {
+                return _column;
             }
 
             int8_t getInt8() const {
@@ -130,7 +136,9 @@ namespace Cloude {
             }
 
         private:
-            std::shared_ptr<Column> _spColumn;
+            std::shared_ptr<Column> _column;
+
+            std::string _string;
 
             int8_t _int8;
             int16_t _int16;
@@ -146,7 +154,6 @@ namespace Cloude {
             float _float;
 
             bool _bool;
-            std::string _string;
             void *_voidPtr;
 
             void ResetField();

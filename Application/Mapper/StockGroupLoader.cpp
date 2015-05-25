@@ -11,10 +11,12 @@ unique_ptr<Entity> Cloude::Application::Mapper::StockGroupLoader::CreateEntityIn
     unique_ptr<Entity> entity;
     return entity;
 }
+
 unique_ptr<Identity> Cloude::Application::Mapper::StockGroupLoader::NextPrimaryKey() {
     unique_ptr<Identity> ident;
     return ident;
 }
+
 void Cloude::Application::Mapper::StockGroupLoader::LoadEntity(Entity &entity) {
     return;
 }

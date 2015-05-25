@@ -12,11 +12,12 @@
 
 namespace Cloude {
     namespace Architecture {
+        
         class EntityMap {
         public:
             EntityMap() = default;
             EntityMap(const EntityMap &srcEntityMap) = default;
-            EntityMap& operator=(const EntityMap &srcEntityMap) = default;
+            EntityMap &operator=(const EntityMap &srcEntityMap) = default;
             virtual ~EntityMap() = default;
 
             std::string TableName() {

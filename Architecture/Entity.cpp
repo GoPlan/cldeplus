@@ -18,7 +18,7 @@ namespace Cloude {
             auto search = _fieldsMap.find(columnName);
 
             if (search == _fieldsMap.end()) {
-                //TODO: Throws field not found exception
+                // TODO: Throws field not found exception
                 shared_ptr<Field> spField;
                 return spField;
             }
@@ -27,11 +27,11 @@ namespace Cloude {
         }
 
         void Entity::InsertField(shared_ptr<Field> field) {
-            _fieldsMap.insert(make_pair(field->getSpColumn()->getName(), field));
+            _fieldsMap.insert(make_pair(field->getColumn()->getName(), field));
         }
 
         void Entity::InsertField(Field *ptrField) {
-            _fieldsMap.insert(make_pair(ptrField->getSpColumn()->getName(), shared_ptr<Field>(ptrField)));
+            _fieldsMap.insert(make_pair(ptrField->getColumn()->getName(), shared_ptr<Field>(ptrField)));
         }
     }
 }

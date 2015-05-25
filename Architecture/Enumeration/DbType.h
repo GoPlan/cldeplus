@@ -10,13 +10,18 @@ namespace Cloude {
         namespace Enumeration {
 
             enum class DbType {
+                Boolean,
+                Byte,
                 Int16,
                 Int32,
                 Int64,
                 UInt16,
                 UInt32,
                 UInt64,
-                String
+                Double,
+                Float,
+                String,
+                Currency
             };
 
         }
