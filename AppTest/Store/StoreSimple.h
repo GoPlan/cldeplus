@@ -5,6 +5,7 @@
 #ifndef CLOUD_E_CPLUS_STORESIMPLE_H
 #define CLOUD_E_CPLUS_STORESIMPLE_H
 
+#include <Infrastructure/MySqlDriver.h>
 #include "gtest/gtest.h"
 #include "../../Cloude.h"
 #include "../../Application/Model/StockGroup.h"
@@ -19,11 +20,13 @@ namespace Cloude {
             public:
 
             protected:
-                StoreSimple() : _entityStore(_stockGroupMap, _stockGroupLoader) { };
+                StoreSimple() : _stockGroupLoader(_stockGroupMap.getColumnsMap()),
+                                _entityStore(_stockGroupMap, _stockGroupLoader, _mySqlDriver) { };
 
                 virtual void SetUp();
                 virtual void TearDown();
 
+                Cloude::Infrastructure::MySqlDriver _mySqlDriver;
                 Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
                 Cloude::Application::Mapper::StockGroupLoader _stockGroupLoader;
                 Cloude::Architecture::EntityStore _entityStore;

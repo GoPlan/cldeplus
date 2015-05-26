@@ -27,7 +27,7 @@ add_library(architecture STATIC
     Architecture/EntityMap.h
     Architecture/EntityLoader.cpp
     Architecture/EntityLoader.h
-Architecture/Exception/NonSupportedDataTypeException.cpp Architecture/Exception/NonSupportedDataTypeException.h Architecture/Exception/DataSourceRoutineException.cpp Architecture/Exception/DataSourceRoutineException.h Architecture/Exception/EntityStoreRoutineException.cpp Architecture/Exception/EntityStoreRoutineException.h)
+Architecture/Exception/NonSupportedDataTypeException.cpp Architecture/Exception/NonSupportedDataTypeException.h Architecture/Exception/DataSourceRoutineException.cpp Architecture/Exception/DataSourceRoutineException.h Architecture/Exception/EntityStoreRoutineException.cpp Architecture/Exception/EntityStoreRoutineException.h Architecture/EntitySourceDriver.cpp Architecture/EntitySourceDriver.h Architecture/Helper/SqlGenerator.cpp Architecture/Helper/SqlGenerator.h)
 
 
 add_library(application STATIC
@@ -43,8 +43,8 @@ Application/Model/Sequence.cpp Application/Model/Sequence.h)
 
 
 add_library(infrastructure STATIC
-    Infrastructure/Driver/MySqlDriver.h
-    Infrastructure/Driver/MySqlDriver.cpp
+    Infrastructure/MySqlDriver.h
+    Infrastructure/MySqlDriver.cpp
 )
 
 
@@ -95,4 +95,4 @@ include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 
 add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest gtest)
+target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest gtest mysqlclient)

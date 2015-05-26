@@ -10,8 +10,12 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
-        EntityStore::EntityStore(EntityMap &entityMap, EntityLoader &entityLoader) : _entityMap(entityMap),
-                                                                                     _entityLoader(entityLoader) {
+        EntityStore::EntityStore(EntityMap &entityMap,
+                                 EntityLoader &entityLoader,
+                                 EntitySourceDriver &entitySourceDriver)
+                : _entityMap(entityMap),
+                  _entityLoader(entityLoader),
+                  _entitySourceDriver(entitySourceDriver) {
             //
         }
 
@@ -19,7 +23,7 @@ namespace Cloude {
             return !(_identityMap.find(identity) == _identityMap.end());
         }
 
-        shared_ptr<Entity> &EntityStore::Get(shared_ptr<Identity> &identity) {
+        shared_ptr<Entity> EntityStore::Get(shared_ptr<Identity> &identity) {
 
             auto search = _identityMap.find(identity);
 
@@ -29,7 +33,6 @@ namespace Cloude {
             }
 
             // Load entity(fields) from datasource
-            // TODO: Query datasource for spEntity
             _entityLoader.LoadEntity(identity);
 
             // Added found spEntity to identity map
@@ -38,11 +41,11 @@ namespace Cloude {
             return identity->getEntity();
         }
 
-        shared_ptr<Entity> &EntityStore::Create() {
+        shared_ptr<Entity> EntityStore::Create() {
             return Create(_entityLoader.NextPrimaryKey());
         }
 
-        shared_ptr<Entity> &EntityStore::Create(shared_ptr<Identity> identity) {
+        shared_ptr<Entity> EntityStore::Create(shared_ptr<Identity> identity) {
 
             if (!identity) {
                 string message = "Identity is a nullptr or invalid";

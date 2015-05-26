@@ -94,7 +94,6 @@ namespace Cloude {
 
                 const std::unordered_map<std::string, std::shared_ptr<Column>> &_columnsMap;
 
-            private:
                 std::string _host;
                 std::string _user;
                 std::string _pass;

@@ -9,13 +9,14 @@
 #include "Entity.h"
 #include "EntityMap.h"
 #include "EntityLoader.h"
+#include "EntitySourceDriver.h"
 
 namespace Cloude {
     namespace Architecture {
 
         class EntityStore {
         public:
-            EntityStore(EntityMap &entityMap, EntityLoader &entityLoader);
+            EntityStore(EntityMap &entityMap, EntityLoader &entityLoader, EntitySourceDriver &entitySourceDriver);
             EntityStore(const EntityStore &srcEntityStore) = default;
             EntityStore &operator=(const EntityStore &srcEntityStore) = default;
             virtual ~EntityStore() = default;
@@ -24,9 +25,9 @@ namespace Cloude {
             bool HasIdentityInMap(const std::shared_ptr<Identity> &identity) const;
 
 
-            std::shared_ptr<Entity> &Get(std::shared_ptr<Identity> &identity);
-            std::shared_ptr<Entity> &Create();
-            std::shared_ptr<Entity> &Create(std::shared_ptr<Identity> identity);
+            std::shared_ptr<Entity> Get(std::shared_ptr<Identity> &identity);
+            std::shared_ptr<Entity> Create();
+            std::shared_ptr<Entity> Create(std::shared_ptr<Identity> identity);
 
 
             void Insert(std::shared_ptr<Entity> &entity);
@@ -46,6 +47,7 @@ namespace Cloude {
         protected:
             EntityMap &_entityMap;
             EntityLoader &_entityLoader;
+            EntitySourceDriver &_entitySourceDriver;
 
         private:
             std::unordered_map<std::shared_ptr<Identity>, std::shared_ptr<Entity>> _identityMap;

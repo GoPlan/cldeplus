@@ -3,6 +3,7 @@
 #include "Cloude.h"
 #include "Application/Mapper/StockGroupLoader.h"
 #include "Application/Mapper/StockGroupMap.h"
+#include "Infrastructure/MySqlDriver.h"
 
 using Column = Cloude::Architecture::Column;
 using Field = Cloude::Architecture::Field;
@@ -14,13 +15,17 @@ using StockGroupMap = Cloude::Application::Mapper::StockGroupMap;
 using StockGroupLoader = Cloude::Application::Mapper::StockGroupLoader;
 using EntityStore = Cloude::Architecture::EntityStore;
 
+using MySqlDriver = Cloude::Infrastructure::MySqlDriver;
+
 int main(int argc, char **argv) {
 
     std::cout << "Running Debug" << std::endl;
 
+    MySqlDriver mySqlDriver;
     StockGroupMap _stockGroupMap;
     StockGroupLoader _stockGroupLoader(_stockGroupMap.getColumnsMap());
-    EntityStore _entityStore(_stockGroupMap, _stockGroupLoader);
+
+    EntityStore _entityStore(_stockGroupMap, _stockGroupLoader, mySqlDriver);
 
 
 

@@ -143,7 +143,7 @@ namespace Cloude {
                         break;
                     case Enumeration::DbType::Int16:
                         ptrBind->buffer_type = MYSQL_TYPE_SHORT;
-                        ptrBind->buffer_length = sizeof(int16_t) * 2;
+                        ptrBind->buffer_length = sizeof(int16_t);
                         break;
                     case Enumeration::DbType::Int32:
                         ptrBind->buffer_type = MYSQL_TYPE_LONG;
@@ -152,6 +152,18 @@ namespace Cloude {
                     case Enumeration::DbType::Int64:
                         ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
                         ptrBind->buffer_length = sizeof(int64_t);
+                        break;
+                    case Enumeration::DbType::UInt16:
+                        ptrBind->buffer_type = MYSQL_TYPE_SHORT;
+                        ptrBind->buffer_length = sizeof(int16_t);
+                        break;
+                    case Enumeration::DbType::UInt32:
+                        ptrBind->buffer_type = MYSQL_TYPE_LONG;
+                        ptrBind->buffer_length = sizeof(int16_t);
+                        break;
+                    case Enumeration::DbType::UInt64:
+                        ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
+                        ptrBind->buffer_length = sizeof(int16_t);
                         break;
                     case Enumeration::DbType::Double:
                         ptrBind->buffer_type = MYSQL_TYPE_DOUBLE;

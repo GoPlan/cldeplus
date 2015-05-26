@@ -52,6 +52,7 @@ namespace Cloude {
         }
 
         void Field::AssignDataPointer(void *ptr) {
+
             switch (_column->getDbType()) {
                 case Enumeration::DbType::Boolean:
                     ptr = &_bool;
