@@ -34,10 +34,19 @@ namespace Cloude {
                 return _dbType;
             }
 
+            size_t getLength() const {
+                return _length;
+            }
+
+            void setLength(size_t length) {
+                _length = length;
+            }
+
         private:
             std::string _datasourceName;
             std::string _name;
             Cloude::Architecture::Enumeration::DbType _dbType;
+            size_t _length;
         };
     }
 }

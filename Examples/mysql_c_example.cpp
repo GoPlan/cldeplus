@@ -63,6 +63,7 @@ namespace Cloude {
 
             FETCH:
             auto row_status = mysql_stmt_fetch(mysql_stmt_ptr);
+
             switch (row_status) {
                 case 0:
                     is_printing = true;

@@ -2,6 +2,7 @@
 // Created by LE, Duc-Anh on 5/23/15.
 //
 
+#include <Architecture/Exception/EntityStoreRoutineException.h>
 #include "EntityStore.h"
 
 using namespace std;
@@ -27,17 +28,14 @@ namespace Cloude {
                 return search->second;
             }
 
-            // Load spEntity fields
+            // Load entity(fields) from datasource
             // TODO: Query datasource for spEntity
             _entityLoader.LoadEntity(identity);
 
-            // Retrieve entity instance (from Identity)
-            auto spEntity = identity->getEntity();
-
             // Added found spEntity to identity map
-            _identityMap.insert(make_pair(identity, spEntity));
+            _identityMap.insert(make_pair(identity, identity->getEntity()));
 
-            return spEntity;
+            return identity->getEntity();
         }
 
         shared_ptr<Entity> &EntityStore::Create() {
@@ -47,19 +45,17 @@ namespace Cloude {
         shared_ptr<Entity> &EntityStore::Create(shared_ptr<Identity> identity) {
 
             if (!identity) {
-                // TODO: Consider throwing an exception on nullptr Identity
-                shared_ptr<Entity> spEntity;
-                return spEntity;
+                string message = "Identity is a nullptr or invalid";
+                throw Architecture::Exception::EntityStoreRoutineException(*this, message);
             }
 
-            auto spEntity = identity->getEntity();
-            auto identityPair = make_pair(identity, spEntity);
+            // Insert entity into datasource
+            Insert(identity->getEntity());
 
-            Insert(spEntity);
+            // Added found spEntity to identity map
+            _identityMap.insert(make_pair(identity, identity->getEntity()));
 
-            _identityMap.insert(identityPair);
-
-            return spEntity;
+            return identity->getEntity();
         }
 
 

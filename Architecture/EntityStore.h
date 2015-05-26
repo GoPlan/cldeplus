@@ -20,16 +20,28 @@ namespace Cloude {
             EntityStore &operator=(const EntityStore &srcEntityStore) = default;
             virtual ~EntityStore() = default;
 
+
             bool HasIdentityInMap(const std::shared_ptr<Identity> &identity) const;
+
 
             std::shared_ptr<Entity> &Get(std::shared_ptr<Identity> &identity);
             std::shared_ptr<Entity> &Create();
             std::shared_ptr<Entity> &Create(std::shared_ptr<Identity> identity);
 
+
             void Insert(std::shared_ptr<Entity> &entity);
             void Delete(std::shared_ptr<Entity> &entity);
             void Save(std::shared_ptr<Entity> &entity) const;
             void Clear();
+
+
+            EntityMap &getEntityMap() const {
+                return _entityMap;
+            }
+
+            EntityLoader &getEntityLoader() const {
+                return _entityLoader;
+            }
 
         protected:
             EntityMap &_entityMap;

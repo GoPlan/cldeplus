@@ -27,7 +27,7 @@ add_library(architecture STATIC
     Architecture/EntityMap.h
     Architecture/EntityLoader.cpp
     Architecture/EntityLoader.h
-)
+Architecture/Exception/NonSupportedDataTypeException.cpp Architecture/Exception/NonSupportedDataTypeException.h Architecture/Exception/DataSourceRoutineException.cpp Architecture/Exception/DataSourceRoutineException.h Architecture/Exception/EntityStoreRoutineException.cpp Architecture/Exception/EntityStoreRoutineException.h)
 
 
 add_library(application STATIC
@@ -39,7 +39,7 @@ add_library(application STATIC
     Application/Mapper/StockGroupMap.h
     Application/Mapper/StockGroupLoader.cpp
     Application/Mapper/StockGroupLoader.h
-)
+Application/Model/Sequence.cpp Application/Model/Sequence.h)
 
 
 add_library(infrastructure STATIC
@@ -85,7 +85,7 @@ target_link_libraries(cloud_e_cplus_example mysqlclient examples)
 
 # Sandbox Target
 add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus_debug architecture infrastructure application)
+target_link_libraries(cloud_e_cplus_debug architecture infrastructure application mysqlclient)
 
 
 # AppTest Target (with Google Testing Framework)
