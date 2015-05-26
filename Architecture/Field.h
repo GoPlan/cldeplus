@@ -28,6 +28,8 @@ namespace Cloude {
             Field(std::shared_ptr<Column> column, double value);
             Field(std::shared_ptr<Column> column, const std::string &value);
 
+            void AssignDataPointer(void *ptr);
+
             const std::shared_ptr<Column> &getColumn() const {
                 return _column;
             }
@@ -96,6 +98,14 @@ namespace Cloude {
                 _uint64 = uint64;
             }
 
+            char getAChar() const {
+                return _char;
+            }
+
+            void setAChar(char aChar) {
+                _char = aChar;
+            }
+
             double getADouble() const {
                 return _double;
             }
@@ -151,6 +161,7 @@ namespace Cloude {
             uint32_t _uint32;
             uint64_t _uint64;
 
+            char _char;
             double _double;
             float _float;
 

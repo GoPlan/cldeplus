@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     std::cout << "Running Debug" << std::endl;
 
     StockGroupMap _stockGroupMap;
-    StockGroupLoader _stockGroupLoader;
+    StockGroupLoader _stockGroupLoader(_stockGroupMap.getColumnsMap());
     EntityStore _entityStore(_stockGroupMap, _stockGroupLoader);
 
 

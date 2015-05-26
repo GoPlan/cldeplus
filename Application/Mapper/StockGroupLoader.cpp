@@ -2,6 +2,7 @@
 // Created by GoPlan on 15/05/2015.
 //
 
+#include <random>
 #include "StockGroupLoader.h"
 #include "../../Architecture/Exception/NonSupportedDataTypeException.h"
 
@@ -12,8 +13,9 @@ namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            StockGroupLoader::StockGroupLoader() {
-
+            StockGroupLoader::StockGroupLoader(const unordered_map<string, shared_ptr<Column>> &columnsMap) :
+                    _columnsMap(columnsMap) {
+                //
             }
 
             StockGroupLoader::~StockGroupLoader() {
@@ -68,10 +70,26 @@ namespace Cloude {
                 setup_bind(spEntity);
 
                 // Bind Result
+                if (mysql_stmt_bind_result(_ptrMySqlStmt, _ptrMySqlBind)) {
+                    assert_sql_error();
+                    assert_sql_stmt_error();
+                }
 
-                // Execute
+                // Fetch result & Load entity
+                auto rowStatus = mysql_stmt_fetch(_ptrMySqlStmt);
 
-                // Load Entity
+                switch (rowStatus) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case MYSQL_NO_DATA:
+                        break;
+                    case MYSQL_DATA_TRUNCATED:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             void StockGroupLoader::assert_sql_error() {
@@ -92,17 +110,17 @@ namespace Cloude {
 
             void StockGroupLoader::setup_bind(shared_ptr<Entity> &entity) {
 
-                _ptrMySqlBind = (MYSQL_BIND *) calloc(columnsMap.size(), sizeof(MYSQL_BIND));
-                _ptrIsNull = (my_bool *) calloc(columnsMap.size(), sizeof(my_bool));
-                _ptrError = (my_bool *) calloc(columnsMap.size(), sizeof(my_bool));
-                _ptrLength = (unsigned long *) calloc(columnsMap.size(), sizeof(unsigned long));
+                _ptrMySqlBind = (MYSQL_BIND *) calloc(_columnsMap.size(), sizeof(MYSQL_BIND));
+                _ptrIsNull = (my_bool *) calloc(_columnsMap.size(), sizeof(my_bool));
+                _ptrError = (my_bool *) calloc(_columnsMap.size(), sizeof(my_bool));
+                _ptrLength = (unsigned long *) calloc(_columnsMap.size(), sizeof(unsigned long));
 
                 int i = 0;
 
-                for (auto item : columnsMap) {
+                for (auto item : _columnsMap) {
 
                     auto column = item.second;
-                    auto field = entity->operator[](column.getName());
+                    auto field = entity->operator[](column->getName());
 
                     setup_field(field, &_ptrMySqlBind[i]);
 
@@ -112,36 +130,56 @@ namespace Cloude {
 
             void StockGroupLoader::setup_field(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind) {
 
-                switch (field->getColumn()->getDbType()) {
+                field->AssignDataPointer(ptrBind->buffer);
 
+                switch (field->getColumn()->getDbType()) {
                     case Enumeration::DbType::Boolean:
-                        ptrBind->buffer_type = MYSQL_TYPE_BIT;
+                        ptrBind->buffer_type = MYSQL_TYPE_TINY;
+                        ptrBind->buffer_length = sizeof(bool);
                         break;
                     case Enumeration::DbType::Byte:
-                        ptrBind->buffer_type = MYSQL_TYPE_BIT;
+                        ptrBind->buffer_type = MYSQL_TYPE_TINY;
+                        ptrBind->buffer_length = sizeof(char);
                         break;
                     case Enumeration::DbType::Int16:
                         ptrBind->buffer_type = MYSQL_TYPE_SHORT;
+                        ptrBind->buffer_length = sizeof(int16_t) * 2;
                         break;
                     case Enumeration::DbType::Int32:
-                        ptrBind->buffer_type = MYSQL_TYPE_INT24;
+                        ptrBind->buffer_type = MYSQL_TYPE_LONG;
+                        ptrBind->buffer_length = sizeof(int32_t);
                         break;
                     case Enumeration::DbType::Int64:
-                        ptrBind->buffer_type = MYSQL_TYPE_LONG;
+                        ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
+                        ptrBind->buffer_length = sizeof(int64_t);
                         break;
                     case Enumeration::DbType::Double:
                         ptrBind->buffer_type = MYSQL_TYPE_DOUBLE;
+                        ptrBind->buffer_length = sizeof(double);
                         break;
                     case Enumeration::DbType::Float:
                         ptrBind->buffer_type = MYSQL_TYPE_FLOAT;
+                        ptrBind->buffer_length = sizeof(float);
                         break;
                     case Enumeration::DbType::String:
-                        ptrBind->buffer_type = MYSQL_TYPE_STRING;
+                        ptrBind->buffer_type = MYSQL_TYPE_VARCHAR;
                         ptrBind->buffer_length = field->getColumn()->getLength();
                         break;
                     default:
                         throw Exception::NonSupportedDataTypeException();
                 }
+            }
+
+            void StockGroupLoader::setup_query() {
+                string strColumns;
+                string strCondition;
+                string strTableName;
+
+                _query.clear();
+
+                _query += " SELECT " + strColumns;
+                _query += " FROM " + strTableName;
+                _query += " WHERE " + strCondition;
             }
         }
     }

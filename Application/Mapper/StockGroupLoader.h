@@ -25,10 +25,11 @@ namespace Cloude {
 
             class StockGroupLoader : public EntityLoader {
             public:
-                StockGroupLoader();
                 StockGroupLoader(const StockGroupLoader &srcStockGroupLoader) = default;
                 StockGroupLoader &operator=(const StockGroupLoader &srcStockGroupLoader) = default;
                 virtual ~StockGroupLoader();
+
+                explicit StockGroupLoader(const std::unordered_map<std::string, std::shared_ptr<Column>> &columnsMap);
 
                 std::unique_ptr<Identity> NextPrimaryKey() override;
                 void LoadEntity(std::shared_ptr<Identity> &identity) override;
@@ -82,14 +83,6 @@ namespace Cloude {
                     _port = port;
                 }
 
-                const std::unordered_map<std::string, Column> &getColumnsMap() const {
-                    return columnsMap;
-                }
-
-                void setColumnsMap(const std::unordered_map<std::string, Column> &columnsMap) {
-                    StockGroupLoader::columnsMap = columnsMap;
-                }
-
             private:
                 MYSQL *_ptrMySql = nullptr;
                 MYSQL_STMT *_ptrMySqlStmt = nullptr;
@@ -99,7 +92,7 @@ namespace Cloude {
                 my_bool *_ptrError = nullptr;
                 unsigned long *_ptrLength = nullptr;
 
-                std::unordered_map<std::string, Column> columnsMap;
+                const std::unordered_map<std::string, std::shared_ptr<Column>> &_columnsMap;
 
             private:
                 std::string _host;
@@ -114,6 +107,7 @@ namespace Cloude {
                 void assert_sql_stmt_error();
                 void setup_bind(std::shared_ptr<Entity> &entity);
                 void setup_field(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
+                void setup_query();
             };
         }
     }
