@@ -5,12 +5,12 @@
 #ifndef CLOUD_E_CPLUS_STORESIMPLE_H
 #define CLOUD_E_CPLUS_STORESIMPLE_H
 
-#include <Infrastructure/MySqlDriver.h>
 #include "gtest/gtest.h"
 #include "../../Cloude.h"
 #include "../../Application/Model/StockGroup.h"
 #include "../../Application/Mapper/StockGroupLoader.h"
 #include "../../Application/Mapper/StockGroupMap.h"
+#include "Infrastructure/MySqlDriver.h"
 
 namespace Cloude {
     namespace AppTest {

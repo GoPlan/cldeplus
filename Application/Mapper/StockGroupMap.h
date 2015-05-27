@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_STOCKGROUPMAP_H
 #define CLOUD_E_CPLUS_STOCKGROUPMAP_H
 
-#include <Architecture/EntityMap.h>
+#include "Architecture/Column.h"
 
 namespace Cloude {
     namespace Application {

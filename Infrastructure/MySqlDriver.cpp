@@ -12,6 +12,7 @@ namespace Cloude {
     namespace Infrastructure {
 
         MySqlDriver::~MySqlDriver() {
+
             if (_ptrMySqlBind != nullptr) {
                 free(_ptrMySqlBind);
             }

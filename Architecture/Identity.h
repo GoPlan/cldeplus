@@ -6,6 +6,7 @@
 #define CLOUD_E_CPLUS_IDENTITY_H
 
 #include <unordered_map>
+
 #include "Entity.h"
 
 namespace Cloude {

@@ -5,11 +5,9 @@
 #ifndef CLOUD_E_CPLUS_STOCKGROUPLOADER_H
 #define CLOUD_E_CPLUS_STOCKGROUPLOADER_H
 
-#include <memory>
-#include <string>
-
+#include "memory"
+#include "string"
 #include "mysql.h"
-
 #include "../../Architecture/EntityLoader.h"
 #include "../Model/StockGroup.h"
 

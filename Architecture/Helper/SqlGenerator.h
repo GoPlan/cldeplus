@@ -5,11 +5,11 @@
 #ifndef CLOUD_E_CPLUS_SQLGENERATOR_H
 #define CLOUD_E_CPLUS_SQLGENERATOR_H
 
-#include <vector>
-#include <iosfwd>
-#include <Architecture/Entity.h>
+#include "vector"
+#include "iosfwd"
 
 #include "../Column.h"
+#include "Architecture/Entity.h"
 
 namespace Cloude {
     namespace Architecture {
@@ -24,11 +24,16 @@ namespace Cloude {
             static std::string CreateDeletePreparedQuery(const std::vector<Column> &columnsMap);
             static std::string CreateSelectPreparedQuery(const std::vector<Column> &columnsMap);
 
-            static std::string CreateGetQuery(const std::shared_ptr<Entity> &entity,const std::vector<Column> &columnsMap);
-            static std::string CreateInsertQuery(const std::shared_ptr<Entity> &entity,const std::vector<Column> &columnsMap);
-            static std::string CreateUpdateQuery(const std::shared_ptr<Entity> &entity,const std::vector<Column> &columnsMap);
-            static std::string CreateDeleteQuery(const std::shared_ptr<Entity> &entity,const std::vector<Column> &columnsMap);
-            static std::string CreateSelectQuery(const std::shared_ptr<Entity> &entity,const std::vector<Column> &columnsMap);
+            static std::string CreateGetQuery(const std::shared_ptr<Entity> &entity,
+                                              const std::vector<Column> &columnsMap);
+            static std::string CreateInsertQuery(const std::shared_ptr<Entity> &entity,
+                                                 const std::vector<Column> &columnsMap);
+            static std::string CreateUpdateQuery(const std::shared_ptr<Entity> &entity,
+                                                 const std::vector<Column> &columnsMap);
+            static std::string CreateDeleteQuery(const std::shared_ptr<Entity> &entity,
+                                                 const std::vector<Column> &columnsMap);
+            static std::string CreateSelectQuery(const std::shared_ptr<Entity> &entity,
+                                                 const std::vector<Column> &columnsMap);
         }
     }
 }
