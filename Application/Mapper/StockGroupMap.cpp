@@ -16,8 +16,6 @@ namespace Cloude {
             std::shared_ptr<Column> StockGroupMap::Name = make_shared<Column>("Name", "Name", Enumeration::DbType::String);
             std::shared_ptr<Column> StockGroupMap::DefaultStockCode = make_shared<Column>("DefaultStockCode", "DefaultStockCode", Enumeration::DbType::String);
 
-            std::string StockGroupMap::TableName("StockGroup");
-
             StockGroupMap::StockGroupMap() {
                 this->_columnsMap[Id->getName()] = Id;
                 this->_columnsMap[Code->getName()] = Code;
@@ -41,7 +39,7 @@ namespace Cloude {
             }
 
             std::string StockGroupMap::TableNameCore() {
-                return TableName;
+                return "StockGroup";
             }
         }
     }

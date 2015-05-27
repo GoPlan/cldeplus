@@ -27,7 +27,16 @@ add_library(architecture STATIC
     Architecture/EntityMap.h
     Architecture/EntityLoader.cpp
     Architecture/EntityLoader.h
-Architecture/Exception/NonSupportedDataTypeException.cpp Architecture/Exception/NonSupportedDataTypeException.h Architecture/Exception/DataSourceRoutineException.cpp Architecture/Exception/DataSourceRoutineException.h Architecture/Exception/EntityStoreRoutineException.cpp Architecture/Exception/EntityStoreRoutineException.h Architecture/EntitySourceDriver.cpp Architecture/EntitySourceDriver.h Architecture/Helper/SqlGenerator.cpp Architecture/Helper/SqlGenerator.h)
+    Architecture/Exception/NonSupportedDataTypeException.cpp
+    Architecture/Exception/NonSupportedDataTypeException.h
+    Architecture/Exception/DataSourceRoutineException.cpp
+    Architecture/Exception/DataSourceRoutineException.h
+    Architecture/Exception/EntityStoreRoutineException.cpp
+    Architecture/Exception/EntityStoreRoutineException.h
+    Architecture/EntitySourceDriver.cpp
+    Architecture/EntitySourceDriver.h
+    Architecture/Helper/SqlGenerator.cpp
+    Architecture/Helper/SqlGenerator.h)
 
 
 add_library(application STATIC
@@ -39,20 +48,23 @@ add_library(application STATIC
     Application/Mapper/StockGroupMap.h
     Application/Mapper/StockGroupLoader.cpp
     Application/Mapper/StockGroupLoader.h
-Application/Model/Sequence.cpp Application/Model/Sequence.h)
+    Application/Model/Sequence.cpp
+    Application/Model/Sequence.h Application/Mapper/AccountMap.cpp Application/Mapper/AccountMap.h)
 
 
 add_library(infrastructure STATIC
     Infrastructure/MySqlDriver.h
     Infrastructure/MySqlDriver.cpp
-)
+    Infrastructure/PostgreSqlDriver.cpp
+    Infrastructure/PostgreSqlDriver.h
+    Infrastructure/PostgreSqlDriver.cpp
+    Infrastructure/PostgreSqlDriver.h)
 
 
 add_library(examples STATIC
     Examples/main.cpp
     Examples/mysql_c_example.h
-    Examples/mysql_c_example.cpp
-)
+    Examples/mysql_c_example.cpp)
 
 
 add_library(apptest STATIC
@@ -66,12 +78,14 @@ add_library(apptest STATIC
 # Libs
 set(LIBS_DIR ${CMAKE_SOURCE_DIR}/Libs)
 
-
 # MySql Client
 set(MYSQL_DIR ${LIBS_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64)
 include_directories(${MYSQL_DIR}/include)
 LINK_DIRECTORIES(${MYSQL_DIR}/lib)
 
+# Boost
+set(BOOST_DIR ${LIBS_DIR}/boost_1_58_0)
+include_directories(${BOOST_DIR})
 
 # Examples
 set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/Examples)
@@ -82,11 +96,9 @@ set(EXAMPLES_SOURCE_FILE ${EXAMPLES_DIR}/main.cpp)
 add_executable(cloud_e_cplus_example ${EXAMPLES_SOURCE_FILE})
 target_link_libraries(cloud_e_cplus_example mysqlclient examples)
 
-
-# Sandbox Target
+# Debug Target
 add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
 target_link_libraries(cloud_e_cplus_debug architecture infrastructure application mysqlclient)
-
 
 # AppTest Target (with Google Testing Framework)
 set(GTEST_LIB_DIR ${LIBS_DIR}/gtest-1.7.0)

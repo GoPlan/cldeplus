@@ -8,32 +8,17 @@
 #include "vector"
 #include "iosfwd"
 
-#include "../Column.h"
-#include "Architecture/Entity.h"
+#include "Architecture/EntityMap.h"
 
 namespace Cloude {
     namespace Architecture {
         namespace Helper {
 
-            using Column = Cloude::Architecture::Column;
-            using Entity = Cloude::Architecture::Entity;
+            using EntityMap = Cloude::Architecture::EntityMap;
 
-            static std::string CreateGetPreparedQuery(const std::vector<Column> &columnsMap);
-            static std::string CreateInsertPreparedQuery(const std::vector<Column> &columnsMap);
-            static std::string CreateUpdatePreparedQuery(const std::vector<Column> &columnsMap);
-            static std::string CreateDeletePreparedQuery(const std::vector<Column> &columnsMap);
-            static std::string CreateSelectPreparedQuery(const std::vector<Column> &columnsMap);
+            std::string CreateGetPreparedQuery(EntityMap &entityMap);
+            std::string CreateInsertPreparedQuery(const std::shared_ptr<EntityMap> &entityMap);
 
-            static std::string CreateGetQuery(const std::shared_ptr<Entity> &entity,
-                                              const std::vector<Column> &columnsMap);
-            static std::string CreateInsertQuery(const std::shared_ptr<Entity> &entity,
-                                                 const std::vector<Column> &columnsMap);
-            static std::string CreateUpdateQuery(const std::shared_ptr<Entity> &entity,
-                                                 const std::vector<Column> &columnsMap);
-            static std::string CreateDeleteQuery(const std::shared_ptr<Entity> &entity,
-                                                 const std::vector<Column> &columnsMap);
-            static std::string CreateSelectQuery(const std::shared_ptr<Entity> &entity,
-                                                 const std::vector<Column> &columnsMap);
         }
     }
 }
