@@ -17,7 +17,6 @@ namespace Cloude {
         using EntitySourceDriver = Cloude::Architecture::EntitySourceDriver;
         using ColumnsMap = std::unordered_map<std::string, std::shared_ptr<Column>>;
 
-
         class MySqlDriver : public EntitySourceDriver {
 
         public:

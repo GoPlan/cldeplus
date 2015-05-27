@@ -49,7 +49,7 @@ add_library(application STATIC
     Application/Mapper/StockGroupLoader.cpp
     Application/Mapper/StockGroupLoader.h
     Application/Model/Sequence.cpp
-    Application/Model/Sequence.h Application/Mapper/AccountMap.cpp Application/Mapper/AccountMap.h)
+    Application/Model/Sequence.h Application/Mapper/AccountMap.cpp Application/Mapper/AccountMap.h Application/Mapper/SequenceMap.cpp Application/Mapper/SequenceMap.h)
 
 
 add_library(infrastructure STATIC

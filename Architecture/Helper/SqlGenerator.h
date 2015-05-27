@@ -17,6 +17,12 @@ namespace Cloude {
             using EntityMap = Cloude::Architecture::EntityMap;
 
             std::string CreateGetPreparedQuery(EntityMap &entityMap);
+            std::string CreateGetPreparedQuery(EntityMap &entityMap,
+                                               std::function<std::string(const std::string &column,
+                                                                         const std::string &prefix,
+                                                                         const std::string &suffix,
+                                                                         const int &index)> F);
+
             std::string CreateInsertPreparedQuery(const std::shared_ptr<EntityMap> &entityMap);
 
         }

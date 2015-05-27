@@ -25,14 +25,10 @@ int main(int argc, char **argv) {
     MySqlDriver mySqlDriver;
     StockGroupMap _stockGroupMap;
     StockGroupLoader _stockGroupLoader(_stockGroupMap.getColumnsMap());
-
-    std::string columns = Cloude::Architecture::Helper::CreateGetPreparedQuery(_stockGroupMap);
-
-    std::cout<< columns << std::endl;
-
     EntityStore _entityStore(_stockGroupMap, _stockGroupLoader, mySqlDriver);
 
-
+    std::string columns = Cloude::Architecture::Helper::CreateGetPreparedQuery(_stockGroupMap);
+    std::cout<< columns << std::endl;
 
     return EXIT_SUCCESS;
 };

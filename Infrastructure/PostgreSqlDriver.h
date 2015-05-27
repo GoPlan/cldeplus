@@ -22,7 +22,6 @@ namespace Cloude {
             PostgreSqlDriver(const PostgreSqlDriver &srcPostgreSqlDriver) = default;
             PostgreSqlDriver &operator=(const PostgreSqlDriver &srcPostgreSqlDriver) = default;
 
-
             virtual int LoadEntity(std::shared_ptr<Entity> &entity,
                                    std::unordered_map<std::string, std::shared_ptr<Column>> &columnsMap);
             virtual int InsertEntity(std::shared_ptr<Entity> &entity,

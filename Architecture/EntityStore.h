@@ -32,7 +32,7 @@ namespace Cloude {
 
             void Insert(std::shared_ptr<Entity> &entity);
             void Delete(std::shared_ptr<Entity> &entity);
-            void Save(std::shared_ptr<Entity> &entity) const;
+            void Save(std::shared_ptr<Entity> &entity);
             void Clear();
 
 
