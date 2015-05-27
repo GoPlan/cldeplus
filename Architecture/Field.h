@@ -17,17 +17,16 @@ namespace Cloude {
 
         class Field {
         public:
-            Field() = delete;
-            Field(const Field &srcField) = delete;
-            Field &operator=(const Field &srcField) = delete;
+            Field(const Field &srcField) = default;
+            Field &operator=(const Field &srcField) = default;
 
             virtual ~Field() { };
 
-            explicit Field(std::shared_ptr<Column>);
-            Field(std::shared_ptr<Column> column, long value);
-            Field(std::shared_ptr<Column> column, unsigned long value);
-            Field(std::shared_ptr<Column> column, double value);
-            Field(std::shared_ptr<Column> column, const std::string &value);
+            explicit Field(const std::shared_ptr<Column> &column);
+            Field(const std::shared_ptr<Column> &column, long value);
+            Field(const std::shared_ptr<Column> &column, unsigned long value);
+            Field(const std::shared_ptr<Column> &column, double value);
+            Field(const std::shared_ptr<Column> &column, const std::string &value);
 
             void AssignDataPointer(void *ptr);
 
@@ -148,7 +147,7 @@ namespace Cloude {
             }
 
         private:
-            std::shared_ptr<Column> _column;
+            const std::shared_ptr<Column> &_column;
 
             std::string _string;
 

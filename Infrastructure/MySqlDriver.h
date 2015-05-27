@@ -23,9 +23,8 @@ namespace Cloude {
             virtual ~MySqlDriver();
 
             explicit MySqlDriver(MYSQL *ptrMySql = nullptr) : _ptrMySql(ptrMySql) { };
-
-            virtual int LoadEntity(std::shared_ptr<Entity> &entity, ColumnsMap &columnsMap) override;
-            virtual int InsertEntity(std::shared_ptr<Entity> &entity, ColumnsMap &columnsMap) override;
+            virtual int LoadEntity(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap) override;
+            virtual int InsertEntity(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap) override;
 
 
             const std::string &getHost() const {
@@ -88,16 +87,17 @@ namespace Cloude {
 
             MYSQL *_ptrMySql = nullptr;
             MYSQL_STMT *_ptrMySqlStmt = nullptr;
-            MYSQL_BIND *_ptrMySqlBind = nullptr;
+            MYSQL_BIND *_ptrMySqlResultBind = nullptr;
+            MYSQL_BIND *_ptrMySqlParamsBind = nullptr;
 
             my_bool *_ptrIsNull = nullptr;
             my_bool *_ptrError = nullptr;
             unsigned long *_ptrLength = nullptr;
 
-
             void assert_sql_error();
             void assert_sql_stmt_error();
-            void setup_bind(std::shared_ptr<Entity> &entity, ColumnsMap &columnsMap);
+            void bind_params(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap);
+            void bind_result(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap);
             void setup_field(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
         };
     }

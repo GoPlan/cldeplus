@@ -15,7 +15,7 @@ namespace Cloude {
             class StockGroupMap : public Architecture::EntityMap {
             public:
                 StockGroupMap();
-                virtual ~StockGroupMap();
+                virtual ~StockGroupMap() = default;
 
                 static std::shared_ptr<Architecture::Column> Id;
                 static std::shared_ptr<Architecture::Column> Code;

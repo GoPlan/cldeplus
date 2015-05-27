@@ -17,7 +17,7 @@ namespace Cloude {
                                                             const std::string &suffix,
                                                             const int &position) -> std::string {
 
-                    std::string condition = prefix + column + suffix + " = $" + std::to_string(position);
+                    std::string condition = prefix + column + suffix + " = ?";
 
                     return condition;
                 });
@@ -59,7 +59,7 @@ namespace Cloude {
                                       &strConditionSuffix, &index](const std::shared_ptr<Column> &c) {
 
                                   if (strCondition.length() != 0)
-                                      strCondition += ", ";
+                                      strCondition += " AND ";
 
                                   strCondition += F(c->getDatasourceName(),
                                                     strConditionPrefix,
@@ -71,7 +71,7 @@ namespace Cloude {
 
                 std::string strQuery;
 
-                strQuery += " SELECT (" + strColumns + ")";
+                strQuery += " SELECT " + strColumns + "";
                 strQuery += " FROM " + strTableName;
                 strQuery += " WHERE (" + strCondition + ")";
 

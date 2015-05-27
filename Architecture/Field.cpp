@@ -11,34 +11,34 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
-        Field::Field(shared_ptr<Column> column) : _column(column) {
+        Field::Field(const shared_ptr<Column> &column) : _column(column) {
             ResetField();
         }
 
-        Field::Field(std::shared_ptr<Column> column, long value) : _column(column),
-                                                                   _int64(value) {
+        Field::Field(const std::shared_ptr<Column> &column, long value) : _column(column),
+                                                                          _int64(value) {
             //
         }
 
-        Field::Field(std::shared_ptr<Column> column, unsigned long value) : _column(column),
-                                                                            _uint64(value) {
+        Field::Field(const std::shared_ptr<Column> &column, unsigned long value) : _column(column),
+                                                                                   _uint64(value) {
             //
         }
 
-        Field::Field(std::shared_ptr<Column> column, double value) : _column(column),
-                                                                     _double(value) {
+        Field::Field(const std::shared_ptr<Column> &column, double value) : _column(column),
+                                                                            _double(value) {
             //
         }
 
-        Field::Field(shared_ptr<Column> column, const std::string &value) : _column(column),
-                                                                            _string(value) {
+        Field::Field(const shared_ptr<Column> &column, const std::string &value) : _column(column),
+                                                                                   _string(value) {
             //
         }
 
         void Field::ResetField() {
-            _voidPtr = 0;
-            _bool = 0;
+            _voidPtr = nullptr;
             _string.empty();
+            _bool = false;
             _double = 0;
             _float = 0;
             _int8 = 0;

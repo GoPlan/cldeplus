@@ -29,7 +29,6 @@ namespace Cloude {
             std::shared_ptr<Entity> Create();
             std::shared_ptr<Entity> Create(std::shared_ptr<Identity> identity);
 
-
             void Insert(std::shared_ptr<Entity> &entity);
             void Delete(std::shared_ptr<Entity> &entity);
             void Save(std::shared_ptr<Entity> &entity);
@@ -52,6 +51,7 @@ namespace Cloude {
         private:
             std::unordered_map<std::shared_ptr<Identity>, std::shared_ptr<Entity>> _identityMap;
 
+            void generate_fields(std::shared_ptr<Identity>& identity);
         };
     }
 }

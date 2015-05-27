@@ -21,9 +21,9 @@ namespace Cloude {
 
             explicit Entity(const std::shared_ptr<Identity> &identity) : _identity(identity) { };
 
-            std::shared_ptr<Field> operator[](const std::string &columnName) const;
-            std::shared_ptr<Field> GetField(const std::string &columnName) const;
-            void InsertField(std::shared_ptr<Field> field);
+            std::shared_ptr<Field> operator[](const std::string &columnName);
+            std::shared_ptr<Field> GetField(const std::string &columnName);
+            void InsertField(std::shared_ptr<Field> &field);
             void InsertField(Field *ptrField);
 
             std::weak_ptr<Identity> getIdentity() const {

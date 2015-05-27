@@ -23,10 +23,7 @@ namespace Cloude {
             Identity &operator=(const Identity &srcIdentity) = default;
             virtual ~Identity() = default;
 
-            explicit Identity(std::shared_ptr<Field> field);
-            explicit Identity(Field *ptrField);
-
-            std::shared_ptr<Identity> SetField(std::shared_ptr<Field> field);
+            std::shared_ptr<Identity> SetField(std::shared_ptr<Field> &field);
             std::shared_ptr<Identity> SetField(Field *ptrField);
             std::shared_ptr<Identity> SetField(const std::initializer_list<Field *> &ptrFieldList);
 

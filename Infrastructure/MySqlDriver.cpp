@@ -13,8 +13,8 @@ namespace Cloude {
 
         MySqlDriver::~MySqlDriver() {
 
-            if (_ptrMySqlBind != nullptr) {
-                free(_ptrMySqlBind);
+            if (_ptrMySqlResultBind != nullptr) {
+                free(_ptrMySqlResultBind);
             }
 
             if (_ptrMySqlStmt != nullptr) {
@@ -26,20 +26,22 @@ namespace Cloude {
             }
         }
 
-        int MySqlDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, ColumnsMap &columnsMap) {
+        int MySqlDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, const ColumnsMap &columnsMap) {
 
             // TODO: Validate MySQL initialization errors
 
             if (_ptrMySql == nullptr) {
+
                 mysql_library_init;
-                mysql_init(_ptrMySql);
-                mysql_real_connect(_ptrMySql,
-                                   _host.c_str(),
-                                   _user.c_str(),
-                                   _pass.c_str(),
-                                   _dbase.c_str(),
-                                   _port,
-                                   NULL, 0);
+
+                _ptrMySql = mysql_init(_ptrMySql);
+                _ptrMySql = mysql_real_connect(_ptrMySql,
+                                               _host.c_str(),
+                                               _user.c_str(),
+                                               _pass.c_str(),
+                                               _dbase.c_str(),
+                                               _port,
+                                               NULL, 0);
 
                 assert_sql_error();
             }
@@ -53,11 +55,12 @@ namespace Cloude {
                 assert_sql_stmt_error();
             }
 
-            // Bind Params
-            setup_bind(entity, columnsMap);
+            // Bind Result & Params
+            bind_params(entity, columnsMap);
+            bind_result(entity, columnsMap);
 
             // Bind Result
-            if (mysql_stmt_bind_result(_ptrMySqlStmt, _ptrMySqlBind)) {
+            if (mysql_stmt_bind_result(_ptrMySqlStmt, _ptrMySqlResultBind)) {
                 assert_sql_error();
                 assert_sql_stmt_error();
             }
@@ -84,7 +87,7 @@ namespace Cloude {
             return 0;
         }
 
-        int MySqlDriver::InsertEntity(shared_ptr<Architecture::Entity> &entity, ColumnsMap &columnsMap) {
+        int MySqlDriver::InsertEntity(shared_ptr<Architecture::Entity> &entity, const ColumnsMap &columnsMap) {
             return 0;
         }
 
@@ -104,12 +107,18 @@ namespace Cloude {
             }
         }
 
-        void MySqlDriver::setup_bind(std::shared_ptr<Entity> &entity, ColumnsMap &columnsMap) {
+        void MySqlDriver::bind_params(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap) {
 
-            _ptrMySqlBind = (MYSQL_BIND *) calloc(columnsMap.size(), sizeof(MYSQL_BIND));
-            _ptrIsNull = (my_bool *) calloc(columnsMap.size(), sizeof(my_bool));
-            _ptrError = (my_bool *) calloc(columnsMap.size(), sizeof(my_bool));
-            _ptrLength = (unsigned long *) calloc(columnsMap.size(), sizeof(unsigned long));
+        }
+
+        void MySqlDriver::bind_result(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap) {
+
+            auto columnsMapSize = columnsMap.size();
+
+            _ptrMySqlResultBind = (MYSQL_BIND *) calloc(columnsMapSize, sizeof(MYSQL_BIND));
+            _ptrIsNull = (my_bool *) calloc(columnsMapSize, sizeof(my_bool));
+            _ptrError = (my_bool *) calloc(columnsMapSize, sizeof(my_bool));
+            _ptrLength = (unsigned long *) calloc(columnsMapSize, sizeof(unsigned long));
 
             int i = 0;
 
@@ -117,8 +126,9 @@ namespace Cloude {
 
                 auto column = item.second;
                 auto field = entity->operator[](column->getName());
+                auto mySqlBind = _ptrMySqlResultBind[i];
 
-                setup_field(field, &_ptrMySqlBind[i]);
+                setup_field(field, &mySqlBind);
 
                 i++;
             }

@@ -3,6 +3,7 @@
 //
 
 #include <Architecture/Exception/EntityStoreRoutineException.h>
+#include <iostream>
 #include "EntityStore.h"
 
 using namespace std;
@@ -32,8 +33,13 @@ namespace Cloude {
                 return search->second;
             }
 
+            // Generate missing fields
+            generate_fields(identity);
+
+            auto columnsMap = _entityMap.getColumnsMap();
+
             // Load entity(fields) from datasource
-            _entityLoader.LoadEntity(identity);
+            _entitySourceDriver.LoadEntity(identity->getEntity(), columnsMap);
 
             // Added found spEntity to identity map
             _identityMap.insert(make_pair(identity, identity->getEntity()));
@@ -48,8 +54,10 @@ namespace Cloude {
         shared_ptr<Entity> EntityStore::Create(shared_ptr<Identity> identity) {
 
             if (!identity) {
+                // TODO: Throws exception for nullptr Identity
                 string message = "Identity is a nullptr or invalid";
-                throw Architecture::Exception::EntityStoreRoutineException(*this, message);
+//                throw Architecture::Exception::EntityStoreRoutineException(*this, _message);
+                return shared_ptr<Entity>();
             }
 
             // Insert entity into datasource
@@ -68,6 +76,17 @@ namespace Cloude {
 
         void EntityStore::Clear() {
             _identityMap.clear();
+        }
+
+        void EntityStore::generate_fields(std::shared_ptr<Identity> &identity) {
+
+            shared_ptr<Entity> &entity = identity->getEntity();
+
+            std::for_each(_entityMap.getColumnsForUpdate().cbegin(), _entityMap.getColumnsForUpdate().cend(),
+                          [&entity](const shared_ptr<Column> &item) {
+                              auto ptrField = new Field(item);
+                              entity->InsertField(ptrField);
+                          });
         }
     }
 }

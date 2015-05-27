@@ -13,7 +13,7 @@ namespace Cloude {
             class SequenceMap : public Architecture::EntityMap {
             public:
                 SequenceMap();
-                virtual ~SequenceMap();
+                virtual ~SequenceMap() = default;
                 SequenceMap(const SequenceMap &srcSequenceMap) = default;
                 SequenceMap &operator=(const SequenceMap &srcSequenceMap) = default;
 

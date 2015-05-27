@@ -23,19 +23,10 @@ namespace Cloude {
                 this->_columnsMap[DefaultStockCode->getName()] = DefaultStockCode;
 
                 this->_columnsForKey.push_back(Code);
-
                 this->_columnsForSelect.push_back(Code);
                 this->_columnsForSelect.push_back(Name);
-
                 this->_columnsForUpdate.push_back(Name);
                 this->_columnsForUpdate.push_back(DefaultStockCode);
-            }
-
-            StockGroupMap::~StockGroupMap() {
-                this->_columnsMap.clear();
-                this->_columnsForSelect.clear();
-                this->_columnsForKey.clear();
-                this->_columnsForUpdate.clear();
             }
 
             std::string StockGroupMap::TableNameCore() {
