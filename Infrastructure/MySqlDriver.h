@@ -87,7 +87,6 @@ namespace Cloude {
 
             unsigned int _port = 3306;
 
-
             MYSQL *_ptrMySql = nullptr;
             MYSQL_STMT *_ptrMySqlStmt = nullptr;
 
@@ -99,12 +98,15 @@ namespace Cloude {
             my_bool *_ptrResultError = nullptr;
             unsigned long *_ptrResultLength = nullptr;
 
-            void assert_sql_error();
-            void assert_sql_stmt_error();
-            void setup_bind_params(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
-            void setup_bind_result(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
-            void assign_params_fields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
-            void assign_result_fields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
+            void assertSqlError();
+            void assertSqlStmtError();
+            void setupBindParams(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
+            void setupBindResult(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
+            void assignParamsFields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
+            void assignResultFields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind,
+                                    my_bool *ptrIsNull,
+                                    my_bool *ptrError,
+                                    unsigned long *ptrLength);
         };
     }
 }

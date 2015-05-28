@@ -37,7 +37,7 @@ namespace Cloude {
                 std::string strColumns;
 
                 std::for_each(columnsMap.cbegin(), columnsMap.cend(),
-                              [&strColumns](const std::shared_ptr<Column>& p) {
+                              [&strColumns](const std::shared_ptr<Column> &p) {
                                   if (strColumns.length() != 0)
                                       strColumns += ", ";
 
@@ -68,10 +68,9 @@ namespace Cloude {
 
                 std::string strQuery;
 
-                strQuery += " SELECT " + strColumns + "";
+                strQuery += " SELECT " + strColumns;
                 strQuery += " FROM " + strTableName;
-//                strQuery += " WHERE (" + strCondition + ")";
-                strQuery += " WHERE (id = 6)";
+                strQuery += " WHERE " + strCondition;
 
                 return strQuery;
             }

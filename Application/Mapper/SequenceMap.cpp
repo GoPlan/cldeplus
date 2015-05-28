@@ -27,7 +27,7 @@ namespace Cloude {
 
                 this->_columnsForKey.push_back(Id);
 
-//                this->_columnsForGet.push_back(UniqueName);
+                this->_columnsForGet.push_back(UniqueName);
                 this->_columnsForGet.push_back(SequenceStart);
                 this->_columnsForGet.push_back(SequenceCurrent);
                 this->_columnsForGet.push_back(SequenceIncrement);

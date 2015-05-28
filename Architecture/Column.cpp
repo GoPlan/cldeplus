@@ -27,9 +27,8 @@ namespace Cloude {
             //
         }
 
-
-        void Column::AssignLengthPointer(void *ptr) {
-            ptr = &_length;
+        void *Column::PointerToLengthVariable() {
+            return &_length;
         }
     }
 }

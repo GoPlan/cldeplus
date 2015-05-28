@@ -51,47 +51,6 @@ namespace Cloude {
             _uint64 = 0;
         }
 
-        void Field::AssignDataPointer(void *ptr) {
-
-            switch (_column->getDbType()) {
-                case Enumeration::DbType::Boolean:
-                    ptr = &_bool;
-                    break;
-                case Enumeration::DbType::Byte:
-                    ptr = &_char;
-                    break;
-                case Enumeration::DbType::Int16:
-                    ptr = &_int16;
-                    break;
-                case Enumeration::DbType::Int32:
-                    ptr = &_int32;
-                    break;
-                case Enumeration::DbType::Int64:
-                    ptr = &_int64;
-                    break;
-                case Enumeration::DbType::UInt16:
-                    ptr = &_uint16;
-                    break;
-                case Enumeration::DbType::UInt32:
-                    ptr = &_uint32;
-                    break;
-                case Enumeration::DbType::UInt64:
-                    ptr = &_uint64;
-                    break;
-                case Enumeration::DbType::Double:
-                    ptr = &_double;
-                    break;
-                case Enumeration::DbType::Float:
-                    ptr = &_float;
-                    break;
-                case Enumeration::DbType::String:
-                    ptr = &_string;
-                    break;
-                case Enumeration::DbType::Currency:
-                    throw Exception::NonSupportedDataTypeException();
-            }
-        }
-
         void *Field::PointerToFieldValue() {
             switch (_column->getDbType()) {
                 case Enumeration::DbType::Boolean:
@@ -115,7 +74,7 @@ namespace Cloude {
                 case Enumeration::DbType::Float:
                     return &_float;
                 case Enumeration::DbType::String:
-                    return &_string;
+                    return &_cstr;
                 case Enumeration::DbType::Currency:
                     throw Exception::NonSupportedDataTypeException();
             }

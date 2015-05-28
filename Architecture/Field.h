@@ -23,12 +23,11 @@ namespace Cloude {
             virtual ~Field() { };
 
             explicit Field(const std::shared_ptr<Column> &column);
-            Field(const std::shared_ptr<Column> &column, long value);
-            Field(const std::shared_ptr<Column> &column, unsigned long value);
-            Field(const std::shared_ptr<Column> &column, double value);
-            Field(const std::shared_ptr<Column> &column, const std::string &value);
+            explicit Field(const std::shared_ptr<Column> &column, long value);
+            explicit Field(const std::shared_ptr<Column> &column, unsigned long value);
+            explicit Field(const std::shared_ptr<Column> &column, double value);
+            explicit Field(const std::shared_ptr<Column> &column, const std::string &value);
 
-            void AssignDataPointer(void *ptr);
             void *PointerToFieldValue();
 
             const std::shared_ptr<Column> &getColumn() const {
@@ -147,6 +146,10 @@ namespace Cloude {
                 _voidPtr = voidPtr;
             }
 
+            char *getCString() {
+                return &_cstr[0];
+            }
+
         private:
             const std::shared_ptr<Column> &_column;
 
@@ -163,6 +166,7 @@ namespace Cloude {
             uint64_t _uint64;
 
             char _char;
+            char _cstr[255];
             double _double;
             float _float;
 

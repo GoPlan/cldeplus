@@ -28,18 +28,12 @@ namespace Cloude {
 
             auto search = _identityMap.find(identity);
 
-            // Return spEntity from identity map
             if (search != _identityMap.end()) {
                 return search->second;
             }
 
-            // Generate missing fields
-            generate_fields(identity);
-
-            // Load entity(fields) from datasource
+            generateNonKeyFields(identity);
             _entitySourceDriver.LoadEntity(identity->getEntity(), _entityMap);
-
-            // Added found spEntity to identity map
             _identityMap.insert(make_pair(identity, identity->getEntity()));
 
             return identity->getEntity();
@@ -58,10 +52,7 @@ namespace Cloude {
                 return shared_ptr<Entity>();
             }
 
-            // Insert entity into datasource
             Insert(identity->getEntity());
-
-            // Added found spEntity to identity map
             _identityMap.insert(make_pair(identity, identity->getEntity()));
 
             return identity->getEntity();
@@ -76,7 +67,7 @@ namespace Cloude {
             _identityMap.clear();
         }
 
-        void EntityStore::generate_fields(std::shared_ptr<Identity> &identity) {
+        void EntityStore::generateNonKeyFields(std::shared_ptr<Identity> &identity) {
 
             shared_ptr<Entity> &entity = identity->getEntity();
 
