@@ -5,6 +5,7 @@
 #ifndef CLOUD_E_CPLUS_MYSQLDRIVER_H
 #define CLOUD_E_CPLUS_MYSQLDRIVER_H
 
+#include <vector>
 #include "../Architecture/EntitySourceDriver.h"
 #include "mysql.h"
 
@@ -15,16 +16,18 @@ namespace Cloude {
         using Column = Cloude::Architecture::Column;
         using Field = Cloude::Architecture::Field;
         using EntitySourceDriver = Cloude::Architecture::EntitySourceDriver;
-        using ColumnsMap = std::unordered_map<std::string, std::shared_ptr<Column>>;
+        using EntityMap = Cloude::Architecture::EntityMap;
+        using ColumnsList = std::vector<std::shared_ptr<Column>>;
 
         class MySqlDriver : public EntitySourceDriver {
 
         public:
             virtual ~MySqlDriver();
 
+
             explicit MySqlDriver(MYSQL *ptrMySql = nullptr) : _ptrMySql(ptrMySql) { };
-            virtual int LoadEntity(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap) override;
-            virtual int InsertEntity(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap) override;
+            virtual int LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
+            virtual int InsertEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
 
 
             const std::string &getHost() const {
@@ -87,18 +90,21 @@ namespace Cloude {
 
             MYSQL *_ptrMySql = nullptr;
             MYSQL_STMT *_ptrMySqlStmt = nullptr;
-            MYSQL_BIND *_ptrMySqlResultBind = nullptr;
-            MYSQL_BIND *_ptrMySqlParamsBind = nullptr;
 
-            my_bool *_ptrIsNull = nullptr;
-            my_bool *_ptrError = nullptr;
-            unsigned long *_ptrLength = nullptr;
+            MYSQL_BIND *_ptrMySqlParamsBind = nullptr;
+            unsigned long *_ptrParamsLength = nullptr;
+
+            MYSQL_BIND *_ptrMySqlResultBind = nullptr;
+            my_bool *_ptrResultIsNull = nullptr;
+            my_bool *_ptrResultError = nullptr;
+            unsigned long *_ptrResultLength = nullptr;
 
             void assert_sql_error();
             void assert_sql_stmt_error();
-            void bind_params(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap);
-            void bind_result(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap);
-            void setup_field(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
+            void setup_bind_params(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
+            void setup_bind_result(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
+            void assign_params_fields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
+            void assign_result_fields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
         };
     }
 }

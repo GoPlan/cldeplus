@@ -29,6 +29,7 @@ namespace Cloude {
             Field(const std::shared_ptr<Column> &column, const std::string &value);
 
             void AssignDataPointer(void *ptr);
+            void *PointerToFieldValue();
 
             const std::shared_ptr<Column> &getColumn() const {
                 return _column;

@@ -29,7 +29,7 @@ namespace Cloude {
                                                                          const std::string &suffix,
                                                                          const int &position)> F) {
 
-                auto columnsMap = entityMap.getColumnsMap();
+                auto columnsMap = entityMap.getColumnsForGet();
                 auto columnsForKey = entityMap.getColumnsForKey();
 
 
@@ -37,13 +37,11 @@ namespace Cloude {
                 std::string strColumns;
 
                 std::for_each(columnsMap.cbegin(), columnsMap.cend(),
-                              [&strColumns](const std::pair<string, std::shared_ptr<Column>> p) {
-                                  auto spColumn = p.second;
-
+                              [&strColumns](const std::shared_ptr<Column>& p) {
                                   if (strColumns.length() != 0)
                                       strColumns += ", ";
 
-                                  strColumns += spColumn->getDatasourceName();
+                                  strColumns += p->getDatasourceName();
                               });
 
 
@@ -55,8 +53,7 @@ namespace Cloude {
 
                 std::for_each(columnsForKey.cbegin(),
                               columnsForKey.cend(),
-                              [&F, &strCondition, &strConditionPrefix,
-                                      &strConditionSuffix, &index](const std::shared_ptr<Column> &c) {
+                              [&](const std::shared_ptr<Column> &c) {
 
                                   if (strCondition.length() != 0)
                                       strCondition += " AND ";
@@ -73,7 +70,8 @@ namespace Cloude {
 
                 strQuery += " SELECT " + strColumns + "";
                 strQuery += " FROM " + strTableName;
-                strQuery += " WHERE (" + strCondition + ")";
+//                strQuery += " WHERE (" + strCondition + ")";
+                strQuery += " WHERE (id = 6)";
 
                 return strQuery;
             }

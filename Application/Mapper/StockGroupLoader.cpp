@@ -13,10 +13,6 @@ namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            StockGroupLoader::StockGroupLoader(const unordered_map<string, shared_ptr<Column>> &columnsMap) {
-                //
-            }
-
             StockGroupLoader::~StockGroupLoader() {
                 //
             }

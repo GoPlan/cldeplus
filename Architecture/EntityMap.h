@@ -14,7 +14,7 @@
 
 namespace Cloude {
     namespace Architecture {
-        
+
         class EntityMap {
         public:
             EntityMap() = default;
@@ -30,6 +30,10 @@ namespace Cloude {
                 return _columnsForKey;
             }
 
+            const std::vector<std::shared_ptr<Column>> &getColumnsForGet() const {
+                return _columnsForGet;
+            }
+
             const std::vector<std::shared_ptr<Column>> &getColumnsForSelect() const {
                 return _columnsForSelect;
             }
@@ -38,15 +42,11 @@ namespace Cloude {
                 return _columnsForUpdate;
             }
 
-            const std::unordered_map<std::string, std::shared_ptr<Column>> &getColumnsMap() const {
-                return _columnsMap;
-            }
-
         protected:
             std::vector<std::shared_ptr<Column>> _columnsForKey;
+            std::vector<std::shared_ptr<Column>> _columnsForGet;
             std::vector<std::shared_ptr<Column>> _columnsForSelect;
             std::vector<std::shared_ptr<Column>> _columnsForUpdate;
-            std::unordered_map<std::string, std::shared_ptr<Column>> _columnsMap;
 
             virtual std::string TableNameCore() = 0;
         };

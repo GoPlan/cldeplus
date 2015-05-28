@@ -3,6 +3,8 @@
 //
 
 #include <Architecture/Exception/NonSupportedDataTypeException.h>
+#include <ostream>
+#include <iostream>
 #include "MySqlDriver.h"
 
 using namespace std;
@@ -26,7 +28,7 @@ namespace Cloude {
             }
         }
 
-        int MySqlDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, const ColumnsMap &columnsMap) {
+        int MySqlDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
 
             // TODO: Validate MySQL initialization errors
 
@@ -56,11 +58,23 @@ namespace Cloude {
             }
 
             // Bind Result & Params
-            bind_params(entity, columnsMap);
-            bind_result(entity, columnsMap);
+            setup_bind_params(entity, (ColumnsList) entityMap.getColumnsForKey());
+            setup_bind_result(entity, (ColumnsList) entityMap.getColumnsForGet());
+
+            // Bind Params
+            if (mysql_stmt_bind_param(_ptrMySqlStmt, _ptrMySqlParamsBind)) {
+                assert_sql_error();
+                assert_sql_stmt_error();
+            }
 
             // Bind Result
             if (mysql_stmt_bind_result(_ptrMySqlStmt, _ptrMySqlResultBind)) {
+                assert_sql_error();
+                assert_sql_stmt_error();
+            }
+
+            // Execute statement
+            if(mysql_stmt_execute(_ptrMySqlStmt)){
                 assert_sql_error();
                 assert_sql_stmt_error();
             }
@@ -72,7 +86,8 @@ namespace Cloude {
                 case 0:
                     return 1;
                 case 1:
-                    // TODO: To throws a proper exception
+                    assert_sql_error();
+                    assert_sql_stmt_error();
                     break;
                 case MYSQL_NO_DATA:
                     return 0;
@@ -87,7 +102,7 @@ namespace Cloude {
             return 0;
         }
 
-        int MySqlDriver::InsertEntity(shared_ptr<Architecture::Entity> &entity, const ColumnsMap &columnsMap) {
+        int MySqlDriver::InsertEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
             return 0;
         }
 
@@ -107,36 +122,118 @@ namespace Cloude {
             }
         }
 
-        void MySqlDriver::bind_params(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap) {
+        void MySqlDriver::setup_bind_params(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList) {
 
-        }
+            auto columnsListSize = columnsList.size();
 
-        void MySqlDriver::bind_result(std::shared_ptr<Entity> &entity, const ColumnsMap &columnsMap) {
-
-            auto columnsMapSize = columnsMap.size();
-
-            _ptrMySqlResultBind = (MYSQL_BIND *) calloc(columnsMapSize, sizeof(MYSQL_BIND));
-            _ptrIsNull = (my_bool *) calloc(columnsMapSize, sizeof(my_bool));
-            _ptrError = (my_bool *) calloc(columnsMapSize, sizeof(my_bool));
-            _ptrLength = (unsigned long *) calloc(columnsMapSize, sizeof(unsigned long));
+            _ptrMySqlParamsBind = (MYSQL_BIND *) calloc(columnsListSize, sizeof(MYSQL_BIND));
+            _ptrParamsLength = (unsigned long *) calloc(columnsListSize, sizeof(unsigned long));
 
             int i = 0;
 
-            for (auto item : columnsMap) {
+            std::for_each(columnsList.cbegin(), columnsList.cend(), [&](const std::shared_ptr<Column> &column) -> void {
 
-                auto column = item.second;
                 auto field = entity->operator[](column->getName());
-                auto mySqlBind = _ptrMySqlResultBind[i];
+                auto ptrMySqlBind = &_ptrMySqlParamsBind[i];
 
-                setup_field(field, &mySqlBind);
+                assign_params_fields(field, ptrMySqlBind);
 
                 i++;
+            });
+        }
+
+        void MySqlDriver::setup_bind_result(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList) {
+
+            auto columnsListSize = columnsList.size();
+
+            _ptrMySqlResultBind = (MYSQL_BIND *) calloc(columnsListSize, sizeof(MYSQL_BIND));
+            _ptrResultIsNull = (my_bool *) calloc(columnsListSize, sizeof(my_bool));
+            _ptrResultError = (my_bool *) calloc(columnsListSize, sizeof(my_bool));
+            _ptrResultLength = (unsigned long *) calloc(columnsListSize, sizeof(unsigned long));
+
+            int i = 0;
+
+            std::for_each(columnsList.cbegin(), columnsList.cend(), [&](const std::shared_ptr<Column> &column) -> void {
+
+                auto field = entity->operator[](column->getName());
+                auto ptrMySqlBind = &_ptrMySqlResultBind[i];
+
+                assign_result_fields(field, ptrMySqlBind);
+
+                i++;
+            });
+        }
+
+        void MySqlDriver::assign_params_fields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind) {
+
+            ptrBind->is_null = 0;
+            ptrBind->error = 0;
+            ptrBind->buffer = field->PointerToFieldValue();
+
+            switch (field->getColumn()->getDbType()) {
+                case Architecture::Enumeration::DbType::Boolean:
+                    ptrBind->buffer_type = MYSQL_TYPE_TINY;
+                    ptrBind->buffer_length = sizeof(bool);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::Byte:
+                    ptrBind->buffer_type = MYSQL_TYPE_TINY;
+                    ptrBind->buffer_length = sizeof(char);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::Int16:
+                    ptrBind->buffer_type = MYSQL_TYPE_SHORT;
+                    ptrBind->buffer_length = sizeof(int16_t);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::Int32:
+                    ptrBind->buffer_type = MYSQL_TYPE_LONG;
+                    ptrBind->buffer_length = sizeof(int32_t);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::Int64:
+                    ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
+                    ptrBind->buffer_length = sizeof(int64_t);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::UInt16:
+                    ptrBind->buffer_type = MYSQL_TYPE_SHORT;
+                    ptrBind->buffer_length = sizeof(int16_t);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::UInt32:
+                    ptrBind->buffer_type = MYSQL_TYPE_LONG;
+                    ptrBind->buffer_length = sizeof(int16_t);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::UInt64:
+                    ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
+                    ptrBind->buffer_length = sizeof(int16_t);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::Double:
+                    ptrBind->buffer_type = MYSQL_TYPE_DOUBLE;
+                    ptrBind->buffer_length = sizeof(double);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::Float:
+                    ptrBind->buffer_type = MYSQL_TYPE_FLOAT;
+                    ptrBind->buffer_length = sizeof(float);
+                    ptrBind->buffer = 0;
+                    break;
+                case Architecture::Enumeration::DbType::String:
+                    ptrBind->buffer_type = MYSQL_TYPE_VARCHAR;
+                    ptrBind->buffer_length = field->getColumn()->getLength();
+                    field->getColumn()->AssignLengthPointer(ptrBind->length);
+                    break;
+                default:
+                    throw Architecture::Exception::NonSupportedDataTypeException();
             }
         }
 
-        void MySqlDriver::setup_field(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind) {
+        void MySqlDriver::assign_result_fields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind) {
 
-            field->AssignDataPointer(ptrBind->buffer);
+            ptrBind->buffer = field->PointerToFieldValue();
 
             switch (field->getColumn()->getDbType()) {
                 case Architecture::Enumeration::DbType::Boolean:

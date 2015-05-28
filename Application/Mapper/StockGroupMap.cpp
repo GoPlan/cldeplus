@@ -17,14 +17,12 @@ namespace Cloude {
             std::shared_ptr<Column> StockGroupMap::DefaultStockCode = make_shared<Column>("DefaultStockCode", "DefaultStockCode", Enumeration::DbType::String);
 
             StockGroupMap::StockGroupMap() {
-                this->_columnsMap[Id->getName()] = Id;
-                this->_columnsMap[Code->getName()] = Code;
-                this->_columnsMap[Name->getName()] = Name;
-                this->_columnsMap[DefaultStockCode->getName()] = DefaultStockCode;
 
                 this->_columnsForKey.push_back(Code);
+
                 this->_columnsForSelect.push_back(Code);
                 this->_columnsForSelect.push_back(Name);
+
                 this->_columnsForUpdate.push_back(Name);
                 this->_columnsForUpdate.push_back(DefaultStockCode);
             }

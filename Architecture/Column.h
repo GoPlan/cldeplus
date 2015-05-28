@@ -15,13 +15,20 @@ namespace Cloude {
         class Column {
         public:
             Column() = default;
-            Column(const Column& srcColumn) = default;
-            Column& operator=(const Column& srcColumn) = default;
+            Column(const Column &srcColumn) = default;
+            Column &operator=(const Column &srcColumn) = default;
             virtual ~Column() = default;
 
-            Column(const std::string name,
-                   const std::string datasourceName,
+            Column(std::string name,
+                   std::string datasourceName,
                    Cloude::Architecture::Enumeration::DbType dbtype);
+
+            Column(std::string name,
+                   std::string datasourceName,
+                   size_t length,
+                   Cloude::Architecture::Enumeration::DbType dbtype);
+
+            void AssignLengthPointer(void *ptr);
 
             const std::string &getDatasourceName() const {
                 return _datasourceName;

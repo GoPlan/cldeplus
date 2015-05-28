@@ -50,7 +50,6 @@ namespace Cloude {
 
         private:
             std::unordered_map<std::shared_ptr<Identity>, std::shared_ptr<Entity>> _identityMap;
-
             void generate_fields(std::shared_ptr<Identity>& identity);
         };
     }

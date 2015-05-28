@@ -91,5 +91,34 @@ namespace Cloude {
                     throw Exception::NonSupportedDataTypeException();
             }
         }
+
+        void *Field::PointerToFieldValue() {
+            switch (_column->getDbType()) {
+                case Enumeration::DbType::Boolean:
+                    return &_bool;
+                case Enumeration::DbType::Byte:
+                    return &_char;
+                case Enumeration::DbType::Int16:
+                    return &_int16;
+                case Enumeration::DbType::Int32:
+                    return &_int32;
+                case Enumeration::DbType::Int64:
+                    return &_int64;
+                case Enumeration::DbType::UInt16:
+                    return &_uint16;
+                case Enumeration::DbType::UInt32:
+                    return &_uint32;
+                case Enumeration::DbType::UInt64:
+                    return &_uint64;
+                case Enumeration::DbType::Double:
+                    return &_double;
+                case Enumeration::DbType::Float:
+                    return &_float;
+                case Enumeration::DbType::String:
+                    return &_string;
+                case Enumeration::DbType::Currency:
+                    throw Exception::NonSupportedDataTypeException();
+            }
+        }
     }
 }

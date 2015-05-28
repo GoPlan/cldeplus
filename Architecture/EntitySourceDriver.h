@@ -9,6 +9,7 @@
 
 #include "Entity.h"
 #include "Column.h"
+#include "EntityMap.h"
 
 namespace Cloude {
     namespace Architecture {
@@ -17,11 +18,8 @@ namespace Cloude {
         public:
             virtual ~EntitySourceDriver() = default;
 
-            virtual int LoadEntity(std::shared_ptr<Entity> &entity,
-                                   const std::unordered_map<std::string, std::shared_ptr<Column>> &columnsMap) = 0;
-
-            virtual int InsertEntity(std::shared_ptr<Entity> &entity,
-                                     const std::unordered_map<std::string, std::shared_ptr<Column>> &columnsMap) = 0;
+            virtual int LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) = 0;
+            virtual int InsertEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) = 0;
 
 //            virtual int UpdateEntity(Entity &entity, ColumnsMap &columnsMap) = 0;
 //            virtual int DeleteEntity(Entity &entity, ColumnsMap &columnsMap) = 0;

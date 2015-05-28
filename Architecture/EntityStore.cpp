@@ -36,10 +36,8 @@ namespace Cloude {
             // Generate missing fields
             generate_fields(identity);
 
-            auto columnsMap = _entityMap.getColumnsMap();
-
             // Load entity(fields) from datasource
-            _entitySourceDriver.LoadEntity(identity->getEntity(), columnsMap);
+            _entitySourceDriver.LoadEntity(identity->getEntity(), _entityMap);
 
             // Added found spEntity to identity map
             _identityMap.insert(make_pair(identity, identity->getEntity()));

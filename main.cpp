@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     _mySqlDriver.setPort(3306);
 
     Application::Mapper::StockGroupMap _stockGroupMap;
-    Application::Mapper::StockGroupLoader _stockGroupLoader(_stockGroupMap.getColumnsMap());
+    Application::Mapper::StockGroupLoader _stockGroupLoader;
     Architecture::EntityStore _stockGroupStore(_stockGroupMap, _stockGroupLoader, _mySqlDriver);
 
     Application::Mapper::SequenceMap _sequenceMap;
@@ -32,16 +32,17 @@ int main(int argc, char **argv) {
     Architecture::EntityStore _sequenceStore(_sequenceMap, _sequenceLoader, _mySqlDriver);
 
     auto query = Cloude::Architecture::Helper::CreateGetPreparedQuery(_sequenceMap);
+    _mySqlDriver.setQuery(query);
+
     std::cout << query << std::endl;
 
-    _mySqlDriver.setQuery(query);
 
     auto spFieldId = make_shared<Architecture::Field>(_sequenceMap.Id, (long) 6);
     auto spIdentity = make_shared<Architecture::Identity>()->SetField(spFieldId);
-    auto spSequence = _sequenceStore.Get(spIdentity);
+    auto spSequence = (std::shared_ptr<Architecture::Entity>)_sequenceStore.Get(spIdentity);
 
-    std::string columns = Cloude::Architecture::Helper::CreateGetPreparedQuery(_stockGroupMap);
-    std::cout << columns << std::endl;
+    std::cout << spSequence->GetField("Id")->getInt64() << " - " << spSequence->GetField("SequenceStart")->getInt64() << std::endl;
+
 
     return EXIT_SUCCESS;
 };

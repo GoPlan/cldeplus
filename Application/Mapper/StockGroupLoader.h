@@ -23,11 +23,10 @@ namespace Cloude {
 
             class StockGroupLoader : public EntityLoader {
             public:
+                StockGroupLoader() = default;
                 StockGroupLoader(const StockGroupLoader &srcStockGroupLoader) = default;
                 StockGroupLoader &operator=(const StockGroupLoader &srcStockGroupLoader) = default;
                 virtual ~StockGroupLoader();
-
-                explicit StockGroupLoader(const std::unordered_map<std::string, std::shared_ptr<Column>> &columnsMap);
 
                 std::unique_ptr<Identity> NextPrimaryKey() override;
                 void LoadEntity(std::shared_ptr<Identity> &identity) override;
