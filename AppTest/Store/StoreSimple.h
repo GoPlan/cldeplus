@@ -20,7 +20,7 @@ namespace Cloude {
             public:
 
             protected:
-                StoreSimple() : _stockGroupLoader(_stockGroupMap.getColumnsMap()),
+                StoreSimple() : _stockGroupLoader(),
                                 _entityStore(_stockGroupMap, _stockGroupLoader, _mySqlDriver) { };
 
                 virtual void SetUp();

@@ -16,11 +16,12 @@ namespace Cloude {
 
             class EntityStoreRoutineException : public std::exception {
             public:
-                EntityStoreRoutineException(EntityStore &store, const std::string &message);
                 virtual ~EntityStoreRoutineException() = default;
 
-
+                explicit EntityStoreRoutineException(EntityStore &store, const std::string &sstrMessage);
+                explicit EntityStoreRoutineException(EntityStore &store, const char *cstrMessage);
                 virtual const char *what() const noexcept override;
+
             private:
                 std::string _message;
                 EntityStore &_store;

@@ -41,9 +41,6 @@ namespace Cloude {
                 ASSERT_TRUE(spIdentEntityField.get() != 0);
                 ASSERT_TRUE(codeValue.compare(spIdentEntityField->getString()) == 0);
 
-                auto spEmptyEntity = _entityStore.Create();
-                ASSERT_TRUE(spEmptyEntity.get() == 0);
-
                 auto spEntity = _entityStore.Create(spIdentity);
                 ASSERT_TRUE(spEntity.get() != 0);
 
@@ -68,9 +65,6 @@ namespace Cloude {
                 auto spIdentEntityField = spIdentEntity->operator[](codeName);
                 ASSERT_TRUE(spIdentEntityField.get() != 0);
                 ASSERT_TRUE(codeValue.compare(spIdentEntityField->getString()) == 0);
-
-                auto spEmptyEntity = _entityStore.Create();
-                ASSERT_TRUE(spEmptyEntity.get() == 0);
 
                 auto spEntity = _entityStore.Create(spIdentity);
                 ASSERT_TRUE(spEntity.get() != 0);
@@ -104,9 +98,6 @@ namespace Cloude {
                 auto spIdentEntityField = spIdentEntity->operator[](codeName);
                 ASSERT_TRUE(spIdentEntityField.get() != 0);
                 ASSERT_TRUE(codeValue.compare(spIdentEntityField->getString()) == 0);
-
-                auto spEmptyEntity = _entityStore.Create();
-                ASSERT_TRUE(spEmptyEntity.get() == 0);
 
                 auto spEntity = _entityStore.Create(spIdentity);
                 ASSERT_TRUE(spEntity.get() != 0);

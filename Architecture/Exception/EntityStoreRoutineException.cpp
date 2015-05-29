@@ -8,19 +8,27 @@
 using namespace std;
 using namespace Cloude::Architecture;
 
+using namespace std;
+
 namespace Cloude {
     namespace Architecture {
         namespace Exception {
-            EntityStoreRoutineException::EntityStoreRoutineException(
-                    EntityStore &store, const std::string &message) :
-                    _store(store),
-                    _message("[" + store.getEntityMap().TableName() + "] store routine exception: " + message) {
+            EntityStoreRoutineException::EntityStoreRoutineException(EntityStore &store,
+                                                                     const string &sstrMessage) : _store(store),
+                                                                                                  _message(sstrMessage) {
+                //
+            }
+
+            EntityStoreRoutineException::EntityStoreRoutineException(EntityStore &store,
+                                                                     const char *cstrMessage) : _store(store),
+                                                                                                _message(cstrMessage) {
                 //
             }
 
             const char *EntityStoreRoutineException::what() const noexcept {
                 return _message.c_str();
             }
+
         }
     }
 }

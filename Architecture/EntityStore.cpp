@@ -32,28 +32,34 @@ namespace Cloude {
                 return search->second;
             }
 
+            /// As Identity only initialized its entity fields that are used for primary key,
+            /// the remaining fields are not yet valid up to this point. So we use a separate method to
+            /// initialize these fields.
             generateNonKeyFields(identity);
-            _entitySourceDriver.LoadEntity(identity->getEntity(), _entityMap);
+
+            auto entity = identity->getEntity();
+            _entitySourceDriver.LoadEntity(entity, _entityMap);
             _identityMap.insert(make_pair(identity, identity->getEntity()));
 
             return identity->getEntity();
         }
 
         shared_ptr<Entity> EntityStore::Create() {
-            return Create(_entityLoader.NextPrimaryKey());
+            auto identity = _entityLoader.NextPrimaryKey();
+            auto entity = Create(identity);
+            return entity;
         }
 
-        shared_ptr<Entity> EntityStore::Create(shared_ptr<Identity> identity) {
+        shared_ptr<Entity> EntityStore::Create(shared_ptr<Identity> &identity) {
 
             if (!identity) {
-                // TODO: Throws exception for nullptr Identity
                 string message = "Identity is a nullptr or invalid";
-//                throw Architecture::Exception::EntityStoreRoutineException(*this, _message);
-                return shared_ptr<Entity>();
+                throw Architecture::Exception::EntityStoreRoutineException(*this, message);
             }
 
-            Insert(identity->getEntity());
-            _identityMap.insert(make_pair(identity, identity->getEntity()));
+            auto entity = identity->getEntity();
+            Insert(entity);
+            _identityMap.insert(make_pair(identity, entity));
 
             return identity->getEntity();
         }
@@ -69,7 +75,7 @@ namespace Cloude {
 
         void EntityStore::generateNonKeyFields(std::shared_ptr<Identity> &identity) {
 
-            shared_ptr<Entity> &entity = identity->getEntity();
+            auto entity = identity->getEntity();
 
             std::for_each(_entityMap.getColumnsForUpdate().cbegin(), _entityMap.getColumnsForUpdate().cend(),
                           [&entity](const shared_ptr<Column> &item) {

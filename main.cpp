@@ -34,9 +34,10 @@ int main(int argc, char **argv) {
     auto query = Cloude::Architecture::Helper::CreateGetPreparedQuery(_sequenceMap);
     _mySqlDriver.setQuery(query);
 
+
     auto spAccountIdField = make_shared<Architecture::Field>(_sequenceMap.Id, (long) 4);
     auto spAccountIdentity = make_shared<Architecture::Identity>()->SetField(spAccountIdField);
-    auto spAccountSequence = (std::shared_ptr<Architecture::Entity>) _sequenceStore.Get(spAccountIdentity);
+    auto spAccountSequence = _sequenceStore.Get(spAccountIdentity);
 
     std::cout << spAccountSequence->GetField("Id")->getInt64()
     << " - " << spAccountSequence->GetField("UniqueName")->getCString()
@@ -45,9 +46,10 @@ int main(int argc, char **argv) {
     << " - " << spAccountSequence->GetField("SequenceIncrement")->getInt64()
     << std::endl;
 
+
     auto spEnquiryIdField = make_shared<Architecture::Field>(_sequenceMap.Id, (long) 5);
     auto spEnquiryIdentity = make_shared<Architecture::Identity>()->SetField(spEnquiryIdField);
-    auto spEnquirySequence = (std::shared_ptr<Architecture::Entity>) _sequenceStore.Get(spEnquiryIdentity);
+    auto spEnquirySequence = _sequenceStore.Get(spEnquiryIdentity);
 
     std::cout << spEnquirySequence->GetField("Id")->getInt64()
     << " - " << spEnquirySequence->GetField("UniqueName")->getCString()
@@ -56,9 +58,10 @@ int main(int argc, char **argv) {
     << " - " << spEnquirySequence->GetField("SequenceIncrement")->getInt64()
     << std::endl;
 
+
     auto spVnHoseIdField = make_shared<Architecture::Field>(_sequenceMap.Id, (long) 6);
     auto spVnHoseIdentity = make_shared<Architecture::Identity>()->SetField(spVnHoseIdField);
-    auto spVnHoseSequence = (std::shared_ptr<Architecture::Entity>) _sequenceStore.Get(spVnHoseIdentity);
+    auto spVnHoseSequence = _sequenceStore.Get(spVnHoseIdentity);
 
     std::cout << spVnHoseSequence->GetField("Id")->getInt64()
     << " - " << spVnHoseSequence->GetField("UniqueName")->getCString()

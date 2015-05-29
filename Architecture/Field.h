@@ -13,7 +13,7 @@
 namespace Cloude {
     namespace Architecture {
 
-        // TODO: Field class needs a function that converts long/ulong value to correct type based on Column::DbType
+        // TODO: Field class may needs a dedicated/inheritable data subclass
 
         class Field {
         public:

@@ -27,7 +27,7 @@ namespace Cloude {
 
             std::shared_ptr<Entity> Get(std::shared_ptr<Identity> &identity);
             std::shared_ptr<Entity> Create();
-            std::shared_ptr<Entity> Create(std::shared_ptr<Identity> identity);
+            std::shared_ptr<Entity> Create(std::shared_ptr<Identity> &identity);
             void Insert(std::shared_ptr<Entity> &entity);
             void Delete(std::shared_ptr<Entity> &entity);
             void Save(std::shared_ptr<Entity> &entity);

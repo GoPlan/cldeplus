@@ -100,13 +100,9 @@ namespace Cloude {
 
             void assertSqlError();
             void assertSqlStmtError();
-            void setupBindParams(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
-            void setupBindResult(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
-            void assignParamsFields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
-            void assignResultFields(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind,
-                                    my_bool *ptrIsNull,
-                                    my_bool *ptrError,
-                                    unsigned long *ptrLength);
+            void assignBindParamsBuffer(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
+            void assignBindresultBuffer(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
+            void setupBindBufferDataTypeAndLength(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
         };
     }
 }

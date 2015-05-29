@@ -36,7 +36,9 @@ add_library(architecture STATIC
     Architecture/EntitySourceDriver.cpp
     Architecture/EntitySourceDriver.h
     Architecture/Helper/SqlGenerator.cpp
-    Architecture/Helper/SqlGenerator.h Architecture/Exception/EntityException.cpp Architecture/Exception/EntityException.h)
+    Architecture/Helper/SqlGenerator.h
+    Architecture/Exception/EntityException.cpp
+    Architecture/Exception/EntityException.h)
 
 
 add_library(application STATIC
@@ -49,7 +51,13 @@ add_library(application STATIC
     Application/Mapper/StockGroupLoader.cpp
     Application/Mapper/StockGroupLoader.h
     Application/Model/Sequence.cpp
-    Application/Model/Sequence.h Application/Mapper/AccountMap.cpp Application/Mapper/AccountMap.h Application/Mapper/SequenceMap.cpp Application/Mapper/SequenceMap.h Application/Mapper/SequenceLoader.cpp Application/Mapper/SequenceLoader.h)
+    Application/Model/Sequence.h
+    Application/Mapper/AccountMap.cpp
+    Application/Mapper/AccountMap.h
+    Application/Mapper/SequenceMap.cpp
+    Application/Mapper/SequenceMap.h
+    Application/Mapper/SequenceLoader.cpp
+    Application/Mapper/SequenceLoader.h)
 
 
 add_library(infrastructure STATIC
@@ -58,7 +66,9 @@ add_library(infrastructure STATIC
     Infrastructure/PostgreSqlDriver.cpp
     Infrastructure/PostgreSqlDriver.h
     Infrastructure/PostgreSqlDriver.cpp
-    Infrastructure/PostgreSqlDriver.h)
+    Infrastructure/PostgreSqlDriver.h
+    Infrastructure/Exception/MySqlDriverException.cpp
+    Infrastructure/Exception/MySqlDriverException.h)
 
 
 add_library(examples STATIC

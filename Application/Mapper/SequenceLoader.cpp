@@ -8,8 +8,8 @@ namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            std::unique_ptr<Architecture::Identity> SequenceLoader::NextPrimaryKey() {
-                return std::unique_ptr<Architecture::Identity>();
+            std::shared_ptr<Architecture::Identity> SequenceLoader::NextPrimaryKey() {
+                return std::make_shared<Architecture::Identity>();
             }
 
             void SequenceLoader::LoadEntity(std::shared_ptr<Architecture::Identity> &identity) {
