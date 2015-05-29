@@ -7,7 +7,6 @@
 
 #include <vector>
 #include "../Architecture/EntitySourceDriver.h"
-#include "mysql.h"
 
 namespace Cloude {
     namespace Infrastructure {
@@ -19,90 +18,54 @@ namespace Cloude {
         using EntityMap = Cloude::Architecture::EntityMap;
         using ColumnsList = std::vector<std::shared_ptr<Column>>;
 
+        using MySqlDriverOptions = struct {
+
+            std::string Host;
+            std::string User;
+            std::string Pass;
+            std::string DBase;
+
+            unsigned int Port = 3306;
+        };
+
         class MySqlDriver : public EntitySourceDriver {
+        public:
+            MySqlDriverOptions OptionArgs;
 
         public:
-            virtual ~MySqlDriver();
+            void Connect();
+            void Disconnect();
 
+            int LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
+            int InsertEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
 
-            explicit MySqlDriver(MYSQL *ptrMySql = nullptr) : _ptrMySql(ptrMySql) { };
-            virtual int LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
-            virtual int InsertEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
+            MySqlDriver();
+            ~MySqlDriver();
 
-
-            const std::string &getHost() const {
-                return _host;
+            void setGetStatement(const std::string &getStatement) {
+                _getStatement = getStatement;
             }
 
-            void setHost(const std::string &host) {
-                _host = host;
+            void setInsertStatement(const std::string &insertStatement) {
+                _insertStatement = insertStatement;
             }
 
-            const std::string &getUser() const {
-                return _user;
+            void setUpdateStatement(const std::string &updateStatement) {
+                _updateStatement = updateStatement;
             }
 
-            void setUser(const std::string &user) {
-                _user = user;
-            }
-
-            const std::string &getPass() const {
-                return _pass;
-            }
-
-            void setPass(const std::string &pass) {
-                _pass = pass;
-            }
-
-            const std::string &getDbase() const {
-                return _dbase;
-            }
-
-            void setDbase(const std::string &dbase) {
-                _dbase = dbase;
-            }
-
-            const std::string &getQuery() const {
-                return _query;
-            }
-
-            void setQuery(const std::string &query) {
-                _query = query;
-            }
-
-            unsigned int getPort() const {
-                return _port;
-            }
-
-            void setPort(unsigned int port) {
-                _port = port;
+            void setDeleteStatement(const std::string &deleteStatement) {
+                _deleteStatement = deleteStatement;
             }
 
         private:
-            std::string _host;
-            std::string _user;
-            std::string _pass;
-            std::string _dbase;
-            std::string _query;
+            class MySqlApiImpl;
+            MySqlApiImpl *_ptrMySqlApiImpl;
 
-            unsigned int _port = 3306;
-
-            MYSQL *_ptrMySql = nullptr;
-            MYSQL_STMT *_ptrMySqlStmt = nullptr;
-
-            MYSQL_BIND *_ptrMySqlParamsBind = nullptr;
-            unsigned long *_ptrParamsLength = nullptr;
-
-            MYSQL_BIND *_ptrMySqlResultBind = nullptr;
-            my_bool *_ptrResultIsNull = nullptr;
-            my_bool *_ptrResultError = nullptr;
-            unsigned long *_ptrResultLength = nullptr;
-
-            void assertSqlError();
-            void assertSqlStmtError();
-            void assignBindParamsBuffer(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
-            void assignBindresultBuffer(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList);
-            void setupBindBufferDataTypeAndLength(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind);
+            std::string _getStatement;
+            std::string _insertStatement;
+            std::string _updateStatement;
+            std::string _deleteStatement;
         };
     }
 }
