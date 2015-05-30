@@ -17,13 +17,15 @@ namespace Cloude {
                 StockGroupMap();
                 virtual ~StockGroupMap() = default;
 
+                static std::string TableName;
+
                 static std::shared_ptr<Architecture::Column> Id;
                 static std::shared_ptr<Architecture::Column> Code;
                 static std::shared_ptr<Architecture::Column> Name;
                 static std::shared_ptr<Architecture::Column> DefaultStockCode;
 
             protected:
-                virtual std::string TableNameCore();
+                virtual const std::string& TableNameCore() const;
 
             };
         }

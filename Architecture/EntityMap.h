@@ -22,7 +22,7 @@ namespace Cloude {
             EntityMap &operator=(const EntityMap &srcEntityMap) = default;
             virtual ~EntityMap() = default;
 
-            std::string TableName() {
+            const std::string& TableName() const {
                 return TableNameCore();
             }
 
@@ -34,21 +34,21 @@ namespace Cloude {
                 return _columnsForGet;
             }
 
-            const std::vector<std::shared_ptr<Column>> &getColumnsForSelect() const {
-                return _columnsForSelect;
-            }
-
             const std::vector<std::shared_ptr<Column>> &getColumnsForUpdate() const {
                 return _columnsForUpdate;
+            }
+
+            const std::vector<std::shared_ptr<Column>> &getColumnsForSelect() const {
+                return _columnsForSelect;
             }
 
         protected:
             std::vector<std::shared_ptr<Column>> _columnsForKey;
             std::vector<std::shared_ptr<Column>> _columnsForGet;
-            std::vector<std::shared_ptr<Column>> _columnsForSelect;
             std::vector<std::shared_ptr<Column>> _columnsForUpdate;
+            std::vector<std::shared_ptr<Column>> _columnsForSelect;
 
-            virtual std::string TableNameCore() = 0;
+            virtual const std::string& TableNameCore() const = 0;
         };
     }
 }

@@ -2,9 +2,10 @@
 // Created by LE, Duc-Anh on 5/23/15.
 //
 
+#include <memory>
+#include <string>
+
 #include <Architecture/Exception/EntityStoreRoutineException.h>
-#include <iostream>
-#include "EntityStore.h"
 
 using namespace std;
 
@@ -47,6 +48,7 @@ namespace Cloude {
         shared_ptr<Entity> EntityStore::Create() {
             auto identity = _entityLoader.NextPrimaryKey();
             auto entity = Create(identity);
+
             return entity;
         }
 
@@ -66,7 +68,7 @@ namespace Cloude {
 
 
         void EntityStore::Insert(std::shared_ptr<Entity> &entity) {
-
+            _entitySourceDriver.CreateEntity(entity, _entityMap);
         }
 
         void EntityStore::Clear() {

@@ -23,7 +23,7 @@ namespace Cloude {
             std::string Host;
             std::string User;
             std::string Pass;
-            std::string DBase;
+            std::string Base;
 
             unsigned int Port = 3306;
         };
@@ -36,8 +36,8 @@ namespace Cloude {
             void Connect();
             void Disconnect();
 
-            int LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
-            int InsertEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
+            void LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
+            void CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
 
             MySqlDriver();
             ~MySqlDriver();

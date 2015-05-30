@@ -17,6 +17,8 @@ namespace Cloude {
                 SequenceMap(const SequenceMap &srcSequenceMap) = default;
                 SequenceMap &operator=(const SequenceMap &srcSequenceMap) = default;
 
+                static std::string TableName;
+
                 static std::shared_ptr<Architecture::Column> Id;
                 static std::shared_ptr<Architecture::Column> UniqueName;
                 static std::shared_ptr<Architecture::Column> SequenceStart;
@@ -24,7 +26,7 @@ namespace Cloude {
                 static std::shared_ptr<Architecture::Column> SequenceIncrement;
 
             protected:
-                virtual std::string TableNameCore() override;
+                virtual const std::string &TableNameCore() const override;
             };
         }
     }

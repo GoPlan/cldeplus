@@ -13,14 +13,16 @@ namespace Cloude {
     namespace Application {
         namespace Mapper {
 
+            std::string SequenceMap::TableName = "Sequence";
+
             std::shared_ptr<Column> SequenceMap::Id = std::make_shared<Column>("Id", "id", Enumeration::DbType::Int64);
             std::shared_ptr<Column> SequenceMap::UniqueName = std::make_shared<Column>("UniqueName", "uniquename", 50, Enumeration::DbType::String);
             std::shared_ptr<Column> SequenceMap::SequenceStart = std::make_shared<Column>("SequenceStart", "sequencestart", Enumeration::DbType::Int64);
             std::shared_ptr<Column> SequenceMap::SequenceCurrent = std::make_shared<Column>("SequenceCurrent", "sequencecurrent", Enumeration::DbType::Int64);
             std::shared_ptr<Column> SequenceMap::SequenceIncrement = std::make_shared<Column>("SequenceIncrement", "sequenceincrement", Enumeration::DbType::Int64);
 
-            std::string SequenceMap::TableNameCore() {
-                return "Sequence";
+            const std::string& SequenceMap::TableNameCore() const {
+                return TableName;
             }
 
             SequenceMap::SequenceMap() {

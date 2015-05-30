@@ -7,6 +7,7 @@
 #include <Architecture/Exception/NonSupportedDataTypeException.h>
 #include <Infrastructure/Exception/MySqlDriverException.h>
 #include <Architecture/Helper/SqlGenerator.h>
+#include <iostream>
 #include "MySqlDriver.h"
 
 using namespace std;
@@ -15,19 +16,51 @@ using namespace Cloude;
 namespace Cloude {
     namespace Infrastructure {
 
+        class Command {
+        public:
+            Command() {
+                //
+            };
+
+            virtual ~Command() {
+
+                if (PtrResultLength != nullptr) {
+                    free(PtrResultLength);
+                }
+
+                if (PtrResultIsNull != nullptr) {
+                    free(PtrResultIsNull);
+                }
+
+                if (PtrResultError != nullptr) {
+                    free(PtrResultError);
+                }
+
+                if (PtrParamsBind != nullptr) {
+                    free(PtrParamsBind);
+                }
+
+                if (PtrResultBind != nullptr) {
+                    free(PtrResultBind);
+                }
+
+                if (PtrStmt != nullptr) {
+                    mysql_stmt_close(PtrStmt);
+                }
+            }
+
+            MYSQL_STMT *PtrStmt = nullptr;
+            MYSQL_BIND *PtrParamsBind = nullptr;
+            MYSQL_BIND *PtrResultBind = nullptr;
+            unsigned long *PtrParamsLength = nullptr;
+            unsigned long *PtrResultLength = nullptr;
+            my_bool *PtrResultIsNull = nullptr;
+            my_bool *PtrResultError = nullptr;
+        };
+
         class MySqlDriver::MySqlApiImpl {
         public:
             MYSQL *_ptrMySql = nullptr;
-            MYSQL_STMT *_ptrMySqlStmt = nullptr;
-
-            MYSQL_BIND *_ptrMySqlParamsBind = nullptr;
-            unsigned long *_ptrParamsLength = nullptr;
-
-            MYSQL_BIND *_ptrMySqlResultBind = nullptr;
-            my_bool *_ptrResultIsNull = nullptr;
-            my_bool *_ptrResultError = nullptr;
-            unsigned long *_ptrResultLength = nullptr;
-
             MySqlDriverOptions &_driverOptions;
 
             MySqlApiImpl(MySqlDriverOptions &driverOptions) : _driverOptions(driverOptions) {
@@ -44,6 +77,22 @@ namespace Cloude {
                 mysql_library_end;
             }
 
+            shared_ptr<Command> createCommand(const string &query) {
+
+                auto command = make_shared<Command>();
+                command->PtrStmt = mysql_stmt_init(_ptrMySql);
+
+                if (!command->PtrStmt) {
+                    assertSqlError();
+                }
+
+                if (mysql_stmt_prepare(command->PtrStmt, query.c_str(), query.length())) {
+                    assertSqlStmtError(command->PtrStmt);
+                }
+
+                return command;
+            }
+
             void assertSqlError() {
                 if (mysql_errno(_ptrMySql)) {
                     auto errorCharPtr = mysql_error(_ptrMySql);
@@ -51,20 +100,22 @@ namespace Cloude {
                 }
             }
 
-            void assertSqlStmtError() {
-                if (mysql_stmt_errno(_ptrMySqlStmt)) {
-                    auto errorCharPtr = mysql_stmt_error(_ptrMySqlStmt);
+            void assertSqlStmtError(MYSQL_STMT *ptrMySqlStmt) {
+                if (mysql_stmt_errno(ptrMySqlStmt)) {
+                    auto errorCharPtr = mysql_stmt_error(ptrMySqlStmt);
                     throw Exception::MySqlDriverException(errorCharPtr);
                 }
 
             }
 
-            void assignBindParamsBuffer(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList) {
+            void assignBindParamsBuffer(std::shared_ptr<Entity> &entity,
+                                        const ColumnsList &columnsList,
+                                        std::shared_ptr<Command> &command) {
 
                 auto columnsListSize = columnsList.size();
 
-                _ptrMySqlParamsBind = (MYSQL_BIND *) calloc(columnsListSize, sizeof(MYSQL_BIND));
-                _ptrParamsLength = (unsigned long *) calloc(columnsListSize, sizeof(unsigned long));
+                command->PtrParamsBind = (MYSQL_BIND *) calloc(columnsListSize, sizeof(MYSQL_BIND));
+                command->PtrParamsLength = (unsigned long *) calloc(columnsListSize, sizeof(unsigned long));
 
                 int i = 0;
 
@@ -75,25 +126,27 @@ namespace Cloude {
                                   auto ptrLength = static_cast<unsigned long *>(field->getColumn()
                                                                                      ->PointerToLengthVariable());
 
-                                  _ptrMySqlParamsBind[i].is_null = 0;
-                                  _ptrMySqlParamsBind[i].error = 0;
-                                  _ptrMySqlParamsBind[i].length = ptrLength;
-                                  _ptrMySqlParamsBind[i].buffer = field->PointerToFieldValue();
+                                  command->PtrParamsBind[i].is_null = 0;
+                                  command->PtrParamsBind[i].error = 0;
+                                  command->PtrParamsBind[i].length = ptrLength;
+                                  command->PtrParamsBind[i].buffer = field->PointerToFieldValue();
 
-                                  setupBindBufferDataTypeAndLength(field, &_ptrMySqlParamsBind[i]);
+                                  setupBindBufferDataTypeAndLength(field, &command->PtrParamsBind[i]);
 
                                   i++;
                               });
             }
 
-            void assignBindresultBuffer(std::shared_ptr<Entity> &entity, const ColumnsList &columnsList) {
+            void assignBindResultBuffer(std::shared_ptr<Entity> &entity,
+                                        const ColumnsList &columnsList,
+                                        std::shared_ptr<Command> &command) {
 
                 auto columnsListSize = columnsList.size();
 
-                _ptrMySqlResultBind = (MYSQL_BIND *) calloc(columnsListSize, sizeof(MYSQL_BIND));
-                _ptrResultIsNull = (my_bool *) calloc(columnsListSize, sizeof(my_bool));
-                _ptrResultError = (my_bool *) calloc(columnsListSize, sizeof(my_bool));
-                _ptrResultLength = (unsigned long *) calloc(columnsListSize, sizeof(unsigned long));
+                command->PtrResultBind = (MYSQL_BIND *) calloc(columnsListSize, sizeof(MYSQL_BIND));
+                command->PtrResultError = (my_bool *) calloc(columnsListSize, sizeof(my_bool));
+                command->PtrResultIsNull = (my_bool *) calloc(columnsListSize, sizeof(my_bool));
+                command->PtrResultLength = (unsigned long *) calloc(columnsListSize, sizeof(unsigned long));
 
                 int i = 0;
 
@@ -102,12 +155,12 @@ namespace Cloude {
 
                                   auto field = entity->operator[](column->getName());
 
-                                  _ptrMySqlResultBind[i].is_null = &_ptrResultIsNull[i];
-                                  _ptrMySqlResultBind[i].error = &_ptrResultIsNull[i];
-                                  _ptrMySqlResultBind[i].length = &_ptrResultLength[i];
-                                  _ptrMySqlResultBind[i].buffer = field->PointerToFieldValue();
+                                  command->PtrResultBind[i].is_null = &command->PtrResultIsNull[i];
+                                  command->PtrResultBind[i].error = &command->PtrResultError[i];
+                                  command->PtrResultBind[i].length = &command->PtrResultLength[i];
+                                  command->PtrResultBind[i].buffer = field->PointerToFieldValue();
 
-                                  setupBindBufferDataTypeAndLength(field, &_ptrMySqlResultBind[i]);
+                                  setupBindBufferDataTypeAndLength(field, &command->PtrResultBind[i]);
 
                                   i++;
                               });
@@ -185,94 +238,71 @@ namespace Cloude {
                                     _ptrMySqlApiImpl->_driverOptions.Host.c_str(),
                                     _ptrMySqlApiImpl->_driverOptions.User.c_str(),
                                     _ptrMySqlApiImpl->_driverOptions.Pass.c_str(),
-                                    _ptrMySqlApiImpl->_driverOptions.DBase.c_str(),
+                                    _ptrMySqlApiImpl->_driverOptions.Base.c_str(),
                                     _ptrMySqlApiImpl->_driverOptions.Port,
                                     NULL, 0)) {
+
                 _ptrMySqlApiImpl->assertSqlError();
-            }
-
-            if (_ptrMySqlApiImpl->_ptrMySqlStmt == nullptr) {
-                _ptrMySqlApiImpl->_ptrMySqlStmt = mysql_stmt_init(_ptrMySqlApiImpl->_ptrMySql);
-            }
-
-            if (!_ptrMySqlApiImpl->_ptrMySqlStmt) {
-                _ptrMySqlApiImpl->assertSqlError();
-            }
-
-            if (mysql_stmt_prepare(_ptrMySqlApiImpl->_ptrMySqlStmt,
-                                   _getStatement.c_str(),
-                                   _getStatement.length())) {
-                _ptrMySqlApiImpl->assertSqlStmtError();
             }
         }
 
         void MySqlDriver::Disconnect() {
-
-            if (_ptrMySqlApiImpl->_ptrResultLength != nullptr) {
-                free(_ptrMySqlApiImpl->_ptrResultLength);
-            }
-
-            if (_ptrMySqlApiImpl->_ptrResultIsNull != nullptr) {
-                free(_ptrMySqlApiImpl->_ptrResultIsNull);
-            }
-
-            if (_ptrMySqlApiImpl->_ptrResultError != nullptr) {
-                free(_ptrMySqlApiImpl->_ptrResultError);
-            }
-
-            if (_ptrMySqlApiImpl->_ptrMySqlParamsBind != nullptr) {
-                free(_ptrMySqlApiImpl->_ptrMySqlParamsBind);
-            }
-
-            if (_ptrMySqlApiImpl->_ptrMySqlResultBind != nullptr) {
-                free(_ptrMySqlApiImpl->_ptrMySqlResultBind);
-            }
-
-            if (_ptrMySqlApiImpl->_ptrMySqlStmt != nullptr) {
-                mysql_stmt_close(_ptrMySqlApiImpl->_ptrMySqlStmt);
-            }
+            //
         }
 
-        int MySqlDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
+        void MySqlDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
 
-            _ptrMySqlApiImpl->assignBindParamsBuffer(entity, (ColumnsList) entityMap.getColumnsForKey());
-            _ptrMySqlApiImpl->assignBindresultBuffer(entity, (ColumnsList) entityMap.getColumnsForGet());
+            auto command = _ptrMySqlApiImpl->createCommand(_getStatement);
 
-            if (mysql_stmt_bind_param(_ptrMySqlApiImpl->_ptrMySqlStmt, _ptrMySqlApiImpl->_ptrMySqlParamsBind)) {
-                _ptrMySqlApiImpl->assertSqlStmtError();
+            _ptrMySqlApiImpl->assignBindParamsBuffer(entity, entityMap.getColumnsForKey(), command);
+            _ptrMySqlApiImpl->assignBindResultBuffer(entity, entityMap.getColumnsForGet(), command);
+
+            if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
+                _ptrMySqlApiImpl->assertSqlStmtError(command->PtrStmt);
             }
 
-            if (mysql_stmt_bind_result(_ptrMySqlApiImpl->_ptrMySqlStmt, _ptrMySqlApiImpl->_ptrMySqlResultBind)) {
-                _ptrMySqlApiImpl->assertSqlStmtError();
+            if (mysql_stmt_bind_result(command->PtrStmt, command->PtrResultBind)) {
+                _ptrMySqlApiImpl->assertSqlStmtError(command->PtrStmt);
             }
 
-            if (mysql_stmt_execute(_ptrMySqlApiImpl->_ptrMySqlStmt)) {
-                _ptrMySqlApiImpl->assertSqlStmtError();
+            if (mysql_stmt_execute(command->PtrStmt)) {
+                _ptrMySqlApiImpl->assertSqlStmtError(command->PtrStmt);
             }
 
-            auto rowStatus = mysql_stmt_fetch(_ptrMySqlApiImpl->_ptrMySqlStmt);
+            auto rowStatus = mysql_stmt_fetch(command->PtrStmt);
 
             switch (rowStatus) {
                 case 0:
-                    return 1;
+                    break;
                 case 1:
                     _ptrMySqlApiImpl->assertSqlError();
-                    _ptrMySqlApiImpl->assertSqlStmtError();
+                    _ptrMySqlApiImpl->assertSqlStmtError(command->PtrStmt);
                     break;
                 case MYSQL_NO_DATA:
-                    return 0;
+                    break;
                 case MYSQL_DATA_TRUNCATED:
                     // TODO: To research MYSQL_DATA_TRUNCATED condition
+                    _ptrMySqlApiImpl->assertSqlError();
+                    _ptrMySqlApiImpl->assertSqlStmtError(command->PtrStmt);
                     throw Exception::MySqlDriverException("fetch error: MYSQL_DATA_TRUNCATED");
                 default:
                     throw Exception::MySqlDriverException("fetch error: unknown return status code");
             }
-
-            return 0;
         }
 
-        int MySqlDriver::InsertEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
-            return 0;
+        void MySqlDriver::CreateEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
+
+            auto command = _ptrMySqlApiImpl->createCommand(_insertStatement);
+
+            _ptrMySqlApiImpl->assignBindParamsBuffer(entity, entityMap.getColumnsForKey(), command);
+
+            if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
+                _ptrMySqlApiImpl->assertSqlStmtError(command->PtrStmt);
+            }
+
+            if (mysql_stmt_execute(command->PtrStmt)) {
+                _ptrMySqlApiImpl->assertSqlStmtError(command->PtrStmt);
+            }
         }
     }
 }

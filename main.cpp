@@ -1,9 +1,10 @@
 #include <cstdlib>
 #include <iostream>
+#include <Infrastructure/MySqlDriver.h>
+#include <Infrastructure/Exception/MySqlDriverException.h>
 
 #include "Cloude.h"
 #include "Architecture/Helper/SqlGenerator.h"
-#include "Infrastructure/MySqlDriver.h"
 #include "Application/Mapper/SequenceMap.h"
 #include "Application/Mapper/SequenceLoader.h"
 
@@ -12,62 +13,61 @@ using namespace Cloude;
 
 int main(int argc, char **argv) {
 
-    std::cout << "Running Debug" << std::endl;
+    Infrastructure::MySqlDriver mySqlDriver;
+    Application::Mapper::SequenceMap sequenceMap;
+    Application::Mapper::SequenceLoader sequenceLoader;
+    Architecture::EntityStore sequenceStore(sequenceMap, sequenceLoader, mySqlDriver);
 
-    Application::Mapper::SequenceMap _sequenceMap;
-    Application::Mapper::SequenceLoader _sequenceLoader;
+    mySqlDriver.OptionArgs.Host = "dell-3020";
+    mySqlDriver.OptionArgs.User = "cloud-e";
+    mySqlDriver.OptionArgs.Pass = "cloud-e";
+    mySqlDriver.OptionArgs.Base = "cloud-e";
+    mySqlDriver.OptionArgs.Port = 3306;
 
+    string strGetQuery = Architecture::Helper::CreateGetPreparedQuery(sequenceMap);
+    string strInsertQuery = Architecture::Helper::CreateInsertPreparedQuery(sequenceMap);
 
-    Infrastructure::MySqlDriver _mySqlDriver;
-    _mySqlDriver.OptionArgs.Host = "dell-3020";
-    _mySqlDriver.OptionArgs.User = "cloud-e";
-    _mySqlDriver.OptionArgs.Pass = "cloud-e";
-    _mySqlDriver.OptionArgs.DBase = "cloud-e";
-    _mySqlDriver.OptionArgs.Port = 3306;
+    cout << strGetQuery << endl;
+    cout << strInsertQuery << endl;
 
-    _mySqlDriver.setGetStatement(Architecture::Helper::CreateGetPreparedQuery(_sequenceMap));
-    _mySqlDriver.Connect();
+    mySqlDriver.setGetStatement(strGetQuery);
+    mySqlDriver.setInsertStatement(strInsertQuery);
+    mySqlDriver.Connect();
 
+    auto spAccountIdField_04 = std::make_shared<Architecture::Field>(sequenceMap.Id, (long) 4);
+    auto spAccountIdentity_04 = std::make_shared<Architecture::Identity>()->SetField(spAccountIdField_04);
+    auto spAccountSequence_04 = sequenceStore.Get(spAccountIdentity_04);
 
-    Architecture::EntityStore _sequenceStore(_sequenceMap, _sequenceLoader, _mySqlDriver);
+    cout << spAccountSequence_04->operator[]("Id")->getInt64() << " - " <<
+    spAccountSequence_04->operator[]("UniqueName")->getCString() << endl;
 
+    try {
 
-    auto spAccountIdField = make_shared<Architecture::Field>(_sequenceMap.Id, (long) 4);
-    auto spAccountIdentity = make_shared<Architecture::Identity>()->SetField(spAccountIdField);
-    auto spAccountSequence = _sequenceStore.Get(spAccountIdentity);
+        auto spNewIdField = std::make_shared<Architecture::Field>(sequenceMap.Id, (long) 7);
+        auto spNewIdentity = std::make_shared<Architecture::Identity>()->SetField(spNewIdField);
+        auto spNewSequence = sequenceStore.Create(spNewIdentity);
 
-    std::cout << spAccountSequence->GetField("Id")->getInt64()
-    << " - " << spAccountSequence->GetField("UniqueName")->getCString()
-    << " - " << spAccountSequence->GetField("SequenceStart")->getInt64()
-    << " - " << spAccountSequence->GetField("SequenceCurrent")->getInt64()
-    << " - " << spAccountSequence->GetField("SequenceIncrement")->getInt64()
-    << std::endl;
+        cout << spNewSequence->operator[]("Id")->getInt64() << endl;
 
+    } catch (Infrastructure::Exception::MySqlDriverException &mySqlException) {
+        cout << mySqlException.what() << endl;
+    }
 
-    auto spEnquiryIdField = make_shared<Architecture::Field>(_sequenceMap.Id, (long) 5);
-    auto spEnquiryIdentity = make_shared<Architecture::Identity>()->SetField(spEnquiryIdField);
-    auto spEnquirySequence = _sequenceStore.Get(spEnquiryIdentity);
+    auto spAccountIdField_05 = std::make_shared<Architecture::Field>(sequenceMap.Id, (long) 5);
+    auto spAccountIdentity_05 = std::make_shared<Architecture::Identity>()->SetField(spAccountIdField_05);
+    auto spAccountSequence_05 = sequenceStore.Get(spAccountIdentity_05);
 
-    std::cout << spEnquirySequence->GetField("Id")->getInt64()
-    << " - " << spEnquirySequence->GetField("UniqueName")->getCString()
-    << " - " << spEnquirySequence->GetField("SequenceStart")->getInt64()
-    << " - " << spEnquirySequence->GetField("SequenceCurrent")->getInt64()
-    << " - " << spEnquirySequence->GetField("SequenceIncrement")->getInt64()
-    << std::endl;
+    cout << spAccountSequence_05->operator[]("Id")->getInt64() << " - " <<
+    spAccountSequence_05->operator[]("UniqueName")->getCString() << endl;
 
+    auto spAccountIdField_06 = std::make_shared<Architecture::Field>(sequenceMap.Id, (long) 6);
+    auto spAccountIdentity_06 = std::make_shared<Architecture::Identity>()->SetField(spAccountIdField_06);
+    auto spAccountSequence_06 = sequenceStore.Get(spAccountIdentity_06);
 
-    auto spVnHoseIdField = make_shared<Architecture::Field>(_sequenceMap.Id, (long) 6);
-    auto spVnHoseIdentity = make_shared<Architecture::Identity>()->SetField(spVnHoseIdField);
-    auto spVnHoseSequence = _sequenceStore.Get(spVnHoseIdentity);
+    cout << spAccountSequence_06->operator[]("Id")->getInt64() << " - " <<
+    spAccountSequence_06->operator[]("UniqueName")->getCString() << endl;
 
-    std::cout << spVnHoseSequence->GetField("Id")->getInt64()
-    << " - " << spVnHoseSequence->GetField("UniqueName")->getCString()
-    << " - " << spVnHoseSequence->GetField("SequenceStart")->getInt64()
-    << " - " << spVnHoseSequence->GetField("SequenceCurrent")->getInt64()
-    << " - " << spVnHoseSequence->GetField("SequenceIncrement")->getInt64()
-    << std::endl;
-
-    _mySqlDriver.Disconnect();
+    mySqlDriver.Disconnect();
 
     return EXIT_SUCCESS;
 };
