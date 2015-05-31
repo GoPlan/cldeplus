@@ -2,12 +2,10 @@
 // Created by LE, Duc Anh on 5/27/15.
 //
 
-#ifndef CLOUD_E_CPLUS_POSTGRESQLDRIVER_H
-#define CLOUD_E_CPLUS_POSTGRESQLDRIVER_H
+#ifndef CLOUD_E_CPLUS_POSTGRESCONNECTOR_H
+#define CLOUD_E_CPLUS_POSTGRESCONNECTOR_H
 
-#include "Architecture/Entity.h"
-#include "Architecture/Column.h"
-#include "Architecture/EntitySourceDriver.h"
+#include <Architecture/DataSource/Connector.h>
 
 namespace Cloude {
     namespace Infrastructure {
@@ -15,12 +13,12 @@ namespace Cloude {
         using Entity = Architecture::Entity;
         using Column = Architecture::Column;
 
-        class PostgreSqlDriver : public Architecture::EntitySourceDriver {
+        class PostgresSourceDriver : public Architecture::DataSource::Connector {
         public:
-            PostgreSqlDriver() = default;
-            virtual ~PostgreSqlDriver() = default;
-            PostgreSqlDriver(const PostgreSqlDriver &srcPostgreSqlDriver) = default;
-            PostgreSqlDriver &operator=(const PostgreSqlDriver &srcPostgreSqlDriver) = default;
+            PostgresSourceDriver() = default;
+            virtual ~PostgresSourceDriver() = default;
+            PostgresSourceDriver(const PostgresSourceDriver &srcPostgreSqlDriver) = default;
+            PostgresSourceDriver &operator=(const PostgresSourceDriver &srcPostgreSqlDriver) = default;
 
             virtual int LoadEntity(std::shared_ptr<Entity> &entity,
                                    std::unordered_map<std::string, std::shared_ptr<Column>> &columnsMap);
@@ -34,4 +32,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_POSTGRESQLDRIVER_H
+#endif //CLOUD_E_CPLUS_POSTGRESCONNECTOR_H

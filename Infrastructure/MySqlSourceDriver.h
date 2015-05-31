@@ -2,11 +2,11 @@
 // Created by GoPlan on 18/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_MYSQLDRIVER_H
-#define CLOUD_E_CPLUS_MYSQLDRIVER_H
+#ifndef CLOUD_E_CPLUS_MYSQLCDRIVER_H
+#define CLOUD_E_CPLUS_MYSQLCDRIVER_H
 
 #include <vector>
-#include "../Architecture/EntitySourceDriver.h"
+#include <Architecture/EntitySourceDriver.h>
 
 namespace Cloude {
     namespace Infrastructure {
@@ -28,7 +28,7 @@ namespace Cloude {
             unsigned int Port = 3306;
         };
 
-        class MySqlDriver : public EntitySourceDriver {
+        class MySqlSourceDriver : public EntitySourceDriver {
         public:
             MySqlDriverOptions OptionArgs;
 
@@ -39,8 +39,8 @@ namespace Cloude {
             void LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
             void CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
 
-            MySqlDriver();
-            ~MySqlDriver();
+            MySqlSourceDriver();
+            ~MySqlSourceDriver();
 
             void setGetStatement(const std::string &getStatement) {
                 _getStatement = getStatement;
@@ -71,4 +71,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_MYSQLDRIVER_H
+#endif //CLOUD_E_CPLUS_MYSQLCONNECTOR_H
