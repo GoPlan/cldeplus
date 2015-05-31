@@ -146,6 +146,10 @@ namespace Cloude {
                 _voidPtr = voidPtr;
             }
 
+            void setCString(const char* value){
+                strncpy(_cstr, value, 255);
+            }
+
             char *getCString() {
                 return &_cstr[0];
             }

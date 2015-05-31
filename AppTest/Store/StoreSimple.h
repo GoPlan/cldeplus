@@ -10,7 +10,7 @@
 #include "../../Application/Model/StockGroup.h"
 #include "../../Application/Mapper/StockGroupLoader.h"
 #include "../../Application/Mapper/StockGroupMap.h"
-#include "Infrastructure/MySqlDriver.h"
+#include "MySqlConnector.h"
 
 namespace Cloude {
     namespace AppTest {
@@ -26,7 +26,7 @@ namespace Cloude {
                 virtual void SetUp();
                 virtual void TearDown();
 
-                Cloude::Infrastructure::MySqlDriver _mySqlDriver;
+                Cloude::Infrastructure::MySqlConnector _mySqlDriver;
                 Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
                 Cloude::Application::Mapper::StockGroupLoader _stockGroupLoader;
                 Cloude::Architecture::EntityStore _entityStore;

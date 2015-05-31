@@ -2,8 +2,8 @@
 // Created by GoPlan on 18/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_MYSQLCDRIVER_H
-#define CLOUD_E_CPLUS_MYSQLCDRIVER_H
+#ifndef CLOUD_E_CPLUS_MYSQLSOUCRCEDRIVER_H
+#define CLOUD_E_CPLUS_MYSQLSOUCRCEDRIVER_H
 
 #include <vector>
 #include <Architecture/EntitySourceDriver.h>
@@ -33,14 +33,16 @@ namespace Cloude {
             MySqlDriverOptions OptionArgs;
 
         public:
+            MySqlSourceDriver();
+            ~MySqlSourceDriver();
+
             void Connect();
             void Disconnect();
 
             void LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
             void CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
-
-            MySqlSourceDriver();
-            ~MySqlSourceDriver();
+            virtual void SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
+            virtual void DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
 
             void setGetStatement(const std::string &getStatement) {
                 _getStatement = getStatement;
@@ -59,8 +61,8 @@ namespace Cloude {
             }
 
         private:
-            class MySqlApiImpl;
-            MySqlApiImpl *_ptrMySqlApiImpl;
+            class implMySqlApi;
+            implMySqlApi *_ptrMySqlApiImpl;
 
             std::string _getStatement;
             std::string _insertStatement;
@@ -71,4 +73,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_MYSQLCONNECTOR_H
+#endif //CLOUD_E_CPLUS_MYSQLSOUCRCEDRIVER_H

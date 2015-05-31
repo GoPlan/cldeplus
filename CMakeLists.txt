@@ -33,12 +33,16 @@ add_library(architecture STATIC
     Architecture/Exception/DataSourceRoutineException.h
     Architecture/Exception/EntityStoreRoutineException.cpp
     Architecture/Exception/EntityStoreRoutineException.h
-    Architecture/EntitySourceDriver.cpp
-    Architecture/EntitySourceDriver.h
     Architecture/Helper/SqlGenerator.cpp
     Architecture/Helper/SqlGenerator.h
     Architecture/Exception/EntityException.cpp
-    Architecture/Exception/EntityException.h)
+    Architecture/Exception/EntityException.h
+    Architecture/DataSource/Command.cpp
+    Architecture/DataSource/Command.h
+    Architecture/DataSource/Connector.h
+    Architecture/DataSource/Connector.cpp
+    Architecture/EntitySourceDriver.cpp
+    Architecture/EntitySourceDriver.h)
 
 
 add_library(application STATIC
@@ -61,14 +65,14 @@ add_library(application STATIC
 
 
 add_library(infrastructure STATIC
-    Infrastructure/MySqlDriver.h
-    Infrastructure/MySqlDriver.cpp
-    Infrastructure/PostgreSqlDriver.cpp
-    Infrastructure/PostgreSqlDriver.h
-    Infrastructure/PostgreSqlDriver.cpp
-    Infrastructure/PostgreSqlDriver.h
-    Infrastructure/Exception/MySqlDriverException.cpp
-    Infrastructure/Exception/MySqlDriverException.h)
+    Infrastructure/MySqlSourceDriver.h
+    Infrastructure/MySqlSourceDriver.cpp
+    Infrastructure/PostgresSourceDriver.cpp
+    Infrastructure/PostgresSourceDriver.h
+    Infrastructure/PostgresSourceDriver.cpp
+    Infrastructure/PostgresSourceDriver.h
+    Infrastructure/Exception/MySqlSourceDriverException.cpp
+    Infrastructure/Exception/MySqlSourceDriverException.h)
 
 
 add_library(examples STATIC

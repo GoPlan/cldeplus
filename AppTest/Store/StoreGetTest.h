@@ -24,7 +24,7 @@ namespace Cloude {
                 Application::Mapper::SequenceLoader _sequenceLoader;
 
 
-                Infrastructure::MySqlDriver _mySqlDriver;
+                Infrastructure::MySqlConnector _mySqlDriver;
                 _mySqlDriver.OptionArgs.Host = "dell-3020";
                 _mySqlDriver.OptionArgs.User = "cloud-e";
                 _mySqlDriver.OptionArgs.Pass = "cloud-e";

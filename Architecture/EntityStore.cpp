@@ -6,6 +6,7 @@
 #include <string>
 
 #include <Architecture/Exception/EntityStoreRoutineException.h>
+#include "EntitySourceDriver.h"
 
 using namespace std;
 
@@ -48,7 +49,6 @@ namespace Cloude {
         shared_ptr<Entity> EntityStore::Create() {
             auto identity = _entityLoader.NextPrimaryKey();
             auto entity = Create(identity);
-
             return entity;
         }
 
@@ -59,6 +59,11 @@ namespace Cloude {
                 throw Architecture::Exception::EntityStoreRoutineException(*this, message);
             }
 
+            /// As Identity only initialized its entity fields that are used for primary key,
+            /// the remaining fields are not yet valid up to this point. So we use a separate method to
+            /// initialize these fields.
+            generateNonKeyFields(identity);
+
             auto entity = identity->getEntity();
             Insert(entity);
             _identityMap.insert(make_pair(identity, entity));
@@ -66,9 +71,16 @@ namespace Cloude {
             return identity->getEntity();
         }
 
-
         void EntityStore::Insert(std::shared_ptr<Entity> &entity) {
             _entitySourceDriver.CreateEntity(entity, _entityMap);
+        }
+
+        void EntityStore::Save(std::shared_ptr<Entity> &entity) {
+            _entitySourceDriver.SaveEntity(entity, _entityMap);
+        }
+
+        void EntityStore::Delete(std::shared_ptr<Entity> &entity) {
+            _entitySourceDriver.DeleteEntity(entity, _entityMap);
         }
 
         void EntityStore::Clear() {

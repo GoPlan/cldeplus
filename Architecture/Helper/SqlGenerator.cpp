@@ -17,7 +17,7 @@ namespace Cloude {
                             const std::string &suffix,
                             const int &position) -> std::string {
 
-                    std::string condition = prefix + column + suffix + " = ?";
+                    std::string condition = column + " = ?";
 
                     return condition;
                 };
@@ -124,6 +124,125 @@ namespace Cloude {
 
                 strQuery += " INSERT INTO " + entityMap.TableName() + " (" + strColumns + ")";
                 strQuery += " VALUES (" + strCondition + ")";
+
+                return strQuery;
+            }
+
+            std::string CreateUpdatePreparedQuery(const EntityMap &entityMap) {
+
+                auto F = [](const std::string &column,
+                            const std::string &prefix,
+                            const std::string &suffix,
+                            const int &position) -> std::string {
+
+                    std::string condition = column + " = ?";
+
+                    return condition;
+                };
+
+                return CreateUpdatePreparedQuery(entityMap, F);
+            }
+
+            std::string CreateUpdatePreparedQuery(const EntityMap &entityMap,
+                                                  std::function<std::string(const std::string &column,
+                                                                            const std::string &prefix,
+                                                                            const std::string &suffix,
+                                                                            const int &index)> F) {
+
+                auto columnsForUpdate = entityMap.getColumnsForUpdate();
+                auto columnsForKey = entityMap.getColumnsForKey();
+
+                std::string strColumns;
+                std::string strCondition;
+                std::string strConditionPrefix;
+                std::string strConditionSuffix;
+                std::string strQuery;
+
+                int x = 0;
+
+                std::for_each(columnsForUpdate.cbegin(), columnsForUpdate.cend(),
+                              [&](const shared_ptr<Column> &column) -> void {
+
+                                  if (x != 0) {
+                                      strColumns += ", ";
+                                  }
+
+                                  strColumns += F(column->getDatasourceName(),
+                                                  strConditionPrefix,
+                                                  strConditionSuffix,
+                                                  x);
+
+                                  x++;
+                              });
+
+                int y = 0;
+
+                std::for_each(columnsForKey.cbegin(), columnsForKey.cend(),
+                              [&](const shared_ptr<Column> &column) -> void {
+
+                                  if (y != 0) {
+                                      strCondition += ", ";
+                                  }
+
+                                  strCondition += F(column->getDatasourceName(),
+                                                    strConditionPrefix,
+                                                    strConditionSuffix,
+                                                    y);
+
+                                  y++;
+                              });
+
+                strQuery += " UPDATE " + entityMap.TableName();
+                strQuery += " SET " + strColumns;
+                strQuery += " WHERE (" + strCondition + ")";
+
+                return strQuery;
+            }
+
+            std::string CreateDeletePreparedQuery(const EntityMap &entityMap) {
+
+                auto F = [](const std::string &column,
+                            const std::string &prefix,
+                            const std::string &suffix,
+                            const int &position) -> std::string {
+
+                    std::string condition = column + " = ?";
+
+                    return condition;
+                };
+
+                return CreateDeletePreparedQuery(entityMap, F);
+            }
+
+            std::string CreateDeletePreparedQuery(const EntityMap &entityMap,
+                                                  std::function<std::string(const std::string &column,
+                                                                            const std::string &prefix,
+                                                                            const std::string &suffix,
+                                                                            const int &index)> F) {
+                auto columnsForKey = entityMap.getColumnsForKey();
+
+                std::string strCondition;
+                std::string strConditionPrefix;
+                std::string strConditionSuffix;
+                std::string strQuery;
+
+                int i = 0;
+
+                std::for_each(columnsForKey.cbegin(), columnsForKey.cend(),
+                              [&](const shared_ptr<Column> &column) -> void {
+
+                                  if (i != 0) {
+                                      strCondition += ", ";
+                                  }
+
+                                  strCondition += F(column->getDatasourceName(),
+                                                    strConditionPrefix,
+                                                    strConditionSuffix,
+                                                    i);
+                              });
+
+                strQuery += " DELETE FROM " + entityMap.TableName();
+                strQuery += " WHERE (" + strCondition + ")";
 
                 return strQuery;
             }

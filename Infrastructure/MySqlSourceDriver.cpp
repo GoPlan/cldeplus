@@ -6,7 +6,7 @@
 #include <mysql.h>
 #include <Architecture/Exception/NonSupportedDataTypeException.h>
 #include <Architecture/Helper/SqlGenerator.h>
-#include "Exception/MySqlDriverException.h"
+#include "Exception/MySqlSourceDriverException.h"
 #include "MySqlSourceDriver.h"
 
 using namespace std;
@@ -57,17 +57,19 @@ namespace Cloude {
             my_bool *PtrResultError = nullptr;
         };
 
-        class MySqlSourceDriver::MySqlApiImpl {
+        class MySqlSourceDriver::implMySqlApi {
+
         public:
             MYSQL *_ptrMySql = nullptr;
             MySqlDriverOptions &_driverOptions;
 
-            MySqlApiImpl(MySqlDriverOptions &driverOptions) : _driverOptions(driverOptions) {
+        public:
+            implMySqlApi(MySqlDriverOptions &driverOptions) : _driverOptions(driverOptions) {
                 mysql_library_init;
                 _ptrMySql = mysql_init(_ptrMySql);
             }
 
-            ~MySqlApiImpl() {
+            ~implMySqlApi() {
 
                 if (_ptrMySql != nullptr) {
                     mysql_close(_ptrMySql);
@@ -76,7 +78,7 @@ namespace Cloude {
                 mysql_library_end;
             }
 
-            shared_ptr<Command> createCommand(const string &query) {
+            shared_ptr<Command> implCreateCommand(const string &query) {
 
                 auto command = make_shared<Command>();
                 command->PtrStmt = mysql_stmt_init(_ptrMySql);
@@ -95,16 +97,15 @@ namespace Cloude {
             void implAssertSqlError() {
                 if (mysql_errno(_ptrMySql)) {
                     auto errorCharPtr = mysql_error(_ptrMySql);
-                    throw Exception::MySqlDriverException(errorCharPtr);
+                    throw Exception::MySqlSourceDriverException(errorCharPtr);
                 }
             }
 
             void implAssertStmtError(MYSQL_STMT *ptrMySqlStmt) {
                 if (mysql_stmt_errno(ptrMySqlStmt)) {
                     auto errorCharPtr = mysql_stmt_error(ptrMySqlStmt);
-                    throw Exception::MySqlDriverException(errorCharPtr);
+                    throw Exception::MySqlSourceDriverException(errorCharPtr);
                 }
-
             }
 
             void implBindParamsBuffer(std::shared_ptr<Entity> &entity,
@@ -165,7 +166,8 @@ namespace Cloude {
                               });
             }
 
-            void implSetupBindBuffers(std::shared_ptr<Field> &field, MYSQL_BIND *ptrBind) {
+            void implSetupBindBuffers(std::shared_ptr<Field> &field,
+                                      MYSQL_BIND *ptrBind) {
 
                 switch (field->getColumn()->getDbType()) {
                     case Architecture::Enumeration::DbType::Boolean:
@@ -217,9 +219,10 @@ namespace Cloude {
                 }
             }
 
-        }; // END - MySqlApiImpl
 
-        MySqlSourceDriver::MySqlSourceDriver() : _ptrMySqlApiImpl(new MySqlApiImpl(OptionArgs)) {
+        }; // END - implMySqlApi
+
+        MySqlSourceDriver::MySqlSourceDriver() : _ptrMySqlApiImpl(new implMySqlApi(OptionArgs)) {
             //
         }
 
@@ -252,7 +255,7 @@ namespace Cloude {
 
         void MySqlSourceDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
 
-            auto command = _ptrMySqlApiImpl->createCommand(_getStatement);
+            auto command = _ptrMySqlApiImpl->implCreateCommand(_getStatement);
 
             _ptrMySqlApiImpl->implBindParamsBuffer(entity, entityMap.getColumnsForKey(), command);
             _ptrMySqlApiImpl->implBindResultBuffer(entity, entityMap.getColumnsForGet(), command);
@@ -284,15 +287,53 @@ namespace Cloude {
                     // TODO: To research MYSQL_DATA_TRUNCATED condition
                     _ptrMySqlApiImpl->implAssertSqlError();
                     _ptrMySqlApiImpl->implAssertStmtError(command->PtrStmt);
-                    throw Exception::MySqlDriverException("fetch error: MYSQL_DATA_TRUNCATED");
+                    throw Exception::MySqlSourceDriverException("fetch error: MYSQL_DATA_TRUNCATED");
                 default:
-                    throw Exception::MySqlDriverException("fetch error: unknown return status code");
+                    throw Exception::MySqlSourceDriverException("fetch error: unknown return status code");
             }
         }
 
         void MySqlSourceDriver::CreateEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
 
-            auto command = _ptrMySqlApiImpl->createCommand(_insertStatement);
+            auto command = _ptrMySqlApiImpl->implCreateCommand(_insertStatement);
+
+            _ptrMySqlApiImpl->implBindParamsBuffer(entity, entityMap.getColumnsForKey(), command);
+
+            if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
+                _ptrMySqlApiImpl->implAssertStmtError(command->PtrStmt);
+            }
+
+            if (mysql_stmt_execute(command->PtrStmt)) {
+                _ptrMySqlApiImpl->implAssertStmtError(command->PtrStmt);
+            }
+        }
+
+        void MySqlSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) {
+
+            auto command = _ptrMySqlApiImpl->implCreateCommand(_updateStatement);
+
+            auto columnsForUpdate = entityMap.getColumnsForUpdate();
+            auto columnsForKey = entityMap.getColumnsForKey();
+            auto joinedColumnsSize = entityMap.getColumnsForUpdate().size() + entityMap.getColumnsForKey().size();
+            auto joinedColumnsList = make_shared<ColumnsList>();
+
+            joinedColumnsList->insert(joinedColumnsList->end(), columnsForUpdate.begin(), columnsForUpdate.end());
+            joinedColumnsList->insert(joinedColumnsList->end(), columnsForKey.begin(), columnsForKey.end());
+
+            _ptrMySqlApiImpl->implBindParamsBuffer(entity, *joinedColumnsList, command);
+
+            if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
+                _ptrMySqlApiImpl->implAssertStmtError(command->PtrStmt);
+            }
+
+            if (mysql_stmt_execute(command->PtrStmt)) {
+                _ptrMySqlApiImpl->implAssertStmtError(command->PtrStmt);
+            }
+        }
+
+        void MySqlSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) {
+
+            auto command = _ptrMySqlApiImpl->implCreateCommand(_deleteStatement);
 
             _ptrMySqlApiImpl->implBindParamsBuffer(entity, entityMap.getColumnsForKey(), command);
 

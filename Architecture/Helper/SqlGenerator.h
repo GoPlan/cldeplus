@@ -30,6 +30,20 @@ namespace Cloude {
                                                                             const std::string &suffix,
                                                                             const int &index)> F);
 
+            std::string CreateUpdatePreparedQuery(const EntityMap &entityMap);
+            std::string CreateUpdatePreparedQuery(const EntityMap &entityMap,
+                                                  std::function<std::string(const std::string &column,
+                                                                            const std::string &prefix,
+                                                                            const std::string &suffix,
+                                                                            const int &index)> F);
+
+            std::string CreateDeletePreparedQuery(const EntityMap &entityMap);
+            std::string CreateDeletePreparedQuery(const EntityMap &entityMap,
+                                                  std::function<std::string(const std::string &column,
+                                                                            const std::string &prefix,
+                                                                            const std::string &suffix,
+                                                                            const int &index)> F);
+
         }
     }
 }
