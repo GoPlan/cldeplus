@@ -6,6 +6,7 @@
 #include <string>
 
 #include <Architecture/Exception/EntityStoreRoutineException.h>
+#include <Architecture/Helper/SqlGenerator.h>
 #include "EntitySourceDriver.h"
 
 using namespace std;
@@ -96,6 +97,10 @@ namespace Cloude {
                               auto ptrField = new Field(item);
                               entity->InsertField(ptrField);
                           });
+        }
+
+        void EntityStore::init() {
+            //
         }
     }
 }

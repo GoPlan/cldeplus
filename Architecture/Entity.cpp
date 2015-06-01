@@ -31,7 +31,8 @@ namespace Cloude {
         }
 
         void Entity::InsertField(Field *ptrField) {
-            _fieldsMap.insert(make_pair(ptrField->getColumn()->getName(), shared_ptr<Field>(ptrField)));
+            _fieldsMap.insert(make_pair(ptrField->getColumn()->getName(),
+                                        shared_ptr<Field>(ptrField)));
         }
     }
 }

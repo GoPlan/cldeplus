@@ -36,6 +36,7 @@ namespace Cloude {
         }
 
         void Field::ResetField() {
+
             _voidPtr = nullptr;
             _string.empty();
             _bool = false;
@@ -52,6 +53,7 @@ namespace Cloude {
         }
 
         void *Field::PointerToFieldValue() {
+
             switch (_column->getDbType()) {
                 case Enumeration::DbType::Boolean:
                     return &_bool;

@@ -15,6 +15,7 @@ namespace Cloude {
     namespace Architecture {
 
         class EntityStore {
+
         public:
             EntityStore(EntityMap &entityMap, EntityLoader &entityLoader, EntitySourceDriver &entitySourceDriver);
             EntityStore(const EntityStore &srcEntityStore) = default;
@@ -42,13 +43,17 @@ namespace Cloude {
                 return _entityLoader;
             }
 
+
         protected:
             EntityMap &_entityMap;
             EntityLoader &_entityLoader;
             EntitySourceDriver &_entitySourceDriver;
 
+
         private:
             std::unordered_map<std::shared_ptr<Identity>, std::shared_ptr<Entity>> _identityMap;
+
+            void init();
             void generateNonKeyFields(std::shared_ptr<Identity> &identity);
         };
     }

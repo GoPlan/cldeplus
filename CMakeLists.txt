@@ -67,12 +67,12 @@ add_library(application STATIC
 add_library(infrastructure STATIC
     Infrastructure/MySqlSourceDriver.h
     Infrastructure/MySqlSourceDriver.cpp
-    Infrastructure/PostgresSourceDriver.cpp
-    Infrastructure/PostgresSourceDriver.h
-    Infrastructure/PostgresSourceDriver.cpp
-    Infrastructure/PostgresSourceDriver.h
+    Infrastructure/PostgreSourceDriver.cpp
+    Infrastructure/PostgreSourceDriver.h
+    Infrastructure/PostgreSourceDriver.cpp
+    Infrastructure/PostgreSourceDriver.h
     Infrastructure/Exception/MySqlSourceDriverException.cpp
-    Infrastructure/Exception/MySqlSourceDriverException.h)
+    Infrastructure/Exception/MySqlSourceDriverException.h Infrastructure/Exception/PostgreSourceDriverException.cpp Infrastructure/Exception/PostgreSourceDriverException.h)
 
 
 add_library(examples STATIC
@@ -91,6 +91,15 @@ add_library(apptest STATIC
 
 # Libs
 set(LIBS_DIR ${CMAKE_SOURCE_DIR}/Libs)
+
+# OPT_LOCAL
+set(OPT_LOCAL "/opt/local")
+set(OPT_LOCAL_INCLUDE "${OPT_LOCAL}/include")
+set(OPT_LOCAL_LIB "${OPT_LOCAL}/lib")
+
+# POSTGRESQL94
+include_directories(${OPT_LOCAL_INCLUDE}/postgresql94)
+LINK_DIRECTORIES(${OPT_LOCAL_LIB}/postgresql94)
 
 # MySql Client
 set(MYSQL_DIR ${LIBS_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64)
