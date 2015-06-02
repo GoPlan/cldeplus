@@ -18,15 +18,12 @@ namespace Cloude {
         class Field {
         public:
             Field(const Field &srcField) = default;
+
             Field &operator=(const Field &srcField) = default;
 
             virtual ~Field() { };
 
             explicit Field(const std::shared_ptr<Column> &column);
-            explicit Field(const std::shared_ptr<Column> &column, long value);
-            explicit Field(const std::shared_ptr<Column> &column, unsigned long value);
-            explicit Field(const std::shared_ptr<Column> &column, double value);
-            explicit Field(const std::shared_ptr<Column> &column, const std::string &value);
 
             void *PointerToFieldValue();
 
@@ -146,7 +143,7 @@ namespace Cloude {
                 _voidPtr = voidPtr;
             }
 
-            void setCString(const char* value){
+            void setCString(const char *value) {
                 strncpy(_cstr, value, 255);
             }
 

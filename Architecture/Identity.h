@@ -26,6 +26,7 @@ namespace Cloude {
             std::shared_ptr<Identity> SetField(std::shared_ptr<Field> &field);
             std::shared_ptr<Identity> SetField(Field *ptrField);
             std::shared_ptr<Identity> SetField(const std::initializer_list<Field *> &ptrFieldList);
+            std::shared_ptr<Identity> SetField(const std::initializer_list<std::shared_ptr<Field>> &spFieldList);
 
             std::shared_ptr <Entity> getEntity() const {
                 return _entity;

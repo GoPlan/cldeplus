@@ -39,5 +39,14 @@ namespace Cloude {
 
             return shared_from_this();
         }
+
+        std::shared_ptr<Identity> Identity::SetField(const std::initializer_list<std::shared_ptr<Field>> &spFieldList) {
+
+            for (auto spField : spFieldList) {
+                SetField(const_cast<std::shared_ptr<Field> &>(spField));
+            }
+
+            return shared_from_this();
+        }
     }
 }

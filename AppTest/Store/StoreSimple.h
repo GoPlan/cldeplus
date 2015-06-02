@@ -7,10 +7,9 @@
 
 #include "gtest/gtest.h"
 #include "../../Cloude.h"
-#include "../../Application/Model/StockGroup.h"
-#include "../../Application/Mapper/StockGroupLoader.h"
 #include "../../Application/Mapper/StockGroupMap.h"
-#include "MySqlConnector.h"
+#include "../../Application/Mapper/StockGroupLoader.h"
+#include "../../Infrastructure/MySqlSourceDriver.h"
 
 namespace Cloude {
     namespace AppTest {
@@ -21,14 +20,15 @@ namespace Cloude {
 
             protected:
                 StoreSimple() : _stockGroupLoader(),
+                                _mySqlDriver(_stockGroupMap),
                                 _entityStore(_stockGroupMap, _stockGroupLoader, _mySqlDriver) { };
 
                 virtual void SetUp();
                 virtual void TearDown();
 
-                Cloude::Infrastructure::MySqlConnector _mySqlDriver;
-                Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
                 Cloude::Application::Mapper::StockGroupLoader _stockGroupLoader;
+                Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
+                Cloude::Infrastructure::MySqlSourceDriver _mySqlDriver;
                 Cloude::Architecture::EntityStore _entityStore;
             };
         }

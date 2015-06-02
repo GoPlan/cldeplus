@@ -15,26 +15,6 @@ namespace Cloude {
             ResetField();
         }
 
-        Field::Field(const std::shared_ptr<Column> &column, long value) : _column(column),
-                                                                          _int64(value) {
-            //
-        }
-
-        Field::Field(const std::shared_ptr<Column> &column, unsigned long value) : _column(column),
-                                                                                   _uint64(value) {
-            //
-        }
-
-        Field::Field(const std::shared_ptr<Column> &column, double value) : _column(column),
-                                                                            _double(value) {
-            //
-        }
-
-        Field::Field(const shared_ptr<Column> &column, const std::string &value) : _column(column),
-                                                                                   _string(value) {
-            //
-        }
-
         void Field::ResetField() {
 
             _voidPtr = nullptr;

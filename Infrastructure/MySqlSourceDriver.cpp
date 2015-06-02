@@ -59,7 +59,6 @@ namespace Cloude {
         };
 
         class MySqlSourceDriver::MySqlApiImpl {
-
         public:
             MYSQL *PtrMySql = nullptr;
 
@@ -220,8 +219,6 @@ namespace Cloude {
                         throw Architecture::Exception::NonSupportedDataTypeException();
                 }
             }
-
-
         }; // END - MySqlApiImpl
 
         MySqlSourceDriver::MySqlSourceDriver(EntityMap &entityMap) : EntitySourceDriver(entityMap),
@@ -314,10 +311,8 @@ namespace Cloude {
         void MySqlSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) {
 
             auto command = _ptrMySqlApiImpl->createCommand(_updateStatement);
-
             auto columnsForUpdate = entityMap.getColumnsForUpdate();
             auto columnsForKey = entityMap.getColumnsForKey();
-            auto joinedColumnsSize = entityMap.getColumnsForUpdate().size() + entityMap.getColumnsForKey().size();
             auto joinedColumnsList = make_shared<ColumnsList>();
 
             joinedColumnsList->insert(joinedColumnsList->end(), columnsForUpdate.begin(), columnsForUpdate.end());

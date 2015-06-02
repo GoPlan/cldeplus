@@ -74,6 +74,8 @@ namespace Cloude {
             std::string _updateStatement;
             std::string _deleteStatement;
 
+            bool isConnected = false;
+
             void init();
         };
     }

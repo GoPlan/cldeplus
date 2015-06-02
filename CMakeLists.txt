@@ -85,8 +85,8 @@ add_library(apptest STATIC
     AppTest/main.cpp
     AppTest/Store/StoreSimple.cpp
     AppTest/Store/StoreSimple.h
-    AppTest/Store/StoreCreateTest.h
-    AppTest/Store/StoreGetTest.h)
+    AppTest/Store/StoreCreateSaveDeleteTest.h
+    )
 
 
 # Libs

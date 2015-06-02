@@ -33,6 +33,7 @@ namespace Cloude {
             void Save(std::shared_ptr<Entity> &entity);
             void Delete(std::shared_ptr<Entity> &entity);
             void Clear();
+            unsigned long Size();
 
 
             EntityMap &getEntityMap() const {

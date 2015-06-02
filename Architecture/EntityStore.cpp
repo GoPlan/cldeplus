@@ -102,6 +102,10 @@ namespace Cloude {
         void EntityStore::init() {
             //
         }
+
+        unsigned long EntityStore::Size() {
+            return _identityMap.size();
+        }
     }
 }
 
