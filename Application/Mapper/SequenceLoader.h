@@ -17,8 +17,7 @@ namespace Cloude {
                 SequenceLoader(const SequenceLoader &srcSequenceLoader) = default;
                 SequenceLoader &operator=(const SequenceLoader &srcSequenceLoader) = default;
 
-                virtual std::shared_ptr<Architecture::Identity> NextPrimaryKey() override;
-                virtual void LoadEntity(std::shared_ptr<Architecture::Identity> &identity) override;
+                virtual std::shared_ptr<Architecture::Identity> NextPrimaryKey() const override;
             };
 
         }

@@ -253,7 +253,7 @@ namespace Cloude {
             //
         }
 
-        void MySqlSourceDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
+        int MySqlSourceDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) const {
 
             auto command = _ptrMySqlApiImpl->createCommand(_getStatement);
 
@@ -276,13 +276,13 @@ namespace Cloude {
 
             switch (rowStatus) {
                 case 0:
-                    break;
+                    return 1;
                 case 1:
                     _ptrMySqlApiImpl->assertSqlError();
                     _ptrMySqlApiImpl->assertStmtError(command->PtrStmt);
                     break;
                 case MYSQL_NO_DATA:
-                    break;
+                    return 0;
                 case MYSQL_DATA_TRUNCATED:
                     // TODO: To research MYSQL_DATA_TRUNCATED condition
                     _ptrMySqlApiImpl->assertSqlError();
@@ -291,9 +291,12 @@ namespace Cloude {
                 default:
                     throw Exception::MySqlSourceDriverException("fetch error: unknown return status code");
             }
+
+            return 0;
         }
 
-        void MySqlSourceDriver::CreateEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) {
+        int MySqlSourceDriver::CreateEntity(shared_ptr<Architecture::Entity> &entity,
+                                            const EntityMap &entityMap) const {
 
             auto command = _ptrMySqlApiImpl->createCommand(_insertStatement);
 
@@ -306,19 +309,21 @@ namespace Cloude {
             if (mysql_stmt_execute(command->PtrStmt)) {
                 _ptrMySqlApiImpl->assertStmtError(command->PtrStmt);
             }
+
+            return 1;
         }
 
-        void MySqlSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) {
+        int MySqlSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
             auto command = _ptrMySqlApiImpl->createCommand(_updateStatement);
-            auto columnsForUpdate = entityMap.getColumnsForUpdate();
             auto columnsForKey = entityMap.getColumnsForKey();
-            auto joinedColumnsList = make_shared<ColumnsList>();
+            auto columnsForUpdate = entityMap.getColumnsForUpdate();
 
-            joinedColumnsList->insert(joinedColumnsList->end(), columnsForUpdate.begin(), columnsForUpdate.end());
-            joinedColumnsList->insert(joinedColumnsList->end(), columnsForKey.begin(), columnsForKey.end());
+            ColumnsList joinedColumnsList;
+            joinedColumnsList.insert(joinedColumnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
+            joinedColumnsList.insert(joinedColumnsList.end(), columnsForKey.begin(), columnsForKey.end());
 
-            _ptrMySqlApiImpl->bindParamsBuffer(entity, *joinedColumnsList, command);
+            _ptrMySqlApiImpl->bindParamsBuffer(entity, joinedColumnsList, command);
 
             if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                 _ptrMySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -327,9 +332,11 @@ namespace Cloude {
             if (mysql_stmt_execute(command->PtrStmt)) {
                 _ptrMySqlApiImpl->assertStmtError(command->PtrStmt);
             }
+
+            return 1;
         }
 
-        void MySqlSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) {
+        int MySqlSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
             auto command = _ptrMySqlApiImpl->createCommand(_deleteStatement);
 
@@ -342,6 +349,8 @@ namespace Cloude {
             if (mysql_stmt_execute(command->PtrStmt)) {
                 _ptrMySqlApiImpl->assertStmtError(command->PtrStmt);
             }
+
+            return 1;
         }
 
         void MySqlSourceDriver::init() {

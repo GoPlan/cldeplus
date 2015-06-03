@@ -42,7 +42,7 @@ add_library(architecture STATIC
     Architecture/DataSource/Connector.h
     Architecture/DataSource/Connector.cpp
     Architecture/EntitySourceDriver.cpp
-    Architecture/EntitySourceDriver.h)
+    Architecture/EntitySourceDriver.h Architecture/Helper/EntityStoreHelper.cpp Architecture/Helper/EntityStoreHelper.h)
 
 
 add_library(application STATIC

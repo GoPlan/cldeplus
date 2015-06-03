@@ -95,7 +95,7 @@ namespace Cloude {
 
         }
 
-        void PostgreSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) {
+        int PostgreSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
             // TODO: Establish columns for Load operation
             ColumnsList columnList;
@@ -113,9 +113,11 @@ namespace Cloude {
                          command->PtrParamLengths,
                          command->PtrParamFormats,
                          command->ResultFormat);
+
+            return 1;
         }
 
-        void PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) {
+        int PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
             // TODO: Establish columns for Create operation
             ColumnsList columnList;
@@ -132,9 +134,11 @@ namespace Cloude {
                          ptrParamValues,
                          command->PtrParamLengths,
                          command->PtrParamFormats, 0);
+
+            return 1;
         }
 
-        void PostgreSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) {
+        int PostgreSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
             // TODO: Establish columns for Save operation
             ColumnsList columnList;
@@ -151,9 +155,11 @@ namespace Cloude {
                          ptrParamValues,
                          command->PtrParamLengths,
                          command->PtrParamFormats, 0);
+
+            return 1;
         }
 
-        void PostgreSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) {
+        int PostgreSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
             // TODO: Establish columns for Delete operation
             ColumnsList columnList;
@@ -170,6 +176,8 @@ namespace Cloude {
                          ptrParamValues,
                          command->PtrParamLengths,
                          command->PtrParamFormats, 0);
+
+            return 1;
         }
 
         void PostgreSourceDriver::Connect() {

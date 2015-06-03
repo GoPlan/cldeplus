@@ -28,8 +28,7 @@ namespace Cloude {
                 StockGroupLoader &operator=(const StockGroupLoader &srcStockGroupLoader) = default;
                 virtual ~StockGroupLoader();
 
-                std::shared_ptr<Identity> NextPrimaryKey() override;
-                void LoadEntity(std::shared_ptr<Identity> &identity) override;
+                std::shared_ptr<Identity> NextPrimaryKey() const override;
 
             private:
             };

@@ -17,12 +17,8 @@ namespace Cloude {
                 //
             }
 
-            std::shared_ptr<Identity> StockGroupLoader::NextPrimaryKey() {
+            std::shared_ptr<Identity> StockGroupLoader::NextPrimaryKey() const {
                 return make_shared<Identity>();
-            }
-
-            void StockGroupLoader::LoadEntity(std::shared_ptr<Identity> &identity) {
-                //
             }
         }
     }

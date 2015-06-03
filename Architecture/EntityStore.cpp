@@ -7,6 +7,7 @@
 
 #include <Architecture/Exception/EntityStoreRoutineException.h>
 #include <Architecture/Helper/SqlGenerator.h>
+#include <Architecture/Helper/EntityStoreHelper.h>
 #include "EntitySourceDriver.h"
 
 using namespace std;
@@ -35,21 +36,24 @@ namespace Cloude {
                 return search->second;
             }
 
-            /// As Identity only initialized its entity fields that are used for primary key,
-            /// the remaining fields are not yet valid up to this point. So we use a separate method to
-            /// initialize these fields.
-            generateNonKeyFields(identity);
+            auto entity = make_shared<Entity>(identity);
+            auto columnsForGet = _entityMap.getColumnsForGet();
 
-            auto entity = identity->getEntity();
-            _entitySourceDriver.LoadEntity(entity, _entityMap);
-            _identityMap.insert(make_pair(identity, identity->getEntity()));
+            Architecture::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
 
-            return identity->getEntity();
+            if(!_entitySourceDriver.LoadEntity(entity, _entityMap)){
+                return shared_ptr<Entity>();
+            }
+
+            _identityMap.insert(make_pair(identity, entity));
+
+            return entity;
         }
 
         shared_ptr<Entity> EntityStore::Create() {
             auto identity = _entityLoader.NextPrimaryKey();
             auto entity = Create(identity);
+
             return entity;
         }
 
@@ -60,16 +64,15 @@ namespace Cloude {
                 throw Architecture::Exception::EntityStoreRoutineException(*this, message);
             }
 
-            /// As Identity only initialized its entity fields that are used for primary key,
-            /// the remaining fields are not yet valid up to this point. So we use a separate method to
-            /// initialize these fields.
-            generateNonKeyFields(identity);
+            auto entity = make_shared<Entity>(identity);
+            auto columnsForGet = _entityMap.getColumnsForGet();
 
-            auto entity = identity->getEntity();
+            Architecture::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
+
             Insert(entity);
             _identityMap.insert(make_pair(identity, entity));
 
-            return identity->getEntity();
+            return entity;
         }
 
         void EntityStore::Insert(std::shared_ptr<Entity> &entity) {
@@ -81,26 +84,14 @@ namespace Cloude {
         }
 
         void EntityStore::Delete(std::shared_ptr<Entity> &entity) {
-            _entitySourceDriver.DeleteEntity(entity, _entityMap);
+            if(_entitySourceDriver.DeleteEntity(entity, _entityMap)){
+                auto identity = entity->getIdentity();
+                _identityMap.erase(identity);
+            }
         }
 
         void EntityStore::Clear() {
             _identityMap.clear();
-        }
-
-        void EntityStore::generateNonKeyFields(std::shared_ptr<Identity> &identity) {
-
-            auto entity = identity->getEntity();
-
-            std::for_each(_entityMap.getColumnsForUpdate().cbegin(), _entityMap.getColumnsForUpdate().cend(),
-                          [&entity](const shared_ptr<Column> &item) {
-                              auto ptrField = new Field(item);
-                              entity->InsertField(ptrField);
-                          });
-        }
-
-        void EntityStore::init() {
-            //
         }
 
         unsigned long EntityStore::Size() {

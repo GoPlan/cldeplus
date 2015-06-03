@@ -11,6 +11,13 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
+        Entity::Entity(const std::shared_ptr<Identity> &identity) : _identity(identity) {
+            for (auto fieldPair : _identity->getFieldsMap()) {
+                auto field = fieldPair.second;
+                SetField(field);
+            }
+        }
+
         shared_ptr<Field> Entity::operator[](const string &columnName) {
             return GetField(columnName);
         }
@@ -26,13 +33,48 @@ namespace Cloude {
             return search->second;
         }
 
-        void Entity::InsertField(shared_ptr<Field> &field) {
-            _fieldsMap.insert(make_pair(field->getColumn()->getName(), field));
+        void Entity::SetField(shared_ptr<Field> &field) {
+
+            if (HasField(field->getColumn()->getName())) {
+                return;
+            }
+
+            shared_ptr<Field> spField(field);
+
+            _fieldsMap.insert(make_pair(field->getColumn()->getName(), spField));
         }
 
-        void Entity::InsertField(Field *ptrField) {
-            _fieldsMap.insert(make_pair(ptrField->getColumn()->getName(),
-                                        shared_ptr<Field>(ptrField)));
+        void Entity::SetField(Field *ptrField) {
+
+            if (HasField(ptrField->getColumn()->getName())) {
+                return;
+            }
+
+            shared_ptr<Field> spField(ptrField);
+
+            _fieldsMap.insert(make_pair(ptrField->getColumn()->getName(), spField));
+        }
+
+        void Entity::SetMultiFields(std::initializer_list<std::shared_ptr<Field>> &fieldsList) {
+            for (auto field : fieldsList) {
+                SetField(const_cast<std::shared_ptr<Field> &>(field));
+            }
+        }
+
+        void Entity::SetMultiFields(std::initializer_list<Field *> ptrFieldsList) {
+            for (auto ptrField : ptrFieldsList) {
+                SetField(ptrField);
+            }
+        }
+
+        bool Entity::HasField(const std::string &fieldName) {
+            auto search = _fieldsMap.find(fieldName);
+            auto result = !(search == _fieldsMap.end());
+            return result;
+        }
+
+        unsigned long Entity::Size() {
+            return _fieldsMap.size();
         }
     }
 }

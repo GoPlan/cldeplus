@@ -22,9 +22,7 @@ namespace Cloude {
             EntityStore &operator=(const EntityStore &srcEntityStore) = default;
             virtual ~EntityStore() = default;
 
-
             bool HasIdentityInMap(const std::shared_ptr<Identity> &identity) const;
-
 
             std::shared_ptr<Entity> Get(std::shared_ptr<Identity> &identity);
             std::shared_ptr<Entity> Create();
@@ -35,27 +33,19 @@ namespace Cloude {
             void Clear();
             unsigned long Size();
 
-
-            EntityMap &getEntityMap() const {
+            const EntityMap &getEntityMap() const {
                 return _entityMap;
             }
 
-            EntityLoader &getEntityLoader() const {
-                return _entityLoader;
-            }
-
-
         protected:
-            EntityMap &_entityMap;
-            EntityLoader &_entityLoader;
-            EntitySourceDriver &_entitySourceDriver;
+            const EntityMap &_entityMap;
+            const EntityLoader &_entityLoader;
+            const EntitySourceDriver &_entitySourceDriver;
 
 
         private:
             std::unordered_map<std::shared_ptr<Identity>, std::shared_ptr<Entity>> _identityMap;
 
-            void init();
-            void generateNonKeyFields(std::shared_ptr<Identity> &identity);
         };
     }
 }

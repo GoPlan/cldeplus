@@ -35,16 +35,16 @@ namespace Cloude {
             PostgreSourceDriver(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
             PostgreSourceDriver &operator=(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
 
-            explicit PostgreSourceDriver(EntityMap& entityMap);
+            explicit PostgreSourceDriver(EntityMap &entityMap);
             ~PostgreSourceDriver();
 
             void Connect();
             void Disconnect();
 
-            void LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
-            void CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
-            void SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
-            void DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
+            int LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
+            int CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
+            int SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
+            int DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
 
         private:
             class PqApiImpl;

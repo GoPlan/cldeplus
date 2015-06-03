@@ -19,9 +19,8 @@ namespace Cloude {
 
                 static std::string TableName;
 
-                static std::shared_ptr<Architecture::Column> Id;
-                static std::shared_ptr<Architecture::Column> UniqueName;
                 static std::shared_ptr<Architecture::Column> Code;
+                static std::shared_ptr<Architecture::Column> UniqueName;
                 static std::shared_ptr<Architecture::Column> DefaultStockCode;
 
             protected:

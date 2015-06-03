@@ -9,44 +9,33 @@ using namespace std;
 namespace Cloude {
     namespace Architecture {
 
-        shared_ptr<Identity> Identity::SetField(std::shared_ptr<Field> &field) {
-
-            if (!_entity) {
-                _entity = make_shared<Entity>(shared_from_this());
-            }
-
-            _entity->InsertField(field);
-
-            return shared_from_this();
+        void Identity::SetField(std::shared_ptr<Field> &field) {
+            _fieldsMap[field->getColumn()->getName()] = field;
         }
 
-        std::shared_ptr<Identity> Identity::SetField(Field *ptrField) {
-
-            if (!_entity) {
-                _entity = make_shared<Entity>(shared_from_this());
-            }
-
-            _entity->InsertField(ptrField);
-
-            return shared_from_this();
+        void Identity::SetField(Field *ptrField) {
+            shared_ptr<Field> spField(ptrField);
+            _fieldsMap[ptrField->getColumn()->getName()] = spField;
         }
 
-        std::shared_ptr<Identity> Identity::SetField(const std::initializer_list<Field *> &ptrFieldList) {
-
+        void Identity::SetMultiFields(const std::initializer_list<Field *> &ptrFieldList) {
             for (auto ptrField : ptrFieldList) {
                 SetField(ptrField);
             }
-
-            return shared_from_this();
         }
 
-        std::shared_ptr<Identity> Identity::SetField(const std::initializer_list<std::shared_ptr<Field>> &spFieldList) {
-
+        void Identity::SetMultiFields(const std::initializer_list<std::shared_ptr<Field>> &spFieldList) {
             for (auto spField : spFieldList) {
                 SetField(const_cast<std::shared_ptr<Field> &>(spField));
             }
+        }
 
-            return shared_from_this();
+        Identity::Identity(const std::initializer_list<Field *> ptrFieldList) {
+            SetMultiFields(ptrFieldList);
+        }
+
+        Identity::Identity(const std::initializer_list<std::shared_ptr<Field>>& fieldsList) {
+            SetMultiFields(fieldsList);
         }
     }
 }

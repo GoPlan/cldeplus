@@ -43,10 +43,10 @@ namespace Cloude {
             void Connect();
             void Disconnect();
 
-            void LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
-            void CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
-            void SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
-            void DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) override;
+            int LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
+            int CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
+            int SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
+            int DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
 
             void setGetStatement(const std::string &getStatement) {
                 _getStatement = getStatement;

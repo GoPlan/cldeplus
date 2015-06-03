@@ -30,21 +30,16 @@ namespace Cloude {
                 std::string nameValue("Vinamilk");
 
                 auto spField = std::make_shared<Field>(_stockGroupMap.Code);
-                auto spIdentity = std::make_shared<Identity>()->SetField(spField);
+                auto spFieldsList{spField};
+                auto spIdentity = std::make_shared<Identity>(spFieldsList);
                 ASSERT_TRUE(spIdentity.get() != 0);
 
                 spField->setCString(codeValue.c_str());
 
-                auto spIdentEntity = spIdentity->getEntity();
-                ASSERT_TRUE(spIdentEntity.get() != 0);
-
-                auto spIdentEntityField = spIdentEntity->operator[](_stockGroupMap.Code->getName());
-                ASSERT_TRUE(spIdentEntityField.get() != 0);
-                ASSERT_TRUE(codeValue.compare(spIdentEntityField->getCString()) == 0);
-
                 // CREATE
                 auto spEntity = _entityStore.Create(spIdentity);
                 auto spNameField = spEntity->operator[](_stockGroupMap.UniqueName->getName());
+
                 spNameField->setCString(nameValue.c_str());
 
                 // SAVE
@@ -71,35 +66,27 @@ namespace Cloude {
                 spFieldCode->setCString(codeValue.c_str());
                 spFieldName->setCString(nameValue.c_str());
 
-                // SetField(initializer_list<shared_ptr<Field>>()
-                std::initializer_list<std::shared_ptr<Field>> initFieldList{spFieldCode};
-                auto spIdentity = std::make_shared<Identity>()->SetField(initFieldList);
+                // SetMultiFields(initializer_list<shared_ptr<Field>>()
+                auto initFieldList{spFieldCode};
+                auto spIdentity = std::make_shared<Identity>(initFieldList);
                 ASSERT_TRUE(spIdentity.get() != 0);
-
-                auto spIdentEntity = spIdentity->getEntity();
-                ASSERT_TRUE(spIdentEntity.get() != 0);
-
-                auto spIdentEntityField = spIdentEntity->operator[](StockGroupMap::Code->getName());
-                ASSERT_TRUE(spIdentEntityField.get() != 0);
-                ASSERT_TRUE(strcmp(codeValue.c_str(), spIdentEntityField->getCString()) == 0);
+                ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity) == false);
 
                 // CREATE
-                auto spEntity = _entityStore.Create(spIdentity);
-                ASSERT_TRUE(spEntity.get() != 0);
-                ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
-
-                // GET - SAVE
                 {
-                    auto spEntityAlt = _entityStore.Get(spIdentity);
-                    ASSERT_TRUE(spEntityAlt.get() != 0);
-                    ASSERT_TRUE(spIdentEntity == spEntity);
-                    ASSERT_TRUE(spEntity == spEntityAlt);
+                    auto spEntity = _entityStore.Create(spIdentity);
+                    ASSERT_TRUE(spEntity.get() != 0);
+                    ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
+                }
 
-                    auto spNameFieldAlt = spEntityAlt->operator[](StockGroupMap::UniqueName->getName());
-                    spNameFieldAlt->setCString(nameValue.c_str());
+                // SAVE
+                {
+                    auto spEntity = _entityStore.Get(spIdentity);
+                    auto spNameField = spEntity->operator[](StockGroupMap::UniqueName->getName());
 
-                    // SAVE
-                    _entityStore.Save(spEntityAlt);
+                    spNameField->setCString(nameValue.c_str());
+
+                    _entityStore.Save(spEntity);
                 }
 
                 // CLEAR
@@ -111,21 +98,21 @@ namespace Cloude {
 
                 // GET - Check for saved field
                 {
-                    auto spEntityAlt = _entityStore.Get(spIdentity);
-                    auto spCodeField = spEntityAlt->operator[](StockGroupMap::Code->getName());
-                    auto spNameField = spEntityAlt->operator[](StockGroupMap::UniqueName->getName());
+                    auto spEntity = _entityStore.Get(spIdentity);
+                    auto spCodeField = spEntity->operator[](StockGroupMap::Code->getName());
+                    auto spNameField = spEntity->operator[](StockGroupMap::UniqueName->getName());
                     ASSERT_TRUE(_entityStore.Size() > 0);
                     ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity) == true);
-                    ASSERT_TRUE(strncmp(codeValue.c_str(), spCodeField->getCString(), 3) == 0);
-                    ASSERT_TRUE(strncmp(nameValue.c_str(), spNameField->getCString(), 3) == 0);
+                    ASSERT_TRUE(strcmp(codeValue.c_str(), spCodeField->getCString()) == 0);
+                    ASSERT_TRUE(strcmp(nameValue.c_str(), spNameField->getCString()) == 0);
 
-                    _entityStore.Delete(spEntityAlt);
+                    _entityStore.Delete(spEntity);
                 }
 
                 // DELETE - Check if Entity is nullptr
                 {
-
-
+                    auto spEntity = _entityStore.Get(spIdentity);
+                    ASSERT_TRUE(spEntity.get() == 0);
                 }
             }
         }

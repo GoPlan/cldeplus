@@ -6,34 +6,34 @@
 #define CLOUD_E_CPLUS_IDENTITY_H
 
 #include <unordered_map>
-
-#include "Entity.h"
+#include "Field.h"
 
 namespace Cloude {
     namespace Architecture {
 
-        class Field;
+        using FieldsMap = std::unordered_map<std::string, std::shared_ptr<Field>>;
 
-        class EntityStore;
-
-        class Identity : public std::enable_shared_from_this<Identity> {
+        class Identity {
         public:
             Identity() = default;
             Identity(const Identity &srcIdentity) = default;
             Identity &operator=(const Identity &srcIdentity) = default;
             virtual ~Identity() = default;
 
-            std::shared_ptr<Identity> SetField(std::shared_ptr<Field> &field);
-            std::shared_ptr<Identity> SetField(Field *ptrField);
-            std::shared_ptr<Identity> SetField(const std::initializer_list<Field *> &ptrFieldList);
-            std::shared_ptr<Identity> SetField(const std::initializer_list<std::shared_ptr<Field>> &spFieldList);
+            explicit Identity(const std::initializer_list<Field *> ptrFieldList);
+            explicit Identity(const std::initializer_list<std::shared_ptr<Field>> &fieldsList);
 
-            std::shared_ptr <Entity> getEntity() const {
-                return _entity;
-            }
+            void SetField(std::shared_ptr<Field> &field);
+            void SetField(Field *ptrField);
+            void SetMultiFields(const std::initializer_list<Field *> &ptrFieldList);
+            void SetMultiFields(const std::initializer_list<std::shared_ptr<Field>> &spFieldList);
+
+            const FieldsMap &getFieldsMap() {
+                return _fieldsMap;
+            };
 
         protected:
-            std::shared_ptr<Entity> _entity;
+            FieldsMap _fieldsMap;
         };
     }
 }

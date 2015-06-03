@@ -18,13 +18,10 @@ namespace Cloude {
         class Field {
         public:
             Field(const Field &srcField) = default;
-
             Field &operator=(const Field &srcField) = default;
-
-            virtual ~Field() { };
+            virtual ~Field() = default;
 
             explicit Field(const std::shared_ptr<Column> &column);
-
             void *PointerToFieldValue();
 
             const std::shared_ptr<Column> &getColumn() const {
@@ -152,8 +149,7 @@ namespace Cloude {
             }
 
         private:
-            const std::shared_ptr<Column> &_column;
-
+            std::shared_ptr<Column> _column;
             std::string _string;
 
             int8_t _int8;
