@@ -2,11 +2,11 @@
 // Created by LE, Duc-Anh on 5/21/15.
 //
 
-#include <Infrastructure/MySqlSourceDriver.h>
-#include "StoreSimple.h"
+
+#include "StockGroupMySqlStore.h"
 
 
-void Cloude::AppTest::Store::StoreSimple::SetUp() {
+void Cloude::AppTest::Store::StockGroupMySqlStore::SetUp() {
 
     _mySqlDriver.OptionArgs.Host = "dell-3020";
     _mySqlDriver.OptionArgs.Port = 3306;
@@ -18,7 +18,7 @@ void Cloude::AppTest::Store::StoreSimple::SetUp() {
 
 }
 
-void Cloude::AppTest::Store::StoreSimple::TearDown() {
+void Cloude::AppTest::Store::StockGroupMySqlStore::TearDown() {
 
     _mySqlDriver.Disconnect();
 

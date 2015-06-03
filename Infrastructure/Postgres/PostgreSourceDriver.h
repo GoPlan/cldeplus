@@ -1,11 +1,10 @@
 //
-// Created by GoPlan on 18/05/2015.
+// Created by LE, Duc Anh on 5/27/15.
 //
 
-#ifndef CLOUD_E_CPLUS_MYSQLSOUCRCEDRIVER_H
-#define CLOUD_E_CPLUS_MYSQLSOUCRCEDRIVER_H
+#ifndef CLOUD_E_CPLUS_POSTGRESOURCEDRIVER_H
+#define CLOUD_E_CPLUS_POSTGRESOURCEDRIVER_H
 
-#include <vector>
 #include <Architecture/EntitySourceDriver.h>
 
 namespace Cloude {
@@ -25,20 +24,32 @@ namespace Cloude {
             std::string Pass;
             std::string Base;
 
-            unsigned int Port = 3306;
+            unsigned int Port = 5432;
         };
 
-        class MySqlSourceDriver : public EntitySourceDriver {
+        enum class PostgreSourceExecutionStatus {
+            PGRES_EMPTY_QUERY,
+            PGRES_COMMAND_OKAY,
+            PGRES_TUPLE_OKAY,
+            PGRES_COPY_OUT,
+            PGRES_COPY_IN,
+            PGRES_BAD_RESPONSE,
+            PGRES_NONFATAL_ERROR,
+            PGRES_FATAL_ERROR,
+            PGRES_COPY_BOTH,
+            PGRES_SINGLE_TUPLE
+        };
+
+        class PostgreSourceDriver : public Architecture::EntitySourceDriver {
         public:
             Options OptionArgs;
 
         public:
-            // TODO: Validate correctness of Copy constructor/assignment
-            MySqlSourceDriver(const MySqlSourceDriver &entityMap) = default;
-            MySqlSourceDriver &operator=(const MySqlSourceDriver &entityMap) = default;
+            PostgreSourceDriver(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
+            PostgreSourceDriver &operator=(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
 
-            explicit MySqlSourceDriver(EntityMap &entityMap);
-            ~MySqlSourceDriver();
+            explicit PostgreSourceDriver(EntityMap &entityMap);
+            ~PostgreSourceDriver();
 
             void Connect();
             void Disconnect();
@@ -48,33 +59,17 @@ namespace Cloude {
             int SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
             int DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
 
-            void setGetStatement(const std::string &getStatement) {
-                _getStatement = getStatement;
-            }
-
-            void setInsertStatement(const std::string &insertStatement) {
-                _insertStatement = insertStatement;
-            }
-
-            void setUpdateStatement(const std::string &updateStatement) {
-                _updateStatement = updateStatement;
-            }
-
-            void setDeleteStatement(const std::string &deleteStatement) {
-                _deleteStatement = deleteStatement;
-            }
-
         private:
-            class MySqlApiImpl;
+            class PqApiImpl;
 
-            MySqlApiImpl *_ptrMySqlApiImpl;
+            std::shared_ptr<PqApiImpl> _pqApiImpl;
 
             std::string _getStatement;
             std::string _insertStatement;
             std::string _updateStatement;
             std::string _deleteStatement;
 
-            bool isConnected = false;
+            bool _isConnected = false;
 
             void init();
         };
@@ -82,4 +77,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_MYSQLSOUCRCEDRIVER_H
+#endif //CLOUD_E_CPLUS_POSTGRESOURCEDRIVER_H

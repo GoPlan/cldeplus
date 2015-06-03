@@ -5,10 +5,11 @@
 #ifndef CLOUD_E_CPLUS_STORECREATETEST_H
 #define CLOUD_E_CPLUS_STORECREATETEST_H
 
-#include "gtest/gtest.h"
-#include "StoreSimple.h"
-#include "Application/Mapper/StockGroupMap.h"
-#include "../../Cloude.h"
+#include <Cloude.h>
+#include <gtest/gtest.h>
+#include <Application/Mapper/StockGroupMap.h>
+#include "StockGroupMySqlStore.h"
+#include "StockGroupPostgreStore.h"
 
 using namespace std;
 
@@ -24,38 +25,7 @@ namespace Cloude {
             using StockGroupMap = Cloude::Application::Mapper::StockGroupMap;
             using StockGroupLoader = Cloude::Application::Mapper::StockGroupLoader;
 
-            TEST_F(StoreSimple, CreateEntity01) {
-
-                std::string codeValue("VNM");
-                std::string nameValue("Vinamilk");
-
-                auto spField = std::make_shared<Field>(_stockGroupMap.Code);
-                auto spFieldsList{spField};
-                auto spIdentity = std::make_shared<Identity>(spFieldsList);
-                ASSERT_TRUE(spIdentity.get() != 0);
-
-                spField->setCString(codeValue.c_str());
-
-                // CREATE
-                auto spEntity = _entityStore.Create(spIdentity);
-                auto spNameField = spEntity->operator[](_stockGroupMap.UniqueName->getName());
-
-                spNameField->setCString(nameValue.c_str());
-
-                // SAVE
-                _entityStore.Save(spEntity);
-
-                // GET
-                auto spEntityAlt = _entityStore.Get(spIdentity);
-                auto spFieldCodeAlt = spEntityAlt->operator[](_stockGroupMap.Code->getName());
-                auto spFieldNameAlt = spEntityAlt->operator[](_stockGroupMap.UniqueName->getName());
-                ASSERT_TRUE(strcmp(spFieldCodeAlt->getCString(), codeValue.c_str()) == 0);
-                ASSERT_TRUE(strcmp(spFieldNameAlt->getCString(), nameValue.c_str()) == 0);
-
-                _entityStore.Delete(spEntity);
-            }
-
-            TEST_F(StoreSimple, CreateEntity02_InitializerList) {
+            TEST_F(StockGroupMySqlStore, CreateGetSaveDelete) {
 
                 std::string codeValue("VNM");
                 std::string nameValue("Vinamilk");
@@ -69,8 +39,6 @@ namespace Cloude {
                 // SetMultiFields(initializer_list<shared_ptr<Field>>()
                 auto initFieldList{spFieldCode};
                 auto spIdentity = std::make_shared<Identity>(initFieldList);
-                ASSERT_TRUE(spIdentity.get() != 0);
-                ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity) == false);
 
                 // CREATE
                 {
@@ -114,6 +82,31 @@ namespace Cloude {
                     auto spEntity = _entityStore.Get(spIdentity);
                     ASSERT_TRUE(spEntity.get() == 0);
                 }
+            }
+
+            TEST_F(StockGroupPostgreStore, CreateGetSaveDelete){
+
+                std::string codeValue("VNM");
+                std::string nameValue("Vinamilk");
+
+                auto spFieldCode = make_shared<Field>(StockGroupMap::Code);
+                auto spFieldName = make_shared<Field>(StockGroupMap::UniqueName);
+
+                spFieldCode->setCString(codeValue.c_str());
+                spFieldName->setCString(nameValue.c_str());
+
+                // SetMultiFields(initializer_list<shared_ptr<Field>>()
+                auto initFieldList{spFieldCode};
+                auto spIdentity = std::make_shared<Identity>(initFieldList);
+
+                // CREATE
+                {
+                    auto spEntity = _entityStore.Create(spIdentity);
+                    ASSERT_TRUE(spEntity.get() != 0);
+                    ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
+                }
+
+
             }
         }
     }

@@ -65,14 +65,14 @@ add_library(application STATIC
 
 
 add_library(infrastructure STATIC
-    Infrastructure/MySqlSourceDriver.h
-    Infrastructure/MySqlSourceDriver.cpp
-    Infrastructure/PostgreSourceDriver.cpp
-    Infrastructure/PostgreSourceDriver.h
-    Infrastructure/PostgreSourceDriver.cpp
-    Infrastructure/PostgreSourceDriver.h
-    Infrastructure/Exception/MySqlSourceDriverException.cpp
-    Infrastructure/Exception/MySqlSourceDriverException.h Infrastructure/Exception/PostgreSourceDriverException.cpp Infrastructure/Exception/PostgreSourceDriverException.h)
+    Infrastructure/MySql/MySqlSourceDriver.h
+    Infrastructure/MySql/MySqlSourceDriver.cpp
+    Infrastructure/Postgres/PostgreSourceDriver.cpp
+    Infrastructure/Postgres/PostgreSourceDriver.h
+    Infrastructure/Postgres/PostgreSourceDriver.cpp
+    Infrastructure/Postgres/PostgreSourceDriver.h
+    Infrastructure/MySql/MySqlSourceDriverException.cpp
+    Infrastructure/MySql/MySqlSourceDriverException.h Infrastructure/Postgres/PostgreSourceDriverException.cpp Infrastructure/Postgres/PostgreSourceDriverException.h)
 
 
 add_library(examples STATIC
@@ -83,10 +83,10 @@ add_library(examples STATIC
 
 add_library(apptest STATIC
     AppTest/main.cpp
-    AppTest/Store/StoreSimple.cpp
-    AppTest/Store/StoreSimple.h
+    AppTest/Store/StockGroupMySqlStore.cpp
+    AppTest/Store/StockGroupMySqlStore.h
     AppTest/Store/StoreCreateSaveDeleteTest.h
-    )
+    AppTest/Store/StockGroupPostgreStore.cpp AppTest/Store/StockGroupPostgreStore.h)
 
 
 # Libs
@@ -130,4 +130,4 @@ include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 
 add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest gtest mysqlclient)
+target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest gtest mysqlclient pq)

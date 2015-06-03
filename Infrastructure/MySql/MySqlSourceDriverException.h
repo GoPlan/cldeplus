@@ -10,7 +10,7 @@
 
 namespace Cloude {
     namespace Infrastructure {
-        namespace Exception {
+        namespace MySql {
             class MySqlSourceDriverException : public std::exception {
             public:
                 MySqlSourceDriverException() = default;

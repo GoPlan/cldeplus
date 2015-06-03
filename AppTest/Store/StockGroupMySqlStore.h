@@ -9,26 +9,25 @@
 #include "../../Cloude.h"
 #include "../../Application/Mapper/StockGroupMap.h"
 #include "../../Application/Mapper/StockGroupLoader.h"
-#include "../../Infrastructure/MySqlSourceDriver.h"
+#include "../../Infrastructure/MySql/MySqlSourceDriver.h"
 
 namespace Cloude {
     namespace AppTest {
         namespace Store {
 
-            class StoreSimple : public ::testing::Test {
+            class StockGroupMySqlStore : public ::testing::Test {
             public:
 
             protected:
-                StoreSimple() : _stockGroupLoader(),
-                                _mySqlDriver(_stockGroupMap),
-                                _entityStore(_stockGroupMap, _stockGroupLoader, _mySqlDriver) { };
+                StockGroupMySqlStore() : _mySqlDriver(_stockGroupMap),
+                                         _entityStore(_stockGroupMap, _stockGroupLoader, _mySqlDriver) { };
 
                 virtual void SetUp();
                 virtual void TearDown();
 
                 Cloude::Application::Mapper::StockGroupLoader _stockGroupLoader;
                 Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
-                Cloude::Infrastructure::MySqlSourceDriver _mySqlDriver;
+                Cloude::Infrastructure::MySql::MySqlSourceDriver _mySqlDriver;
                 Cloude::Architecture::EntityStore _entityStore;
             };
         }

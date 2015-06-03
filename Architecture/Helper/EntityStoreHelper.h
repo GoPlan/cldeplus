@@ -13,8 +13,10 @@ namespace Cloude {
     namespace Architecture {
         namespace Helper {
 
-            void GenerateFieldsFromColumns(std::shared_ptr<Entity> &entity,
-                                           const std::vector<std::shared_ptr<Column>> &columnsList);
+            void GenerateFieldsFromColumns
+                    (std::shared_ptr<Entity> &entity,
+                     const std::vector<std::shared_ptr<Column>> &columnsList,
+                     bool checkIfFieldExists = true);
 
         }
     }

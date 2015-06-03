@@ -34,25 +34,13 @@ namespace Cloude {
         }
 
         void Entity::SetField(shared_ptr<Field> &field) {
-
-            if (HasField(field->getColumn()->getName())) {
-                return;
-            }
-
             shared_ptr<Field> spField(field);
-
-            _fieldsMap.insert(make_pair(field->getColumn()->getName(), spField));
+            _fieldsMap[field->getColumn()->getName()] = spField;
         }
 
         void Entity::SetField(Field *ptrField) {
-
-            if (HasField(ptrField->getColumn()->getName())) {
-                return;
-            }
-
             shared_ptr<Field> spField(ptrField);
-
-            _fieldsMap.insert(make_pair(ptrField->getColumn()->getName(), spField));
+            _fieldsMap[ptrField->getColumn()->getName()] = spField;
         }
 
         void Entity::SetMultiFields(std::initializer_list<std::shared_ptr<Field>> &fieldsList) {

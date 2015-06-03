@@ -87,7 +87,8 @@ namespace Cloude {
             }
         };
 
-        PostgreSourceDriver::PostgreSourceDriver(EntityMap &entityMap) : EntitySourceDriver(entityMap) {
+        PostgreSourceDriver::PostgreSourceDriver(EntityMap &entityMap) : EntitySourceDriver(entityMap),
+                                                                         _pqApiImpl(new PqApiImpl()) {
             init();
         }
 
@@ -123,6 +124,7 @@ namespace Cloude {
             ColumnsList columnList;
 
             shared_ptr<Command> command = _pqApiImpl->createCommand(_insertStatement);
+
             _pqApiImpl->bindParamsBuffer(entity, columnList, command);
 
             const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);

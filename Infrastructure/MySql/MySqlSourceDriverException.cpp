@@ -6,9 +6,10 @@
 
 namespace Cloude {
     namespace Infrastructure {
-        namespace Exception {
+        namespace MySql {
 
-            MySqlSourceDriverException::MySqlSourceDriverException(const std::string &sstrMessage) : _message(sstrMessage) {
+            MySqlSourceDriverException::MySqlSourceDriverException(const std::string &sstrMessage) : _message(
+                    sstrMessage) {
                 //
             }
 
