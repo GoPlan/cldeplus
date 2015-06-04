@@ -232,6 +232,31 @@ namespace Cloude {
 
             }
 
+            void MySqlSourceDriver::init() {
+
+                auto fpInsert = [](const std::shared_ptr<Column> &column,
+                                   int position) -> std::string {
+
+                    std::string condition = "?";
+
+                    return condition;
+                };
+
+                auto fpCondition = [](const std::shared_ptr<Column> &column,
+                                      int position) -> std::string {
+
+                    std::string condition = column->getDatasourceName() + " = ?";
+
+                    return condition;
+                };
+
+                _getStatement = Architecture::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
+                _insertStatement = Architecture::Helper::CreateInsertPreparedQuery(_entityMap, fpInsert);
+                _updateStatement = Architecture::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
+                _deleteStatement = Architecture::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
+
+            }
+
             void MySqlSourceDriver::Connect() {
 
                 if (_mySqlApiImpl->PtrMySql == nullptr) {
@@ -309,10 +334,6 @@ namespace Cloude {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
                 }
 
-                cout << _insertStatement << endl;
-                cout << (char *)command->PtrParamsBind[0].buffer << endl;
-                cout << command->PtrParamsBind[0].buffer_length << endl;
-
                 if (mysql_stmt_execute(command->PtrStmt)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
                 }
@@ -358,23 +379,6 @@ namespace Cloude {
                 }
 
                 return 1;
-            }
-
-            void MySqlSourceDriver::init() {
-
-                auto F = [](const std::shared_ptr<Column> &column,
-                            const int position) -> std::string {
-
-                    std::string condition = column->getDatasourceName() + " = ?";
-
-                    return condition;
-                };
-
-                _getStatement = Architecture::Helper::CreateGetPreparedQuery(_entityMap, F);
-                _insertStatement = Architecture::Helper::CreateInsertPreparedQuery(_entityMap, F);
-                _updateStatement = Architecture::Helper::CreateUpdatePreparedQuery(_entityMap, F);
-                _deleteStatement = Architecture::Helper::CreateDeletePreparedQuery(_entityMap, F);
-
             }
         }
     }

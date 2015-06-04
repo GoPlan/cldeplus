@@ -6,13 +6,11 @@
 #define CLOUD_E_CPLUS_ENTITYSOURCEDRIVER_H
 
 #include <memory>
+#include "EntityMap.h"
+#include "Entity.h"
 
 namespace Cloude {
     namespace Architecture {
-
-        class EntityMap;
-
-        class Entity;
 
         class EntitySourceDriver {
         public:

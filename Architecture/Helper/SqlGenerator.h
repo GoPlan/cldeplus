@@ -19,19 +19,19 @@ namespace Cloude {
 
             std::string CreateGetPreparedQuery(const EntityMap &entityMap,
                                                std::function<std::string(const std::shared_ptr<Column> &column,
-                                                                         const int index)> F);
+                                                                         int index)> F);
 
             std::string CreateInsertPreparedQuery(const EntityMap &entityMap,
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
-                                                                            const int index)> F);
+                                                                            int index)> F);
 
             std::string CreateUpdatePreparedQuery(const EntityMap &entityMap,
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
-                                                                            const int index)> F);
+                                                                            int index)> F);
 
             std::string CreateDeletePreparedQuery(const EntityMap &entityMap,
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
-                                                                            const int index)> F);
+                                                                            int index)> F);
 
         }
     }

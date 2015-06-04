@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <libpq-fe.h>
 #include <Architecture/Helper/SqlGenerator.h>
+#include <iostream>
 #include "PostgreSourceDriver.h"
 
 using namespace std;
@@ -23,21 +24,18 @@ namespace Cloude {
 
             virtual ~Command() {
 
-                if (PtrParamTypes != nullptr)
+                if (PtrParamTypes != nullptr && PtrParamTypes != NULL)
                     free(PtrParamTypes);
 
-                if (PtrParamLengths != nullptr)
-                    free(PtrParamLengths);
-
-                if (PtrParamFormats != nullptr)
+                if (PtrParamFormats != nullptr && PtrParamFormats != NULL)
                     free(PtrParamFormats);
 
-                if (PtrParamValues != nullptr) {
+                if (PtrParamLengths != nullptr && PtrParamLengths != NULL)
+                    free(PtrParamLengths);
 
-                    for (int i = 0; i < nParam; ++i) {
-                        free(PtrParamValues[i]);
-                    }
-
+                if (PtrParamValues != nullptr && PtrParamValues != NULL) {
+                    // Elementary value(buffer) pointer is freed by Entity.
+                    // Therefore, we only need to free param values array.
                     free(PtrParamValues);
                 }
             };
@@ -45,8 +43,8 @@ namespace Cloude {
             int nParam = 0;
             int ResultFormat = 0;
 
-            Oid *PtrParamTypes = 0;
-            int *PtrParamFormats = 0;
+            Oid *PtrParamTypes = NULL;      // Set entry pointer to 0 (NULL) for using text format
+            int *PtrParamFormats = NULL;    // Set entry pointer to 0 (NULL) for using text format
 
             int *PtrParamLengths = nullptr;
             char **PtrParamValues = nullptr;
@@ -66,9 +64,9 @@ namespace Cloude {
                 return command;
             }
 
-            void bindParamsBuffer(shared_ptr<Entity> &entity,
-                                  const ColumnsList &columnsList,
-                                  shared_ptr<Command> &command) {
+            void initializeParamsBindBuffer(shared_ptr<Entity> &entity,
+                                            const ColumnsList &columnsList,
+                                            shared_ptr<Command> &command) {
 
                 auto nParam = columnsList.size();
 
@@ -76,75 +74,60 @@ namespace Cloude {
                 command->PtrParamLengths = (int *) calloc(nParam, sizeof(int));
                 command->PtrParamValues = (char **) calloc(nParam, sizeof(char *));
 
+                int index = 0;
+
                 for_each(columnsList.cbegin(), columnsList.cend(),
-                         [&entity, &command](const shared_ptr<Column> &column) {
+                         [&entity, &command, &index](const shared_ptr<Column> &column) {
 
+                             auto field = entity->operator[](column->getName());
 
+                             command->PtrParamLengths[index] = static_cast<int>(column->getLength());
+                             command->PtrParamValues[index] = reinterpret_cast<char *>(field->PointerToFieldValue());
+
+                             index++;
                          });
             }
 
-            string getTypeName(Architecture::Enumeration::DbType dbType) {
-
-                string type;
+            string getTypeAlias(Architecture::Enumeration::DbType dbType) {
 
                 switch (dbType) {
                     case Architecture::Enumeration::DbType::Boolean:
-                        type = "boolean";
-                        break;
+                        return "boolean";
                     case Architecture::Enumeration::DbType::Byte:
-                        type = "bytea";
-                        break;
+                        return "bytea";
                     case Architecture::Enumeration::DbType::Int16:
-                        type = "smallint";
-                        break;
+                        return "smallint";
                     case Architecture::Enumeration::DbType::Int32:
-                        type = "integer";
-                        break;
+                        return "integer";
                     case Architecture::Enumeration::DbType::Int64:
-                        type = "bigint";
-                        break;
+                        return "bigint";
                     case Architecture::Enumeration::DbType::UInt16:
-                        type = "smallint";
-                        break;
+                        return "smallint";
                     case Architecture::Enumeration::DbType::UInt32:
-                        type = "integer";
-                        break;
+                        return "integer";
                     case Architecture::Enumeration::DbType::UInt64:
-                        type = "bigint";
-                        break;
+                        return "bigint";
                     case Architecture::Enumeration::DbType::Double:
-                        type = "double";
-                        break;
+                        return "double";
                     case Architecture::Enumeration::DbType::Float:
-                        type = "real";
-                        break;
+                        return "real";
                     case Architecture::Enumeration::DbType::Decimal:
-                        type = "decimal";
-                        break;
+                        return "decimal";
                     case Architecture::Enumeration::DbType::Numeric:
-                        type = "numeric";
-                        break;
+                        return "numeric";
                     case Architecture::Enumeration::DbType::String:
-                        type = "varchar";
-                        break;
+                        return "varchar";
                     case Architecture::Enumeration::DbType::Currency:
-                        type = "money";
-                        break;
+                        return "money";
                     case Architecture::Enumeration::DbType::Date:
-                        type = "date";
-                        break;
+                        return "date";
                     case Architecture::Enumeration::DbType::Time:
-                        type = "time";
-                        break;
+                        return "time";
                     case Architecture::Enumeration::DbType::Timestamp:
-                        type = "timestamp";
-                        break;
+                        return "timestamp";
                     case Architecture::Enumeration::DbType::Interval:
-                        type = "interval";
-                        break;
+                        return "interval";
                 }
-
-                return type;
             }
         };
 
@@ -160,10 +143,10 @@ namespace Cloude {
         void PostgreSourceDriver::init() {
 
             auto F = [this](const std::shared_ptr<Column> &column,
-                            const int index) -> string {
+                            int index) -> string {
 
-                auto typeName = _pqApiImpl->getTypeName(column->getDbType());
-                auto expr = "$" + std::to_string(index) + "::" + typeName;
+                auto typeName = _pqApiImpl->getTypeAlias(column->getDbType());
+                auto expr = "$" + std::to_string(++index) + "::" + typeName;
 
                 return expr;
             };
@@ -180,7 +163,7 @@ namespace Cloude {
 
             shared_ptr<Command> command = _pqApiImpl->createCommand(_getStatement);
 
-            _pqApiImpl->bindParamsBuffer(entity, columnList, command);
+            _pqApiImpl->initializeParamsBindBuffer(entity, columnList, command);
 
             const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
@@ -200,23 +183,56 @@ namespace Cloude {
 
         int PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
-            ColumnsList columnList;
+            auto command = _pqApiImpl->createCommand(_insertStatement);
 
-            shared_ptr<Command> command = _pqApiImpl->createCommand(_insertStatement);
-
-            _pqApiImpl->bindParamsBuffer(entity, columnList, command);
+            _pqApiImpl->initializeParamsBindBuffer(entity, entityMap.getColumnsForKey(), command);
 
             const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
-            PQexecParams(_pqApiImpl->PtrPgConn,
-                         command->Query.c_str(),
-                         command->nParam,
-                         command->PtrParamTypes,
-                         ptrParamValues,
-                         command->PtrParamLengths,
-                         command->PtrParamFormats, 0);
+            PGresult *result = PQexecParams(_pqApiImpl->PtrPgConn,
+                                            command->Query.c_str(),
+                                            command->nParam,
+                                            command->PtrParamTypes,
+                                            ptrParamValues,
+                                            command->PtrParamLengths,
+                                            command->PtrParamFormats,
+                                            0);
 
             // TODO: Verify result status
+            ExecStatusType statusType = PQresultStatus(result);
+            char *errorMessage = nullptr;
+
+
+            switch (statusType) {
+                case PGRES_EMPTY_QUERY:
+                    break;
+                case PGRES_COMMAND_OK:
+                    break;
+                case PGRES_TUPLES_OK:
+                    break;
+                case PGRES_COPY_OUT:
+                    break;
+                case PGRES_COPY_IN:
+                    break;
+                case PGRES_BAD_RESPONSE:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
+                    break;
+                case PGRES_NONFATAL_ERROR:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
+                    break;
+                case PGRES_FATAL_ERROR:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
+                    break;
+                case PGRES_COPY_BOTH:
+                    break;
+                case PGRES_SINGLE_TUPLE:
+                    break;
+            }
+
+            PQclear(result);
 
             return 1;
         }
@@ -227,19 +243,45 @@ namespace Cloude {
 
             shared_ptr<Command> command = _pqApiImpl->createCommand(_updateStatement);
 
-            _pqApiImpl->bindParamsBuffer(entity, columnList, command);
+            _pqApiImpl->initializeParamsBindBuffer(entity, columnList, command);
 
             const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
-            PQexecParams(_pqApiImpl->PtrPgConn,
-                         command->Query.c_str(),
-                         command->nParam,
-                         command->PtrParamTypes,
-                         ptrParamValues,
-                         command->PtrParamLengths,
-                         command->PtrParamFormats, 0);
+            PGresult *result = PQexecParams(_pqApiImpl->PtrPgConn,
+                                            command->Query.c_str(),
+                                            command->nParam,
+                                            command->PtrParamTypes,
+                                            ptrParamValues,
+                                            command->PtrParamLengths,
+                                            command->PtrParamFormats, 0);
+
+            ExecStatusType statusType = PQresultStatus(result);
+
+            switch (statusType) {
+                case PGRES_EMPTY_QUERY:
+                    break;
+                case PGRES_COMMAND_OK:
+                    break;
+                case PGRES_TUPLES_OK:
+                    break;
+                case PGRES_COPY_OUT:
+                    break;
+                case PGRES_COPY_IN:
+                    break;
+                case PGRES_BAD_RESPONSE:
+                    break;
+                case PGRES_NONFATAL_ERROR:
+                    break;
+                case PGRES_FATAL_ERROR:
+                    break;
+                case PGRES_COPY_BOTH:
+                    break;
+                case PGRES_SINGLE_TUPLE:
+                    break;
+            }
 
             // TODO: Verify result status
+//            PQclear(result);
 
             return 1;
         }
@@ -250,7 +292,7 @@ namespace Cloude {
 
             shared_ptr<Command> command = _pqApiImpl->createCommand(_deleteStatement);
 
-            _pqApiImpl->bindParamsBuffer(entity, columnList, command);
+            _pqApiImpl->initializeParamsBindBuffer(entity, columnList, command);
 
             const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 

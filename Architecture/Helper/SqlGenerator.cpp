@@ -12,7 +12,7 @@ namespace Cloude {
 
             std::string CreateGetPreparedQuery(const EntityMap &entityMap,
                                                std::function<std::string(const std::shared_ptr<Column> &column,
-                                                                         const int position)> F) {
+                                                                         int position)> F) {
 
                 auto columnsMap = entityMap.getColumnsForGet();
                 auto columnsForKey = entityMap.getColumnsForKey();
@@ -57,7 +57,7 @@ namespace Cloude {
 
             std::string CreateInsertPreparedQuery(const EntityMap &entityMap,
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
-                                                                            const int position)> F) {
+                                                                            int position)> F) {
 
                 auto columnsForKey = entityMap.getColumnsForKey();
 
@@ -89,7 +89,7 @@ namespace Cloude {
 
             std::string CreateUpdatePreparedQuery(const EntityMap &entityMap,
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
-                                                                            const int index)> F) {
+                                                                            int index)> F) {
 
                 auto columnsForUpdate = entityMap.getColumnsForUpdate();
                 auto columnsForKey = entityMap.getColumnsForKey();
@@ -135,7 +135,7 @@ namespace Cloude {
 
             std::string CreateDeletePreparedQuery(const EntityMap &entityMap,
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
-                                                                            const int index)> F) {
+                                                                            int index)> F) {
                 auto columnsForKey = entityMap.getColumnsForKey();
 
                 std::string strCondition;
