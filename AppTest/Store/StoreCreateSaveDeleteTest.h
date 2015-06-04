@@ -142,7 +142,6 @@ namespace Cloude {
 
                     _entityStore.Delete(spEntity);
                 }
-
             }
         }
     }

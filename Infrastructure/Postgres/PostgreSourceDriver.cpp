@@ -129,6 +129,29 @@ namespace Cloude {
                         return "interval";
                 }
             }
+
+
+            void retrieveResult(const EntityMap &entityMap,
+                                const PGresult *ptrResult,
+                                std::shared_ptr<Entity> &entity) {
+
+                auto columnsForGet = entityMap.getColumnsForGet();
+
+                int index = 0;
+
+                std::for_each(columnsForGet.cbegin(), columnsForGet.cend(),
+                              [&entity, &ptrResult, &index](const shared_ptr<Column> &column) {
+
+                                  auto field = entity->GetField(column->getName());
+
+                                  // TODO: set value into variable that suits its type
+                                  auto cvalue = strdup(PQgetvalue(ptrResult, 0, index));
+                                  field->setCString(cvalue);
+
+                                  index++;
+                              });
+
+            }
         };
 
         PostgreSourceDriver::PostgreSourceDriver(EntityMap &entityMap) : EntitySourceDriver(entityMap),
@@ -196,6 +219,7 @@ namespace Cloude {
                 case PGRES_COMMAND_OK:
                     break;
                 case PGRES_TUPLES_OK:
+                    _pqApiImpl->retrieveResult(_entityMap, result, entity);
                     break;
                 case PGRES_COPY_OUT:
                     break;
