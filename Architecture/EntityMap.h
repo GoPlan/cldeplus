@@ -5,10 +5,10 @@
 #ifndef CLOUD_E_CPLUS_ENTITYMAP_H
 #define CLOUD_E_CPLUS_ENTITYMAP_H
 
-#include "memory"
-#include "vector"
-#include "string"
-#include "unordered_map"
+#include <memory>
+#include <vector>
+#include <string>
+#include <unordered_map>
 
 #include "Column.h"
 

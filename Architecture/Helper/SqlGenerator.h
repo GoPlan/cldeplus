@@ -15,34 +15,23 @@ namespace Cloude {
         namespace Helper {
 
             using EntityMap = Cloude::Architecture::EntityMap;
+            using Column = Cloude::Architecture::Column;
 
-            std::string CreateGetPreparedQuery(const EntityMap &entityMap);
             std::string CreateGetPreparedQuery(const EntityMap &entityMap,
-                                               std::function<std::string(const std::string &column,
-                                                                         const std::string &prefix,
-                                                                         const std::string &suffix,
-                                                                         const int &index)> F);
+                                               std::function<std::string(const std::shared_ptr<Column> &column,
+                                                                         const int index)> F);
 
-            std::string CreateInsertPreparedQuery(const EntityMap &entityMap);
             std::string CreateInsertPreparedQuery(const EntityMap &entityMap,
-                                                  std::function<std::string(const std::string &column,
-                                                                            const std::string &prefix,
-                                                                            const std::string &suffix,
-                                                                            const int &index)> F);
+                                                  std::function<std::string(const std::shared_ptr<Column> &column,
+                                                                            const int index)> F);
 
-            std::string CreateUpdatePreparedQuery(const EntityMap &entityMap);
             std::string CreateUpdatePreparedQuery(const EntityMap &entityMap,
-                                                  std::function<std::string(const std::string &column,
-                                                                            const std::string &prefix,
-                                                                            const std::string &suffix,
-                                                                            const int &index)> F);
+                                                  std::function<std::string(const std::shared_ptr<Column> &column,
+                                                                            const int index)> F);
 
-            std::string CreateDeletePreparedQuery(const EntityMap &entityMap);
             std::string CreateDeletePreparedQuery(const EntityMap &entityMap,
-                                                  std::function<std::string(const std::string &column,
-                                                                            const std::string &prefix,
-                                                                            const std::string &suffix,
-                                                                            const int &index)> F);
+                                                  std::function<std::string(const std::shared_ptr<Column> &column,
+                                                                            const int index)> F);
 
         }
     }

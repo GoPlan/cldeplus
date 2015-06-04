@@ -55,9 +55,21 @@ namespace Cloude {
                     return &_double;
                 case Enumeration::DbType::Float:
                     return &_float;
+                case Enumeration::DbType::Decimal:
+                    throw Exception::NonSupportedDataTypeException();
+                case Enumeration::DbType::Numeric:
+                    throw Exception::NonSupportedDataTypeException();
                 case Enumeration::DbType::String:
                     return &_cstr;
                 case Enumeration::DbType::Currency:
+                    throw Exception::NonSupportedDataTypeException();
+                case Enumeration::DbType::Date:
+                    throw Exception::NonSupportedDataTypeException();
+                case Enumeration::DbType::Time:
+                    throw Exception::NonSupportedDataTypeException();
+                case Enumeration::DbType::Timestamp:
+                    throw Exception::NonSupportedDataTypeException();
+                case Enumeration::DbType::Interval:
                     throw Exception::NonSupportedDataTypeException();
             }
         }

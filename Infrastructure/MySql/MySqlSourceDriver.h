@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <Architecture/EntitySourceDriver.h>
+#include <Architecture/Field.h>
 
 namespace Cloude {
     namespace Infrastructure {
@@ -38,7 +39,6 @@ namespace Cloude {
                 Options OptionArgs;
 
             public:
-                // TODO: Validate correctness of Copy constructor/assignment
                 MySqlSourceDriver(const MySqlSourceDriver &entityMap) = default;
                 MySqlSourceDriver &operator=(const MySqlSourceDriver &entityMap) = default;
 

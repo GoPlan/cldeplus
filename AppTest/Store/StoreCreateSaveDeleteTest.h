@@ -43,7 +43,12 @@ namespace Cloude {
                 // CREATE
                 {
                     auto spEntity = _entityStore.Create(spIdentity);
+                    auto spCodeField = spEntity->GetField("Code");
+                    auto codeValue = spCodeField->getCString();
+                    auto codeLen = strlen(codeValue);
+
                     ASSERT_TRUE(spEntity.get() != 0);
+                    ASSERT_TRUE(codeLen > 0);
                     ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
                 }
 
@@ -67,6 +72,7 @@ namespace Cloude {
                 // GET - Check for saved field
                 {
                     auto spEntity = _entityStore.Get(spIdentity);
+                    ASSERT_TRUE(spEntity.get() != 0);
                     auto spCodeField = spEntity->operator[](StockGroupMap::Code->getName());
                     auto spNameField = spEntity->operator[](StockGroupMap::UniqueName->getName());
                     ASSERT_TRUE(_entityStore.Size() > 0);
@@ -84,7 +90,7 @@ namespace Cloude {
                 }
             }
 
-            TEST_F(StockGroupPostgreStore, CreateGetSaveDelete){
+            TEST_F(StockGroupPostgreStore, CreateGetSaveDelete) {
 
                 std::string codeValue("VNM");
                 std::string nameValue("Vinamilk");

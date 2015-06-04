@@ -6,6 +6,9 @@
 #define CLOUD_E_CPLUS_POSTGRESOURCEDRIVER_H
 
 #include <Architecture/EntitySourceDriver.h>
+#include <Architecture/Column.h>
+#include <Architecture/Field.h>
+#include <vector>
 
 namespace Cloude {
     namespace Infrastructure {

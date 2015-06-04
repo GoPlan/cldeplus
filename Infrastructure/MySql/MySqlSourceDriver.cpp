@@ -7,6 +7,7 @@
 #include <mysql.h>
 #include <Architecture/Exception/NonSupportedDataTypeException.h>
 #include <Architecture/Helper/SqlGenerator.h>
+#include <Architecture/Entity.h>
 #include "MySqlSourceDriverException.h"
 #include "MySqlSourceDriver.h"
 
@@ -15,7 +16,8 @@ using namespace Cloude;
 
 namespace Cloude {
     namespace Infrastructure {
-        namespace MySql{
+        namespace MySql {
+
             class Command {
             public:
                 Command() {
@@ -109,9 +111,9 @@ namespace Cloude {
                     }
                 }
 
-                void bindParamsBuffer(std::shared_ptr<Entity> &entity,
-                                      const ColumnsList &columnsList,
-                                      std::shared_ptr<Command> &command) {
+                void initializeParamsBindBuffers(std::shared_ptr<Entity> &entity,
+                                                 const ColumnsList &columnsList,
+                                                 std::shared_ptr<Command> &command) {
 
                     auto columnsListSize = columnsList.size();
 
@@ -132,15 +134,15 @@ namespace Cloude {
                                       command->PtrParamsBind[i].length = ptrLength;
                                       command->PtrParamsBind[i].buffer = field->PointerToFieldValue();
 
-                                      setupBindBuffers(field, &command->PtrParamsBind[i]);
+                                      setupBindBufferTypeAndLength(field, &command->PtrParamsBind[i]);
 
                                       i++;
                                   });
                 }
 
-                void bindResultBuffer(std::shared_ptr<Entity> &entity,
-                                      const ColumnsList &columnsList,
-                                      std::shared_ptr<Command> &command) {
+                void initializeResultBindBuffers(std::shared_ptr<Entity> &entity,
+                                                 const ColumnsList &columnsList,
+                                                 std::shared_ptr<Command> &command) {
 
                     auto columnsListSize = columnsList.size();
 
@@ -161,14 +163,14 @@ namespace Cloude {
                                       command->PtrResultBind[i].length = &command->PtrResultLength[i];
                                       command->PtrResultBind[i].buffer = field->PointerToFieldValue();
 
-                                      setupBindBuffers(field, &command->PtrResultBind[i]);
+                                      setupBindBufferTypeAndLength(field, &command->PtrResultBind[i]);
 
                                       i++;
                                   });
                 }
 
-                void setupBindBuffers(std::shared_ptr<Field> &field,
-                                      MYSQL_BIND *ptrBind) {
+                void setupBindBufferTypeAndLength(std::shared_ptr<Field> &field,
+                                                  MYSQL_BIND *ptrBind) {
 
                     switch (field->getColumn()->getDbType()) {
                         case Architecture::Enumeration::DbType::Boolean:
@@ -253,12 +255,13 @@ namespace Cloude {
                 //
             }
 
-            int MySqlSourceDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity, const EntityMap &entityMap) const {
+            int MySqlSourceDriver::LoadEntity(shared_ptr<Architecture::Entity> &entity,
+                                              const EntityMap &entityMap) const {
 
                 auto command = _mySqlApiImpl->createCommand(_getStatement);
 
-                _mySqlApiImpl->bindParamsBuffer(entity, entityMap.getColumnsForKey(), command);
-                _mySqlApiImpl->bindResultBuffer(entity, entityMap.getColumnsForGet(), command);
+                _mySqlApiImpl->initializeParamsBindBuffers(entity, entityMap.getColumnsForKey(), command);
+                _mySqlApiImpl->initializeResultBindBuffers(entity, entityMap.getColumnsForGet(), command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -298,13 +301,17 @@ namespace Cloude {
             int MySqlSourceDriver::CreateEntity(shared_ptr<Architecture::Entity> &entity,
                                                 const EntityMap &entityMap) const {
 
-                auto command = _mySqlApiImpl->createCommand(_insertStatement);
+                std::shared_ptr<Command> command = _mySqlApiImpl->createCommand(_insertStatement);
 
-                _mySqlApiImpl->bindParamsBuffer(entity, entityMap.getColumnsForKey(), command);
+                _mySqlApiImpl->initializeParamsBindBuffers(entity, entityMap.getColumnsForKey(), command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
                 }
+
+                cout << _insertStatement << endl;
+                cout << (char *)command->PtrParamsBind[0].buffer << endl;
+                cout << command->PtrParamsBind[0].buffer_length << endl;
 
                 if (mysql_stmt_execute(command->PtrStmt)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -323,7 +330,7 @@ namespace Cloude {
                 joinedColumnsList.insert(joinedColumnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
                 joinedColumnsList.insert(joinedColumnsList.end(), columnsForKey.begin(), columnsForKey.end());
 
-                _mySqlApiImpl->bindParamsBuffer(entity, joinedColumnsList, command);
+                _mySqlApiImpl->initializeParamsBindBuffers(entity, joinedColumnsList, command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -340,7 +347,7 @@ namespace Cloude {
 
                 auto command = _mySqlApiImpl->createCommand(_deleteStatement);
 
-                _mySqlApiImpl->bindParamsBuffer(entity, entityMap.getColumnsForKey(), command);
+                _mySqlApiImpl->initializeParamsBindBuffers(entity, entityMap.getColumnsForKey(), command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -355,10 +362,18 @@ namespace Cloude {
 
             void MySqlSourceDriver::init() {
 
-                _getStatement = Architecture::Helper::CreateGetPreparedQuery(_entityMap);
-                _insertStatement = Architecture::Helper::CreateInsertPreparedQuery(_entityMap);
-                _updateStatement = Architecture::Helper::CreateUpdatePreparedQuery(_entityMap);
-                _deleteStatement = Architecture::Helper::CreateDeletePreparedQuery(_entityMap);
+                auto F = [](const std::shared_ptr<Column> &column,
+                            const int position) -> std::string {
+
+                    std::string condition = column->getDatasourceName() + " = ?";
+
+                    return condition;
+                };
+
+                _getStatement = Architecture::Helper::CreateGetPreparedQuery(_entityMap, F);
+                _insertStatement = Architecture::Helper::CreateInsertPreparedQuery(_entityMap, F);
+                _updateStatement = Architecture::Helper::CreateUpdatePreparedQuery(_entityMap, F);
+                _deleteStatement = Architecture::Helper::CreateDeletePreparedQuery(_entityMap, F);
 
             }
         }

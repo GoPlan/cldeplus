@@ -5,12 +5,15 @@
 #ifndef CLOUD_E_CPLUS_ENTITYSOURCEDRIVER_H
 #define CLOUD_E_CPLUS_ENTITYSOURCEDRIVER_H
 
-#include "Entity.h"
-#include "Column.h"
-#include "EntityMap.h"
+#include <memory>
 
 namespace Cloude {
     namespace Architecture {
+
+        class EntityMap;
+
+        class Entity;
+
         class EntitySourceDriver {
         public:
             virtual ~EntitySourceDriver() = default;

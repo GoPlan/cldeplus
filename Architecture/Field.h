@@ -7,15 +7,13 @@
 
 #include <string>
 #include <memory>
-
 #include "Column.h"
 
 namespace Cloude {
     namespace Architecture {
 
-        // TODO: Field class may needs a dedicated/inheritable data subclass
-
         class Field {
+
         public:
             Field(const Field &srcField) = default;
             Field &operator=(const Field &srcField) = default;

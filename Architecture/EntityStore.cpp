@@ -5,10 +5,12 @@
 #include <memory>
 #include <string>
 
-#include <Architecture/Exception/EntityStoreRoutineException.h>
-#include <Architecture/Helper/SqlGenerator.h>
-#include <Architecture/Helper/EntityStoreHelper.h>
+
+#include "EntityLoader.h"
 #include "EntitySourceDriver.h"
+#include "Exception/EntityStoreRoutineException.h"
+#include "Helper/SqlGenerator.h"
+#include "Helper/EntityStoreHelper.h"
 
 using namespace std;
 
@@ -39,7 +41,7 @@ namespace Cloude {
             auto entity = make_shared<Entity>(identity);
             auto columnsForGet = _entityMap.getColumnsForGet();
 
-            Architecture::Helper::GenerateFieldsFromColumns(entity, columnsForGet, false);
+            Architecture::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
 
             if(!_entitySourceDriver.LoadEntity(entity, _entityMap)){
                 return shared_ptr<Entity>();
@@ -67,7 +69,7 @@ namespace Cloude {
             auto entity = make_shared<Entity>(identity);
             auto columnsForGet = _entityMap.getColumnsForGet();
 
-            Architecture::Helper::GenerateFieldsFromColumns(entity, columnsForGet, false);
+            Architecture::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
 
             Insert(entity);
 

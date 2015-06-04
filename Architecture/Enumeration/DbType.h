@@ -20,8 +20,14 @@ namespace Cloude {
                 UInt64,
                 Double,
                 Float,
+                Decimal,
+                Numeric,
                 String,
-                Currency
+                Currency,
+                Date,
+                Time,
+                Timestamp,
+                Interval
             };
 
         }
