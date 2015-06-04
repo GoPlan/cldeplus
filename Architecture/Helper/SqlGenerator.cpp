@@ -100,11 +100,17 @@ namespace Cloude {
 
                 int x = 0;
 
+                bool isSetStart = true;
+                bool isWhereStart = true;
+
                 std::for_each(columnsForUpdate.cbegin(), columnsForUpdate.cend(),
                               [&](const shared_ptr<Column> &column) -> void {
 
-                                  if (x != 0) {
+                                  if (!isSetStart) {
                                       strColumns += ", ";
+
+                                  } else {
+                                      isSetStart = false;
                                   }
 
                                   strColumns += F(column, x);
@@ -112,18 +118,18 @@ namespace Cloude {
                                   x++;
                               });
 
-                int y = 0;
-
                 std::for_each(columnsForKey.cbegin(), columnsForKey.cend(),
                               [&](const shared_ptr<Column> &column) -> void {
 
-                                  if (y != 0) {
+                                  if (!isWhereStart) {
                                       strCondition += ", ";
+                                  } else {
+                                      isWhereStart = false;
                                   }
 
-                                  strCondition += F(column, y);
+                                  strCondition += F(column, x);
 
-                                  y++;
+                                  x++;
                               });
 
                 strQuery += " UPDATE " + entityMap.TableName();

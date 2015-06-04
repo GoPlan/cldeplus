@@ -14,8 +14,8 @@ namespace Cloude {
             string StockGroupMap::TableName = "StockGroup";
 
             shared_ptr<Column> StockGroupMap::Code = make_shared<Column>("Code", "code", 50, Enumeration::DbType::String);
-            shared_ptr<Column> StockGroupMap::UniqueName = make_shared<Column>("UniqueName", "UniqueName", 50, Enumeration::DbType::String);
-            shared_ptr<Column> StockGroupMap::DefaultStockCode = make_shared<Column>("DefaultStockCode", "DefaultStockCode", 50, Enumeration::DbType::String);
+            shared_ptr<Column> StockGroupMap::UniqueName = make_shared<Column>("UniqueName", "uniquename", 50, Enumeration::DbType::String);
+            shared_ptr<Column> StockGroupMap::DefaultStockCode = make_shared<Column>("DefaultStockCode", "defaultstockcode", 50, Enumeration::DbType::String);
 
             StockGroupMap::StockGroupMap() {
 

@@ -142,8 +142,8 @@ namespace Cloude {
 
         void PostgreSourceDriver::init() {
 
-            auto F = [this](const std::shared_ptr<Column> &column,
-                            int index) -> string {
+            auto fpValue = [this](const std::shared_ptr<Column> &column,
+                                  int index) -> string {
 
                 auto typeName = _pqApiImpl->getTypeAlias(column->getDbType());
                 auto expr = "$" + std::to_string(++index) + "::" + typeName;
@@ -151,41 +151,28 @@ namespace Cloude {
                 return expr;
             };
 
-            _getStatement = Architecture::Helper::CreateGetPreparedQuery(_entityMap, F);
-            _insertStatement = Architecture::Helper::CreateInsertPreparedQuery(_entityMap, F);
-            _updateStatement = Architecture::Helper::CreateUpdatePreparedQuery(_entityMap, F);
-            _deleteStatement = Architecture::Helper::CreateDeletePreparedQuery(_entityMap, F);
+            auto fpCondition = [this](const std::shared_ptr<Column> &column,
+                                      int index) -> string {
+
+                auto typeName = _pqApiImpl->getTypeAlias(column->getDbType());
+                auto expr = column->getDatasourceName() + " = " + "$" + std::to_string(++index) + "::" + typeName;
+
+                return expr;
+            };
+
+            _getStatement = Architecture::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
+            _insertStatement = Architecture::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
+            _updateStatement = Architecture::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
+            _deleteStatement = Architecture::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
         }
 
         int PostgreSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
-            ColumnsList columnList;
+            ColumnsList columnList = entityMap.getColumnsForKey();
 
             shared_ptr<Command> command = _pqApiImpl->createCommand(_getStatement);
 
             _pqApiImpl->initializeParamsBindBuffer(entity, columnList, command);
-
-            const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
-
-            PQexecParams(_pqApiImpl->PtrPgConn,
-                         command->Query.c_str(),
-                         command->nParam,
-                         command->PtrParamTypes,
-                         ptrParamValues,
-                         command->PtrParamLengths,
-                         command->PtrParamFormats,
-                         command->ResultFormat);
-
-            // TODO: Verify result status
-
-            return 1;
-        }
-
-        int PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
-
-            auto command = _pqApiImpl->createCommand(_insertStatement);
-
-            _pqApiImpl->initializeParamsBindBuffer(entity, entityMap.getColumnsForKey(), command);
 
             const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
@@ -196,12 +183,70 @@ namespace Cloude {
                                             ptrParamValues,
                                             command->PtrParamLengths,
                                             command->PtrParamFormats,
-                                            0);
+                                            command->ResultFormat);
 
             // TODO: Verify result status
             ExecStatusType statusType = PQresultStatus(result);
+
             char *errorMessage = nullptr;
 
+            switch (statusType) {
+                case PGRES_EMPTY_QUERY:
+                    break;
+                case PGRES_COMMAND_OK:
+                    break;
+                case PGRES_TUPLES_OK:
+                    break;
+                case PGRES_COPY_OUT:
+                    break;
+                case PGRES_COPY_IN:
+                    break;
+                case PGRES_BAD_RESPONSE:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
+                    break;
+                case PGRES_NONFATAL_ERROR:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
+                    break;
+                case PGRES_FATAL_ERROR:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
+                    break;
+                case PGRES_COPY_BOTH:
+                    break;
+                case PGRES_SINGLE_TUPLE:
+                    break;
+            }
+
+            PQclear(result);
+
+            return 1;
+        }
+
+        int PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
+
+            ColumnsList columnsList = entityMap.getColumnsForKey();
+
+            auto command = _pqApiImpl->createCommand(_insertStatement);
+
+            _pqApiImpl->initializeParamsBindBuffer(entity, columnsList, command);
+
+            const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
+
+            PGresult *result = PQexecParams(_pqApiImpl->PtrPgConn,
+                                            command->Query.c_str(),
+                                            command->nParam,
+                                            command->PtrParamTypes,
+                                            ptrParamValues,
+                                            command->PtrParamLengths,
+                                            command->PtrParamFormats,
+                                            command->ResultFormat);
+
+            // TODO: Verify result status
+            ExecStatusType statusType = PQresultStatus(result);
+
+            char *errorMessage = nullptr;
 
             switch (statusType) {
                 case PGRES_EMPTY_QUERY:
@@ -241,7 +286,15 @@ namespace Cloude {
 
             ColumnsList columnList;
 
-            shared_ptr<Command> command = _pqApiImpl->createCommand(_updateStatement);
+            columnList.insert(columnList.end(),
+                              entityMap.getColumnsForUpdate().begin(),
+                              entityMap.getColumnsForUpdate().end());
+
+            columnList.insert(columnList.end(),
+                              entityMap.getColumnsForKey().begin(),
+                              entityMap.getColumnsForKey().end());
+
+            auto command = _pqApiImpl->createCommand(_updateStatement);
 
             _pqApiImpl->initializeParamsBindBuffer(entity, columnList, command);
 
@@ -253,9 +306,13 @@ namespace Cloude {
                                             command->PtrParamTypes,
                                             ptrParamValues,
                                             command->PtrParamLengths,
-                                            command->PtrParamFormats, 0);
+                                            command->PtrParamFormats,
+                                            command->ResultFormat);
 
             ExecStatusType statusType = PQresultStatus(result);
+
+            // TODO: Verify result status
+            char *errorMessage = nullptr;
 
             switch (statusType) {
                 case PGRES_EMPTY_QUERY:
@@ -269,10 +326,16 @@ namespace Cloude {
                 case PGRES_COPY_IN:
                     break;
                 case PGRES_BAD_RESPONSE:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
                     break;
                 case PGRES_NONFATAL_ERROR:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
                     break;
                 case PGRES_FATAL_ERROR:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
                     break;
                 case PGRES_COPY_BOTH:
                     break;
@@ -280,15 +343,14 @@ namespace Cloude {
                     break;
             }
 
-            // TODO: Verify result status
-//            PQclear(result);
+            PQclear(result);
 
             return 1;
         }
 
         int PostgreSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
-            ColumnsList columnList;
+            ColumnsList columnList = entityMap.getColumnsForKey();
 
             shared_ptr<Command> command = _pqApiImpl->createCommand(_deleteStatement);
 
@@ -296,15 +358,52 @@ namespace Cloude {
 
             const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
-            PQexecParams(_pqApiImpl->PtrPgConn,
-                         command->Query.c_str(),
-                         command->nParam,
-                         command->PtrParamTypes,
-                         ptrParamValues,
-                         command->PtrParamLengths,
-                         command->PtrParamFormats, 0);
+            PGresult *result = PQexecParams(_pqApiImpl->PtrPgConn,
+                                            command->Query.c_str(),
+                                            command->nParam,
+                                            command->PtrParamTypes,
+                                            ptrParamValues,
+                                            command->PtrParamLengths,
+                                            command->PtrParamFormats,
+                                            command->ResultFormat);
 
             // TODO: Verify result status
+            ExecStatusType statusType = PQresultStatus(result);
+
+            char *errorMessage = nullptr;
+
+            switch (statusType) {
+                case PGRES_EMPTY_QUERY:
+                    break;
+                case PGRES_COMMAND_OK:
+                    break;
+                case PGRES_TUPLES_OK:
+                    break;
+                case PGRES_COPY_OUT:
+                    break;
+                case PGRES_COPY_IN:
+                    break;
+                case PGRES_BAD_RESPONSE:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
+                    break;
+                case PGRES_NONFATAL_ERROR:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
+                    break;
+                case PGRES_FATAL_ERROR:
+                    errorMessage = PQresultErrorMessage(result);
+                    cout << errorMessage << endl;
+                    break;
+                case PGRES_COPY_BOTH:
+                    break;
+                case PGRES_SINGLE_TUPLE:
+                    break;
+            }
+
+            PQclear(result);
+
+            return 1;
 
             return 1;
         }
