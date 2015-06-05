@@ -8,7 +8,7 @@
 #include <Architecture/Exception/NonSupportedDataTypeException.h>
 #include <Architecture/Helper/SqlGenerator.h>
 #include <Architecture/Entity.h>
-#include "MySqlSourceDriverException.h"
+#include "MySqlSourceException.h"
 #include "MySqlSourceDriver.h"
 
 using namespace std;
@@ -99,7 +99,7 @@ namespace Cloude {
 
                     if (mysql_errno(PtrMySql)) {
                         auto errorCharPtr = mysql_error(PtrMySql);
-                        throw MySqlSourceDriverException(errorCharPtr);
+                        throw MySqlSourceException(errorCharPtr);
                     }
                 }
 
@@ -107,7 +107,7 @@ namespace Cloude {
 
                     if (mysql_stmt_errno(ptrMySqlStmt)) {
                         auto errorCharPtr = mysql_stmt_error(ptrMySqlStmt);
-                        throw MySqlSourceDriverException(errorCharPtr);
+                        throw MySqlSourceException(errorCharPtr);
                     }
                 }
 
@@ -315,9 +315,9 @@ namespace Cloude {
                         // TODO: To research MYSQL_DATA_TRUNCATED condition
                         _mySqlApiImpl->assertSqlError();
                         _mySqlApiImpl->assertStmtError(command->PtrStmt);
-                        throw MySqlSourceDriverException("fetch error: MYSQL_DATA_TRUNCATED");
+                        throw MySqlSourceException("fetch error: MYSQL_DATA_TRUNCATED");
                     default:
-                        throw MySqlSourceDriverException("fetch error: unknown return status code");
+                        throw MySqlSourceException("fetch error: unknown return status code");
                 }
 
                 return 0;

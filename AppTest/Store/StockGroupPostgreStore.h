@@ -25,14 +25,16 @@ namespace Cloude {
 
             protected:
                 StockGroupPostgreStore() : _postgresDriver(_stockGroupMap),
-                                           _entityStore(_stockGroupMap, _stockGroupLoader, _postgresDriver) { };
+                                           _entityStore(_stockGroupMap,
+                                                        _stockGroupLoader,
+                                                        _postgresDriver) { };
 
                 void SetUp() override;
                 void TearDown() override;
 
                 Cloude::Application::Mapper::StockGroupLoader _stockGroupLoader;
                 Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
-                Cloude::Infrastructure::PostgreSourceDriver _postgresDriver;
+                Cloude::Infrastructure::PostgreSql::PostgreSourceDriver _postgresDriver;
                 Cloude::Architecture::EntityStore _entityStore;
 
             };

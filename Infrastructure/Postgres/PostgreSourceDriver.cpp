@@ -13,446 +13,447 @@ using namespace std;
 
 namespace Cloude {
     namespace Infrastructure {
+        namespace PostgreSql {
 
-        class Command {
+            class Command {
+            public:
+                Command(const PGconn &conn, const string &query) : PGConn(conn),
+                                                                   Query(query) {
+                    //
+                };
 
-        public:
-            Command(const PGconn &conn, const string &query) : PGConn(conn),
-                                                               Query(query) {
-                //
+                virtual ~Command() {
+
+                    if (PtrParamTypes != nullptr && PtrParamTypes != NULL)
+                        free(PtrParamTypes);
+
+                    if (PtrParamFormats != nullptr && PtrParamFormats != NULL)
+                        free(PtrParamFormats);
+
+                    if (PtrParamLengths != nullptr && PtrParamLengths != NULL)
+                        free(PtrParamLengths);
+
+                    if (PtrParamValues != nullptr && PtrParamValues != NULL) {
+                        // Elementary value(buffer) pointer is freed by Entity.
+                        // Therefore, we only need to free param values array.
+                        free(PtrParamValues);
+                    }
+                };
+
+                int nParam = 0;
+                int ResultFormat = 0;
+
+                Oid *PtrParamTypes = NULL;      // Set entry pointer to 0 (NULL) for using text format
+                int *PtrParamFormats = NULL;    // Set entry pointer to 0 (NULL) for using text format
+
+                int *PtrParamLengths = nullptr;
+                char **PtrParamValues = nullptr;
+
+                const PGconn &PGConn;
+                const string &Query;
             };
 
-            virtual ~Command() {
+            class PostgreSourceDriver::PgApiImpl {
+            public:
+                PGconn *PtrPgConn;
 
-                if (PtrParamTypes != nullptr && PtrParamTypes != NULL)
-                    free(PtrParamTypes);
+            public:
+                shared_ptr<Command> createCommand(const string &query) {
+                    shared_ptr<Command> command = make_shared<Command>(*PtrPgConn, query);
+                    return command;
+                }
 
-                if (PtrParamFormats != nullptr && PtrParamFormats != NULL)
-                    free(PtrParamFormats);
+                void initializeParamsBindBuffer(shared_ptr<Entity> &entity,
+                                                const ColumnsList &columnsList,
+                                                shared_ptr<Command> &command) {
 
-                if (PtrParamLengths != nullptr && PtrParamLengths != NULL)
-                    free(PtrParamLengths);
+                    auto nParam = columnsList.size();
 
-                if (PtrParamValues != nullptr && PtrParamValues != NULL) {
-                    // Elementary value(buffer) pointer is freed by Entity.
-                    // Therefore, we only need to free param values array.
-                    free(PtrParamValues);
+                    command->nParam = (int) columnsList.size();
+                    command->PtrParamLengths = (int *) calloc(nParam, sizeof(int));
+                    command->PtrParamValues = (char **) calloc(nParam, sizeof(char *));
+
+                    int index = 0;
+
+                    for_each(columnsList.cbegin(), columnsList.cend(),
+                             [&entity, &command, &index](const shared_ptr<Column> &column) {
+
+                                 auto field = entity->operator[](column->getName());
+
+                                 command->PtrParamLengths[index] = static_cast<int>(column->getLength());
+                                 command->PtrParamValues[index] =
+                                         reinterpret_cast<char *>(field->PointerToFieldValue());
+
+                                 index++;
+                             });
+                }
+
+                string getTypeAlias(Architecture::Enumeration::DbType dbType) {
+
+                    switch (dbType) {
+                        case Architecture::Enumeration::DbType::Boolean:
+                            return "boolean";
+                        case Architecture::Enumeration::DbType::Byte:
+                            return "bytea";
+                        case Architecture::Enumeration::DbType::Int16:
+                            return "smallint";
+                        case Architecture::Enumeration::DbType::Int32:
+                            return "integer";
+                        case Architecture::Enumeration::DbType::Int64:
+                            return "bigint";
+                        case Architecture::Enumeration::DbType::UInt16:
+                            return "smallint";
+                        case Architecture::Enumeration::DbType::UInt32:
+                            return "integer";
+                        case Architecture::Enumeration::DbType::UInt64:
+                            return "bigint";
+                        case Architecture::Enumeration::DbType::Double:
+                            return "double";
+                        case Architecture::Enumeration::DbType::Float:
+                            return "real";
+                        case Architecture::Enumeration::DbType::Decimal:
+                            return "decimal";
+                        case Architecture::Enumeration::DbType::Numeric:
+                            return "numeric";
+                        case Architecture::Enumeration::DbType::String:
+                            return "varchar";
+                        case Architecture::Enumeration::DbType::Currency:
+                            return "money";
+                        case Architecture::Enumeration::DbType::Date:
+                            return "date";
+                        case Architecture::Enumeration::DbType::Time:
+                            return "time";
+                        case Architecture::Enumeration::DbType::Timestamp:
+                            return "timestamp";
+                        case Architecture::Enumeration::DbType::Interval:
+                            return "interval";
+                    }
+                }
+
+
+                void retrieveResult(const EntityMap &entityMap,
+                                    const PGresult *ptrResult,
+                                    std::shared_ptr<Entity> &entity) {
+
+                    auto columnsForGet = entityMap.getColumnsForGet();
+
+                    int index = 0;
+
+                    std::for_each(columnsForGet.cbegin(), columnsForGet.cend(),
+                                  [&entity, &ptrResult, &index](const shared_ptr<Column> &column) {
+
+                                      auto field = entity->GetField(column->getName());
+
+                                      // TODO: set value into variable that suits its type
+                                      auto cvalue = strdup(PQgetvalue(ptrResult, 0, index));
+                                      field->setCString(cvalue);
+
+                                      index++;
+                                  });
+
                 }
             };
 
-            int nParam = 0;
-            int ResultFormat = 0;
-
-            Oid *PtrParamTypes = NULL;      // Set entry pointer to 0 (NULL) for using text format
-            int *PtrParamFormats = NULL;    // Set entry pointer to 0 (NULL) for using text format
-
-            int *PtrParamLengths = nullptr;
-            char **PtrParamValues = nullptr;
-
-            const PGconn &PGConn;
-            const string &Query;
-        };
-
-        class PostgreSourceDriver::PqApiImpl {
-
-        public:
-            PGconn *PtrPgConn;
-
-        public:
-            shared_ptr<Command> createCommand(const string &query) {
-                shared_ptr<Command> command = make_shared<Command>(*PtrPgConn, query);
-                return command;
+            PostgreSourceDriver::PostgreSourceDriver(EntityMap & entityMap) : EntitySourceDriver(entityMap),
+                                                                              _pgApiImpl(new PgApiImpl()) {
+                init();
             }
 
-            void initializeParamsBindBuffer(shared_ptr<Entity> &entity,
-                                            const ColumnsList &columnsList,
-                                            shared_ptr<Command> &command) {
-
-                auto nParam = columnsList.size();
-
-                command->nParam = (int) columnsList.size();
-                command->PtrParamLengths = (int *) calloc(nParam, sizeof(int));
-                command->PtrParamValues = (char **) calloc(nParam, sizeof(char *));
-
-                int index = 0;
-
-                for_each(columnsList.cbegin(), columnsList.cend(),
-                         [&entity, &command, &index](const shared_ptr<Column> &column) {
-
-                             auto field = entity->operator[](column->getName());
-
-                             command->PtrParamLengths[index] = static_cast<int>(column->getLength());
-                             command->PtrParamValues[index] = reinterpret_cast<char *>(field->PointerToFieldValue());
-
-                             index++;
-                         });
-            }
-
-            string getTypeAlias(Architecture::Enumeration::DbType dbType) {
-
-                switch (dbType) {
-                    case Architecture::Enumeration::DbType::Boolean:
-                        return "boolean";
-                    case Architecture::Enumeration::DbType::Byte:
-                        return "bytea";
-                    case Architecture::Enumeration::DbType::Int16:
-                        return "smallint";
-                    case Architecture::Enumeration::DbType::Int32:
-                        return "integer";
-                    case Architecture::Enumeration::DbType::Int64:
-                        return "bigint";
-                    case Architecture::Enumeration::DbType::UInt16:
-                        return "smallint";
-                    case Architecture::Enumeration::DbType::UInt32:
-                        return "integer";
-                    case Architecture::Enumeration::DbType::UInt64:
-                        return "bigint";
-                    case Architecture::Enumeration::DbType::Double:
-                        return "double";
-                    case Architecture::Enumeration::DbType::Float:
-                        return "real";
-                    case Architecture::Enumeration::DbType::Decimal:
-                        return "decimal";
-                    case Architecture::Enumeration::DbType::Numeric:
-                        return "numeric";
-                    case Architecture::Enumeration::DbType::String:
-                        return "varchar";
-                    case Architecture::Enumeration::DbType::Currency:
-                        return "money";
-                    case Architecture::Enumeration::DbType::Date:
-                        return "date";
-                    case Architecture::Enumeration::DbType::Time:
-                        return "time";
-                    case Architecture::Enumeration::DbType::Timestamp:
-                        return "timestamp";
-                    case Architecture::Enumeration::DbType::Interval:
-                        return "interval";
-                }
-            }
-
-
-            void retrieveResult(const EntityMap &entityMap,
-                                const PGresult *ptrResult,
-                                std::shared_ptr<Entity> &entity) {
-
-                auto columnsForGet = entityMap.getColumnsForGet();
-
-                int index = 0;
-
-                std::for_each(columnsForGet.cbegin(), columnsForGet.cend(),
-                              [&entity, &ptrResult, &index](const shared_ptr<Column> &column) {
-
-                                  auto field = entity->GetField(column->getName());
-
-                                  // TODO: set value into variable that suits its type
-                                  auto cvalue = strdup(PQgetvalue(ptrResult, 0, index));
-                                  field->setCString(cvalue);
-
-                                  index++;
-                              });
+            PostgreSourceDriver::~PostgreSourceDriver() {
 
             }
-        };
 
-        PostgreSourceDriver::PostgreSourceDriver(EntityMap &entityMap) : EntitySourceDriver(entityMap),
-                                                                         _pqApiImpl(new PqApiImpl()) {
-            init();
-        }
+            void PostgreSourceDriver::init() {
 
-        PostgreSourceDriver::~PostgreSourceDriver() {
-
-        }
-
-        void PostgreSourceDriver::init() {
-
-            auto fpValue = [this](const std::shared_ptr<Column> &column,
-                                  int index) -> string {
-
-                auto typeName = _pqApiImpl->getTypeAlias(column->getDbType());
-                auto expr = "$" + std::to_string(++index) + "::" + typeName;
-
-                return expr;
-            };
-
-            auto fpCondition = [this](const std::shared_ptr<Column> &column,
+                auto fpValue = [this](const std::shared_ptr<Column> &column,
                                       int index) -> string {
 
-                auto typeName = _pqApiImpl->getTypeAlias(column->getDbType());
-                auto expr = column->getDatasourceName() + " = " + "$" + std::to_string(++index) + "::" + typeName;
+                    auto typeName = _pgApiImpl->getTypeAlias(column->getDbType());
+                    auto expr = "$" + std::to_string(++index) + "::" + typeName;
 
-                return expr;
-            };
+                    return expr;
+                };
 
-            _getStatement = Architecture::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
-            _insertStatement = Architecture::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
-            _updateStatement = Architecture::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
-            _deleteStatement = Architecture::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
-        }
+                auto fpCondition = [this](const std::shared_ptr<Column> &column,
+                                          int index) -> string {
 
-        int PostgreSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
+                    auto typeName = _pgApiImpl->getTypeAlias(column->getDbType());
+                    auto expr = column->getDatasourceName() + " = " + "$" + std::to_string(++index) + "::" + typeName;
 
-            ColumnsList columnList = entityMap.getColumnsForKey();
+                    return expr;
+                };
 
-            shared_ptr<Command> command = _pqApiImpl->createCommand(_getStatement);
-
-            _pqApiImpl->initializeParamsBindBuffer(entity, columnList, command);
-
-            const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
-
-            PGresult *result = PQexecParams(_pqApiImpl->PtrPgConn,
-                                            command->Query.c_str(),
-                                            command->nParam,
-                                            command->PtrParamTypes,
-                                            ptrParamValues,
-                                            command->PtrParamLengths,
-                                            command->PtrParamFormats,
-                                            command->ResultFormat);
-
-            // TODO: Verify result status
-            ExecStatusType statusType = PQresultStatus(result);
-
-            char *errorMessage = nullptr;
-
-            switch (statusType) {
-                case PGRES_EMPTY_QUERY:
-                    break;
-                case PGRES_COMMAND_OK:
-                    break;
-                case PGRES_TUPLES_OK:
-                    _pqApiImpl->retrieveResult(_entityMap, result, entity);
-                    break;
-                case PGRES_COPY_OUT:
-                    break;
-                case PGRES_COPY_IN:
-                    break;
-                case PGRES_BAD_RESPONSE:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_NONFATAL_ERROR:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_FATAL_ERROR:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_COPY_BOTH:
-                    break;
-                case PGRES_SINGLE_TUPLE:
-                    break;
+                _getStatement = Architecture::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
+                _insertStatement = Architecture::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
+                _updateStatement = Architecture::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
+                _deleteStatement = Architecture::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
             }
 
-            PQclear(result);
+            int PostgreSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
-            return 1;
-        }
+                ColumnsList columnList = entityMap.getColumnsForKey();
 
-        int PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
+                shared_ptr<Command> command = _pgApiImpl->createCommand(_getStatement);
 
-            ColumnsList columnsList = entityMap.getColumnsForKey();
+                _pgApiImpl->initializeParamsBindBuffer(entity, columnList, command);
 
-            auto command = _pqApiImpl->createCommand(_insertStatement);
+                const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
-            _pqApiImpl->initializeParamsBindBuffer(entity, columnsList, command);
+                PGresult *result = PQexecParams(_pgApiImpl->PtrPgConn,
+                                                command->Query.c_str(),
+                                                command->nParam,
+                                                command->PtrParamTypes,
+                                                ptrParamValues,
+                                                command->PtrParamLengths,
+                                                command->PtrParamFormats,
+                                                command->ResultFormat);
 
-            const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
+                // TODO: Verify result status
+                ExecStatusType statusType = PQresultStatus(result);
 
-            PGresult *result = PQexecParams(_pqApiImpl->PtrPgConn,
-                                            command->Query.c_str(),
-                                            command->nParam,
-                                            command->PtrParamTypes,
-                                            ptrParamValues,
-                                            command->PtrParamLengths,
-                                            command->PtrParamFormats,
-                                            command->ResultFormat);
+                char *errorMessage = nullptr;
 
-            // TODO: Verify result status
-            ExecStatusType statusType = PQresultStatus(result);
+                switch (statusType) {
+                    case PGRES_EMPTY_QUERY:
+                        break;
+                    case PGRES_COMMAND_OK:
+                        break;
+                    case PGRES_TUPLES_OK:
+                        _pgApiImpl->retrieveResult(_entityMap, result, entity);
+                        break;
+                    case PGRES_COPY_OUT:
+                        break;
+                    case PGRES_COPY_IN:
+                        break;
+                    case PGRES_BAD_RESPONSE:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_NONFATAL_ERROR:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_FATAL_ERROR:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_COPY_BOTH:
+                        break;
+                    case PGRES_SINGLE_TUPLE:
+                        break;
+                }
 
-            char *errorMessage = nullptr;
+                PQclear(result);
 
-            switch (statusType) {
-                case PGRES_EMPTY_QUERY:
-                    break;
-                case PGRES_COMMAND_OK:
-                    break;
-                case PGRES_TUPLES_OK:
-                    break;
-                case PGRES_COPY_OUT:
-                    break;
-                case PGRES_COPY_IN:
-                    break;
-                case PGRES_BAD_RESPONSE:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_NONFATAL_ERROR:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_FATAL_ERROR:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_COPY_BOTH:
-                    break;
-                case PGRES_SINGLE_TUPLE:
-                    break;
+                return 1;
             }
 
-            PQclear(result);
+            int PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
-            return 1;
-        }
+                ColumnsList columnsList = entityMap.getColumnsForKey();
 
-        int PostgreSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
+                auto command = _pgApiImpl->createCommand(_insertStatement);
 
-            ColumnsList columnList;
+                _pgApiImpl->initializeParamsBindBuffer(entity, columnsList, command);
 
-            columnList.insert(columnList.end(),
-                              entityMap.getColumnsForUpdate().begin(),
-                              entityMap.getColumnsForUpdate().end());
+                const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
-            columnList.insert(columnList.end(),
-                              entityMap.getColumnsForKey().begin(),
-                              entityMap.getColumnsForKey().end());
+                PGresult *result = PQexecParams(_pgApiImpl->PtrPgConn,
+                                                command->Query.c_str(),
+                                                command->nParam,
+                                                command->PtrParamTypes,
+                                                ptrParamValues,
+                                                command->PtrParamLengths,
+                                                command->PtrParamFormats,
+                                                command->ResultFormat);
 
-            auto command = _pqApiImpl->createCommand(_updateStatement);
+                // TODO: Verify result status
+                ExecStatusType statusType = PQresultStatus(result);
 
-            _pqApiImpl->initializeParamsBindBuffer(entity, columnList, command);
+                char *errorMessage = nullptr;
 
-            const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
+                switch (statusType) {
+                    case PGRES_EMPTY_QUERY:
+                        break;
+                    case PGRES_COMMAND_OK:
+                        break;
+                    case PGRES_TUPLES_OK:
+                        break;
+                    case PGRES_COPY_OUT:
+                        break;
+                    case PGRES_COPY_IN:
+                        break;
+                    case PGRES_BAD_RESPONSE:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_NONFATAL_ERROR:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_FATAL_ERROR:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_COPY_BOTH:
+                        break;
+                    case PGRES_SINGLE_TUPLE:
+                        break;
+                }
 
-            PGresult *result = PQexecParams(_pqApiImpl->PtrPgConn,
-                                            command->Query.c_str(),
-                                            command->nParam,
-                                            command->PtrParamTypes,
-                                            ptrParamValues,
-                                            command->PtrParamLengths,
-                                            command->PtrParamFormats,
-                                            command->ResultFormat);
+                PQclear(result);
 
-            ExecStatusType statusType = PQresultStatus(result);
-
-            // TODO: Verify result status
-            char *errorMessage = nullptr;
-
-            switch (statusType) {
-                case PGRES_EMPTY_QUERY:
-                    break;
-                case PGRES_COMMAND_OK:
-                    break;
-                case PGRES_TUPLES_OK:
-                    break;
-                case PGRES_COPY_OUT:
-                    break;
-                case PGRES_COPY_IN:
-                    break;
-                case PGRES_BAD_RESPONSE:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_NONFATAL_ERROR:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_FATAL_ERROR:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_COPY_BOTH:
-                    break;
-                case PGRES_SINGLE_TUPLE:
-                    break;
+                return 1;
             }
 
-            PQclear(result);
+            int PostgreSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
-            return 1;
-        }
+                ColumnsList columnList;
 
-        int PostgreSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
+                columnList.insert(columnList.end(),
+                                  entityMap.getColumnsForUpdate().begin(),
+                                  entityMap.getColumnsForUpdate().end());
 
-            ColumnsList columnList = entityMap.getColumnsForKey();
+                columnList.insert(columnList.end(),
+                                  entityMap.getColumnsForKey().begin(),
+                                  entityMap.getColumnsForKey().end());
 
-            shared_ptr<Command> command = _pqApiImpl->createCommand(_deleteStatement);
+                auto command = _pgApiImpl->createCommand(_updateStatement);
 
-            _pqApiImpl->initializeParamsBindBuffer(entity, columnList, command);
+                _pgApiImpl->initializeParamsBindBuffer(entity, columnList, command);
 
-            const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
+                const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
-            PGresult *result = PQexecParams(_pqApiImpl->PtrPgConn,
-                                            command->Query.c_str(),
-                                            command->nParam,
-                                            command->PtrParamTypes,
-                                            ptrParamValues,
-                                            command->PtrParamLengths,
-                                            command->PtrParamFormats,
-                                            command->ResultFormat);
+                PGresult *result = PQexecParams(_pgApiImpl->PtrPgConn,
+                                                command->Query.c_str(),
+                                                command->nParam,
+                                                command->PtrParamTypes,
+                                                ptrParamValues,
+                                                command->PtrParamLengths,
+                                                command->PtrParamFormats,
+                                                command->ResultFormat);
 
-            // TODO: Verify result status
-            ExecStatusType statusType = PQresultStatus(result);
+                ExecStatusType statusType = PQresultStatus(result);
 
-            char *errorMessage = nullptr;
+                // TODO: Verify result status
+                char *errorMessage = nullptr;
 
-            switch (statusType) {
-                case PGRES_EMPTY_QUERY:
-                    break;
-                case PGRES_COMMAND_OK:
-                    break;
-                case PGRES_TUPLES_OK:
-                    break;
-                case PGRES_COPY_OUT:
-                    break;
-                case PGRES_COPY_IN:
-                    break;
-                case PGRES_BAD_RESPONSE:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_NONFATAL_ERROR:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_FATAL_ERROR:
-                    errorMessage = PQresultErrorMessage(result);
-                    cout << errorMessage << endl;
-                    break;
-                case PGRES_COPY_BOTH:
-                    break;
-                case PGRES_SINGLE_TUPLE:
-                    break;
+                switch (statusType) {
+                    case PGRES_EMPTY_QUERY:
+                        break;
+                    case PGRES_COMMAND_OK:
+                        break;
+                    case PGRES_TUPLES_OK:
+                        break;
+                    case PGRES_COPY_OUT:
+                        break;
+                    case PGRES_COPY_IN:
+                        break;
+                    case PGRES_BAD_RESPONSE:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_NONFATAL_ERROR:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_FATAL_ERROR:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_COPY_BOTH:
+                        break;
+                    case PGRES_SINGLE_TUPLE:
+                        break;
+                }
+
+                PQclear(result);
+
+                return 1;
             }
 
-            PQclear(result);
+            int PostgreSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
-            return 1;
+                ColumnsList columnList = entityMap.getColumnsForKey();
 
-            return 1;
-        }
+                shared_ptr<Command> command = _pgApiImpl->createCommand(_deleteStatement);
 
-        void PostgreSourceDriver::Connect() {
+                _pgApiImpl->initializeParamsBindBuffer(entity, columnList, command);
 
-            if (_pqApiImpl->PtrPgConn == nullptr) {
+                const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
-                _pqApiImpl->PtrPgConn = PQsetdbLogin(OptionArgs.Host.c_str(),
-                                                     std::to_string(OptionArgs.Port).c_str(),
-                                                     NULL,
-                                                     NULL,
-                                                     OptionArgs.Base.c_str(),
-                                                     OptionArgs.User.c_str(),
-                                                     OptionArgs.Pass.c_str());
-                _isConnected = true;
+                PGresult *result = PQexecParams(_pgApiImpl->PtrPgConn,
+                                                command->Query.c_str(),
+                                                command->nParam,
+                                                command->PtrParamTypes,
+                                                ptrParamValues,
+                                                command->PtrParamLengths,
+                                                command->PtrParamFormats,
+                                                command->ResultFormat);
+
+                // TODO: Verify result status
+                ExecStatusType statusType = PQresultStatus(result);
+
+                char *errorMessage = nullptr;
+
+                switch (statusType) {
+                    case PGRES_EMPTY_QUERY:
+                        break;
+                    case PGRES_COMMAND_OK:
+                        break;
+                    case PGRES_TUPLES_OK:
+                        break;
+                    case PGRES_COPY_OUT:
+                        break;
+                    case PGRES_COPY_IN:
+                        break;
+                    case PGRES_BAD_RESPONSE:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_NONFATAL_ERROR:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_FATAL_ERROR:
+                        errorMessage = PQresultErrorMessage(result);
+                        cout << errorMessage << endl;
+                        break;
+                    case PGRES_COPY_BOTH:
+                        break;
+                    case PGRES_SINGLE_TUPLE:
+                        break;
+                }
+
+                PQclear(result);
+
+                return 1;
+
+                return 1;
             }
-        }
 
-        void PostgreSourceDriver::Disconnect() {
+            void PostgreSourceDriver::Connect() {
 
-            if (_pqApiImpl->PtrPgConn != nullptr) {
+                if (_pgApiImpl->PtrPgConn == nullptr) {
 
-                PQfinish(_pqApiImpl->PtrPgConn);
-                _isConnected = false;
+                    _pgApiImpl->PtrPgConn = PQsetdbLogin(OptionArgs.Host.c_str(),
+                                                         std::to_string(OptionArgs.Port).c_str(),
+                                                         NULL,
+                                                         NULL,
+                                                         OptionArgs.Base.c_str(),
+                                                         OptionArgs.User.c_str(),
+                                                         OptionArgs.Pass.c_str());
+                    _isConnected = true;
+                }
+            }
+
+            void PostgreSourceDriver::Disconnect() {
+
+                if (_pgApiImpl->PtrPgConn != nullptr) {
+
+                    PQfinish(_pgApiImpl->PtrPgConn);
+                    _isConnected = false;
+                }
             }
         }
     }

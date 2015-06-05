@@ -42,7 +42,9 @@ add_library(architecture STATIC
     Architecture/DataSource/Connector.h
     Architecture/DataSource/Connector.cpp
     Architecture/EntitySourceDriver.cpp
-    Architecture/EntitySourceDriver.h Architecture/Helper/EntityStoreHelper.cpp Architecture/Helper/EntityStoreHelper.h)
+    Architecture/EntitySourceDriver.h
+    Architecture/Helper/EntityStoreHelper.cpp
+    Architecture/Helper/EntityStoreHelper.h)
 
 
 add_library(application STATIC
@@ -71,8 +73,10 @@ add_library(infrastructure STATIC
     Infrastructure/Postgres/PostgreSourceDriver.h
     Infrastructure/Postgres/PostgreSourceDriver.cpp
     Infrastructure/Postgres/PostgreSourceDriver.h
-    Infrastructure/MySql/MySqlSourceDriverException.cpp
-    Infrastructure/MySql/MySqlSourceDriverException.h Infrastructure/Postgres/PostgreSourceDriverException.cpp Infrastructure/Postgres/PostgreSourceDriverException.h)
+    Infrastructure/MySql/MySqlSourceException.cpp
+    Infrastructure/MySql/MySqlSourceException.h
+    Infrastructure/Postgres/PostgreSourceException.cpp
+    Infrastructure/Postgres/PostgreSourceException.h Infrastructure/MongoDb/MongoDbSourceDriver.cpp Infrastructure/MongoDb/MongoDbSourceDriver.h Infrastructure/MongoDb/MongoDbSourceException.cpp Infrastructure/MongoDb/MongoDbSourceException.h)
 
 
 add_library(examples STATIC
@@ -86,7 +90,8 @@ add_library(apptest STATIC
     AppTest/Store/StockGroupMySqlStore.cpp
     AppTest/Store/StockGroupMySqlStore.h
     AppTest/Store/StoreCreateSaveDeleteTest.h
-    AppTest/Store/StockGroupPostgreStore.cpp AppTest/Store/StockGroupPostgreStore.h)
+    AppTest/Store/StockGroupPostgreStore.cpp
+    AppTest/Store/StockGroupPostgreStore.h)
 
 
 # Libs
@@ -119,9 +124,10 @@ set(EXAMPLES_SOURCE_FILE ${EXAMPLES_DIR}/main.cpp)
 add_executable(cloud_e_cplus_example ${EXAMPLES_SOURCE_FILE})
 target_link_libraries(cloud_e_cplus_example mysqlclient examples)
 
+
 # Debug Target
 add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus_debug architecture infrastructure application mysqlclient)
+target_link_libraries(cloud_e_cplus_debug architecture infrastructure application mysqlclient pq mongoc-1.0)
 
 # AppTest Target (with Google Testing Framework)
 set(GTEST_LIB_DIR ${LIBS_DIR}/gtest-1.7.0)
@@ -130,4 +136,4 @@ include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 
 add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest gtest mysqlclient pq)
+target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest gtest mysqlclient pq mongoc-1.0)
