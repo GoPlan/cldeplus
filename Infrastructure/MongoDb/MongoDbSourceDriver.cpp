@@ -61,6 +61,7 @@ namespace Cloude {
                     }
 
                     auto command = std::make_shared<Command>(*_ptrClient, *_ptrCollection);
+
                     return command;
                 }
 
@@ -68,10 +69,14 @@ namespace Cloude {
 
                     std::string connStr = "mongodb://";
 
-                    connStr += optionArgs.User + ":" + optionArgs.Pass;
-                    connStr += "@";
+                    if (optionArgs.User.length() > 0 && optionArgs.Pass.length() > 0) {
+                        connStr += optionArgs.User + ":" + optionArgs.Pass;
+                        connStr += "@";
+                    }
+
                     connStr += optionArgs.Host;
-                    connStr += optionArgs.Port;
+                    connStr += ":";
+                    connStr += std::to_string(optionArgs.Port);
 
                     return connStr;
                 }
@@ -85,45 +90,67 @@ namespace Cloude {
 
 
             MongoDbSourceDriver::MongoDbSourceDriver(Architecture::EntityMap &entityMap)
-                    : EntitySourceDriver(entityMap) {
+                    : EntitySourceDriver(entityMap), _mongoDbApiImpl(new MongoDbApiImpl()) {
                 //
             }
 
             int MongoDbSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity,
                                                 const EntityMap &entityMap) const {
-                return 0;
+
+                std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
+
+                mongoc_cursor_t *ptrCursor;
+
+                ptrCursor = mongoc_collection_find(_mongoDbApiImpl->_ptrCollection,
+                                                   MONGOC_QUERY_NONE,
+                                                   0,
+                                                   0,
+                                                   0,
+                                                   command->_ptrQuery,
+                                                   NULL,
+                                                   NULL);
+
+                // Load cursor fields to entity fields
+
+                mongoc_cursor_destroy(ptrCursor);
+
+                return 1;
             }
 
             int MongoDbSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity,
                                                   const EntityMap &entityMap) const {
-                return 0;
+
+                std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
+
+                return 1;
             }
 
             int MongoDbSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity,
                                                 const EntityMap &entityMap) const {
-                return 0;
+                return 1;
             }
 
             int MongoDbSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity,
                                                   const EntityMap &entityMap) const {
-                return 0;
+                return 1;
             }
 
             void MongoDbSourceDriver::Connect() {
 
-                std::string uriString = _mongoDbApiImpl->parseConnectionString(OptionArgs);
+                std::string uriString = _mongoDbApiImpl->parseConnectionString(_optionArgs);
+
                 _mongoDbApiImpl->_ptrClient = mongoc_client_new(uriString.c_str());
                 _mongoDbApiImpl->_ptrCollection = mongoc_client_get_collection(_mongoDbApiImpl->_ptrClient,
-                                                                               OptionArgs.Base.c_str(),
+                                                                               _optionArgs.Base.c_str(),
                                                                                _entityMap.TableName().c_str());
             }
 
             void MongoDbSourceDriver::Disconnect() {
-
+                //
             }
 
             void MongoDbSourceDriver::init() {
-
+                //
             }
         }
     }

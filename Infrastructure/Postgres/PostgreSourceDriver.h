@@ -28,6 +28,7 @@ namespace Cloude {
             };
 
             class PostgreSourceDriver : public Architecture::EntitySourceDriver {
+            public:
                 using Entity = Cloude::Architecture::Entity;
                 using Column = Cloude::Architecture::Column;
                 using Field = Cloude::Architecture::Field;
@@ -45,14 +46,11 @@ namespace Cloude {
                 };
 
             public:
-                Options OptionArgs;
-
-            public:
                 explicit PostgreSourceDriver(EntityMap &entityMap);
                 ~PostgreSourceDriver();
                 PostgreSourceDriver(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
                 PostgreSourceDriver &operator=(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
-                
+
                 void Connect();
                 void Disconnect();
 
@@ -61,9 +59,14 @@ namespace Cloude {
                 int SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
                 int DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
 
+                Options &getOptionArgs() {
+                    return _optionArgs;
+                }
+
             private:
                 class PgApiImpl;
 
+                Options _optionArgs;
                 std::shared_ptr<PgApiImpl> _pgApiImpl;
                 std::string _getStatement;
                 std::string _insertStatement;

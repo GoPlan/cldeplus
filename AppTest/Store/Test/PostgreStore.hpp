@@ -16,14 +16,8 @@ namespace Cloude {
         namespace Store {
             namespace Test {
 
-                using Column = Cloude::Architecture::Column;
                 using Field = Cloude::Architecture::Field;
                 using Identity = Cloude::Architecture::Identity;
-                using EnumDbType = Cloude::Architecture::Enumeration::DbType;
-
-                using StockGroupMap = Cloude::Application::Mapper::StockGroupMap;
-                using StockGroupLoader = Cloude::Application::Mapper::StockGroupLoader;
-                using StockGroupPostgreStore = Cloude::AppTest::Store::StockGroupPostgreStore;
 
                 TEST_F(StockGroupPostgreStore, CreateGetSaveDelete) {
 

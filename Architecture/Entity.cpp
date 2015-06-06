@@ -14,15 +14,15 @@ namespace Cloude {
         Entity::Entity(const std::shared_ptr<Identity> &identity) : _identity(identity) {
             for (auto fieldPair : _identity->getFieldsMap()) {
                 auto field = fieldPair.second;
-                SetField(field);
+                setField(field);
             }
         }
 
         shared_ptr<Field> Entity::operator[](const string &columnName) {
-            return GetField(columnName);
+            return getField(columnName);
         }
 
-        shared_ptr<Field> Entity::GetField(const string &columnName) {
+        shared_ptr<Field> Entity::getField(const string &columnName) {
 
             auto search = _fieldsMap.find(columnName);
 
@@ -33,25 +33,25 @@ namespace Cloude {
             return search->second;
         }
 
-        void Entity::SetField(shared_ptr<Field> &field) {
+        void Entity::setField(shared_ptr<Field> &field) {
             shared_ptr<Field> spField(field);
             _fieldsMap[field->getColumn()->getName()] = spField;
         }
 
-        void Entity::SetField(Field *ptrField) {
+        void Entity::setField(Field *ptrField) {
             shared_ptr<Field> spField(ptrField);
             _fieldsMap[ptrField->getColumn()->getName()] = spField;
         }
 
-        void Entity::SetMultiFields(std::initializer_list<std::shared_ptr<Field>> &fieldsList) {
+        void Entity::setMultiFields(std::initializer_list<std::shared_ptr<Field>> &fieldsList) {
             for (auto field : fieldsList) {
-                SetField(const_cast<std::shared_ptr<Field> &>(field));
+                setField(const_cast<std::shared_ptr<Field> &>(field));
             }
         }
 
-        void Entity::SetMultiFields(std::initializer_list<Field *> ptrFieldsList) {
+        void Entity::setMultiFields(std::initializer_list<Field *> ptrFieldsList) {
             for (auto ptrField : ptrFieldsList) {
-                SetField(ptrField);
+                setField(ptrField);
             }
         }
 

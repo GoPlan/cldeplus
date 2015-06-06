@@ -82,7 +82,7 @@ add_library(infrastructure STATIC
 add_library(examples STATIC
     Examples/main.cpp
     Examples/mysql_c_example.h
-    Examples/mysql_c_example.cpp)
+    Examples/mysql_c_example.cpp Examples/mongodb_c_example.cpp Examples/mongodb_c_example.h)
 
 
 add_library(apptest STATIC
@@ -128,7 +128,7 @@ set(EXAMPLES_SOURCE_FILE ${EXAMPLES_DIR}/main.cpp)
 
 # Examples Target
 add_executable(cloud_e_cplus_example ${EXAMPLES_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_example mysqlclient examples)
+target_link_libraries(cloud_e_cplus_example examples mysqlclient mongoc-1.0 bson-1.0)
 
 
 # Debug Target
@@ -142,4 +142,5 @@ include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 
 add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest gtest mysqlclient pq mongoc-1.0)
+target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest)
+target_link_libraries(cloud_e_cplus_test gtest mysqlclient pq mongoc-1.0 bson-1.0)

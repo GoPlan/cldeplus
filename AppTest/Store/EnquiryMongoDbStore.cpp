@@ -10,26 +10,26 @@ namespace Cloude {
         namespace Store {
 
             EnquiryMongoDbStore::EnquiryMongoDbStore() : _mongoDbSourceDriver(_enquiryMap),
-                                           _entityStore(_enquiryMap,
-                                                        _enquiryLoader,
-                                                        _mongoDbSourceDriver) {
+                                                         _entityStore(_enquiryMap,
+                                                                      _enquiryLoader,
+                                                                      _mongoDbSourceDriver) {
                 //
             }
 
             void EnquiryMongoDbStore::SetUp() {
 
-                _mongoDbSourceDriver.OptionArgs.Host = "dell-3020";
-                _mongoDbSourceDriver.OptionArgs.User = "cloude";
-                _mongoDbSourceDriver.OptionArgs.Pass = "cloude";
-                _mongoDbSourceDriver.OptionArgs.Base = "cloude";
-                _mongoDbSourceDriver.OptionArgs.Port = 27017;
+                auto &optionArgs = _mongoDbSourceDriver.getOptionArgs();
+
+                optionArgs.Host = "dell-3020";
+                optionArgs.Base = "test";
+                optionArgs.Port = 27017;
+
+                _mongoDbSourceDriver.Connect();
 
             }
 
             void EnquiryMongoDbStore::TearDown() {
-
-                //
-
+                _mongoDbSourceDriver.Disconnect();
             }
         }
     }

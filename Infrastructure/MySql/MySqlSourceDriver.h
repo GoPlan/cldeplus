@@ -18,6 +18,7 @@ namespace Cloude {
             };
 
             class MySqlSourceDriver : public Architecture::EntitySourceDriver {
+            public:
                 using Entity = Cloude::Architecture::Entity;
                 using Column = Cloude::Architecture::Column;
                 using Field = Cloude::Architecture::Field;
@@ -31,9 +32,6 @@ namespace Cloude {
                     std::string Base;
                     unsigned int Port = 3306;
                 };
-
-            public:
-                Options OptionArgs;
 
             public:
                 explicit MySqlSourceDriver(EntityMap &entityMap);
@@ -65,9 +63,14 @@ namespace Cloude {
                     _deleteStatement = deleteStatement;
                 }
 
+                Options &getOptionArgs() {
+                    return _optionArgs;
+                }
+
             private:
                 class MySqlApiImpl;
 
+                Options _optionArgs;
                 std::shared_ptr<MySqlApiImpl> _mySqlApiImpl;
                 std::string _getStatement;
                 std::string _insertStatement;

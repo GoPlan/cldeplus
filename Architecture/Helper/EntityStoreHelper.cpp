@@ -19,7 +19,7 @@ namespace Cloude {
                     }
 
                     auto field = std::make_shared<Field>(const_cast<std::shared_ptr<Column> &>(column));
-                    entity->SetField(field);
+                    entity->setField(field);
                 }
             }
         }

@@ -265,11 +265,11 @@ namespace Cloude {
 
                 // TODO: To research the use of mysql_options();
                 if (!mysql_real_connect(_mySqlApiImpl->PtrMySql,
-                                        OptionArgs.Host.c_str(),
-                                        OptionArgs.User.c_str(),
-                                        OptionArgs.Pass.c_str(),
-                                        OptionArgs.Base.c_str(),
-                                        OptionArgs.Port,
+                                        _optionArgs.Host.c_str(),
+                                        _optionArgs.User.c_str(),
+                                        _optionArgs.Pass.c_str(),
+                                        _optionArgs.Base.c_str(),
+                                        _optionArgs.Port,
                                         NULL, 0)) {
 
                     _mySqlApiImpl->assertSqlError();

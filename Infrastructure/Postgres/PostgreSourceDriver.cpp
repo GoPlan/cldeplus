@@ -142,7 +142,7 @@ namespace Cloude {
                     std::for_each(columnsForGet.cbegin(), columnsForGet.cend(),
                                   [&entity, &ptrResult, &index](const shared_ptr<Column> &column) {
 
-                                      auto field = entity->GetField(column->getName());
+                                      auto field = entity->getField(column->getName());
 
                                       // TODO: set value into variable that suits its type
                                       auto cvalue = strdup(PQgetvalue(ptrResult, 0, index));
@@ -436,13 +436,13 @@ namespace Cloude {
 
                 if (_pgApiImpl->PtrPgConn == nullptr) {
 
-                    _pgApiImpl->PtrPgConn = PQsetdbLogin(OptionArgs.Host.c_str(),
-                                                         std::to_string(OptionArgs.Port).c_str(),
+                    _pgApiImpl->PtrPgConn = PQsetdbLogin(_optionArgs.Host.c_str(),
+                                                         std::to_string(_optionArgs.Port).c_str(),
                                                          NULL,
                                                          NULL,
-                                                         OptionArgs.Base.c_str(),
-                                                         OptionArgs.User.c_str(),
-                                                         OptionArgs.Pass.c_str());
+                                                         _optionArgs.Base.c_str(),
+                                                         _optionArgs.User.c_str(),
+                                                         _optionArgs.Pass.c_str());
                     _isConnected = true;
                 }
             }

@@ -11,18 +11,18 @@ namespace Cloude {
 
             void StockGroupPostgreStore::SetUp() {
 
-                _postgresDriver.OptionArgs.Host = "dell-3020";
-                _postgresDriver.OptionArgs.User = "cloud-e";
-                _postgresDriver.OptionArgs.Pass = "cloud-e";
-                _postgresDriver.OptionArgs.Base = "cloud-e";
+                auto &optionArgs = _postgresDriver.getOptionArgs();
+
+                optionArgs.Host = "dell-3020";
+                optionArgs.User = "cloud-e";
+                optionArgs.Pass = "cloud-e";
+                optionArgs.Base = "cloud-e";
 
                 _postgresDriver.Connect();
             }
 
             void StockGroupPostgreStore::TearDown() {
-
                 _postgresDriver.Disconnect();
-
             }
         }
     }

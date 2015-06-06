@@ -18,14 +18,8 @@ namespace Cloude {
         namespace Store {
             namespace Test{
 
-                using Column = Cloude::Architecture::Column;
                 using Field = Cloude::Architecture::Field;
                 using Identity = Cloude::Architecture::Identity;
-                using EnumDbType = Cloude::Architecture::Enumeration::DbType;
-
-                using StockGroupMap = Cloude::Application::Mapper::StockGroupMap;
-                using StockGroupLoader = Cloude::Application::Mapper::StockGroupLoader;
-                using StockGroupMySqlStore = Cloude::AppTest::Store::StockGroupMySqlStore;
 
                 TEST_F(StockGroupMySqlStore, CreateGetSaveDelete) {
 
@@ -42,7 +36,7 @@ namespace Cloude {
                     // CREATE
                     {
                         auto spEntity = _entityStore.Create(spIdentity);
-                        auto spCodeFieldAlt = spEntity->GetField("Code");
+                        auto spCodeFieldAlt = spEntity->getField("Code");
                         auto codeValue = spCodeFieldAlt->getCString();
                         auto codeLen = strlen(codeValue);
 

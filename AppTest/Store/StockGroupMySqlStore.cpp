@@ -8,18 +8,17 @@
 
 void Cloude::AppTest::Store::StockGroupMySqlStore::SetUp() {
 
-    _mySqlDriver.OptionArgs.Host = "dell-3020";
-    _mySqlDriver.OptionArgs.Port = 3306;
-    _mySqlDriver.OptionArgs.User = "cloud-e";
-    _mySqlDriver.OptionArgs.Pass = "cloud-e";
-    _mySqlDriver.OptionArgs.Base = "cloud-e";
+    auto &optionArgs = _mySqlDriver.getOptionArgs();
+
+    optionArgs.Host = "dell-3020";
+    optionArgs.User = "cloud-e";
+    optionArgs.Pass = "cloud-e";
+    optionArgs.Base = "cloud-e";
 
     _mySqlDriver.Connect();
 
 }
 
 void Cloude::AppTest::Store::StockGroupMySqlStore::TearDown() {
-
     _mySqlDriver.Disconnect();
-
 }
