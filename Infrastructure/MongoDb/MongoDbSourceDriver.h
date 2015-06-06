@@ -15,6 +15,9 @@ namespace Cloude {
 
             class MongoDbSourceDriver : public Architecture::EntitySourceDriver {
             public:
+                using DbType = Architecture::Enumeration::DbType;
+                using Column = Architecture::Column;
+                using Field = Architecture::Field;
                 using EntitySourceDriver = Architecture::EntitySourceDriver;
                 using Entity = Architecture::Entity;
                 using EntityMap = Architecture::EntityMap;

@@ -344,8 +344,8 @@ namespace Cloude {
             int MySqlSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
 
                 auto command = _mySqlApiImpl->createCommand(_updateStatement);
-                auto columnsForKey = entityMap.getColumnsForKey();
-                auto columnsForUpdate = entityMap.getColumnsForUpdate();
+                auto &columnsForKey = entityMap.getColumnsForKey();
+                auto &columnsForUpdate = entityMap.getColumnsForUpdate();
 
                 ColumnsList joinedColumnsList;
                 joinedColumnsList.insert(joinedColumnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());

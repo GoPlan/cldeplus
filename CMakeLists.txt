@@ -76,7 +76,7 @@ add_library(infrastructure STATIC
     Infrastructure/MySql/MySqlSourceException.cpp
     Infrastructure/MySql/MySqlSourceException.h
     Infrastructure/Postgres/PostgreSourceException.cpp
-    Infrastructure/Postgres/PostgreSourceException.h Infrastructure/MongoDb/MongoDbSourceDriver.cpp Infrastructure/MongoDb/MongoDbSourceDriver.h Infrastructure/MongoDb/MongoDbSourceException.cpp Infrastructure/MongoDb/MongoDbSourceException.h)
+    Infrastructure/Postgres/PostgreSourceException.h Infrastructure/MongoDb/MongoDbSourceDriver.cpp Infrastructure/MongoDb/MongoDbSourceDriver.h Infrastructure/MongoDb/MongoDbSourceException.cpp Infrastructure/MongoDb/MongoDbSourceException.h Infrastructure/MongoDb/MongoDbQueryHelper.cpp Infrastructure/MongoDb/MongoDbQueryHelper.h)
 
 
 add_library(examples STATIC

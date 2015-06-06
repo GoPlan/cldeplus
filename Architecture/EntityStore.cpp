@@ -82,7 +82,7 @@ namespace Cloude {
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
-            if(_entitySourceDriver.CreateEntity(entity, _entityMap)){
+            if (_entitySourceDriver.CreateEntity(entity, _entityMap)) {
                 _identityMap.insert(pairItem);
             }
         }

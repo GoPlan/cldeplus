@@ -28,6 +28,9 @@ namespace Cloude {
                     // setMultiFields(initializer_list<shared_ptr<Field>>()
                     auto initFieldList{spEnquiryIdField};
                     auto spIdentity = std::make_shared<Identity>(initFieldList);
+                    auto entity = _entityStore.Create(spIdentity);
+
+                    ASSERT_TRUE(entity.get() != 0);
 
                 }
             }

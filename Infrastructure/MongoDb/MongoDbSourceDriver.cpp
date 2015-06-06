@@ -15,16 +15,24 @@ namespace Cloude {
                 Command(const mongoc_client_t &client, const mongoc_collection_t &collection) : collection(collection),
                                                                                                 client(client) {
                     _ptrQuery = bson_new();
+                    _ptrDoc = bson_new();
                 };
 
                 ~Command() {
 
-                    if (_ptrQuery) {
+                    if (_ptrQuery != nullptr) {
                         bson_destroy(_ptrQuery);
+                    }
+
+                    if (_ptrDoc != nullptr) {
+                        bson_destroy(_ptrDoc);
                     }
                 }
 
                 bson_t *_ptrQuery = nullptr;
+                bson_t *_ptrDoc = nullptr;
+                bson_error_t error;
+                bson_oid_t oid;
                 const mongoc_client_t &client;
                 const mongoc_collection_t &collection;
 
@@ -120,7 +128,43 @@ namespace Cloude {
             int MongoDbSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity,
                                                   const EntityMap &entityMap) const {
 
+                auto &columnsForKey = entityMap.getColumnsForKey();
+
                 std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
+
+                bson_oid_init(&command->oid, NULL);
+
+                std::for_each(columnsForKey.cbegin(),
+                              columnsForKey.cend(),
+                              [&command, &entity](const std::shared_ptr<Column> &column) {
+
+                                  auto field = entity->getField(column->getName());
+
+                                  switch (column->getDbType()) {
+                                      case DbType::Int64:
+                                          BSON_APPEND_INT64(command->_ptrDoc,
+                                                            column->getDatasourceName().c_str(),
+                                                            field->getInt64());
+                                          break;
+                                      case DbType::String:
+                                          BSON_APPEND_UTF8(command->_ptrDoc,
+                                                           column->getDatasourceName().c_str(),
+                                                           field->getCString());
+                                          break;
+                                      default:
+                                          break;
+                                  }
+                              });
+
+                if (!mongoc_collection_insert(_mongoDbApiImpl->_ptrCollection,
+                                              MONGOC_INSERT_NONE,
+                                              command->_ptrDoc,
+                                              NULL,
+                                              &command->error)) {
+
+                    // TODO: throw an approriate exception
+
+                }
 
                 return 1;
             }
