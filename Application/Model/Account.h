@@ -8,7 +8,6 @@
 namespace Cloude {
     namespace Application {
         namespace Model {
-
             class Account {
 
 

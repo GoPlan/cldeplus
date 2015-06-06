@@ -53,6 +53,7 @@ namespace Cloude {
         }
 
         shared_ptr<Entity> EntityStore::Create() {
+
             auto identity = _entityLoader.NextPrimaryKey();
             auto entity = Create(identity);
 

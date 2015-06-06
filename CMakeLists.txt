@@ -63,7 +63,7 @@ add_library(application STATIC
     Application/Mapper/SequenceMap.cpp
     Application/Mapper/SequenceMap.h
     Application/Mapper/SequenceLoader.cpp
-    Application/Mapper/SequenceLoader.h)
+    Application/Mapper/SequenceLoader.h Application/Model/Enquiry.cpp Application/Model/Enquiry.h Application/Mapper/EnquiryMap.cpp Application/Mapper/EnquiryMap.h Application/Mapper/EnquiryLoader.cpp Application/Mapper/EnquiryLoader.h)
 
 
 add_library(infrastructure STATIC
@@ -89,9 +89,9 @@ add_library(apptest STATIC
     AppTest/main.cpp
     AppTest/Store/StockGroupMySqlStore.cpp
     AppTest/Store/StockGroupMySqlStore.h
-    AppTest/Store/StoreCreateSaveDeleteTest.h
+    AppTest/Store/Test/MySqlStore.hpp
     AppTest/Store/StockGroupPostgreStore.cpp
-    AppTest/Store/StockGroupPostgreStore.h)
+    AppTest/Store/StockGroupPostgreStore.h AppTest/Store/EnquiryMongoDbStore.cpp AppTest/Store/EnquiryMongoDbStore.h AppTest/Store/Test/MongoDbStore.hpp AppTest/Store/Test/PostgreStore.hpp)
 
 
 # Libs
@@ -110,6 +110,12 @@ LINK_DIRECTORIES(${OPT_LOCAL_LIB}/postgresql94)
 set(MYSQL_DIR ${LIBS_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64)
 include_directories(${MYSQL_DIR}/include)
 LINK_DIRECTORIES(${MYSQL_DIR}/lib)
+
+# MongoDb
+set(BSON_INCLUDE_DIR "/usr/local/include/libbson-1.0")
+set(MONGODB_INCLUDE_DIR "/usr/local/include/libmongoc-1.0")
+include_directories(${MONGODB_INCLUDE_DIR})
+include_directories(${BSON_INCLUDE_DIR})
 
 # Boost
 set(BOOST_DIR ${LIBS_DIR}/boost_1_58_0)

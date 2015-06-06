@@ -19,16 +19,21 @@ namespace Cloude {
             public:
 
             protected:
+                using StockGroupLoader = Cloude::Application::Mapper::StockGroupLoader;
+                using StockGroupMap = Cloude::Application::Mapper::StockGroupMap;
+                using MySqlSourceDriver = Cloude::Infrastructure::MySql::MySqlSourceDriver;
+                using EntityStore= Cloude::Architecture::EntityStore;
+
                 StockGroupMySqlStore() : _mySqlDriver(_stockGroupMap),
                                          _entityStore(_stockGroupMap, _stockGroupLoader, _mySqlDriver) { };
 
                 virtual void SetUp();
                 virtual void TearDown();
 
-                Cloude::Application::Mapper::StockGroupLoader _stockGroupLoader;
-                Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
-                Cloude::Infrastructure::MySql::MySqlSourceDriver _mySqlDriver;
-                Cloude::Architecture::EntityStore _entityStore;
+                StockGroupLoader _stockGroupLoader;
+                StockGroupMap _stockGroupMap;
+                MySqlSourceDriver _mySqlDriver;
+                EntityStore _entityStore;
             };
         }
     }

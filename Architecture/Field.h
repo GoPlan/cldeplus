@@ -13,13 +13,12 @@ namespace Cloude {
     namespace Architecture {
 
         class Field {
-
         public:
+            explicit Field(const std::shared_ptr<Column> &column);
+            ~Field() = default;
             Field(const Field &srcField) = default;
             Field &operator=(const Field &srcField) = default;
-            virtual ~Field() = default;
 
-            explicit Field(const std::shared_ptr<Column> &column);
             void *PointerToFieldValue();
 
             const std::shared_ptr<Column> &getColumn() const {

@@ -17,13 +17,16 @@ namespace Cloude {
 
             class StockGroupPostgreStore : public ::testing::Test {
             public:
-
                 virtual ~StockGroupPostgreStore() = default;
                 StockGroupPostgreStore(const StockGroupPostgreStore &srcStockGroupPostgreStore) = default;
                 StockGroupPostgreStore &operator=(const StockGroupPostgreStore &srcStockGroupPostgreStore) = default;
 
-
             protected:
+                using StockGroupLoader = Cloude::Application::Mapper::StockGroupLoader;
+                using StockGroupMap = Cloude::Application::Mapper::StockGroupMap;
+                using PostgreSourceDriver = Cloude::Infrastructure::PostgreSql::PostgreSourceDriver;
+                using EntityStore= Cloude::Architecture::EntityStore;
+
                 StockGroupPostgreStore() : _postgresDriver(_stockGroupMap),
                                            _entityStore(_stockGroupMap,
                                                         _stockGroupLoader,
@@ -32,11 +35,10 @@ namespace Cloude {
                 void SetUp() override;
                 void TearDown() override;
 
-                Cloude::Application::Mapper::StockGroupLoader _stockGroupLoader;
-                Cloude::Application::Mapper::StockGroupMap _stockGroupMap;
-                Cloude::Infrastructure::PostgreSql::PostgreSourceDriver _postgresDriver;
-                Cloude::Architecture::EntityStore _entityStore;
-
+                StockGroupLoader _stockGroupLoader;
+                StockGroupMap _stockGroupMap;
+                PostgreSourceDriver _postgresDriver;
+                EntityStore _entityStore;
             };
         }
     }

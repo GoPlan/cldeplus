@@ -8,6 +8,9 @@ namespace Cloude {
     namespace Infrastructure {
         namespace MongoDb {
 
+            const char *MongoDbSourceException::what() const noexcept {
+                return message.c_str();
+            }
         }
     }
 }

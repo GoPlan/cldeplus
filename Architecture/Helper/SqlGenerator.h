@@ -5,9 +5,6 @@
 #ifndef CLOUD_E_CPLUS_SQLGENERATOR_H
 #define CLOUD_E_CPLUS_SQLGENERATOR_H
 
-#include "vector"
-#include "iosfwd"
-
 #include "Architecture/EntityMap.h"
 
 namespace Cloude {

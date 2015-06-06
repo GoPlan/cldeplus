@@ -13,13 +13,11 @@ namespace Cloude {
     namespace Architecture {
 
         class Entity {
-
         public:
+            explicit Entity(const std::shared_ptr<Identity> &identity);
+            ~Entity() = default;
             Entity(const Entity &srcEntity) = delete;
             Entity &operator=(Entity &srcEntity) = delete;
-            virtual ~Entity() = default;
-
-            explicit Entity(const std::shared_ptr<Identity> &identity);
 
             std::shared_ptr<Field> operator[](const std::string &columnName);
             std::shared_ptr<Field> GetField(const std::string &columnName);
@@ -28,7 +26,7 @@ namespace Cloude {
             void SetMultiFields(std::initializer_list<std::shared_ptr<Field>> &fieldsList);
             void SetMultiFields(std::initializer_list<Field *> ptrFieldsList);
 
-            bool HasField(const std::string& fieldName);
+            bool HasField(const std::string &fieldName);
             unsigned long Size();
 
             std::shared_ptr<Identity> getIdentity() const {

@@ -14,23 +14,6 @@ namespace Cloude {
     namespace Infrastructure {
         namespace PostgreSql {
 
-            using Entity = Cloude::Architecture::Entity;
-            using Column = Cloude::Architecture::Column;
-            using Field = Cloude::Architecture::Field;
-            using EntitySourceDriver = Cloude::Architecture::EntitySourceDriver;
-            using EntityMap = Cloude::Architecture::EntityMap;
-            using ColumnsList = std::vector<std::shared_ptr<Column>>;
-
-            using Options = struct {
-
-                std::string Host;
-                std::string User;
-                std::string Pass;
-                std::string Base;
-
-                unsigned int Port = 5432;
-            };
-
             enum class PostgreSourceExecutionStatus {
                 PGRES_EMPTY_QUERY,
                 PGRES_COMMAND_OKAY,
@@ -45,16 +28,31 @@ namespace Cloude {
             };
 
             class PostgreSourceDriver : public Architecture::EntitySourceDriver {
+                using Entity = Cloude::Architecture::Entity;
+                using Column = Cloude::Architecture::Column;
+                using Field = Cloude::Architecture::Field;
+                using EntitySourceDriver = Cloude::Architecture::EntitySourceDriver;
+                using EntityMap = Cloude::Architecture::EntityMap;
+                using ColumnsList = std::vector<std::shared_ptr<Column>>;
+                using Options = struct {
+
+                    std::string Host;
+                    std::string User;
+                    std::string Pass;
+                    std::string Base;
+
+                    unsigned int Port = 5432;
+                };
+
             public:
                 Options OptionArgs;
 
             public:
-                PostgreSourceDriver(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
-                PostgreSourceDriver &operator=(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
-
                 explicit PostgreSourceDriver(EntityMap &entityMap);
                 ~PostgreSourceDriver();
-
+                PostgreSourceDriver(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
+                PostgreSourceDriver &operator=(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
+                
                 void Connect();
                 void Disconnect();
 
@@ -67,14 +65,13 @@ namespace Cloude {
                 class PgApiImpl;
 
                 std::shared_ptr<PgApiImpl> _pgApiImpl;
-
                 std::string _getStatement;
                 std::string _insertStatement;
                 std::string _updateStatement;
                 std::string _deleteStatement;
-
                 bool _isConnected = false;
 
+            private:
                 void init();
             };
         }

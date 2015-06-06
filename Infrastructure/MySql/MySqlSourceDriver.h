@@ -13,37 +13,33 @@ namespace Cloude {
     namespace Infrastructure {
         namespace MySql {
 
-            using Entity = Cloude::Architecture::Entity;
-            using Column = Cloude::Architecture::Column;
-            using Field = Cloude::Architecture::Field;
-            using EntitySourceDriver = Cloude::Architecture::EntitySourceDriver;
-            using EntityMap = Cloude::Architecture::EntityMap;
-            using ColumnsList = std::vector<std::shared_ptr<Column>>;
-
-            using Options = struct {
-
-                std::string Host;
-                std::string User;
-                std::string Pass;
-                std::string Base;
-
-                unsigned int Port = 3306;
-            };
-
             enum class MySqlSourceExecutionStatus {
 
             };
 
-            class MySqlSourceDriver : public EntitySourceDriver {
+            class MySqlSourceDriver : public Architecture::EntitySourceDriver {
+                using Entity = Cloude::Architecture::Entity;
+                using Column = Cloude::Architecture::Column;
+                using Field = Cloude::Architecture::Field;
+                using EntitySourceDriver = Cloude::Architecture::EntitySourceDriver;
+                using EntityMap = Cloude::Architecture::EntityMap;
+                using ColumnsList = std::vector<std::shared_ptr<Column>>;
+                using Options = struct {
+                    std::string Host;
+                    std::string User;
+                    std::string Pass;
+                    std::string Base;
+                    unsigned int Port = 3306;
+                };
+
             public:
                 Options OptionArgs;
 
             public:
-                MySqlSourceDriver(const MySqlSourceDriver &entityMap) = default;
-                MySqlSourceDriver &operator=(const MySqlSourceDriver &entityMap) = default;
-
                 explicit MySqlSourceDriver(EntityMap &entityMap);
                 ~MySqlSourceDriver();
+                MySqlSourceDriver(const MySqlSourceDriver &entityMap) = default;
+                MySqlSourceDriver &operator=(const MySqlSourceDriver &entityMap) = default;
 
                 void Connect();
                 void Disconnect();
@@ -73,14 +69,13 @@ namespace Cloude {
                 class MySqlApiImpl;
 
                 std::shared_ptr<MySqlApiImpl> _mySqlApiImpl;
-
                 std::string _getStatement;
                 std::string _insertStatement;
                 std::string _updateStatement;
                 std::string _deleteStatement;
-
                 bool isConnected = false;
 
+            private:
                 void init();
             };
         }

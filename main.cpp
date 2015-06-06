@@ -28,14 +28,14 @@ int main(int argc, char **argv) {
         mySqlDriver.Connect();
 
         auto spAccountIdField_04 = std::make_shared<Architecture::Field>(sequenceMap.Id, (long) 4);
-        auto spAccountIdentity_04 = std::make_shared<Architecture::Identity>()->SetField(spAccountIdField_04);
+        auto spAccountIdentity_04 = std::make_shared<Architecture::Identity>()->setField(spAccountIdField_04);
 
         // GET
         auto spAccountSequence_04 = sequenceStore.Get(spAccountIdentity_04);
         cout << spAccountSequence_04->operator[]("Id")->getInt64() << endl;
 
         auto spNewIdField = std::make_shared<Architecture::Field>(sequenceMap.Id, (long) 7);
-        auto spNewIdentity = std::make_shared<Architecture::Identity>()->SetField(spNewIdField);
+        auto spNewIdentity = std::make_shared<Architecture::Identity>()->setField(spNewIdField);
 
         // CREATE
         auto spNewSequence = sequenceStore.Create(spNewIdentity);

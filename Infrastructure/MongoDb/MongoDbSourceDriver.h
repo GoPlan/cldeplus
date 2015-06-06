@@ -13,11 +13,21 @@ namespace Cloude {
     namespace Infrastructure {
         namespace MongoDb {
 
-            using EntitySourceDriver = Architecture::EntitySourceDriver;
-            using Entity = Architecture::Entity;
-            using EntityMap = Architecture::EntityMap;
+            class MongoDbSourceDriver : public Architecture::EntitySourceDriver {
+                using EntitySourceDriver = Architecture::EntitySourceDriver;
+                using Entity = Architecture::Entity;
+                using EntityMap = Architecture::EntityMap;
+                using Options = struct {
+                    std::string Host;
+                    std::string User;
+                    std::string Pass;
+                    std::string Base;
+                    unsigned int Port = 27017;
+                };
 
-            class MongoDbSourceDriver : public EntitySourceDriver {
+            public:
+                Options OptionArgs;
+
             public:
                 MongoDbSourceDriver() = default;
                 virtual ~MongoDbSourceDriver() = default;
@@ -37,14 +47,13 @@ namespace Cloude {
                 class MongoDbApiImpl;
 
                 std::shared_ptr<MongoDbApiImpl> _mongoDbApiImpl;
-
                 std::string _getStatement;
                 std::string _insertStatement;
                 std::string _updateStatement;
                 std::string _deleteStatement;
-
                 bool _isConnected = false;
 
+            private:
                 void init();
             };
         }
