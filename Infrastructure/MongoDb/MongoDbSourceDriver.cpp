@@ -16,25 +16,27 @@ namespace Cloude {
             public:
                 Command(const mongoc_client_t &client, const mongoc_collection_t &collection) : collection(collection),
                                                                                                 client(client) {
-                    _ptrQuery = bson_new();
-                    _ptrDoc = bson_new();
+                    _ptrBsonPredicate = bson_new();
+                    _ptrBsonProjection = bson_new();
                 };
 
                 ~Command() {
 
-                    if (_ptrQuery != nullptr) {
-                        bson_destroy(_ptrQuery);
+                    if (_ptrBsonPredicate != nullptr) {
+                        bson_destroy(_ptrBsonPredicate);
                     }
 
-                    if (_ptrDoc != nullptr) {
-                        bson_destroy(_ptrDoc);
+                    if (_ptrBsonProjection != nullptr) {
+                        bson_destroy(_ptrBsonProjection);
                     }
                 }
 
-                bson_t *_ptrQuery = nullptr;
-                bson_t *_ptrDoc = nullptr;
+                bson_t *_ptrBsonPredicate = nullptr;
+                bson_t *_ptrBsonProjection = nullptr;
+
                 bson_error_t error;
                 bson_oid_t oid;
+
                 const mongoc_client_t &client;
                 const mongoc_collection_t &collection;
 
@@ -105,10 +107,10 @@ namespace Cloude {
                 //
             }
 
-            int MongoDbSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity,
-                                                const EntityMap &entityMap) const {
+            int MongoDbSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {
 
-                auto &columnsForKey = entityMap.getColumnsForKey();
+                auto &columnsForKey = _entityMap.getColumnsForKey();
+                auto &columnsForGet = _entityMap.getColumnsForGet();
 
                 std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
@@ -120,18 +122,27 @@ namespace Cloude {
 
                                   switch (column->getDbType()) {
                                       case DbType::Int64:
-                                          BSON_APPEND_INT64(command->_ptrQuery,
+                                          BSON_APPEND_INT64(command->_ptrBsonPredicate,
                                                             column->getDatasourceName().c_str(),
                                                             field->getInt64());
                                           break;
                                       case DbType::String:
-                                          BSON_APPEND_UTF8(command->_ptrQuery,
+                                          BSON_APPEND_UTF8(command->_ptrBsonPredicate,
                                                            column->getDatasourceName().c_str(),
                                                            field->getCString());
                                           break;
                                       default:
                                           break;
                                   }
+                              });
+
+                std::for_each(columnsForGet.cbegin(),
+                              columnsForGet.cend(),
+                              [&command](const std::shared_ptr<Column> &column) {
+
+                                  BSON_APPEND_INT32(command->_ptrBsonProjection,
+                                                    column->getDatasourceName().c_str(),
+                                                    1);
                               });
 
                 const bson_t *ptrDoc;
@@ -144,7 +155,7 @@ namespace Cloude {
                                                    0,
                                                    0,
                                                    0,
-                                                   command->_ptrQuery,
+                                                   command->_ptrBsonPredicate,
                                                    NULL,
                                                    NULL);
 
@@ -167,8 +178,8 @@ namespace Cloude {
 
                             try {
 
-                                auto field = (std::shared_ptr<Field>) entity->getField(columnName);
-                                auto column = (std::shared_ptr<Column>) field->getColumn();
+                                auto field = entity->getField(columnName);
+                                auto column = field->getColumn();
 
                                 switch (column->getDbType()) {
                                     case DbType::Int64:
@@ -195,10 +206,9 @@ namespace Cloude {
                 return rowCount;
             }
 
-            int MongoDbSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity,
-                                                  const EntityMap &entityMap) const {
+            int MongoDbSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity) const {
 
-                auto &columnsForKey = entityMap.getColumnsForKey();
+                auto &columnsForKey = _entityMap.getColumnsForKey();
 
                 std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
@@ -212,12 +222,12 @@ namespace Cloude {
 
                                   switch (column->getDbType()) {
                                       case DbType::Int64:
-                                          BSON_APPEND_INT64(command->_ptrDoc,
+                                          BSON_APPEND_INT64(command->_ptrBsonProjection,
                                                             column->getDatasourceName().c_str(),
                                                             field->getInt64());
                                           break;
                                       case DbType::String:
-                                          BSON_APPEND_UTF8(command->_ptrDoc,
+                                          BSON_APPEND_UTF8(command->_ptrBsonProjection,
                                                            column->getDatasourceName().c_str(),
                                                            field->getCString());
                                           break;
@@ -228,26 +238,20 @@ namespace Cloude {
 
                 if (!mongoc_collection_insert(_mongoDbApiImpl->_ptrCollection,
                                               MONGOC_INSERT_NONE,
-                                              command->_ptrDoc,
+                                              command->_ptrBsonProjection,
                                               NULL,
                                               &command->error)) {
-
                     // TODO: throw an approriate exception
-
+                    return 0;
                 }
 
                 return 1;
             }
 
-            int MongoDbSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity,
-                                                const EntityMap &entityMap) const {
-                return 1;
-            }
+            int MongoDbSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity) const {
 
-            int MongoDbSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity,
-                                                  const EntityMap &entityMap) const {
-
-                auto &columnsForKey = entityMap.getColumnsForKey();
+                auto &columnsForKey = _entityMap.getColumnsForKey();
+                auto &columnsForUpdate = _entityMap.getColumnsForUpdate();
 
                 std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
@@ -259,12 +263,81 @@ namespace Cloude {
 
                                   switch (column->getDbType()) {
                                       case DbType::Int64:
-                                          BSON_APPEND_INT64(command->_ptrQuery,
+                                          BSON_APPEND_INT64(command->_ptrBsonPredicate,
                                                             column->getDatasourceName().c_str(),
                                                             field->getInt64());
                                           break;
                                       case DbType::String:
-                                          BSON_APPEND_UTF8(command->_ptrQuery,
+                                          BSON_APPEND_UTF8(command->_ptrBsonPredicate,
+                                                           column->getDatasourceName().c_str(),
+                                                           field->getCString());
+                                          break;
+                                      default:
+                                          break;
+                                  }
+                              });
+
+                bson_t *ptrProj;
+                ptrProj = bson_new();
+
+                std::for_each(columnsForUpdate.cbegin(),
+                              columnsForUpdate.cend(),
+                              [&ptrProj, &entity](const std::shared_ptr<Column> &column) {
+
+                                  auto field = entity->getField(column->getName());
+
+                                  switch (column->getDbType()) {
+                                      case DbType::Int64:
+                                          BSON_APPEND_INT64(ptrProj,
+                                                            column->getDatasourceName().c_str(),
+                                                            field->getInt64());
+                                          break;
+                                      case DbType::String:
+                                          BSON_APPEND_UTF8(ptrProj,
+                                                           column->getDatasourceName().c_str(),
+                                                           field->getCString());
+                                          break;
+                                      default:
+                                          break;
+                                  }
+                              });
+
+                BSON_APPEND_DOCUMENT(command->_ptrBsonProjection, "$set", ptrProj);
+
+                if (!mongoc_collection_update(_mongoDbApiImpl->_ptrCollection,
+                                              MONGOC_UPDATE_NONE,
+                                              command->_ptrBsonPredicate,
+                                              command->_ptrBsonProjection,
+                                              NULL,
+                                              &command->error)) {
+                    // TODO: throw an appropriate exception
+                    printf("%s\n", command->error.message);
+                    return 0;
+                }
+
+                return 1;
+            }
+
+            int MongoDbSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity) const {
+
+                auto &columnsForKey = _entityMap.getColumnsForKey();
+
+                std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
+
+                std::for_each(columnsForKey.cbegin(),
+                              columnsForKey.cend(),
+                              [&command, &entity](const std::shared_ptr<Column> &column) {
+
+                                  auto field = entity->getField(column->getName());
+
+                                  switch (column->getDbType()) {
+                                      case DbType::Int64:
+                                          BSON_APPEND_INT64(command->_ptrBsonPredicate,
+                                                            column->getDatasourceName().c_str(),
+                                                            field->getInt64());
+                                          break;
+                                      case DbType::String:
+                                          BSON_APPEND_UTF8(command->_ptrBsonPredicate,
                                                            column->getDatasourceName().c_str(),
                                                            field->getCString());
                                           break;
@@ -275,12 +348,11 @@ namespace Cloude {
 
                 if (!mongoc_collection_remove(_mongoDbApiImpl->_ptrCollection,
                                               MONGOC_REMOVE_NONE,
-                                              command->_ptrQuery,
+                                              command->_ptrBsonPredicate,
                                               NULL,
                                               &command->error)) {
-
                     // TODO: throw an approriate exception
-
+                    return 0;
                 }
 
                 return 1;

@@ -36,10 +36,10 @@ namespace Cloude {
                 MongoDbSourceDriver &operator=(const MongoDbSourceDriver &srcMongoDbSourceDriver) = default;
 
                 explicit MongoDbSourceDriver(Architecture::EntityMap &entityMap);
-                int LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
-                int CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
-                int SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
-                int DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const override;
+                int LoadEntity(std::shared_ptr<Entity> &entity) const override;
+                int CreateEntity(std::shared_ptr<Entity> &entity) const override;
+                int SaveEntity(std::shared_ptr<Entity> &entity) const override;
+                int DeleteEntity(std::shared_ptr<Entity> &entity) const override;
 
                 void Connect();
                 void Disconnect();

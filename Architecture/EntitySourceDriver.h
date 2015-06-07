@@ -17,10 +17,10 @@ namespace Cloude {
             explicit EntitySourceDriver(EntityMap &entityMap) : _entityMap(entityMap) { };
             virtual ~EntitySourceDriver() = default;
 
-            virtual int LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const = 0;
-            virtual int CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const = 0;
-            virtual int SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const = 0;
-            virtual int DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const = 0;
+            virtual int LoadEntity(std::shared_ptr<Entity> &entity) const = 0;
+            virtual int CreateEntity(std::shared_ptr<Entity> &entity) const = 0;
+            virtual int SaveEntity(std::shared_ptr<Entity> &entity) const = 0;
+            virtual int DeleteEntity(std::shared_ptr<Entity> &entity) const = 0;
 
         protected:
             const EntityMap &_entityMap;

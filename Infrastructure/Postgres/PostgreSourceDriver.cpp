@@ -189,9 +189,9 @@ namespace Cloude {
                 _deleteStatement = Architecture::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
             }
 
-            int PostgreSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
+            int PostgreSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {
 
-                ColumnsList columnList = entityMap.getColumnsForKey();
+                ColumnsList columnList = _entityMap.getColumnsForKey();
 
                 shared_ptr<Command> command = _pgApiImpl->createCommand(_getStatement);
 
@@ -248,9 +248,9 @@ namespace Cloude {
                 return 1;
             }
 
-            int PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
+            int PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity) const {
 
-                ColumnsList columnsList = entityMap.getColumnsForKey();
+                ColumnsList columnsList = _entityMap.getColumnsForKey();
 
                 auto command = _pgApiImpl->createCommand(_insertStatement);
 
@@ -306,17 +306,17 @@ namespace Cloude {
                 return 1;
             }
 
-            int PostgreSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
+            int PostgreSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity) const {
 
                 ColumnsList columnList;
 
                 columnList.insert(columnList.end(),
-                                  entityMap.getColumnsForUpdate().begin(),
-                                  entityMap.getColumnsForUpdate().end());
+                                  _entityMap.getColumnsForUpdate().begin(),
+                                  _entityMap.getColumnsForUpdate().end());
 
                 columnList.insert(columnList.end(),
-                                  entityMap.getColumnsForKey().begin(),
-                                  entityMap.getColumnsForKey().end());
+                                  _entityMap.getColumnsForKey().begin(),
+                                  _entityMap.getColumnsForKey().end());
 
                 auto command = _pgApiImpl->createCommand(_updateStatement);
 
@@ -372,9 +372,9 @@ namespace Cloude {
                 return 1;
             }
 
-            int PostgreSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity, const EntityMap &entityMap) const {
+            int PostgreSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity) const {
 
-                ColumnsList columnList = entityMap.getColumnsForKey();
+                ColumnsList columnList = _entityMap.getColumnsForKey();
 
                 shared_ptr<Command> command = _pgApiImpl->createCommand(_deleteStatement);
 
@@ -426,8 +426,6 @@ namespace Cloude {
                 }
 
                 PQclear(result);
-
-                return 1;
 
                 return 1;
             }

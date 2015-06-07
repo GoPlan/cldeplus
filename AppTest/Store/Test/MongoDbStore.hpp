@@ -45,7 +45,19 @@ namespace Cloude {
                     // GET & SAVE
                     {
                         auto entity = _entityStore.Get(spIdentity);
+                        auto spNameField = entity->getField("Email");
                         ASSERT_TRUE(entity.get() != 0);
+                        ASSERT_TRUE(spNameField.get() != 0);
+
+                        spNameField->setCString("ducanh.ki@cloud-e.biz");
+                        _entityStore.Save(entity);
+                    }
+
+                    // CLEAR
+                    {
+                        _entityStore.Clear();
+                        ASSERT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
+                        ASSERT_TRUE(_entityStore.Size() == 0);
                     }
 
                     // DELETE

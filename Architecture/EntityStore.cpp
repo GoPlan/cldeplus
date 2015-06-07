@@ -43,7 +43,7 @@ namespace Cloude {
 
             Architecture::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
 
-            if (!_entitySourceDriver.LoadEntity(entity, _entityMap)) {
+            if (!_entitySourceDriver.LoadEntity(entity)) {
                 return shared_ptr<Entity>();
             }
 
@@ -82,17 +82,17 @@ namespace Cloude {
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
-            if (_entitySourceDriver.CreateEntity(entity, _entityMap)) {
+            if (_entitySourceDriver.CreateEntity(entity)) {
                 _identityMap.insert(pairItem);
             }
         }
 
         void EntityStore::Save(std::shared_ptr<Entity> &entity) {
-            _entitySourceDriver.SaveEntity(entity, _entityMap);
+            _entitySourceDriver.SaveEntity(entity);
         }
 
         void EntityStore::Delete(std::shared_ptr<Entity> &entity) {
-            if (_entitySourceDriver.DeleteEntity(entity, _entityMap)) {
+            if (_entitySourceDriver.DeleteEntity(entity)) {
                 auto identity = entity->getIdentity();
                 _identityMap.erase(identity);
             }
