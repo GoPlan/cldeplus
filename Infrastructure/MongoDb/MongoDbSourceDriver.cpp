@@ -2,7 +2,9 @@
 // Created by LE, Duc Anh on 6/5/15.
 //
 
+#include <iostream>
 #include <mongoc.h>
+#include <Architecture/Exception/EntityException.h>
 #include "MongoDbSourceDriver.h"
 #include "MongoDbSourceException.h"
 
@@ -98,17 +100,45 @@ namespace Cloude {
 
 
             MongoDbSourceDriver::MongoDbSourceDriver(Architecture::EntityMap &entityMap)
-                    : EntitySourceDriver(entityMap), _mongoDbApiImpl(new MongoDbApiImpl()) {
+                    : EntitySourceDriver(entityMap),
+                      _mongoDbApiImpl(new MongoDbApiImpl()) {
                 //
             }
 
             int MongoDbSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity,
                                                 const EntityMap &entityMap) const {
 
+                auto &columnsForKey = entityMap.getColumnsForKey();
+
                 std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
-                mongoc_cursor_t *ptrCursor;
+                std::for_each(columnsForKey.cbegin(),
+                              columnsForKey.cend(),
+                              [&command, &entity](const std::shared_ptr<Column> &column) {
 
+                                  auto field = entity->getField(column->getName());
+
+                                  switch (column->getDbType()) {
+                                      case DbType::Int64:
+                                          BSON_APPEND_INT64(command->_ptrQuery,
+                                                            column->getDatasourceName().c_str(),
+                                                            field->getInt64());
+                                          break;
+                                      case DbType::String:
+                                          BSON_APPEND_UTF8(command->_ptrQuery,
+                                                           column->getDatasourceName().c_str(),
+                                                           field->getCString());
+                                          break;
+                                      default:
+                                          break;
+                                  }
+                              });
+
+                const bson_t *ptrDoc;
+                mongoc_cursor_t *ptrCursor;
+                bson_iter_t iter;
+
+                // TODO: Implement explicit projection
                 ptrCursor = mongoc_collection_find(_mongoDbApiImpl->_ptrCollection,
                                                    MONGOC_QUERY_NONE,
                                                    0,
@@ -118,11 +148,51 @@ namespace Cloude {
                                                    NULL,
                                                    NULL);
 
-                // Load cursor fields to entity fields
+                int rowCount = 0;
+
+                while (mongoc_cursor_next(ptrCursor, &ptrDoc)) {
+
+                    size_t err_offset;
+
+                    if (!bson_validate(ptrDoc, BSON_VALIDATE_NONE, &err_offset)) {
+                        // TODO: throw an appropriate exception if document is invalid
+                        fprintf(stderr, "The document failed to validate at offset: %u\n", (unsigned) err_offset);
+                    }
+
+                    if (bson_iter_init(&iter, ptrDoc)) {
+
+                        while (bson_iter_next(&iter)) {
+
+                            std::string columnName(bson_iter_key(&iter));
+
+                            try {
+
+                                auto field = (std::shared_ptr<Field>) entity->getField(columnName);
+                                auto column = (std::shared_ptr<Column>) field->getColumn();
+
+                                switch (column->getDbType()) {
+                                    case DbType::Int64:
+                                        field->setInt64(bson_iter_as_int64(&iter));
+                                        break;
+                                    case DbType::String:
+                                        field->setCString(bson_iter_utf8(&iter, 0));
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+                            } catch (Architecture::Exception::EntityException &ex) {
+                                continue;
+                            }
+                        }
+                    }
+
+                    ++rowCount;
+                }
 
                 mongoc_cursor_destroy(ptrCursor);
 
-                return 1;
+                return rowCount;
             }
 
             int MongoDbSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity,
@@ -176,6 +246,43 @@ namespace Cloude {
 
             int MongoDbSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity,
                                                   const EntityMap &entityMap) const {
+
+                auto &columnsForKey = entityMap.getColumnsForKey();
+
+                std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
+
+                std::for_each(columnsForKey.cbegin(),
+                              columnsForKey.cend(),
+                              [&command, &entity](const std::shared_ptr<Column> &column) {
+
+                                  auto field = entity->getField(column->getName());
+
+                                  switch (column->getDbType()) {
+                                      case DbType::Int64:
+                                          BSON_APPEND_INT64(command->_ptrQuery,
+                                                            column->getDatasourceName().c_str(),
+                                                            field->getInt64());
+                                          break;
+                                      case DbType::String:
+                                          BSON_APPEND_UTF8(command->_ptrQuery,
+                                                           column->getDatasourceName().c_str(),
+                                                           field->getCString());
+                                          break;
+                                      default:
+                                          break;
+                                  }
+                              });
+
+                if (!mongoc_collection_remove(_mongoDbApiImpl->_ptrCollection,
+                                              MONGOC_REMOVE_NONE,
+                                              command->_ptrQuery,
+                                              NULL,
+                                              &command->error)) {
+
+                    // TODO: throw an approriate exception
+
+                }
+
                 return 1;
             }
 

@@ -33,6 +33,15 @@ namespace Cloude {
             return search->second;
         }
 
+        std::shared_ptr<Field> Entity::operator[](const char *columnName) {
+            return getField(columnName);
+        }
+
+        std::shared_ptr<Field> Entity::getField(const char *columnName) {
+            std::string columnNameStr(columnName);
+            return getField(columnNameStr);
+        }
+
         void Entity::setField(shared_ptr<Field> &field) {
             shared_ptr<Field> spField(field);
             _fieldsMap[field->getColumn()->getName()] = spField;

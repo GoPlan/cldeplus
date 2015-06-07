@@ -70,6 +70,8 @@ namespace Cloude {
                         EXPECT_TRUE(_entityStore.HasIdentityInMap(spIdentity) == true);
 
                         EXPECT_TRUE(strcmp(codeValue.c_str(), spCodeFieldAlt->getCString()) == 0);
+
+                        // TODO: Investigate ERROR: invalid byte sequence for encoding "UTF8": 0xf0 0xfa 0x9f 0x7f
                         EXPECT_TRUE(strcmp(nameValue.c_str(), spNameFieldAlt->getCString()) == 0);
 
                         _entityStore.Delete(spEntity);

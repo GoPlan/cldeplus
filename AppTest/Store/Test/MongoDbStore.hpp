@@ -28,10 +28,35 @@ namespace Cloude {
                     // setMultiFields(initializer_list<shared_ptr<Field>>()
                     auto initFieldList{spEnquiryIdField};
                     auto spIdentity = std::make_shared<Identity>(initFieldList);
-                    auto entity = _entityStore.Create(spIdentity);
 
-                    ASSERT_TRUE(entity.get() != 0);
+                    // CREATE
+                    {
+                        auto entity = _entityStore.Create(spIdentity);
+                        ASSERT_TRUE(entity.get() != 0);
+                    }
 
+                    // CLEAR
+                    {
+                        _entityStore.Clear();
+                        ASSERT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
+                        ASSERT_TRUE(_entityStore.Size() == 0);
+                    }
+
+                    // GET & SAVE
+                    {
+                        auto entity = _entityStore.Get(spIdentity);
+                        ASSERT_TRUE(entity.get() != 0);
+                    }
+
+                    // DELETE
+                    {
+                        auto entity = _entityStore.Get(spIdentity);
+                        _entityStore.Delete(entity);
+                        ASSERT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
+
+                        auto entityAlt = _entityStore.Get(spIdentity);
+                        ASSERT_TRUE(entityAlt.get() == 0);
+                    }
                 }
             }
         }

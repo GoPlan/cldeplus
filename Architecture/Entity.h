@@ -20,7 +20,9 @@ namespace Cloude {
             Entity &operator=(Entity &srcEntity) = delete;
 
             std::shared_ptr<Field> operator[](const std::string &columnName);
+            std::shared_ptr<Field> operator[](const char *columnName);
             std::shared_ptr<Field> getField(const std::string &columnName);
+            std::shared_ptr<Field> getField(const char *columnName);
 
             void setField(std::shared_ptr<Field> &field);
             void setField(Field *ptrField);
