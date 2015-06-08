@@ -36,7 +36,6 @@ namespace Cloude {
             EnquiryMap::EnquiryMap() {
 
                 this->_columnsForKey.push_back(EnquiryId);
-                this->_columnsForGet.push_back(ObjectId);
                 this->_columnsForGet.push_back(Email);
                 this->_columnsForGet.push_back(Subject);
 

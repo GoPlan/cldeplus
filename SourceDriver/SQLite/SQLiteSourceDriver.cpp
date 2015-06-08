@@ -42,8 +42,6 @@ namespace Cloude {
                         fprintf(stderr, "Could not prepare statement.\n");
                     }
 
-                    printf("\nThe statement has %d wildcards\n", sqlite3_bind_parameter_count(_ptrStmt));
-
                     return 1;
                 }
 
@@ -157,13 +155,51 @@ namespace Cloude {
 
             int SQLiteSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {
 
+                auto &columnsForGet = _entityMap.getColumnsForGet();
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
                 std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_getStatement);
 
                 _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, command);
 
-                return 0;
+                int resultCode = sqlite3_step(command->_ptrStmt);
+
+                if (resultCode != SQLITE_DONE && resultCode != SQLITE_ROW) {
+                    // TODO: throws an appropriate exception
+                    return 0;
+                }
+
+                if (sqlite3_column_type(command->_ptrStmt, 0) == SQLITE_NULL) {
+                    return 0;
+                }
+
+                int index = 0;
+
+                std::for_each(columnsForGet.cbegin(),
+                              columnsForGet.cend(),
+                              [&entity, &command, &index](const std::shared_ptr<Column> &column) {
+
+                                  auto field = entity->getField(column->getName());
+
+                                  switch (column->getDbType()) {
+                                      case DbType::Int64:
+                                          field->setInt64(static_cast<int64_t>(sqlite3_column_int64(command->_ptrStmt,
+                                                                                                    index)));
+                                          break;
+                                      case DbType::String:
+                                          const char *text;
+                                          text = (const char *) (sqlite3_column_text(command->_ptrStmt,
+                                                                                     index));
+                                          field->setCString(text);
+                                          break;
+                                      default:
+                                          break;
+                                  }
+
+                                  ++index;
+                              });
+
+                return 1;
             }
 
             int SQLiteSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity) const {
@@ -195,11 +231,66 @@ namespace Cloude {
             }
 
             int SQLiteSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity) const {
-                return 0;
+
+                auto &columnsForUpdate = _entityMap.getColumnsForUpdate();
+                auto &columnsForKey = _entityMap.getColumnsForKey();
+
+                ColumnsList columnsList;
+                columnsList.insert(columnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
+                columnsList.insert(columnsList.end(), columnsForKey.begin(), columnsForKey.end());
+
+                std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_updateStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsList, entity, command);
+
+                int resultCode = sqlite3_step(command->_ptrStmt);
+
+                switch (resultCode) {
+                    case SQLITE_BUSY:
+                        // TODO: throws an appropriate exception
+                        return 0;
+                    case SQLITE_DONE:
+                        break;
+                    case SQLITE_ERROR:
+                        // TODO: throws an appropriate exception
+                        return 0;
+                    case SQLITE_MISUSE:
+                        // TODO: throws an appropriate exception
+                        return 0;
+                    default:
+                        break;
+                }
+
+                return 1;
             }
 
             int SQLiteSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity) const {
-                return 0;
+
+                auto &columnsForKey = _entityMap.getColumnsForKey();
+
+                std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_deleteStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, command);
+
+                int resultCode = sqlite3_step(command->_ptrStmt);
+
+                switch (resultCode) {
+                    case SQLITE_BUSY:
+                        // TODO: throws an appropriate exception
+                        return 0;
+                    case SQLITE_DONE:
+                        break;
+                    case SQLITE_ERROR:
+                        // TODO: throws an appropriate exception
+                        return 0;
+                    case SQLITE_MISUSE:
+                        // TODO: throws an appropriate exception
+                        return 0;
+                    default:
+                        break;
+                }
+
+                return 1;
             }
 
             void SQLiteSourceDriver::init() {
