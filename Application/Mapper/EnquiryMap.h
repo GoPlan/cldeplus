@@ -6,14 +6,14 @@
 #define CLOUD_E_CPLUS_ENQUIRYMAP_H
 
 #include <memory>
-#include <Architecture/EntityMap.h>
+#include <Framework/EntityMap.h>
 
 namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            using EntityMap = Architecture::EntityMap;
-            using Column = Architecture::Column;
+            using EntityMap = Framework::EntityMap;
+            using Column = Framework::Column;
 
             class EnquiryMap : public EntityMap {
             public:

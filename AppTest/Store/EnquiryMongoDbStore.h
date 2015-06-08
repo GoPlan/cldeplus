@@ -6,8 +6,8 @@
 #define CLOUD_E_CPLUS_ENQUIRYMONGODBSTORE_H
 
 #include "gtest/gtest.h"
-#include <Architecture/EntityStore.h>
-#include <Infrastructure/MongoDb/MongoDbSourceDriver.h>
+#include <Framework/EntityStore.h>
+#include <SourceDriver/MongoDb/MongoDbSourceDriver.h>
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Application/Mapper/EnquiryMap.h>
 
@@ -25,8 +25,8 @@ namespace Cloude {
             protected:
                 using EnquiryMap = Application::Mapper::EnquiryMap;
                 using EnquiryLoader = Application::Mapper::EnquiryLoader;
-                using MongoDbSourceDriver = Infrastructure::MongoDb::MongoDbSourceDriver;
-                using EntityStore = Architecture::EntityStore;
+                using MongoDbSourceDriver = SourceDriver::MongoDb::MongoDbSourceDriver;
+                using EntityStore = Framework::EntityStore;
 
                 void SetUp() override;
                 void TearDown() override;

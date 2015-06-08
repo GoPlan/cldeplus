@@ -9,7 +9,7 @@
 #include "../../Cloude.h"
 #include "../../Application/Mapper/StockGroupMap.h"
 #include "../../Application/Mapper/StockGroupLoader.h"
-#include "../../Infrastructure/Postgres/PostgreSourceDriver.h"
+#include "../../SourceDriver/Postgres/PostgreSourceDriver.h"
 
 namespace Cloude {
     namespace AppTest {
@@ -24,8 +24,8 @@ namespace Cloude {
             protected:
                 using StockGroupLoader = Cloude::Application::Mapper::StockGroupLoader;
                 using StockGroupMap = Cloude::Application::Mapper::StockGroupMap;
-                using PostgreSourceDriver = Cloude::Infrastructure::PostgreSql::PostgreSourceDriver;
-                using EntityStore= Cloude::Architecture::EntityStore;
+                using PostgreSourceDriver = Cloude::SourceDriver::PostgreSql::PostgreSourceDriver;
+                using EntityStore= Cloude::Framework::EntityStore;
 
                 StockGroupPostgreStore() : _postgresDriver(_stockGroupMap),
                                            _entityStore(_stockGroupMap,

@@ -16,8 +16,8 @@ namespace Cloude {
         namespace Store {
             namespace Test {
 
-                using Field = Cloude::Architecture::Field;
-                using Identity = Cloude::Architecture::Identity;
+                using Field = Cloude::Framework::Field;
+                using Identity = Cloude::Framework::Identity;
 
                 TEST_F(StockGroupPostgreStore, CreateGetSaveDelete) {
 

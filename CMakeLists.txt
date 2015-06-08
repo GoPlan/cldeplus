@@ -10,41 +10,41 @@ set(SOURCE_FILES main.cpp)
 include_directories(${CMAKE_SOURCE_DIR})
 
 
-add_library(architecture STATIC
+add_library(Framework STATIC
     Cloude.h
-    Architecture/Enumeration/DbType.h
-    Architecture/Identity.cpp
-    Architecture/Identity.h
-    Architecture/Column.cpp
-    Architecture/Column.h
-    Architecture/Field.cpp
-    Architecture/Field.h
-    Architecture/Entity.cpp
-    Architecture/Entity.h
-    Architecture/EntityStore.cpp
-    Architecture/EntityStore.h
-    Architecture/EntityMap.cpp
-    Architecture/EntityMap.h
-    Architecture/EntityLoader.cpp
-    Architecture/EntityLoader.h
-    Architecture/Exception/NonSupportedDataTypeException.cpp
-    Architecture/Exception/NonSupportedDataTypeException.h
-    Architecture/Exception/DataSourceRoutineException.cpp
-    Architecture/Exception/DataSourceRoutineException.h
-    Architecture/Exception/EntityStoreRoutineException.cpp
-    Architecture/Exception/EntityStoreRoutineException.h
-    Architecture/Helper/SqlGenerator.cpp
-    Architecture/Helper/SqlGenerator.h
-    Architecture/Exception/EntityException.cpp
-    Architecture/Exception/EntityException.h
-    Architecture/DataSource/Command.cpp
-    Architecture/DataSource/Command.h
-    Architecture/DataSource/Connector.h
-    Architecture/DataSource/Connector.cpp
-    Architecture/EntitySourceDriver.cpp
-    Architecture/EntitySourceDriver.h
-    Architecture/Helper/EntityStoreHelper.cpp
-    Architecture/Helper/EntityStoreHelper.h)
+    Framework/Enumeration/DbType.h
+    Framework/Identity.cpp
+    Framework/Identity.h
+    Framework/Column.cpp
+    Framework/Column.h
+    Framework/Field.cpp
+    Framework/Field.h
+    Framework/Entity.cpp
+    Framework/Entity.h
+    Framework/EntityStore.cpp
+    Framework/EntityStore.h
+    Framework/EntityMap.cpp
+    Framework/EntityMap.h
+    Framework/EntityLoader.cpp
+    Framework/EntityLoader.h
+    Framework/Exception/NonSupportedDataTypeException.cpp
+    Framework/Exception/NonSupportedDataTypeException.h
+    Framework/Exception/DataSourceRoutineException.cpp
+    Framework/Exception/DataSourceRoutineException.h
+    Framework/Exception/EntityStoreRoutineException.cpp
+    Framework/Exception/EntityStoreRoutineException.h
+    Framework/Helper/SqlGenerator.cpp
+    Framework/Helper/SqlGenerator.h
+    Framework/Exception/EntityException.cpp
+    Framework/Exception/EntityException.h
+    Framework/DataSource/Command.cpp
+    Framework/DataSource/Command.h
+    Framework/DataSource/Connector.h
+    Framework/DataSource/Connector.cpp
+    Framework/EntitySourceDriver.cpp
+    Framework/EntitySourceDriver.h
+    Framework/Helper/EntityStoreHelper.cpp
+    Framework/Helper/EntityStoreHelper.h)
 
 
 add_library(application STATIC
@@ -66,17 +66,17 @@ add_library(application STATIC
     Application/Mapper/SequenceLoader.h Application/Model/Enquiry.cpp Application/Model/Enquiry.h Application/Mapper/EnquiryMap.cpp Application/Mapper/EnquiryMap.h Application/Mapper/EnquiryLoader.cpp Application/Mapper/EnquiryLoader.h)
 
 
-add_library(infrastructure STATIC
-    Infrastructure/MySql/MySqlSourceDriver.h
-    Infrastructure/MySql/MySqlSourceDriver.cpp
-    Infrastructure/Postgres/PostgreSourceDriver.cpp
-    Infrastructure/Postgres/PostgreSourceDriver.h
-    Infrastructure/Postgres/PostgreSourceDriver.cpp
-    Infrastructure/Postgres/PostgreSourceDriver.h
-    Infrastructure/MySql/MySqlSourceException.cpp
-    Infrastructure/MySql/MySqlSourceException.h
-    Infrastructure/Postgres/PostgreSourceException.cpp
-    Infrastructure/Postgres/PostgreSourceException.h Infrastructure/MongoDb/MongoDbSourceDriver.cpp Infrastructure/MongoDb/MongoDbSourceDriver.h Infrastructure/MongoDb/MongoDbSourceException.cpp Infrastructure/MongoDb/MongoDbSourceException.h Infrastructure/MongoDb/MongoDbQueryHelper.cpp Infrastructure/MongoDb/MongoDbQueryHelper.h)
+add_library(SourceDriver STATIC
+    SourceDriver/MySql/MySqlSourceDriver.h
+    SourceDriver/MySql/MySqlSourceDriver.cpp
+    SourceDriver/Postgres/PostgreSourceDriver.cpp
+    SourceDriver/Postgres/PostgreSourceDriver.h
+    SourceDriver/Postgres/PostgreSourceDriver.cpp
+    SourceDriver/Postgres/PostgreSourceDriver.h
+    SourceDriver/MySql/MySqlSourceException.cpp
+    SourceDriver/MySql/MySqlSourceException.h
+    SourceDriver/Postgres/PostgreSourceException.cpp
+    SourceDriver/Postgres/PostgreSourceException.h SourceDriver/MongoDb/MongoDbSourceDriver.cpp SourceDriver/MongoDb/MongoDbSourceDriver.h SourceDriver/MongoDb/MongoDbSourceException.cpp SourceDriver/MongoDb/MongoDbSourceException.h SourceDriver/MongoDb/MongoDbQueryHelper.cpp SourceDriver/MongoDb/MongoDbQueryHelper.h SourceDriver/SQLite/SQLiteSourceDriver.cpp SourceDriver/SQLite/SQLiteSourceDriver.h SourceDriver/SQLite/SQLiteSourceException.cpp SourceDriver/SQLite/SQLiteSourceException.h)
 
 
 add_library(examples STATIC
@@ -133,7 +133,7 @@ target_link_libraries(cloud_e_cplus_example examples mysqlclient mongoc-1.0 bson
 
 # Debug Target
 add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus_debug architecture infrastructure application mysqlclient pq mongoc-1.0)
+target_link_libraries(cloud_e_cplus_debug Framework SourceDriver application mysqlclient pq mongoc-1.0)
 
 # AppTest Target (with Google Testing Framework)
 set(GTEST_LIB_DIR ${LIBS_DIR}/gtest-1.7.0)
@@ -142,5 +142,5 @@ include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 
 add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test architecture infrastructure application apptest)
+target_link_libraries(cloud_e_cplus_test Framework SourceDriver application apptest)
 target_link_libraries(cloud_e_cplus_test gtest mysqlclient pq mongoc-1.0 bson-1.0)

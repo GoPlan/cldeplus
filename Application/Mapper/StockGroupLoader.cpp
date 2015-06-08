@@ -2,12 +2,10 @@
 // Created by GoPlan on 15/05/2015.
 //
 
-#include <random>
 #include "StockGroupLoader.h"
-#include "../../Architecture/Exception/NonSupportedDataTypeException.h"
 
 using namespace std;
-using namespace Cloude::Architecture;
+using namespace Cloude::Framework;
 
 namespace Cloude {
     namespace Application {

@@ -8,18 +8,18 @@
 #include "memory"
 #include "string"
 #include "mysql.h"
-#include "../../Architecture/EntityLoader.h"
+#include "../../Framework/EntityLoader.h"
 #include "../Model/StockGroup.h"
 
 namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            using EntityLoader = Cloude::Architecture::EntityLoader;
-            using Entity = Cloude::Architecture::Entity;
-            using Identity = Cloude::Architecture::Identity;
-            using Column = Cloude::Architecture::Column;
-            using Field = Cloude::Architecture::Field;
+            using EntityLoader = Cloude::Framework::EntityLoader;
+            using Entity = Cloude::Framework::Entity;
+            using Identity = Cloude::Framework::Identity;
+            using Column = Cloude::Framework::Column;
+            using Field = Cloude::Framework::Field;
 
             class StockGroupLoader : public EntityLoader {
             public:

@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 6/3/15.
 //
 
-#include <Infrastructure/Postgres/PostgreSourceDriver.h>
+#include <SourceDriver/Postgres/PostgreSourceDriver.h>
 #include "StockGroupPostgreStore.h"
 
 namespace Cloude {

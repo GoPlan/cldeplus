@@ -5,12 +5,12 @@
 #ifndef CLOUD_E_CPLUS_CLOUDE_H
 #define CLOUD_E_CPLUS_CLOUDE_H
 
-#include "Architecture/Column.h"
-#include "Architecture/Field.h"
-#include "Architecture/Identity.h"
-#include "Architecture/Entity.h"
-#include "Architecture/EntityMap.h"
-#include "Architecture/EntityLoader.h"
-#include "Architecture/EntityStore.h"
+#include "Framework/Column.h"
+#include "Framework/Field.h"
+#include "Framework/Identity.h"
+#include "Framework/Entity.h"
+#include "Framework/EntityMap.h"
+#include "Framework/EntityLoader.h"
+#include "Framework/EntityStore.h"
 
 #endif //CLOUD_E_CPLUS_CLOUDE_H

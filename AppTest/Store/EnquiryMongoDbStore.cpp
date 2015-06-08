@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 6/6/15.
 //
 
-#include <Infrastructure/MongoDb/MongoDbSourceDriver.h>
+#include <SourceDriver/MongoDb/MongoDbSourceDriver.h>
 #include "EnquiryMongoDbStore.h"
 
 namespace Cloude {

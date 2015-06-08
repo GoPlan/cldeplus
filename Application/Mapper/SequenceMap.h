@@ -5,12 +5,12 @@
 #ifndef CLOUD_E_CPLUS_SEQUENCEMAP_H
 #define CLOUD_E_CPLUS_SEQUENCEMAP_H
 
-#include <Architecture/EntityMap.h>
+#include <Framework/EntityMap.h>
 
 namespace Cloude {
     namespace Application {
         namespace Mapper {
-            class SequenceMap : public Architecture::EntityMap {
+            class SequenceMap : public Framework::EntityMap {
             public:
                 SequenceMap();
                 virtual ~SequenceMap() = default;
@@ -19,11 +19,11 @@ namespace Cloude {
 
                 static std::string TableName;
 
-                static std::shared_ptr<Architecture::Column> Id;
-                static std::shared_ptr<Architecture::Column> UniqueName;
-                static std::shared_ptr<Architecture::Column> SequenceStart;
-                static std::shared_ptr<Architecture::Column> SequenceCurrent;
-                static std::shared_ptr<Architecture::Column> SequenceIncrement;
+                static std::shared_ptr<Framework::Column> Id;
+                static std::shared_ptr<Framework::Column> UniqueName;
+                static std::shared_ptr<Framework::Column> SequenceStart;
+                static std::shared_ptr<Framework::Column> SequenceCurrent;
+                static std::shared_ptr<Framework::Column> SequenceIncrement;
 
             protected:
                 virtual const std::string &TableNameCore() const override;

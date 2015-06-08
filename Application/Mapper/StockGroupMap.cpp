@@ -5,7 +5,7 @@
 #include "StockGroupMap.h"
 
 using namespace std;
-using namespace Cloude::Architecture;
+using namespace Cloude::Framework;
 
 namespace Cloude {
     namespace Application {
