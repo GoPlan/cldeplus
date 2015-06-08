@@ -154,8 +154,9 @@ namespace Cloude {
                 }
             };
 
-            PostgreSourceDriver::PostgreSourceDriver(EntityMap & entityMap) : EntitySourceDriver(entityMap),
-                                                                              _pgApiImpl(new PgApiImpl()) {
+            PostgreSourceDriver::PostgreSourceDriver(EntityMap &entityMap)
+                    : EntitySourceDriver(entityMap),
+                      _pgApiImpl(new PgApiImpl()) {
                 init();
             }
 

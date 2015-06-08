@@ -5,10 +5,8 @@
 #ifndef CLOUD_E_CPLUS_POSTGRESOURCEDRIVER_H
 #define CLOUD_E_CPLUS_POSTGRESOURCEDRIVER_H
 
-#include <Framework/EntitySourceDriver.h>
-#include <Framework/Column.h>
-#include <Framework/Field.h>
 #include <vector>
+#include <Framework/EntitySourceDriver.h>
 
 namespace Cloude {
     namespace SourceDriver {
@@ -66,8 +64,8 @@ namespace Cloude {
             private:
                 class PgApiImpl;
 
-                Options _optionArgs;
                 std::shared_ptr<PgApiImpl> _pgApiImpl;
+                Options _optionArgs;
                 std::string _getStatement;
                 std::string _insertStatement;
                 std::string _updateStatement;
