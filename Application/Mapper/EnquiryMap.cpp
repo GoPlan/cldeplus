@@ -11,7 +11,7 @@ namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            std::string EnquiryMap::TableName = "test";
+            std::string EnquiryMap::TableName = "Enquiry";
 
             std::shared_ptr<Column> EnquiryMap::EnquiryId = make_shared<Column>("EnquiryId",
                                                                                 "EnquiryId",

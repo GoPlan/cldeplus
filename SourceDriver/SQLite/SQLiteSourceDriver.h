@@ -11,15 +11,18 @@
 namespace Cloude {
     namespace SourceDriver {
         namespace SQLite {
-            class SQLiteSourceDriver : Framework::EntitySourceDriver {
+            class SQLiteSourceDriver : public Cloude::Framework::EntitySourceDriver {
             public:
-                using EntityMap = Framework::EntityMap;
-                using Entity = Framework::Entity;
-                using EntitySourceDriver = Framework::EntitySourceDriver;
+                using DbType = Cloude::Framework::Enumeration::DbType;
+                using Column = Cloude::Framework::Column;
+                using ColumnsList = std::vector<std::shared_ptr<Column>>;
+                using EntityMap = Cloude::Framework::EntityMap;
+                using Entity = Cloude::Framework::Entity;
+                using EntitySourceDriver = Cloude::Framework::EntitySourceDriver;
                 using Options = struct {
                     std::string ConnectionString;
                 };
-                
+
             public:
                 explicit SQLiteSourceDriver(EntityMap &entityMap);
                 ~SQLiteSourceDriver();
@@ -34,15 +37,21 @@ namespace Cloude {
                 int SaveEntity(std::shared_ptr<Entity> &entity) const;
                 int DeleteEntity(std::shared_ptr<Entity> &entity) const;
 
-            private:
-                class SQLiteImpl;
+                Options &getOptionArgs() {
+                    return _optionArgs;
+                }
 
-                std::shared_ptr<SQLiteImpl> _sqliteImpl;
+            private:
+                class SQLiteApiImpl;
+
+                std::shared_ptr<SQLiteApiImpl> _sqliteApiImpl;
                 Options _optionArgs;
                 std::string _getStatement;
                 std::string _insertStatement;
                 std::string _updateStatement;
                 std::string _deleteStatement;
+
+                void init();
             };
         }
     }

@@ -25,7 +25,6 @@ namespace Cloude {
                     auto spEnquiryIdField = make_shared<Field>(_enquiryMap.EnquiryId);
                     spEnquiryIdField->setInt64(enquiryId);
 
-                    // setMultiFields(initializer_list<shared_ptr<Field>>()
                     auto initFieldList{spEnquiryIdField};
                     auto spIdentity = std::make_shared<Identity>(initFieldList);
 

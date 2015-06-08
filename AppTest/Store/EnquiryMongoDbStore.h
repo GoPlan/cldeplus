@@ -18,7 +18,7 @@ namespace Cloude {
             class EnquiryMongoDbStore : public ::testing::Test {
             public:
                 EnquiryMongoDbStore();
-                virtual ~EnquiryMongoDbStore() = default;
+                 ~EnquiryMongoDbStore() = default;
                 EnquiryMongoDbStore(const EnquiryMongoDbStore &srcEnquiryStore) = default;
                 EnquiryMongoDbStore &operator=(const EnquiryMongoDbStore &srcEnquiryStore) = default;
 

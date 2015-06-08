@@ -2,17 +2,16 @@
 // Created by LE, Duc Anh on 6/7/15.
 //
 
+#include <Framework/Helper/SqlGenerator.h>
+#include <stdlib.h>
 #include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
 
+using namespace std;
 
 namespace Cloude {
     namespace SourceDriver {
         namespace SQLite {
-
-            class ResultSet {
-
-            };
 
             class Command {
             public:
@@ -28,30 +27,37 @@ namespace Cloude {
 
                 int PrepareStatment(sqlite3 *ptrDb) {
 
-                    if (sqlite3_prepare(ptrDb, query.c_str(), query.length(), &_ptrStmt, 0)) {
-                        // TODO: throw an appropriate exception
+                    if (ptrDb == NULL) {
+                        fprintf(stderr, "Database is not open\n");
                     }
+
+                    int resultCode = sqlite3_prepare_v2(ptrDb,
+                                                        query.c_str(),
+                                                        -1,
+                                                        &_ptrStmt,
+                                                        NULL);
+
+                    if (resultCode != SQLITE_OK) {
+                        // TODO: throw an appropriate exception
+                        fprintf(stderr, "Could not prepare statement.\n");
+                    }
+
+                    printf("\nThe statement has %d wildcards\n", sqlite3_bind_parameter_count(_ptrStmt));
 
                     return 1;
                 }
 
-                std::shared_ptr<ResultSet> Execute() {
-                    return std::shared_ptr<ResultSet>();
-                }
-
-            private:
-                sqlite3_stmt *_ptrStmt = nullptr;
-                std::string query;
-
+                sqlite3_stmt *_ptrStmt;
+                const std::string &query;
             };
 
-            class SQLiteSourceDriver::SQLiteImpl {
+            class SQLiteSourceDriver::SQLiteApiImpl {
             public:
-                SQLiteImpl(std::string &connectionString) : connectionString(connectionString) {
+                SQLiteApiImpl(std::string &connectionString) : connectionString(connectionString) {
                     //
                 };
 
-                ~SQLiteImpl() {
+                ~SQLiteApiImpl() {
                     if (_ptrSqlite3 != nullptr) {
                         sqlite3_close(_ptrSqlite3);
                     }
@@ -61,10 +67,64 @@ namespace Cloude {
 
                     const char *tmpConnString = connString == 0 ? connectionString.c_str() : connString;
 
-                    if (sqlite3_open(tmpConnString, &_ptrSqlite3)) {
+                    int resultCode = sqlite3_open_v2(tmpConnString, &_ptrSqlite3, SQLITE_OPEN_READWRITE, NULL);
+
+                    if (resultCode != SQLITE_OK) {
                         // TODO: throw an approriate exception
+                        fprintf(stderr, "%s\n", sqlite3_errmsg(_ptrSqlite3));
+                        exit(EXIT_FAILURE);
                     }
 
+                    return 1;
+                }
+
+                std::shared_ptr<Command> createCommand(const std::string &query) {
+
+                    auto command = std::make_shared<Command>(query);
+                    auto resultCode = command->PrepareStatment(_ptrSqlite3);
+
+                    return command;
+                }
+
+                int initializeParamBindBuffers(const ColumnsList &columnsList,
+                                               std::shared_ptr<Entity> &entity,
+                                               std::shared_ptr<Command> &command) {
+
+                    int index = 1;
+
+                    std::for_each(columnsList.cbegin(),
+                                  columnsList.cend(),
+                                  [&command, &entity, &index](const std::shared_ptr<Column> &column) {
+
+                                      auto field = entity->getField(column->getName());
+
+                                      switch (column->getDbType()) {
+                                          case DbType::Int64:
+                                              sqlite3_int64 int64Value;
+                                              int64Value = static_cast<sqlite3_int64 >(field->getInt64());
+                                              sqlite3_bind_int64(command->_ptrStmt,
+                                                                 index,
+                                                                 int64Value);
+                                              break;
+                                          case DbType::String:
+                                              int charSize, strSize;
+
+                                              charSize = sizeof(char);
+                                              strSize = static_cast<int>(charSize *
+                                                                         strlen(field->getCString()));
+
+                                              sqlite3_bind_text(command->_ptrStmt,
+                                                                index,
+                                                                field->getCString(),
+                                                                strSize,
+                                                                SQLITE_STATIC);
+                                              break;
+                                          default:
+                                              break;
+                                      }
+
+                                      ++index;
+                                  });
                     return 1;
                 }
 
@@ -74,8 +134,8 @@ namespace Cloude {
 
             SQLiteSourceDriver::SQLiteSourceDriver(EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
-                      _sqliteImpl(new SQLiteImpl(_optionArgs.ConnectionString)) {
-                //
+                      _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
+                init();
             }
 
             SQLiteSourceDriver::~SQLiteSourceDriver() {
@@ -84,23 +144,54 @@ namespace Cloude {
 
             void SQLiteSourceDriver::Connect() {
 
-                if (!_sqliteImpl) {
-                    _sqliteImpl = std::make_shared<SQLiteImpl>(_optionArgs.ConnectionString);
+                if (!_sqliteApiImpl) {
+                    _sqliteApiImpl = std::make_shared<SQLiteApiImpl>(_optionArgs.ConnectionString);
                 }
 
-                _sqliteImpl->Connect();
+                _sqliteApiImpl->Connect();
             }
 
             void SQLiteSourceDriver::Disconnect() {
-                _sqliteImpl.reset();
+                _sqliteApiImpl.reset();
             }
 
             int SQLiteSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {
+
+                auto &columnsForKey = _entityMap.getColumnsForKey();
+
+                std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_getStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, command);
+
                 return 0;
             }
 
             int SQLiteSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity) const {
-                return 0;
+
+                auto &columnsForKey = _entityMap.getColumnsForKey();
+
+                std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_insertStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, command);
+
+                int resultCode = sqlite3_step(command->_ptrStmt);
+
+                switch (resultCode) {
+                    case SQLITE_BUSY:
+                        break;
+                    case SQLITE_DONE:
+                        break;
+                    case SQLITE_ERROR:
+                        // TODO: throws an appropriate exception
+                        break;
+                    case SQLITE_MISUSE:
+                        // TODO: throws an appropriate exception
+                        return 0;
+                    default:
+                        break;
+                }
+
+                return 1;
             }
 
             int SQLiteSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity) const {
@@ -109,6 +200,24 @@ namespace Cloude {
 
             int SQLiteSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity) const {
                 return 0;
+            }
+
+            void SQLiteSourceDriver::init() {
+
+                auto fpValue = [this](const std::shared_ptr<Column> &column,
+                                      int index) -> string {
+                    return "?";
+                };
+
+                auto fpCondition = [this](const std::shared_ptr<Column> &column,
+                                          int index) -> string {
+                    return column->getDatasourceName() + " = " + "?";
+                };
+
+                _getStatement = Framework::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
+                _insertStatement = Framework::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
+                _updateStatement = Framework::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
+                _deleteStatement = Framework::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
             }
         }
     }

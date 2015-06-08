@@ -44,7 +44,7 @@ add_library(Framework STATIC
     Framework/EntitySourceDriver.cpp
     Framework/EntitySourceDriver.h
     Framework/Helper/EntityStoreHelper.cpp
-    Framework/Helper/EntityStoreHelper.h)
+    Framework/Helper/EntityStoreHelper.h AppTest/Store/Test/SQLiteStore.hpp)
 
 
 add_library(application STATIC
@@ -87,8 +87,6 @@ add_library(SourceDriver STATIC
     SourceDriver/MongoDb/MongoDbSourceDriver.h
     SourceDriver/MongoDb/MongoDbSourceException.cpp
     SourceDriver/MongoDb/MongoDbSourceException.h
-    SourceDriver/MongoDb/MongoDbQueryHelper.cpp
-    SourceDriver/MongoDb/MongoDbQueryHelper.h
     SourceDriver/SQLite/SQLiteSourceDriver.cpp
     SourceDriver/SQLite/SQLiteSourceDriver.h
     SourceDriver/SQLite/SQLiteSourceException.cpp
@@ -116,7 +114,7 @@ add_library(apptest STATIC
     AppTest/Store/EnquiryMongoDbStore.cpp
     AppTest/Store/EnquiryMongoDbStore.h
     AppTest/Store/Test/MongoDbStore.hpp
-    AppTest/Store/Test/PostgreStore.hpp)
+    AppTest/Store/Test/PostgreStore.hpp AppTest/Store/EnquirySQLiteStore.cpp AppTest/Store/EnquirySQLiteStore.h)
 
 
 # Libs
