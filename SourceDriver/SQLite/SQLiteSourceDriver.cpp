@@ -7,8 +7,6 @@
 #include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
 
-using namespace std;
-
 namespace Cloude {
     namespace SourceDriver {
         namespace SQLite {
@@ -45,7 +43,7 @@ namespace Cloude {
                     return 1;
                 }
 
-                sqlite3_stmt *_ptrStmt;
+                sqlite3_stmt *_ptrStmt = nullptr;
                 const std::string &query;
             };
 
@@ -78,7 +76,7 @@ namespace Cloude {
 
                 std::shared_ptr<Command> createCommand(const std::string &query) {
 
-                    auto command = std::make_shared<Command>(query);
+                    std::shared_ptr<Command> command(new Command(query));
                     auto resultCode = command->PrepareStatment(_ptrSqlite3);
 
                     return command;
@@ -155,8 +153,8 @@ namespace Cloude {
 
             int SQLiteSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {
 
-                auto &columnsForGet = _entityMap.getColumnsForGet();
-                auto &columnsForKey = _entityMap.getColumnsForKey();
+                const auto &columnsForGet = _entityMap.getColumnsForGet();
+                const auto &columnsForKey = _entityMap.getColumnsForKey();
 
                 std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_getStatement);
 
@@ -295,13 +293,11 @@ namespace Cloude {
 
             void SQLiteSourceDriver::init() {
 
-                auto fpValue = [this](const std::shared_ptr<Column> &column,
-                                      int index) -> string {
+                auto fpValue = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
                     return "?";
                 };
 
-                auto fpCondition = [this](const std::shared_ptr<Column> &column,
-                                          int index) -> string {
+                auto fpCondition = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
                     return column->getDatasourceName() + " = " + "?";
                 };
 
