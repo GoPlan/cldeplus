@@ -6,19 +6,21 @@
 #define CLOUD_E_CPLUS_SQLITESOURCEDRIVER_H
 
 #include <memory>
-#include <Framework/EntitySourceDriver.h>
+#include <Foundation/EntitySourceDriver.h>
+#include <Foundation/Enumeration/DbType.h>
+#include <Foundation/Column.h>
 
 namespace Cloude {
     namespace SourceDriver {
         namespace SQLite {
-            class SQLiteSourceDriver : public Cloude::Framework::EntitySourceDriver {
+            class SQLiteSourceDriver : public Cloude::Foundation::EntitySourceDriver {
             public:
-                using DbType = Cloude::Framework::Enumeration::DbType;
-                using Column = Cloude::Framework::Column;
+                using DbType = Cloude::Foundation::Enumeration::DbType;
+                using Column = Cloude::Foundation::Column;
                 using ColumnsList = std::vector<std::shared_ptr<Column>>;
-                using EntityMap = Cloude::Framework::EntityMap;
-                using Entity = Cloude::Framework::Entity;
-                using EntitySourceDriver = Cloude::Framework::EntitySourceDriver;
+                using EntityMap = Cloude::Foundation::EntityMap;
+                using Entity = Cloude::Foundation::Entity;
+                using EntitySourceDriver = Cloude::Foundation::EntitySourceDriver;
                 using Options = struct {
                     std::string ConnectionString;
                 };

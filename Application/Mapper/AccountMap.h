@@ -5,28 +5,29 @@
 #ifndef CLOUD_E_CPLUS_ACCOUNTMAP_H
 #define CLOUD_E_CPLUS_ACCOUNTMAP_H
 
-#include "Framework/Column.h"
-#include "Framework/EntityMap.h"
+#include <string>
+#include <Foundation/Column.h>
+#include <Foundation/EntityMap.h>
 
 namespace Cloude {
     namespace Application {
         namespace Mapper {
-            class AccountMap : public Framework::EntityMap {
+            class AccountMap : public Foundation::EntityMap {
             public:
                 AccountMap();
                 virtual ~AccountMap();
                 AccountMap(const AccountMap &srcAccountMap) = default;
                 AccountMap &operator=(const AccountMap &srcAccountMap) = default;
 
-                static std::shared_ptr<Framework::Column> Id;
-                static std::shared_ptr<Framework::Column> UniqueName;
-                static std::shared_ptr<Framework::Column> Email;
-                static std::shared_ptr<Framework::Column> AccountType;
-                static std::shared_ptr<Framework::Column> FirstName;
-                static std::shared_ptr<Framework::Column> LastName;
-                static std::shared_ptr<Framework::Column> Mobile;
-                static std::shared_ptr<Framework::Column> Address;
-                static std::shared_ptr<Framework::Column> City;
+                static std::shared_ptr <Foundation::Column> Id;
+                static std::shared_ptr <Foundation::Column> UniqueName;
+                static std::shared_ptr <Foundation::Column> Email;
+                static std::shared_ptr <Foundation::Column> AccountType;
+                static std::shared_ptr <Foundation::Column> FirstName;
+                static std::shared_ptr <Foundation::Column> LastName;
+                static std::shared_ptr <Foundation::Column> Mobile;
+                static std::shared_ptr <Foundation::Column> Address;
+                static std::shared_ptr <Foundation::Column> City;
 
             protected:
                 virtual std::string TableNameCore();

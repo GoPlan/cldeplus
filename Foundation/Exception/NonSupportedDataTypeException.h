@@ -1,0 +1,20 @@
+//
+// Created by LE, Duc Anh on 5/26/15.
+//
+
+#ifndef CLOUD_E_CPLUS_NONSUPPORTEDDATATYPEEXCEPTION_H
+#define CLOUD_E_CPLUS_NONSUPPORTEDDATATYPEEXCEPTION_H
+
+#include "exception"
+
+namespace Cloude {
+    namespace Foundation {
+        namespace Exception {
+            class NonSupportedDataTypeException : std::exception {
+
+            };
+        }
+    }
+}
+
+#endif //CLOUD_E_CPLUS_NONSUPPORTEDDATATYPEEXCEPTION_H

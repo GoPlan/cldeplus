@@ -15,8 +15,8 @@ namespace Cloude {
         namespace Store {
             namespace Test {
 
-                using Field = Cloude::Framework::Field;
-                using Identity = Cloude::Framework::Identity;
+                using Field = Cloude::Foundation::Field;
+                using Identity = Cloude::Foundation::Identity;
 
                 TEST_F(EnquiryMongoDbStore, CreateGetSaveDelete) {
 

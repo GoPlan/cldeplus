@@ -5,19 +5,19 @@
 #ifndef CLOUD_E_CPLUS_SEQUENCELOADER_H
 #define CLOUD_E_CPLUS_SEQUENCELOADER_H
 
-#include <Framework/EntityLoader.h>
+#include <Foundation/EntityLoader.h>
 
 namespace Cloude {
     namespace Application {
         namespace Mapper {
-            class SequenceLoader : public Framework::EntityLoader {
+            class SequenceLoader : public Foundation::EntityLoader {
             public:
                 SequenceLoader() = default;
                 virtual ~SequenceLoader() = default;
                 SequenceLoader(const SequenceLoader &srcSequenceLoader) = default;
                 SequenceLoader &operator=(const SequenceLoader &srcSequenceLoader) = default;
 
-                virtual std::shared_ptr<Framework::Identity> NextPrimaryKey() const override;
+                virtual std::shared_ptr<Foundation::Identity> NextPrimaryKey() const override;
             };
 
         }

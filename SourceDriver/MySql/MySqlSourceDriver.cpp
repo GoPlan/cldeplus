@@ -5,9 +5,9 @@
 #include <string>
 #include <iostream>
 #include <mysql.h>
-#include <Framework/Exception/NonSupportedDataTypeException.h>
-#include <Framework/Helper/SqlGenerator.h>
-#include <Framework/Entity.h>
+#include <Foundation/Exception/NonSupportedDataTypeException.h>
+#include <Foundation/Helper/SqlGenerator.h>
+#include <Foundation/Entity.h>
 #include "MySqlSourceException.h"
 #include "MySqlSourceDriver.h"
 
@@ -173,52 +173,52 @@ namespace Cloude {
                                                   MYSQL_BIND *ptrBind) {
 
                     switch (field->getColumn()->getDbType()) {
-                        case Framework::Enumeration::DbType::Boolean:
+                        case Foundation::Enumeration::DbType::Boolean:
                             ptrBind->buffer_type = MYSQL_TYPE_TINY;
                             ptrBind->buffer_length = sizeof(bool);
                             break;
-                        case Framework::Enumeration::DbType::Byte:
+                        case Foundation::Enumeration::DbType::Byte:
                             ptrBind->buffer_type = MYSQL_TYPE_TINY;
                             ptrBind->buffer_length = sizeof(char);
                             break;
-                        case Framework::Enumeration::DbType::Int16:
+                        case Foundation::Enumeration::DbType::Int16:
                             ptrBind->buffer_type = MYSQL_TYPE_SHORT;
                             ptrBind->buffer_length = sizeof(int16_t);
                             break;
-                        case Framework::Enumeration::DbType::Int32:
+                        case Foundation::Enumeration::DbType::Int32:
                             ptrBind->buffer_type = MYSQL_TYPE_LONG;
                             ptrBind->buffer_length = sizeof(int32_t);
                             break;
-                        case Framework::Enumeration::DbType::Int64:
+                        case Foundation::Enumeration::DbType::Int64:
                             ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
                             ptrBind->buffer_length = sizeof(int64_t);
                             break;
-                        case Framework::Enumeration::DbType::UInt16:
+                        case Foundation::Enumeration::DbType::UInt16:
                             ptrBind->buffer_type = MYSQL_TYPE_SHORT;
                             ptrBind->buffer_length = sizeof(int16_t);
                             break;
-                        case Framework::Enumeration::DbType::UInt32:
+                        case Foundation::Enumeration::DbType::UInt32:
                             ptrBind->buffer_type = MYSQL_TYPE_LONG;
                             ptrBind->buffer_length = sizeof(int16_t);
                             break;
-                        case Framework::Enumeration::DbType::UInt64:
+                        case Foundation::Enumeration::DbType::UInt64:
                             ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
                             ptrBind->buffer_length = sizeof(int16_t);
                             break;
-                        case Framework::Enumeration::DbType::Double:
+                        case Foundation::Enumeration::DbType::Double:
                             ptrBind->buffer_type = MYSQL_TYPE_DOUBLE;
                             ptrBind->buffer_length = sizeof(double);
                             break;
-                        case Framework::Enumeration::DbType::Float:
+                        case Foundation::Enumeration::DbType::Float:
                             ptrBind->buffer_type = MYSQL_TYPE_FLOAT;
                             ptrBind->buffer_length = sizeof(float);
                             break;
-                        case Framework::Enumeration::DbType::String:
+                        case Foundation::Enumeration::DbType::String:
                             ptrBind->buffer_type = MYSQL_TYPE_STRING;
                             ptrBind->buffer_length = field->getColumn()->getLength();
                             break;
                         default:
-                            throw Framework::Exception::NonSupportedDataTypeException();
+                            throw Foundation::Exception::NonSupportedDataTypeException();
                     }
                 }
             }; // END - MySqlApiImpl
@@ -250,10 +250,10 @@ namespace Cloude {
                     return condition;
                 };
 
-                _getStatement = Framework::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
-                _insertStatement = Framework::Helper::CreateInsertPreparedQuery(_entityMap, fpInsert);
-                _updateStatement = Framework::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
-                _deleteStatement = Framework::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
+                _getStatement = Foundation::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
+                _insertStatement = Foundation::Helper::CreateInsertPreparedQuery(_entityMap, fpInsert);
+                _updateStatement = Foundation::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
+                _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
 
             }
 

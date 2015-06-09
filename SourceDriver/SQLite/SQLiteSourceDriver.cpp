@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 6/7/15.
 //
 
-#include <Framework/Helper/SqlGenerator.h>
+#include <Foundation/Helper/SqlGenerator.h>
 #include <stdlib.h>
 #include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
@@ -294,17 +294,17 @@ namespace Cloude {
             void SQLiteSourceDriver::init() {
 
                 auto fpValue = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
-                    return "?";
+                    return std::string("?");
                 };
 
                 auto fpCondition = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
                     return column->getDatasourceName() + " = " + "?";
                 };
 
-                _getStatement = Framework::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
-                _insertStatement = Framework::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
-                _updateStatement = Framework::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
-                _deleteStatement = Framework::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
+                _getStatement = Foundation::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
+                _insertStatement = Foundation::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
+                _updateStatement = Foundation::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
+                _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
             }
         }
     }

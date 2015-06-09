@@ -10,41 +10,41 @@ set(SOURCE_FILES main.cpp)
 include_directories(${CMAKE_SOURCE_DIR})
 
 
-add_library(Framework STATIC
+add_library(Foundation STATIC
     Cloude.h
-    Framework/Enumeration/DbType.h
-    Framework/Identity.cpp
-    Framework/Identity.h
-    Framework/Column.cpp
-    Framework/Column.h
-    Framework/Field.cpp
-    Framework/Field.h
-    Framework/Entity.cpp
-    Framework/Entity.h
-    Framework/EntityStore.cpp
-    Framework/EntityStore.h
-    Framework/EntityMap.cpp
-    Framework/EntityMap.h
-    Framework/EntityLoader.cpp
-    Framework/EntityLoader.h
-    Framework/Exception/NonSupportedDataTypeException.cpp
-    Framework/Exception/NonSupportedDataTypeException.h
-    Framework/Exception/DataSourceRoutineException.cpp
-    Framework/Exception/DataSourceRoutineException.h
-    Framework/Exception/EntityStoreRoutineException.cpp
-    Framework/Exception/EntityStoreRoutineException.h
-    Framework/Helper/SqlGenerator.cpp
-    Framework/Helper/SqlGenerator.h
-    Framework/Exception/EntityException.cpp
-    Framework/Exception/EntityException.h
-    Framework/DataSource/Command.cpp
-    Framework/DataSource/Command.h
-    Framework/DataSource/Connector.h
-    Framework/DataSource/Connector.cpp
-    Framework/EntitySourceDriver.cpp
-    Framework/EntitySourceDriver.h
-    Framework/Helper/EntityStoreHelper.cpp
-    Framework/Helper/EntityStoreHelper.h AppTest/Store/Test/SQLiteStore.hpp)
+    Foundation/Enumeration/DbType.h
+    Foundation/Identity.cpp
+    Foundation/Identity.h
+    Foundation/Column.cpp
+    Foundation/Column.h
+    Foundation/Field.cpp
+    Foundation/Field.h
+    Foundation/Entity.cpp
+    Foundation/Entity.h
+    Foundation/EntityStore.cpp
+    Foundation/EntityStore.h
+    Foundation/EntityMap.cpp
+    Foundation/EntityMap.h
+    Foundation/EntityLoader.cpp
+    Foundation/EntityLoader.h
+    Foundation/Exception/NonSupportedDataTypeException.cpp
+    Foundation/Exception/NonSupportedDataTypeException.h
+    Foundation/Exception/DataSourceRoutineException.cpp
+    Foundation/Exception/DataSourceRoutineException.h
+    Foundation/Exception/EntityStoreRoutineException.cpp
+    Foundation/Exception/EntityStoreRoutineException.h
+    Foundation/Helper/SqlGenerator.cpp
+    Foundation/Helper/SqlGenerator.h
+    Foundation/Exception/EntityException.cpp
+    Foundation/Exception/EntityException.h
+    Foundation/DataSource/Command.cpp
+    Foundation/DataSource/Command.h
+    Foundation/DataSource/Connector.h
+    Foundation/DataSource/Connector.cpp
+    Foundation/EntitySourceDriver.cpp
+    Foundation/EntitySourceDriver.h
+    Foundation/Helper/EntityStoreHelper.cpp
+    Foundation/Helper/EntityStoreHelper.h AppTest/Store/Test/SQLiteStore.hpp)
 
 
 add_library(application STATIC
@@ -162,15 +162,15 @@ target_link_libraries(cloud_e_cplus_example examples mysqlclient mongoc-1.0 bson
 
 # Debug Target
 add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus_debug Framework SourceDriver application mysqlclient pq mongoc-1.0)
+target_link_libraries(cloud_e_cplus_debug Foundation SourceDriver application mysqlclient pq mongoc-1.0)
 
 
-# AppTest Target (with Google Testing Framework)
+# AppTest Target (with Google Testing Foundation)
 set(GTEST_LIB_DIR ${LIBS_DIR}/gtest-1.7.0)
 set(APPTEST_SOURCE_FILE ${CMAKE_SOURCE_DIR}/AppTest/main.cpp)
 include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 
 add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test Framework SourceDriver application apptest)
+target_link_libraries(cloud_e_cplus_test Foundation SourceDriver application apptest)
 target_link_libraries(cloud_e_cplus_test gtest mysqlclient pq mongoc-1.0 bson-1.0)

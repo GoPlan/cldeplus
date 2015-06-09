@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <mongoc.h>
-#include <Framework/Exception/EntityException.h>
+#include <Foundation/Exception/EntityException.h>
 #include "MongoDbSourceDriver.h"
 #include "MongoDbSourceException.h"
 
@@ -101,7 +101,7 @@ namespace Cloude {
             };
 
 
-            MongoDbSourceDriver::MongoDbSourceDriver(Framework::EntityMap &entityMap)
+            MongoDbSourceDriver::MongoDbSourceDriver(Foundation::EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _mongoDbApiImpl(new MongoDbApiImpl()) {
                 //
@@ -192,7 +192,7 @@ namespace Cloude {
                                         break;
                                 }
 
-                            } catch (Framework::Exception::EntityException &ex) {
+                            } catch (Foundation::Exception::EntityException &ex) {
                                 continue;
                             }
                         }

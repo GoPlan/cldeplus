@@ -6,7 +6,7 @@
 #define CLOUD_E_CPLUS_ENQUIRYSQLITESTORE_H
 
 #include "gtest/gtest.h"
-#include <Framework/EntityStore.h>
+#include <Foundation/EntityStore.h>
 #include <SourceDriver/SQLite/SQLiteSourceDriver.h>
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Application/Mapper/EnquiryMap.h>
@@ -25,7 +25,7 @@ namespace Cloude {
             using EnquiryMap = Application::Mapper::EnquiryMap;
             using EnquiryLoader = Application::Mapper::EnquiryLoader;
             using SQLiteSourceDriver = SourceDriver::SQLite::SQLiteSourceDriver;
-            using EntityStore = Framework::EntityStore;
+            using EntityStore = Foundation::EntityStore;
 
             void SetUp() override;
             void TearDown() override;

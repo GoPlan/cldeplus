@@ -22,7 +22,7 @@ namespace Cloude {
                 using StockGroupLoader = Cloude::Application::Mapper::StockGroupLoader;
                 using StockGroupMap = Cloude::Application::Mapper::StockGroupMap;
                 using MySqlSourceDriver = Cloude::SourceDriver::MySql::MySqlSourceDriver;
-                using EntityStore= Cloude::Framework::EntityStore;
+                using EntityStore= Cloude::Foundation::EntityStore;
 
                 StockGroupMySqlStore() : _mySqlDriver(_stockGroupMap),
                                          _entityStore(_stockGroupMap, _stockGroupLoader, _mySqlDriver) { };

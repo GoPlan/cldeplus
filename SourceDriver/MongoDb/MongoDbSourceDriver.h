@@ -7,20 +7,20 @@
 
 #include <memory>
 #include <string>
-#include <Framework/EntitySourceDriver.h>
+#include <Foundation/EntitySourceDriver.h>
 
 namespace Cloude {
     namespace SourceDriver {
         namespace MongoDb {
 
-            class MongoDbSourceDriver : public Framework::EntitySourceDriver {
+            class MongoDbSourceDriver : public Foundation::EntitySourceDriver {
             public:
-                using Column = Framework::Column;
-                using DbType = Framework::Enumeration::DbType;
-                using Field = Framework::Field;
-                using EntitySourceDriver = Framework::EntitySourceDriver;
-                using Entity = Framework::Entity;
-                using EntityMap = Framework::EntityMap;
+                using Column = Foundation::Column;
+                using DbType = Foundation::Enumeration::DbType;
+                using Field = Foundation::Field;
+                using EntitySourceDriver = Foundation::EntitySourceDriver;
+                using Entity = Foundation::Entity;
+                using EntityMap = Foundation::EntityMap;
                 using Options = struct {
                     std::string Host;
                     std::string User;
@@ -35,7 +35,7 @@ namespace Cloude {
                 MongoDbSourceDriver(const MongoDbSourceDriver &srcMongoDbSourceDriver) = default;
                 MongoDbSourceDriver &operator=(const MongoDbSourceDriver &srcMongoDbSourceDriver) = default;
 
-                explicit MongoDbSourceDriver(Framework::EntityMap &entityMap);
+                explicit MongoDbSourceDriver(Foundation::EntityMap &entityMap);
                 int LoadEntity(std::shared_ptr<Entity> &entity) const override;
                 int CreateEntity(std::shared_ptr<Entity> &entity) const override;
                 int SaveEntity(std::shared_ptr<Entity> &entity) const override;

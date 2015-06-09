@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <libpq-fe.h>
-#include <Framework/Helper/SqlGenerator.h>
+#include <Foundation/Helper/SqlGenerator.h>
 #include "PostgreSourceDriver.h"
 
 using namespace std;
@@ -88,44 +88,44 @@ namespace Cloude {
                              });
                 }
 
-                string getTypeAlias(Framework::Enumeration::DbType dbType) {
+                string getTypeAlias(Foundation::Enumeration::DbType dbType) {
 
                     switch (dbType) {
-                        case Framework::Enumeration::DbType::Boolean:
+                        case Foundation::Enumeration::DbType::Boolean:
                             return "boolean";
-                        case Framework::Enumeration::DbType::Byte:
+                        case Foundation::Enumeration::DbType::Byte:
                             return "bytea";
-                        case Framework::Enumeration::DbType::Int16:
+                        case Foundation::Enumeration::DbType::Int16:
                             return "smallint";
-                        case Framework::Enumeration::DbType::Int32:
+                        case Foundation::Enumeration::DbType::Int32:
                             return "integer";
-                        case Framework::Enumeration::DbType::Int64:
+                        case Foundation::Enumeration::DbType::Int64:
                             return "bigint";
-                        case Framework::Enumeration::DbType::UInt16:
+                        case Foundation::Enumeration::DbType::UInt16:
                             return "smallint";
-                        case Framework::Enumeration::DbType::UInt32:
+                        case Foundation::Enumeration::DbType::UInt32:
                             return "integer";
-                        case Framework::Enumeration::DbType::UInt64:
+                        case Foundation::Enumeration::DbType::UInt64:
                             return "bigint";
-                        case Framework::Enumeration::DbType::Double:
+                        case Foundation::Enumeration::DbType::Double:
                             return "double";
-                        case Framework::Enumeration::DbType::Float:
+                        case Foundation::Enumeration::DbType::Float:
                             return "real";
-                        case Framework::Enumeration::DbType::Decimal:
+                        case Foundation::Enumeration::DbType::Decimal:
                             return "decimal";
-                        case Framework::Enumeration::DbType::Numeric:
+                        case Foundation::Enumeration::DbType::Numeric:
                             return "numeric";
-                        case Framework::Enumeration::DbType::String:
+                        case Foundation::Enumeration::DbType::String:
                             return "varchar";
-                        case Framework::Enumeration::DbType::Currency:
+                        case Foundation::Enumeration::DbType::Currency:
                             return "money";
-                        case Framework::Enumeration::DbType::Date:
+                        case Foundation::Enumeration::DbType::Date:
                             return "date";
-                        case Framework::Enumeration::DbType::Time:
+                        case Foundation::Enumeration::DbType::Time:
                             return "time";
-                        case Framework::Enumeration::DbType::Timestamp:
+                        case Foundation::Enumeration::DbType::Timestamp:
                             return "timestamp";
-                        case Framework::Enumeration::DbType::Interval:
+                        case Foundation::Enumeration::DbType::Interval:
                             return "interval";
                     }
                 }
@@ -184,10 +184,10 @@ namespace Cloude {
                     return expr;
                 };
 
-                _getStatement = Framework::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
-                _insertStatement = Framework::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
-                _updateStatement = Framework::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
-                _deleteStatement = Framework::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
+                _getStatement = Foundation::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
+                _insertStatement = Foundation::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
+                _updateStatement = Foundation::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
+                _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
             }
 
             int PostgreSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {

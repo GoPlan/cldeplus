@@ -6,14 +6,14 @@
 #define CLOUD_E_CPLUS_ENQUIRYLOADER_H
 
 #include <memory>
-#include <Framework/EntityLoader.h>
+#include <Foundation/EntityLoader.h>
 
 namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            using EntityLoader = Framework::EntityLoader;
-            using Identity = Framework::Identity;
+            using EntityLoader = Foundation::EntityLoader;
+            using Identity = Foundation::Identity;
 
             class EnquiryLoader : public EntityLoader {
             public:
