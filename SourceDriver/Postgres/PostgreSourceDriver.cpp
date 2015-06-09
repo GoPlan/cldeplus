@@ -9,16 +9,19 @@
 #include <Foundation/Helper/SqlGenerator.h>
 #include "PostgreSourceDriver.h"
 
-using namespace std;
-
 namespace Cloude {
     namespace SourceDriver {
         namespace PostgreSql {
 
+            using ColumnsList = std::vector<std::shared_ptr<Foundation::Column>>;
+            using Column = Foundation::Column;
+            using Entity = Foundation::Entity;
+            using EntityMap = Foundation::EntityMap;
+
             class Command {
             public:
-                Command(const PGconn &conn, const string &query) : PGConn(conn),
-                                                                   Query(query) {
+                Command(const PGconn &conn, const std::string &query) : PGConn(conn),
+                                                                        Query(query) {
                     //
                 };
 
@@ -50,7 +53,7 @@ namespace Cloude {
                 char **PtrParamValues = nullptr;
 
                 const PGconn &PGConn;
-                const string &Query;
+                const std::string &Query;
             };
 
             class PostgreSourceDriver::PgApiImpl {
@@ -58,14 +61,14 @@ namespace Cloude {
                 PGconn *PtrPgConn;
 
             public:
-                shared_ptr<Command> createCommand(const string &query) {
-                    shared_ptr<Command> command = make_shared<Command>(*PtrPgConn, query);
+                std::shared_ptr<Command> createCommand(const std::string &query) {
+                    std::shared_ptr<Command> command = std::make_shared<Command>(*PtrPgConn, query);
                     return command;
                 }
 
-                void initializeParamsBindBuffer(shared_ptr<Entity> &entity,
+                void initializeParamsBindBuffer(std::shared_ptr<Entity> &entity,
                                                 const ColumnsList &columnsList,
-                                                shared_ptr<Command> &command) {
+                                                std::shared_ptr<Command> &command) {
 
                     auto nParam = columnsList.size();
 
@@ -76,7 +79,7 @@ namespace Cloude {
                     int index = 0;
 
                     for_each(columnsList.cbegin(), columnsList.cend(),
-                             [&entity, &command, &index](const shared_ptr<Column> &column) {
+                             [&entity, &command, &index](const std::shared_ptr<Column> &column) {
 
                                  auto field = entity->operator[](column->getName());
 
@@ -88,7 +91,7 @@ namespace Cloude {
                              });
                 }
 
-                string getTypeAlias(Foundation::Enumeration::DbType dbType) {
+                std::string getTypeAlias(Foundation::Enumeration::DbType dbType) {
 
                     switch (dbType) {
                         case Foundation::Enumeration::DbType::Boolean:
@@ -140,7 +143,7 @@ namespace Cloude {
                     int index = 0;
 
                     std::for_each(columnsForGet.cbegin(), columnsForGet.cend(),
-                                  [&entity, &ptrResult, &index](const shared_ptr<Column> &column) {
+                                  [&entity, &ptrResult, &index](const std::shared_ptr<Column> &column) {
 
                                       auto field = entity->getField(column->getName());
 
@@ -164,10 +167,34 @@ namespace Cloude {
 
             }
 
+            void PostgreSourceDriver::Connect() {
+
+                if (_pgApiImpl->PtrPgConn == nullptr) {
+
+                    _pgApiImpl->PtrPgConn = PQsetdbLogin(_optionArgs.Host.c_str(),
+                                                         std::to_string(_optionArgs.Port).c_str(),
+                                                         NULL,
+                                                         NULL,
+                                                         _optionArgs.Base.c_str(),
+                                                         _optionArgs.User.c_str(),
+                                                         _optionArgs.Pass.c_str());
+                    _isConnected = true;
+                }
+            }
+
+            void PostgreSourceDriver::Disconnect() {
+
+                if (_pgApiImpl->PtrPgConn != nullptr) {
+
+                    PQfinish(_pgApiImpl->PtrPgConn);
+                    _isConnected = false;
+                }
+            }
+
             void PostgreSourceDriver::init() {
 
                 auto fpValue = [this](const std::shared_ptr<Column> &column,
-                                      int index) -> string {
+                                      int index) -> std::string {
 
                     auto typeName = _pgApiImpl->getTypeAlias(column->getDbType());
                     auto expr = "$" + std::to_string(++index) + "::" + typeName;
@@ -176,7 +203,7 @@ namespace Cloude {
                 };
 
                 auto fpCondition = [this](const std::shared_ptr<Column> &column,
-                                          int index) -> string {
+                                          int index) -> std::string {
 
                     auto typeName = _pgApiImpl->getTypeAlias(column->getDbType());
                     auto expr = column->getDatasourceName() + " = " + "$" + std::to_string(++index) + "::" + typeName;
@@ -190,11 +217,11 @@ namespace Cloude {
                 _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
             }
 
-            int PostgreSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {
+            int PostgreSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
 
                 const ColumnsList &columnList = _entityMap.getColumnsForKey();
 
-                shared_ptr<Command> command = _pgApiImpl->createCommand(_getStatement);
+                auto command = _pgApiImpl->createCommand(_getStatement);
 
                 _pgApiImpl->initializeParamsBindBuffer(entity, columnList, command);
 
@@ -228,15 +255,15 @@ namespace Cloude {
                         break;
                     case PGRES_BAD_RESPONSE:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_NONFATAL_ERROR:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_FATAL_ERROR:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_COPY_BOTH:
                         break;
@@ -249,7 +276,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int PostgreSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity) const {
+            int PostgreSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {
 
                 const ColumnsList &columnsList = _entityMap.getColumnsForKey();
 
@@ -286,15 +313,15 @@ namespace Cloude {
                         break;
                     case PGRES_BAD_RESPONSE:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_NONFATAL_ERROR:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_FATAL_ERROR:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_COPY_BOTH:
                         break;
@@ -307,7 +334,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int PostgreSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity) const {
+            int PostgreSourceDriver::Save(std::shared_ptr<Entity> &entity) const {
 
                 ColumnsList columnList;
 
@@ -352,15 +379,15 @@ namespace Cloude {
                         break;
                     case PGRES_BAD_RESPONSE:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_NONFATAL_ERROR:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_FATAL_ERROR:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_COPY_BOTH:
                         break;
@@ -373,11 +400,11 @@ namespace Cloude {
                 return 1;
             }
 
-            int PostgreSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity) const {
+            int PostgreSourceDriver::Delete(std::shared_ptr<Entity> &entity) const {
 
                 const ColumnsList &columnList = _entityMap.getColumnsForKey();
 
-                shared_ptr<Command> command = _pgApiImpl->createCommand(_deleteStatement);
+                auto command = _pgApiImpl->createCommand(_deleteStatement);
 
                 _pgApiImpl->initializeParamsBindBuffer(entity, columnList, command);
 
@@ -410,15 +437,15 @@ namespace Cloude {
                         break;
                     case PGRES_BAD_RESPONSE:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_NONFATAL_ERROR:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_FATAL_ERROR:
                         errorMessage = PQresultErrorMessage(result);
-                        cout << errorMessage << endl;
+                        std::cout << errorMessage << std::endl;
                         break;
                     case PGRES_COPY_BOTH:
                         break;
@@ -431,28 +458,9 @@ namespace Cloude {
                 return 1;
             }
 
-            void PostgreSourceDriver::Connect() {
-
-                if (_pgApiImpl->PtrPgConn == nullptr) {
-
-                    _pgApiImpl->PtrPgConn = PQsetdbLogin(_optionArgs.Host.c_str(),
-                                                         std::to_string(_optionArgs.Port).c_str(),
-                                                         NULL,
-                                                         NULL,
-                                                         _optionArgs.Base.c_str(),
-                                                         _optionArgs.User.c_str(),
-                                                         _optionArgs.Pass.c_str());
-                    _isConnected = true;
-                }
-            }
-
-            void PostgreSourceDriver::Disconnect() {
-
-                if (_pgApiImpl->PtrPgConn != nullptr) {
-
-                    PQfinish(_pgApiImpl->PtrPgConn);
-                    _isConnected = false;
-                }
+            std::vector<Foundation::EntityProxy> PostgreSourceDriver::Select(
+                    std::shared_ptr<QueryExpression> &expr) const {
+                return std::vector<Foundation::EntityProxy>();
             }
         }
     }

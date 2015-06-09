@@ -4,13 +4,15 @@
 
 #include <iostream>
 #include <mongoc.h>
-#include <Foundation/Exception/EntityException.h>
 #include "MongoDbSourceDriver.h"
-#include "MongoDbSourceException.h"
 
 namespace Cloude {
     namespace SourceDriver {
         namespace MongoDb {
+
+            using Field = Foundation::Field;
+            using Column = Foundation::Column;
+            using DbType = Foundation::Enumeration::DbType;
 
             class Command {
             public:
@@ -107,7 +109,25 @@ namespace Cloude {
                 //
             }
 
-            int MongoDbSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {
+            void MongoDbSourceDriver::Connect() {
+
+                std::string uriString = _mongoDbApiImpl->parseConnectionString(_optionArgs);
+
+                _mongoDbApiImpl->_ptrClient = mongoc_client_new(uriString.c_str());
+                _mongoDbApiImpl->_ptrCollection = mongoc_client_get_collection(_mongoDbApiImpl->_ptrClient,
+                                                                               _optionArgs.Base.c_str(),
+                                                                               _entityMap.TableName().c_str());
+            }
+
+            void MongoDbSourceDriver::Disconnect() {
+                //
+            }
+
+            void MongoDbSourceDriver::init() {
+                //
+            }
+
+            int MongoDbSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
                 auto &columnsForGet = _entityMap.getColumnsForGet();
@@ -206,7 +226,7 @@ namespace Cloude {
                 return rowCount;
             }
 
-            int MongoDbSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity) const {
+            int MongoDbSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
@@ -248,7 +268,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int MongoDbSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity) const {
+            int MongoDbSourceDriver::Save(std::shared_ptr<Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
                 auto &columnsForUpdate = _entityMap.getColumnsForUpdate();
@@ -318,7 +338,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int MongoDbSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity) const {
+            int MongoDbSourceDriver::Delete(std::shared_ptr<Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
@@ -358,22 +378,8 @@ namespace Cloude {
                 return 1;
             }
 
-            void MongoDbSourceDriver::Connect() {
-
-                std::string uriString = _mongoDbApiImpl->parseConnectionString(_optionArgs);
-
-                _mongoDbApiImpl->_ptrClient = mongoc_client_new(uriString.c_str());
-                _mongoDbApiImpl->_ptrCollection = mongoc_client_get_collection(_mongoDbApiImpl->_ptrClient,
-                                                                               _optionArgs.Base.c_str(),
-                                                                               _entityMap.TableName().c_str());
-            }
-
-            void MongoDbSourceDriver::Disconnect() {
-                //
-            }
-
-            void MongoDbSourceDriver::init() {
-                //
+            std::vector<Foundation::EntityProxy> MongoDbSourceDriver::Select(std::shared_ptr<QueryExpression> &expr) const {
+                return std::vector<Foundation::EntityProxy>();
             }
         }
     }

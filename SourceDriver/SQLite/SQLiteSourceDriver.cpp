@@ -2,14 +2,22 @@
 // Created by LE, Duc Anh on 6/7/15.
 //
 
-#include <Foundation/Helper/SqlGenerator.h>
+
 #include <stdlib.h>
+#include <Foundation/Helper/SqlGenerator.h>
 #include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
 
 namespace Cloude {
     namespace SourceDriver {
         namespace SQLite {
+
+            using EntityMap = Foundation::EntityMap;
+            using ColumnsList = std::vector<std::shared_ptr<Foundation::Column>>;
+            using Column = Foundation::Column;
+            using Field = Foundation::Field;
+            using Entity = Foundation::Entity;
+            using DbType = Foundation::Enumeration::DbType;
 
             class Command {
             public:
@@ -128,7 +136,7 @@ namespace Cloude {
                 sqlite3 *_ptrSqlite3 = nullptr;
             };
 
-            SQLiteSourceDriver::SQLiteSourceDriver(EntityMap &entityMap)
+            SQLiteSourceDriver::SQLiteSourceDriver(EntityMap & entityMap)
                     : EntitySourceDriver(entityMap),
                       _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
                 init();
@@ -151,7 +159,23 @@ namespace Cloude {
                 _sqliteApiImpl.reset();
             }
 
-            int SQLiteSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {
+            void SQLiteSourceDriver::init() {
+
+                auto fpValue = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
+                    return std::string("?");
+                };
+
+                auto fpCondition = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
+                    return column->getDatasourceName() + " = " + "?";
+                };
+
+                _getStatement = Foundation::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
+                _insertStatement = Foundation::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
+                _updateStatement = Foundation::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
+                _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
+            }
+
+            int SQLiteSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
 
                 const auto &columnsForGet = _entityMap.getColumnsForGet();
                 const auto &columnsForKey = _entityMap.getColumnsForKey();
@@ -200,7 +224,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int SQLiteSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity) const {
+            int SQLiteSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
@@ -228,7 +252,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int SQLiteSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity) const {
+            int SQLiteSourceDriver::Save(std::shared_ptr<Entity> &entity) const {
 
                 auto &columnsForUpdate = _entityMap.getColumnsForUpdate();
                 auto &columnsForKey = _entityMap.getColumnsForKey();
@@ -262,7 +286,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int SQLiteSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity) const {
+            int SQLiteSourceDriver::Delete(std::shared_ptr<Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
@@ -291,20 +315,8 @@ namespace Cloude {
                 return 1;
             }
 
-            void SQLiteSourceDriver::init() {
-
-                auto fpValue = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
-                    return std::string("?");
-                };
-
-                auto fpCondition = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
-                    return column->getDatasourceName() + " = " + "?";
-                };
-
-                _getStatement = Foundation::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
-                _insertStatement = Foundation::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
-                _updateStatement = Foundation::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
-                _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
+            std::vector<Foundation::EntityProxy> SQLiteSourceDriver::Select(std::shared_ptr<QueryExpression> &expr) const {
+                return std::vector<Foundation::EntityProxy>();
             }
         }
     }

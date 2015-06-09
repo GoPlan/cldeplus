@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 #include <Foundation/EntitySourceDriver.h>
+#include "MongoDbSourceException.h"
 
 namespace Cloude {
     namespace SourceDriver {
@@ -15,10 +16,7 @@ namespace Cloude {
 
             class MongoDbSourceDriver : public Foundation::EntitySourceDriver {
             public:
-                using Column = Foundation::Column;
-                using DbType = Foundation::Enumeration::DbType;
-                using Field = Foundation::Field;
-                using EntitySourceDriver = Foundation::EntitySourceDriver;
+                using QueryExpression = Foundation::Query::Expression;
                 using Entity = Foundation::Entity;
                 using EntityMap = Foundation::EntityMap;
                 using Options = struct {
@@ -35,11 +33,14 @@ namespace Cloude {
                 MongoDbSourceDriver(const MongoDbSourceDriver &srcMongoDbSourceDriver) = default;
                 MongoDbSourceDriver &operator=(const MongoDbSourceDriver &srcMongoDbSourceDriver) = default;
 
-                explicit MongoDbSourceDriver(Foundation::EntityMap &entityMap);
-                int LoadEntity(std::shared_ptr<Entity> &entity) const override;
-                int CreateEntity(std::shared_ptr<Entity> &entity) const override;
-                int SaveEntity(std::shared_ptr<Entity> &entity) const override;
-                int DeleteEntity(std::shared_ptr<Entity> &entity) const override;
+                explicit MongoDbSourceDriver(EntityMap &entityMap);
+
+                int Load(std::shared_ptr<Entity> &entity) const override;
+                int Insert(std::shared_ptr<Entity> &entity) const override;
+                int Save(std::shared_ptr<Entity> &entity) const override;
+                int Delete(std::shared_ptr<Entity> &entity) const override;
+
+                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<QueryExpression> &expr) const override;
 
                 void Connect();
                 void Disconnect();

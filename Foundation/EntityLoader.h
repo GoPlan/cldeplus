@@ -6,7 +6,6 @@
 #define CLOUD_E_CPLUS_ENTITYLOADER_H
 
 #include "Identity.h"
-#include "Entity.h"
 
 namespace Cloude {
     namespace Foundation {

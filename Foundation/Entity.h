@@ -7,10 +7,12 @@
 
 #include "unordered_map"
 #include "Field.h"
-#include "Identity.h"
+#include "Exception/EntityException.h"
 
 namespace Cloude {
     namespace Foundation {
+
+        class Identity;
 
         class Entity {
         public:

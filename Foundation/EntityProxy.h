@@ -11,6 +11,7 @@
 
 namespace Cloude {
     namespace Foundation {
+
         class EntityProxy {
         public:
             explicit EntityProxy(EntityStore &entityStore, std::shared_ptr<Identity> &identity);

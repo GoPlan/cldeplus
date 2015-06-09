@@ -16,10 +16,7 @@ namespace Cloude {
         namespace Mapper {
 
             using EntityLoader = Cloude::Foundation::EntityLoader;
-            using Entity = Cloude::Foundation::Entity;
             using Identity = Cloude::Foundation::Identity;
-            using Column = Cloude::Foundation::Column;
-            using Field = Cloude::Foundation::Field;
 
             class StockGroupLoader : public EntityLoader {
             public:

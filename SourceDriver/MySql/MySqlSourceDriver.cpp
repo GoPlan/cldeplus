@@ -7,12 +7,7 @@
 #include <mysql.h>
 #include <Foundation/Exception/NonSupportedDataTypeException.h>
 #include <Foundation/Helper/SqlGenerator.h>
-#include <Foundation/Entity.h>
-#include "MySqlSourceException.h"
 #include "MySqlSourceDriver.h"
-
-using namespace std;
-using namespace Cloude;
 
 namespace Cloude {
     namespace SourceDriver {
@@ -79,9 +74,9 @@ namespace Cloude {
                     mysql_library_end;
                 }
 
-                shared_ptr<Command> createCommand(const string &query) {
+                std::shared_ptr<Command> createCommand(const std::string &query) {
 
-                    auto command = make_shared<Command>();
+                    auto command = std::make_shared<Command>();
                     command->PtrStmt = mysql_stmt_init(PtrMySql);
 
                     if (!command->PtrStmt) {
@@ -272,7 +267,7 @@ namespace Cloude {
                 //
             }
 
-            int MySqlSourceDriver::LoadEntity(std::shared_ptr<Entity> &entity) const {
+            int MySqlSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
 
                 auto command = _mySqlApiImpl->createCommand(_getStatement);
 
@@ -314,7 +309,7 @@ namespace Cloude {
                 return 0;
             }
 
-            int MySqlSourceDriver::CreateEntity(std::shared_ptr<Entity> &entity) const {
+            int MySqlSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {
 
                 std::shared_ptr<Command> command = _mySqlApiImpl->createCommand(_insertStatement);
 
@@ -331,7 +326,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int MySqlSourceDriver::SaveEntity(std::shared_ptr<Entity> &entity) const {
+            int MySqlSourceDriver::Save(std::shared_ptr<Entity> &entity) const {
 
                 auto command = _mySqlApiImpl->createCommand(_updateStatement);
                 auto &columnsForKey = _entityMap.getColumnsForKey();
@@ -354,7 +349,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int MySqlSourceDriver::DeleteEntity(std::shared_ptr<Entity> &entity) const {
+            int MySqlSourceDriver::Delete(std::shared_ptr<Entity> &entity) const {
 
                 auto command = _mySqlApiImpl->createCommand(_deleteStatement);
 
@@ -369,6 +364,10 @@ namespace Cloude {
                 }
 
                 return 1;
+            }
+
+            std::vector<Foundation::EntityProxy> MySqlSourceDriver::Select(std::shared_ptr<QueryExpression > &expr) const {
+                return std::vector<Foundation::EntityProxy>();
             }
         }
     }

@@ -4,11 +4,11 @@
 
 #include <memory>
 #include <string>
-
-
+#include "Exception/EntityStoreRoutineException.h"
 #include "EntityLoader.h"
 #include "EntitySourceDriver.h"
-#include "Exception/EntityStoreRoutineException.h"
+#include "EntityMap.h"
+#include "Entity.h"
 #include "Helper/SqlGenerator.h"
 #include "Helper/EntityStoreHelper.h"
 
@@ -17,9 +17,9 @@ using namespace std;
 namespace Cloude {
     namespace Foundation {
 
-        EntityStore::EntityStore(EntityMap &entityMap,
-                                 EntityLoader &entityLoader,
-                                 EntitySourceDriver &entitySourceDriver)
+        EntityStore::EntityStore(const EntityMap &entityMap,
+                                 const EntityLoader &entityLoader,
+                                 const EntitySourceDriver &entitySourceDriver)
                 : _entityMap(entityMap),
                   _entityLoader(entityLoader),
                   _entitySourceDriver(entitySourceDriver) {
@@ -30,7 +30,7 @@ namespace Cloude {
             return !(_identityMap.find(identity) == _identityMap.end());
         }
 
-        shared_ptr<Entity> EntityStore::Create()  {
+        shared_ptr<Entity> EntityStore::Create() {
 
             auto identity = _entityLoader.NextPrimaryKey();
             auto entity = Create(identity);
@@ -38,7 +38,7 @@ namespace Cloude {
             return entity;
         }
 
-        shared_ptr<Entity> EntityStore::Create(const shared_ptr<Identity> &identity)  {
+        shared_ptr<Entity> EntityStore::Create(const shared_ptr<Identity> &identity) {
 
             if (!identity) {
                 string message = "Identity is a nullptr or invalid";
@@ -56,7 +56,7 @@ namespace Cloude {
             return entity;
         }
 
-        shared_ptr<Entity> EntityStore::Get(const shared_ptr<Identity> &identity)  {
+        shared_ptr<Entity> EntityStore::Get(const shared_ptr<Identity> &identity) {
 
             auto search = _identityMap.find(identity);
 
@@ -70,7 +70,7 @@ namespace Cloude {
 
             Foundation::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
 
-            if (!_entitySourceDriver.LoadEntity(entity)) {
+            if (!_entitySourceDriver.Load(entity)) {
                 return std::shared_ptr<Entity>(nullptr);
             }
 
@@ -81,21 +81,21 @@ namespace Cloude {
             return entity;
         }
 
-        void EntityStore::Insert(std::shared_ptr<Entity> &entity)  {
+        void EntityStore::Insert(std::shared_ptr<Entity> &entity) {
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
-            if (_entitySourceDriver.CreateEntity(entity)) {
+            if (_entitySourceDriver.Insert(entity)) {
                 _identityMap.insert(pairItem);
             }
         }
 
-        void EntityStore::Save(std::shared_ptr<Entity> &entity)  {
-            _entitySourceDriver.SaveEntity(entity);
+        void EntityStore::Save(std::shared_ptr<Entity> &entity) {
+            _entitySourceDriver.Save(entity);
         }
 
-        void EntityStore::Delete(std::shared_ptr<Entity> &entity)  {
-            if (_entitySourceDriver.DeleteEntity(entity)) {
+        void EntityStore::Delete(std::shared_ptr<Entity> &entity) {
+            if (_entitySourceDriver.Delete(entity)) {
                 auto identity = entity->getIdentity();
                 _identityMap.erase(identity);
             }
@@ -105,7 +105,7 @@ namespace Cloude {
             _identityMap.clear();
         }
 
-        unsigned long EntityStore::Size() {
+        unsigned long EntityStore::Size() const {
             return _identityMap.size();
         }
     }

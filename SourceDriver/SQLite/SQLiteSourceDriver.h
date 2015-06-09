@@ -7,26 +7,21 @@
 
 #include <memory>
 #include <Foundation/EntitySourceDriver.h>
-#include <Foundation/Enumeration/DbType.h>
-#include <Foundation/Column.h>
+#include "SQLiteSourceException.h"
 
 namespace Cloude {
     namespace SourceDriver {
         namespace SQLite {
-            class SQLiteSourceDriver : public Cloude::Foundation::EntitySourceDriver {
+
+            class SQLiteSourceDriver : public Foundation::EntitySourceDriver {
             public:
-                using DbType = Cloude::Foundation::Enumeration::DbType;
-                using Column = Cloude::Foundation::Column;
-                using ColumnsList = std::vector<std::shared_ptr<Column>>;
-                using EntityMap = Cloude::Foundation::EntityMap;
-                using Entity = Cloude::Foundation::Entity;
-                using EntitySourceDriver = Cloude::Foundation::EntitySourceDriver;
+                using QueryExpression = Foundation::Query::Expression;
                 using Options = struct {
                     std::string ConnectionString;
                 };
 
             public:
-                explicit SQLiteSourceDriver(EntityMap &entityMap);
+                explicit SQLiteSourceDriver(Foundation::EntityMap &entityMap);
                 ~SQLiteSourceDriver();
                 SQLiteSourceDriver(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
                 SQLiteSourceDriver &operator=(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
@@ -34,10 +29,12 @@ namespace Cloude {
                 void Connect();
                 void Disconnect();
 
-                int LoadEntity(std::shared_ptr<Entity> &entity) const;
-                int CreateEntity(std::shared_ptr<Entity> &entity) const;
-                int SaveEntity(std::shared_ptr<Entity> &entity) const;
-                int DeleteEntity(std::shared_ptr<Entity> &entity) const;
+                int Load(std::shared_ptr<Foundation::Entity> &entity) const;
+                int Insert(std::shared_ptr<Foundation::Entity> &entity) const;
+                int Save(std::shared_ptr<Foundation::Entity> &entity) const;
+                int Delete(std::shared_ptr<Foundation::Entity> &entity) const;
+
+                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<QueryExpression> &expr) const override;
 
                 Options &getOptionArgs() {
                     return _optionArgs;

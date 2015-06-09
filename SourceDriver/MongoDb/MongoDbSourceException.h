@@ -6,7 +6,6 @@
 #define CLOUD_E_CPLUS_MONGODBSOURCEEXCEPTION_H
 
 #include <exception>
-#include <iosfwd>
 #include <string>
 
 namespace Cloude {

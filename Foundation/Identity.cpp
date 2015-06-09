@@ -3,8 +3,7 @@
 //
 
 #include "Identity.h"
-
-using namespace std;
+#include "Field.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -14,7 +13,7 @@ namespace Cloude {
         }
 
         void Identity::setField(Field *ptrField) {
-            shared_ptr<Field> spField(ptrField);
+            std::shared_ptr<Field> spField(ptrField);
             _fieldsMap[ptrField->getColumn()->getName()] = spField;
         }
 

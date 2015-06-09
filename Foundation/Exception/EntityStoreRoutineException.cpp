@@ -14,14 +14,16 @@ namespace Cloude {
     namespace Foundation {
         namespace Exception {
             EntityStoreRoutineException::EntityStoreRoutineException(const EntityStore &store,
-                                                                     const string &sstrMessage) : _store(store),
-                                                                                                  _message(sstrMessage) {
+                                                                     const string &sstrMessage)
+                    : _store(store),
+                      _message(sstrMessage) {
                 //
             }
 
             EntityStoreRoutineException::EntityStoreRoutineException(const EntityStore &store,
-                                                                     const char *cstrMessage) : _store(store),
-                                                                                                _message(cstrMessage) {
+                                                                     const char *cstrMessage)
+                    : _store(store),
+                      _message(cstrMessage) {
                 //
             }
 

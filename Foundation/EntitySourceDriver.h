@@ -6,11 +6,15 @@
 #define CLOUD_E_CPLUS_ENTITYSOURCEDRIVER_H
 
 #include <memory>
+#include <vector>
 #include "EntityMap.h"
+#include "EntityProxy.h"
 #include "Entity.h"
+#include "Query/Expression.h"
 
 namespace Cloude {
     namespace Foundation {
+
         class EntitySourceDriver {
         public:
             explicit EntitySourceDriver(EntityMap &entityMap) : _entityMap(entityMap) { };
@@ -18,13 +22,16 @@ namespace Cloude {
             EntitySourceDriver(const EntitySourceDriver &rhs) = delete;
             EntitySourceDriver &operator=(const EntitySourceDriver &rhs) = delete;
 
-            virtual int LoadEntity(std::shared_ptr<Entity> &entity) const = 0;
-            virtual int CreateEntity(std::shared_ptr<Entity> &entity) const = 0;
-            virtual int SaveEntity(std::shared_ptr<Entity> &entity) const = 0;
-            virtual int DeleteEntity(std::shared_ptr<Entity> &entity) const = 0;
+            virtual int Load(std::shared_ptr<Entity> &entity) const = 0;
+            virtual int Insert(std::shared_ptr<Entity> &entity) const = 0;
+            virtual int Save(std::shared_ptr<Entity> &entity) const = 0;
+            virtual int Delete(std::shared_ptr<Entity> &entity) const = 0;
+
+            virtual std::vector<EntityProxy> Select(std::shared_ptr<Query::Expression> &expr) const = 0;
 
         protected:
             const EntityMap &_entityMap;
+
         };
     }
 }

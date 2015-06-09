@@ -4,9 +4,6 @@
 
 #include "StockGroupLoader.h"
 
-using namespace std;
-using namespace Cloude::Foundation;
-
 namespace Cloude {
     namespace Application {
         namespace Mapper {
@@ -16,7 +13,7 @@ namespace Cloude {
             }
 
             std::shared_ptr<Identity> StockGroupLoader::NextPrimaryKey() const {
-                return make_shared<Identity>();
+                return std::make_shared<Identity>();
             }
         }
     }

@@ -10,23 +10,23 @@ set(SOURCE_FILES main.cpp)
 include_directories(${CMAKE_SOURCE_DIR})
 
 
-add_library(Foundation STATIC
+add_library(foundation STATIC
     Cloude.h
     Foundation/Enumeration/DbType.h
-    Foundation/Identity.cpp
-    Foundation/Identity.h
     Foundation/Column.cpp
     Foundation/Column.h
     Foundation/Field.cpp
     Foundation/Field.h
+    Foundation/Identity.cpp
+    Foundation/Identity.h
     Foundation/Entity.cpp
     Foundation/Entity.h
-    Foundation/EntityStore.cpp
-    Foundation/EntityStore.h
     Foundation/EntityMap.cpp
     Foundation/EntityMap.h
     Foundation/EntityLoader.cpp
     Foundation/EntityLoader.h
+    Foundation/EntityStore.cpp
+    Foundation/EntityStore.h
     Foundation/Exception/NonSupportedDataTypeException.cpp
     Foundation/Exception/NonSupportedDataTypeException.h
     Foundation/Exception/DataSourceRoutineException.cpp
@@ -75,7 +75,7 @@ add_library(application STATIC
     Application/Mapper/EnquiryLoader.h)
 
 
-add_library(SourceDriver STATIC
+add_library(sourcedriver STATIC
     SourceDriver/MySql/MySqlSourceDriver.h
     SourceDriver/MySql/MySqlSourceDriver.cpp
     SourceDriver/Postgres/PostgreSourceDriver.cpp
@@ -168,7 +168,7 @@ target_link_libraries(cloud_e_cplus_example examples mysqlclient mongoc-1.0 bson
 
 # Debug Target
 add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus_debug Foundation SourceDriver application mysqlclient pq mongoc-1.0)
+target_link_libraries(cloud_e_cplus_debug foundation sourcedriver application mysqlclient pq mongoc-1.0)
 
 
 # AppTest Target (with Google Testing Foundation)
@@ -178,5 +178,5 @@ include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 
 add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test Foundation SourceDriver application apptest)
+target_link_libraries(cloud_e_cplus_test foundation sourcedriver application apptest)
 target_link_libraries(cloud_e_cplus_test gtest mysqlclient pq mongoc-1.0 bson-1.0)

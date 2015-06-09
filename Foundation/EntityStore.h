@@ -7,16 +7,20 @@
 
 #include <unordered_map>
 
-#include "EntityMap.h"
-#include "EntityLoader.h"
-#include "EntitySourceDriver.h"
-
 namespace Cloude {
     namespace Foundation {
 
+        class EntityMap;
+        class EntityLoader;
+        class EntitySourceDriver;
+        class Entity;
+        class Identity;
+
         class EntityStore {
         public:
-            EntityStore(EntityMap &entityMap, EntityLoader &entityLoader, EntitySourceDriver &entitySourceDriver);
+            EntityStore(const EntityMap &entityMap,
+                        const EntityLoader &entityLoader,
+                        const EntitySourceDriver &entitySourceDriver);
             ~EntityStore() = default;
             EntityStore(const EntityStore &srcEntityStore) = default;
             EntityStore &operator=(const EntityStore &srcEntityStore) = default;
@@ -32,7 +36,7 @@ namespace Cloude {
             void Delete(std::shared_ptr<Entity> &entity);
 
             void Clear();
-            unsigned long Size();
+            unsigned long Size() const;
 
             const EntityMap &getEntityMap() const {
                 return _entityMap;

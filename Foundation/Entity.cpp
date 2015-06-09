@@ -4,6 +4,8 @@
 
 #include <memory>
 #include "Entity.h"
+#include "Field.h"
+#include "Identity.h"
 #include "Exception/EntityException.h"
 
 using namespace std;
