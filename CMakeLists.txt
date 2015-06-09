@@ -37,14 +37,17 @@ add_library(Foundation STATIC
     Foundation/Helper/SqlGenerator.h
     Foundation/Exception/EntityException.cpp
     Foundation/Exception/EntityException.h
-    Foundation/DataSource/Command.cpp
-    Foundation/DataSource/Command.h
-    Foundation/DataSource/Connector.h
-    Foundation/DataSource/Connector.cpp
     Foundation/EntitySourceDriver.cpp
     Foundation/EntitySourceDriver.h
     Foundation/Helper/EntityStoreHelper.cpp
-    Foundation/Helper/EntityStoreHelper.h AppTest/Store/Test/SQLiteStore.hpp)
+    Foundation/Helper/EntityStoreHelper.h
+    Foundation/Common/IPrintable.h
+    Foundation/EntityProxy.cpp
+    Foundation/EntityProxy.h
+    Foundation/EntityQuery.cpp
+    Foundation/EntityQuery.h
+    Foundation/Query/Expression.cpp
+    Foundation/Query/Expression.h)
 
 
 add_library(application STATIC
@@ -108,13 +111,16 @@ add_library(apptest STATIC
     AppTest/main.cpp
     AppTest/Store/StockGroupMySqlStore.cpp
     AppTest/Store/StockGroupMySqlStore.h
-    AppTest/Store/Test/MySqlStore.hpp
     AppTest/Store/StockGroupPostgreStore.cpp
     AppTest/Store/StockGroupPostgreStore.h
     AppTest/Store/EnquiryMongoDbStore.cpp
     AppTest/Store/EnquiryMongoDbStore.h
+    AppTest/Store/EnquirySQLiteStore.cpp
+    AppTest/Store/EnquirySQLiteStore.h
     AppTest/Store/Test/MongoDbStore.hpp
-    AppTest/Store/Test/PostgreStore.hpp AppTest/Store/EnquirySQLiteStore.cpp AppTest/Store/EnquirySQLiteStore.h)
+    AppTest/Store/Test/PostgreStore.hpp
+    AppTest/Store/Test/SQLiteStore.hpp
+    AppTest/Store/Test/MySqlStore.hpp)
 
 
 # Libs

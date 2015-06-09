@@ -30,29 +30,7 @@ namespace Cloude {
             return !(_identityMap.find(identity) == _identityMap.end());
         }
 
-        shared_ptr<Entity> EntityStore::Get(shared_ptr<Identity> &identity) {
-
-            auto search = _identityMap.find(identity);
-
-            if (search != _identityMap.end()) {
-                return search->second;
-            }
-
-            auto entity = make_shared<Entity>(identity);
-            auto &columnsForGet = _entityMap.getColumnsForGet();
-
-            Foundation::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
-
-            if (!_entitySourceDriver.LoadEntity(entity)) {
-                return shared_ptr<Entity>();
-            }
-
-            _identityMap.insert(make_pair(identity, entity));
-
-            return entity;
-        }
-
-        shared_ptr<Entity> EntityStore::Create() {
+        shared_ptr<Entity> EntityStore::Create()  {
 
             auto identity = _entityLoader.NextPrimaryKey();
             auto entity = Create(identity);
@@ -60,15 +38,16 @@ namespace Cloude {
             return entity;
         }
 
-        shared_ptr<Entity> EntityStore::Create(shared_ptr<Identity> &identity) {
+        shared_ptr<Entity> EntityStore::Create(const shared_ptr<Identity> &identity)  {
 
             if (!identity) {
                 string message = "Identity is a nullptr or invalid";
                 throw Foundation::Exception::EntityStoreRoutineException(*this, message);
             }
 
-            auto entity = make_shared<Entity>(identity);
             auto &columnsForGet = _entityMap.getColumnsForGet();
+
+            std::shared_ptr<Entity> entity(new Entity(identity));
 
             Foundation::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
 
@@ -77,8 +56,32 @@ namespace Cloude {
             return entity;
         }
 
-        void EntityStore::Insert(std::shared_ptr<Entity> &entity) {
+        shared_ptr<Entity> EntityStore::Get(const shared_ptr<Identity> &identity)  {
 
+            auto search = _identityMap.find(identity);
+
+            if (search != _identityMap.end()) {
+                return search->second;
+            }
+
+            auto &columnsForGet = _entityMap.getColumnsForGet();
+
+            std::shared_ptr<Entity> entity(new Entity(identity));
+
+            Foundation::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
+
+            if (!_entitySourceDriver.LoadEntity(entity)) {
+                return std::shared_ptr<Entity>(nullptr);
+            }
+
+            // Entity makes a copy of std::shared_ptr<Identity>,
+            // Therefore, Identity must be taken from Entity
+            _identityMap.insert(make_pair(entity->getIdentity(), entity));
+
+            return entity;
+        }
+
+        void EntityStore::Insert(std::shared_ptr<Entity> &entity)  {
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
@@ -87,11 +90,11 @@ namespace Cloude {
             }
         }
 
-        void EntityStore::Save(std::shared_ptr<Entity> &entity) {
+        void EntityStore::Save(std::shared_ptr<Entity> &entity)  {
             _entitySourceDriver.SaveEntity(entity);
         }
 
-        void EntityStore::Delete(std::shared_ptr<Entity> &entity) {
+        void EntityStore::Delete(std::shared_ptr<Entity> &entity)  {
             if (_entitySourceDriver.DeleteEntity(entity)) {
                 auto identity = entity->getIdentity();
                 _identityMap.erase(identity);

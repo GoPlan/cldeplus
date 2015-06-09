@@ -13,13 +13,13 @@ using namespace std;
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
-            EntityStoreRoutineException::EntityStoreRoutineException(EntityStore &store,
+            EntityStoreRoutineException::EntityStoreRoutineException(const EntityStore &store,
                                                                      const string &sstrMessage) : _store(store),
                                                                                                   _message(sstrMessage) {
                 //
             }
 
-            EntityStoreRoutineException::EntityStoreRoutineException(EntityStore &store,
+            EntityStoreRoutineException::EntityStoreRoutineException(const EntityStore &store,
                                                                      const char *cstrMessage) : _store(store),
                                                                                                 _message(cstrMessage) {
                 //

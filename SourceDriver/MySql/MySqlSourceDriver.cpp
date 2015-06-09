@@ -96,7 +96,6 @@ namespace Cloude {
                 }
 
                 void assertSqlError() {
-
                     if (mysql_errno(PtrMySql)) {
                         auto errorCharPtr = mysql_error(PtrMySql);
                         throw MySqlSourceException(errorCharPtr);
@@ -104,7 +103,6 @@ namespace Cloude {
                 }
 
                 void assertStmtError(MYSQL_STMT *ptrMySqlStmt) {
-
                     if (mysql_stmt_errno(ptrMySqlStmt)) {
                         auto errorCharPtr = mysql_stmt_error(ptrMySqlStmt);
                         throw MySqlSourceException(errorCharPtr);
@@ -126,12 +124,11 @@ namespace Cloude {
                                   [&](const std::shared_ptr<Column> &column) -> void {
 
                                       auto field = entity->operator[](column->getName());
-                                      auto ptrLength = static_cast<unsigned long *>(field->getColumn()
-                                                                                         ->PointerToLengthVariable());
+                                      auto ptrLength = field->getColumn()->PointerToLengthVariable();
 
                                       command->PtrParamsBind[i].is_null = 0;
                                       command->PtrParamsBind[i].error = 0;
-                                      command->PtrParamsBind[i].length = ptrLength;
+                                      command->PtrParamsBind[i].length = static_cast<unsigned long *>(ptrLength);
                                       command->PtrParamsBind[i].buffer = field->PointerToFieldValue();
 
                                       setupBindBufferTypeAndLength(field, &command->PtrParamsBind[i]);
@@ -236,17 +233,13 @@ namespace Cloude {
 
                 auto fpInsert = [](const std::shared_ptr<Column> &column,
                                    int position) -> std::string {
-
                     std::string condition = "?";
-
                     return condition;
                 };
 
                 auto fpCondition = [](const std::shared_ptr<Column> &column,
                                       int position) -> std::string {
-
                     std::string condition = column->getDatasourceName() + " = ?";
-
                     return condition;
                 };
 
@@ -254,7 +247,6 @@ namespace Cloude {
                 _insertStatement = Foundation::Helper::CreateInsertPreparedQuery(_entityMap, fpInsert);
                 _updateStatement = Foundation::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
                 _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
-
             }
 
             void MySqlSourceDriver::Connect() {

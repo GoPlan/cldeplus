@@ -32,12 +32,12 @@ namespace Cloude {
             bool HasField(const std::string &fieldName);
             unsigned long Size();
 
-            std::shared_ptr<Identity> &getIdentity() {
+            const std::shared_ptr<Identity> &getIdentity() {
                 return _identity;
             }
 
         private:
-            std::shared_ptr<Identity> _identity;
+            const std::shared_ptr<Identity> _identity;
             std::unordered_map<std::string, std::shared_ptr<Field>> _fieldsMap;
         };
     }

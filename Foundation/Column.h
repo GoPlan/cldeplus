@@ -27,7 +27,9 @@ namespace Cloude {
                    size_t length,
                    Foundation::Enumeration::DbType dbtype);
 
-            void *PointerToLengthVariable();
+            size_t *PointerToLengthVariable() {
+                return &_length;
+            }
 
             const std::string &getDatasourceName() const {
                 return _datasourceName;

@@ -24,9 +24,5 @@ namespace Cloude {
                                         _dbType(dbtype) {
             //
         }
-
-        void *Column::PointerToLengthVariable() {
-            return &_length;
-        }
     }
 }

@@ -11,11 +11,12 @@
 
 namespace Cloude {
     namespace Foundation {
-
         class EntitySourceDriver {
         public:
             explicit EntitySourceDriver(EntityMap &entityMap) : _entityMap(entityMap) { };
             virtual ~EntitySourceDriver() = default;
+            EntitySourceDriver(const EntitySourceDriver &rhs) = delete;
+            EntitySourceDriver &operator=(const EntitySourceDriver &rhs) = delete;
 
             virtual int LoadEntity(std::shared_ptr<Entity> &entity) const = 0;
             virtual int CreateEntity(std::shared_ptr<Entity> &entity) const = 0;

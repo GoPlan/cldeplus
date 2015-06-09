@@ -18,13 +18,13 @@ namespace Cloude {
             public:
                 virtual ~EntityStoreRoutineException() = default;
 
-                explicit EntityStoreRoutineException(EntityStore &store, const std::string &sstrMessage);
-                explicit EntityStoreRoutineException(EntityStore &store, const char *cstrMessage);
+                explicit EntityStoreRoutineException(const EntityStore &store, const std::string &sstrMessage);
+                explicit EntityStoreRoutineException(const EntityStore &store, const char *cstrMessage);
                 virtual const char *what() const noexcept override;
 
             private:
                 std::string _message;
-                EntityStore &_store;
+                const EntityStore &_store;
             };
         }
     }
