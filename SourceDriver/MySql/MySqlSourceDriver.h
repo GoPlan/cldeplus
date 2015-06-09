@@ -20,7 +20,7 @@ namespace Cloude {
 
             class MySqlSourceDriver : public Foundation::EntitySourceDriver {
             public:
-                using QueryExpression = Foundation::Query::Expression;
+                using Predicate = Foundation::Query::Predication;
                 using Entity = Foundation::Entity;
                 using Column = Foundation::Column;
                 using Field = Foundation::Field;
@@ -49,7 +49,7 @@ namespace Cloude {
                 int Save(std::shared_ptr<Entity> &entity) const override;
                 int Delete(std::shared_ptr<Entity> &entity) const override;
 
-                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<QueryExpression> &expr) const override;
+                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
 
                 void setGetStatement(const std::string &getStatement) {
                     _getStatement = getStatement;

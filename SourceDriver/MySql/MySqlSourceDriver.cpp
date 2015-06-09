@@ -366,7 +366,7 @@ namespace Cloude {
                 return 1;
             }
 
-            std::vector<Foundation::EntityProxy> MySqlSourceDriver::Select(std::shared_ptr<QueryExpression > &expr) const {
+            std::vector<Foundation::EntityProxy> MySqlSourceDriver::Select(std::shared_ptr<Predicate> &expr) const {
                 return std::vector<Foundation::EntityProxy>();
             }
         }

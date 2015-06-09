@@ -15,7 +15,7 @@ namespace Cloude {
 
             class SQLiteSourceDriver : public Foundation::EntitySourceDriver {
             public:
-                using QueryExpression = Foundation::Query::Expression;
+                using Predicate = Foundation::Query::Predication;
                 using Options = struct {
                     std::string ConnectionString;
                 };
@@ -34,7 +34,7 @@ namespace Cloude {
                 int Save(std::shared_ptr<Foundation::Entity> &entity) const;
                 int Delete(std::shared_ptr<Foundation::Entity> &entity) const;
 
-                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<QueryExpression> &expr) const override;
+                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
 
                 Options &getOptionArgs() {
                     return _optionArgs;

@@ -4,19 +4,19 @@
     <generated>
       <config projectName="cloud_e_cplus" targetName="cloud_e_cplus_debug" />
       <config projectName="cloud_e_cplus" targetName="application" />
-      <config projectName="cloud_e_cplus" targetName="infrastructure" />
+      <config projectName="cloud_e_cplus" targetName="Foundation" />
       <config projectName="cloud_e_cplus" targetName="cloude_e_cplus_example" />
-      <config projectName="cloud_e_cplus" targetName="foundation" />
       <config projectName="cloud_e_cplus" targetName="apptest" />
       <config projectName="cloud_e_cplus" targetName="SourceDriver" />
       <config projectName="cloud_e_cplus" targetName="Framework" />
-      <config projectName="cloud_e_cplus" targetName="Foundation" />
+      <config projectName="cloud_e_cplus" targetName="infrastructure" />
       <config projectName="cloud_e_cplus" targetName="cloud_e_cplus_example" />
-      <config projectName="cloud_e_cplus" targetName="infrastrucutre" />
+      <config projectName="cloud_e_cplus" targetName="foundation" />
       <config projectName="cloud_e_cplus" targetName="cloud_e_cplus_test" />
       <config projectName="cloud_e_cplus" targetName="sourcedriver" />
       <config projectName="cloud_e_cplus" targetName="architecture" />
       <config projectName="cloud_e_cplus" targetName="examples" />
+      <config projectName="cloud_e_cplus" targetName="infrastrucutre" />
       <config projectName="cloud_e_cplus" targetName="cloud_e_cplus" />
       <config projectName="cloud_e_cplus" targetName="Archite" />
     </generated>
@@ -28,29 +28,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/And.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/And.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMakeLists.txt.old" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Equal.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Equal.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Greater.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Greater.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/GreaterOrEqual.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/GreaterOrEqual.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/IsNotNull.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/IsNotNull.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/IsNull.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/IsNull.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Lesser.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Lesser.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/LesserOrEqual.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/LesserOrEqual.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Like.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Like.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/NotEqual.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/NotEqual.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/NotLike.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/NotLike.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Or.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Or.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Predication.h" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Foundation/Query/Expression.h" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Query/Expression.cpp" afterPath="$PROJECT_DIR$/Foundation/Query/Predication.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Entity.cpp" afterPath="$PROJECT_DIR$/Foundation/Entity.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Entity.h" afterPath="$PROJECT_DIR$/Foundation/Entity.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/EntityLoader.h" afterPath="$PROJECT_DIR$/Foundation/EntityLoader.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/EntityProxy.h" afterPath="$PROJECT_DIR$/Foundation/EntityProxy.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/EntityQuery.h" afterPath="$PROJECT_DIR$/Foundation/EntityQuery.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/EntitySourceDriver.h" afterPath="$PROJECT_DIR$/Foundation/EntitySourceDriver.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/EntityStore.cpp" afterPath="$PROJECT_DIR$/Foundation/EntityStore.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/EntityStore.h" afterPath="$PROJECT_DIR$/Foundation/EntityStore.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Exception/EntityStoreRoutineException.cpp" afterPath="$PROJECT_DIR$/Foundation/Exception/EntityStoreRoutineException.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Expression.h" afterPath="$PROJECT_DIR$/Foundation/Query/Expression.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Identity.cpp" afterPath="$PROJECT_DIR$/Foundation/Identity.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Identity.h" afterPath="$PROJECT_DIR$/Foundation/Identity.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp" afterPath="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.h" afterPath="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceException.h" afterPath="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceException.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.cpp" afterPath="$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.h" afterPath="$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.cpp" afterPath="$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.h" afterPath="$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp" afterPath="$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.h" afterPath="$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Mapper/StockGroupLoader.cpp" afterPath="$PROJECT_DIR$/Application/Mapper/StockGroupLoader.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Mapper/StockGroupLoader.h" afterPath="$PROJECT_DIR$/Application/Mapper/StockGroupLoader.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp" afterPath="$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cloud-e-plus.iws" />
@@ -77,110 +95,114 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MySqlSourceDriver.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.h">
+      <file leaf-file-name="NotEqual.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/NotEqual.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MongoDbSourceDriver.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
               <folding>
-                <element signature="e#133#150#0" expanded="true" />
+                <marker date="1433850298000" expanded="true" signature="128:552" placeholder="{...}" />
+                <marker date="1433850298000" expanded="true" signature="155:550" placeholder="{...}" />
+                <marker date="1433850298000" expanded="true" signature="181:544" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MongoDbSourceException.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceException.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MongoDbSourceDriver.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27027026">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-              <folding>
-                <element signature="e#44#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SQLiteSourceDriver.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SQLiteSourceDriver.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostgreSourceDriver.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostgreSourceDriver.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="381" column="0" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
-              <folding>
-                <element signature="e#45#62#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MySqlSourceDriver.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.cpp">
+      <file leaf-file-name="Like.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Like.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Like.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Like.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
               <folding>
-                <element signature="e#43#60#0" expanded="true" />
+                <marker date="1433850331000" expanded="true" signature="120:516" placeholder="{...}" />
+                <marker date="1433850331000" expanded="true" signature="147:514" placeholder="{...}" />
+                <marker date="1433850331000" expanded="true" signature="173:508" placeholder="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotLike.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/NotLike.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotLike.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/NotLike.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+              <folding>
+                <marker date="1433850346000" expanded="true" signature="126:543" placeholder="{...}" />
+                <marker date="1433850346000" expanded="true" signature="153:541" placeholder="{...}" />
+                <marker date="1433850346000" expanded="true" signature="179:535" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IsNull.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/IsNull.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IsNull.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/IsNull.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IsNotNull.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/IsNotNull.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IsNotNull.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/IsNotNull.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntitySourceDriver.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Foundation/EntitySourceDriver.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.16415869">
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -203,35 +225,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/AppTest/Store/Test/MongoDbStore.hpp" />
-        <option value="$PROJECT_DIR$/AppTest/main.cpp" />
-        <option value="$PROJECT_DIR$/AppTest/Store/EnquirySQLiteStore.cpp" />
-        <option value="$PROJECT_DIR$/Application/Mapper/EnquiryMap.cpp" />
-        <option value="$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp" />
-        <option value="$PROJECT_DIR$/Foundation/Helper/EntityStoreHelper.h" />
-        <option value="$PROJECT_DIR$/Foundation/Helper/SqlGenerator.h" />
-        <option value="$PROJECT_DIR$/Cloude.h" />
-        <option value="$PROJECT_DIR$/Application/Mapper/StockGroupMap.h" />
-        <option value="$PROJECT_DIR$/AppTest/Store/EnquiryMongoDbStore.h" />
-        <option value="$PROJECT_DIR$/Application/Mapper/EnquiryLoader.h" />
-        <option value="$PROJECT_DIR$/Application/Model/StockGroup.h" />
-        <option value="$PROJECT_DIR$/Application/Mapper/EnquiryMap.h" />
-        <option value="$PROJECT_DIR$/AppTest/Store/EnquirySQLiteStore.h" />
-        <option value="$PROJECT_DIR$/Application/Mapper/SequenceMap.h" />
-        <option value="$PROJECT_DIR$/Application/Mapper/SequenceLoader.h" />
-        <option value="$PROJECT_DIR$/Application/Mapper/AccountMap.h" />
-        <option value="$PROJECT_DIR$/Foundation/Contract/IPrintable.h" />
-        <option value="$PROJECT_DIR$/Foundation/Query/Expression.cpp" />
-        <option value="$PROJECT_DIR$/Foundation/EntityQuery.cpp" />
-        <option value="$PROJECT_DIR$/Foundation/EntityQuery.h" />
-        <option value="$PROJECT_DIR$/Foundation/Exception/EntityStoreRoutineException.h" />
-        <option value="$PROJECT_DIR$/Foundation/EntityProxy.cpp" />
-        <option value="$PROJECT_DIR$/Foundation/Column.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Column.h" />
         <option value="$PROJECT_DIR$/Foundation/Common/IPrintable.h" />
         <option value="$PROJECT_DIR$/Foundation/IEntitySourceDriver.h" />
         <option value="$PROJECT_DIR$/Foundation/Expression.h" />
-        <option value="$PROJECT_DIR$/Foundation/Query/Expression.h" />
         <option value="$PROJECT_DIR$/Foundation/Exception/EntityStoreRoutineException.cpp" />
         <option value="$PROJECT_DIR$/Foundation/EntityProxy.h" />
         <option value="$PROJECT_DIR$/Application/Mapper/StockGroupLoader.h" />
@@ -241,19 +238,44 @@
         <option value="$PROJECT_DIR$/Foundation/Identity.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Entity.cpp" />
         <option value="$PROJECT_DIR$/Foundation/EntityStore.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Foundation/Identity.h" />
-        <option value="$PROJECT_DIR$/Foundation/EntitySourceDriver.h" />
         <option value="$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp" />
         <option value="$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.cpp" />
         <option value="$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Entity.h" />
         <option value="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp" />
-        <option value="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.h" />
         <option value="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceException.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Expression.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Predicate.h" />
+        <option value="$PROJECT_DIR$/Foundation/Predicate.cpp" />
+        <option value="$PROJECT_DIR$/Foundation/Predicate.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/And.h" />
+        <option value="$PROJECT_DIR$/Foundation/Predication.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Or.h" />
+        <option value="$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp" />
+        <option value="$PROJECT_DIR$/SourceDriver/SQLite/Amalgamation/sqlite3.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Predication.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/And.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/Or.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Predication.cpp" />
+        <option value="$PROJECT_DIR$/Foundation/EntitySourceDriver.h" />
         <option value="$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.h" />
+        <option value="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.h" />
         <option value="$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.h" />
         <option value="$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.h" />
+        <option value="$PROJECT_DIR$/Foundation/EntityQuery.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/Equal.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/GreaterOrEqual.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/Lesser.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/LesserOrEqual.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/Greater.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/NotEqual.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/Like.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/NotLike.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/IsNull.h" />
+        <option value="$PROJECT_DIR$/Foundation/Query/Comparator/IsNotNull.h" />
       </list>
     </option>
   </component>
@@ -347,92 +369,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="SourceDriver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SQLite" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceDriver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Postgres" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceDriver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MySql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceDriver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MongoDb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceDriver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Foundation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -447,11 +383,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Foundation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Exception" />
+              <option name="myItemId" value="Build" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -460,7 +392,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="208" />
@@ -488,16 +420,17 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Build/bin" />
       <recent name="$PROJECT_DIR$/Libs/gtest-1.7.0/lib" />
       <recent name="$PROJECT_DIR$/AppTest/gtest/lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Foundation/Query" />
+      <recent name="$PROJECT_DIR$/Foundation/Query/Comparator" />
       <recent name="$PROJECT_DIR$/Foundation" />
       <recent name="$PROJECT_DIR$/SourceDriver/SQLite" />
       <recent name="$PROJECT_DIR$/Libs" />
-      <recent name="$PROJECT_DIR$/AppTest/Store/Test" />
     </key>
   </component>
   <component name="RunManager" selected="Application.cloud_e_cplus_test">
@@ -514,6 +447,10 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="all targets" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+      <method />
+    </configuration>
     <configuration default="false" name="cloud_e_cplus_test" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="cloud_e_cplus" TARGET_NAME="cloud_e_cplus_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cloud_e_cplus" RUN_TARGET_NAME="cloud_e_cplus_test">
       <envs />
       <method />
@@ -526,35 +463,11 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="Framework" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="cloud_e_cplus" TARGET_NAME="Framework" CONFIG_NAME="Debug">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="SourceDriver" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="cloud_e_cplus" TARGET_NAME="SourceDriver" CONFIG_NAME="Debug">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="Foundation" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="cloud_e_cplus" TARGET_NAME="Foundation" CONFIG_NAME="Debug">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="sourcedriver" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="cloud_e_cplus" TARGET_NAME="sourcedriver" CONFIG_NAME="Debug">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="foundation" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="cloud_e_cplus" TARGET_NAME="foundation" CONFIG_NAME="Debug">
-      <envs />
-      <method />
-    </configuration>
-    <list size="8">
-      <item index="0" class="java.lang.String" itemvalue="Application.cloud_e_cplus_test" />
-      <item index="1" class="java.lang.String" itemvalue="Application.cloud_e_cplus_debug" />
-      <item index="2" class="java.lang.String" itemvalue="Application.cloud_e_cplus_example" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Framework" />
-      <item index="4" class="java.lang.String" itemvalue="Application.SourceDriver" />
-      <item index="5" class="java.lang.String" itemvalue="Application.Foundation" />
-      <item index="6" class="java.lang.String" itemvalue="Application.sourcedriver" />
-      <item index="7" class="java.lang.String" itemvalue="Application.foundation" />
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Application.all targets" />
+      <item index="1" class="java.lang.String" itemvalue="Application.cloud_e_cplus_test" />
+      <item index="2" class="java.lang.String" itemvalue="Application.cloud_e_cplus_debug" />
+      <item index="3" class="java.lang.String" itemvalue="Application.cloud_e_cplus_example" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -610,26 +523,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1600" y="23" width="1600" height="877" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6679842" sideWeight="0.53080875" order="10" side_tool="false" content_ui="tabs" x="1600" y="69" width="1024" height="720" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.67193675" sideWeight="0.53080875" order="10" side_tool="false" content_ui="tabs" x="1600" y="69" width="1024" height="720" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32765958" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="2067" y="212" width="808" height="478" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31771502" sideWeight="0.49802372" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5638999" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21309371" sideWeight="0.5059289" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32765958" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="2115" y="235" width="707" height="357" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19383825" sideWeight="0.44137022" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37549406" sideWeight="0.50289017" order="4" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="823" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5243742" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="1791" y="55" width="1024" height="745" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32765958" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="877" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19897304" sideWeight="0.44137022" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3478261" sideWeight="0.50289017" order="4" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="823" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.73913044" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="1791" y="55" width="1024" height="745" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22528884" sideWeight="0.55862975" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5104031" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49293968" sideWeight="0.49710983" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.565046" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -661,12 +574,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp</url>
-          <line>40</line>
-          <option name="timeStamp" value="244" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp</url>
-          <line>58</line>
+          <line>59</line>
           <option name="timeStamp" value="245" />
         </line-breakpoint>
       </breakpoints>
@@ -678,261 +586,79 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Mapper/SequenceMap.h">
+    <entry file="file://$PROJECT_DIR$/Foundation/Entity.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+          <folding>
+            <element signature="e#106#130#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceException.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Mapper/SequenceLoader.h">
+    <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Mapper/AccountMap.h">
+    <entry file="file://$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Exception/NonSupportedDataTypeException.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Enumeration/DbType.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20519836">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityMap.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0013679891">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#112#129#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceException.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Field.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Exception/EntityStoreRoutineException.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Common/IPrintable.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/boost_1_58_0/libs/serialization/CMake/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Column.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityMap.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityQuery.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Query/Expression.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceException.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Exception/EntityStoreRoutineException.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#45#72#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Query/Expression.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Store/StockGroupMySqlStore.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#45#81#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Mapper/StockGroupLoader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-          <folding>
-            <element signature="e#126#143#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Mapper/StockGroupLoader.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityLoader.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityLoader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Field.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityStore.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="26" selection-start-line="80" selection-start-column="26" selection-end-line="80" selection-end-column="26" />
+          <caret line="381" column="0" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
           <folding>
             <element signature="e#45#62#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Column.h">
+    <entry file="file://$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Identity.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#43#64#0" expanded="false" />
+            <element signature="e#43#60#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Identity.h">
+    <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
           <folding>
-            <element signature="e#110#134#0" expanded="true" />
+            <element signature="e#44#63#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Entity.cpp">
+    <entry file="file://$PROJECT_DIR$/Foundation/Exception/EntityException.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Exception/EntityException.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/EntityStore.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="69" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -945,45 +671,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt.old">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/EntityProxy.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityQuery.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Store/StockGroupMySqlStore.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Store/EnquiryMongoDbStore.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Store/EnquirySQLiteStore.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#131#155#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -995,46 +710,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Store/StockGroupPostgreStore.h">
+    <entry file="file://$PROJECT_DIR$/Foundation/EntityQuery.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#139#163#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntitySourceDriver.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Entity.h">
+    <entry file="file://$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding>
-            <element signature="e#106#130#0" expanded="true" />
-          </folding>
+          <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/Amalgamation/sqlite3.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13816689">
+          <caret line="3891" column="34" selection-start-line="3891" selection-start-column="34" selection-end-line="3891" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/And.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.8262653">
+          <caret line="147" column="41" selection-start-line="147" selection-start-column="41" selection-end-line="147" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceException.h">
+    <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1042,23 +761,7 @@
     <entry file="file://$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+          <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1066,48 +769,252 @@
     <entry file="file://$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <caret line="32" column="53" selection-start-line="32" selection-start-column="53" selection-end-line="32" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.cpp">
+    <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="381" column="0" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
+          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/EntityQuery.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
           <folding>
-            <element signature="e#45#62#0" expanded="true" />
+            <element signature="e#117#134#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.cpp">
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Predication.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Equal.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#43#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.h">
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/And.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Equal.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
           <folding>
-            <element signature="e#133#150#0" expanded="true" />
+            <marker date="1433849972000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp">
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Predication.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27027026">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/GreaterOrEqual.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Or.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Lesser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/LesserOrEqual.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Greater.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/GreaterOrEqual.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="83" selection-start-line="16" selection-start-column="83" selection-end-line="16" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Lesser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="67" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/LesserOrEqual.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="81" selection-start-line="16" selection-start-column="81" selection-end-line="16" selection-end-column="81" />
           <folding>
-            <element signature="e#44#63#0" expanded="true" />
+            <marker date="1433850265000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1433850265000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1433850265000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Or.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="10" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/NotEqual.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Greater.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="10" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/NotEqual.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding>
+            <marker date="1433850298000" expanded="true" signature="128:552" placeholder="{...}" />
+            <marker date="1433850298000" expanded="true" signature="155:550" placeholder="{...}" />
+            <marker date="1433850298000" expanded="true" signature="181:544" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Like.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/Like.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding>
+            <marker date="1433850331000" expanded="true" signature="120:516" placeholder="{...}" />
+            <marker date="1433850331000" expanded="true" signature="147:514" placeholder="{...}" />
+            <marker date="1433850331000" expanded="true" signature="173:508" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/NotLike.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/NotLike.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding>
+            <marker date="1433850346000" expanded="true" signature="126:543" placeholder="{...}" />
+            <marker date="1433850346000" expanded="true" signature="153:541" placeholder="{...}" />
+            <marker date="1433850346000" expanded="true" signature="179:535" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/IsNull.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/IsNull.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/IsNotNull.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Query/Comparator/IsNotNull.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/EntitySourceDriver.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16415869">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -30,7 +30,7 @@ namespace Cloude {
 
             class PostgreSourceDriver : public Foundation::EntitySourceDriver {
             public:
-                using QueryExpression = Foundation::Query::Expression;
+                using Predicate = Foundation::Query::Predication;
                 using Options = struct {
                     std::string Host;
                     std::string User;
@@ -53,7 +53,7 @@ namespace Cloude {
                 int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
 
-                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<QueryExpression> &expr) const override;
+                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
 
                 Options &getOptionArgs() {
                     return _optionArgs;

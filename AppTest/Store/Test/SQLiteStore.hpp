@@ -34,6 +34,7 @@ namespace Cloude {
                         auto spEntity = _entityStore.Create(spIdentity);
                         ASSERT_TRUE(spEntity.get() != 0);
                         ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
+                        spEntity.reset();
                     }
 
                     // GET & SAVE
@@ -62,6 +63,7 @@ namespace Cloude {
 
                         auto spEmailField = spEntity->getField("Email");
                         ASSERT_TRUE(strcmp(spEmailField->getCString(), email.c_str()) == 0);
+                        spEmailField.reset();
 
                         _entityStore.Delete(spEntity);
                         EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
@@ -69,6 +71,7 @@ namespace Cloude {
 
                         auto spEntityAlt = _entityStore.Get(spIdentity);
                         EXPECT_TRUE(spEntityAlt.get() == 0);
+                        spEntityAlt.reset();
                     }
                 }
             }

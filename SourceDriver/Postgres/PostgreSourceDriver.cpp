@@ -459,7 +459,7 @@ namespace Cloude {
             }
 
             std::vector<Foundation::EntityProxy> PostgreSourceDriver::Select(
-                    std::shared_ptr<QueryExpression> &expr) const {
+                    std::shared_ptr<Predicate> &expr) const {
                 return std::vector<Foundation::EntityProxy>();
             }
         }
