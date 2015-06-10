@@ -7,7 +7,7 @@
 
 #include "unordered_map"
 #include "Field.h"
-#include "Exception/EntityException.h"
+#include "Exception/cldeEntityException.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -21,10 +21,10 @@ namespace Cloude {
             Entity(const Entity &srcEntity) = delete;
             Entity &operator=(Entity &srcEntity) = delete;
 
-            std::shared_ptr<Field> operator[](const std::string &columnName);
-            std::shared_ptr<Field> operator[](const char *columnName);
-            std::shared_ptr<Field> getField(const std::string &columnName);
-            std::shared_ptr<Field> getField(const char *columnName);
+            const std::shared_ptr<Field> &operator[](const std::string &columnName) const;
+            const std::shared_ptr<Field> &operator[](const char *columnName) const;
+            const std::shared_ptr<Field> &getField(const std::string &columnName) const;
+            const std::shared_ptr<Field> &getField(const char *columnName) const;
 
             void setField(std::shared_ptr<Field> &field);
             void setField(Field *ptrField);

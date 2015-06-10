@@ -7,6 +7,7 @@
 #include <iostream>
 #include <libpq-fe.h>
 #include <Foundation/Helper/SqlGenerator.h>
+#include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include "PostgreSourceDriver.h"
 
 namespace Cloude {
@@ -91,45 +92,47 @@ namespace Cloude {
                              });
                 }
 
-                std::string getTypeAlias(Foundation::Enumeration::DbType dbType) {
+                std::string getTypeAlias(Foundation::Data::cldeValueType valueType) {
 
-                    switch (dbType) {
-                        case Foundation::Enumeration::DbType::Boolean:
+                    switch (valueType) {
+                        case Foundation::Data::cldeValueType::Boolean:
                             return "boolean";
-                        case Foundation::Enumeration::DbType::Byte:
+                        case Foundation::Data::cldeValueType::Byte:
                             return "bytea";
-                        case Foundation::Enumeration::DbType::Int16:
+                        case Foundation::Data::cldeValueType::Int16:
                             return "smallint";
-                        case Foundation::Enumeration::DbType::Int32:
+                        case Foundation::Data::cldeValueType::Int32:
                             return "integer";
-                        case Foundation::Enumeration::DbType::Int64:
+                        case Foundation::Data::cldeValueType::Int64:
                             return "bigint";
-                        case Foundation::Enumeration::DbType::UInt16:
+                        case Foundation::Data::cldeValueType::UInt16:
                             return "smallint";
-                        case Foundation::Enumeration::DbType::UInt32:
+                        case Foundation::Data::cldeValueType::UInt32:
                             return "integer";
-                        case Foundation::Enumeration::DbType::UInt64:
+                        case Foundation::Data::cldeValueType::UInt64:
                             return "bigint";
-                        case Foundation::Enumeration::DbType::Double:
+                        case Foundation::Data::cldeValueType::Double:
                             return "double";
-                        case Foundation::Enumeration::DbType::Float:
+                        case Foundation::Data::cldeValueType::Float:
                             return "real";
-                        case Foundation::Enumeration::DbType::Decimal:
+                        case Foundation::Data::cldeValueType::Decimal:
                             return "decimal";
-                        case Foundation::Enumeration::DbType::Numeric:
+                        case Foundation::Data::cldeValueType::Numeric:
                             return "numeric";
-                        case Foundation::Enumeration::DbType::String:
+                        case Foundation::Data::cldeValueType::Varchar:
                             return "varchar";
-                        case Foundation::Enumeration::DbType::Currency:
+                        case Foundation::Data::cldeValueType::Currency:
                             return "money";
-                        case Foundation::Enumeration::DbType::Date:
+                        case Foundation::Data::cldeValueType::Date:
                             return "date";
-                        case Foundation::Enumeration::DbType::Time:
+                        case Foundation::Data::cldeValueType::Time:
                             return "time";
-                        case Foundation::Enumeration::DbType::Timestamp:
+                        case Foundation::Data::cldeValueType::Timestamp:
                             return "timestamp";
-                        case Foundation::Enumeration::DbType::Interval:
+                        case Foundation::Data::cldeValueType::Interval:
                             return "interval";
+                        default:
+                            throw Foundation::Exception::cldeNonSupportedDataTypeException();
                     }
                 }
 

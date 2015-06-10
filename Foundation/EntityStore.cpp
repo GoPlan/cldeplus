@@ -4,7 +4,7 @@
 
 #include <memory>
 #include <string>
-#include "Exception/EntityStoreRoutineException.h"
+#include "Exception/cldeEntityStoreRoutineException.h"
 #include "EntityLoader.h"
 #include "EntitySourceDriver.h"
 #include "EntityMap.h"
@@ -42,7 +42,7 @@ namespace Cloude {
 
             if (!identity) {
                 string message = "Identity is a nullptr or invalid";
-                throw Foundation::Exception::EntityStoreRoutineException(*this, message);
+                throw Foundation::Exception::cldeEntityStoreRoutineException(*this, message);
             }
 
             auto &columnsForGet = _entityMap.getColumnsForGet();

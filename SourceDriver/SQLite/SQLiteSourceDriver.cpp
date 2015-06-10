@@ -5,6 +5,8 @@
 
 #include <stdlib.h>
 #include <Foundation/Helper/SqlGenerator.h>
+#include <Foundation/Data/cldeValueFactory.h>
+#include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
 
@@ -17,7 +19,7 @@ namespace Cloude {
             using Column = Foundation::Column;
             using Field = Foundation::Field;
             using Entity = Foundation::Entity;
-            using DbType = Foundation::Enumeration::DbType;
+            using Type = Foundation::Data::cldeValueType;
 
             class Command {
             public:
@@ -100,34 +102,34 @@ namespace Cloude {
                                   columnsList.cend(),
                                   [&command, &entity, &index](const std::shared_ptr<Column> &column) {
 
-                                      auto field = entity->getField(column->getName());
+                                      auto &field = entity->getField(column->getName());
+                                      auto &value = field->getValue();
+
+                                      if (!value) {
+                                          sqlite3_bind_null(command->_ptrStmt, index++);
+                                          return;
+                                      }
+
+                                      const auto ptrValueBuffer = field->getValue()->RawPointerToValueBuffer();
 
                                       switch (column->getDbType()) {
-                                          case DbType::Int64:
+                                          case Type::Int64:
                                               sqlite3_int64 int64Value;
-                                              int64Value = static_cast<sqlite3_int64 >(field->getInt64());
+                                              int64Value = static_cast<sqlite3_int64 >(*((int64_t *) ptrValueBuffer));
                                               sqlite3_bind_int64(command->_ptrStmt,
-                                                                 index,
+                                                                 index++,
                                                                  int64Value);
                                               break;
-                                          case DbType::String:
-                                              int charSize, strSize;
-
-                                              charSize = sizeof(char);
-                                              strSize = static_cast<int>(charSize *
-                                                                         strlen(field->getCString()));
-
+                                          case Type::Varchar:
                                               sqlite3_bind_text(command->_ptrStmt,
-                                                                index,
-                                                                field->getCString(),
-                                                                strSize,
+                                                                index++,
+                                                                (const char *) ptrValueBuffer,
+                                                                -1,
                                                                 SQLITE_STATIC);
                                               break;
                                           default:
                                               break;
                                       }
-
-                                      ++index;
                                   });
                     return 1;
                 }
@@ -136,7 +138,7 @@ namespace Cloude {
                 sqlite3 *_ptrSqlite3 = nullptr;
             };
 
-            SQLiteSourceDriver::SQLiteSourceDriver(EntityMap & entityMap)
+            SQLiteSourceDriver::SQLiteSourceDriver(EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
                 init();
@@ -176,6 +178,7 @@ namespace Cloude {
             }
 
             int SQLiteSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
+                using cldeFactory = Foundation::Data::cldeValueFactory;
 
                 const auto &columnsForGet = _entityMap.getColumnsForGet();
                 const auto &columnsForKey = _entityMap.getColumnsForKey();
@@ -201,24 +204,32 @@ namespace Cloude {
                               columnsForGet.cend(),
                               [&entity, &command, &index](const std::shared_ptr<Column> &column) {
 
-                                  auto field = entity->getField(column->getName());
-
-                                  switch (column->getDbType()) {
-                                      case DbType::Int64:
-                                          field->setInt64(static_cast<int64_t>(sqlite3_column_int64(command->_ptrStmt,
-                                                                                                    index)));
-                                          break;
-                                      case DbType::String:
-                                          const char *text;
-                                          text = (const char *) (sqlite3_column_text(command->_ptrStmt,
-                                                                                     index));
-                                          field->setCString(text);
-                                          break;
-                                      default:
-                                          break;
+                                  if(sqlite3_column_type(command->_ptrStmt, index) == SQLITE_NULL){
+                                      ++index;
+                                      return;
                                   }
 
-                                  ++index;
+                                  auto &field = entity->getField(column->getName());
+
+                                  switch (column->getDbType()) {
+                                      case Type::Int64:
+                                          int64_t int64Value;
+                                          int64Value =
+                                                  static_cast<int64_t>(sqlite3_column_int64(command->_ptrStmt,
+                                                                                            index++));
+                                          field->setValue(cldeFactory::CreateInt64(int64Value));
+                                          break;
+                                      case Type::Varchar:
+                                          const char *strValue;
+                                          strValue =
+                                                  reinterpret_cast<const char *>(sqlite3_column_text(command->_ptrStmt,
+                                                                                                     index++));
+                                          field->setValue(cldeFactory::CreateString(strValue));
+                                          break;
+                                      default:
+                                          ++index;
+                                          throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                                  }
                               });
 
                 return 1;

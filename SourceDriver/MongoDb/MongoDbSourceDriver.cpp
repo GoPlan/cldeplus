@@ -12,7 +12,7 @@ namespace Cloude {
 
             using Field = Foundation::Field;
             using Column = Foundation::Column;
-            using DbType = Foundation::Enumeration::DbType;
+            using Type = Foundation::Data::cldeValueType;
 
             class Command {
             public:
@@ -141,12 +141,12 @@ namespace Cloude {
                                   auto field = entity->getField(column->getName());
 
                                   switch (column->getDbType()) {
-                                      case DbType::Int64:
+                                      case Type::Int64:
                                           BSON_APPEND_INT64(command->_ptrBsonPredicate,
                                                             column->getDatasourceName().c_str(),
                                                             field->getInt64());
                                           break;
-                                      case DbType::String:
+                                      case Type::Varchar:
                                           BSON_APPEND_UTF8(command->_ptrBsonPredicate,
                                                            column->getDatasourceName().c_str(),
                                                            field->getCString());
@@ -202,17 +202,17 @@ namespace Cloude {
                                 auto column = field->getColumn();
 
                                 switch (column->getDbType()) {
-                                    case DbType::Int64:
+                                    case Type::Int64:
                                         field->setInt64(bson_iter_as_int64(&iter));
                                         break;
-                                    case DbType::String:
+                                    case Type::Varchar:
                                         field->setCString(bson_iter_utf8(&iter, 0));
                                         break;
                                     default:
                                         break;
                                 }
 
-                            } catch (Foundation::Exception::EntityException &ex) {
+                            } catch (Foundation::Exception::cldeEntityException &ex) {
                                 continue;
                             }
                         }
@@ -241,12 +241,12 @@ namespace Cloude {
                                   auto field = entity->getField(column->getName());
 
                                   switch (column->getDbType()) {
-                                      case DbType::Int64:
+                                      case Type::Int64:
                                           BSON_APPEND_INT64(command->_ptrBsonProjection,
                                                             column->getDatasourceName().c_str(),
                                                             field->getInt64());
                                           break;
-                                      case DbType::String:
+                                      case Type::Varchar:
                                           BSON_APPEND_UTF8(command->_ptrBsonProjection,
                                                            column->getDatasourceName().c_str(),
                                                            field->getCString());
@@ -282,12 +282,12 @@ namespace Cloude {
                                   auto field = entity->getField(column->getName());
 
                                   switch (column->getDbType()) {
-                                      case DbType::Int64:
+                                      case Type::Int64:
                                           BSON_APPEND_INT64(command->_ptrBsonPredicate,
                                                             column->getDatasourceName().c_str(),
                                                             field->getInt64());
                                           break;
-                                      case DbType::String:
+                                      case Type::Varchar:
                                           BSON_APPEND_UTF8(command->_ptrBsonPredicate,
                                                            column->getDatasourceName().c_str(),
                                                            field->getCString());
@@ -307,12 +307,12 @@ namespace Cloude {
                                   auto field = entity->getField(column->getName());
 
                                   switch (column->getDbType()) {
-                                      case DbType::Int64:
+                                      case Type::Int64:
                                           BSON_APPEND_INT64(ptrProj,
                                                             column->getDatasourceName().c_str(),
                                                             field->getInt64());
                                           break;
-                                      case DbType::String:
+                                      case Type::Varchar:
                                           BSON_APPEND_UTF8(ptrProj,
                                                            column->getDatasourceName().c_str(),
                                                            field->getCString());
@@ -351,12 +351,12 @@ namespace Cloude {
                                   auto field = entity->getField(column->getName());
 
                                   switch (column->getDbType()) {
-                                      case DbType::Int64:
+                                      case Type::Int64:
                                           BSON_APPEND_INT64(command->_ptrBsonPredicate,
                                                             column->getDatasourceName().c_str(),
                                                             field->getInt64());
                                           break;
-                                      case DbType::String:
+                                      case Type::Varchar:
                                           BSON_APPEND_UTF8(command->_ptrBsonPredicate,
                                                            column->getDatasourceName().c_str(),
                                                            field->getCString());

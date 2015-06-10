@@ -9,19 +9,19 @@ namespace Cloude {
 
         Column::Column(std::string name,
                        std::string datasourceName,
-                       Enumeration::DbType dbtype) : _name(name),
+                       Data::cldeValueType dataType) : _name(name),
                                         _datasourceName(datasourceName),
-                                        _dbType(dbtype) {
+                                        _dataType(dataType) {
             //
         }
 
         Column::Column(std::string name,
                        std::string datasourceName,
                        size_t length,
-                       Enumeration::DbType dbtype) : _name(name),
+                       Data::cldeValueType dataType) : _name(name),
                                         _datasourceName(datasourceName),
                                         _length(length),
-                                        _dbType(dbtype) {
+                                        _dataType(dataType) {
             //
         }
     }

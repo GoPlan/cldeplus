@@ -1,0 +1,88 @@
+//
+// Created by LE, Duc Anh on 6/10/15.
+//
+
+#include "cldeInt32.h"
+
+namespace Cloude {
+    namespace Foundation {
+        namespace Data {
+            namespace Implementation {
+
+                cldeInt32::cldeInt32(int value) : _value(value),
+                                                  cldeNumericValue(cldeValueType::Int32, sizeof(int32_t)) {
+                    //
+                }
+
+                const void *cldeInt32::RawPointerToValueBuffer() {
+                    return &this->_value;
+                }
+
+                bool cldeInt32::Equal(const Common::IEquatable &rhs) {
+                    try {
+                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        return (cast._value == this->_value);
+                    } catch (std::bad_cast &ex) {
+                        return false;
+                    }
+                }
+
+                const std::string cldeInt32::ToString() const {
+                    return std::to_string(_value);
+                }
+
+                cldeValue &cldeInt32::operator+(const cldeValue &rhs) {
+                    try {
+                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        this->_value = this->_value + cast._value;
+                        return *this;
+                    } catch (std::bad_cast &ex) {
+                        throw;
+                    }
+                }
+
+                cldeValue &cldeInt32::operator-(const cldeValue &rhs) {
+                    try {
+                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        this->_value = this->_value - cast._value;
+                        return *this;
+                    } catch (std::bad_cast &ex) {
+                        throw;
+                    }
+                }
+
+                cldeValue &cldeInt32::operator*(const cldeValue &rhs) {
+                    try {
+                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        this->_value = this->_value * cast._value;
+                        return *this;
+                    } catch (std::bad_cast &ex) {
+                        throw;
+                    }
+                }
+
+                cldeValue &cldeInt32::operator/(const cldeValue &rhs) {
+                    try {
+                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        this->_value = this->_value / cast._value;
+                        return *this;
+                    } catch (std::bad_cast &ex) {
+                        throw;
+                    }
+                }
+
+                cldeValue &cldeInt32::operator%(const cldeValue &rhs) {
+                    try {
+                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        this->_value = this->_value % cast._value;
+                        return *this;
+                    } catch (std::bad_cast &ex) {
+                        throw;
+                    }
+                }
+            }
+        }
+    }
+}
+
+

@@ -2,17 +2,17 @@
 // Created by LE, Duc Anh on 5/27/15.
 //
 
-#include "EntityException.h"
+#include "cldeEntityException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
 
-            EntityException::EntityException(const std::string &message) : _message(message) {
+            cldeEntityException::cldeEntityException(const std::string &message) : _message(message) {
                 //
             }
 
-            const char *EntityException::what() const noexcept {
+            const char *cldeEntityException::what() const noexcept {
                 return _message.c_str();
             }
         }

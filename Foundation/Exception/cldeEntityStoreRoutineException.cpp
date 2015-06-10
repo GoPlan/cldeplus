@@ -3,7 +3,7 @@
 //
 
 #include "../EntityStore.h"
-#include "EntityStoreRoutineException.h"
+#include "cldeEntityStoreRoutineException.h"
 
 using namespace std;
 using namespace Cloude::Foundation;
@@ -13,21 +13,21 @@ using namespace std;
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
-            EntityStoreRoutineException::EntityStoreRoutineException(const EntityStore &store,
+            cldeEntityStoreRoutineException::cldeEntityStoreRoutineException(const EntityStore &store,
                                                                      const string &sstrMessage)
                     : _store(store),
                       _message(sstrMessage) {
                 //
             }
 
-            EntityStoreRoutineException::EntityStoreRoutineException(const EntityStore &store,
+            cldeEntityStoreRoutineException::cldeEntityStoreRoutineException(const EntityStore &store,
                                                                      const char *cstrMessage)
                     : _store(store),
                       _message(cstrMessage) {
                 //
             }
 
-            const char *EntityStoreRoutineException::what() const noexcept {
+            const char *cldeEntityStoreRoutineException::what() const noexcept {
                 return _message.c_str();
             }
 

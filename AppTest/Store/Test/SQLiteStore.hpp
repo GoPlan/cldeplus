@@ -20,11 +20,11 @@ namespace Cloude {
 
                 TEST_F(EnquirySQLiteStore, CreateGetSaveDelete) {
 
-                    std::string email = "goplan@cloud-e.biz";
-                    int64_t enquiryId = 15;
+                    auto spEnquiryId = Foundation::Data::cldeValueFactory::CreateInt64(15);
+                    auto spEnquiryEmail = Foundation::Data::cldeValueFactory::CreateString("goplan@cloud-e.biz");
 
                     auto spEnquiryIdField = make_shared<Field>(_enquiryMap.EnquiryId);
-                    spEnquiryIdField->setInt64(enquiryId);
+                    spEnquiryIdField->setValue(spEnquiryId);
 
                     auto initFieldList{spEnquiryIdField};
                     auto spIdentity = std::make_shared<Identity>(initFieldList);
@@ -34,7 +34,6 @@ namespace Cloude {
                         auto spEntity = _entityStore.Create(spIdentity);
                         ASSERT_TRUE(spEntity.get() != 0);
                         ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
-                        spEntity.reset();
                     }
 
                     // GET & SAVE
@@ -43,10 +42,10 @@ namespace Cloude {
                         ASSERT_TRUE(spEntity.get() != 0);
                         ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
 
-                        auto spEmailField = spEntity->getField("Email");
+                        auto &spEmailField = spEntity->getField("Email");
                         ASSERT_TRUE(spEmailField.get() != 0);
 
-                        spEmailField->setCString(email.c_str());
+                        spEmailField->setValue(spEnquiryEmail);
 
                         _entityStore.Save(spEntity);
                         _entityStore.Clear();
@@ -61,9 +60,10 @@ namespace Cloude {
                         ASSERT_TRUE(spEntity.get() != 0);
                         ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
 
-                        auto spEmailField = spEntity->getField("Email");
-                        ASSERT_TRUE(strcmp(spEmailField->getCString(), email.c_str()) == 0);
-                        spEmailField.reset();
+                        auto &spEmailField = spEntity->getField("Email");
+                        auto &spEmailValue = spEmailField->getValue();
+                        EXPECT_TRUE(strcmp(spEmailValue->ToString().c_str(),
+                                           spEnquiryEmail->ToString().c_str()) == 0);
 
                         _entityStore.Delete(spEntity);
                         EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
@@ -71,7 +71,6 @@ namespace Cloude {
 
                         auto spEntityAlt = _entityStore.Get(spIdentity);
                         EXPECT_TRUE(spEntityAlt.get() == 0);
-                        spEntityAlt.reset();
                     }
                 }
             }

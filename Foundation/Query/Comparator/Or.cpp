@@ -5,5 +5,23 @@
 #include "Or.h"
 
 
+namespace Cloude {
+    namespace Foundation {
+        namespace Query {
+            namespace Comparator {
+
+                std::string Or::_type = " Or ";
+
+                const std::string Or::ToString() const {
+                    return _type;
+                }
+
+                Enumeration::ComparatorType Or::getType() {
+                    return Enumeration::ComparatorType::Or;
+                }
+            }
+        }
+    }
+}
 
 

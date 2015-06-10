@@ -13,7 +13,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 add_library(foundation STATIC
     Cloude.h
-    Foundation/Enumeration/DbType.h
+    Foundation/Data/cldeValueType.h
     Foundation/Column.cpp
     Foundation/Column.h
     Foundation/Field.cpp
@@ -28,16 +28,16 @@ add_library(foundation STATIC
     Foundation/EntityLoader.h
     Foundation/EntityStore.cpp
     Foundation/EntityStore.h
-    Foundation/Exception/NonSupportedDataTypeException.cpp
-    Foundation/Exception/NonSupportedDataTypeException.h
-    Foundation/Exception/DataSourceRoutineException.cpp
-    Foundation/Exception/DataSourceRoutineException.h
-    Foundation/Exception/EntityStoreRoutineException.cpp
-    Foundation/Exception/EntityStoreRoutineException.h
+    Foundation/Exception/cldeNonSupportedDataTypeException.cpp
+    Foundation/Exception/cldeNonSupportedDataTypeException.h
+    Foundation/Exception/cldeDataSourceRoutineException.cpp
+    Foundation/Exception/cldeDataSourceRoutineException.h
+    Foundation/Exception/cldeEntityStoreRoutineException.cpp
+    Foundation/Exception/cldeEntityStoreRoutineException.h
     Foundation/Helper/SqlGenerator.cpp
     Foundation/Helper/SqlGenerator.h
-    Foundation/Exception/EntityException.cpp
-    Foundation/Exception/EntityException.h
+    Foundation/Exception/cldeEntityException.cpp
+    Foundation/Exception/cldeEntityException.h
     Foundation/EntitySourceDriver.cpp
     Foundation/EntitySourceDriver.h
     Foundation/Helper/EntityStoreHelper.cpp
@@ -52,7 +52,29 @@ add_library(foundation STATIC
     Foundation/Query/Comparator/And.cpp
     Foundation/Query/Comparator/And.h
     Foundation/Query/Comparator/Or.cpp
-    Foundation/Query/Comparator/Or.h Foundation/Query/Comparator/Equal.cpp Foundation/Query/Comparator/Equal.h Foundation/Query/Comparator/Greater.cpp Foundation/Query/Comparator/Greater.h Foundation/Query/Comparator/GreaterOrEqual.cpp Foundation/Query/Comparator/GreaterOrEqual.h Foundation/Query/Comparator/Lesser.cpp Foundation/Query/Comparator/Lesser.h Foundation/Query/Comparator/LesserOrEqual.cpp Foundation/Query/Comparator/LesserOrEqual.h Foundation/Query/Comparator/NotEqual.cpp Foundation/Query/Comparator/NotEqual.h Foundation/Query/Comparator/Like.cpp Foundation/Query/Comparator/Like.h Foundation/Query/Comparator/NotLike.cpp Foundation/Query/Comparator/NotLike.h Foundation/Query/Comparator/IsNull.cpp Foundation/Query/Comparator/IsNull.h Foundation/Query/Comparator/IsNotNull.cpp Foundation/Query/Comparator/IsNotNull.h)
+    Foundation/Query/Comparator/Or.h
+    Foundation/Query/Comparator/Equal.cpp
+    Foundation/Query/Comparator/Equal.h
+    Foundation/Query/Comparator/Greater.cpp
+    Foundation/Query/Comparator/Greater.h
+    Foundation/Query/Comparator/GreaterOrEqual.cpp
+    Foundation/Query/Comparator/GreaterOrEqual.h
+    Foundation/Query/Comparator/Lesser.cpp
+    Foundation/Query/Comparator/Lesser.h
+    Foundation/Query/Comparator/LesserOrEqual.cpp
+    Foundation/Query/Comparator/LesserOrEqual.h
+    Foundation/Query/Comparator/NotEqual.cpp
+    Foundation/Query/Comparator/NotEqual.h
+    Foundation/Query/Comparator/Like.cpp
+    Foundation/Query/Comparator/Like.h
+    Foundation/Query/Comparator/NotLike.cpp
+    Foundation/Query/Comparator/NotLike.h
+    Foundation/Query/Comparator/IsNull.cpp
+    Foundation/Query/Comparator/IsNull.h
+    Foundation/Query/Comparator/IsNotNull.cpp
+    Foundation/Query/Comparator/IsNotNull.h
+    Foundation/Query/Enumeration/ComparatorType.cpp
+    Foundation/Query/Enumeration/ComparatorType.h Foundation/Query/Enumeration/ComparatorType.cpp Foundation/Common/IEquatable.h Foundation/Data/cldeValue.cpp Foundation/Data/cldeValue.h Foundation/Data/cldeValueType.cpp Foundation/Data/Implementation/cldeInt32.cpp Foundation/Data/Implementation/cldeInt32.h Foundation/Data/Implementation/cldeInt64.cpp Foundation/Data/Implementation/cldeInt64.h Foundation/Data/Implementation/cldeVarchar.cpp Foundation/Data/Implementation/cldeVarchar.h Foundation/Data/Implementation/cldeDouble.cpp Foundation/Data/Implementation/cldeDouble.h Foundation/Data/Implementation/cldeText.cpp Foundation/Data/Implementation/cldeText.h Foundation/Data/Implementation/cldeInt16.cpp Foundation/Data/Implementation/cldeInt16.h Foundation/Data/cldeNumericValue.cpp Foundation/Data/cldeNumericValue.h Foundation/Data/cldeCharacterValue.cpp Foundation/Data/cldeCharacterValue.h Foundation/Data/Implementation/cldeFloat.cpp Foundation/Data/Implementation/cldeFloat.h Foundation/Data/Implementation/cldePoint.cpp Foundation/Data/Implementation/cldePoint.h Foundation/Data/Implementation/cldeMatrix.cpp Foundation/Data/Implementation/cldeMatrix.h Foundation/Data/cldeValueFactory.cpp Foundation/Data/cldeValueFactory.h Foundation/Common/IComputable.h Foundation/Common/ICompoundAssignable.h Foundation/Data/Implementation/cldeString.cpp Foundation/Data/Implementation/cldeString.h Foundation/Exception/cldeNonSupportedFunctionException.cpp Foundation/Exception/cldeNonSupportedFunctionException.h Foundation/Exception/cldeException.cpp Foundation/Exception/cldeException.h Foundation/Data/cldeData.h Foundation/Common/IParsable.h)
 
 
 add_library(application STATIC

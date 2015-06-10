@@ -2,14 +2,21 @@
 // Created by GoPlan on 14/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_DBTYPE_H
-#define CLOUD_E_CPLUS_DBTYPE_H
+#ifndef CLOUD_E_CPLUS_CLDEVALUETYPE_H
+#define CLOUD_E_CPLUS_CLDEVALUETYPE_H
 
 namespace Cloude {
     namespace Foundation {
-        namespace Enumeration {
+        namespace Data {
 
-            enum class DbType {
+            enum class cldeValueCategory {
+                Undefined,
+                Numeric,
+                CharacterBased,
+                UserDefined,
+            };
+
+            enum class cldeValueType {
                 Boolean,
                 Byte,
                 Int16,
@@ -23,15 +30,19 @@ namespace Cloude {
                 Decimal,
                 Numeric,
                 String,
+                Varchar,
+                Text,
                 Currency,
                 Date,
                 Time,
                 Timestamp,
-                Interval
+                Interval,
+                Point,
+                Matrix
             };
 
         }
     }
 }
 
-#endif //CLOUD_E_CPLUS_DBTYPE_H
+#endif //CLOUD_E_CPLUS_CLDEVALUETYPE_H

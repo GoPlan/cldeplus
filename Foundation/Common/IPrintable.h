@@ -12,14 +12,7 @@ namespace Cloude {
         namespace Common {
             class IPrintable {
             public:
-                virtual const std::string &ToString() const = 0;
-
-            private:
-                IPrintable() = delete;
-                ~IPrintable() = delete;
-
-                IPrintable(const IPrintable &rhs) = delete;
-                IPrintable &operator=(const IPrintable &rhs) = delete;
+                virtual const std::string ToString() const = 0;
             };
         }
     }

@@ -6,7 +6,7 @@
 #include "Entity.h"
 #include "Field.h"
 #include "Identity.h"
-#include "Exception/EntityException.h"
+#include "Exception/cldeEntityException.h"
 
 using namespace std;
 
@@ -20,26 +20,26 @@ namespace Cloude {
             }
         }
 
-        shared_ptr<Field> Entity::operator[](const string &columnName) {
+        const shared_ptr<Field> &Entity::operator[](const string &columnName) const {
             return getField(columnName);
         }
 
-        shared_ptr<Field> Entity::getField(const string &columnName) {
+        const shared_ptr<Field> &Entity::getField(const string &columnName) const {
 
             auto search = _fieldsMap.find(columnName);
 
             if (search == _fieldsMap.end()) {
-                throw Exception::EntityException(columnName + " field is not found");
+                throw Exception::cldeEntityException(columnName + " field is not found");
             }
 
             return search->second;
         }
 
-        std::shared_ptr<Field> Entity::operator[](const char *columnName) {
+        const std::shared_ptr<Field> &Entity::operator[](const char *columnName) const {
             return getField(columnName);
         }
 
-        std::shared_ptr<Field> Entity::getField(const char *columnName) {
+        const shared_ptr<Field> &Entity::getField(const char *columnName) const {
             std::string columnNameStr(columnName);
             return getField(columnNameStr);
         }

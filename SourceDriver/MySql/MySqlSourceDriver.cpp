@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 #include <mysql.h>
-#include <Foundation/Exception/NonSupportedDataTypeException.h>
+#include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include <Foundation/Helper/SqlGenerator.h>
 #include "MySqlSourceDriver.h"
 
@@ -165,52 +165,52 @@ namespace Cloude {
                                                   MYSQL_BIND *ptrBind) {
 
                     switch (field->getColumn()->getDbType()) {
-                        case Foundation::Enumeration::DbType::Boolean:
+                        case Foundation::Data::cldeValueType::Boolean:
                             ptrBind->buffer_type = MYSQL_TYPE_TINY;
                             ptrBind->buffer_length = sizeof(bool);
                             break;
-                        case Foundation::Enumeration::DbType::Byte:
+                        case Foundation::Data::cldeValueType::Byte:
                             ptrBind->buffer_type = MYSQL_TYPE_TINY;
                             ptrBind->buffer_length = sizeof(char);
                             break;
-                        case Foundation::Enumeration::DbType::Int16:
+                        case Foundation::Data::cldeValueType::Int16:
                             ptrBind->buffer_type = MYSQL_TYPE_SHORT;
                             ptrBind->buffer_length = sizeof(int16_t);
                             break;
-                        case Foundation::Enumeration::DbType::Int32:
+                        case Foundation::Data::cldeValueType::Int32:
                             ptrBind->buffer_type = MYSQL_TYPE_LONG;
                             ptrBind->buffer_length = sizeof(int32_t);
                             break;
-                        case Foundation::Enumeration::DbType::Int64:
+                        case Foundation::Data::cldeValueType::Int64:
                             ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
                             ptrBind->buffer_length = sizeof(int64_t);
                             break;
-                        case Foundation::Enumeration::DbType::UInt16:
+                        case Foundation::Data::cldeValueType::UInt16:
                             ptrBind->buffer_type = MYSQL_TYPE_SHORT;
                             ptrBind->buffer_length = sizeof(int16_t);
                             break;
-                        case Foundation::Enumeration::DbType::UInt32:
+                        case Foundation::Data::cldeValueType::UInt32:
                             ptrBind->buffer_type = MYSQL_TYPE_LONG;
                             ptrBind->buffer_length = sizeof(int16_t);
                             break;
-                        case Foundation::Enumeration::DbType::UInt64:
+                        case Foundation::Data::cldeValueType::UInt64:
                             ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
                             ptrBind->buffer_length = sizeof(int16_t);
                             break;
-                        case Foundation::Enumeration::DbType::Double:
+                        case Foundation::Data::cldeValueType::Double:
                             ptrBind->buffer_type = MYSQL_TYPE_DOUBLE;
                             ptrBind->buffer_length = sizeof(double);
                             break;
-                        case Foundation::Enumeration::DbType::Float:
+                        case Foundation::Data::cldeValueType::Float:
                             ptrBind->buffer_type = MYSQL_TYPE_FLOAT;
                             ptrBind->buffer_length = sizeof(float);
                             break;
-                        case Foundation::Enumeration::DbType::String:
+                        case Foundation::Data::cldeValueType::Varchar:
                             ptrBind->buffer_type = MYSQL_TYPE_STRING;
                             ptrBind->buffer_length = field->getColumn()->getLength();
                             break;
                         default:
-                            throw Foundation::Exception::NonSupportedDataTypeException();
+                            throw Foundation::Exception::cldeNonSupportedDataTypeException();
                     }
                 }
             }; // END - MySqlApiImpl
