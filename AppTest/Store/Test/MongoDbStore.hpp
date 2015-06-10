@@ -20,10 +20,13 @@ namespace Cloude {
 
                 TEST_F(EnquiryMongoDbStore, CreateGetSaveDelete) {
 
-                    int64_t enquiryId = 15;
+                    const char *email = "ducanh.ki@cloud-e.biz";
+
+                    auto spEnquiryId = Foundation::Data::cldeValueFactory::CreateInt64(15);
+                    auto spEnquiryEmail = Foundation::Data::cldeValueFactory::CreateString(email);
 
                     auto spEnquiryIdField = make_shared<Field>(_enquiryMap.EnquiryId);
-                    spEnquiryIdField->setInt64(enquiryId);
+                    spEnquiryIdField->setValue(spEnquiryId);
 
                     auto initFieldList{spEnquiryIdField};
                     auto spIdentity = std::make_shared<Identity>(initFieldList);
@@ -48,7 +51,7 @@ namespace Cloude {
                         ASSERT_TRUE(entity.get() != 0);
                         ASSERT_TRUE(spNameField.get() != 0);
 
-                        spNameField->setCString("ducanh.ki@cloud-e.biz");
+                        spNameField->setValue(spEnquiryEmail);
                         _entityStore.Save(entity);
                     }
 
@@ -62,11 +65,16 @@ namespace Cloude {
                     // DELETE
                     {
                         auto entity = _entityStore.Get(spIdentity);
+                        auto &spNameField = entity->getField("Email");
+                        auto &spNameValue = spNameField->getValue();
+
+                        EXPECT_TRUE(strcmp(email, spNameValue->ToString().c_str()) == 0);
+
                         _entityStore.Delete(entity);
-                        ASSERT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
+                        EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
 
                         auto entityAlt = _entityStore.Get(spIdentity);
-                        ASSERT_TRUE(entityAlt.get() == 0);
+                        EXPECT_TRUE(entityAlt.get() == 0);
                     }
                 }
             }

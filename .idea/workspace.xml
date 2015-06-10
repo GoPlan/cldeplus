@@ -28,85 +28,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Enumeration/ComparatorType.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Query/Enumeration/ComparatorType.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Common/ICompoundAssignable.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Common/IComputable.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Common/IEquatable.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Common/IParsable.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeCharacterValue.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeCharacterValue.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeData.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeDouble.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeDouble.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeException.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeException.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeFloat.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeFloat.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeInt16.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeInt16.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeInt32.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeInt32.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeInt64.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeInt64.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeMatrix.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeMatrix.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeNonSupportedDataTypeException.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeNonSupportedFunctionException.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeNonSupportedFunctionException.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeNumericValue.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeNumericValue.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldePoint.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldePoint.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeString.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeString.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeText.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeText.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeValue.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeValue.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeValueFactory.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeValueFactory.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/cldeValueType.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeVarchar.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Data/Implementation/cldeVarchar.h" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Foundation/Exception/NonSupportedDataTypeException.cpp" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Enumeration/DbType.h" afterPath="$PROJECT_DIR$/Foundation/Data/cldeValueType.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Exception/DataSourceRoutineException.cpp" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeDataSourceRoutineException.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Exception/DataSourceRoutineException.h" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeDataSourceRoutineException.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Exception/EntityException.cpp" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeEntityException.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Exception/EntityException.h" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeEntityException.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Exception/EntityStoreRoutineException.cpp" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeEntityStoreRoutineException.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Exception/EntityStoreRoutineException.h" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeEntityStoreRoutineException.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Exception/NonSupportedDataTypeException.h" afterPath="$PROJECT_DIR$/Foundation/Exception/cldeNonSupportedDataTypeException.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Comparator/And.cpp" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/And.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Comparator/And.h" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/And.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cloude.h" afterPath="$PROJECT_DIR$/Cloude.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Column.cpp" afterPath="$PROJECT_DIR$/Foundation/Column.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Column.h" afterPath="$PROJECT_DIR$/Foundation/Column.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Mapper/EnquiryMap.cpp" afterPath="$PROJECT_DIR$/Application/Mapper/EnquiryMap.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Store/EnquirySQLiteStore.h" afterPath="$PROJECT_DIR$/AppTest/Store/EnquirySQLiteStore.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Entity.cpp" afterPath="$PROJECT_DIR$/Foundation/Entity.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Entity.h" afterPath="$PROJECT_DIR$/Foundation/Entity.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/EntityStore.cpp" afterPath="$PROJECT_DIR$/Foundation/EntityStore.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Comparator/Equal.cpp" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Equal.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Comparator/Equal.h" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Equal.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Field.cpp" afterPath="$PROJECT_DIR$/Foundation/Field.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Field.h" afterPath="$PROJECT_DIR$/Foundation/Field.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Comparator/Greater.cpp" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Greater.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Comparator/Greater.h" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Greater.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Common/IPrintable.h" afterPath="$PROJECT_DIR$/Foundation/Common/IPrintable.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Store/EnquiryMongoDbStore.h" afterPath="$PROJECT_DIR$/AppTest/Store/EnquiryMongoDbStore.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp" afterPath="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.cpp" afterPath="$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Comparator/Or.cpp" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Or.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Comparator/Or.h" afterPath="$PROJECT_DIR$/Foundation/Query/Comparator/Or.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.cpp" afterPath="$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Query/Predication.h" afterPath="$PROJECT_DIR$/Foundation/Query/Predication.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp" afterPath="$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp" afterPath="$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Mapper/SequenceMap.cpp" afterPath="$PROJECT_DIR$/Application/Mapper/SequenceMap.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Mapper/StockGroupMap.cpp" afterPath="$PROJECT_DIR$/Application/Mapper/StockGroupMap.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SourceDriver/SQLite/Amalgamation/sqlite3.h" afterPath="$PROJECT_DIR$/SourceDriver/SQLite/Amalgamation/sqlite3.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Store/Test/MongoDbStore.hpp" afterPath="$PROJECT_DIR$/AppTest/Store/Test/MongoDbStore.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cloud-e-plus.iws" />
@@ -133,24 +57,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SQLiteStore.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp">
+      <file leaf-file-name="MongoDbStore.hpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AppTest/Store/Test/MongoDbStore.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.3898768">
+              <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
+              <folding>
+                <element signature="e#123#147#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MongoDbSourceDriver.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <caret line="290" column="0" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SQLiteSourceDriver.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp">
+      <file leaf-file-name="EntityStore.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/EntityStore.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6566347">
-              <caret line="206" column="0" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
-              <folding>
-                <element signature="e#45#64#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -173,10 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Foundation/Data/Implementation/cldeVarchar.h" />
-        <option value="$PROJECT_DIR$/Foundation/Common/IComputable.h" />
-        <option value="$PROJECT_DIR$/Foundation/Data/NumericValue.cpp" />
-        <option value="$PROJECT_DIR$/Foundation/Data/CharacterValue.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Exception/NonSupportedMethodImplementationException.h" />
         <option value="$PROJECT_DIR$/Foundation/Exception/cldeException.h" />
         <option value="$PROJECT_DIR$/Foundation/Exception/cldeException.cpp" />
@@ -224,6 +154,10 @@
         <option value="$PROJECT_DIR$/Foundation/Data/cldeValue.h" />
         <option value="$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp" />
         <option value="$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp" />
+        <option value="$PROJECT_DIR$/AppTest/Store/EnquiryMongoDbStore.h" />
+        <option value="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.h" />
+        <option value="$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp" />
+        <option value="$PROJECT_DIR$/AppTest/Store/Test/MongoDbStore.hpp" />
       </list>
     </option>
   </component>
@@ -336,6 +270,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="SourceDriver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceDriver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MongoDb" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -619,7 +571,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1600" y="23" width="1600" height="877" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.67061925" sideWeight="0.53080875" order="10" side_tool="false" content_ui="tabs" x="1600" y="69" width="1024" height="720" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.32765958" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="496" y="176" width="808" height="478" />
@@ -627,10 +579,10 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5638999" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17907573" sideWeight="0.5059289" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32765958" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="877" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17073171" sideWeight="0.44137022" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17073171" sideWeight="0.428" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35177866" sideWeight="0.50289017" order="4" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="823" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.73913044" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="1791" y="55" width="1024" height="745" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22528884" sideWeight="0.55862975" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17073171" sideWeight="0.572" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5104031" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49293968" sideWeight="0.49710983" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -664,82 +616,29 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp</url>
-          <line>58</line>
-          <option name="timeStamp" value="245" />
+          <url>file://$PROJECT_DIR$/AppTest/Store/Test/MongoDbStore.hpp</url>
+          <line>35</line>
+          <option name="timeStamp" value="267" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp</url>
-          <line>22</line>
-          <option name="timeStamp" value="255" />
+          <url>file://$PROJECT_DIR$/AppTest/Store/Test/MongoDbStore.hpp</url>
+          <line>48</line>
+          <option name="timeStamp" value="268" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp</url>
-          <line>33</line>
-          <option name="timeStamp" value="260" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp</url>
-          <line>49</line>
-          <option name="timeStamp" value="262" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp</url>
-          <line>206</line>
-          <option name="timeStamp" value="264" />
+          <url>file://$PROJECT_DIR$/AppTest/Store/Test/MongoDbStore.hpp</url>
+          <line>66</line>
+          <option name="timeStamp" value="270" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="265" />
+      <option name="time" value="276" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SourceDriver/MySql/MySqlSourceDriver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="67" selection-start-line="7" selection-start-column="67" selection-end-line="7" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/Postgres/PostgreSourceDriver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Data/cldeValueFactory.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#45#74#0" expanded="false" />
-            <marker date="1433919320000" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Exception/cldeException.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Store/StockGroupPostgreStore.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Query/Predication.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -834,14 +733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Data/Implementation/cldeInt64.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="80" selection-start-line="28" selection-start-column="80" selection-end-line="28" selection-end-column="80" />
           <folding />
         </state>
       </provider>
@@ -942,20 +833,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Entity.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
           <folding>
-            <element signature="e#106#130#0" expanded="true" />
+            <element signature="e#106#130#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -965,7 +848,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
           <folding>
-            <element signature="e#207#219#0" expanded="true" />
+            <element signature="e#207#219#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1058,44 +941,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Store/EnquirySQLiteStore.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16415869">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Field.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38440493">
           <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding>
-            <element signature="e#104#121#0" expanded="true" />
+            <element signature="e#104#121#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/string">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2106703">
-          <caret line="652" column="0" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityStore.cpp">
+    <entry file="file://$PROJECT_DIR$/AppTest/Store/EnquiryMongoDbStore.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/algorithm">
+    <entry file="file://$PROJECT_DIR$/AppTest/Store/EnquirySQLiteStore.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2106703">
-          <caret line="851" column="0" selection-start-line="851" selection-start-column="0" selection-end-line="851" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1103,17 +970,91 @@
     <entry file="file://$PROJECT_DIR$/AppTest/Store/Test/SQLiteStore.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Data/Implementation/cldeInt64.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="63" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/libbson-1.0/bson.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SourceDriver/SQLite/SQLiteSourceDriver.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6566347">
-          <caret line="206" column="0" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="225" column="110" selection-start-line="225" selection-start-column="110" selection-end-line="225" selection-end-column="110" />
           <folding>
             <element signature="e#45#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/algorithm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="851" column="0" selection-start-line="851" selection-start-column="0" selection-end-line="851" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/string">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33189654">
+          <caret line="652" column="0" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SourceDriver/MongoDb/MongoDbSourceDriver.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="290" column="0" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/EntityStore.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppTest/Store/Test/MongoDbStore.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3898768">
+          <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
+          <folding>
+            <element signature="e#123#147#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -6,7 +6,7 @@
 #define CLOUD_E_CPLUS_ENQUIRYMONGODBSTORE_H
 
 #include "gtest/gtest.h"
-#include <Foundation/EntityStore.h>
+#include <Cloude.h>
 #include <SourceDriver/MongoDb/MongoDbSourceDriver.h>
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Application/Mapper/EnquiryMap.h>

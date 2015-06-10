@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <mongoc.h>
+#include <Foundation/Data/cldeValueFactory.h>
+#include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include "MongoDbSourceDriver.h"
 
 namespace Cloude {
@@ -95,6 +97,67 @@ namespace Cloude {
                     return connStr;
                 }
 
+                void initializeBindBuffers(const std::vector<std::shared_ptr<Column>> &columns,
+                                           bson_t *bsonDoc,
+                                           std::shared_ptr<Entity> &entity) {
+
+                    std::for_each(columns.cbegin(),
+                                  columns.cend(),
+                                  [&bsonDoc, &entity](const std::shared_ptr<Column> &column) {
+
+                                      auto &field = entity->getField(column->getName());
+                                      auto &value = field->getValue();
+                                      auto key = column->getDatasourceName().c_str();
+
+                                      if (!value) {
+                                          BSON_APPEND_NULL(bsonDoc, key);
+                                          return;
+                                      }
+
+                                      auto ptrBuffer = value->RawPointerToValueBuffer();
+
+                                      switch (column->getDbType()) {
+                                          case Type::Int64:
+                                              BSON_APPEND_INT64(bsonDoc,
+                                                                key,
+                                                                *(reinterpret_cast<const int64_t *>(ptrBuffer)));
+                                              break;
+                                          case Type::Varchar:
+                                              BSON_APPEND_UTF8(bsonDoc,
+                                                               key,
+                                                               reinterpret_cast<const char *>(ptrBuffer));
+                                              break;
+                                          default:
+                                              break;
+                                      }
+                                  });
+
+                }
+
+                void setFieldValue(const bson_iter_t *ptrIter,
+                                   const std::shared_ptr<Column> &column,
+                                   const std::shared_ptr<Field> &field) const {
+
+                    using cldeFactory = Foundation::Data::cldeValueFactory;
+
+                    bson_type_t iterType = bson_iter_type(ptrIter);
+
+                    if (iterType == BSON_TYPE_NULL || iterType == BSON_TYPE_UNDEFINED) {
+                        return;
+                    }
+
+                    switch (column->getDbType()) {
+                        case Foundation::Data::cldeValueType::Int64:
+                            field->setValue(cldeFactory::CreateInt64(bson_iter_as_int64(ptrIter)));
+                            break;
+                        case Foundation::Data::cldeValueType::Varchar:
+                            field->setValue(cldeFactory::CreateString(bson_iter_utf8(ptrIter, 0)));
+                            break;
+                        default:
+                            throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                    }
+                }
+
                 mongoc_client_t *_ptrClient = nullptr;
                 mongoc_collection_t *_ptrCollection = nullptr;
 
@@ -106,7 +169,7 @@ namespace Cloude {
             MongoDbSourceDriver::MongoDbSourceDriver(Foundation::EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _mongoDbApiImpl(new MongoDbApiImpl()) {
-                //
+                init();
             }
 
             void MongoDbSourceDriver::Connect() {
@@ -134,32 +197,13 @@ namespace Cloude {
 
                 std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
-                std::for_each(columnsForKey.cbegin(),
-                              columnsForKey.cend(),
-                              [&command, &entity](const std::shared_ptr<Column> &column) {
-
-                                  auto field = entity->getField(column->getName());
-
-                                  switch (column->getDbType()) {
-                                      case Type::Int64:
-                                          BSON_APPEND_INT64(command->_ptrBsonPredicate,
-                                                            column->getDatasourceName().c_str(),
-                                                            field->getInt64());
-                                          break;
-                                      case Type::Varchar:
-                                          BSON_APPEND_UTF8(command->_ptrBsonPredicate,
-                                                           column->getDatasourceName().c_str(),
-                                                           field->getCString());
-                                          break;
-                                      default:
-                                          break;
-                                  }
-                              });
+                _mongoDbApiImpl->initializeBindBuffers(columnsForKey,
+                                                       command->_ptrBsonPredicate,
+                                                       entity);
 
                 std::for_each(columnsForGet.cbegin(),
                               columnsForGet.cend(),
                               [&command](const std::shared_ptr<Column> &column) {
-
                                   BSON_APPEND_INT32(command->_ptrBsonProjection,
                                                     column->getDatasourceName().c_str(),
                                                     1);
@@ -179,51 +223,42 @@ namespace Cloude {
                                                    NULL,
                                                    NULL);
 
-                int rowCount = 0;
+                if (!mongoc_cursor_next(ptrCursor, &ptrDoc)) {
+                    mongoc_cursor_destroy(ptrCursor);
+                    return 0;
+                }
 
-                while (mongoc_cursor_next(ptrCursor, &ptrDoc)) {
+                size_t err_offset;
 
-                    size_t err_offset;
+                if (!bson_validate(ptrDoc, BSON_VALIDATE_NONE, &err_offset)) {
+                    // TODO: throw an appropriate exception if document is invalid
+                    fprintf(stderr, "The document failed to validate at offset: %u\n", (unsigned) err_offset);
+                    mongoc_cursor_destroy(ptrCursor);
+                    return 0;
+                }
 
-                    if (!bson_validate(ptrDoc, BSON_VALIDATE_NONE, &err_offset)) {
-                        // TODO: throw an appropriate exception if document is invalid
-                        fprintf(stderr, "The document failed to validate at offset: %u\n", (unsigned) err_offset);
-                    }
+                if (bson_iter_init(&iter, ptrDoc)) {
 
-                    if (bson_iter_init(&iter, ptrDoc)) {
+                    while (bson_iter_next(&iter)) {
 
-                        while (bson_iter_next(&iter)) {
+                        std::string columnName(bson_iter_key(&iter));
 
-                            std::string columnName(bson_iter_key(&iter));
+                        try {
 
-                            try {
+                            auto &field = entity->getField(columnName);
+                            auto &column = field->getColumn();
 
-                                auto field = entity->getField(columnName);
-                                auto column = field->getColumn();
+                            _mongoDbApiImpl->setFieldValue(&iter, column, field);
 
-                                switch (column->getDbType()) {
-                                    case Type::Int64:
-                                        field->setInt64(bson_iter_as_int64(&iter));
-                                        break;
-                                    case Type::Varchar:
-                                        field->setCString(bson_iter_utf8(&iter, 0));
-                                        break;
-                                    default:
-                                        break;
-                                }
-
-                            } catch (Foundation::Exception::cldeEntityException &ex) {
-                                continue;
-                            }
+                        } catch (Foundation::Exception::cldeEntityException &ex) {
+                            continue;
                         }
                     }
-
-                    ++rowCount;
                 }
 
                 mongoc_cursor_destroy(ptrCursor);
 
-                return rowCount;
+                return 1;
             }
 
             int MongoDbSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {
@@ -234,27 +269,9 @@ namespace Cloude {
 
                 bson_oid_init(&command->oid, NULL);
 
-                std::for_each(columnsForKey.cbegin(),
-                              columnsForKey.cend(),
-                              [&command, &entity](const std::shared_ptr<Column> &column) {
-
-                                  auto field = entity->getField(column->getName());
-
-                                  switch (column->getDbType()) {
-                                      case Type::Int64:
-                                          BSON_APPEND_INT64(command->_ptrBsonProjection,
-                                                            column->getDatasourceName().c_str(),
-                                                            field->getInt64());
-                                          break;
-                                      case Type::Varchar:
-                                          BSON_APPEND_UTF8(command->_ptrBsonProjection,
-                                                           column->getDatasourceName().c_str(),
-                                                           field->getCString());
-                                          break;
-                                      default:
-                                          break;
-                                  }
-                              });
+                _mongoDbApiImpl->initializeBindBuffers(columnsForKey,
+                                                       command->_ptrBsonProjection,
+                                                       entity);
 
                 if (!mongoc_collection_insert(_mongoDbApiImpl->_ptrCollection,
                                               MONGOC_INSERT_NONE,
@@ -275,52 +292,16 @@ namespace Cloude {
 
                 std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
-                std::for_each(columnsForKey.cbegin(),
-                              columnsForKey.cend(),
-                              [&command, &entity](const std::shared_ptr<Column> &column) {
-
-                                  auto field = entity->getField(column->getName());
-
-                                  switch (column->getDbType()) {
-                                      case Type::Int64:
-                                          BSON_APPEND_INT64(command->_ptrBsonPredicate,
-                                                            column->getDatasourceName().c_str(),
-                                                            field->getInt64());
-                                          break;
-                                      case Type::Varchar:
-                                          BSON_APPEND_UTF8(command->_ptrBsonPredicate,
-                                                           column->getDatasourceName().c_str(),
-                                                           field->getCString());
-                                          break;
-                                      default:
-                                          break;
-                                  }
-                              });
+                _mongoDbApiImpl->initializeBindBuffers(columnsForKey,
+                                                       command->_ptrBsonPredicate,
+                                                       entity);
 
                 bson_t *ptrProj;
                 ptrProj = bson_new();
 
-                std::for_each(columnsForUpdate.cbegin(),
-                              columnsForUpdate.cend(),
-                              [&ptrProj, &entity](const std::shared_ptr<Column> &column) {
-
-                                  auto field = entity->getField(column->getName());
-
-                                  switch (column->getDbType()) {
-                                      case Type::Int64:
-                                          BSON_APPEND_INT64(ptrProj,
-                                                            column->getDatasourceName().c_str(),
-                                                            field->getInt64());
-                                          break;
-                                      case Type::Varchar:
-                                          BSON_APPEND_UTF8(ptrProj,
-                                                           column->getDatasourceName().c_str(),
-                                                           field->getCString());
-                                          break;
-                                      default:
-                                          break;
-                                  }
-                              });
+                _mongoDbApiImpl->initializeBindBuffers(columnsForUpdate,
+                                                       ptrProj,
+                                                       entity);
 
                 BSON_APPEND_DOCUMENT(command->_ptrBsonProjection, "$set", ptrProj);
 
@@ -344,27 +325,9 @@ namespace Cloude {
 
                 std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
-                std::for_each(columnsForKey.cbegin(),
-                              columnsForKey.cend(),
-                              [&command, &entity](const std::shared_ptr<Column> &column) {
-
-                                  auto field = entity->getField(column->getName());
-
-                                  switch (column->getDbType()) {
-                                      case Type::Int64:
-                                          BSON_APPEND_INT64(command->_ptrBsonPredicate,
-                                                            column->getDatasourceName().c_str(),
-                                                            field->getInt64());
-                                          break;
-                                      case Type::Varchar:
-                                          BSON_APPEND_UTF8(command->_ptrBsonPredicate,
-                                                           column->getDatasourceName().c_str(),
-                                                           field->getCString());
-                                          break;
-                                      default:
-                                          break;
-                                  }
-                              });
+                _mongoDbApiImpl->initializeBindBuffers(columnsForKey,
+                                                       command->_ptrBsonPredicate,
+                                                       entity);
 
                 if (!mongoc_collection_remove(_mongoDbApiImpl->_ptrCollection,
                                               MONGOC_REMOVE_NONE,
