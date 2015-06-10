@@ -10,7 +10,7 @@ namespace Cloude {
             namespace Implementation {
 
                 cldeString::cldeString(const char *string) : _value(string),
-                                                             cldeCharacterValue(cldeValueType::Varchar,
+                                                             cldeCharacterValue(cldeValueType::String,
                                                                                 _value.length()) {
                     //
                 }
@@ -24,8 +24,8 @@ namespace Cloude {
                     }
                 }
 
-                const void *cldeString::RawPointerToValueBuffer() {
-                    return _value.c_str();
+                void *cldeString::RawPointerToValueBuffer() {
+                    throw Exception::cldeNonSupportedFunctionException("Use Varchar instead");
                 }
 
                 const std::string cldeString::CopyToString() const {
@@ -36,8 +36,8 @@ namespace Cloude {
                     return _value;
                 }
 
-                void cldeString::SetValueToString(const char *value) {
-                    _value.assign(value);
+                const char *cldeString::ToCString() const {
+                    return _value.c_str();
                 }
             }
         }

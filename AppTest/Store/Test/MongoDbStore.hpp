@@ -23,7 +23,7 @@ namespace Cloude {
                     const char *email = "ducanh.ki@cloud-e.biz";
 
                     auto spEnquiryId = Foundation::Data::cldeValueFactory::CreateInt64(15);
-                    auto spEnquiryEmail = Foundation::Data::cldeValueFactory::CreateString(email);
+                    auto spEnquiryEmail = Foundation::Data::cldeValueFactory::CreateVarchar(email);
 
                     auto spEnquiryIdField = make_shared<Field>(_enquiryMap.EnquiryId);
                     spEnquiryIdField->setValue(spEnquiryId);
@@ -68,7 +68,7 @@ namespace Cloude {
                         auto &spNameField = entity->getField("Email");
                         auto &spNameValue = spNameField->getValue();
 
-                        EXPECT_TRUE(strcmp(email, spNameValue->CopyToString().c_str()) == 0);
+                        EXPECT_TRUE(strcmp(email, spNameValue->ToCString()) == 0);
 
                         _entityStore.Delete(entity);
                         EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));

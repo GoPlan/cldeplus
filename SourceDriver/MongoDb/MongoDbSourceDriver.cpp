@@ -151,7 +151,7 @@ namespace Cloude {
                             field->setValue(cldeFactory::CreateInt64(bson_iter_as_int64(ptrIter)));
                             break;
                         case Foundation::Data::cldeValueType::Varchar:
-                            field->setValue(cldeFactory::CreateString(bson_iter_utf8(ptrIter, 0)));
+                            field->setValue(cldeFactory::CreateVarchar(bson_iter_utf8(ptrIter, 0)));
                             break;
                         default:
                             throw Foundation::Exception::cldeNonSupportedDataTypeException();
@@ -220,7 +220,7 @@ namespace Cloude {
                                                    0,
                                                    0,
                                                    command->_ptrBsonPredicate,
-                                                   NULL,
+                                                   command->_ptrBsonProjection,
                                                    NULL);
 
                 if (!mongoc_cursor_next(ptrCursor, &ptrDoc)) {

@@ -19,7 +19,7 @@ namespace Cloude {
                     return false;
                 }
 
-                const void *cldeDouble::RawPointerToValueBuffer() {
+                void *cldeDouble::RawPointerToValueBuffer() {
                     return &_value;
                 }
 
@@ -36,9 +36,8 @@ namespace Cloude {
                     return _string;
                 }
 
-                void cldeDouble::SetValueToString(const char *value) {
-                    _string.assign(value);
-                    _value = atof(value);
+                const char *cldeDouble::ToCString() const {
+                    return _string.c_str();
                 }
 
                 cldeValue &cldeDouble::operator+(const cldeValue &rhs) {

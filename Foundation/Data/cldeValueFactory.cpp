@@ -6,6 +6,7 @@
 #include <Foundation/Data/Implementation/cldeInt32.h>
 #include <Foundation/Data/Implementation/cldeInt64.h>
 #include <Foundation/Data/Implementation/cldeString.h>
+#include <Foundation/Data/Implementation/cldeVarChar.h>
 #include <Foundation/Data/Implementation/cldeDouble.h>
 
 namespace Cloude {
@@ -29,6 +30,11 @@ namespace Cloude {
 
             std::shared_ptr<cldeValue> cldeValueFactory::CreateString(const char *value) {
                 auto spValue = std::make_shared<Implementation::cldeString>(value);
+                return spValue;
+            }
+
+            std::shared_ptr<cldeValue> cldeValueFactory::CreateVarchar(const char *value) {
+                auto spValue = std::make_shared<Implementation::cldeVarchar>(value);
                 return spValue;
             }
         }

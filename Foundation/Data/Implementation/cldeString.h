@@ -6,6 +6,7 @@
 #define CLOUD_E_CPLUS_CLDESTRING_H
 
 #include <string>
+#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include "../cldeCharacterValue.h"
 
 namespace Cloude {
@@ -19,11 +20,16 @@ namespace Cloude {
                     cldeString(const cldeString &rhs) = default;
                     cldeString &operator=(const cldeString &rhs) = default;
 
+                    // cldeValue
+                    virtual void *RawPointerToValueBuffer();
+
+                    // IEquatable
                     virtual bool Equal(const Common::IEquatable &rhs);
-                    virtual const void *RawPointerToValueBuffer();
+
+                    // IPrintable
                     virtual const std::string CopyToString() const;
                     virtual const std::string &ToString() const;
-                    virtual void SetValueToString(const char *value) override;
+                    virtual const char *ToCString() const override;
 
                 private:
                     mutable std::string _value;

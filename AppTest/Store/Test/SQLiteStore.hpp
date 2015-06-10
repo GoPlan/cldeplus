@@ -21,7 +21,7 @@ namespace Cloude {
                 TEST_F(EnquirySQLiteStore, CreateGetSaveDelete) {
 
                     auto spEnquiryId = Foundation::Data::cldeValueFactory::CreateInt64(15);
-                    auto spEnquiryEmail = Foundation::Data::cldeValueFactory::CreateString("goplan@cloud-e.biz");
+                    auto spEnquiryEmail = Foundation::Data::cldeValueFactory::CreateVarchar("goplan@cloud-e.biz");
 
                     auto spEnquiryIdField = make_shared<Field>(_enquiryMap.EnquiryId);
                     spEnquiryIdField->setValue(spEnquiryId);

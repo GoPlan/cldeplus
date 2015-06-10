@@ -23,7 +23,7 @@ namespace Cloude {
 
                 virtual cldeValueCategory getCategory() = 0;
                 virtual bool isNumeric() = 0;
-                virtual const void *RawPointerToValueBuffer() = 0;
+                virtual void *RawPointerToValueBuffer() = 0;
 
                 cldeValueType &DataType() {
                     return _dataType;

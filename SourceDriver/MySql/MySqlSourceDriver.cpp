@@ -113,22 +113,24 @@ namespace Cloude {
                     command->PtrParamsBind = (MYSQL_BIND *) calloc(columnsListSize, sizeof(MYSQL_BIND));
                     command->PtrParamsLength = (unsigned long *) calloc(columnsListSize, sizeof(unsigned long));
 
-                    int i = 0;
+                    int index = 0;
 
                     std::for_each(columnsList.cbegin(), columnsList.cend(),
                                   [&](const std::shared_ptr<Column> &column) -> void {
 
-                                      auto field = entity->operator[](column->getName());
+                                      auto &field = entity->operator[](column->getName());
+                                      auto &value = field->getValue();
+
                                       auto ptrLength = field->getColumn()->PointerToLengthVariable();
 
-                                      command->PtrParamsBind[i].is_null = 0;
-                                      command->PtrParamsBind[i].error = 0;
-                                      command->PtrParamsBind[i].length = static_cast<unsigned long *>(ptrLength);
-                                      command->PtrParamsBind[i].buffer = field->PointerToFieldValue();
+                                      command->PtrParamsBind[index].is_null = 0;
+                                      command->PtrParamsBind[index].error = 0;
+                                      command->PtrParamsBind[index].length = static_cast<unsigned long *>(ptrLength);
+                                      command->PtrResultBind[index].buffer = value->RawPointerToValueBuffer();
 
-                                      setupBindBufferTypeAndLength(field, &command->PtrParamsBind[i]);
+                                      setupBindBufferTypeAndLength(field, &command->PtrParamsBind[index]);
 
-                                      i++;
+                                      ++index;
                                   });
                 }
 
@@ -143,25 +145,26 @@ namespace Cloude {
                     command->PtrResultIsNull = (my_bool *) calloc(columnsListSize, sizeof(my_bool));
                     command->PtrResultLength = (unsigned long *) calloc(columnsListSize, sizeof(unsigned long));
 
-                    int i = 0;
+                    int index = 0;
 
                     std::for_each(columnsList.cbegin(), columnsList.cend(),
                                   [&](const std::shared_ptr<Column> &column) -> void {
 
-                                      auto field = entity->operator[](column->getName());
+                                      auto &field = entity->operator[](column->getName());
+                                      auto &value = field->getValue();
 
-                                      command->PtrResultBind[i].is_null = &command->PtrResultIsNull[i];
-                                      command->PtrResultBind[i].error = &command->PtrResultError[i];
-                                      command->PtrResultBind[i].length = &command->PtrResultLength[i];
-                                      command->PtrResultBind[i].buffer = field->PointerToFieldValue();
+                                      command->PtrResultBind[index].is_null = &command->PtrResultIsNull[index];
+                                      command->PtrResultBind[index].error = &command->PtrResultError[index];
+                                      command->PtrResultBind[index].length = &command->PtrResultLength[index];
+                                      command->PtrResultBind[index].buffer = value->RawPointerToValueBuffer();
 
-                                      setupBindBufferTypeAndLength(field, &command->PtrResultBind[i]);
+                                      setupBindBufferTypeAndLength(field, &command->PtrResultBind[index]);
 
-                                      i++;
+                                      ++index;
                                   });
                 }
 
-                void setupBindBufferTypeAndLength(std::shared_ptr<Field> &field,
+                void setupBindBufferTypeAndLength(const std::shared_ptr<Field> &field,
                                                   MYSQL_BIND *ptrBind) {
 
                     switch (field->getColumn()->getDataType()) {

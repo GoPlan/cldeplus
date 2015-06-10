@@ -14,7 +14,7 @@ namespace Cloude {
             public:
                 virtual const std::string CopyToString() const = 0;
                 virtual const std::string &ToString() const = 0;
-                virtual void SetValueToString(const char *value) = 0;
+                virtual const char *ToCString() const = 0;
             };
         }
     }

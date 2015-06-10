@@ -24,7 +24,7 @@ namespace Cloude {
                     const char *code = "VNM";
                     const char *name = "Vinamilk";
 
-                    auto spCodeField = make_shared<Field>(StockGroupMap::Code);
+                    auto spCodeField = std::make_shared<Field>(StockGroupMap::Code);
 
                     auto spCodeValue = Foundation::Data::cldeValueFactory::CreateString(code);
                     auto spNameValue = Foundation::Data::cldeValueFactory::CreateString(name);

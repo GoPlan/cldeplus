@@ -15,7 +15,7 @@ namespace Cloude {
                     //
                 }
 
-                const void *cldeInt32::RawPointerToValueBuffer() {
+                void *cldeInt32::RawPointerToValueBuffer() {
                     return &this->_value;
                 }
 
@@ -42,9 +42,8 @@ namespace Cloude {
                     return _string;
                 }
 
-                void cldeInt32::SetValueToString(const char *value) {
-                    _string.assign(value);
-                    _value = reinterpret_cast<int32_t>(atoi(value));
+                const char *cldeInt32::ToCString() const {
+                    return _string.c_str();
                 }
 
                 cldeValue &cldeInt32::operator+(const cldeValue &rhs) {
