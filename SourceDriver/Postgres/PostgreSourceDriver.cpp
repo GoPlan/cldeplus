@@ -8,6 +8,7 @@
 #include <libpq-fe.h>
 #include <Foundation/Helper/SqlGenerator.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
+#include <Foundation/Data/cldeValueFactory.h>
 #include "PostgreSourceDriver.h"
 
 namespace Cloude {
@@ -51,7 +52,7 @@ namespace Cloude {
                 int *PtrParamFormats = NULL;    // Set entry pointer to 0 (NULL) for using text format
 
                 int *PtrParamLengths = nullptr;
-                char **PtrParamValues = nullptr;
+                const char **PtrParamValues = nullptr;
 
                 const PGconn &PGConn;
                 const std::string &Query;
@@ -75,21 +76,29 @@ namespace Cloude {
 
                     command->nParam = (int) columnsList.size();
                     command->PtrParamLengths = (int *) calloc(nParam, sizeof(int));
-                    command->PtrParamValues = (char **) calloc(nParam, sizeof(char *));
+                    command->PtrParamValues = (const char **) calloc(nParam, sizeof(char *));
 
                     int index = 0;
 
-                    for_each(columnsList.cbegin(), columnsList.cend(),
-                             [&entity, &command, &index](const std::shared_ptr<Column> &column) {
+                    std::for_each(columnsList.cbegin(),
+                                  columnsList.cend(),
+                                  [&entity, &command, &index](const std::shared_ptr<Column> &column) {
 
-                                 auto field = entity->operator[](column->getName());
+                                      auto &field = entity->operator[](column->getName());
+                                      auto &value = field->getValue();
 
-                                 command->PtrParamLengths[index] = static_cast<int>(column->getLength());
-                                 command->PtrParamValues[index] =
-                                         reinterpret_cast<char *>(field->PointerToFieldValue());
+                                      command->PtrParamLengths[index] = static_cast<int>(column->getLength());
 
-                                 index++;
-                             });
+                                      if (!value) {
+                                          command->PtrParamValues[index] = NULL;
+                                          ++index;
+                                          return;
+                                      }
+
+                                      command->PtrParamValues[index] = value->ToString().c_str();
+
+                                      ++index;
+                                  });
                 }
 
                 std::string getTypeAlias(Foundation::Data::cldeValueType valueType) {
@@ -137,26 +146,52 @@ namespace Cloude {
                 }
 
 
-                void retrieveResult(const EntityMap &entityMap,
-                                    const PGresult *ptrResult,
-                                    std::shared_ptr<Entity> &entity) {
+                int retrieveResult(const EntityMap &entityMap,
+                                   const PGresult *ptrResult,
+                                   std::shared_ptr<Entity> &entity) {
+
+                    using cldeFactory = Foundation::Data::cldeValueFactory;
+
+                    int resultCode = 0;
+
+                    if ((resultCode = PQntuples(ptrResult)) == 0) {
+                        return resultCode;
+                    }
 
                     auto columnsForGet = entityMap.getColumnsForGet();
 
                     int index = 0;
 
-                    std::for_each(columnsForGet.cbegin(), columnsForGet.cend(),
+                    std::for_each(columnsForGet.cbegin(),
+                                  columnsForGet.cend(),
                                   [&entity, &ptrResult, &index](const std::shared_ptr<Column> &column) {
 
-                                      auto field = entity->getField(column->getName());
+                                      auto &field = entity->getField(column->getName());
 
-                                      // TODO: set value into variable that suits its type
-                                      auto cvalue = strdup(PQgetvalue(ptrResult, 0, index));
-                                      field->setCString(cvalue);
+                                      if (PQgetisnull(ptrResult, 0, index)) {
+                                          ++index;
+                                          return;
+                                      }
 
-                                      index++;
+                                      switch (column->getDataType()) {
+                                          case Foundation::Data::cldeValueType::Int64:
+                                              field->setValue(cldeFactory::CreateInt64(atoll(PQgetvalue(ptrResult,
+                                                                                                        0,
+                                                                                                        index))));
+                                              break;
+                                          case Foundation::Data::cldeValueType::Varchar:
+                                              field->setValue(cldeFactory::CreateString(PQgetvalue(ptrResult,
+                                                                                                   0,
+                                                                                                   index)));
+                                              break;
+                                          default:
+                                              throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                                      }
+
+                                      ++index;
                                   });
 
+                    return resultCode;
                 }
             };
 
@@ -199,7 +234,7 @@ namespace Cloude {
                 auto fpValue = [this](const std::shared_ptr<Column> &column,
                                       int index) -> std::string {
 
-                    auto typeName = _pgApiImpl->getTypeAlias(column->getDbType());
+                    auto typeName = _pgApiImpl->getTypeAlias(column->getDataType());
                     auto expr = "$" + std::to_string(++index) + "::" + typeName;
 
                     return expr;
@@ -208,7 +243,7 @@ namespace Cloude {
                 auto fpCondition = [this](const std::shared_ptr<Column> &column,
                                           int index) -> std::string {
 
-                    auto typeName = _pgApiImpl->getTypeAlias(column->getDbType());
+                    auto typeName = _pgApiImpl->getTypeAlias(column->getDataType());
                     auto expr = column->getDatasourceName() + " = " + "$" + std::to_string(++index) + "::" + typeName;
 
                     return expr;
@@ -244,13 +279,15 @@ namespace Cloude {
 
                 char *errorMessage = nullptr;
 
+                int resultCode = 0;
+
                 switch (statusType) {
                     case PGRES_EMPTY_QUERY:
                         break;
                     case PGRES_COMMAND_OK:
                         break;
                     case PGRES_TUPLES_OK:
-                        _pgApiImpl->retrieveResult(_entityMap, result, entity);
+                        resultCode = _pgApiImpl->retrieveResult(_entityMap, result, entity);
                         break;
                     case PGRES_COPY_OUT:
                         break;
@@ -276,7 +313,7 @@ namespace Cloude {
 
                 PQclear(result);
 
-                return 1;
+                return resultCode;
             }
 
             int PostgreSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {

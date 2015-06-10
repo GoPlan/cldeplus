@@ -21,11 +21,15 @@ namespace Cloude {
 
                 TEST_F(StockGroupPostgreStore, CreateGetSaveDelete) {
 
-                    std::string codeValue("VNM");
-                    std::string nameValue("Vinamilk");
+                    const char *code = "VNM";
+                    const char *name = "Vinamilk";
 
                     auto spCodeField = make_shared<Field>(StockGroupMap::Code);
-                    spCodeField->setCString(codeValue.c_str());
+
+                    auto spCodeValue = Foundation::Data::cldeValueFactory::CreateString(code);
+                    auto spNameValue = Foundation::Data::cldeValueFactory::CreateString(name);
+
+                    spCodeField->setValue(spCodeValue);
 
                     // setMultiFields(initializer_list<shared_ptr<Field>>()
                     auto initFieldList{spCodeField};
@@ -46,7 +50,7 @@ namespace Cloude {
                         auto spNameField = spEntity->operator[]("UniqueName");
                         ASSERT_TRUE(spNameField.get() != 0);
 
-                        spNameField->setCString(nameValue.c_str());
+                        spNameField->setValue(spNameValue);
 
                         _entityStore.Save(spEntity);
                     }
@@ -54,27 +58,35 @@ namespace Cloude {
                     // CLEAR
                     {
                         _entityStore.Clear();
-                        ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity) == false);
+                        ASSERT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
                         ASSERT_TRUE(_entityStore.Size() == 0);
                     }
 
-                    // GET - Check for saved field
+                    // GET & DELETE - Check for saved field
                     {
                         auto spEntity = _entityStore.Get(spIdentity);
                         ASSERT_TRUE(spEntity.get() != 0);
 
-                        auto spCodeFieldAlt = spEntity->operator[](StockGroupMap::Code->getName());
-                        auto spNameFieldAlt = spEntity->operator[](StockGroupMap::UniqueName->getName());
+                        auto &spCodeFieldAlt = spEntity->operator[](StockGroupMap::Code->getName());
+                        auto &spNameFieldAlt = spEntity->operator[](StockGroupMap::UniqueName->getName());
+
+                        auto &spCodeValue = spCodeFieldAlt->getValue();
+                        auto &spNameValue = spNameFieldAlt->getValue();
 
                         EXPECT_TRUE(_entityStore.Size() > 0);
-                        EXPECT_TRUE(_entityStore.HasIdentityInMap(spIdentity) == true);
+                        EXPECT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
 
-                        EXPECT_TRUE(strcmp(codeValue.c_str(), spCodeFieldAlt->getCString()) == 0);
-
-                        // TODO: Investigate ERROR: invalid byte sequence for encoding "UTF8": 0xf0 0xfa 0x9f 0x7f
-                        EXPECT_TRUE(strcmp(nameValue.c_str(), spNameFieldAlt->getCString()) == 0);
+                        EXPECT_TRUE(strcmp(code, spCodeValue->ToString().c_str()) == 0);
+                        EXPECT_TRUE(strcmp(name, spNameValue->ToString().c_str()) == 0);
 
                         _entityStore.Delete(spEntity);
+                    }
+
+                    // Check deleted
+                    {
+                        auto spEntity = _entityStore.Get(spIdentity);
+                        EXPECT_TRUE(spEntity.get() == 0);
+                        EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
                     }
                 }
             }

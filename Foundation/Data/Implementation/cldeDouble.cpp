@@ -2,6 +2,7 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
+#include <cstdlib>
 #include "cldeDouble.h"
 
 namespace Cloude {
@@ -18,12 +19,26 @@ namespace Cloude {
                     return false;
                 }
 
-                const std::string cldeDouble::ToString() const {
+                const void *cldeDouble::RawPointerToValueBuffer() {
+                    return &_value;
+                }
+
+                const std::string cldeDouble::CopyToString() const {
                     return std::to_string(_value);
                 }
 
-                const void *cldeDouble::RawPointerToValueBuffer() {
-                    return &_value;
+                const std::string &cldeDouble::ToString() const {
+
+                    if (_string.empty()) {
+                        _string.assign(std::to_string(_value));
+                    }
+
+                    return _string;
+                }
+
+                void cldeDouble::SetValueToString(const char *value) {
+                    _string.assign(value);
+                    _value = atof(value);
                 }
 
                 cldeValue &cldeDouble::operator+(const cldeValue &rhs) {

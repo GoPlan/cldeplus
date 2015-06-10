@@ -39,7 +39,7 @@ namespace Cloude {
                 return _name;
             }
 
-            const Foundation::Data::cldeValueType &getDbType() const {
+            const Foundation::Data::cldeValueType &getDataType() const {
                 return _dataType;
             }
 

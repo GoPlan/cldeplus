@@ -19,7 +19,7 @@ namespace Cloude {
                     And(const And &rhs) = default;
                     And &operator=(const And &rhs) = default;
 
-                    const std::string ToString() const override;
+                    const std::string CopyToString() const override;
                     Enumeration::ComparatorType getType() override;
 
                 private:

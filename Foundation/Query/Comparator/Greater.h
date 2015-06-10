@@ -19,7 +19,7 @@ namespace Cloude {
                     Greater(const Greater &rhs) = default;
                     Greater &operator=(const Greater &rhs) = default;
 
-                    virtual const std::string ToString() const override;
+                    virtual const std::string CopyToString() const override;
                     virtual Enumeration::ComparatorType getType() override;
 
                 private:

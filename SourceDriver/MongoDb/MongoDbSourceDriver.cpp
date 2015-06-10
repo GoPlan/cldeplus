@@ -116,7 +116,7 @@ namespace Cloude {
 
                                       auto ptrBuffer = value->RawPointerToValueBuffer();
 
-                                      switch (column->getDbType()) {
+                                      switch (column->getDataType()) {
                                           case Type::Int64:
                                               BSON_APPEND_INT64(bsonDoc,
                                                                 key,
@@ -146,7 +146,7 @@ namespace Cloude {
                         return;
                     }
 
-                    switch (column->getDbType()) {
+                    switch (column->getDataType()) {
                         case Foundation::Data::cldeValueType::Int64:
                             field->setValue(cldeFactory::CreateInt64(bson_iter_as_int64(ptrIter)));
                             break;

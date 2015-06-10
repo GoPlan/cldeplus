@@ -20,8 +20,10 @@ namespace Cloude {
                     cldeDouble &operator=(const cldeDouble &rhs) = default;
 
                     virtual bool Equal(const Common::IEquatable &rhs) override;
-                    virtual const std::string ToString() const override;
                     virtual const void *RawPointerToValueBuffer() override;
+                    virtual const std::string CopyToString() const override;
+                    virtual const std::string &ToString() const override;
+                    virtual void SetValueToString(const char *value) override;
 
                     virtual cldeValue &operator+(const cldeValue &rhs) override;
                     virtual cldeValue &operator-(const cldeValue &rhs) override;
@@ -31,6 +33,7 @@ namespace Cloude {
 
                 private:
                     double _value;
+                    mutable std::string _string;
                 };
             }
         }

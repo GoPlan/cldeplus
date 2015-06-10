@@ -12,7 +12,7 @@ namespace Cloude {
 
                 std::string Or::_type = " Or ";
 
-                const std::string Or::ToString() const {
+                const std::string Or::CopyToString() const {
                     return _type;
                 }
 

@@ -11,7 +11,7 @@ namespace Cloude {
 
                 std::string And::_type = "And";
 
-                const std::string And::ToString() const {
+                const std::string And::CopyToString() const {
                     return _type;
                 }
 

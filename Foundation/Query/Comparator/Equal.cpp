@@ -11,7 +11,7 @@ namespace Cloude {
 
                 std::string Equal::_type = " = ";
 
-                const std::string Equal::ToString() const {
+                const std::string Equal::CopyToString() const {
                     return _type;
                 }
 

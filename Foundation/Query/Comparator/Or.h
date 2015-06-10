@@ -19,7 +19,7 @@ namespace Cloude {
                     Or &operator=(const Or &rhs) = default;
 
 
-                    virtual const std::string ToString() const override;
+                    virtual const std::string CopyToString() const override;
                     virtual Enumeration::ComparatorType getType() override;
                 private:
                     static std::string _type;

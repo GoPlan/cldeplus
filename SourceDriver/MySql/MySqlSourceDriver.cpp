@@ -164,7 +164,7 @@ namespace Cloude {
                 void setupBindBufferTypeAndLength(std::shared_ptr<Field> &field,
                                                   MYSQL_BIND *ptrBind) {
 
-                    switch (field->getColumn()->getDbType()) {
+                    switch (field->getColumn()->getDataType()) {
                         case Foundation::Data::cldeValueType::Boolean:
                             ptrBind->buffer_type = MYSQL_TYPE_TINY;
                             ptrBind->buffer_length = sizeof(bool);

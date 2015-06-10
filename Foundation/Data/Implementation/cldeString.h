@@ -20,11 +20,13 @@ namespace Cloude {
                     cldeString &operator=(const cldeString &rhs) = default;
 
                     virtual bool Equal(const Common::IEquatable &rhs);
-                    virtual const std::string ToString() const;
                     virtual const void *RawPointerToValueBuffer();
+                    virtual const std::string CopyToString() const;
+                    virtual const std::string &ToString() const;
+                    virtual void SetValueToString(const char *value) override;
 
                 private:
-                    std::string _value;
+                    mutable std::string _value;
                 };
             }
         }

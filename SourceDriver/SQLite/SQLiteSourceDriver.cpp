@@ -112,7 +112,7 @@ namespace Cloude {
 
                                       const auto ptrValueBuffer = field->getValue()->RawPointerToValueBuffer();
 
-                                      switch (column->getDbType()) {
+                                      switch (column->getDataType()) {
                                           case Type::Int64:
                                               sqlite3_int64 int64Value;
                                               int64Value = static_cast<sqlite3_int64 >(*((int64_t *) ptrValueBuffer));
@@ -211,7 +211,7 @@ namespace Cloude {
 
                                   auto &field = entity->getField(column->getName());
 
-                                  switch (column->getDbType()) {
+                                  switch (column->getDataType()) {
                                       case Type::Int64:
                                           int64_t int64Value;
                                           int64Value =

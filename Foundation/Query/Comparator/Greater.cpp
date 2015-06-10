@@ -11,7 +11,7 @@ namespace Cloude {
 
                 std::string Greater::_type = " > ";
 
-                const std::string Greater::ToString() const {
+                const std::string Greater::CopyToString() const {
                     return _type;
                 }
 

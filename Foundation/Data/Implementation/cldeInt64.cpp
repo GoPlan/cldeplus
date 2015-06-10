@@ -2,6 +2,7 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
+#include <cstdlib>
 #include "cldeInt64.h"
 
 namespace Cloude {
@@ -27,8 +28,22 @@ namespace Cloude {
                     }
                 }
 
-                const std::string cldeInt64::ToString() const {
+                const std::string cldeInt64::CopyToString() const {
                     return std::to_string(_value);
+                }
+
+                const std::string &cldeInt64::ToString() const {
+
+                    if (_string.empty()) {
+                        _string.assign(std::to_string(_value));
+                    }
+
+                    return _string;
+                }
+
+                void cldeInt64::SetValueToString(const char *value) {
+                    _string.assign(value);
+                    _value = reinterpret_cast<int64_t>(atoll(value));
                 }
 
                 cldeValue &cldeInt64::operator+(const cldeValue &rhs) {

@@ -20,7 +20,7 @@ namespace Cloude {
         }
 
         void *Field::PointerToFieldValue() {
-            switch (_column->getDbType()) {
+            switch (_column->getDataType()) {
                 case Data::cldeValueType::Int64:
                     return &_int64;
                 case Data::cldeValueType::Varchar:
