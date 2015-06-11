@@ -204,7 +204,7 @@ namespace Cloude {
                               columnsForGet.cend(),
                               [&entity, &command, &index](const std::shared_ptr<Column> &column) {
 
-                                  if(sqlite3_column_type(command->_ptrStmt, index) == SQLITE_NULL){
+                                  if (sqlite3_column_type(command->_ptrStmt, index) == SQLITE_NULL) {
                                       ++index;
                                       return;
                                   }
@@ -228,7 +228,8 @@ namespace Cloude {
                                           break;
                                       default:
                                           ++index;
-                                          throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                                          const char *msg = "MySqlSourceDriver does not support this type.";
+                                          throw Foundation::Exception::cldeNonSupportedDataTypeException(msg);
                                   }
                               });
 

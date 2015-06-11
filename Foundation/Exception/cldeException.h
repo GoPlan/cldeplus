@@ -14,6 +14,7 @@ namespace Cloude {
             class cldeException : public std::exception {
             public:
                 cldeException(const char *message) : _message(message) { };
+                cldeException(const std::string &message) : _message(message) { };
                 virtual ~cldeException() = default;
                 cldeException(const cldeException &rhs) = default;
                 cldeException &operator=(const cldeException &rhs) = default;

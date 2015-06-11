@@ -171,7 +171,8 @@ namespace Cloude {
                                               field->setValue(cldeFactory::CreateVarchar(column->getLength()));
                                               break;
                                           default:
-                                              throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                                              const char *msg = "MySqlSourceDriver does not support this type.";
+                                              throw Foundation::Exception::cldeNonSupportedDataTypeException(msg);
                                       }
 
                                       auto &value = field->getValue();
@@ -208,7 +209,8 @@ namespace Cloude {
                             ptrBind->buffer_length = field->getColumn()->getLength();
                             break;
                         default:
-                            throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                            const char *msg = "MySqlSourceDriver does not support this type yet.";
+                            throw Foundation::Exception::cldeNonSupportedDataTypeException(msg);
                     }
                 }
             }; // END - MySqlApiImpl

@@ -141,7 +141,8 @@ namespace Cloude {
                         case Foundation::Type::cldeValueType::Interval:
                             return "interval";
                         default:
-                            throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                            const char *msg = "PostgreSourceDriver does not support this type yet.";
+                            throw Foundation::Exception::cldeNonSupportedDataTypeException(msg);
                     }
                 }
 
@@ -185,7 +186,8 @@ namespace Cloude {
                                                                                                    index)));
                                               break;
                                           default:
-                                              throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                                              const char *msg = "PostgreSourceDriver does not support this type yet.";
+                                              throw Foundation::Exception::cldeNonSupportedDataTypeException(msg);
                                       }
 
                                       ++index;

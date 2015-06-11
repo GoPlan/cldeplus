@@ -5,12 +5,18 @@
 #ifndef CLOUD_E_CPLUS_cldeDATASOURCEROUTINEEXCEPTION_H
 #define CLOUD_E_CPLUS_cldeDATASOURCEROUTINEEXCEPTION_H
 
-#include "exception"
+#include "cldeException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
-            class cldeDataSourceRoutineException : public std::exception {
+            class cldeDataSourceRoutineException : public cldeException {
+            public:
+                cldeDataSourceRoutineException(const char *message) : cldeException(message) { };
+                cldeDataSourceRoutineException(const std::string &message) : cldeException(message) { };
+                ~cldeDataSourceRoutineException() = default;
+                cldeDataSourceRoutineException(const cldeDataSourceRoutineException &rhs) = default;
+                cldeDataSourceRoutineException &operator=(const cldeDataSourceRoutineException &rhs) = default;
 
             };
         }

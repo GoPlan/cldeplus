@@ -13,7 +13,8 @@ namespace Cloude {
             class cldeNonSupportedFunctionException : public cldeException {
             public:
                 cldeNonSupportedFunctionException(const char *message) : cldeException(message) { };
-                virtual ~cldeNonSupportedFunctionException() = default;
+                cldeNonSupportedFunctionException(const std::string &message) : cldeException(message) { };
+                ~cldeNonSupportedFunctionException() = default;
                 cldeNonSupportedFunctionException(const cldeNonSupportedFunctionException &rhs) = default;
                 cldeNonSupportedFunctionException &operator=(const cldeNonSupportedFunctionException &rhs) = default;
             };

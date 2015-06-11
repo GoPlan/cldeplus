@@ -123,7 +123,7 @@ add_library(sourcedriver STATIC
     SourceDriver/SQLite/SQLiteSourceException.h
     SourceDriver/SQLite/Amalgamation/sqlite3.h
     SourceDriver/SQLite/Amalgamation/sqlite3ext.h
-    SourceDriver/SQLite/Amalgamation/sqlite3.c)
+    SourceDriver/SQLite/Amalgamation/sqlite3.c SourceDriver/DynamoDb/DynamoDbSourceDriver.cpp SourceDriver/DynamoDb/DynamoDbSourceDriver.h SourceDriver/DynamoDb/DynamoDbSourceException.cpp SourceDriver/DynamoDb/DynamoDbSourceException.h)
 
 
 add_library(examples STATIC

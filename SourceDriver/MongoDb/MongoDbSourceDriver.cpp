@@ -154,7 +154,8 @@ namespace Cloude {
                             field->setValue(cldeFactory::CreateVarchar(bson_iter_utf8(ptrIter, 0)));
                             break;
                         default:
-                            throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                            const char *msg = "MongoDbSourceDriver does not support this type yet.";
+                            throw Foundation::Exception::cldeNonSupportedDataTypeException(msg);
                     }
                 }
 

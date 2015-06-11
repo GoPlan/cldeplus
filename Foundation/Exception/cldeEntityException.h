@@ -5,24 +5,18 @@
 #ifndef CLOUD_E_CPLUS_CLDEENTITYEXCEPTION_H
 #define CLOUD_E_CPLUS_CLDEENTITYEXCEPTION_H
 
-
-#include <exception>
-#include <string>
+#include "cldeException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
-            class cldeEntityException : public std::exception {
+            class cldeEntityException : public cldeException {
             public:
-                virtual ~cldeEntityException() = default;
-                cldeEntityException(const cldeEntityException &srcEntityException) = default;
-                cldeEntityException &operator=(const cldeEntityException &srcEntityException) = default;
-
-                explicit cldeEntityException(const std::string &message);
-                virtual const char *what() const noexcept override;
-
-            private:
-                std::string _message;
+                cldeEntityException(const char *message) : cldeException(message) { };
+                cldeEntityException(const std::string &message) : cldeException(message) { };
+                ~cldeEntityException() = default;
+                cldeEntityException(const cldeEntityException &rhs) = default;
+                cldeEntityException &operator=(const cldeEntityException &rhs) = default;
             };
         }
     }

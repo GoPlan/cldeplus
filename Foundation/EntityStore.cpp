@@ -41,8 +41,8 @@ namespace Cloude {
         shared_ptr<Entity> EntityStore::Create(const shared_ptr<Identity> &identity) {
 
             if (!identity) {
-                string message = "Identity is a nullptr or invalid";
-                throw Foundation::Exception::cldeEntityStoreRoutineException(*this, message);
+                const char *msg = "Identity is a nullptr or invalid";
+                throw Foundation::Exception::cldeEntityStoreRoutineException(msg);
             }
 
             auto &columnsForGet = _entityMap.getColumnsForGet();

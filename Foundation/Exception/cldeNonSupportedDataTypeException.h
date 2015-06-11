@@ -5,13 +5,18 @@
 #ifndef CLOUD_E_CPLUS_CLDENONSUPPORTEDDATATYPEEXCEPTION_H
 #define CLOUD_E_CPLUS_CLDENONSUPPORTEDDATATYPEEXCEPTION_H
 
-#include "exception"
+#include "cldeException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
-            class cldeNonSupportedDataTypeException : std::exception {
-
+            class cldeNonSupportedDataTypeException : public cldeException {
+            public:
+                cldeNonSupportedDataTypeException(const char *message) : cldeException(message) { };
+                cldeNonSupportedDataTypeException(const std::string &message) : cldeException(message) { };
+                ~cldeNonSupportedDataTypeException() = default;
+                cldeNonSupportedDataTypeException(const cldeNonSupportedDataTypeException &rhs) = default;
+                cldeNonSupportedDataTypeException &operator=(const cldeNonSupportedDataTypeException &rhs) = default;
             };
         }
     }

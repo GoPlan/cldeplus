@@ -5,26 +5,19 @@
 #ifndef CLOUD_E_CPLUS_CLDEENTITYSTOREROUTINEEXCEPTION_H
 #define CLOUD_E_CPLUS_CLDEENTITYSTOREROUTINEEXCEPTION_H
 
-#include "exception"
-#include "string"
-
-#include "../EntityStore.h"
+#include "cldeException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
 
-            class cldeEntityStoreRoutineException : public std::exception {
+            class cldeEntityStoreRoutineException : public cldeException {
             public:
-                virtual ~cldeEntityStoreRoutineException() = default;
-
-                explicit cldeEntityStoreRoutineException(const EntityStore &store, const std::string &sstrMessage);
-                explicit cldeEntityStoreRoutineException(const EntityStore &store, const char *cstrMessage);
-                virtual const char *what() const noexcept override;
-
-            private:
-                std::string _message;
-                const EntityStore &_store;
+                cldeEntityStoreRoutineException(const char *message) : cldeException(message) { };
+                cldeEntityStoreRoutineException(const std::string &message) : cldeException(message) { };
+                ~cldeEntityStoreRoutineException() = default;
+                cldeEntityStoreRoutineException(const cldeEntityStoreRoutineException &rhs) = default;
+                cldeEntityStoreRoutineException &operator=(const cldeEntityStoreRoutineException &rhs) = default;
             };
         }
     }

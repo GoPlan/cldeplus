@@ -13,7 +13,6 @@
 namespace Cloude {
     namespace SourceDriver {
         namespace MongoDb {
-
             class MongoDbSourceDriver : public Foundation::EntitySourceDriver {
             public:
                 using Predicate = Foundation::Query::Predication;
