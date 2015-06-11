@@ -44,7 +44,7 @@ namespace Cloude {
                 }
 
                 void *cldeVarchar::RawPointerToValueBuffer() {
-                    return _value;
+                    return _valueArray;
                 }
 
                 void cldeVarchar::init() {
@@ -53,6 +53,8 @@ namespace Cloude {
 
                 void cldeVarchar::init(const char *value) {
                     _value = strdup(value);
+                    memset(_valueArray, 0, 255);
+                    strcpy(_valueArray, "Hello World");
                 }
             }
         }

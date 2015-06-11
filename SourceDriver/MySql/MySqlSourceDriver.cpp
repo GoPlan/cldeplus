@@ -122,11 +122,12 @@ namespace Cloude {
                                       auto &value = field->getValue();
 
                                       auto ptrLength = field->getColumn()->PointerToLengthVariable();
+                                      auto ptr = value->RawPointerToValueBuffer();
 
                                       command->PtrParamsBind[index].is_null = 0;
                                       command->PtrParamsBind[index].error = 0;
                                       command->PtrParamsBind[index].length = static_cast<unsigned long *>(ptrLength);
-                                      command->PtrResultBind[index].buffer = value->RawPointerToValueBuffer();
+                                      command->PtrResultBind[index].buffer = ptr;
 
                                       setupBindBufferTypeAndLength(field, &command->PtrParamsBind[index]);
 
@@ -153,10 +154,12 @@ namespace Cloude {
                                       auto &field = entity->operator[](column->getName());
                                       auto &value = field->getValue();
 
+                                      auto ptrValue = value->RawPointerToValueBuffer();
+
                                       command->PtrResultBind[index].is_null = &command->PtrResultIsNull[index];
                                       command->PtrResultBind[index].error = &command->PtrResultError[index];
                                       command->PtrResultBind[index].length = &command->PtrResultLength[index];
-                                      command->PtrResultBind[index].buffer = value->RawPointerToValueBuffer();
+                                      command->PtrResultBind[index].buffer = ptrValue;
 
                                       setupBindBufferTypeAndLength(field, &command->PtrResultBind[index]);
 

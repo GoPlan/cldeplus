@@ -33,6 +33,7 @@ namespace Cloude {
 
                 private:
                     char *_value;
+                    char _valueArray[255];
 
                     void init();
                     void init(const char *value);

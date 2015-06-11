@@ -31,9 +31,6 @@ namespace Cloude {
                     auto spCodeValue = Foundation::Data::cldeValueFactory::CreateVarchar(code);
                     auto spNameValue = Foundation::Data::cldeValueFactory::CreateVarchar(name);
 
-                    cout << spCodeValue->ToCString() << endl;
-                    cout << spNameValue->ToCString() << endl;
-
                     spFieldCode->setValue(spCodeValue);
 
                     auto initFieldList{spFieldCode};
