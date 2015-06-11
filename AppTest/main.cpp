@@ -6,6 +6,7 @@
 #include "Store/Test/PostgreStore.hpp"
 #include "Store/Test/MongoDbStore.hpp"
 #include "Store/Test/SQLiteStore.hpp"
+#include "Query/Predicate.hpp"
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);

@@ -13,7 +13,8 @@ namespace Cloude {
             namespace Comparative {
                 class GreaterOrEqual : public PredicateLeaf {
                 public:
-                    GreaterOrEqual() = default;
+                    GreaterOrEqual(const Column &column, const Type::cldeValue &value)
+                            : PredicateLeaf(column, value) { };
                     virtual ~GreaterOrEqual() = default;
                     GreaterOrEqual(const GreaterOrEqual &rhs) = default;
                     GreaterOrEqual &operator=(const GreaterOrEqual &rhs) = default;

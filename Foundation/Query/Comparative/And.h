@@ -20,6 +20,7 @@ namespace Cloude {
                     And &operator=(const And &rhs) = default;
 
                     // Predicate
+                    const Column &getColumn() const override;
                     const Enumeration::ComparativeType &getType() const override { return _type; };
                     const bool isComposite() const override { return true; }
                     const Type::cldeValue &getValue() const override {

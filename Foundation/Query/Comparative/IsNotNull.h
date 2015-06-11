@@ -5,17 +5,24 @@
 #ifndef CLOUD_E_CPLUS_ISNOTNULL_H
 #define CLOUD_E_CPLUS_ISNOTNULL_H
 
+#include "../PredicateLeaf.h"
+
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
-                class IsNotNull {
+                class IsNotNull : public PredicateLeaf {
                 public:
-                    IsNotNull() = default;
+                    IsNotNull(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
                     virtual ~IsNotNull() = default;
                     IsNotNull(const IsNotNull &rhs) = default;
                     IsNotNull &operator=(const IsNotNull &rhs) = default;
 
+                    // PredicateLeaf
+                    const Enumeration::ComparativeType &getType() const override;
+
+                private:
+                    static Enumeration::ComparativeType _type;
                 };
             }
         }

@@ -118,7 +118,7 @@ add_library(foundation STATIC
     Foundation/Query/Comparative.h
     Foundation/Query/PredicateLeaf.cpp
     Foundation/Query/PredicateLeaf.h
-    )
+    Foundation/Query/Query.h)
 
 
 add_library(application STATIC
@@ -143,7 +143,8 @@ add_library(application STATIC
     Application/Mapper/EnquiryMap.cpp
     Application/Mapper/EnquiryMap.h
     Application/Mapper/EnquiryLoader.cpp
-    Application/Mapper/EnquiryLoader.h)
+    Application/Mapper/EnquiryLoader.h
+    AppTest/Query/Predicate.hpp)
 
 
 add_library(sourcedriver STATIC

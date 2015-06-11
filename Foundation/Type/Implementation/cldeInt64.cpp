@@ -42,6 +42,11 @@ namespace Cloude {
                 }
 
                 const char *cldeInt64::ToCString() const {
+
+                    if (_string.empty()) {
+                        _string.assign(std::to_string(_value));
+                    }
+
                     return _string.c_str();
                 }
 

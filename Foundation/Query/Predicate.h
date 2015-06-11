@@ -16,7 +16,7 @@ namespace Cloude {
             class Predicate {
             public:
                 Predicate() = default;
-                virtual ~Predicate() = 0;
+                virtual ~Predicate() = default;
                 Predicate(const Predicate &srcExpression) = default;
                 Predicate &operator=(const Predicate &srcExpression) = default;
 

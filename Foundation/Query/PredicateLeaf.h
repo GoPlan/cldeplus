@@ -13,7 +13,7 @@ namespace Cloude {
             class PredicateLeaf : public Predicate {
             public:
                 PredicateLeaf(const Column &column, const Type::cldeValue &value) : _column(column), _value(value) { };
-                virtual ~PredicateLeaf() = 0;
+                virtual ~PredicateLeaf() = default;
                 PredicateLeaf(const PredicateLeaf &rhs) = default;
                 PredicateLeaf &operator=(const PredicateLeaf &rhs) = default;
 

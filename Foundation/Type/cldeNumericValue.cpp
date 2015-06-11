@@ -13,11 +13,13 @@ namespace Cloude {
                 //
             }
 
-            cldeValueCategory cldeNumericValue::getCategory() {
-                return cldeValueCategory::Numeric;
+            cldeValueCategory cldeNumericValue::_category = cldeValueCategory::Numeric;
+
+            const cldeValueCategory &cldeNumericValue::getCategory() const {
+                return _category;
             }
 
-            bool cldeNumericValue::isNumeric() {
+            bool cldeNumericValue::isNumeric() const {
                 return true;
             }
         }

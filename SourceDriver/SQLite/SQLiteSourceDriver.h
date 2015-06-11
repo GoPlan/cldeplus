@@ -18,7 +18,7 @@ namespace Cloude {
                       public Foundation::Query::Contract::IPredicationFormatter {
 
             public:
-                using Predication = Foundation::Query::Predicate;
+                using Predicate = Foundation::Query::Predicate;
                 using Options = struct {
                     std::string ConnectionString;
                 };
@@ -39,10 +39,10 @@ namespace Cloude {
                 int Insert(std::shared_ptr<Foundation::Entity> &entity) const;
                 int Save(std::shared_ptr<Foundation::Entity> &entity) const;
                 int Delete(std::shared_ptr<Foundation::Entity> &entity) const;
-                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predication> &expr) const override;
+                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
 
                 // IPredicationFormatterPredication
-                const std::string CopyFormat(const Predication &predicate) const override;
+                const std::string CopyFormat(const Predicate &predicate) const override;
 
             private:
                 class SQLiteApiImpl;

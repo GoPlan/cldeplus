@@ -18,14 +18,17 @@ namespace Cloude {
                 cldeCharacterValue(const cldeCharacterValue &rhs) = default;
                 cldeCharacterValue &operator=(const cldeCharacterValue &rhs) = default;
 
-                cldeValueCategory getCategory() override;
-                bool isNumeric() override;
+                const cldeValueCategory & getCategory() const override;
+                bool isNumeric() const override;
 
                 virtual cldeValue &operator+(const cldeValue &rhs) override;
                 virtual cldeValue &operator-(const cldeValue &rhs) override;
                 virtual cldeValue &operator*(const cldeValue &rhs) override;
                 virtual cldeValue &operator/(const cldeValue &rhs) override;
                 virtual cldeValue &operator%(const cldeValue &rhs) override;
+
+            private:
+                static cldeValueCategory _category;
             };
         }
     }

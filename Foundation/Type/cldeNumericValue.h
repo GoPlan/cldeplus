@@ -18,8 +18,12 @@ namespace Cloude {
                 cldeNumericValue(const cldeNumericValue &rhs) = default;
                 cldeNumericValue &operator=(const cldeNumericValue &rhs) = default;
 
-                virtual cldeValueCategory getCategory() override;
-                bool isNumeric() override;
+                const cldeValueCategory &getCategory() const override;
+                bool isNumeric() const override;
+
+            private:
+                static cldeValueCategory _category;
+
             };
         }
     }

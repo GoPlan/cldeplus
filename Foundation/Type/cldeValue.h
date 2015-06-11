@@ -23,8 +23,8 @@ namespace Cloude {
                 cldeValue(const cldeValue &rhs) = default;
                 virtual cldeValue &operator=(const cldeValue &rhs) = default;
 
-                virtual cldeValueCategory getCategory() = 0;
-                virtual bool isNumeric() = 0;
+                virtual const cldeValueCategory & getCategory() const = 0;
+                virtual bool isNumeric() const = 0;
                 virtual void *RawPointerToValueBuffer() = 0;
 
                 void *RawPointerToValueLength() {
