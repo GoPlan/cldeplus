@@ -9,7 +9,7 @@
 #include <vector>
 #include "EntityProxy.h"
 #include "EntityStore.h"
-#include "Query/Predication.h"
+#include "Query/Predicate.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -21,9 +21,9 @@ namespace Cloude {
             EntityQuery &operator=(const EntityQuery &srcEntityQuery) = default;
 
             std::vector<std::shared_ptr<EntityProxy>>
-                    Compose(const std::shared_ptr<Query::Predication> &predicate);
+                    Compose(const std::shared_ptr<Query::Predicate> &predicate);
             std::vector<std::shared_ptr<EntityProxy>>
-                    ComposeGetFirst(const std::shared_ptr<Query::Predication> &predicate);
+                    ComposeGetFirst(const std::shared_ptr<Query::Predicate> &predicate);
 
         private:
             const EntityMap &_entityMap;

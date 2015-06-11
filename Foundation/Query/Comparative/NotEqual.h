@@ -8,7 +8,7 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
-            namespace Comparator {
+            namespace Comparative {
                 class NotEqual {
                 public:
                     NotEqual() = default;

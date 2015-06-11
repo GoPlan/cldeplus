@@ -5,16 +5,25 @@
 #ifndef CLOUD_E_CPLUS_GREATEROREQUAL_H
 #define CLOUD_E_CPLUS_GREATEROREQUAL_H
 
+#include "../PredicateLeaf.h"
+
 namespace Cloude {
     namespace Foundation {
         namespace Query {
-            namespace Comparator {
-                class GreaterOrEqual {
+            namespace Comparative {
+                class GreaterOrEqual : public PredicateLeaf {
                 public:
                     GreaterOrEqual() = default;
                     virtual ~GreaterOrEqual() = default;
                     GreaterOrEqual(const GreaterOrEqual &rhs) = default;
                     GreaterOrEqual &operator=(const GreaterOrEqual &rhs) = default;
+
+                    // PredicateLeaf
+                    const Enumeration::ComparativeType &getType() const override;
+
+                private:
+                    static Enumeration::ComparativeType _type;
+
                 };
             }
         }

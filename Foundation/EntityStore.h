@@ -38,9 +38,7 @@ namespace Cloude {
             void Clear();
             unsigned long Size() const;
 
-            const EntityMap &getEntityMap() const {
-                return _entityMap;
-            }
+            const EntityMap &getEntityMap() const { return _entityMap; }
 
         protected:
             const EntityMap &_entityMap;

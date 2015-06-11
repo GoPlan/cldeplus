@@ -9,7 +9,7 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Enumeration {
-                enum class ComparatorType {
+                enum class ComparativeType {
                     And,
                     Or,
                     Equal,

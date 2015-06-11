@@ -20,7 +20,7 @@ namespace Cloude {
 
             class MySqlSourceDriver : public Foundation::EntitySourceDriver {
             public:
-                using Predicate = Foundation::Query::Predication;
+                using Predicate = Foundation::Query::Predicate;
                 using Entity = Foundation::Entity;
                 using Column = Foundation::Column;
                 using Field = Foundation::Field;
@@ -51,25 +51,7 @@ namespace Cloude {
 
                 std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
 
-                void setGetStatement(const std::string &getStatement) {
-                    _getStatement = getStatement;
-                }
-
-                void setInsertStatement(const std::string &insertStatement) {
-                    _insertStatement = insertStatement;
-                }
-
-                void setUpdateStatement(const std::string &updateStatement) {
-                    _updateStatement = updateStatement;
-                }
-
-                void setDeleteStatement(const std::string &deleteStatement) {
-                    _deleteStatement = deleteStatement;
-                }
-
-                Options &getOptionArgs() {
-                    return _optionArgs;
-                }
+                Options &getOptionArgs() { return _optionArgs; }
 
             private:
                 class MySqlApiImpl;

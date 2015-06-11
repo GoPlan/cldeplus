@@ -34,9 +34,7 @@ namespace Cloude {
             bool HasField(const std::string &fieldName);
             unsigned long Size();
 
-            const std::shared_ptr<Identity> &getIdentity() {
-                return _identity;
-            }
+            const std::shared_ptr<Identity> &getIdentity() { return _identity; }
 
         private:
             const std::shared_ptr<Identity> _identity;

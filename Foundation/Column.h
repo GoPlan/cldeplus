@@ -27,29 +27,11 @@ namespace Cloude {
                    size_t length,
                    Foundation::Type::cldeValueType dataType);
 
-            size_t *PointerToLengthVariable() {
-                return &_length;
-            }
-
-            const std::string &getDatasourceName() const {
-                return _datasourceName;
-            }
-
-            const std::string &getName() const {
-                return _name;
-            }
-
-            const Foundation::Type::cldeValueType &getDataType() const {
-                return _dataType;
-            }
-
-            size_t getLength() const {
-                return _length;
-            }
-
-            void setLength(size_t length) {
-                _length = length;
-            }
+            const std::string &getDatasourceName() const { return _datasourceName; }
+            const std::string &getName() const { return _name; }
+            const Foundation::Type::cldeValueType &getDataType() const { return _dataType; }
+            size_t getLength() const { return _length; }
+            void setLength(size_t length) { _length = length; }
 
         private:
             std::string _name;

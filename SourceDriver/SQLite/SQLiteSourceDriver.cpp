@@ -2,11 +2,12 @@
 // Created by LE, Duc Anh on 6/7/15.
 //
 
-
 #include <stdlib.h>
 #include <Foundation/Helper/SqlGenerator.h>
 #include <Foundation/Type/cldeValueFactory.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
+#include <Foundation/Query/Predicate.h>
+#include <Foundation/Query/Comparative.h>
 #include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
 
@@ -327,8 +328,98 @@ namespace Cloude {
                 return 1;
             }
 
-            std::vector<Foundation::EntityProxy> SQLiteSourceDriver::Select(std::shared_ptr<Predicate> &expr) const {
+            std::vector<Foundation::EntityProxy> SQLiteSourceDriver::Select(std::shared_ptr<Predication> &expr) const {
                 return std::vector<Foundation::EntityProxy>();
+            }
+
+            const std::string SQLiteSourceDriver::CopyFormat(const Predication &predicate) const {
+
+                using PredAnd = Foundation::Query::Comparative::And;
+                using PredOr = Foundation::Query::Comparative::Or;
+
+                std::string strPred;
+
+                switch (predicate.getType()) {
+                    case Foundation::Query::Enumeration::ComparativeType::And: {
+                        auto &pred = dynamic_cast<const PredAnd &>(predicate);
+                        strPred = "(" + pred.getLhs().CopyToString(*this) + ")" +
+                                  " AND " +
+                                  "(" + pred.getRhs().CopyToString(*this) + ")";
+                        break;
+                    }
+                    case Foundation::Query::Enumeration::ComparativeType::Or: {
+                        auto &pred = dynamic_cast<const PredAnd &>(predicate);
+                        strPred = "(" + pred.getLhs().CopyToString(*this) + ")" +
+                                  " OR " +
+                                  "(" + pred.getRhs().CopyToString(*this) + ")";
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::Equal: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " = " + value.ToCString();
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::NotEqual: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " != " + value.ToCString();
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::Greater: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " > " + value.ToCString();
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::GreaterOrEqual: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " >= " + value.ToCString();
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::Lesser: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " < " + value.ToCString();
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::LesserOrEqual: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " <= " + value.ToCString();
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::Like: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " LIKE " + value.ToCString();
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::NotLike: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " NOT LIKE " + value.ToCString();
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::IsNull: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " IS NULL " + value.ToCString();
+                        break;
+                    };
+                    case Foundation::Query::Enumeration::ComparativeType::IsNotNull: {
+                        auto const &column = predicate.getColumn();
+                        auto const &value = predicate.getValue();
+                        strPred = column.getDatasourceName() + " IS NOT NULL " + value.ToCString();
+                        break;
+                    };
+                    default: {
+                        //
+                    };
+                }
+
+                return strPred;
             }
         }
     }

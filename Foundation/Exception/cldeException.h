@@ -19,9 +19,7 @@ namespace Cloude {
                 cldeException(const cldeException &rhs) = default;
                 cldeException &operator=(const cldeException &rhs) = default;
 
-                virtual const char *what() const noexcept override {
-                    return _message.c_str();
-                };
+                virtual const char *what() const noexcept override { return _message.c_str(); };
 
             protected:
                 std::string _message;

@@ -26,21 +26,10 @@ namespace Cloude {
                 return TableNameCore();
             }
 
-            const std::vector<std::shared_ptr<Column>> &getColumnsForKey() const {
-                return _columnsForKey;
-            }
-
-            const std::vector<std::shared_ptr<Column>> &getColumnsForGet() const {
-                return _columnsForGet;
-            }
-
-            const std::vector<std::shared_ptr<Column>> &getColumnsForUpdate() const {
-                return _columnsForUpdate;
-            }
-
-            const std::vector<std::shared_ptr<Column>> &getColumnsForSelect() const {
-                return _columnsForSelect;
-            }
+            const std::vector<std::shared_ptr<Column>> &getColumnsForKey() const { return _columnsForKey; }
+            const std::vector<std::shared_ptr<Column>> &getColumnsForGet() const { return _columnsForGet; }
+            const std::vector<std::shared_ptr<Column>> &getColumnsForUpdate() const { return _columnsForUpdate; }
+            const std::vector<std::shared_ptr<Column>> &getColumnsForSelect() const { return _columnsForSelect; }
 
         protected:
             std::vector<std::shared_ptr<Column>> _columnsForKey;

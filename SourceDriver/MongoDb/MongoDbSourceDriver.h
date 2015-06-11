@@ -15,7 +15,7 @@ namespace Cloude {
         namespace MongoDb {
             class MongoDbSourceDriver : public Foundation::EntitySourceDriver {
             public:
-                using Predicate = Foundation::Query::Predication;
+                using Predicate = Foundation::Query::Predicate;
                 using Entity = Foundation::Entity;
                 using EntityMap = Foundation::EntityMap;
                 using Options = struct {
@@ -44,9 +44,7 @@ namespace Cloude {
                 void Connect();
                 void Disconnect();
 
-                Options &getOptionArgs() {
-                    return _optionArgs;
-                }
+                Options &getOptionArgs() { return _optionArgs; }
 
             private:
                 class MongoDbApiImpl;

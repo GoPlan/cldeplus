@@ -27,9 +27,7 @@ namespace Cloude {
             void setMultiFields(const std::initializer_list<Field *> &ptrFieldList);
             void setMultiFields(const std::initializer_list<std::shared_ptr<Field>> &spFieldList);
 
-            const FieldsMap &getFieldsMap() {
-                return _fieldsMap;
-            };
+            const FieldsMap &getFieldsMap() { return _fieldsMap; };
 
         protected:
             FieldsMap _fieldsMap;

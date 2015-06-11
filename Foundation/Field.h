@@ -20,17 +20,9 @@ namespace Cloude {
             Field(const Field &srcField) = default;
             Field &operator=(const Field &srcField) = default;
 
-            const std::shared_ptr<Column> &getColumn() const {
-                return _column;
-            }
-
-            const std::shared_ptr<Foundation::Type::cldeValue> &getValue() const {
-                return _value;
-            }
-
-            void setValue(const std::shared_ptr<Foundation::Type::cldeValue> &value) {
-                _value = value;
-            }
+            const std::shared_ptr<Column> &getColumn() const { return _column; }
+            const std::shared_ptr<Foundation::Type::cldeValue> &getValue() const { return _value; }
+            void setValue(const std::shared_ptr<Foundation::Type::cldeValue> &value) { _value = value; }
 
         private:
             std::shared_ptr<Column> _column;

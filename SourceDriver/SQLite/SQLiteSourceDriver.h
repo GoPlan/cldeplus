@@ -13,9 +13,12 @@ namespace Cloude {
     namespace SourceDriver {
         namespace SQLite {
 
-            class SQLiteSourceDriver : public Foundation::EntitySourceDriver {
+            class SQLiteSourceDriver
+                    : public Foundation::EntitySourceDriver,
+                      public Foundation::Query::Contract::IPredicationFormatter {
+
             public:
-                using Predicate = Foundation::Query::Predication;
+                using Predication = Foundation::Query::Predicate;
                 using Options = struct {
                     std::string ConnectionString;
                 };
@@ -26,19 +29,20 @@ namespace Cloude {
                 SQLiteSourceDriver(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
                 SQLiteSourceDriver &operator=(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
 
+                // Locals
                 void Connect();
                 void Disconnect();
+                Options &getOptionArgs() { return _optionArgs; }
 
+                // EntitySourceDriver
                 int Load(std::shared_ptr<Foundation::Entity> &entity) const;
                 int Insert(std::shared_ptr<Foundation::Entity> &entity) const;
                 int Save(std::shared_ptr<Foundation::Entity> &entity) const;
                 int Delete(std::shared_ptr<Foundation::Entity> &entity) const;
+                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predication> &expr) const override;
 
-                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
-
-                Options &getOptionArgs() {
-                    return _optionArgs;
-                }
+                // IPredicationFormatterPredication
+                const std::string CopyFormat(const Predication &predicate) const override;
 
             private:
                 class SQLiteApiImpl;

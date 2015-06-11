@@ -10,7 +10,7 @@
 #include "EntityMap.h"
 #include "EntityProxy.h"
 #include "Entity.h"
-#include "Query/Predication.h"
+#include "Query/Predicate.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -27,7 +27,7 @@ namespace Cloude {
             virtual int Save(std::shared_ptr<Entity> &entity) const = 0;
             virtual int Delete(std::shared_ptr<Entity> &entity) const = 0;
 
-            virtual std::vector<EntityProxy> Select(std::shared_ptr<Query::Predication> &expr) const = 0;
+            virtual std::vector<EntityProxy> Select(std::shared_ptr<Query::Predicate> &expr) const = 0;
 
         protected:
             const EntityMap &_entityMap;

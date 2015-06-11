@@ -47,34 +47,78 @@ add_library(foundation STATIC
     Foundation/EntityProxy.h
     Foundation/EntityQuery.cpp
     Foundation/EntityQuery.h
-    Foundation/Query/Predication.cpp
-    Foundation/Query/Predication.h
-    Foundation/Query/Comparator/And.cpp
-    Foundation/Query/Comparator/And.h
-    Foundation/Query/Comparator/Or.cpp
-    Foundation/Query/Comparator/Or.h
-    Foundation/Query/Comparator/Equal.cpp
-    Foundation/Query/Comparator/Equal.h
-    Foundation/Query/Comparator/Greater.cpp
-    Foundation/Query/Comparator/Greater.h
-    Foundation/Query/Comparator/GreaterOrEqual.cpp
-    Foundation/Query/Comparator/GreaterOrEqual.h
-    Foundation/Query/Comparator/Lesser.cpp
-    Foundation/Query/Comparator/Lesser.h
-    Foundation/Query/Comparator/LesserOrEqual.cpp
-    Foundation/Query/Comparator/LesserOrEqual.h
-    Foundation/Query/Comparator/NotEqual.cpp
-    Foundation/Query/Comparator/NotEqual.h
-    Foundation/Query/Comparator/Like.cpp
-    Foundation/Query/Comparator/Like.h
-    Foundation/Query/Comparator/NotLike.cpp
-    Foundation/Query/Comparator/NotLike.h
-    Foundation/Query/Comparator/IsNull.cpp
-    Foundation/Query/Comparator/IsNull.h
-    Foundation/Query/Comparator/IsNotNull.cpp
-    Foundation/Query/Comparator/IsNotNull.h
-    Foundation/Query/Enumeration/ComparatorType.cpp
-    Foundation/Query/Enumeration/ComparatorType.h Foundation/Query/Enumeration/ComparatorType.cpp Foundation/Common/IEquatable.h Foundation/Type/cldeValue.cpp Foundation/Type/cldeValue.h Foundation/Type/cldeValueType.cpp Foundation/Type/Implementation/cldeInt32.cpp Foundation/Type/Implementation/cldeInt32.h Foundation/Type/Implementation/cldeInt64.cpp Foundation/Type/Implementation/cldeInt64.h Foundation/Type/Implementation/cldeVarchar.cpp Foundation/Type/Implementation/cldeVarchar.h Foundation/Type/Implementation/cldeDouble.cpp Foundation/Type/Implementation/cldeDouble.h Foundation/Type/Implementation/cldeText.cpp Foundation/Type/Implementation/cldeText.h Foundation/Type/Implementation/cldeInt16.cpp Foundation/Type/Implementation/cldeInt16.h Foundation/Type/cldeNumericValue.cpp Foundation/Type/cldeNumericValue.h Foundation/Type/cldeCharacterValue.cpp Foundation/Type/cldeCharacterValue.h Foundation/Type/Implementation/cldeFloat.cpp Foundation/Type/Implementation/cldeFloat.h Foundation/Type/Implementation/cldePoint.cpp Foundation/Type/Implementation/cldePoint.h Foundation/Type/Implementation/cldeMatrix.cpp Foundation/Type/Implementation/cldeMatrix.h Foundation/Type/cldeValueFactory.cpp Foundation/Type/cldeValueFactory.h Foundation/Common/IComputable.h Foundation/Common/ICompoundAssignable.h Foundation/Type/Implementation/cldeString.cpp Foundation/Type/Implementation/cldeString.h Foundation/Exception/cldeNonSupportedFunctionException.cpp Foundation/Exception/cldeNonSupportedFunctionException.h Foundation/Exception/cldeException.cpp Foundation/Exception/cldeException.h Foundation/Type/cldeData.h Foundation/Common/IParsable.h)
+    Foundation/Query/Predicate.cpp
+    Foundation/Query/Predicate.h
+    Foundation/Query/Comparative/And.cpp
+    Foundation/Query/Comparative/And.h
+    Foundation/Query/Comparative/Or.cpp
+    Foundation/Query/Comparative/Or.h
+    Foundation/Query/Comparative/Equal.cpp
+    Foundation/Query/Comparative/Equal.h
+    Foundation/Query/Comparative/Greater.cpp
+    Foundation/Query/Comparative/Greater.h
+    Foundation/Query/Comparative/GreaterOrEqual.cpp
+    Foundation/Query/Comparative/GreaterOrEqual.h
+    Foundation/Query/Comparative/Lesser.cpp
+    Foundation/Query/Comparative/Lesser.h
+    Foundation/Query/Comparative/LesserOrEqual.cpp
+    Foundation/Query/Comparative/LesserOrEqual.h
+    Foundation/Query/Comparative/NotEqual.cpp
+    Foundation/Query/Comparative/NotEqual.h
+    Foundation/Query/Comparative/Like.cpp
+    Foundation/Query/Comparative/Like.h
+    Foundation/Query/Comparative/NotLike.cpp
+    Foundation/Query/Comparative/NotLike.h
+    Foundation/Query/Comparative/IsNull.cpp
+    Foundation/Query/Comparative/IsNull.h
+    Foundation/Query/Comparative/IsNotNull.cpp
+    Foundation/Query/Comparative/IsNotNull.h
+    Foundation/Query/Enumeration/ComparativeType.cpp
+    Foundation/Query/Enumeration/ComparativeType.h
+    Foundation/Common/IEquatable.h
+    Foundation/Type/cldeValue.cpp
+    Foundation/Type/cldeValue.h
+    Foundation/Type/cldeValueType.cpp
+    Foundation/Type/Implementation/cldeInt32.cpp
+    Foundation/Type/Implementation/cldeInt32.h
+    Foundation/Type/Implementation/cldeInt64.cpp
+    Foundation/Type/Implementation/cldeInt64.h
+    Foundation/Type/Implementation/cldeVarchar.cpp
+    Foundation/Type/Implementation/cldeVarchar.h
+    Foundation/Type/Implementation/cldeDouble.cpp
+    Foundation/Type/Implementation/cldeDouble.h
+    Foundation/Type/Implementation/cldeText.cpp
+    Foundation/Type/Implementation/cldeText.h
+    Foundation/Type/Implementation/cldeInt16.cpp
+    Foundation/Type/Implementation/cldeInt16.h
+    Foundation/Type/cldeNumericValue.cpp
+    Foundation/Type/cldeNumericValue.h
+    Foundation/Type/cldeCharacterValue.cpp
+    Foundation/Type/cldeCharacterValue.h
+    Foundation/Type/Implementation/cldeFloat.cpp
+    Foundation/Type/Implementation/cldeFloat.h
+    Foundation/Type/Implementation/cldePoint.cpp
+    Foundation/Type/Implementation/cldePoint.h
+    Foundation/Type/Implementation/cldeMatrix.cpp
+    Foundation/Type/Implementation/cldeMatrix.h
+    Foundation/Type/cldeValueFactory.cpp
+    Foundation/Type/cldeValueFactory.h
+    Foundation/Common/IComputable.h
+    Foundation/Common/ICompoundAssignable.h
+    Foundation/Type/Implementation/cldeString.cpp
+    Foundation/Type/Implementation/cldeString.h
+    Foundation/Exception/cldeNonSupportedFunctionException.cpp
+    Foundation/Exception/cldeNonSupportedFunctionException.h
+    Foundation/Exception/cldeException.cpp
+    Foundation/Exception/cldeException.h
+    Foundation/Type/cldeData.h
+    Foundation/Common/IParsable.h
+    Foundation/Common/IFormattable.h
+    Foundation/Query/Contract/IPredicationFormatter.h
+    Foundation/Query/Comparative.h
+    Foundation/Query/PredicateLeaf.cpp
+    Foundation/Query/PredicateLeaf.h
+    )
 
 
 add_library(application STATIC
@@ -123,7 +167,11 @@ add_library(sourcedriver STATIC
     SourceDriver/SQLite/SQLiteSourceException.h
     SourceDriver/SQLite/Amalgamation/sqlite3.h
     SourceDriver/SQLite/Amalgamation/sqlite3ext.h
-    SourceDriver/SQLite/Amalgamation/sqlite3.c SourceDriver/DynamoDb/DynamoDbSourceDriver.cpp SourceDriver/DynamoDb/DynamoDbSourceDriver.h SourceDriver/DynamoDb/DynamoDbSourceException.cpp SourceDriver/DynamoDb/DynamoDbSourceException.h)
+    SourceDriver/SQLite/Amalgamation/sqlite3.c
+    SourceDriver/DynamoDb/DynamoDbSourceDriver.cpp
+    SourceDriver/DynamoDb/DynamoDbSourceDriver.h
+    SourceDriver/DynamoDb/DynamoDbSourceException.cpp
+    SourceDriver/DynamoDb/DynamoDbSourceException.h)
 
 
 add_library(examples STATIC

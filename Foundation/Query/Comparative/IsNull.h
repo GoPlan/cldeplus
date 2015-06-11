@@ -8,7 +8,7 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
-            namespace Comparator {
+            namespace Comparative {
                 class IsNull {
                 public:
                     IsNull() = default;

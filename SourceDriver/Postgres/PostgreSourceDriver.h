@@ -30,7 +30,7 @@ namespace Cloude {
 
             class PostgreSourceDriver : public Foundation::EntitySourceDriver {
             public:
-                using Predicate = Foundation::Query::Predication;
+                using Predicate = Foundation::Query::Predicate;
                 using Options = struct {
                     std::string Host;
                     std::string User;
@@ -55,9 +55,7 @@ namespace Cloude {
 
                 std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
 
-                Options &getOptionArgs() {
-                    return _optionArgs;
-                }
+                Options &getOptionArgs() { return _optionArgs; }
 
             private:
                 class PgApiImpl;
