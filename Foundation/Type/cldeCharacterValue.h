@@ -5,6 +5,7 @@
 #ifndef CLOUD_E_CPLUS_CLDECHARACTERVALUE_H
 #define CLOUD_E_CPLUS_CLDECHARACTERVALUE_H
 
+#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include "cldeValue.h"
 
 namespace Cloude {
@@ -19,6 +20,12 @@ namespace Cloude {
 
                 cldeValueCategory getCategory() override;
                 bool isNumeric() override;
+
+                virtual cldeValue &operator+(const cldeValue &rhs) override;
+                virtual cldeValue &operator-(const cldeValue &rhs) override;
+                virtual cldeValue &operator*(const cldeValue &rhs) override;
+                virtual cldeValue &operator/(const cldeValue &rhs) override;
+                virtual cldeValue &operator%(const cldeValue &rhs) override;
             };
         }
     }

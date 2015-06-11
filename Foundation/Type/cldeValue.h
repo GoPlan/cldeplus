@@ -14,7 +14,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             class cldeValue : public Common::IPrintable,
-                              public Common::IEquatable {
+                              public Common::IEquatable,
+                              public Common::IComputable<cldeValue> {
+
             public:
                 cldeValue(cldeValueType dataType, size_t length);
                 virtual ~cldeValue() = default;
