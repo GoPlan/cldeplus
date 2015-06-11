@@ -361,65 +361,57 @@ namespace Cloude {
                     };
                     case Foundation::Query::Enumeration::ComparativeType::NotEqual: {
                         auto const &column = predicate.getColumn();
-                        auto const &value = predicate.getValue();
                         strPred = column.getDatasourceName() + " != ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::Greater: {
                         auto const &column = predicate.getColumn();
-                        auto const &value = predicate.getValue();
                         strPred = column.getDatasourceName() + " > ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::GreaterOrEqual: {
                         auto const &column = predicate.getColumn();
-                        auto const &value = predicate.getValue();
                         strPred = column.getDatasourceName() + " >= ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::Lesser: {
                         auto const &column = predicate.getColumn();
-                        auto const &value = predicate.getValue();
                         strPred = column.getDatasourceName() + " < ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::LesserOrEqual: {
                         auto const &column = predicate.getColumn();
-                        auto const &value = predicate.getValue();
                         strPred = column.getDatasourceName() + " <= ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::Like: {
                         auto const &column = predicate.getColumn();
-                        auto const &value = predicate.getValue();
                         strPred = column.getDatasourceName() + " LIKE ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::NotLike: {
                         auto const &column = predicate.getColumn();
-                        auto const &value = predicate.getValue();
                         strPred = column.getDatasourceName() + " NOT LIKE ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::IsNull: {
                         auto const &column = predicate.getColumn();
-                        auto const &value = predicate.getValue();
-                        strPred = column.getDatasourceName() + " IS NULL ";
+                        strPred = column.getDatasourceName() + " IS NULL";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::IsNotNull: {
                         auto const &column = predicate.getColumn();
-                        auto const &value = predicate.getValue();
-                        strPred = column.getDatasourceName() + " IS NOT NULL ";
+                        strPred = column.getDatasourceName() + " IS NOT NULL";
                         break;
-                    };
-                    default: {
-                        //
                     };
                 }
 
-                if (!predicate.isComposite()) {
+                if (!predicate.isComposite() &&
+                    (predicate.getType() != Foundation::Query::Enumeration::ComparativeType::IsNull &&
+                     predicate.getType() != Foundation::Query::Enumeration::ComparativeType::IsNotNull)) {
+
                     auto const &value = predicate.getValue();
+
                     switch (value.getCategory()) {
                         case Foundation::Type::cldeValueCategory::CharacterBased:
                             strPred += "'";

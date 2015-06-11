@@ -14,6 +14,16 @@ namespace Cloude {
                 const Enumeration::ComparativeType &IsNotNull::getType() const {
                     return _type;
                 }
+                const Column &IsNotNull::getColumn() const {
+                    return _column;
+                }
+                const bool IsNotNull::isComposite() const {
+                    return false;
+                }
+                const Type::cldeValue &IsNotNull::getValue() const {
+                    const char *msg = "IsNotNull comparator does not support getValue() method.";
+                    throw Exception::cldeNonSupportedFunctionException(msg);
+                }
             }
         }
     }

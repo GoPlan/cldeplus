@@ -22,17 +22,26 @@ namespace Cloude {
                 auto spEnquiryId_01 = Foundation::Type::cldeValueFactory::CreateInt64(1);
                 auto spEnquiryId_02 = Foundation::Type::cldeValueFactory::CreateInt64(2);
                 auto spEmail = Foundation::Type::cldeValueFactory::CreateVarchar(email);
+                auto spEmail_02 = Foundation::Type::cldeValueFactory::CreateVarchar(email);
 
                 Application::Mapper::EnquiryMap enquiryMap;
                 SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver(enquiryMap);
 
                 Foundation::Query::Comparative::Equal eqId_01(*enquiryMap.EnquiryId, *spEnquiryId_01);
-                Foundation::Query::Comparative::Greater gtId_02(*enquiryMap.EnquiryId, *spEnquiryId_02);
-                Foundation::Query::Comparative::Equal eqEmail(*enquiryMap.Email, *spEmail);
-                Foundation::Query::Comparative::And andIdEmail(eqId_01, eqEmail);
+                Foundation::Query::Comparative::GreaterOrEqual gtId_02(*enquiryMap.EnquiryId, *spEnquiryId_02);
+                Foundation::Query::Comparative::NotEqual neqEmail(*enquiryMap.Email, *spEmail);
+                Foundation::Query::Comparative::And andIdEmail(eqId_01, neqEmail);
                 Foundation::Query::Comparative::Or predOr(andIdEmail, gtId_02);
 
-                std::string predicate = sqliteSourceDriver.CopyFormat(predOr);
+                Foundation::Query::Comparative::Like likeEmail(*enquiryMap.Email, *spEmail_02);
+                Foundation::Query::Comparative::Or predOr2(predOr, likeEmail);
+
+                Foundation::Query::Comparative::LesserOrEqual ltId_01(*enquiryMap.EnquiryId, *spEnquiryId_01);
+                Foundation::Query::Comparative::IsNotNull isNullEmail(*enquiryMap.Email);
+                Foundation::Query::Comparative::Or predOr3(ltId_01, isNullEmail);
+                Foundation::Query::Comparative::And and03(predOr2, predOr3);
+
+                std::string predicate = sqliteSourceDriver.CopyFormat(and03);
 
                 cout << predicate << endl;
             }

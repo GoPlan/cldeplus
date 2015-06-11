@@ -4,6 +4,14 @@
 
 #include "NotEqual.h"
 
-
+namespace Cloude {
+    namespace Foundation {
+        namespace Query {
+            namespace Comparative {
+                Enumeration::ComparativeType NotEqual::_type = Enumeration::ComparativeType::NotEqual;
+            }
+        }
+    }
+}
 
 

@@ -8,7 +8,14 @@
 #include "Comparative/And.h"
 #include "Comparative/Or.h"
 #include "Comparative/Equal.h"
+#include "Comparative/NotEqual.h"
 #include "Comparative/Greater.h"
 #include "Comparative/GreaterOrEqual.h"
+#include "Comparative/Lesser.h"
+#include "Comparative/LesserOrEqual.h"
+#include "Comparative/Like.h"
+#include "Comparative/NotLike.h"
+#include "Comparative/IsNull.h"
+#include "Comparative/IsNotNull.h"
 
 #endif //CLOUD_E_CPLUS_COMPARATOR_H

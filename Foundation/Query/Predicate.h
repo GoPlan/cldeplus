@@ -23,8 +23,8 @@ namespace Cloude {
                 virtual const Column &getColumn() const = 0;
                 virtual const Enumeration::ComparativeType &getType() const = 0;
                 virtual const Type::cldeValue &getValue() const = 0;
-                virtual const bool isComposite() const { return false; }
 
+                virtual const bool isComposite() const { return false; }
                 virtual const std::string CopyToString(const Contract::IPredicationFormatter &formatter) const {
                     return formatter.CopyFormat(*this);
                 };
