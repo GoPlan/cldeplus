@@ -8,7 +8,7 @@
 #include <libpq-fe.h>
 #include <Foundation/Helper/SqlGenerator.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
-#include <Foundation/Data/cldeValueFactory.h>
+#include <Foundation/Type/cldeValueFactory.h>
 #include "PostgreSourceDriver.h"
 
 namespace Cloude {
@@ -101,44 +101,44 @@ namespace Cloude {
                                   });
                 }
 
-                std::string getTypeAlias(Foundation::Data::cldeValueType valueType) {
+                std::string getTypeAlias(Foundation::Type::cldeValueType valueType) {
 
                     switch (valueType) {
-                        case Foundation::Data::cldeValueType::Boolean:
+                        case Foundation::Type::cldeValueType::Boolean:
                             return "boolean";
-                        case Foundation::Data::cldeValueType::Byte:
+                        case Foundation::Type::cldeValueType::Byte:
                             return "bytea";
-                        case Foundation::Data::cldeValueType::Int16:
+                        case Foundation::Type::cldeValueType::Int16:
                             return "smallint";
-                        case Foundation::Data::cldeValueType::Int32:
+                        case Foundation::Type::cldeValueType::Int32:
                             return "integer";
-                        case Foundation::Data::cldeValueType::Int64:
+                        case Foundation::Type::cldeValueType::Int64:
                             return "bigint";
-                        case Foundation::Data::cldeValueType::UInt16:
+                        case Foundation::Type::cldeValueType::UInt16:
                             return "smallint";
-                        case Foundation::Data::cldeValueType::UInt32:
+                        case Foundation::Type::cldeValueType::UInt32:
                             return "integer";
-                        case Foundation::Data::cldeValueType::UInt64:
+                        case Foundation::Type::cldeValueType::UInt64:
                             return "bigint";
-                        case Foundation::Data::cldeValueType::Double:
+                        case Foundation::Type::cldeValueType::Double:
                             return "double";
-                        case Foundation::Data::cldeValueType::Float:
+                        case Foundation::Type::cldeValueType::Float:
                             return "real";
-                        case Foundation::Data::cldeValueType::Decimal:
+                        case Foundation::Type::cldeValueType::Decimal:
                             return "decimal";
-                        case Foundation::Data::cldeValueType::Numeric:
+                        case Foundation::Type::cldeValueType::Numeric:
                             return "numeric";
-                        case Foundation::Data::cldeValueType::Varchar:
+                        case Foundation::Type::cldeValueType::Varchar:
                             return "varchar";
-                        case Foundation::Data::cldeValueType::Currency:
+                        case Foundation::Type::cldeValueType::Currency:
                             return "money";
-                        case Foundation::Data::cldeValueType::Date:
+                        case Foundation::Type::cldeValueType::Date:
                             return "date";
-                        case Foundation::Data::cldeValueType::Time:
+                        case Foundation::Type::cldeValueType::Time:
                             return "time";
-                        case Foundation::Data::cldeValueType::Timestamp:
+                        case Foundation::Type::cldeValueType::Timestamp:
                             return "timestamp";
-                        case Foundation::Data::cldeValueType::Interval:
+                        case Foundation::Type::cldeValueType::Interval:
                             return "interval";
                         default:
                             throw Foundation::Exception::cldeNonSupportedDataTypeException();
@@ -150,7 +150,7 @@ namespace Cloude {
                                    const PGresult *ptrResult,
                                    std::shared_ptr<Entity> &entity) {
 
-                    using cldeFactory = Foundation::Data::cldeValueFactory;
+                    using cldeFactory = Foundation::Type::cldeValueFactory;
 
                     int resultCode = 0;
 
@@ -174,12 +174,12 @@ namespace Cloude {
                                       }
 
                                       switch (column->getDataType()) {
-                                          case Foundation::Data::cldeValueType::Int64:
+                                          case Foundation::Type::cldeValueType::Int64:
                                               field->setValue(cldeFactory::CreateInt64(atoll(PQgetvalue(ptrResult,
                                                                                                         0,
                                                                                                         index))));
                                               break;
-                                          case Foundation::Data::cldeValueType::Varchar:
+                                          case Foundation::Type::cldeValueType::Varchar:
                                               field->setValue(cldeFactory::CreateString(PQgetvalue(ptrResult,
                                                                                                    0,
                                                                                                    index)));

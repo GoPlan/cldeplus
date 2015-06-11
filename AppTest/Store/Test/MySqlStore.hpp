@@ -28,8 +28,8 @@ namespace Cloude {
 
                     auto spFieldCode = make_shared<Field>(StockGroupMap::Code);
 
-                    auto spCodeValue = Foundation::Data::cldeValueFactory::CreateVarchar(code);
-                    auto spNameValue = Foundation::Data::cldeValueFactory::CreateVarchar(name);
+                    auto spCodeValue = Foundation::Type::cldeValueFactory::CreateVarchar(code);
+                    auto spNameValue = Foundation::Type::cldeValueFactory::CreateVarchar(name);
 
                     spFieldCode->setValue(spCodeValue);
 
@@ -41,22 +41,19 @@ namespace Cloude {
                         auto spEntity = _entityStore.Create(spIdentity);
 
                         ASSERT_TRUE(spEntity.get() != 0);
-
-                        auto &spCodeFieldAlt = spEntity->getField("Code");
-                        auto &spCodeValueAlt = spCodeFieldAlt->getValue();
-                        auto codeLength = strlen(spCodeValueAlt->ToString().c_str());
-
-                        ASSERT_TRUE(codeLength > 0);
                         ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
                     }
 
                     // SAVE
                     {
                         auto spEntity = _entityStore.Get(spIdentity);
-                        auto spNameField = spEntity->operator[](StockGroupMap::UniqueName->getName());
+                        auto &spCodeFieldAlt = spEntity->getField("Code");
+                        auto &spNameFieldAlt = spEntity->operator[](StockGroupMap::UniqueName->getName());
+                        auto &spCodeValueAlt = spCodeFieldAlt->getValue();
 
-                        spNameField->setValue(spNameValue);
+                        ASSERT_TRUE(strcmp(spCodeValueAlt->ToCString(), code) == 0);
 
+                        spNameFieldAlt->setValue(spNameValue);
                         _entityStore.Save(spEntity);
                     }
 
@@ -80,8 +77,8 @@ namespace Cloude {
                         auto &spCodeValueAlt = spCodeFieldAlt->getValue();
                         auto &spNameValueAlt = spNameFieldAlt->getValue();
 
-                        EXPECT_TRUE(strcmp(code, spCodeValueAlt->ToString().c_str()) == 0);
-                        EXPECT_TRUE(strcmp(name, spNameValueAlt->ToString().c_str()) == 0);
+                        EXPECT_TRUE(strncmp(code, spCodeValueAlt->ToCString(), spCodeValueAlt->getLength()) == 0);
+                        EXPECT_TRUE(strncmp(name, spNameValueAlt->ToCString(), spNameValueAlt->getLength()) == 0);
 
                         _entityStore.Delete(spEntity);
                     }

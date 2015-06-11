@@ -6,7 +6,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             namespace Implementation {
 
                 cldeString::cldeString(const char *string) : _value(string),
@@ -25,7 +25,9 @@ namespace Cloude {
                 }
 
                 void *cldeString::RawPointerToValueBuffer() {
-                    throw Exception::cldeNonSupportedFunctionException("Use Varchar instead");
+                    const char *msg = "String type does not support non-const RawPointerToValueBuffer." \
+                                                        "Use Varchar instead.";
+                    throw Exception::cldeNonSupportedFunctionException(msg);
                 }
 
                 const std::string cldeString::CopyToString() const {

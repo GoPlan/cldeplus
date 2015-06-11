@@ -12,7 +12,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             class cldeValue : public Common::IPrintable,
                               public Common::IEquatable {
             public:
@@ -25,11 +25,15 @@ namespace Cloude {
                 virtual bool isNumeric() = 0;
                 virtual void *RawPointerToValueBuffer() = 0;
 
+                void *RawPointerToValueLength() {
+                    return &_length;
+                }
+
                 cldeValueType &DataType() {
                     return _dataType;
                 }
 
-                size_t Size() {
+                size_t getLength() {
                     return _length;
                 }
 

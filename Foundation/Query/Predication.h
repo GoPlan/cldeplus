@@ -7,7 +7,7 @@
 
 #include <Foundation/Common/IPrintable.h>
 #include <Foundation/Query/Enumeration/ComparatorType.h>
-#include <Foundation/Data/cldeValue.h>
+#include <Foundation/Type/cldeValue.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -20,7 +20,7 @@ namespace Cloude {
                 Predication &operator=(const Predication &srcExpression) = default;
 
                 virtual Enumeration::ComparatorType getType() = 0;
-                virtual Data::cldeValue getValue() = 0;
+                virtual Type::cldeValue getValue() = 0;
             };
         }
     }

@@ -13,6 +13,6 @@
 #include "Foundation/EntityLoader.h"
 #include "Foundation/EntityStore.h"
 #include "Foundation/EntitySourceDriver.h"
-#include "Foundation/Data/cldeData.h"
+#include "Foundation/Type/cldeData.h"
 
 #endif //CLOUD_E_CPLUS_CLOUDE_H

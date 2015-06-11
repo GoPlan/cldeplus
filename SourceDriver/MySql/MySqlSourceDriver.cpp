@@ -7,6 +7,7 @@
 #include <mysql.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include <Foundation/Helper/SqlGenerator.h>
+#include <Foundation/Type/cldeValueFactory.h>
 #include "MySqlSourceDriver.h"
 
 namespace Cloude {
@@ -121,13 +122,20 @@ namespace Cloude {
                                       auto &field = entity->operator[](column->getName());
                                       auto &value = field->getValue();
 
-                                      auto ptrLength = field->getColumn()->PointerToLengthVariable();
-                                      auto ptr = value->RawPointerToValueBuffer();
-
                                       command->PtrParamsBind[index].is_null = 0;
                                       command->PtrParamsBind[index].error = 0;
+
+                                      if (!value) {
+                                          command->PtrParamsBind[index].buffer_type = MYSQL_TYPE_NULL;
+                                          ++index;
+                                          return;
+                                      }
+
+                                      auto ptrLength = value->RawPointerToValueLength();
+                                      auto ptrBuffer = value->RawPointerToValueBuffer();
+
                                       command->PtrParamsBind[index].length = static_cast<unsigned long *>(ptrLength);
-                                      command->PtrResultBind[index].buffer = ptr;
+                                      command->PtrParamsBind[index].buffer = ptrBuffer;
 
                                       setupBindBufferTypeAndLength(field, &command->PtrParamsBind[index]);
 
@@ -138,6 +146,8 @@ namespace Cloude {
                 void initializeResultBindBuffers(std::shared_ptr<Entity> &entity,
                                                  const ColumnsList &columnsList,
                                                  std::shared_ptr<Command> &command) {
+
+                    using cldeFactory = Foundation::Type::cldeValueFactory;
 
                     auto columnsListSize = columnsList.size();
 
@@ -152,8 +162,19 @@ namespace Cloude {
                                   [&](const std::shared_ptr<Column> &column) -> void {
 
                                       auto &field = entity->operator[](column->getName());
-                                      auto &value = field->getValue();
 
+                                      switch (column->getDataType()) {
+                                          case Foundation::Type::cldeValueType::Int64:
+                                              field->setValue(cldeFactory::CreateInt64(0));
+                                              break;
+                                          case Foundation::Type::cldeValueType::Varchar:
+                                              field->setValue(cldeFactory::CreateVarchar(column->getLength()));
+                                              break;
+                                          default:
+                                              throw Foundation::Exception::cldeNonSupportedDataTypeException();
+                                      }
+
+                                      auto &value = field->getValue();
                                       auto ptrValue = value->RawPointerToValueBuffer();
 
                                       command->PtrResultBind[index].is_null = &command->PtrResultIsNull[index];
@@ -169,49 +190,20 @@ namespace Cloude {
 
                 void setupBindBufferTypeAndLength(const std::shared_ptr<Field> &field,
                                                   MYSQL_BIND *ptrBind) {
-
                     switch (field->getColumn()->getDataType()) {
-                        case Foundation::Data::cldeValueType::Boolean:
-                            ptrBind->buffer_type = MYSQL_TYPE_TINY;
-                            ptrBind->buffer_length = sizeof(bool);
-                            break;
-                        case Foundation::Data::cldeValueType::Byte:
-                            ptrBind->buffer_type = MYSQL_TYPE_TINY;
-                            ptrBind->buffer_length = sizeof(char);
-                            break;
-                        case Foundation::Data::cldeValueType::Int16:
-                            ptrBind->buffer_type = MYSQL_TYPE_SHORT;
-                            ptrBind->buffer_length = sizeof(int16_t);
-                            break;
-                        case Foundation::Data::cldeValueType::Int32:
+                        case Foundation::Type::cldeValueType::Int32:
                             ptrBind->buffer_type = MYSQL_TYPE_LONG;
                             ptrBind->buffer_length = sizeof(int32_t);
                             break;
-                        case Foundation::Data::cldeValueType::Int64:
+                        case Foundation::Type::cldeValueType::Int64:
                             ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
                             ptrBind->buffer_length = sizeof(int64_t);
                             break;
-                        case Foundation::Data::cldeValueType::UInt16:
-                            ptrBind->buffer_type = MYSQL_TYPE_SHORT;
-                            ptrBind->buffer_length = sizeof(int16_t);
-                            break;
-                        case Foundation::Data::cldeValueType::UInt32:
-                            ptrBind->buffer_type = MYSQL_TYPE_LONG;
-                            ptrBind->buffer_length = sizeof(int16_t);
-                            break;
-                        case Foundation::Data::cldeValueType::UInt64:
-                            ptrBind->buffer_type = MYSQL_TYPE_LONGLONG;
-                            ptrBind->buffer_length = sizeof(int16_t);
-                            break;
-                        case Foundation::Data::cldeValueType::Double:
+                        case Foundation::Type::cldeValueType::Double:
                             ptrBind->buffer_type = MYSQL_TYPE_DOUBLE;
                             ptrBind->buffer_length = sizeof(double);
                             break;
-                        case Foundation::Data::cldeValueType::Float:
-                            ptrBind->buffer_type = MYSQL_TYPE_FLOAT;
-                            ptrBind->buffer_length = sizeof(float);
-                            break;
-                        case Foundation::Data::cldeValueType::Varchar:
+                        case Foundation::Type::cldeValueType::Varchar:
                             ptrBind->buffer_type = MYSQL_TYPE_STRING;
                             ptrBind->buffer_length = field->getColumn()->getLength();
                             break;

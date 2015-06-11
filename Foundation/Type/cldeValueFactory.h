@@ -10,7 +10,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             class cldeValueFactory {
             public:
                 cldeValueFactory() = delete;
@@ -23,6 +23,7 @@ namespace Cloude {
                 static std::shared_ptr<cldeValue> CreateInt64(int64_t value);
                 static std::shared_ptr<cldeValue> CreateString(const char *value);
                 static std::shared_ptr<cldeValue> CreateVarchar(const char *value);
+                static std::shared_ptr<cldeValue> CreateVarchar(unsigned long length);
             };
         }
     }

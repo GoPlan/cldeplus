@@ -5,7 +5,7 @@
 
 #include <stdlib.h>
 #include <Foundation/Helper/SqlGenerator.h>
-#include <Foundation/Data/cldeValueFactory.h>
+#include <Foundation/Type/cldeValueFactory.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
@@ -19,7 +19,7 @@ namespace Cloude {
             using Column = Foundation::Column;
             using Field = Foundation::Field;
             using Entity = Foundation::Entity;
-            using Type = Foundation::Data::cldeValueType;
+            using Type = Foundation::Type::cldeValueType;
 
             class Command {
             public:
@@ -178,7 +178,7 @@ namespace Cloude {
             }
 
             int SQLiteSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
-                using cldeFactory = Foundation::Data::cldeValueFactory;
+                using cldeFactory = Foundation::Type::cldeValueFactory;
 
                 const auto &columnsForGet = _entityMap.getColumnsForGet();
                 const auto &columnsForKey = _entityMap.getColumnsForKey();

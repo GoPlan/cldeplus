@@ -6,11 +6,11 @@
 #define CLOUD_E_CPLUS_CLDEVARCHAR_H
 
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
-#include <Foundation/Data/cldeCharacterValue.h>
+#include <Foundation/Type/cldeCharacterValue.h>
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             namespace Implementation {
                 class cldeVarchar : public cldeCharacterValue {
                 public:
@@ -33,7 +33,6 @@ namespace Cloude {
 
                 private:
                     char *_value;
-                    char _valueArray[255];
 
                     void init();
                     void init(const char *value);

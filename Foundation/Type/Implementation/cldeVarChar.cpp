@@ -4,11 +4,11 @@
 
 #include <cstdlib>
 #include <cstring>
-#include "cldeVarchar.h"
+#include "cldeVarChar.h"
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             namespace Implementation {
 
                 cldeVarchar::cldeVarchar(size_t length) : cldeCharacterValue(cldeValueType::Varchar,
@@ -36,7 +36,9 @@ namespace Cloude {
                 }
 
                 const std::string &cldeVarchar::ToString() const {
-                    throw Exception::cldeNonSupportedFunctionException("Use CopyToString or ToCString instead");
+                    const char *msg = "Varchar does not support ToString." \
+                                        "Use CopyToString(), ToCString() instead.";
+                    throw Exception::cldeNonSupportedFunctionException(msg);
                 }
 
                 const char *cldeVarchar::ToCString() const {
@@ -44,17 +46,15 @@ namespace Cloude {
                 }
 
                 void *cldeVarchar::RawPointerToValueBuffer() {
-                    return _valueArray;
+                    return _value;
                 }
 
                 void cldeVarchar::init() {
-                    _value = (char *) malloc(sizeof(char) * _length);
+                    _value = (char *) calloc(_length, sizeof(char));
                 }
 
                 void cldeVarchar::init(const char *value) {
                     _value = strdup(value);
-                    memset(_valueArray, 0, 255);
-                    strcpy(_valueArray, "Hello World");
                 }
             }
         }

@@ -6,7 +6,7 @@
 #define CLOUD_E_CPLUS_COLUMN_H
 
 #include <string>
-#include "Data/cldeValueType.h"
+#include "Type/cldeValueType.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -20,12 +20,12 @@ namespace Cloude {
 
             Column(std::string name,
                    std::string datasourceName,
-                   Foundation::Data::cldeValueType dataType);
+                   Foundation::Type::cldeValueType dataType);
 
             Column(std::string name,
                    std::string datasourceName,
                    size_t length,
-                   Foundation::Data::cldeValueType dataType);
+                   Foundation::Type::cldeValueType dataType);
 
             size_t *PointerToLengthVariable() {
                 return &_length;
@@ -39,7 +39,7 @@ namespace Cloude {
                 return _name;
             }
 
-            const Foundation::Data::cldeValueType &getDataType() const {
+            const Foundation::Type::cldeValueType &getDataType() const {
                 return _dataType;
             }
 
@@ -54,7 +54,7 @@ namespace Cloude {
         private:
             std::string _name;
             std::string _datasourceName;
-            Foundation::Data::cldeValueType _dataType;
+            Foundation::Type::cldeValueType _dataType;
             size_t _length;
         };
     }

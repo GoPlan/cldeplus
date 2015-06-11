@@ -22,8 +22,8 @@ namespace Cloude {
 
                     const char *email = "ducanh.ki@cloud-e.biz";
 
-                    auto spEnquiryId = Foundation::Data::cldeValueFactory::CreateInt64(15);
-                    auto spEnquiryEmail = Foundation::Data::cldeValueFactory::CreateVarchar(email);
+                    auto spEnquiryId = Foundation::Type::cldeValueFactory::CreateInt64(15);
+                    auto spEnquiryEmail = Foundation::Type::cldeValueFactory::CreateVarchar(email);
 
                     auto spEnquiryIdField = make_shared<Field>(_enquiryMap.EnquiryId);
                     spEnquiryIdField->setValue(spEnquiryId);

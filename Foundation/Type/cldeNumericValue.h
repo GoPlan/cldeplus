@@ -10,7 +10,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             class cldeNumericValue : public cldeValue,
                                      public Common::IComputable<cldeValue> {
             public:

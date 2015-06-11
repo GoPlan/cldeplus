@@ -6,7 +6,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
 
             cldeCharacterValue::cldeCharacterValue(cldeValueType dataType, size_t length) : cldeValue(dataType, length) {
                 //

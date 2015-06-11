@@ -2,22 +2,21 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDEDOUBLE_H
-#define CLOUD_E_CPLUS_CLDEDOUBLE_H
+#ifndef CLOUD_E_CPLUS_CLDEINT32_H
+#define CLOUD_E_CPLUS_CLDEINT32_H
 
 #include "../cldeNumericValue.h"
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             namespace Implementation {
-                class cldeDouble : public cldeNumericValue {
+                class cldeInt32 : public cldeNumericValue {
                 public:
-                    cldeDouble(double value);
-                    virtual ~cldeDouble() = default;
-                    cldeDouble(const cldeDouble &rhs) = default;
-                    cldeDouble &operator=(const cldeDouble &rhs) = default;
+                    cldeInt32(int32_t value);
+                    virtual ~cldeInt32() = default;
+                    cldeInt32(const cldeInt32 &rhs) = default;
+                    cldeInt32 &operator=(const cldeInt32 &rhs) = default;
 
                     // cldeValue
                     virtual void *RawPointerToValueBuffer() override;
@@ -35,15 +34,16 @@ namespace Cloude {
                     virtual cldeValue &operator-(const cldeValue &rhs) override;
                     virtual cldeValue &operator*(const cldeValue &rhs) override;
                     virtual cldeValue &operator/(const cldeValue &rhs) override;
-                    virtual cldeValue &operator%(const cldeValue &rhs) override;
+                    virtual cldeValue &operator%(const cldeValue &rhs);
 
                 private:
-                    double _value;
+                    int32_t _value;
                     mutable std::string _string;
+
                 };
             }
         }
     }
 }
 
-#endif //CLOUD_E_CPLUS_CLDEDOUBLE_H
+#endif //CLOUD_E_CPLUS_CLDEINT32_H

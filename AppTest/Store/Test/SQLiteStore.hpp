@@ -20,8 +20,10 @@ namespace Cloude {
 
                 TEST_F(EnquirySQLiteStore, CreateGetSaveDelete) {
 
-                    auto spEnquiryId = Foundation::Data::cldeValueFactory::CreateInt64(15);
-                    auto spEnquiryEmail = Foundation::Data::cldeValueFactory::CreateVarchar("goplan@cloud-e.biz");
+                    const char *email = "goplan@cloud-e.biz";
+
+                    auto spEnquiryId = Foundation::Type::cldeValueFactory::CreateInt64(15);
+                    auto spEnquiryEmail = Foundation::Type::cldeValueFactory::CreateVarchar(email);
 
                     auto spEnquiryIdField = make_shared<Field>(_enquiryMap.EnquiryId);
                     spEnquiryIdField->setValue(spEnquiryId);
@@ -62,8 +64,7 @@ namespace Cloude {
 
                         auto &spEmailField = spEntity->getField("Email");
                         auto &spEmailValue = spEmailField->getValue();
-                        EXPECT_TRUE(strcmp(spEmailValue->CopyToString().c_str(),
-                                           spEnquiryEmail->CopyToString().c_str()) == 0);
+                        EXPECT_TRUE(strcmp(email, spEmailValue->ToCString()) == 0);
 
                         _entityStore.Delete(spEntity);
                         EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));

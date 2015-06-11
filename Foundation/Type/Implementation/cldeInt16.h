@@ -7,7 +7,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             namespace Implementation {
                 class cldeInt16 {
                 public:

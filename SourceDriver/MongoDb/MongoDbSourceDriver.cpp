@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <mongoc.h>
-#include <Foundation/Data/cldeValueFactory.h>
+#include <Foundation/Type/cldeValueFactory.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include "MongoDbSourceDriver.h"
 
@@ -14,7 +14,7 @@ namespace Cloude {
 
             using Field = Foundation::Field;
             using Column = Foundation::Column;
-            using Type = Foundation::Data::cldeValueType;
+            using Type = Foundation::Type::cldeValueType;
 
             class Command {
             public:
@@ -138,7 +138,7 @@ namespace Cloude {
                                    const std::shared_ptr<Column> &column,
                                    const std::shared_ptr<Field> &field) const {
 
-                    using cldeFactory = Foundation::Data::cldeValueFactory;
+                    using cldeFactory = Foundation::Type::cldeValueFactory;
 
                     bson_type_t iterType = bson_iter_type(ptrIter);
 
@@ -147,10 +147,10 @@ namespace Cloude {
                     }
 
                     switch (column->getDataType()) {
-                        case Foundation::Data::cldeValueType::Int64:
+                        case Foundation::Type::cldeValueType::Int64:
                             field->setValue(cldeFactory::CreateInt64(bson_iter_as_int64(ptrIter)));
                             break;
-                        case Foundation::Data::cldeValueType::Varchar:
+                        case Foundation::Type::cldeValueType::Varchar:
                             field->setValue(cldeFactory::CreateVarchar(bson_iter_utf8(ptrIter, 0)));
                             break;
                         default:

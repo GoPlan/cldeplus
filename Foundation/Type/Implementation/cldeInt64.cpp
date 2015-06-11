@@ -3,37 +3,36 @@
 //
 
 #include <cstdlib>
-#include "cldeInt32.h"
+#include "cldeInt64.h"
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             namespace Implementation {
 
-                cldeInt32::cldeInt32(int value) : _value(value),
-                                                  cldeNumericValue(cldeValueType::Int32, sizeof(int32_t)) {
+                cldeInt64::cldeInt64(int64_t value) : _value(value),
+                                                      cldeNumericValue(cldeValueType::Int64, sizeof(int64_t)) {
                     //
                 }
 
-                void *cldeInt32::RawPointerToValueBuffer() {
+                void *cldeInt64::RawPointerToValueBuffer() {
                     return &this->_value;
                 }
 
-                bool cldeInt32::Equal(const Common::IEquatable &rhs) {
+                bool cldeInt64::Equal(const Common::IEquatable &rhs) {
                     try {
-                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        auto cast = dynamic_cast<const cldeInt64 &>(rhs);
                         return (cast._value == this->_value);
                     } catch (std::bad_cast &ex) {
                         return false;
                     }
                 }
 
-                const std::string cldeInt32::CopyToString() const {
+                const std::string cldeInt64::CopyToString() const {
                     return std::to_string(_value);
                 }
 
-
-                const std::string &cldeInt32::ToString() const {
+                const std::string &cldeInt64::ToString() const {
 
                     if (_string.empty()) {
                         _string.assign(std::to_string(_value));
@@ -42,13 +41,13 @@ namespace Cloude {
                     return _string;
                 }
 
-                const char *cldeInt32::ToCString() const {
+                const char *cldeInt64::ToCString() const {
                     return _string.c_str();
                 }
 
-                cldeValue &cldeInt32::operator+(const cldeValue &rhs) {
+                cldeValue &cldeInt64::operator+(const cldeValue &rhs) {
                     try {
-                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        auto cast = dynamic_cast<const cldeInt64 &>(rhs);
                         this->_value = this->_value + cast._value;
                         return *this;
                     } catch (std::bad_cast &ex) {
@@ -56,9 +55,9 @@ namespace Cloude {
                     }
                 }
 
-                cldeValue &cldeInt32::operator-(const cldeValue &rhs) {
+                cldeValue &cldeInt64::operator-(const cldeValue &rhs) {
                     try {
-                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        auto cast = dynamic_cast<const cldeInt64 &>(rhs);
                         this->_value = this->_value - cast._value;
                         return *this;
                     } catch (std::bad_cast &ex) {
@@ -66,9 +65,9 @@ namespace Cloude {
                     }
                 }
 
-                cldeValue &cldeInt32::operator*(const cldeValue &rhs) {
+                cldeValue &cldeInt64::operator*(const cldeValue &rhs) {
                     try {
-                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        auto cast = dynamic_cast<const cldeInt64 &>(rhs);
                         this->_value = this->_value * cast._value;
                         return *this;
                     } catch (std::bad_cast &ex) {
@@ -76,9 +75,9 @@ namespace Cloude {
                     }
                 }
 
-                cldeValue &cldeInt32::operator/(const cldeValue &rhs) {
+                cldeValue &cldeInt64::operator/(const cldeValue &rhs) {
                     try {
-                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        auto cast = dynamic_cast<const cldeInt64 &>(rhs);
                         this->_value = this->_value / cast._value;
                         return *this;
                     } catch (std::bad_cast &ex) {
@@ -86,9 +85,9 @@ namespace Cloude {
                     }
                 }
 
-                cldeValue &cldeInt32::operator%(const cldeValue &rhs) {
+                cldeValue &cldeInt64::operator%(const cldeValue &rhs) {
                     try {
-                        auto cast = dynamic_cast<const cldeInt32 &>(rhs);
+                        auto cast = dynamic_cast<const cldeInt64 &>(rhs);
                         this->_value = this->_value % cast._value;
                         return *this;
                     } catch (std::bad_cast &ex) {

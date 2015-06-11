@@ -7,7 +7,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             namespace Implementation {
 
                 cldeDouble::cldeDouble(double value) : _value(value),

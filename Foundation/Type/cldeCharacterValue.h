@@ -9,7 +9,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
             class cldeCharacterValue : public cldeValue {
             public:
                 cldeCharacterValue(cldeValueType dataType, size_t length);

@@ -17,24 +17,24 @@ namespace Cloude {
 
             std::shared_ptr<Column> SequenceMap::Id = std::make_shared<Column>("Id",
                                                                                "id",
-                                                                               Data::cldeValueType::Int64);
+                                                                               Type::cldeValueType::Int64);
 
             std::shared_ptr<Column> SequenceMap::UniqueName = std::make_shared<Column>("UniqueName",
                                                                                        "uniquename",
                                                                                        50,
-                                                                                       Data::cldeValueType::Varchar);
+                                                                                       Type::cldeValueType::Varchar);
 
             std::shared_ptr<Column> SequenceMap::SequenceStart = std::make_shared<Column>("SequenceStart",
                                                                                           "sequencestart",
-                                                                                          Data::cldeValueType::Int64);
+                                                                                          Type::cldeValueType::Int64);
 
             std::shared_ptr<Column> SequenceMap::SequenceCurrent = std::make_shared<Column>("SequenceCurrent",
                                                                                             "sequencecurrent",
-                                                                                            Data::cldeValueType::Int64);
+                                                                                            Type::cldeValueType::Int64);
 
             std::shared_ptr<Column> SequenceMap::SequenceIncrement = std::make_shared<Column>("SequenceIncrement",
                                                                                               "sequenceincrement",
-                                                                                              Data::cldeValueType::Int64);
+                                                                                              Type::cldeValueType::Int64);
 
             const std::string &SequenceMap::TableNameCore() const {
                 return TableName;

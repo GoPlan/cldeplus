@@ -16,22 +16,22 @@ namespace Cloude {
             std::shared_ptr<Column> EnquiryMap::EnquiryId =
                     make_shared<Column>("EnquiryId",
                                         "EnquiryId",
-                                        Data::cldeValueType::Int64);
+                                        Type::cldeValueType::Int64);
 
             std::shared_ptr<Column> EnquiryMap::ObjectId =
                     make_shared<Column>("ObjectId",
                                         "_id",
-                                        Data::cldeValueType::Varchar);
+                                        Type::cldeValueType::Varchar);
 
             std::shared_ptr<Column> EnquiryMap::Email =
                     make_shared<Column>("Email",
                                         "Email",
-                                        Data::cldeValueType::Varchar);
+                                        Type::cldeValueType::Varchar);
 
             std::shared_ptr<Column> EnquiryMap::Subject =
                     make_shared<Column>("Subject",
                                         "Subject",
-                                        Data::cldeValueType::Varchar);
+                                        Type::cldeValueType::Varchar);
 
             const std::string &EnquiryMap::TableNameCore() const {
                 return TableName;

@@ -7,7 +7,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Data {
+        namespace Type {
 
             enum class cldeValueCategory {
                 Undefined,
