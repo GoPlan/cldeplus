@@ -2,8 +2,8 @@
 // Created by LE, Duc-Anh on 5/23/15.
 //
 
-#ifndef CLOUD_E_CPLUS_ENTITYSTORE_H
-#define CLOUD_E_CPLUS_ENTITYSTORE_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
+#define CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 
 #include <unordered_map>
 
@@ -52,4 +52,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_CPLUS_ENTITYSTORE_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H

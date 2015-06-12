@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDECHARACTERVALUE_H
-#define CLOUD_E_CPLUS_CLDECHARACTERVALUE_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDECHARACTERVALUE_H
+#define CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDECHARACTERVALUE_H
 
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include "cldeValue.h"
@@ -35,4 +35,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_CLDECHARACTERVALUE_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDECHARACTERVALUE_H

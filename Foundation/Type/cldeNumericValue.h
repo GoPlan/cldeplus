@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDENUMERICVALUE_H
-#define CLOUD_E_CPLUS_CLDENUMERICVALUE_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDENUMERICVALUE_H
+#define CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDENUMERICVALUE_H
 
 #include <Foundation/Common/IComputable.h>
 #include "cldeValue.h"
@@ -30,4 +30,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_CLDENUMERICVALUE_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDENUMERICVALUE_H

@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_OR_H
-#define CLOUD_E_CPLUS_OR_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_OR_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_OR_H
 
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include <Foundation/Query/Predicate.h>
@@ -43,4 +43,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_OR_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_OR_H

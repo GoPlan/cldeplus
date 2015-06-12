@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_ENTITYQUERY_H
-#define CLOUD_E_CPLUS_ENTITYQUERY_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYQUERY_H
+#define CLOUD_E_CPLUS_FOUNDATION_ENTITYQUERY_H
 
 #include <memory>
 #include <vector>
@@ -34,4 +34,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_CPLUS_ENTITYQUERY_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_ENTITYQUERY_H

@@ -2,8 +2,8 @@
 // Created by GoPlan on 14/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_IDENTITY_H
-#define CLOUD_E_CPLUS_IDENTITY_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_IDENTITY_H
+#define CLOUD_E_CPLUS_FOUNDATION_IDENTITY_H
 
 #include <unordered_map>
 #include "Field.h"
@@ -35,4 +35,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_CPLUS_IDENTITY_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_IDENTITY_H

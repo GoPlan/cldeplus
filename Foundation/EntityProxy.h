@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_ENTITYPROXY_H
-#define CLOUD_E_CPLUS_ENTITYPROXY_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYPROXY_H
+#define CLOUD_E_CPLUS_FOUNDATION_ENTITYPROXY_H
 
 #include "EntityStore.h"
 #include "Entity.h"
@@ -29,4 +29,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_ENTITYPROXY_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_ENTITYPROXY_H
