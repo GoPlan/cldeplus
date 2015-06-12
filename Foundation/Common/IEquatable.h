@@ -8,7 +8,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Common {
+
             class IEquatable {
+
             public:
                 virtual bool Equal(const IEquatable &rhs) = 0;
             };

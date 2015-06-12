@@ -9,7 +9,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeText {
+
                 public:
                     cldeText() = default;
                     virtual ~cldeText() = default;

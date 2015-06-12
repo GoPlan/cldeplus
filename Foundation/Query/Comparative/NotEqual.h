@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class NotEqual : public PredicateLeaf {
+
                 public:
                     NotEqual(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
                     virtual ~NotEqual() = default;

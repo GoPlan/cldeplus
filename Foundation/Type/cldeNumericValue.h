@@ -11,7 +11,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Type {
+
             class cldeNumericValue : public cldeValue {
+
             public:
                 cldeNumericValue(cldeValueType dataType, size_t length);
                 virtual ~cldeNumericValue() = default;

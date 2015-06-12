@@ -29,8 +29,8 @@ namespace Cloude {
             };
 
             class PostgreSourceDriver : public Foundation::EntitySourceDriver {
+
             public:
-                using Predicate = Foundation::Query::Predicate;
                 using Options = struct {
                     std::string Host;
                     std::string User;
@@ -40,22 +40,22 @@ namespace Cloude {
                 };
 
             public:
-                explicit PostgreSourceDriver(Foundation::EntityMap &entityMap);
+                explicit PostgreSourceDriver(const Foundation::EntityMap &entityMap);
                 ~PostgreSourceDriver();
                 PostgreSourceDriver(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
                 PostgreSourceDriver &operator=(const PostgreSourceDriver &srcPostgreSqlDriver) = default;
 
+                // Locals
                 void Connect();
                 void Disconnect();
+                Options &getOptionArgs() { return _optionArgs; }
 
+                // EntitySourceDriver
                 int Load(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
-
-                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
-
-                Options &getOptionArgs() { return _optionArgs; }
+                upProxyVector Select(const upPredicate &predicate) const override;
 
             private:
                 class PgApiImpl;

@@ -9,7 +9,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeFloat {
+
                 public:
                     cldeFloat() = default;
                     virtual ~cldeFloat() = default;

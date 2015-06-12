@@ -13,22 +13,26 @@
 
 namespace Cloude {
     namespace Foundation {
+
         class EntityQuery {
+        
+        public:
+            using spProxy = std::shared_ptr<EntityProxy>;
+            using spProxyVector = std::shared_ptr<std::vector<spProxy>>;
+
         public:
             explicit EntityQuery(const EntityStore &entityStore);
             virtual ~EntityQuery() = default;
             EntityQuery(const EntityQuery &srcEntityQuery) = default;
             EntityQuery &operator=(const EntityQuery &srcEntityQuery) = default;
 
-            std::vector<std::shared_ptr<EntityProxy>>
-                    Compose(const std::shared_ptr<Query::Predicate> &predicate);
-            std::vector<std::shared_ptr<EntityProxy>>
-                    ComposeGetFirst(const std::shared_ptr<Query::Predicate> &predicate);
+            spProxyVector Compose(const std::shared_ptr<Query::Predicate> &predicate);
+            spProxy ComposeGetFirst(const std::shared_ptr<Query::Predicate> &predicate);
 
         private:
             const EntityMap &_entityMap;
             const EntityStore &_entityStore;
-            const EntitySourceDriver &_entitySoureDriver;
+            const EntitySourceDriver &_entitySourceDriver;
 
         };
     }

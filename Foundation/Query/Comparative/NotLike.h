@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class NotLike : public PredicateLeaf {
+
                 public:
                     NotLike(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
                     ~NotLike() = default;

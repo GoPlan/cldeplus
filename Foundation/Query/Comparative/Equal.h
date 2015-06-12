@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class Equal : public Query::PredicateLeaf {
+                
                 public:
                     Equal(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
                     virtual ~Equal() = default;

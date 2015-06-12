@@ -9,7 +9,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeInt16 {
+
                 public:
                     cldeInt16() = default;
                     virtual ~cldeInt16() = default;

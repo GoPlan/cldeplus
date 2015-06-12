@@ -14,9 +14,11 @@ namespace Cloude {
             class Predicate;
 
             namespace Contract {
+
                 class IPredicationFormatter {
+                
                 public:
-                    virtual const std::string CopyFormat(const Query::Predicate &predicate) const = 0;
+                    virtual std::string CopyFormat(const Query::Predicate &predicate) const = 0;
                 };
             }
         }

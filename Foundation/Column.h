@@ -12,6 +12,7 @@ namespace Cloude {
     namespace Foundation {
 
         class Column {
+
         public:
             Column() = default;
             Column(const Column &srcColumn) = default;

@@ -16,8 +16,14 @@ namespace Cloude {
     namespace Foundation {
 
         class EntitySourceDriver {
+
         public:
-            explicit EntitySourceDriver(EntityMap &entityMap) : _entityMap(entityMap) { };
+            using upProxy = std::unique_ptr<EntityProxy>;
+            using upProxyVector = std::unique_ptr<std::vector<upProxy>>;
+            using upPredicate = std::unique_ptr<Query::Predicate>;
+
+        public:
+            explicit EntitySourceDriver(const EntityMap &entityMap) : _entityMap(entityMap) { };
             virtual ~EntitySourceDriver() = default;
             EntitySourceDriver(const EntitySourceDriver &rhs) = delete;
             EntitySourceDriver &operator=(const EntitySourceDriver &rhs) = delete;
@@ -27,7 +33,7 @@ namespace Cloude {
             virtual int Save(std::shared_ptr<Entity> &entity) const = 0;
             virtual int Delete(std::shared_ptr<Entity> &entity) const = 0;
 
-            virtual std::vector<EntityProxy> Select(std::shared_ptr<Query::Predicate> &expr) const = 0;
+            virtual upProxyVector Select(const upPredicate &predicate) const = 0;
 
         protected:
             const EntityMap &_entityMap;

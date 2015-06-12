@@ -13,6 +13,7 @@
 namespace Cloude {
     namespace Foundation {
         namespace Type {
+
             class cldeValue : public Common::IPrintable,
                               public Common::IEquatable,
                               public Common::IComputable<cldeValue> {

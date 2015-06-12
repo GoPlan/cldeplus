@@ -10,7 +10,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
+
             class PredicateLeaf : public Predicate {
+
             public:
                 PredicateLeaf(const Column &column, const Type::cldeValue &value) : _column(column), _value(value) { };
                 virtual ~PredicateLeaf() = default;

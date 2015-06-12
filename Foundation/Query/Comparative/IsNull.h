@@ -12,7 +12,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class IsNull : public Predicate {
+
                 public:
                     IsNull(const Column &column) : _column(column) { };
                     virtual ~IsNull() = default;

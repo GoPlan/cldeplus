@@ -11,7 +11,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Type {
+
             class cldeCharacterValue : public cldeValue {
+
             public:
                 cldeCharacterValue(cldeValueType dataType, size_t length);
                 virtual ~cldeCharacterValue() = default;

@@ -13,7 +13,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
+
             class Predicate {
+
             public:
                 Predicate() = default;
                 virtual ~Predicate() = default;

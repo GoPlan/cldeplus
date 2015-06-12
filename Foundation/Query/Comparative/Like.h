@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class Like : public PredicateLeaf {
+
                 public:
                     Like(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
                     ~Like() = default;

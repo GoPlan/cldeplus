@@ -11,6 +11,7 @@ namespace Cloude {
     namespace Foundation {
 
         class EntityLoader {
+
         public:
             virtual ~EntityLoader() = default;
             virtual std::shared_ptr<Identity> NextPrimaryKey() const = 0;

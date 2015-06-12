@@ -8,6 +8,7 @@
 namespace Cloude {
     namespace Foundation {
         namespace Common {
+
             template<typename T>
             class IParsable {
                 virtual T Parse() = 0;

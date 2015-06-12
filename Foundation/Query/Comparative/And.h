@@ -12,7 +12,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class And : public Query::Predicate {
+
                 public:
                     And(const Query::Predicate &lhs, const Query::Predicate &rhs) : _lhs(lhs), _rhs(rhs) { };
                     ~And() = default;

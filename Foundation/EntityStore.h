@@ -17,6 +17,7 @@ namespace Cloude {
         class Identity;
 
         class EntityStore {
+
         public:
             EntityStore(const EntityMap &entityMap,
                         const EntityLoader &entityLoader,
@@ -39,6 +40,7 @@ namespace Cloude {
             unsigned long Size() const;
 
             const EntityMap &getEntityMap() const { return _entityMap; }
+            const EntitySourceDriver &getEntitySourceDriver() const { return _entitySourceDriver; }
 
         protected:
             const EntityMap &_entityMap;

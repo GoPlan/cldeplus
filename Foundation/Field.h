@@ -13,7 +13,9 @@
 
 namespace Cloude {
     namespace Foundation {
+
         class Field {
+
         public:
             explicit Field(const std::shared_ptr<Column> &column);
             ~Field() = default;

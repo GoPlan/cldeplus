@@ -8,8 +8,10 @@
 namespace Cloude {
     namespace Foundation {
         namespace Common {
+
             template<class T>
             class IComputable {
+
             public:
                 virtual T &operator+(const T &rhs) = 0;
                 virtual T &operator-(const T &rhs) = 0;

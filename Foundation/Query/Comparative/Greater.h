@@ -12,7 +12,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class Greater : public Query::PredicateLeaf {
+
                 public:
                     Greater(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
                     ~Greater() = default;

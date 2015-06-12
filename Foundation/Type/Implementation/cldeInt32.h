@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeInt32 : public cldeNumericValue {
+
                 public:
                     cldeInt32(int32_t value);
                     virtual ~cldeInt32() = default;

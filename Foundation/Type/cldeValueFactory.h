@@ -11,7 +11,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Type {
+
             class cldeValueFactory {
+
             public:
                 cldeValueFactory() = delete;
                 ~cldeValueFactory() = delete;

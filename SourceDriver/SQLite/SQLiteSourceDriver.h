@@ -24,7 +24,7 @@ namespace Cloude {
                 };
 
             public:
-                explicit SQLiteSourceDriver(Foundation::EntityMap &entityMap);
+                explicit SQLiteSourceDriver(const Foundation::EntityMap &entityMap);
                 ~SQLiteSourceDriver();
                 SQLiteSourceDriver(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
                 SQLiteSourceDriver &operator=(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
@@ -35,14 +35,14 @@ namespace Cloude {
                 Options &getOptionArgs() { return _optionArgs; }
 
                 // EntitySourceDriver
-                int Load(std::shared_ptr<Foundation::Entity> &entity) const;
-                int Insert(std::shared_ptr<Foundation::Entity> &entity) const;
-                int Save(std::shared_ptr<Foundation::Entity> &entity) const;
-                int Delete(std::shared_ptr<Foundation::Entity> &entity) const;
-                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
+                int Load(std::shared_ptr<Foundation::Entity> &entity) const override;
+                int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
+                int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
+                int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
+                upProxyVector Select(const upPredicate &expr) const override;
 
                 // IPredicationFormatterPredication
-                const std::string CopyFormat(const Predicate &predicate) const override;
+                std::string CopyFormat(const Predicate &predicate) const override;
 
             private:
                 class SQLiteApiImpl;

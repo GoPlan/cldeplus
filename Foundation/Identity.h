@@ -10,7 +10,10 @@
 
 namespace Cloude {
     namespace Foundation {
+
         class Identity {
+
+        private:
             using FieldsMap = std::unordered_map<std::string, std::shared_ptr<Field>>;
 
         public:

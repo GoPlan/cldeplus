@@ -10,7 +10,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Common {
+
             class IFormattable {
+
             public:
                 virtual std::string CopyFormatedString();
             };

@@ -16,6 +16,7 @@ namespace Cloude {
     namespace Foundation {
 
         class EntityMap {
+
         public:
             EntityMap() = default;
             EntityMap(const EntityMap &srcEntityMap) = default;

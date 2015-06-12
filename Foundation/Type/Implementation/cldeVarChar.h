@@ -12,7 +12,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeVarchar : public cldeCharacterValue {
+
                 public:
                     explicit cldeVarchar(size_t length);
                     explicit cldeVarchar(const char *value);

@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class Lesser : public PredicateLeaf {
+
                 public:
                     Lesser(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
                     virtual ~Lesser() = default;

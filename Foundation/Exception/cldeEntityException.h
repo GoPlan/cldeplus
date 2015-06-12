@@ -10,7 +10,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
+
             class cldeEntityException : public cldeException {
+
             public:
                 cldeEntityException(const char *message) : cldeException(message) { };
                 cldeEntityException(const std::string &message) : cldeException(message) { };

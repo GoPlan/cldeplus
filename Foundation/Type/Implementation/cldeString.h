@@ -13,7 +13,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeString : public cldeCharacterValue {
+
                 public:
                     cldeString(const char *string);
                     virtual ~cldeString() = default;

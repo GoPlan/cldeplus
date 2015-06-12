@@ -12,6 +12,7 @@ namespace Cloude {
         namespace Exception {
 
             class cldeEntityStoreRoutineException : public cldeException {
+
             public:
                 cldeEntityStoreRoutineException(const char *message) : cldeException(message) { };
                 cldeEntityStoreRoutineException(const std::string &message) : cldeException(message) { };

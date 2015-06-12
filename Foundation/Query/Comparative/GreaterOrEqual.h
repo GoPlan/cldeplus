@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class GreaterOrEqual : public PredicateLeaf {
+
                 public:
                     GreaterOrEqual(const Column &column, const Type::cldeValue &value)
                             : PredicateLeaf(column, value) { };

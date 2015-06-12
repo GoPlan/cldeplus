@@ -15,6 +15,7 @@ namespace Cloude {
         class Identity;
 
         class Entity {
+
         public:
             explicit Entity(const std::shared_ptr<Identity> &identity);
             ~Entity() = default;

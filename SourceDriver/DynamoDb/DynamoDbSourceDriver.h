@@ -8,7 +8,9 @@
 namespace Cloude {
     namespace SourceDriver {
         namespace DynamoDb {
+
             class DynamoDbSourceDriver {
+
             public:
                 DynamoDbSourceDriver() = default;
                 virtual ~DynamoDbSourceDriver() = default;

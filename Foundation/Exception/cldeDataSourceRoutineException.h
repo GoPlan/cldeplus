@@ -10,7 +10,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
+
             class cldeDataSourceRoutineException : public cldeException {
+
             public:
                 cldeDataSourceRoutineException(const char *message) : cldeException(message) { };
                 cldeDataSourceRoutineException(const std::string &message) : cldeException(message) { };

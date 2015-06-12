@@ -12,7 +12,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class Or : public Query::Predicate {
+
                 public:
                     Or(const Predicate &lhs, const Predicate &rhs) : _lhs(lhs), _rhs(rhs) { };
                     ~Or() = default;

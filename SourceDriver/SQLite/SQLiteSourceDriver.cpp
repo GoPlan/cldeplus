@@ -23,6 +23,7 @@ namespace Cloude {
             using Type = Foundation::Type::cldeValueType;
 
             class Command {
+
             public:
                 Command(const std::string &query) : query(query) {
                     //
@@ -59,6 +60,7 @@ namespace Cloude {
             };
 
             class SQLiteSourceDriver::SQLiteApiImpl {
+
             public:
                 SQLiteApiImpl(std::string &connectionString) : connectionString(connectionString) {
                     //
@@ -139,7 +141,7 @@ namespace Cloude {
                 sqlite3 *_ptrSqlite3 = nullptr;
             };
 
-            SQLiteSourceDriver::SQLiteSourceDriver(EntityMap &entityMap)
+            SQLiteSourceDriver::SQLiteSourceDriver(const EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
                 init();
@@ -179,6 +181,7 @@ namespace Cloude {
             }
 
             int SQLiteSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
+
                 using cldeFactory = Foundation::Type::cldeValueFactory;
 
                 const auto &columnsForGet = _entityMap.getColumnsForGet();
@@ -328,11 +331,12 @@ namespace Cloude {
                 return 1;
             }
 
-            std::vector<Foundation::EntityProxy> SQLiteSourceDriver::Select(std::shared_ptr<Predicate> &expr) const {
-                return std::vector<Foundation::EntityProxy>();
+            SQLiteSourceDriver::upProxyVector SQLiteSourceDriver::Select(const upPredicate &predicate) const {
+                upProxyVector proxies;
+                return proxies;
             }
 
-            const std::string SQLiteSourceDriver::CopyFormat(const Predicate &predicate) const {
+            std::string SQLiteSourceDriver::CopyFormat(const Predicate &predicate) const {
 
                 using PredAnd = Foundation::Query::Comparative::And;
                 using PredOr = Foundation::Query::Comparative::Or;

@@ -14,7 +14,13 @@ namespace Cloude {
     namespace SourceDriver {
         namespace MySql {
 
+            using Field = Foundation::Field;
+            using Column = Foundation::Column;
+            using Entity = Foundation::Entity;
+            using ColumnsList = std::vector<std::shared_ptr<Column>>;
+
             class Command {
+
             public:
                 Command() {
                     //
@@ -215,8 +221,9 @@ namespace Cloude {
                 }
             }; // END - MySqlApiImpl
 
-            MySqlSourceDriver::MySqlSourceDriver(EntityMap &entityMap) : EntitySourceDriver(entityMap),
-                                                                         _mySqlApiImpl(new MySqlApiImpl()) {
+            MySqlSourceDriver::MySqlSourceDriver(const Foundation::EntityMap &entityMap)
+                    : EntitySourceDriver(entityMap),
+                      _mySqlApiImpl(new MySqlApiImpl()) {
                 init();
             }
 
@@ -366,8 +373,9 @@ namespace Cloude {
                 return 1;
             }
 
-            std::vector<Foundation::EntityProxy> MySqlSourceDriver::Select(std::shared_ptr<Predicate> &expr) const {
-                return std::vector<Foundation::EntityProxy>();
+            MySqlSourceDriver::upProxyVector MySqlSourceDriver::Select(const upPredicate &predicate) const {
+                upProxyVector proxies;
+                return proxies;
             }
         }
     }

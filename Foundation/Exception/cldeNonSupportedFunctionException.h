@@ -10,7 +10,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
+
             class cldeNonSupportedFunctionException : public cldeException {
+
             public:
                 cldeNonSupportedFunctionException(const char *message) : cldeException(message) { };
                 cldeNonSupportedFunctionException(const std::string &message) : cldeException(message) { };

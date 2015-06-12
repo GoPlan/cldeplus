@@ -12,7 +12,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeDouble : public cldeNumericValue {
+
                 public:
                     cldeDouble(double value);
                     virtual ~cldeDouble() = default;
