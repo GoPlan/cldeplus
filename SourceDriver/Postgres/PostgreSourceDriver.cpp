@@ -197,10 +197,10 @@ namespace Cloude {
                 }
             };
 
-            PostgreSourceDriver::PostgreSourceDriver(EntityMap &entityMap)
+            PostgreSourceDriver::PostgreSourceDriver(const EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _pgApiImpl(new PgApiImpl()) {
-                init();
+                Init();
             }
 
             PostgreSourceDriver::~PostgreSourceDriver() {
@@ -231,7 +231,7 @@ namespace Cloude {
                 }
             }
 
-            void PostgreSourceDriver::init() {
+            void PostgreSourceDriver::Init() {
 
                 auto fpValue = [this](const std::shared_ptr<Column> &column,
                                       int index) -> std::string {
@@ -500,9 +500,9 @@ namespace Cloude {
                 return 1;
             }
 
-            std::vector<Foundation::EntityProxy> PostgreSourceDriver::Select(
-                    std::shared_ptr<Predicate> &expr) const {
-                return std::vector<Foundation::EntityProxy>();
+            PostgreSourceDriver::UPtrProxyVector PostgreSourceDriver::Select(const UPtrPredicate &predicate) const {
+                UPtrProxyVector proxies;
+                return proxies;
             }
         }
     }

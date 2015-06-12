@@ -2,14 +2,16 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDEINT16_H
-#define CLOUD_E_CPLUS_CLDEINT16_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEINT16_H
+#define CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEINT16_H
 
 namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeInt16 {
+
                 public:
                     cldeInt16() = default;
                     virtual ~cldeInt16() = default;
@@ -23,4 +25,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_CLDEINT16_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEINT16_H

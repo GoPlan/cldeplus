@@ -2,8 +2,8 @@
 // Created by GoPlan on 14/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_ENTITY_H
-#define CLOUD_E_CPLUS_ENTITY_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
+#define CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 
 #include "unordered_map"
 #include "Field.h"
@@ -15,6 +15,7 @@ namespace Cloude {
         class Identity;
 
         class Entity {
+
         public:
             explicit Entity(const std::shared_ptr<Identity> &identity);
             ~Entity() = default;
@@ -44,4 +45,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_ENTITY_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_ENTITY_H

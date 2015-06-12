@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_ISNOTNULL_H
-#define CLOUD_E_CPLUS_ISNOTNULL_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_ISNOTNULL_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_ISNOTNULL_H
 
 #include "../Predicate.h"
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
@@ -12,7 +12,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class IsNotNull : public Predicate {
+
                 public:
                     IsNotNull(const Column &column) : _column(column) { };
                     virtual ~IsNotNull() = default;
@@ -35,4 +37,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_ISNOTNULL_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_ISNOTNULL_H

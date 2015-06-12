@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDEVALUEFACTORY_H
-#define CLOUD_E_CPLUS_CLDEVALUEFACTORY_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUEFACTORY_H
+#define CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUEFACTORY_H
 
 #include <memory>
 #include "cldeValue.h"
@@ -11,7 +11,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Type {
+
             class cldeValueFactory {
+
             public:
                 cldeValueFactory() = delete;
                 ~cldeValueFactory() = delete;
@@ -30,4 +32,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_CLDEVALUEFACTORY_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUEFACTORY_H

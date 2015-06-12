@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDEINT64_H
-#define CLOUD_E_CPLUS_CLDEINT64_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEINT64_H
+#define CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEINT64_H
 
 #include "../cldeNumericValue.h"
 
@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeInt64 : public cldeNumericValue {
+
                 public:
                     cldeInt64(int64_t value);
                     virtual ~cldeInt64() = default;
@@ -46,4 +48,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_CLDEINT64_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEINT64_H

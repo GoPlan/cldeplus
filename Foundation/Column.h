@@ -2,8 +2,8 @@
 // Created by GoPlan on 14/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_COLUMN_H
-#define CLOUD_E_CPLUS_COLUMN_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_COLUMN_H
+#define CLOUD_E_CPLUS_FOUNDATION_COLUMN_H
 
 #include <string>
 #include "Type/cldeValueType.h"
@@ -12,6 +12,7 @@ namespace Cloude {
     namespace Foundation {
 
         class Column {
+
         public:
             Column() = default;
             Column(const Column &srcColumn) = default;
@@ -43,4 +44,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_COLUMN_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_COLUMN_H

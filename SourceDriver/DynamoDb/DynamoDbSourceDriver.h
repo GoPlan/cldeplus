@@ -2,13 +2,15 @@
 // Created by LE, Duc Anh on 6/11/15.
 //
 
-#ifndef CLOUD_E_CPLUS_DYNAMODBSOURCEDRIVER_H
-#define CLOUD_E_CPLUS_DYNAMODBSOURCEDRIVER_H
+#ifndef CLOUD_E_CPLUS_SOURCEDRIVER_DYNAMODB_DYNAMODBSOURCEDRIVER_H
+#define CLOUD_E_CPLUS_SOURCEDRIVER_DYNAMODB_DYNAMODBSOURCEDRIVER_H
 
 namespace Cloude {
     namespace SourceDriver {
         namespace DynamoDb {
+
             class DynamoDbSourceDriver {
+
             public:
                 DynamoDbSourceDriver() = default;
                 virtual ~DynamoDbSourceDriver() = default;
@@ -21,4 +23,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_DYNAMODBSOURCEDRIVER_H
+#endif //CLOUD_E_CPLUS_SOURCEDRIVER_DYNAMODB_DYNAMODBSOURCEDRIVER_H

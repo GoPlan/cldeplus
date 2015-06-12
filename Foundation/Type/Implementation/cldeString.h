@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDESTRING_H
-#define CLOUD_E_CPLUS_CLDESTRING_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDESTRING_H
+#define CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDESTRING_H
 
 #include <string>
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
@@ -13,7 +13,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeString : public cldeCharacterValue {
+
                 public:
                     cldeString(const char *string);
                     virtual ~cldeString() = default;
@@ -40,4 +42,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_CLDESTRING_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDESTRING_H

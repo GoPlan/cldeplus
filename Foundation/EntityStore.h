@@ -2,8 +2,8 @@
 // Created by LE, Duc-Anh on 5/23/15.
 //
 
-#ifndef CLOUD_E_CPLUS_ENTITYSTORE_H
-#define CLOUD_E_CPLUS_ENTITYSTORE_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
+#define CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 
 #include <unordered_map>
 
@@ -17,6 +17,7 @@ namespace Cloude {
         class Identity;
 
         class EntityStore {
+
         public:
             EntityStore(const EntityMap &entityMap,
                         const EntityLoader &entityLoader,
@@ -39,6 +40,7 @@ namespace Cloude {
             unsigned long Size() const;
 
             const EntityMap &getEntityMap() const { return _entityMap; }
+            const EntitySourceDriver &getEntitySourceDriver() const { return _entitySourceDriver; }
 
         protected:
             const EntityMap &_entityMap;
@@ -52,4 +54,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_CPLUS_ENTITYSTORE_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H

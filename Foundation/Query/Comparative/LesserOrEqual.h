@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_LESSEROREQUAL_H
-#define CLOUD_E_CPLUS_LESSEROREQUAL_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_LESSEROREQUAL_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_LESSEROREQUAL_H
 
 #include "../PredicateLeaf.h"
 
@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class LesserOrEqual : public PredicateLeaf {
+
                 public:
                     LesserOrEqual(const Column &column, const Type::cldeValue &value)
                             : PredicateLeaf(column, value) { };
@@ -32,4 +34,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_LESSEROREQUAL_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_LESSEROREQUAL_H

@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDEVALUE_H
-#define CLOUD_E_CPLUS_CLDEVALUE_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUE_H
+#define CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUE_H
 
 #include <Foundation/Common/IPrintable.h>
 #include <Foundation/Common/IEquatable.h>
@@ -13,6 +13,7 @@
 namespace Cloude {
     namespace Foundation {
         namespace Type {
+
             class cldeValue : public Common::IPrintable,
                               public Common::IEquatable,
                               public Common::IComputable<cldeValue> {
@@ -48,4 +49,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_CLDEVALUE_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUE_H

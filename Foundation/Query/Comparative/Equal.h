@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_EQUAL_H
-#define CLOUD_E_CPLUS_EQUAL_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_EQUAL_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_EQUAL_H
 
 #include "../PredicateLeaf.h"
 
@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class Equal : public Query::PredicateLeaf {
+                
                 public:
                     Equal(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
                     virtual ~Equal() = default;
@@ -30,4 +32,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_EQUAL_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_EQUAL_H

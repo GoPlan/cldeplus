@@ -14,12 +14,15 @@ namespace Cloude {
 
             using Field = Foundation::Field;
             using Column = Foundation::Column;
+            using Entity = Foundation::Entity;
             using Type = Foundation::Type::cldeValueType;
 
             class Command {
+
             public:
-                Command(const mongoc_client_t &client, const mongoc_collection_t &collection) : collection(collection),
-                                                                                                client(client) {
+                Command(const mongoc_client_t &client, const mongoc_collection_t &collection)
+                        : collection(collection),
+                          client(client) {
                     _ptrBsonPredicate = bson_new();
                     _ptrBsonProjection = bson_new();
                 };
@@ -49,6 +52,7 @@ namespace Cloude {
             };
 
             class MongoDbSourceDriver::MongoDbApiImpl {
+
             public:
                 MongoDbApiImpl() {
                     mongoc_init();
@@ -167,10 +171,10 @@ namespace Cloude {
             };
 
 
-            MongoDbSourceDriver::MongoDbSourceDriver(Foundation::EntityMap &entityMap)
+            MongoDbSourceDriver::MongoDbSourceDriver(const Foundation::EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _mongoDbApiImpl(new MongoDbApiImpl()) {
-                init();
+                Init();
             }
 
             void MongoDbSourceDriver::Connect() {
@@ -187,11 +191,11 @@ namespace Cloude {
                 //
             }
 
-            void MongoDbSourceDriver::init() {
+            void MongoDbSourceDriver::Init() {
                 //
             }
 
-            int MongoDbSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
+            int MongoDbSourceDriver::Load(std::shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
                 auto &columnsForGet = _entityMap.getColumnsForGet();
@@ -262,7 +266,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int MongoDbSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {
+            int MongoDbSourceDriver::Insert(std::shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
@@ -286,7 +290,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int MongoDbSourceDriver::Save(std::shared_ptr<Entity> &entity) const {
+            int MongoDbSourceDriver::Save(std::shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
                 auto &columnsForUpdate = _entityMap.getColumnsForUpdate();
@@ -320,7 +324,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int MongoDbSourceDriver::Delete(std::shared_ptr<Entity> &entity) const {
+            int MongoDbSourceDriver::Delete(std::shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
@@ -342,8 +346,9 @@ namespace Cloude {
                 return 1;
             }
 
-            std::vector<Foundation::EntityProxy> MongoDbSourceDriver::Select(std::shared_ptr<Predicate> &expr) const {
-                return std::vector<Foundation::EntityProxy>();
+            MongoDbSourceDriver::UPtrProxyVector MongoDbSourceDriver::Select(const UPtrPredicate &predicate) const {
+                UPtrProxyVector proxies;
+                return proxies;
             }
         }
     }

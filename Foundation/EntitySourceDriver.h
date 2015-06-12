@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 5/31/15.
 //
 
-#ifndef CLOUD_E_CPLUS_ENTITYSOURCEDRIVER_H
-#define CLOUD_E_CPLUS_ENTITYSOURCEDRIVER_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYSOURCEDRIVER_H
+#define CLOUD_E_CPLUS_FOUNDATION_ENTITYSOURCEDRIVER_H
 
 #include <memory>
 #include <vector>
@@ -16,8 +16,14 @@ namespace Cloude {
     namespace Foundation {
 
         class EntitySourceDriver {
+
         public:
-            explicit EntitySourceDriver(EntityMap &entityMap) : _entityMap(entityMap) { };
+            using UPtrProxy = std::unique_ptr<EntityProxy>;
+            using UPtrProxyVector = std::unique_ptr<std::vector<UPtrProxy>>;
+            using UPtrPredicate = std::unique_ptr<Query::Predicate>;
+
+        public:
+            explicit EntitySourceDriver(const EntityMap &entityMap) : _entityMap(entityMap) { };
             virtual ~EntitySourceDriver() = default;
             EntitySourceDriver(const EntitySourceDriver &rhs) = delete;
             EntitySourceDriver &operator=(const EntitySourceDriver &rhs) = delete;
@@ -26,8 +32,7 @@ namespace Cloude {
             virtual int Insert(std::shared_ptr<Entity> &entity) const = 0;
             virtual int Save(std::shared_ptr<Entity> &entity) const = 0;
             virtual int Delete(std::shared_ptr<Entity> &entity) const = 0;
-
-            virtual std::vector<EntityProxy> Select(std::shared_ptr<Query::Predicate> &expr) const = 0;
+            virtual UPtrProxyVector Select(const UPtrPredicate &predicate) const = 0;
 
         protected:
             const EntityMap &_entityMap;
@@ -37,4 +42,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_ENTITYSOURCEDRIVER_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_ENTITYSOURCEDRIVER_H

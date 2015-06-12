@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/7/15.
 //
 
-#ifndef CLOUD_E_CPLUS_SQLITESOURCEDRIVER_H
-#define CLOUD_E_CPLUS_SQLITESOURCEDRIVER_H
+#ifndef CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEDRIVER_H
+#define CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEDRIVER_H
 
 #include <memory>
 #include <Foundation/EntitySourceDriver.h>
@@ -18,13 +18,12 @@ namespace Cloude {
                       public Foundation::Query::Contract::IPredicationFormatter {
 
             public:
-                using Predicate = Foundation::Query::Predicate;
                 using Options = struct {
                     std::string ConnectionString;
                 };
 
             public:
-                explicit SQLiteSourceDriver(Foundation::EntityMap &entityMap);
+                explicit SQLiteSourceDriver(const Foundation::EntityMap &entityMap);
                 ~SQLiteSourceDriver();
                 SQLiteSourceDriver(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
                 SQLiteSourceDriver &operator=(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
@@ -35,30 +34,34 @@ namespace Cloude {
                 Options &getOptionArgs() { return _optionArgs; }
 
                 // EntitySourceDriver
-                int Load(std::shared_ptr<Foundation::Entity> &entity) const;
-                int Insert(std::shared_ptr<Foundation::Entity> &entity) const;
-                int Save(std::shared_ptr<Foundation::Entity> &entity) const;
-                int Delete(std::shared_ptr<Foundation::Entity> &entity) const;
-                std::vector<Foundation::EntityProxy> Select(std::shared_ptr<Predicate> &expr) const override;
+                int Load(std::shared_ptr<Foundation::Entity> &entity) const override;
+                int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
+                int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
+                int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
+                UPtrProxyVector Select(const UPtrPredicate &expr) const override;
 
                 // IPredicationFormatterPredication
-                const std::string CopyFormat(const Predicate &predicate) const override;
+                std::string CopyFormat(const Foundation::Query::Predicate &predicate) const override;
 
             private:
                 class SQLiteApiImpl;
 
                 std::shared_ptr<SQLiteApiImpl> _sqliteApiImpl;
+
                 Options _optionArgs;
+
                 std::string _getStatement;
                 std::string _insertStatement;
                 std::string _updateStatement;
                 std::string _deleteStatement;
+                std::string _selectStatement;
 
-                void init();
+            private:
+                void Init();
             };
         }
     }
 }
 
 
-#endif //CLOUD_E_CPLUS_SQLITESOURCEDRIVER_H
+#endif //CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEDRIVER_H

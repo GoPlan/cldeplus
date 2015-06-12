@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_NOTLIKE_H
-#define CLOUD_E_CPLUS_NOTLIKE_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_NOTLIKE_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_NOTLIKE_H
 
 #include "../PredicateLeaf.h"
 
@@ -11,7 +11,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class NotLike : public PredicateLeaf {
+
                 public:
                     NotLike(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
                     ~NotLike() = default;
@@ -31,4 +33,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_NOTLIKE_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_NOTLIKE_H

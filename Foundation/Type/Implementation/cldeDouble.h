@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDEDOUBLE_H
-#define CLOUD_E_CPLUS_CLDEDOUBLE_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEDOUBLE_H
+#define CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEDOUBLE_H
 
 #include "../cldeNumericValue.h"
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
@@ -12,7 +12,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldeDouble : public cldeNumericValue {
+
                 public:
                     cldeDouble(double value);
                     virtual ~cldeDouble() = default;
@@ -46,4 +48,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_CPLUS_CLDEDOUBLE_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEDOUBLE_H

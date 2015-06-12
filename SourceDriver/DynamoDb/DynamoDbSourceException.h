@@ -2,13 +2,15 @@
 // Created by LE, Duc Anh on 6/11/15.
 //
 
-#ifndef CLOUD_E_CPLUS_DYNAMODBSOURCEEXCEPTION_H
-#define CLOUD_E_CPLUS_DYNAMODBSOURCEEXCEPTION_H
+#ifndef CLOUD_E_CPLUS_SOURCEDRIVER_DYNAMODB_DYNAMODBSOURCEEXCEPTION_H
+#define CLOUD_E_CPLUS_SOURCEDRIVER_DYNAMODB_DYNAMODBSOURCEEXCEPTION_H
 
 namespace Cloude {
     namespace SourceDriver {
         namespace DynamoDb {
+
             class DynamoDbSourceException {
+            
             public:
                 DynamoDbSourceException() = default;
                 virtual ~DynamoDbSourceException() = default;
@@ -22,4 +24,4 @@ namespace Cloude {
 
 
 
-#endif //CLOUD_E_CPLUS_DYNAMODBSOURCEEXCEPTION_H
+#endif //CLOUD_E_CPLUS_SOURCEDRIVER_DYNAMODB_DYNAMODBSOURCEEXCEPTION_H

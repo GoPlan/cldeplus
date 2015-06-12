@@ -2,15 +2,17 @@
 // Created by LE, Duc Anh on 5/26/15.
 //
 
-#ifndef CLOUD_E_CPLUS_cldeDATASOURCEROUTINEEXCEPTION_H
-#define CLOUD_E_CPLUS_cldeDATASOURCEROUTINEEXCEPTION_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEDATASOURCEROUTINEEXCEPTION_H
+#define CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEDATASOURCEROUTINEEXCEPTION_H
 
 #include "cldeException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
+
             class cldeDataSourceRoutineException : public cldeException {
+
             public:
                 cldeDataSourceRoutineException(const char *message) : cldeException(message) { };
                 cldeDataSourceRoutineException(const std::string &message) : cldeException(message) { };
@@ -23,4 +25,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_CPLUS_cldeDATASOURCEROUTINEEXCEPTION_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEDATASOURCEROUTINEEXCEPTION_H

@@ -2,8 +2,8 @@
 // Created by GoPlan on 14/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_FIELD_H
-#define CLOUD_E_CPLUS_FIELD_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_FIELD_H
+#define CLOUD_E_CPLUS_FOUNDATION_FIELD_H
 
 #include <string>
 #include <memory>
@@ -13,7 +13,9 @@
 
 namespace Cloude {
     namespace Foundation {
+
         class Field {
+
         public:
             explicit Field(const std::shared_ptr<Column> &column);
             ~Field() = default;
@@ -32,4 +34,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_FIELD_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_FIELD_H

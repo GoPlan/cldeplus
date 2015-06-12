@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_PREDICATION_H
-#define CLOUD_E_CPLUS_PREDICATION_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATE_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATE_H
 
 #include <Foundation/Column.h>
 #include <Foundation/Type/cldeValue.h>
@@ -13,7 +13,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
+
             class Predicate {
+
             public:
                 Predicate() = default;
                 virtual ~Predicate() = default;
@@ -34,4 +36,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_PREDICATION_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATE_H

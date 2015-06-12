@@ -2,8 +2,8 @@
 // Created by GoPlan on 14/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_ENTITYMAP_H
-#define CLOUD_E_CPLUS_ENTITYMAP_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
+#define CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
 
 #include <memory>
 #include <vector>
@@ -16,6 +16,7 @@ namespace Cloude {
     namespace Foundation {
 
         class EntityMap {
+
         public:
             EntityMap() = default;
             EntityMap(const EntityMap &srcEntityMap) = default;
@@ -43,4 +44,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_ENTITYMAP_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H

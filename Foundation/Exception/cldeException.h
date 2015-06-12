@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_CPLUS_CLDEEXCEPTION_H
-#define CLOUD_E_CPLUS_CLDEEXCEPTION_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEEXCEPTION_H
+#define CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEEXCEPTION_H
 
 #include <string>
 #include <exception>
@@ -11,7 +11,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
+
             class cldeException : public std::exception {
+
             public:
                 cldeException(const char *message) : _message(message) { };
                 cldeException(const std::string &message) : _message(message) { };
@@ -29,4 +31,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_CLDEEXCEPTION_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEEXCEPTION_H

@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#ifndef CLOUD_E_CPLUS_AND_H
-#define CLOUD_E_CPLUS_AND_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_AND_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_AND_H
 
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include <Foundation/Query/Predicate.h>
@@ -12,7 +12,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 class And : public Query::Predicate {
+
                 public:
                     And(const Query::Predicate &lhs, const Query::Predicate &rhs) : _lhs(lhs), _rhs(rhs) { };
                     ~And() = default;
@@ -43,4 +45,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_AND_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_AND_H

@@ -19,7 +19,7 @@ namespace Cloude {
         void EnquirySQLiteStore::SetUp() {
 
             auto &options = _sqliteSourceDriver.getOptionArgs();
-            options.ConnectionString = "ex1.db";
+            options.ConnectionString = "../ex1.db";
 
             _sqliteSourceDriver.Connect();
         }
