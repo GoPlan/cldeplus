@@ -1,15 +1,12 @@
 cmake_minimum_required(VERSION 3.2)
 project(cloud_e_cplus)
 
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_cplus_SOURCE_DIR}/Build/bin")
-set(CMAKE_BINARY_DIR "/Users/ducanhki/Documents/BitBucket/cloud-e-plus/Build")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_cplus_SOURCE_DIR}/local/build/bin")
+set(CMAKE_BINARY_DIR "/Users/ducanhki/Documents/BitBucket/cloud-e-plus/local/build")
 set(SOURCE_FILES main.cpp)
 
-
 include_directories(${CMAKE_SOURCE_DIR})
-
 
 add_library(foundation STATIC
     Cloude.h
@@ -103,15 +100,15 @@ add_library(foundation STATIC
     Foundation/Type/Implementation/cldeMatrix.h
     Foundation/Type/cldeValueFactory.cpp
     Foundation/Type/cldeValueFactory.h
-    Foundation/Common/IComputable.h
-    Foundation/Common/ICompoundAssignable.h
+    Foundation/Type/cldeData.h
     Foundation/Type/Implementation/cldeString.cpp
     Foundation/Type/Implementation/cldeString.h
     Foundation/Exception/cldeNonSupportedFunctionException.cpp
     Foundation/Exception/cldeNonSupportedFunctionException.h
     Foundation/Exception/cldeException.cpp
     Foundation/Exception/cldeException.h
-    Foundation/Type/cldeData.h
+    Foundation/Common/IComputable.h
+    Foundation/Common/ICompoundAssignable.h
     Foundation/Common/IParsable.h
     Foundation/Common/IFormattable.h
     Foundation/Query/Contract/IPredicationFormatter.h
@@ -200,7 +197,8 @@ add_library(apptest STATIC
 
 
 # Libs
-set(LIBS_DIR ${CMAKE_SOURCE_DIR}/Libs)
+set(LOCAL_DIR ${CMAKE_SOURCE_DIR}/local)
+set(LIBS_DIR ${LOCAL_DIR}/libs)
 
 
 # /opt/local
