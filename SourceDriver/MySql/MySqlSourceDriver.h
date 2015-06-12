@@ -45,7 +45,7 @@ namespace Cloude {
                 int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
-                upProxyVector Select(const upPredicate &expr) const override;
+                UPtrProxyVector Select(const UPtrPredicate &expr) const override;
 
             private:
                 class MySqlApiImpl;
@@ -59,7 +59,7 @@ namespace Cloude {
                 bool isConnected = false;
 
             private:
-                void init();
+                void Init();
             };
         }
     }

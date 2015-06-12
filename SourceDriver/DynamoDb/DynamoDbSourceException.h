@@ -8,7 +8,9 @@
 namespace Cloude {
     namespace SourceDriver {
         namespace DynamoDb {
+
             class DynamoDbSourceException {
+            
             public:
                 DynamoDbSourceException() = default;
                 virtual ~DynamoDbSourceException() = default;

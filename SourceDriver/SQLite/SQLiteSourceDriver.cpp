@@ -15,11 +15,7 @@ namespace Cloude {
     namespace SourceDriver {
         namespace SQLite {
 
-            using EntityMap = Foundation::EntityMap;
             using ColumnsList = std::vector<std::shared_ptr<Foundation::Column>>;
-            using Column = Foundation::Column;
-            using Field = Foundation::Field;
-            using Entity = Foundation::Entity;
             using Type = Foundation::Type::cldeValueType;
 
             class Command {
@@ -96,14 +92,14 @@ namespace Cloude {
                 }
 
                 int initializeParamBindBuffers(const ColumnsList &columnsList,
-                                               std::shared_ptr<Entity> &entity,
+                                               std::shared_ptr<Foundation::Entity> &entity,
                                                std::shared_ptr<Command> &command) {
 
                     int index = 1;
 
                     std::for_each(columnsList.cbegin(),
                                   columnsList.cend(),
-                                  [&command, &entity, &index](const std::shared_ptr<Column> &column) {
+                                  [&command, &entity, &index](const std::shared_ptr<Foundation::Column> &column) {
 
                                       auto &field = entity->getField(column->getName());
                                       auto &value = field->getValue();
@@ -141,10 +137,10 @@ namespace Cloude {
                 sqlite3 *_ptrSqlite3 = nullptr;
             };
 
-            SQLiteSourceDriver::SQLiteSourceDriver(const EntityMap &entityMap)
+            SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
-                init();
+                Init();
             }
 
             SQLiteSourceDriver::~SQLiteSourceDriver() {
@@ -164,13 +160,15 @@ namespace Cloude {
                 _sqliteApiImpl.reset();
             }
 
-            void SQLiteSourceDriver::init() {
+            void SQLiteSourceDriver::Init() {
 
-                auto fpValue = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
+                auto fpValue = [](const std::shared_ptr<Foundation::Column> &column, int index)
+                        -> std::string {
                     return std::string("?");
                 };
 
-                auto fpCondition = [this](const std::shared_ptr<Column> &column, int index) -> std::string {
+                auto fpCondition = [](const std::shared_ptr<Foundation::Column> &column, int index)
+                        -> std::string {
                     return column->getDatasourceName() + " = " + "?";
                 };
 
@@ -180,25 +178,25 @@ namespace Cloude {
                 _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
             }
 
-            int SQLiteSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
+            int SQLiteSourceDriver::Load(std::shared_ptr<Foundation::Entity> &entity) const {
 
                 using cldeFactory = Foundation::Type::cldeValueFactory;
 
                 const auto &columnsForGet = _entityMap.getColumnsForGet();
                 const auto &columnsForKey = _entityMap.getColumnsForKey();
 
-                std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_getStatement);
+                auto SPtrCommand = _sqliteApiImpl->createCommand(_getStatement);
 
-                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, command);
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, SPtrCommand);
 
-                int resultCode = sqlite3_step(command->_ptrStmt);
+                int resultCode = sqlite3_step(SPtrCommand->_ptrStmt);
 
                 if (resultCode != SQLITE_DONE && resultCode != SQLITE_ROW) {
                     // TODO: throws an appropriate exception
                     return 0;
                 }
 
-                if (sqlite3_column_type(command->_ptrStmt, 0) == SQLITE_NULL) {
+                if (sqlite3_column_type(SPtrCommand->_ptrStmt, 0) == SQLITE_NULL) {
                     return 0;
                 }
 
@@ -206,9 +204,9 @@ namespace Cloude {
 
                 std::for_each(columnsForGet.cbegin(),
                               columnsForGet.cend(),
-                              [&entity, &command, &index](const std::shared_ptr<Column> &column) {
+                              [&entity, &SPtrCommand, &index](const std::shared_ptr<Foundation::Column> &column) {
 
-                                  if (sqlite3_column_type(command->_ptrStmt, index) == SQLITE_NULL) {
+                                  if (sqlite3_column_type(SPtrCommand->_ptrStmt, index) == SQLITE_NULL) {
                                       ++index;
                                       return;
                                   }
@@ -219,15 +217,16 @@ namespace Cloude {
                                       case Type::Int64:
                                           int64_t int64Value;
                                           int64Value =
-                                                  static_cast<int64_t>(sqlite3_column_int64(command->_ptrStmt,
+                                                  static_cast<int64_t>(sqlite3_column_int64(SPtrCommand->_ptrStmt,
                                                                                             index++));
                                           field->setValue(cldeFactory::CreateInt64(int64Value));
                                           break;
                                       case Type::Varchar:
                                           const char *strValue;
                                           strValue =
-                                                  reinterpret_cast<const char *>(sqlite3_column_text(command->_ptrStmt,
-                                                                                                     index++));
+                                                  reinterpret_cast<const char *>(sqlite3_column_text(
+                                                          SPtrCommand->_ptrStmt,
+                                                          index++));
                                           field->setValue(cldeFactory::CreateString(strValue));
                                           break;
                                       default:
@@ -240,7 +239,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int SQLiteSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {
+            int SQLiteSourceDriver::Insert(std::shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
@@ -268,7 +267,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int SQLiteSourceDriver::Save(std::shared_ptr<Entity> &entity) const {
+            int SQLiteSourceDriver::Save(std::shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForUpdate = _entityMap.getColumnsForUpdate();
                 auto &columnsForKey = _entityMap.getColumnsForKey();
@@ -277,7 +276,7 @@ namespace Cloude {
                 columnsList.insert(columnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
                 columnsList.insert(columnsList.end(), columnsForKey.begin(), columnsForKey.end());
 
-                std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_updateStatement);
+                auto command = _sqliteApiImpl->createCommand(_updateStatement);
 
                 _sqliteApiImpl->initializeParamBindBuffers(columnsList, entity, command);
 
@@ -302,15 +301,14 @@ namespace Cloude {
                 return 1;
             }
 
-            int SQLiteSourceDriver::Delete(std::shared_ptr<Entity> &entity) const {
+            int SQLiteSourceDriver::Delete(std::shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
+                auto SPtrCommand = _sqliteApiImpl->createCommand(_deleteStatement);
 
-                std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_deleteStatement);
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, SPtrCommand);
 
-                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, command);
-
-                int resultCode = sqlite3_step(command->_ptrStmt);
+                int resultCode = sqlite3_step(SPtrCommand->_ptrStmt);
 
                 switch (resultCode) {
                     case SQLITE_BUSY:
@@ -331,81 +329,78 @@ namespace Cloude {
                 return 1;
             }
 
-            SQLiteSourceDriver::upProxyVector SQLiteSourceDriver::Select(const upPredicate &predicate) const {
-                upProxyVector proxies;
+            SQLiteSourceDriver::UPtrProxyVector SQLiteSourceDriver::Select(const UPtrPredicate &predicate) const {
+                UPtrProxyVector proxies;
                 return proxies;
             }
 
-            std::string SQLiteSourceDriver::CopyFormat(const Predicate &predicate) const {
+            std::string SQLiteSourceDriver::CopyFormat(const Foundation::Query::Predicate &predicate) const {
 
-                using PredAnd = Foundation::Query::Comparative::And;
-                using PredOr = Foundation::Query::Comparative::Or;
-
-                std::string strPred;
+                std::string condition;
 
                 switch (predicate.getType()) {
                     case Foundation::Query::Enumeration::ComparativeType::And: {
-                        auto &pred = dynamic_cast<const PredAnd &>(predicate);
-                        strPred = "(" + pred.getLhs().CopyToString(*this) + ")" +
-                                  " AND " +
-                                  "(" + pred.getRhs().CopyToString(*this) + ")";
+                        auto &pred = dynamic_cast<const Foundation::Query::Comparative::And &>(predicate);
+                        condition = "(" + pred.getLhs().CopyToString(*this) + ")" +
+                                    " AND " +
+                                    "(" + pred.getRhs().CopyToString(*this) + ")";
                         break;
                     }
                     case Foundation::Query::Enumeration::ComparativeType::Or: {
-                        auto &pred = dynamic_cast<const PredOr &>(predicate);
-                        strPred = "(" + pred.getLhs().CopyToString(*this) + ")" +
-                                  " OR " +
-                                  "(" + pred.getRhs().CopyToString(*this) + ")";
+                        auto &pred = dynamic_cast<const Foundation::Query::Comparative::Or &>(predicate);
+                        condition = "(" + pred.getLhs().CopyToString(*this) + ")" +
+                                    " OR " +
+                                    "(" + pred.getRhs().CopyToString(*this) + ")";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::Equal: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " = ";
+                        condition = column.getDatasourceName() + " = ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::NotEqual: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " != ";
+                        condition = column.getDatasourceName() + " != ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::Greater: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " > ";
+                        condition = column.getDatasourceName() + " > ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::GreaterOrEqual: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " >= ";
+                        condition = column.getDatasourceName() + " >= ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::Lesser: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " < ";
+                        condition = column.getDatasourceName() + " < ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::LesserOrEqual: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " <= ";
+                        condition = column.getDatasourceName() + " <= ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::Like: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " LIKE ";
+                        condition = column.getDatasourceName() + " LIKE ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::NotLike: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " NOT LIKE ";
+                        condition = column.getDatasourceName() + " NOT LIKE ";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::IsNull: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " IS NULL";
+                        condition = column.getDatasourceName() + " IS NULL";
                         break;
                     };
                     case Foundation::Query::Enumeration::ComparativeType::IsNotNull: {
                         auto const &column = predicate.getColumn();
-                        strPred = column.getDatasourceName() + " IS NOT NULL";
+                        condition = column.getDatasourceName() + " IS NOT NULL";
                         break;
                     };
                 }
@@ -418,17 +413,17 @@ namespace Cloude {
 
                     switch (value.getCategory()) {
                         case Foundation::Type::cldeValueCategory::CharacterBased:
-                            strPred += "'";
-                            strPred += value.ToCString();
-                            strPred += "'";
+                            condition += "'";
+                            condition += value.ToCString();
+                            condition += "'";
                             break;
                         default:
-                            strPred += value.ToCString();
+                            condition += value.ToCString();
                             break;
                     }
                 }
 
-                return strPred;
+                return condition;
             }
         }
     }

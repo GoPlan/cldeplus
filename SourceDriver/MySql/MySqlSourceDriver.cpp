@@ -224,14 +224,14 @@ namespace Cloude {
             MySqlSourceDriver::MySqlSourceDriver(const Foundation::EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _mySqlApiImpl(new MySqlApiImpl()) {
-                init();
+                Init();
             }
 
             MySqlSourceDriver::~MySqlSourceDriver() {
 
             }
 
-            void MySqlSourceDriver::init() {
+            void MySqlSourceDriver::Init() {
 
                 auto fpInsert = [](const std::shared_ptr<Column> &column,
                                    int position) -> std::string {
@@ -373,8 +373,8 @@ namespace Cloude {
                 return 1;
             }
 
-            MySqlSourceDriver::upProxyVector MySqlSourceDriver::Select(const upPredicate &predicate) const {
-                upProxyVector proxies;
+            MySqlSourceDriver::UPtrProxyVector MySqlSourceDriver::Select(const UPtrPredicate &predicate) const {
+                UPtrProxyVector proxies;
                 return proxies;
             }
         }

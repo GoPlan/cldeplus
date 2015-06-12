@@ -55,7 +55,7 @@ namespace Cloude {
                 int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
-                upProxyVector Select(const upPredicate &predicate) const override;
+                UPtrProxyVector Select(const UPtrPredicate &predicate) const override;
 
             private:
                 class PgApiImpl;
@@ -69,7 +69,7 @@ namespace Cloude {
                 bool _isConnected = false;
 
             private:
-                void init();
+                void Init();
             };
         }
     }

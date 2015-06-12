@@ -174,7 +174,7 @@ namespace Cloude {
             MongoDbSourceDriver::MongoDbSourceDriver(const Foundation::EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _mongoDbApiImpl(new MongoDbApiImpl()) {
-                init();
+                Init();
             }
 
             void MongoDbSourceDriver::Connect() {
@@ -191,7 +191,7 @@ namespace Cloude {
                 //
             }
 
-            void MongoDbSourceDriver::init() {
+            void MongoDbSourceDriver::Init() {
                 //
             }
 
@@ -346,8 +346,8 @@ namespace Cloude {
                 return 1;
             }
 
-            MongoDbSourceDriver::upProxyVector MongoDbSourceDriver::Select(const upPredicate &predicate) const {
-                upProxyVector proxies;
+            MongoDbSourceDriver::UPtrProxyVector MongoDbSourceDriver::Select(const UPtrPredicate &predicate) const {
+                UPtrProxyVector proxies;
                 return proxies;
             }
         }
