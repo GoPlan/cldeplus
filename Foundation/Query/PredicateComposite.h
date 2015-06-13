@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/13/15.
 //
 
-#ifndef CLOUD_E_CPLUS_PREDICATECOMPOSITE_H
-#define CLOUD_E_CPLUS_PREDICATECOMPOSITE_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATECOMPOSITE_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATECOMPOSITE_H
 
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include "Predicate.h"
@@ -23,31 +23,14 @@ namespace Cloude {
                 PredicateComposite &operator=(const PredicateComposite &rhs) = default;
 
                 // Predicate
-                virtual const bool isComposite()
-                const override {
-                    return true;
-                };
-                virtual const Enumeration::ComparativeType &getComparativeType() const override {
-                    const char *msg = "Composite compartive does not support getComparativeType()";
-                    throw
-                            Exception::cldeNonSupportedFunctionException(msg);
-                };
-                virtual const Column &getColumn()
-                const override {
-                    const char *msg = "Composite compartive does not support getColumn()";
-                    throw
-                            Exception::cldeNonSupportedFunctionException(msg);
-                };
-                virtual const Type::SPtrCldeValue &getValue()
-                const override {
-                    const char *msg = "Composite comparator does not support getValue() method.";
-                    throw
-                            Exception::cldeNonSupportedFunctionException(msg);
-                };
+                virtual const bool isComposite() const override { return true; };
+                virtual const Enumeration::ComparativeType &getComparativeType() const override;
+                virtual const Column &getColumn() const override;
+                virtual const Type::SPtrCldeValue &getValue() const override;
 
                 // Locals
-                SPtrPredicate getRhs() const { return _sptrRhs; }
-                SPtrPredicate getLhs() const { return _sptrLhs; }
+                const SPtrPredicate &getRhs() const { return _sptrRhs; }
+                const SPtrPredicate &getLhs() const { return _sptrLhs; }
 
             protected:
                 SPtrPredicate _sptrRhs;
@@ -58,4 +41,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_PREDICATECOMPOSITE_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATECOMPOSITE_H

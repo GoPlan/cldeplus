@@ -12,8 +12,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
-            void GenerateFieldsFromColumns
-                    (const SPtrColumnVector &columnVector, SPtrEntity &entity, bool checkIfFieldExists);
+            void GenerateFieldsFromColumns (const SPtrColumnVector &columnVector,
+                                            SPtrEntity &entity,
+                                            bool checkIfFieldExists);
 
         }
     }

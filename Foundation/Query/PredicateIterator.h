@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/13/15.
 //
 
-#ifndef CLOUD_E_CPLUS_PREDICATEITERATOR_H
-#define CLOUD_E_CPLUS_PREDICATEITERATOR_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATEITERATOR_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATEITERATOR_H
 
 #include <memory>
 #include <iterator>
@@ -25,15 +25,9 @@ namespace Cloude {
                 PredicateIterator(const PredicateIterator &rhs) : _sptrPredicate(rhs._sptrPredicate) { };
                 SPtrPredicateIterator operator++();
 
-                const SPtrPredicate &getPredicate() const {
-                    return _sptrPredicate;
-                };
-                bool isVisited() const {
-                    return _isVisited;
-                }
-                bool hasValue() const {
-                    return !_isVisited && !getPredicate()->isComposite();
-                }
+                const SPtrPredicate &getPredicate() const { return _sptrPredicate; };
+                bool isVisited() const { return _isVisited; }
+                bool isLeaf() const { return !getPredicate()->isComposite(); }
 
             private:
                 bool _finishedLeft = false;
@@ -47,4 +41,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_PREDICATEITERATOR_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATEITERATOR_H

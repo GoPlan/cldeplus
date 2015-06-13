@@ -40,7 +40,7 @@ namespace Cloude {
 
                 while (next) {
 
-                    if (next->hasValue()) {
+                    if (!next->isVisited() && next->isLeaf()) {
                         cout << next->getPredicate()->getValue()->ToCString() << endl;
                     }
 

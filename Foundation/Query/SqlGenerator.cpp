@@ -14,8 +14,7 @@ namespace Cloude {
         namespace Query {
 
             std::string CreateGetPreparedQuery(const EntityMap &entityMap,
-                                               std::function<std::string(const SPtrColumn &column,
-                                                                         int position)> F) {
+                                               FPtrParamProcessor fptr) {
 
                 auto const &columnsForGet = entityMap.getColumnsForGet();
                 auto const &columnsForKey = entityMap.getColumnsForKey();
@@ -44,7 +43,7 @@ namespace Cloude {
                                       strCondition += " AND ";
                                   }
 
-                                  strCondition += F(column, index);
+                                  strCondition += fptr(column, index);
 
                                   ++index;
                               });
@@ -59,8 +58,7 @@ namespace Cloude {
             }
 
             std::string CreateInsertPreparedQuery(const EntityMap &entityMap,
-                                                  std::function<std::string(const SPtrColumn &column,
-                                                                            int position)> F) {
+                                                  FPtrParamProcessor fptr) {
 
                 auto const &columnsForKey = entityMap.getColumnsForKey();
 
@@ -80,7 +78,7 @@ namespace Cloude {
                                   }
 
                                   strColumns += column->getDatasourceName();
-                                  strCondition += F(column, index);
+                                  strCondition += fptr(column, index);
 
                                   ++index;
                               });
@@ -91,9 +89,7 @@ namespace Cloude {
                 return strQuery;
             }
 
-            std::string CreateUpdatePreparedQuery(const EntityMap &entityMap,
-                                                  std::function<std::string(const SPtrColumn &column,
-                                                                            int index)> F) {
+            std::string CreateUpdatePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr) {
 
                 auto const &columnsForUpdate = entityMap.getColumnsForUpdate();
                 auto const &columnsForKey = entityMap.getColumnsForKey();
@@ -117,7 +113,7 @@ namespace Cloude {
                                       isSetStart = false;
                                   }
 
-                                  strColumns += F(column, index);
+                                  strColumns += fptr(column, index);
 
                                   ++index;
                               });
@@ -131,7 +127,7 @@ namespace Cloude {
                                       isWhereStart = false;
                                   }
 
-                                  strCondition += F(column, index);
+                                  strCondition += fptr(column, index);
 
                                   ++index;
                               });
@@ -143,9 +139,8 @@ namespace Cloude {
                 return strQuery;
             }
 
-            std::string CreateDeletePreparedQuery(const EntityMap &entityMap,
-                                                  std::function<std::string(const SPtrColumn &column,
-                                                                            int index)> F) {
+            std::string CreateDeletePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr) {
+
                 auto const &columnsForKey = entityMap.getColumnsForKey();
 
                 std::string strCondition;
@@ -160,7 +155,7 @@ namespace Cloude {
                                       strCondition += ", ";
                                   }
 
-                                  strCondition += F(column, i);
+                                  strCondition += fptr(column, i);
 
                                   ++i;
                               });
@@ -173,8 +168,7 @@ namespace Cloude {
 
             SelectCompound CreateSelectPreparedQuery(const EntityMap &entityMap,
                                                      const Predicate &predicate,
-                                                     std::function<std::string(const SPtrColumn &column,
-                                                                               int index)> F) {
+                                                     FPtrParamProcessor fptr) {
 
                 SelectCompound compound;
 
