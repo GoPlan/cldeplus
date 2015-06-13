@@ -21,6 +21,7 @@ namespace Cloude {
             using EntityMap = Foundation::EntityMap;
 
             class Command {
+
             public:
                 Command(const PGconn &conn, const std::string &query) : PGConn(conn),
                                                                         Query(query) {
@@ -59,18 +60,19 @@ namespace Cloude {
             };
 
             class PostgreSourceDriver::PgApiImpl {
+
             public:
                 PGconn *PtrPgConn;
 
             public:
-                std::shared_ptr<Command> createCommand(const std::string &query) {
-                    std::shared_ptr<Command> command = std::make_shared<Command>(*PtrPgConn, query);
+                std::unique_ptr<Command> createCommand(const std::string &query) {
+                    std::unique_ptr<Command> command(new Command(*PtrPgConn, query));
                     return command;
                 }
 
-                void initializeParamsBindBuffer(std::shared_ptr<Entity> &entity,
-                                                const ColumnsList &columnsList,
-                                                std::shared_ptr<Command> &command) {
+                void initializeParamsBindBuffer(const ColumnsList &columnsList,
+                                                const std::unique_ptr<Command> &command,
+                                                std::shared_ptr<Entity> &entity) {
 
                     auto nParam = columnsList.size();
 
@@ -145,7 +147,6 @@ namespace Cloude {
                             throw Foundation::Exception::cldeNonSupportedDataTypeException(msg);
                     }
                 }
-
 
                 int retrieveResult(const EntityMap &entityMap,
                                    const PGresult *ptrResult,
@@ -263,7 +264,7 @@ namespace Cloude {
 
                 auto command = _pgApiImpl->createCommand(_getStatement);
 
-                _pgApiImpl->initializeParamsBindBuffer(entity, columnList, command);
+                _pgApiImpl->initializeParamsBindBuffer(columnList, command, entity);
 
                 const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
@@ -324,7 +325,7 @@ namespace Cloude {
 
                 auto command = _pgApiImpl->createCommand(_insertStatement);
 
-                _pgApiImpl->initializeParamsBindBuffer(entity, columnsList, command);
+                _pgApiImpl->initializeParamsBindBuffer(columnsList, command, entity);
 
                 const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
@@ -390,7 +391,7 @@ namespace Cloude {
 
                 auto command = _pgApiImpl->createCommand(_updateStatement);
 
-                _pgApiImpl->initializeParamsBindBuffer(entity, columnList, command);
+                _pgApiImpl->initializeParamsBindBuffer(columnList, command, entity);
 
                 const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
@@ -448,7 +449,7 @@ namespace Cloude {
 
                 auto command = _pgApiImpl->createCommand(_deleteStatement);
 
-                _pgApiImpl->initializeParamsBindBuffer(entity, columnList, command);
+                _pgApiImpl->initializeParamsBindBuffer(columnList, command, entity);
 
                 const char *const *ptrParamValues = const_cast<const char *const *>(command->PtrParamValues);
 
@@ -500,8 +501,12 @@ namespace Cloude {
                 return 1;
             }
 
-            PostgreSourceDriver::UPtrProxyVector PostgreSourceDriver::Select(const UPtrPredicate &predicate) const {
-                UPtrProxyVector proxies;
+            PostgreSourceDriver::SPtrProxySPtrVector PostgreSourceDriver::Select(
+                    const Foundation::EntitySourceDriver::SPtrPredicate &predicate,
+                    Foundation::EntityStore &entityStore) const {
+
+                SPtrProxySPtrVector proxies;
+
                 return proxies;
             }
         }

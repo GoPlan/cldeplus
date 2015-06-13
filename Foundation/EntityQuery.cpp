@@ -3,29 +3,23 @@
 //
 
 #include "EntityQuery.h"
+#include "EntityProxy.h"
+#include "EntitySourceDriver.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        EntityQuery::EntityQuery(const EntityStore &entityStore)
-                : _entityStore(entityStore),
-                  _entityMap(entityStore.getEntityMap()),
-                  _entitySourceDriver(entityStore.getEntitySourceDriver()) {
+        EntityQuery::EntityQuery(EntityStore &entityStore)
+                : _entityStore(entityStore) {
             //
         }
 
-        EntityQuery::spProxyVector EntityQuery::Compose(const std::shared_ptr<Query::Predicate> &predicate) {
-
-            spProxyVector proxies;
-
-            return proxies;
+        EntityQuery::SPtrProxyVector EntityQuery::Compose(const std::shared_ptr<Query::Predicate> &predicate) {
+            return _entityStore.getEntitySourceDriver().Select(predicate, _entityStore);
         }
 
-        EntityQuery::spProxy EntityQuery::ComposeGetFirst(const std::shared_ptr<Query::Predicate> &predicate) {
-
-            std::shared_ptr<EntityProxy> proxy;
-
-            return proxy;
+        EntityQuery::SPtrProxy EntityQuery::ComposeGetFirst(const std::shared_ptr<Query::Predicate> &predicate) {
+            return Compose(predicate)->front();
         }
     }
 }

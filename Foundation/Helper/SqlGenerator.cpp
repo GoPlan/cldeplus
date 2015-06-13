@@ -14,13 +14,13 @@ namespace Cloude {
                                                std::function<std::string(const std::shared_ptr<Column> &column,
                                                                          int position)> F) {
 
-                auto columnsMap = entityMap.getColumnsForGet();
-                auto columnsForKey = entityMap.getColumnsForKey();
+                auto const &columnsForGet = entityMap.getColumnsForGet();
+                auto const &columnsForKey = entityMap.getColumnsForKey();
 
                 std::string strTableName = entityMap.TableName();
                 std::string strColumns;
 
-                std::for_each(columnsMap.cbegin(), columnsMap.cend(),
+                std::for_each(columnsForGet.cbegin(), columnsForGet.cend(),
                               [&strColumns](const std::shared_ptr<Column> &p) {
                                   if (strColumns.length() != 0)
                                       strColumns += ", ";
@@ -59,7 +59,7 @@ namespace Cloude {
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
                                                                             int position)> F) {
 
-                auto columnsForKey = entityMap.getColumnsForKey();
+                auto const &columnsForKey = entityMap.getColumnsForKey();
 
                 std::string strColumns;
                 std::string strCondition;
@@ -91,8 +91,8 @@ namespace Cloude {
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
                                                                             int index)> F) {
 
-                auto columnsForUpdate = entityMap.getColumnsForUpdate();
-                auto columnsForKey = entityMap.getColumnsForKey();
+                auto const &columnsForUpdate = entityMap.getColumnsForUpdate();
+                auto const &columnsForKey = entityMap.getColumnsForKey();
 
                 std::string strColumns;
                 std::string strCondition;
@@ -142,7 +142,7 @@ namespace Cloude {
             std::string CreateDeletePreparedQuery(const EntityMap &entityMap,
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
                                                                             int index)> F) {
-                auto columnsForKey = entityMap.getColumnsForKey();
+                auto const &columnsForKey = entityMap.getColumnsForKey();
 
                 std::string strCondition;
                 std::string strQuery;
@@ -162,6 +162,50 @@ namespace Cloude {
 
                 strQuery += " DELETE FROM " + entityMap.TableName();
                 strQuery += " WHERE (" + strCondition + ")";
+
+                return strQuery;
+            }
+
+            std::string CreateSelectPreparedQuery(const EntityMap &entityMap,
+                                                  std::function<std::string(const std::shared_ptr<Column> &column,
+                                                                            int index)> F) {
+
+                auto const &columnsForSelect = entityMap.getColumnsForSelect();
+                auto const &columnsForKey = entityMap.getColumnsForKey();
+
+                std::string strTableName = entityMap.TableName();
+                std::string strColumns;
+
+                std::for_each(columnsForSelect.cbegin(), columnsForSelect.cend(),
+                              [&strColumns](const std::shared_ptr<Column> &p) {
+                                  if (strColumns.length() != 0)
+                                      strColumns += ", ";
+
+                                  strColumns += p->getDatasourceName();
+                              });
+
+                std::string strCondition;
+
+                int i = 0;
+
+                std::for_each(columnsForKey.cbegin(),
+                              columnsForKey.cend(),
+                              [&](const std::shared_ptr<Column> &column) {
+
+                                  if (i != 0) {
+                                      strCondition += " AND ";
+                                  }
+
+                                  strCondition += F(column, i);
+
+                                  i++;
+                              });
+
+                std::string strQuery;
+
+                strQuery += " SELECT " + strColumns;
+                strQuery += " FROM " + strTableName;
+                strQuery += " WHERE " + strCondition;
 
                 return strQuery;
             }

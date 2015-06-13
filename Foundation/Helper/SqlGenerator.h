@@ -30,6 +30,11 @@ namespace Cloude {
                                                   std::function<std::string(const std::shared_ptr<Column> &column,
                                                                             int index)> F);
 
+            std::string CreateSelectPreparedQuery(const EntityMap &entityMap,
+                                                  std::function<std::string(const std::shared_ptr<Column> &column,
+                                                                            int index)> F);
+
+
         }
     }
 }

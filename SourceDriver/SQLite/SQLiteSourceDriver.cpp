@@ -52,6 +52,7 @@ namespace Cloude {
                 }
 
                 sqlite3_stmt *_ptrStmt = nullptr;
+
                 const std::string &query;
             };
 
@@ -83,17 +84,15 @@ namespace Cloude {
                     return 1;
                 }
 
-                std::shared_ptr<Command> createCommand(const std::string &query) {
-
-                    std::shared_ptr<Command> command(new Command(query));
-                    auto resultCode = command->PrepareStatment(_ptrSqlite3);
-
+                std::unique_ptr<Command> createCommand(const std::string &query) {
+                    std::unique_ptr<Command> command(new Command(query));
+                    command->PrepareStatment(_ptrSqlite3);
                     return command;
                 }
 
                 int initializeParamBindBuffers(const ColumnsList &columnsList,
-                                               std::shared_ptr<Foundation::Entity> &entity,
-                                               std::shared_ptr<Command> &command) {
+                                               const std::unique_ptr<Command> &command,
+                                               std::shared_ptr<Foundation::Entity> &entity) {
 
                     int index = 1;
 
@@ -185,18 +184,18 @@ namespace Cloude {
                 const auto &columnsForGet = _entityMap.getColumnsForGet();
                 const auto &columnsForKey = _entityMap.getColumnsForKey();
 
-                auto SPtrCommand = _sqliteApiImpl->createCommand(_getStatement);
+                auto UPtrCommand = _sqliteApiImpl->createCommand(_getStatement);
 
-                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, SPtrCommand);
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, UPtrCommand, entity);
 
-                int resultCode = sqlite3_step(SPtrCommand->_ptrStmt);
+                int resultCode = sqlite3_step(UPtrCommand->_ptrStmt);
 
                 if (resultCode != SQLITE_DONE && resultCode != SQLITE_ROW) {
                     // TODO: throws an appropriate exception
                     return 0;
                 }
 
-                if (sqlite3_column_type(SPtrCommand->_ptrStmt, 0) == SQLITE_NULL) {
+                if (sqlite3_column_type(UPtrCommand->_ptrStmt, 0) == SQLITE_NULL) {
                     return 0;
                 }
 
@@ -204,9 +203,9 @@ namespace Cloude {
 
                 std::for_each(columnsForGet.cbegin(),
                               columnsForGet.cend(),
-                              [&entity, &SPtrCommand, &index](const std::shared_ptr<Foundation::Column> &column) {
+                              [&entity, &UPtrCommand, &index](const std::shared_ptr<Foundation::Column> &column) {
 
-                                  if (sqlite3_column_type(SPtrCommand->_ptrStmt, index) == SQLITE_NULL) {
+                                  if (sqlite3_column_type(UPtrCommand->_ptrStmt, index) == SQLITE_NULL) {
                                       ++index;
                                       return;
                                   }
@@ -217,7 +216,7 @@ namespace Cloude {
                                       case Type::Int64:
                                           int64_t int64Value;
                                           int64Value =
-                                                  static_cast<int64_t>(sqlite3_column_int64(SPtrCommand->_ptrStmt,
+                                                  static_cast<int64_t>(sqlite3_column_int64(UPtrCommand->_ptrStmt,
                                                                                             index++));
                                           field->setValue(cldeFactory::CreateInt64(int64Value));
                                           break;
@@ -225,7 +224,7 @@ namespace Cloude {
                                           const char *strValue;
                                           strValue =
                                                   reinterpret_cast<const char *>(sqlite3_column_text(
-                                                          SPtrCommand->_ptrStmt,
+                                                          UPtrCommand->_ptrStmt,
                                                           index++));
                                           field->setValue(cldeFactory::CreateString(strValue));
                                           break;
@@ -242,12 +241,11 @@ namespace Cloude {
             int SQLiteSourceDriver::Insert(std::shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
+                auto UPtrCommand = _sqliteApiImpl->createCommand(_insertStatement);
 
-                std::shared_ptr<Command> command = _sqliteApiImpl->createCommand(_insertStatement);
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, UPtrCommand, entity);
 
-                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, command);
-
-                int resultCode = sqlite3_step(command->_ptrStmt);
+                int resultCode = sqlite3_step(UPtrCommand->_ptrStmt);
 
                 switch (resultCode) {
                     case SQLITE_BUSY:
@@ -278,7 +276,7 @@ namespace Cloude {
 
                 auto command = _sqliteApiImpl->createCommand(_updateStatement);
 
-                _sqliteApiImpl->initializeParamBindBuffers(columnsList, entity, command);
+                _sqliteApiImpl->initializeParamBindBuffers(columnsList, command, entity);
 
                 int resultCode = sqlite3_step(command->_ptrStmt);
 
@@ -303,19 +301,19 @@ namespace Cloude {
 
             int SQLiteSourceDriver::Delete(std::shared_ptr<Foundation::Entity> &entity) const {
 
-                auto &columnsForKey = _entityMap.getColumnsForKey();
-                auto SPtrCommand = _sqliteApiImpl->createCommand(_deleteStatement);
+                auto const &columnsForKey = _entityMap.getColumnsForKey();
+                auto UPtrCommand = _sqliteApiImpl->createCommand(_deleteStatement);
 
-                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, entity, SPtrCommand);
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, UPtrCommand, entity);
 
-                int resultCode = sqlite3_step(SPtrCommand->_ptrStmt);
+                int resultCode = sqlite3_step(UPtrCommand->_ptrStmt);
 
                 switch (resultCode) {
                     case SQLITE_BUSY:
                         // TODO: throws an appropriate exception
                         return 0;
                     case SQLITE_DONE:
-                        break;
+                        return 1;
                     case SQLITE_ERROR:
                         // TODO: throws an appropriate exception
                         return 0;
@@ -323,14 +321,16 @@ namespace Cloude {
                         // TODO: throws an appropriate exception
                         return 0;
                     default:
-                        break;
+                        return 0;
                 }
-
-                return 1;
             }
 
-            SQLiteSourceDriver::UPtrProxyVector SQLiteSourceDriver::Select(const UPtrPredicate &predicate) const {
-                UPtrProxyVector proxies;
+            SQLiteSourceDriver::SPtrProxySPtrVector SQLiteSourceDriver::Select(
+                    const Foundation::EntitySourceDriver::SPtrPredicate &predicate,
+                    Foundation::EntityStore &entityStore) const {
+
+                SPtrProxySPtrVector proxies;
+
                 return proxies;
             }
 
@@ -425,6 +425,8 @@ namespace Cloude {
 
                 return condition;
             }
+
+
         }
     }
 }

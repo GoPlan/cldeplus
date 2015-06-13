@@ -373,8 +373,12 @@ namespace Cloude {
                 return 1;
             }
 
-            MySqlSourceDriver::UPtrProxyVector MySqlSourceDriver::Select(const UPtrPredicate &predicate) const {
-                UPtrProxyVector proxies;
+            MySqlSourceDriver::SPtrProxySPtrVector MySqlSourceDriver::Select(
+                    const Foundation::EntitySourceDriver::SPtrPredicate &predicate,
+                    Foundation::EntityStore &entityStore) const {
+
+                SPtrProxySPtrVector proxies;
+
                 return proxies;
             }
         }

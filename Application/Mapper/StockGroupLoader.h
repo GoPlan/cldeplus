@@ -9,7 +9,6 @@
 #include <string>
 #include <mysql.h>
 #include <Foundation/EntityLoader.h>
-#include <Application/Model/StockGroup.h>
 
 namespace Cloude {
     namespace Application {

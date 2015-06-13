@@ -346,8 +346,12 @@ namespace Cloude {
                 return 1;
             }
 
-            MongoDbSourceDriver::UPtrProxyVector MongoDbSourceDriver::Select(const UPtrPredicate &predicate) const {
-                UPtrProxyVector proxies;
+            MongoDbSourceDriver::SPtrProxySPtrVector MongoDbSourceDriver::Select(
+                    const Foundation::EntitySourceDriver::SPtrPredicate &predicate,
+                    Foundation::EntityStore &entityStore) const {
+
+                SPtrProxySPtrVector proxies;
+
                 return proxies;
             }
         }

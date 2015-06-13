@@ -1,18 +1,16 @@
 cmake_minimum_required(VERSION 3.2)
 project(cloud_e_cplus)
 
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_cplus_SOURCE_DIR}/Build/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_cplus_SOURCE_DIR}/local/build/bin")
+set(CMAKE_BINARY_DIR "/Users/ducanhki/Documents/BitBucket/cloud-e-plus/local/build")
 set(SOURCE_FILES main.cpp)
-
 
 include_directories(${CMAKE_SOURCE_DIR})
 
-
-add_library(Foundation STATIC
+add_library(foundation STATIC
     Cloude.h
-    Foundation/Enumeration/DbType.h
+    Foundation/Type/cldeValueType.h
     Foundation/Column.cpp
     Foundation/Column.h
     Foundation/Field.cpp
@@ -27,16 +25,16 @@ add_library(Foundation STATIC
     Foundation/EntityLoader.h
     Foundation/EntityStore.cpp
     Foundation/EntityStore.h
-    Foundation/Exception/NonSupportedDataTypeException.cpp
-    Foundation/Exception/NonSupportedDataTypeException.h
-    Foundation/Exception/DataSourceRoutineException.cpp
-    Foundation/Exception/DataSourceRoutineException.h
-    Foundation/Exception/EntityStoreRoutineException.cpp
-    Foundation/Exception/EntityStoreRoutineException.h
+    Foundation/Exception/cldeNonSupportedDataTypeException.cpp
+    Foundation/Exception/cldeNonSupportedDataTypeException.h
+    Foundation/Exception/cldeDataSourceRoutineException.cpp
+    Foundation/Exception/cldeDataSourceRoutineException.h
+    Foundation/Exception/cldeEntityStoreRoutineException.cpp
+    Foundation/Exception/cldeEntityStoreRoutineException.h
     Foundation/Helper/SqlGenerator.cpp
     Foundation/Helper/SqlGenerator.h
-    Foundation/Exception/EntityException.cpp
-    Foundation/Exception/EntityException.h
+    Foundation/Exception/cldeEntityException.cpp
+    Foundation/Exception/cldeEntityException.h
     Foundation/EntitySourceDriver.cpp
     Foundation/EntitySourceDriver.h
     Foundation/Helper/EntityStoreHelper.cpp
@@ -46,40 +44,93 @@ add_library(Foundation STATIC
     Foundation/EntityProxy.h
     Foundation/EntityQuery.cpp
     Foundation/EntityQuery.h
-    Foundation/Query/Expression.cpp
-    Foundation/Query/Expression.h
-    Foundation/Query/And.cpp
-    Foundation/Query/And.h
-    Foundation/Query/Or.cpp
-    Foundation/Query/Or.h)
+    Foundation/Query/Predicate.cpp
+    Foundation/Query/Predicate.h
+    Foundation/Query/Comparative/And.cpp
+    Foundation/Query/Comparative/And.h
+    Foundation/Query/Comparative/Or.cpp
+    Foundation/Query/Comparative/Or.h
+    Foundation/Query/Comparative/Equal.cpp
+    Foundation/Query/Comparative/Equal.h
+    Foundation/Query/Comparative/Greater.cpp
+    Foundation/Query/Comparative/Greater.h
+    Foundation/Query/Comparative/GreaterOrEqual.cpp
+    Foundation/Query/Comparative/GreaterOrEqual.h
+    Foundation/Query/Comparative/Lesser.cpp
+    Foundation/Query/Comparative/Lesser.h
+    Foundation/Query/Comparative/LesserOrEqual.cpp
+    Foundation/Query/Comparative/LesserOrEqual.h
+    Foundation/Query/Comparative/NotEqual.cpp
+    Foundation/Query/Comparative/NotEqual.h
+    Foundation/Query/Comparative/Like.cpp
+    Foundation/Query/Comparative/Like.h
+    Foundation/Query/Comparative/NotLike.cpp
+    Foundation/Query/Comparative/NotLike.h
+    Foundation/Query/Comparative/IsNull.cpp
+    Foundation/Query/Comparative/IsNull.h
+    Foundation/Query/Comparative/IsNotNull.cpp
+    Foundation/Query/Comparative/IsNotNull.h
+    Foundation/Query/Enumeration/ComparativeType.cpp
+    Foundation/Query/Enumeration/ComparativeType.h
+    Foundation/Common/IEquatable.h
+    Foundation/Type/cldeValue.cpp
+    Foundation/Type/cldeValue.h
+    Foundation/Type/cldeValueType.cpp
+    Foundation/Type/Implementation/cldeInt32.cpp
+    Foundation/Type/Implementation/cldeInt32.h
+    Foundation/Type/Implementation/cldeInt64.cpp
+    Foundation/Type/Implementation/cldeInt64.h
+    Foundation/Type/Implementation/cldeVarchar.cpp
+    Foundation/Type/Implementation/cldeVarchar.h
+    Foundation/Type/Implementation/cldeDouble.cpp
+    Foundation/Type/Implementation/cldeDouble.h
+    Foundation/Type/Implementation/cldeText.cpp
+    Foundation/Type/Implementation/cldeText.h
+    Foundation/Type/Implementation/cldeInt16.cpp
+    Foundation/Type/Implementation/cldeInt16.h
+    Foundation/Type/cldeNumericValue.cpp
+    Foundation/Type/cldeNumericValue.h
+    Foundation/Type/cldeCharacterValue.cpp
+    Foundation/Type/cldeCharacterValue.h
+    Foundation/Type/Implementation/cldeFloat.cpp
+    Foundation/Type/Implementation/cldeFloat.h
+    Foundation/Type/Implementation/cldePoint.cpp
+    Foundation/Type/Implementation/cldePoint.h
+    Foundation/Type/Implementation/cldeMatrix.cpp
+    Foundation/Type/Implementation/cldeMatrix.h
+    Foundation/Type/cldeValueFactory.cpp
+    Foundation/Type/cldeValueFactory.h
+    Foundation/Type/cldeData.h
+    Foundation/Type/Implementation/cldeString.cpp
+    Foundation/Type/Implementation/cldeString.h
+    Foundation/Exception/cldeNonSupportedFunctionException.cpp
+    Foundation/Exception/cldeNonSupportedFunctionException.h
+    Foundation/Exception/cldeException.cpp
+    Foundation/Exception/cldeException.h
+    Foundation/Common/IComputable.h
+    Foundation/Common/ICompoundAssignable.h
+    Foundation/Common/IParsable.h
+    Foundation/Common/IFormattable.h
+    Foundation/Query/Contract/IPredicationFormatter.h
+    Foundation/Query/Comparative.h
+    Foundation/Query/PredicateLeaf.cpp
+    Foundation/Query/PredicateLeaf.h
+    Foundation/Query/Query.h)
 
 
 add_library(application STATIC
-    Application/Model/Account.cpp
-    Application/Model/Account.h
-    Application/Model/StockGroup.cpp
-    Application/Model/StockGroup.h
     Application/Mapper/StockGroupMap.cpp
     Application/Mapper/StockGroupMap.h
     Application/Mapper/StockGroupLoader.cpp
     Application/Mapper/StockGroupLoader.h
-    Application/Model/Sequence.cpp
-    Application/Model/Sequence.h
-    Application/Mapper/AccountMap.cpp
-    Application/Mapper/AccountMap.h
-    Application/Mapper/SequenceMap.cpp
-    Application/Mapper/SequenceMap.h
-    Application/Mapper/SequenceLoader.cpp
-    Application/Mapper/SequenceLoader.h
-    Application/Model/Enquiry.cpp
-    Application/Model/Enquiry.h
     Application/Mapper/EnquiryMap.cpp
     Application/Mapper/EnquiryMap.h
     Application/Mapper/EnquiryLoader.cpp
-    Application/Mapper/EnquiryLoader.h)
+    Application/Mapper/EnquiryLoader.h
+    )
 
 
-add_library(SourceDriver STATIC
+add_library(sourcedriver STATIC
     SourceDriver/MySql/MySqlSourceDriver.h
     SourceDriver/MySql/MySqlSourceDriver.cpp
     SourceDriver/Postgres/PostgreSourceDriver.cpp
@@ -100,7 +151,11 @@ add_library(SourceDriver STATIC
     SourceDriver/SQLite/SQLiteSourceException.h
     SourceDriver/SQLite/Amalgamation/sqlite3.h
     SourceDriver/SQLite/Amalgamation/sqlite3ext.h
-    SourceDriver/SQLite/Amalgamation/sqlite3.c)
+    SourceDriver/SQLite/Amalgamation/sqlite3.c
+    SourceDriver/DynamoDb/DynamoDbSourceDriver.cpp
+    SourceDriver/DynamoDb/DynamoDbSourceDriver.h
+    SourceDriver/DynamoDb/DynamoDbSourceException.cpp
+    SourceDriver/DynamoDb/DynamoDbSourceException.h)
 
 
 add_library(examples STATIC
@@ -128,7 +183,8 @@ add_library(apptest STATIC
 
 
 # Libs
-set(LIBS_DIR ${CMAKE_SOURCE_DIR}/Libs)
+set(LOCAL_DIR ${CMAKE_SOURCE_DIR}/local)
+set(LIBS_DIR ${LOCAL_DIR}/libs)
 
 
 # /opt/local
@@ -172,7 +228,7 @@ target_link_libraries(cloud_e_cplus_example examples mysqlclient mongoc-1.0 bson
 
 # Debug Target
 add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus_debug Foundation SourceDriver application mysqlclient pq mongoc-1.0)
+target_link_libraries(cloud_e_cplus_debug foundation sourcedriver application mysqlclient pq mongoc-1.0)
 
 
 # AppTest Target (with Google Testing Foundation)
@@ -182,5 +238,6 @@ include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 
 add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test Foundation SourceDriver application apptest)
-target_link_libraries(cloud_e_cplus_test gtest mysqlclient pq mongoc-1.0 bson-1.0)
+target_link_libraries(cloud_e_cplus_test foundation)
+target_link_libraries(cloud_e_cplus_test sourcedriver mysqlclient pq mongoc-1.0 bson-1.0)
+target_link_libraries(cloud_e_cplus_test application apptest gtest)

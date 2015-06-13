@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.2)
 project(cloud_e_cplus)
 
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_cplus_SOURCE_DIR}/local/build/bin")
-set(CMAKE_BINARY_DIR "/Users/ducanhki/Documents/BitBucket/cloud-e-plus/local/build")
 set(SOURCE_FILES main.cpp)
 
+
 include_directories(${CMAKE_SOURCE_DIR})
+
 
 add_library(foundation STATIC
     Cloude.h
@@ -25,6 +27,10 @@ add_library(foundation STATIC
     Foundation/EntityLoader.h
     Foundation/EntityStore.cpp
     Foundation/EntityStore.h
+    Foundation/EntityProxy.cpp
+    Foundation/EntityProxy.h
+    Foundation/EntityQuery.cpp
+    Foundation/EntityQuery.h
     Foundation/Exception/cldeNonSupportedDataTypeException.cpp
     Foundation/Exception/cldeNonSupportedDataTypeException.h
     Foundation/Exception/cldeDataSourceRoutineException.cpp
@@ -40,10 +46,6 @@ add_library(foundation STATIC
     Foundation/Helper/EntityStoreHelper.cpp
     Foundation/Helper/EntityStoreHelper.h
     Foundation/Common/IPrintable.h
-    Foundation/EntityProxy.cpp
-    Foundation/EntityProxy.h
-    Foundation/EntityQuery.cpp
-    Foundation/EntityQuery.h
     Foundation/Query/Predicate.cpp
     Foundation/Query/Predicate.h
     Foundation/Query/Comparative/And.cpp
@@ -72,7 +74,6 @@ add_library(foundation STATIC
     Foundation/Query/Comparative/IsNotNull.h
     Foundation/Query/Enumeration/ComparativeType.cpp
     Foundation/Query/Enumeration/ComparativeType.h
-    Foundation/Common/IEquatable.h
     Foundation/Type/cldeValue.cpp
     Foundation/Type/cldeValue.h
     Foundation/Type/cldeValueType.cpp
@@ -107,6 +108,7 @@ add_library(foundation STATIC
     Foundation/Exception/cldeNonSupportedFunctionException.h
     Foundation/Exception/cldeException.cpp
     Foundation/Exception/cldeException.h
+    Foundation/Common/IEquatable.h
     Foundation/Common/IComputable.h
     Foundation/Common/ICompoundAssignable.h
     Foundation/Common/IParsable.h
@@ -115,50 +117,23 @@ add_library(foundation STATIC
     Foundation/Query/Comparative.h
     Foundation/Query/PredicateLeaf.cpp
     Foundation/Query/PredicateLeaf.h
-    Foundation/Query/Query.h)
+    Foundation/Query/Query.h
+    )
 
 
 add_library(application STATIC
-    Application/Model/Account.cpp
-    Application/Model/Account.h
-    Application/Model/StockGroup.cpp
-    Application/Model/StockGroup.h
     Application/Mapper/StockGroupMap.cpp
     Application/Mapper/StockGroupMap.h
     Application/Mapper/StockGroupLoader.cpp
     Application/Mapper/StockGroupLoader.h
-    Application/Model/Sequence.cpp
-    Application/Model/Sequence.h
-    Application/Mapper/AccountMap.cpp
-    Application/Mapper/AccountMap.h
-    Application/Mapper/SequenceMap.cpp
-    Application/Mapper/SequenceMap.h
-    Application/Mapper/SequenceLoader.cpp
-    Application/Mapper/SequenceLoader.h
-    Application/Model/Enquiry.cpp
-    Application/Model/Enquiry.h
     Application/Mapper/EnquiryMap.cpp
     Application/Mapper/EnquiryMap.h
     Application/Mapper/EnquiryLoader.cpp
     Application/Mapper/EnquiryLoader.h
-    AppTest/Query/Predicate.hpp)
+    )
 
 
 add_library(sourcedriver STATIC
-    SourceDriver/MySql/MySqlSourceDriver.h
-    SourceDriver/MySql/MySqlSourceDriver.cpp
-    SourceDriver/Postgres/PostgreSourceDriver.cpp
-    SourceDriver/Postgres/PostgreSourceDriver.h
-    SourceDriver/Postgres/PostgreSourceDriver.cpp
-    SourceDriver/Postgres/PostgreSourceDriver.h
-    SourceDriver/MySql/MySqlSourceException.cpp
-    SourceDriver/MySql/MySqlSourceException.h
-    SourceDriver/Postgres/PostgreSourceException.cpp
-    SourceDriver/Postgres/PostgreSourceException.h
-    SourceDriver/MongoDb/MongoDbSourceDriver.cpp
-    SourceDriver/MongoDb/MongoDbSourceDriver.h
-    SourceDriver/MongoDb/MongoDbSourceException.cpp
-    SourceDriver/MongoDb/MongoDbSourceException.h
     SourceDriver/SQLite/SQLiteSourceDriver.cpp
     SourceDriver/SQLite/SQLiteSourceDriver.h
     SourceDriver/SQLite/SQLiteSourceException.cpp
@@ -166,10 +141,42 @@ add_library(sourcedriver STATIC
     SourceDriver/SQLite/Amalgamation/sqlite3.h
     SourceDriver/SQLite/Amalgamation/sqlite3ext.h
     SourceDriver/SQLite/Amalgamation/sqlite3.c
-    SourceDriver/DynamoDb/DynamoDbSourceDriver.cpp
-    SourceDriver/DynamoDb/DynamoDbSourceDriver.h
-    SourceDriver/DynamoDb/DynamoDbSourceException.cpp
-    SourceDriver/DynamoDb/DynamoDbSourceException.h)
+#    SourceDriver/MongoDb/MongoDbSourceDriver.cpp
+#    SourceDriver/MongoDb/MongoDbSourceDriver.h
+#    SourceDriver/MongoDb/MongoDbSourceException.cpp
+#    SourceDriver/MongoDb/MongoDbSourceException.h
+#    SourceDriver/Postgres/PostgreSourceDriver.cpp
+#    SourceDriver/Postgres/PostgreSourceDriver.h
+#    SourceDriver/Postgres/PostgreSourceException.cpp
+#    SourceDriver/Postgres/PostgreSourceException.h
+#    SourceDriver/MySql/MySqlSourceDriver.h
+#    SourceDriver/MySql/MySqlSourceDriver.cpp
+#    SourceDriver/MySql/MySqlSourceException.cpp
+#    SourceDriver/MySql/MySqlSourceException.h
+#    SourceDriver/DynamoDb/DynamoDbSourceDriver.cpp
+#    SourceDriver/DynamoDb/DynamoDbSourceDriver.h
+#    SourceDriver/DynamoDb/DynamoDbSourceException.cpp
+#    SourceDriver/DynamoDb/DynamoDbSourceException.h
+    )
+
+
+add_library(apptest STATIC
+    AppTest/main.cpp
+    AppTest/Store/EnquirySQLiteStore.cpp
+    AppTest/Store/EnquirySQLiteStore.h
+    AppTest/Store/Test/SQLiteStore.hpp
+#    AppTest/Store/EnquiryMongoDbStore.cpp
+#    AppTest/Store/EnquiryMongoDbStore.h
+#    AppTest/Store/Test/MongoDbStore.hpp
+#    AppTest/Store/StockGroupMySqlStore.cpp
+#    AppTest/Store/StockGroupMySqlStore.h
+#    AppTest/Store/Test/MySqlStore.hpp
+#    AppTest/Store/StockGroupPostgreStore.cpp
+#    AppTest/Store/StockGroupPostgreStore.h
+#    AppTest/Store/Test/PostgreStore.hpp
+
+    )
+
 
 
 add_library(examples STATIC
@@ -177,23 +184,9 @@ add_library(examples STATIC
     Examples/mysql_c_example.h
     Examples/mysql_c_example.cpp
     Examples/mongodb_c_example.cpp
-    Examples/mongodb_c_example.h)
+    Examples/mongodb_c_example.h
+    )
 
-
-add_library(apptest STATIC
-    AppTest/main.cpp
-    AppTest/Store/StockGroupMySqlStore.cpp
-    AppTest/Store/StockGroupMySqlStore.h
-    AppTest/Store/StockGroupPostgreStore.cpp
-    AppTest/Store/StockGroupPostgreStore.h
-    AppTest/Store/EnquiryMongoDbStore.cpp
-    AppTest/Store/EnquiryMongoDbStore.h
-    AppTest/Store/EnquirySQLiteStore.cpp
-    AppTest/Store/EnquirySQLiteStore.h
-    AppTest/Store/Test/MongoDbStore.hpp
-    AppTest/Store/Test/PostgreStore.hpp
-    AppTest/Store/Test/SQLiteStore.hpp
-    AppTest/Store/Test/MySqlStore.hpp)
 
 
 # Libs
@@ -230,12 +223,9 @@ set(BOOST_DIR ${LIBS_DIR}/boost_1_58_0)
 include_directories(${BOOST_DIR})
 
 
-# Examples
+# Examples Target
 set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/Examples)
 set(EXAMPLES_SOURCE_FILE ${EXAMPLES_DIR}/main.cpp)
-
-
-# Examples Target
 add_executable(cloud_e_cplus_example ${EXAMPLES_SOURCE_FILE})
 target_link_libraries(cloud_e_cplus_example examples mysqlclient mongoc-1.0 bson-1.0)
 
@@ -250,7 +240,7 @@ set(GTEST_LIB_DIR ${LIBS_DIR}/gtest-1.7.0)
 set(APPTEST_SOURCE_FILE ${CMAKE_SOURCE_DIR}/AppTest/main.cpp)
 include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
-
 add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test foundation sourcedriver application apptest)
-target_link_libraries(cloud_e_cplus_test gtest mysqlclient pq mongoc-1.0 bson-1.0)
+target_link_libraries(cloud_e_cplus_test foundation)
+target_link_libraries(cloud_e_cplus_test sourcedriver mysqlclient pq mongoc-1.0 bson-1.0)
+target_link_libraries(cloud_e_cplus_test application apptest gtest)

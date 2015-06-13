@@ -41,8 +41,8 @@ namespace Cloude {
                 int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
                 int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
-                UPtrProxyVector Select(const UPtrPredicate &predicate) const override;
-
+                SPtrProxySPtrVector Select(const SPtrPredicate &predicate,
+                                           Foundation::EntityStore &entityStore) const override;
             private:
                 class MongoDbApiImpl;
 
