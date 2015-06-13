@@ -55,7 +55,6 @@ namespace Cloude {
                 std::string _insertStatement;
                 std::string _updateStatement;
                 std::string _deleteStatement;
-                std::string _selectStatement;
 
             private:
                 void Init();

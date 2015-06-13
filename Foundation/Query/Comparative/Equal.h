@@ -15,13 +15,13 @@ namespace Cloude {
                 class Equal : public Query::PredicateLeaf {
                 
                 public:
-                    Equal(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
+                    Equal(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
                     virtual ~Equal() = default;
                     Equal(const Equal &rhs) = default;
                     Equal &operator=(const Equal &rhs) = default;
 
                     // PredicateLeaf
-                    const Enumeration::ComparativeType &getType() const override { return _type; };
+                    const Enumeration::ComparativeType &getComparativeType() const override { return _type; };
 
                 private:
                     static Enumeration::ComparativeType _type;

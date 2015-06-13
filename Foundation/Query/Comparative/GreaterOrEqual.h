@@ -15,14 +15,14 @@ namespace Cloude {
                 class GreaterOrEqual : public PredicateLeaf {
 
                 public:
-                    GreaterOrEqual(const Column &column, const Type::cldeValue &value)
+                    GreaterOrEqual(const Column &column, const Type::SPtrCldeValue &value)
                             : PredicateLeaf(column, value) { };
                     virtual ~GreaterOrEqual() = default;
                     GreaterOrEqual(const GreaterOrEqual &rhs) = default;
                     GreaterOrEqual &operator=(const GreaterOrEqual &rhs) = default;
 
                     // PredicateLeaf
-                    const Enumeration::ComparativeType &getType() const override;
+                    const Enumeration::ComparativeType &getComparativeType() const override { return _type; };
 
                 private:
                     static Enumeration::ComparativeType _type;

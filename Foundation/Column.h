@@ -6,6 +6,7 @@
 #define CLOUD_E_CPLUS_FOUNDATION_COLUMN_H
 
 #include <string>
+#include <vector>
 #include "Type/cldeValueType.h"
 
 namespace Cloude {
@@ -40,6 +41,9 @@ namespace Cloude {
             Foundation::Type::cldeValueType _dataType;
             size_t _length;
         };
+
+        using SPtrColumn = std::shared_ptr<Column>;
+        using SPtrColumnVector = std::vector<SPtrColumn>;
     }
 }
 

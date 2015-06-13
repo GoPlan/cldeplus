@@ -37,14 +37,14 @@ add_library(foundation STATIC
     Foundation/Exception/cldeDataSourceRoutineException.h
     Foundation/Exception/cldeEntityStoreRoutineException.cpp
     Foundation/Exception/cldeEntityStoreRoutineException.h
-    Foundation/Helper/SqlGenerator.cpp
-    Foundation/Helper/SqlGenerator.h
+    Foundation/Query/SqlGenerator.cpp
+    Foundation/Query/SqlGenerator.h
     Foundation/Exception/cldeEntityException.cpp
     Foundation/Exception/cldeEntityException.h
     Foundation/EntitySourceDriver.cpp
     Foundation/EntitySourceDriver.h
-    Foundation/Helper/EntityStoreHelper.cpp
-    Foundation/Helper/EntityStoreHelper.h
+    Foundation/Store/EntityStoreHelper.cpp
+    Foundation/Store/EntityStoreHelper.h
     Foundation/Common/IPrintable.h
     Foundation/Query/Predicate.cpp
     Foundation/Query/Predicate.h
@@ -118,7 +118,7 @@ add_library(foundation STATIC
     Foundation/Query/PredicateLeaf.cpp
     Foundation/Query/PredicateLeaf.h
     Foundation/Query/Query.h
-    )
+    Foundation/Query/PredicateComposite.cpp Foundation/Query/PredicateComposite.h Foundation/Query/PredicateSentinel.cpp Foundation/Query/PredicateSentinel.h Foundation/Query/PredicateIterator.cpp Foundation/Query/PredicateIterator.h)
 
 
 add_library(application STATIC
@@ -174,7 +174,7 @@ add_library(apptest STATIC
 #    AppTest/Store/StockGroupPostgreStore.cpp
 #    AppTest/Store/StockGroupPostgreStore.h
 #    AppTest/Store/Test/PostgreStore.hpp
-
+    AppTest/Query/Predicate.hpp
     )
 
 

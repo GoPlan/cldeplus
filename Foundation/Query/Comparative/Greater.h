@@ -16,13 +16,13 @@ namespace Cloude {
                 class Greater : public Query::PredicateLeaf {
 
                 public:
-                    Greater(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
+                    Greater(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
                     ~Greater() = default;
                     Greater(const Greater &rhs) = default;
                     Greater &operator=(const Greater &rhs) = default;
 
                     // Predicate
-                    const Enumeration::ComparativeType &getType() const override { return _type; }
+                    const Enumeration::ComparativeType &getComparativeType() const override { return _type; }
 
                 private:
                     static Enumeration::ComparativeType _type;

@@ -41,6 +41,8 @@ namespace Cloude {
             const std::shared_ptr<Identity> _identity;
             std::unordered_map<std::string, std::shared_ptr<Field>> _fieldsMap;
         };
+
+        using SPtrEntity = std::shared_ptr<Entity>;
     }
 }
 

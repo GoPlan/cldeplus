@@ -44,6 +44,8 @@ namespace Cloude {
                 cldeValueType _dataType;
                 size_t _length;
             };
+
+            using SPtrCldeValue = std::shared_ptr<cldeValue>;
         }
     }
 }

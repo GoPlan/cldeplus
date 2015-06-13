@@ -11,7 +11,7 @@ namespace Cloude {
 
                 Enumeration::ComparativeType IsNull::_type = Enumeration::ComparativeType::IsNull;
 
-                const Enumeration::ComparativeType &IsNull::getType() const {
+                const Enumeration::ComparativeType &IsNull::getComparativeType() const {
                     return _type;
                 }
                 const Column &IsNull::getColumn() const {
@@ -21,7 +21,7 @@ namespace Cloude {
                     return false;
                 }
 
-                const Type::cldeValue &IsNull::getValue() const {
+                const Type::SPtrCldeValue & IsNull::getValue() const {
                     const char *msg = "IsNull comparator does not support getValue() method.";
                     throw Exception::cldeNonSupportedFunctionException(msg);
                 }

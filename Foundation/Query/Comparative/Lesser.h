@@ -15,13 +15,13 @@ namespace Cloude {
                 class Lesser : public PredicateLeaf {
 
                 public:
-                    Lesser(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
+                    Lesser(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
                     virtual ~Lesser() = default;
                     Lesser(const Lesser &rhs) = default;
                     Lesser &operator=(const Lesser &rhs) = default;
 
                     // PredicateLeaf
-                    const Enumeration::ComparativeType &getType() const override;
+                    const Enumeration::ComparativeType &getComparativeType() const override { return _type; };
 
                 private:
                     static Enumeration::ComparativeType _type;

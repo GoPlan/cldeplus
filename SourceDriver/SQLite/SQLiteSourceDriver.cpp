@@ -3,10 +3,11 @@
 //
 
 #include <stdlib.h>
-#include <Foundation/Helper/SqlGenerator.h>
 #include <Foundation/Type/cldeValueFactory.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
+#include <Foundation/Query/SqlGenerator.h>
 #include <Foundation/Query/Predicate.h>
+#include <Foundation/Query/PredicateComposite.h>
 #include <Foundation/Query/Comparative.h>
 #include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
@@ -132,6 +133,15 @@ namespace Cloude {
                     return 1;
                 }
 
+                int initializeParamBindBuffers(const ColumnsList &columnsList,
+                                               const std::unique_ptr<Command> &command,
+                                               const std::vector<std::string> &params) {
+
+                    int index = 1;
+
+                    return 1;
+                }
+
                 std::string &connectionString;
                 sqlite3 *_ptrSqlite3 = nullptr;
             };
@@ -171,10 +181,11 @@ namespace Cloude {
                     return column->getDatasourceName() + " = " + "?";
                 };
 
-                _getStatement = Foundation::Helper::CreateGetPreparedQuery(_entityMap, fpCondition);
-                _insertStatement = Foundation::Helper::CreateInsertPreparedQuery(_entityMap, fpValue);
-                _updateStatement = Foundation::Helper::CreateUpdatePreparedQuery(_entityMap, fpCondition);
-                _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
+                _getStatement = Foundation::Query::CreateGetPreparedQuery(_entityMap, fpCondition);
+                _insertStatement = Foundation::Query::CreateInsertPreparedQuery(_entityMap, fpValue);
+                _updateStatement = Foundation::Query::CreateUpdatePreparedQuery(_entityMap, fpCondition);
+                _deleteStatement = Foundation::Query::CreateDeletePreparedQuery(_entityMap, fpCondition);
+
             }
 
             int SQLiteSourceDriver::Load(std::shared_ptr<Foundation::Entity> &entity) const {
@@ -329,7 +340,58 @@ namespace Cloude {
                     const Foundation::EntitySourceDriver::SPtrPredicate &predicate,
                     Foundation::EntityStore &entityStore) const {
 
+                using cldeFactory = Foundation::Type::cldeValueFactory;
+
+                auto const &columnsForSelect = _entityMap.getColumnsForSelect();
+                auto const F = [](const std::shared_ptr<Foundation::Column> &column, int index) -> std::string {
+
+                    return std::string();
+                };
+
+                auto selectCompound = Foundation::Query::CreateSelectPreparedQuery(_entityMap, *predicate, F);
+                auto uptrCommand = _sqliteApiImpl->createCommand(selectCompound.statement);
+
+//                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
+
                 SPtrProxySPtrVector proxies;
+
+                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+                int index = 0;
+//
+//                std::for_each(columnsForSelect.cbegin(),
+//                              columnsForSelect.cend(),
+//                              [&entity, &uptrCommand, &index](const std::shared_ptr<Foundation::Column> &column) {
+//
+//                                  if (sqlite3_column_type(uptrCommand->_ptrStmt, index) == SQLITE_NULL) {
+//                                      ++index;
+//                                      return;
+//                                  }
+//
+//                                  auto &field = entity->getField(column->getName());
+//
+//                                  switch (column->getDataType()) {
+//                                      case Type::Int64:
+//                                          int64_t int64Value;
+//                                          int64Value =
+//                                                  static_cast<int64_t>(sqlite3_column_int64(uptrCommand->_ptrStmt,
+//                                                                                            index++));
+//                                          field->setValue(cldeFactory::CreateInt64(int64Value));
+//                                          break;
+//                                      case Type::Varchar:
+//                                          const char *strValue;
+//                                          strValue =
+//                                                  reinterpret_cast<const char *>(sqlite3_column_text(
+//                                                          uptrCommand->_ptrStmt,
+//                                                          index++));
+//                                          field->setValue(cldeFactory::CreateString(strValue));
+//                                          break;
+//                                      default:
+//                                          ++index;
+//                                          const char *msg = "MySqlSourceDriver does not support this type.";
+//                                          throw Foundation::Exception::cldeNonSupportedDataTypeException(msg);
+//                                  }
+//                              });
 
                 return proxies;
             }
@@ -338,90 +400,90 @@ namespace Cloude {
 
                 std::string condition;
 
-                switch (predicate.getType()) {
-                    case Foundation::Query::Enumeration::ComparativeType::And: {
-                        auto &pred = dynamic_cast<const Foundation::Query::Comparative::And &>(predicate);
-                        condition = "(" + pred.getLhs().CopyToString(*this) + ")" +
-                                    " AND " +
-                                    "(" + pred.getRhs().CopyToString(*this) + ")";
-                        break;
-                    }
-                    case Foundation::Query::Enumeration::ComparativeType::Or: {
-                        auto &pred = dynamic_cast<const Foundation::Query::Comparative::Or &>(predicate);
-                        condition = "(" + pred.getLhs().CopyToString(*this) + ")" +
-                                    " OR " +
-                                    "(" + pred.getRhs().CopyToString(*this) + ")";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::Equal: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " = ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::NotEqual: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " != ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::Greater: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " > ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::GreaterOrEqual: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " >= ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::Lesser: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " < ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::LesserOrEqual: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " <= ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::Like: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " LIKE ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::NotLike: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " NOT LIKE ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::IsNull: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " IS NULL";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::IsNotNull: {
-                        auto const &column = predicate.getColumn();
-                        condition = column.getDatasourceName() + " IS NOT NULL";
-                        break;
-                    };
-                }
-
-                if (!predicate.isComposite() &&
-                    (predicate.getType() != Foundation::Query::Enumeration::ComparativeType::IsNull &&
-                     predicate.getType() != Foundation::Query::Enumeration::ComparativeType::IsNotNull)) {
-
-                    auto const &value = predicate.getValue();
-
-                    switch (value.getCategory()) {
-                        case Foundation::Type::cldeValueCategory::CharacterBased:
-                            condition += "'";
-                            condition += value.ToCString();
-                            condition += "'";
-                            break;
-                        default:
-                            condition += value.ToCString();
-                            break;
-                    }
-                }
+//                switch (predicate.getComparativeType()) {
+//                    case Foundation::Query::Enumeration::ComparativeType::And: {
+//                        auto &pred = dynamic_cast<const Foundation::Query::Comparative::And &>(predicate);
+//                        condition = "(" + pred.getLhs().CopyToString(*this) + ")" +
+//                                    " AND " +
+//                                    "(" + pred.getRhs().CopyToString(*this) + ")";
+//                        break;
+//                    }
+//                    case Foundation::Query::Enumeration::ComparativeType::Or: {
+//                        auto &pred = dynamic_cast<const Foundation::Query::Comparative::Or &>(predicate);
+//                        condition = "(" + pred.getLhs().CopyToString(*this) + ")" +
+//                                    " OR " +
+//                                    "(" + pred.getRhs().CopyToString(*this) + ")";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::Equal: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " = ";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::NotEqual: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " != ";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::Greater: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " > ";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::GreaterOrEqual: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " >= ";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::Lesser: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " < ";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::LesserOrEqual: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " <= ";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::Like: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " LIKE ";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::NotLike: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " NOT LIKE ";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::IsNull: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " IS NULL";
+//                        break;
+//                    };
+//                    case Foundation::Query::Enumeration::ComparativeType::IsNotNull: {
+//                        auto const &column = predicate.getColumn();
+//                        condition = column.getDatasourceName() + " IS NOT NULL";
+//                        break;
+//                    };
+//                }
+//
+//                if (!predicate.isComposite() &&
+//                    (predicate.getComparativeType() != Foundation::Query::Enumeration::ComparativeType::IsNull &&
+//                     predicate.getComparativeType() != Foundation::Query::Enumeration::ComparativeType::IsNotNull)) {
+//
+//                    auto const &value = predicate.getValue();
+//
+//                    switch (value->getCategory()) {
+//                        case Foundation::Type::cldeValueCategory::CharacterBased:
+//                            condition += "'";
+//                            condition += value->ToCString();
+//                            condition += "'";
+//                            break;
+//                        default:
+//                            condition += value->ToCString();
+//                            break;
+//                    }
+//                }
 
                 return condition;
             }

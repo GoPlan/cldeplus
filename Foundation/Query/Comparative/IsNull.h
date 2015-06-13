@@ -24,8 +24,8 @@ namespace Cloude {
                     // PredicateLeaf
                     const Column &getColumn() const override;
                     const bool isComposite() const override;
-                    const Enumeration::ComparativeType &getType() const override;
-                    const Type::cldeValue &getValue() const override;
+                    const Enumeration::ComparativeType &getComparativeType() const override;
+                    const Type::SPtrCldeValue & getValue() const override;
 
                 private:
                     const Column &_column;

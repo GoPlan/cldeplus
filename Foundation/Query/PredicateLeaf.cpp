@@ -10,7 +10,7 @@ namespace Cloude {
             const Column &PredicateLeaf::getColumn() const {
                 return _column;
             }
-            const Type::cldeValue &PredicateLeaf::getValue() const {
+            const Type::SPtrCldeValue & PredicateLeaf::getValue() const {
                 return _value;
             }
         }

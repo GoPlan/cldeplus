@@ -6,37 +6,25 @@
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_OR_H
 
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
-#include <Foundation/Query/Predicate.h>
+#include <Foundation/Query/PredicateComposite.h>
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
 
-                class Or : public Query::Predicate {
+                class Or : public Query::PredicateComposite {
 
                 public:
-                    Or(const Predicate &lhs, const Predicate &rhs) : _lhs(lhs), _rhs(rhs) { };
+                    Or(SPtrPredicate &lhs, SPtrPredicate &rhs) : PredicateComposite(lhs, rhs) { }
                     ~Or() = default;
                     Or(const Or &rhs) = default;
                     Or &operator=(const Or &rhs) = default;
 
-                    // Predicate
-                    virtual const Column &getColumn() const override;
-                    const Enumeration::ComparativeType &getType() const override { return _type; };
-                    const bool isComposite() const override { return true; }
-                    const Type::cldeValue &getValue() const override {
-                        const char *msg = "OR comparator does not support getValue() method.";
-                        throw Exception::cldeNonSupportedFunctionException(msg);
-                    };
-
                     // Locals
-                    const Predicate &getLhs() const { return _lhs; };
-                    const Predicate &getRhs() const { return _rhs; };
+                    const Enumeration::ComparativeType &getComparativeType() const override { return _type; };
 
                 private:
-                    const Query::Predicate &_lhs;
-                    const Query::Predicate &_rhs;
                     static Enumeration::ComparativeType _type;
                 };
             }

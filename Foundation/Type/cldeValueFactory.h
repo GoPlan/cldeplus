@@ -20,12 +20,12 @@ namespace Cloude {
                 cldeValueFactory(const cldeValueFactory &rhs) = delete;
                 cldeValueFactory &operator=(const cldeValueFactory &rhs) = delete;
 
-                static std::shared_ptr<cldeValue> CreateDouble(double value);
-                static std::shared_ptr<cldeValue> CreateInt32(int32_t value);
-                static std::shared_ptr<cldeValue> CreateInt64(int64_t value);
-                static std::shared_ptr<cldeValue> CreateString(const char *value);
-                static std::shared_ptr<cldeValue> CreateVarchar(const char *value);
-                static std::shared_ptr<cldeValue> CreateVarchar(unsigned long length);
+                static SPtrCldeValue CreateDouble(double value);
+                static SPtrCldeValue CreateInt32(int32_t value);
+                static SPtrCldeValue CreateInt64(int64_t value);
+                static SPtrCldeValue CreateString(const char *value);
+                static SPtrCldeValue CreateVarchar(const char *value);
+                static SPtrCldeValue CreateVarchar(unsigned long length);
             };
         }
     }

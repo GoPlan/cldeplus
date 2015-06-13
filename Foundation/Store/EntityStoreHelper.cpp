@@ -7,12 +7,13 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Helper {
-            void GenerateFieldsFromColumns(std::shared_ptr<Entity> &entity,
-                                           const std::vector<std::shared_ptr<Column>> &columnsList,
+        namespace Query {
+
+            void GenerateFieldsFromColumns(const SPtrColumnVector &columnVector,
+                                           SPtrEntity &entity,
                                            bool checkIfFieldExists) {
 
-                for (auto column : columnsList) {
+                for (auto column : columnVector) {
 
                     if (checkIfFieldExists && entity->HasField(column->getName())) {
                         continue;

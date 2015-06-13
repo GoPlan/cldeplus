@@ -15,13 +15,13 @@ namespace Cloude {
                 class Like : public PredicateLeaf {
 
                 public:
-                    Like(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
+                    Like(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
                     ~Like() = default;
                     Like(const Like &rhs) = default;
                     Like &operator=(const Like &rhs) = default;
 
                     // Predicate
-                    const Enumeration::ComparativeType &getType() const override;
+                    const Enumeration::ComparativeType &getComparativeType() const override { return _type; };
 
                 private:
                     static Enumeration::ComparativeType _type;

@@ -2,8 +2,8 @@
 // Created by LE, Duc-Anh on 5/21/15.
 //
 
-#ifndef CLOUD_E_CPLUS_STORESIMPLE_H
-#define CLOUD_E_CPLUS_STORESIMPLE_H
+#ifndef CLOUD_E_CPLUS_APPTEST_STORE_STORESIMPLE_H
+#define CLOUD_E_CPLUS_APPTEST_STORE_STORESIMPLE_H
 
 #include "gtest/gtest.h"
 #include "../../Cloude.h"
@@ -39,4 +39,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_CPLUS_STORESIMPLE_H
+#endif //CLOUD_E_CPLUS_APPTEST_STORE_STORESIMPLE_H

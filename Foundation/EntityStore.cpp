@@ -9,8 +9,8 @@
 #include "EntitySourceDriver.h"
 #include "EntityMap.h"
 #include "Entity.h"
-#include "Helper/SqlGenerator.h"
-#include "Helper/EntityStoreHelper.h"
+#include "Query/SqlGenerator.h"
+#include "Store/EntityStoreHelper.h"
 
 using namespace std;
 
@@ -49,7 +49,7 @@ namespace Cloude {
 
             std::shared_ptr<Entity> entity(new Entity(identity));
 
-            Foundation::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
+            Foundation::Query::GenerateFieldsFromColumns(columnsForGet, entity, false);
 
             Insert(entity);
 
@@ -68,7 +68,7 @@ namespace Cloude {
 
             std::shared_ptr<Entity> entity(new Entity(identity));
 
-            Foundation::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
+            Foundation::Query::GenerateFieldsFromColumns(columnsForGet, entity, false);
 
             if (!_entitySourceDriver.Load(entity)) {
                 return std::shared_ptr<Entity>(nullptr);

@@ -15,13 +15,13 @@ namespace Cloude {
                 class NotLike : public PredicateLeaf {
 
                 public:
-                    NotLike(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
+                    NotLike(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
                     ~NotLike() = default;
                     NotLike(const NotLike &rhs) = default;
                     NotLike &operator=(const NotLike &rhs) = default;
 
                     // Predicate
-                    const Enumeration::ComparativeType &getType() const override;
+                    const Enumeration::ComparativeType &getComparativeType() const override { return _type; };
 
                 private:
                     static Enumeration::ComparativeType _type;
