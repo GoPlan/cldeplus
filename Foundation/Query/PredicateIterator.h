@@ -18,42 +18,29 @@ namespace Cloude {
             using SPtrPredicateIterator = std::shared_ptr<PredicateIterator>;
             using WPtrPredicateIterator = std::weak_ptr<PredicateIterator>;
 
-            class PredicateIterator : public std::iterator<std::output_iterator_tag, Predicate>,
-                                      public std::enable_shared_from_this<PredicateIterator> {
+            class PredicateIterator : public std::enable_shared_from_this<PredicateIterator> {
 
             public:
                 PredicateIterator(const SPtrPredicate &predicate) : _sptrPredicate(predicate) { };
                 PredicateIterator(const PredicateIterator &rhs) : _sptrPredicate(rhs._sptrPredicate) { };
                 SPtrPredicateIterator operator++();
-                SPtrPredicate &operator->();
 
-                bool isFinishedLeft() const {
-                    return _finishedLeft;
-                }
-                void setFinishedLeft(bool finishedLeft) {
-                    PredicateIterator::_finishedLeft = finishedLeft;
-                }
-                bool isFinishedRight() const {
-                    return _finishedRight;
-                }
-                void setFinishedRight(bool finishedRight) {
-                    PredicateIterator::_finishedRight = finishedRight;
-                }
-                const WPtrPredicateIterator &getParent() const {
-                    return _parent;
-                }
-                void setParent(const WPtrPredicateIterator &parent) {
-                    _parent = parent;
-                }
                 const SPtrPredicate &getPredicate() const {
                     return _sptrPredicate;
                 };
+                bool isVisited() const {
+                    return _isVisited;
+                }
+                bool hasValue() const {
+                    return !_isVisited && !getPredicate()->isComposite();
+                }
 
             private:
                 bool _finishedLeft = false;
                 bool _finishedRight = false;
+                bool _isVisited = false;
                 SPtrPredicate _sptrPredicate;
-                WPtrPredicateIterator _parent;
+                SPtrPredicateIterator _parent;
             };
         }
     }

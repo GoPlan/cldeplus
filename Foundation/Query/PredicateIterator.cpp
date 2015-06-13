@@ -4,7 +4,6 @@
 
 #include "PredicateIterator.h"
 #include "PredicateComposite.h"
-#include "PredicateSentinel.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -12,43 +11,37 @@ namespace Cloude {
 
             SPtrPredicateIterator PredicateIterator::operator++() {
 
+                _isVisited = true;
+
                 if (_sptrPredicate->isComposite()) {
 
                     auto composite = std::dynamic_pointer_cast<PredicateComposite>(_sptrPredicate);
 
                     // Check left
-                    if (!isFinishedLeft()) {
-                        setFinishedLeft(true);
-                        SPtrPredicateIterator parent(this);
+                    if (!_finishedLeft) {
+                        _finishedLeft = true;
                         SPtrPredicateIterator next(new PredicateIterator(composite->getLhs()));
-                        next->setParent(parent);
+                        next->_parent = shared_from_this();
                         return next;
                     }
 
                     // Check right
-                    if (!isFinishedRight()) {
-                        setFinishedRight(true);
-                        SPtrPredicateIterator parent(this);
+                    if (!_finishedRight) {
+                        _finishedRight = true;
                         SPtrPredicateIterator next(new PredicateIterator(composite->getRhs()));
-                        next->setParent(parent);
+                        next->_parent = shared_from_this();
                         return next;
                     }
 
                     // Check whether iterator has parent, if it does not, it is the root
-                    auto sptrParent = _parent.lock();
-                    return (sptrParent) ? sptrParent : SPtrPredicateIterator(nullptr);
+                    return (_parent) ? _parent : SPtrPredicateIterator(nullptr);
 
                 } else {
 
                     // Check whether iterator has parent, if it does not, it is the root
-                    auto sptrParent = _parent.lock();
-                    return (sptrParent) ? sptrParent : SPtrPredicateIterator(nullptr);
+                    return (_parent) ? _parent : SPtrPredicateIterator(nullptr);
 
                 }
-            }
-
-            SPtrPredicate &PredicateIterator::operator->() {
-                return _sptrPredicate;
             }
         }
     }

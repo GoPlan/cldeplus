@@ -46,8 +46,8 @@ namespace Cloude {
                 };
 
                 // Locals
-                const SPtrPredicate &getRhs() const { return _sptrRhs; }
-                const SPtrPredicate &getLhs() const { return _sptrLhs; }
+                SPtrPredicate getRhs() const { return _sptrRhs; }
+                SPtrPredicate getLhs() const { return _sptrLhs; }
 
             protected:
                 SPtrPredicate _sptrRhs;

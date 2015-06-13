@@ -35,16 +35,19 @@ namespace Cloude {
 
                 SPtrPredicate sptrIdEq01(new Comparative::Equal(*enquiryMap.EnquiryId, sptrEnquiryId_01));
                 SPtrPredicate sptrEmail(new Comparative::Like(*enquiryMap.Email, sptrEmail_01));
-                SPtrPredicate sptrAnd(new Comparative::And(sptrEmail, sptrIdEq01));
+                SPtrPredicate sptrAnd(new Comparative::And(sptrIdEq01, sptrEmail));
+                SPtrPredicateIterator next(new PredicateIterator(sptrAnd));
 
-                SPtrPredicateIterator sptrIdEq01Iter(new PredicateIterator(sptrAnd));
-                SPtrPredicateIterator next = sptrIdEq01Iter->operator++();
-//
-//                if (next) {
-//                    cout << next->getPredicate()->getValue()->ToCString() << endl;
-//                } else {
-//                    cout << "null" << endl;
-//                }
+                while (next) {
+
+                    if (next->hasValue()) {
+                        cout << next->getPredicate()->getValue()->ToCString() << endl;
+                    }
+
+                    next = next->operator++();
+                }
+
+                cout << "Finishing .." << endl;
             }
         }
     }
