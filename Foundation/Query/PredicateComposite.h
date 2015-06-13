@@ -15,26 +15,34 @@ namespace Cloude {
             class PredicateComposite : public Predicate {
 
             public:
-                PredicateComposite(SPtrPredicate &lhs, SPtrPredicate &rhs) : _sptrRhs(lhs), _sptrLhs(rhs) { };
+                PredicateComposite(const SPtrPredicate &lhs, const SPtrPredicate &rhs)
+                        : _sptrLhs(lhs), _sptrRhs(rhs) { };
+
                 virtual ~PredicateComposite() = default;
                 PredicateComposite(const PredicateComposite &rhs) = default;
                 PredicateComposite &operator=(const PredicateComposite &rhs) = default;
 
                 // Predicate
-                virtual const bool isComposite() const override {
+                virtual const bool isComposite()
+                const override {
                     return true;
                 };
                 virtual const Enumeration::ComparativeType &getComparativeType() const override {
                     const char *msg = "Composite compartive does not support getComparativeType()";
-                    throw Exception::cldeNonSupportedFunctionException(msg);
+                    throw
+                            Exception::cldeNonSupportedFunctionException(msg);
                 };
-                virtual const Column &getColumn() const override {
+                virtual const Column &getColumn()
+                const override {
                     const char *msg = "Composite compartive does not support getColumn()";
-                    throw Exception::cldeNonSupportedFunctionException(msg);
+                    throw
+                            Exception::cldeNonSupportedFunctionException(msg);
                 };
-                virtual const Type::SPtrCldeValue &getValue() const override {
+                virtual const Type::SPtrCldeValue &getValue()
+                const override {
                     const char *msg = "Composite comparator does not support getValue() method.";
-                    throw Exception::cldeNonSupportedFunctionException(msg);
+                    throw
+                            Exception::cldeNonSupportedFunctionException(msg);
                 };
 
                 // Locals

@@ -26,10 +26,11 @@ namespace Cloude {
                 Predicate(const Predicate &srcExpression) = default;
                 Predicate &operator=(const Predicate &srcExpression) = default;
 
+                virtual const bool isComposite() const = 0;
                 virtual const Column &getColumn() const = 0;
                 virtual const Enumeration::ComparativeType &getComparativeType() const = 0;
                 virtual const Type::SPtrCldeValue &getValue() const = 0;
-                virtual const bool isComposite() const { return false; }
+
                 virtual const std::string CopyToString(const Contract::IPredicationFormatter &formatter) const {
                     return formatter.CopyFormat(*this);
                 };

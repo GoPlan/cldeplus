@@ -13,10 +13,10 @@ namespace Cloude {
             namespace Comparative {
 
                 class Equal : public Query::PredicateLeaf {
-                
+
                 public:
                     Equal(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
-                    virtual ~Equal() = default;
+                    ~Equal() = default;
                     Equal(const Equal &rhs) = default;
                     Equal &operator=(const Equal &rhs) = default;
 

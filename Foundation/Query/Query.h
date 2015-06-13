@@ -7,6 +7,8 @@
 
 #include "Predicate.h"
 #include "PredicateLeaf.h"
+#include "PredicateComposite.h"
+#include "PredicateIterator.h"
 #include "Comparative.h"
 
 #endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_QUERY_H

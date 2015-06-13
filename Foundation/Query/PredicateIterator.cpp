@@ -8,41 +8,47 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Query{
+        namespace Query {
 
             SPtrPredicateIterator PredicateIterator::operator++() {
 
                 if (_sptrPredicate->isComposite()) {
 
-//                    auto composite = dynamic_cast<const PredicateComposite &>(_sptrPredicate);
+                    auto composite = std::dynamic_pointer_cast<PredicateComposite>(_sptrPredicate);
 
                     // Check left
-                    if (!_finishedLeft) {
-                        _finishedLeft = true;
+                    if (!isFinishedLeft()) {
+                        setFinishedLeft(true);
                         SPtrPredicateIterator parent(this);
-                        SPtrPredicateIterator next;
+                        SPtrPredicateIterator next(new PredicateIterator(composite->getLhs()));
                         next->setParent(parent);
                         return next;
                     }
 
                     // Check right
-                    if (!_finishedRight) {
-                        _finishedRight = true;
+                    if (!isFinishedRight()) {
+                        setFinishedRight(true);
                         SPtrPredicateIterator parent(this);
-                        SPtrPredicateIterator next;
+                        SPtrPredicateIterator next(new PredicateIterator(composite->getRhs()));
                         next->setParent(parent);
                         return next;
                     }
 
-                    auto SPtrParent = _parent.lock();
-                    return (SPtrParent) ? SPtrParent : SPtrParent;
+                    // Check whether iterator has parent, if it does not, it is the root
+                    auto sptrParent = _parent.lock();
+                    return (sptrParent) ? sptrParent : SPtrPredicateIterator(nullptr);
 
                 } else {
 
-                    auto SPtrParent = _parent.lock();
-                    return (SPtrParent) ? SPtrParent : SPtrParent;
+                    // Check whether iterator has parent, if it does not, it is the root
+                    auto sptrParent = _parent.lock();
+                    return (sptrParent) ? sptrParent : SPtrPredicateIterator(nullptr);
 
                 }
+            }
+
+            SPtrPredicate &PredicateIterator::operator->() {
+                return _sptrPredicate;
             }
         }
     }

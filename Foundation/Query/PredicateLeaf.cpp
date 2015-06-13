@@ -13,6 +13,9 @@ namespace Cloude {
             const Type::SPtrCldeValue & PredicateLeaf::getValue() const {
                 return _value;
             }
+            const bool PredicateLeaf::isComposite() const {
+                return false;
+            }
         }
     }
 }

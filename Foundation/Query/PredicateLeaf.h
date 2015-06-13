@@ -20,6 +20,8 @@ namespace Cloude {
                 PredicateLeaf(const PredicateLeaf &rhs) = default;
                 PredicateLeaf &operator=(const PredicateLeaf &rhs) = default;
 
+                // Predicate
+                virtual const bool isComposite() const override;
                 virtual const Column &getColumn() const override;
                 virtual const Type::SPtrCldeValue &getValue() const override;
 
