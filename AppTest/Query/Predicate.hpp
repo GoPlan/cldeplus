@@ -11,8 +11,7 @@
 #include <Cloude.h>
 #include <Application/Mapper/EnquiryMap.h>
 #include <Application/Mapper/EnquiryLoader.h>
-#include <Foundation/Query/Query.h>
-#include <SourceDriver/SQLite/SQLiteSourceDriver.h>
+#include <Foundation/Query/Helper/SqlHelper.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -43,7 +42,7 @@ namespace Cloude {
                 SPtrPredicate sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
                 SPtrPredicate sptrAND(new Comparative::And(sptrOR01, sptrOR02));
 
-                std::string strPredicate = sqliteSourceDriver.ParsePredicateToStringCopy(sptrAND);
+                std::string strPredicate = Foundation::Query::Helper::SqlHelper::ToSqlStringCopy(sptrAND);
                 cout << strPredicate << endl;
 
                 SPtrPredicateIterator next(new PredicateIterator(sptrAND));

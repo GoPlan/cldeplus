@@ -6,6 +6,7 @@
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATEHELPER_H
 
 #include <string>
+#include <functional>
 
 namespace Cloude {
     namespace Foundation {
@@ -14,8 +15,16 @@ namespace Cloude {
                 class IPredicateFormatter;
             }
 
+            class Predicate;
+
             namespace Helper {
+
                 class PredicateHelper {
+
+                public:
+                    using SPtrPredicate = std::shared_ptr<Query::Predicate>;
+                    using FPtrProcessor = std::function<std::string(const SPtrPredicate &)>;
+
                 public:
                     PredicateHelper() = delete;
                     virtual ~PredicateHelper() = delete;
@@ -24,6 +33,10 @@ namespace Cloude {
 
                     static std::string ToStringCopy(const SPtrPredicate &predicate,
                                                     const Contract::IPredicateFormatter &formatter);
+
+                    static std::string ToStringCopy(const SPtrPredicate &predicate,
+                                                    const FPtrProcessor fptrProcessor);
+
                 };
             }
 

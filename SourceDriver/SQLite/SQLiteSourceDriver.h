@@ -15,8 +15,7 @@ namespace Cloude {
         namespace SQLite {
 
             class SQLiteSourceDriver
-                    : public Foundation::EntitySourceDriver,
-                      public Foundation::Query::Contract::IPredicateFormatter {
+                    : public Foundation::EntitySourceDriver {
 
             public:
                 using Options = struct {
@@ -41,9 +40,6 @@ namespace Cloude {
                 int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
                 SPtrProxySPtrVector Select(const SPtrPredicate &predicate,
                                            Foundation::EntityStore &entityStore) const override;
-
-                // IPredicationFormatterPredication
-                std::string ParsePredicateToStringCopy(const SPtrPredicate &predicate) const override;
 
             private:
                 class SQLiteApiImpl;

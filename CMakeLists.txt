@@ -37,8 +37,8 @@ add_library(foundation STATIC
     Foundation/Exception/cldeDataSourceRoutineException.h
     Foundation/Exception/cldeEntityStoreRoutineException.cpp
     Foundation/Exception/cldeEntityStoreRoutineException.h
-    Foundation/Query/SqlGenerator.cpp
-    Foundation/Query/SqlGenerator.h
+    Foundation/Query/Helper/SqlHelper.cpp
+    Foundation/Query/Helper/SqlHelper.h
     Foundation/Exception/cldeEntityException.cpp
     Foundation/Exception/cldeEntityException.h
     Foundation/EntitySourceDriver.cpp

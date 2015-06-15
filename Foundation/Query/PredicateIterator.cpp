@@ -15,12 +15,12 @@ namespace Cloude {
 
                 if (_sptrPredicate->isComposite()) {
 
-                    auto composite = std::dynamic_pointer_cast<PredicateComposite>(_sptrPredicate);
+                    auto sptrComposite = std::dynamic_pointer_cast<PredicateComposite>(_sptrPredicate);
 
                     // Check left
                     if (!_finishedLeft) {
                         _finishedLeft = true;
-                        SPtrPredicateIterator next(new PredicateIterator(composite->getLhs()));
+                        SPtrPredicateIterator next(new PredicateIterator(sptrComposite->getLhs()));
                         next->_parent = shared_from_this();
                         return next;
                     }
@@ -28,17 +28,15 @@ namespace Cloude {
                     // Check right
                     if (!_finishedRight) {
                         _finishedRight = true;
-                        SPtrPredicateIterator next(new PredicateIterator(composite->getRhs()));
+                        SPtrPredicateIterator next(new PredicateIterator(sptrComposite->getRhs()));
                         next->_parent = shared_from_this();
                         return next;
                     }
 
-                    // Check whether iterator has parent, if it does not, it is the root
                     return (_parent) ? _parent : SPtrPredicateIterator(nullptr);
 
                 } else {
 
-                    // Check whether iterator has parent, if it does not, it is the root
                     return (_parent) ? _parent : SPtrPredicateIterator(nullptr);
 
                 }

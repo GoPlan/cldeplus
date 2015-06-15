@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include <Foundation/Type/cldeValueFactory.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
-#include <Foundation/Query/SqlGenerator.h>
 #include <Foundation/Query/PredicateComposite.h>
 #include <Foundation/Query/Comparative.h>
+#include <Foundation/Query/Helper/SqlHelper.h>
 #include <Foundation/Query/Helper/PredicateHelper.h>
 #include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
@@ -181,10 +181,17 @@ namespace Cloude {
                     return column->getDatasourceName() + " = " + "?";
                 };
 
-                _getStatement = Foundation::Query::CreateGetPreparedQuery(_entityMap, fpCondition);
-                _insertStatement = Foundation::Query::CreateInsertPreparedQuery(_entityMap, fpValue);
-                _updateStatement = Foundation::Query::CreateUpdatePreparedQuery(_entityMap, fpCondition);
-                _deleteStatement = Foundation::Query::CreateDeletePreparedQuery(_entityMap, fpCondition);
+                _getStatement = Foundation::Query::Helper::SqlHelper::CreateGetPreparedQuery(_entityMap,
+                                                                                             fpCondition);
+
+                _insertStatement = Foundation::Query::Helper::SqlHelper::CreateInsertPreparedQuery(_entityMap,
+                                                                                                   fpValue);
+
+                _updateStatement = Foundation::Query::Helper::SqlHelper::CreateUpdatePreparedQuery(_entityMap,
+                                                                                                   fpCondition);
+
+                _deleteStatement = Foundation::Query::Helper::SqlHelper::CreateDeletePreparedQuery(_entityMap,
+                                                                                                   fpCondition);
 
             }
 
@@ -348,7 +355,9 @@ namespace Cloude {
                     return std::string();
                 };
 
-                auto selectCompound = Foundation::Query::CreateSelectPreparedQuery(_entityMap, *predicate, F);
+                auto selectCompound = Foundation::Query::Helper::SqlHelper::CreateSelectPreparedQuery(_entityMap,
+                                                                                                      *predicate,
+                                                                                                      F);
                 auto uptrCommand = _sqliteApiImpl->createCommand(selectCompound.statement);
 
 //                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
@@ -396,99 +405,6 @@ namespace Cloude {
                 return proxies;
             }
 
-            std::string SQLiteSourceDriver::ParsePredicateToStringCopy(const SPtrPredicate &predicate) const {
-
-                using PredicateHelper = Foundation::Query::Helper::PredicateHelper;
-
-                std::string condition;
-
-                switch (predicate->getComparativeType()) {
-                    case Foundation::Query::Enumeration::ComparativeType::And: {
-                        auto const pred = std::dynamic_pointer_cast<Foundation::Query::Comparative::And>(predicate);
-                        condition = "(" + PredicateHelper::ToStringCopy(pred->getLhs(), *this) + ")" +
-                                    " AND " +
-                                    "(" + PredicateHelper::ToStringCopy(pred->getRhs(), *this) + ")";
-                        break;
-                    }
-                    case Foundation::Query::Enumeration::ComparativeType::Or: {
-                        auto const pred = std::dynamic_pointer_cast<Foundation::Query::Comparative::Or>(predicate);
-                        condition = "(" + PredicateHelper::ToStringCopy(pred->getLhs(), *this) + ")" +
-                                    " OR " +
-                                    "(" + PredicateHelper::ToStringCopy(pred->getRhs(), *this) + ")";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::Equal: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " = ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::NotEqual: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " != ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::Greater: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " > ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::GreaterOrEqual: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " >= ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::Lesser: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " < ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::LesserOrEqual: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " <= ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::Like: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " LIKE ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::NotLike: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " NOT LIKE ";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::IsNull: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " IS NULL";
-                        break;
-                    };
-                    case Foundation::Query::Enumeration::ComparativeType::IsNotNull: {
-                        auto const &column = predicate->getColumn();
-                        condition = column.getDatasourceName() + " IS NOT NULL";
-                        break;
-                    };
-                }
-
-                if (!predicate->isComposite() &&
-                    (predicate->getComparativeType() != Foundation::Query::Enumeration::ComparativeType::IsNull &&
-                     predicate->getComparativeType() != Foundation::Query::Enumeration::ComparativeType::IsNotNull)) {
-
-                    auto const &value = predicate->getValue();
-
-                    switch (value->getCategory()) {
-                        case Foundation::Type::cldeValueCategory::CharacterBased:
-                            condition += "'";
-                            condition += value->ToCString();
-                            condition += "'";
-                            break;
-                        default:
-                            condition += value->ToCString();
-                            break;
-                    }
-                }
-
-                return condition;
-            }
         }
     }
 }

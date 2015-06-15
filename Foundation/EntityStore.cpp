@@ -7,9 +7,7 @@
 #include "Exception/cldeEntityStoreRoutineException.h"
 #include "EntityLoader.h"
 #include "EntitySourceDriver.h"
-#include "EntityMap.h"
-#include "Entity.h"
-#include "Query/SqlGenerator.h"
+#include "Query/Helper/SqlHelper.h"
 #include "Store/EntityStoreHelper.h"
 
 using namespace std;
