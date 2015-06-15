@@ -27,6 +27,8 @@ namespace Cloude {
             const Type::SPtrCldeValue &getValue() const { return _value; }
             void setValue(const Type::SPtrCldeValue &value) { _value = value; }
 
+            bool isNull() const { return _value.get() == nullptr; };
+
         private:
             SPtrColumn _column;
             Type::SPtrCldeValue _value;

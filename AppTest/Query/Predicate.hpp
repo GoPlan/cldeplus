@@ -41,24 +41,24 @@ namespace Cloude {
 
                 SPtrPredicate sptrIdEq01(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_01));
                 SPtrPredicate sptrEmail01(new Comparative::Like(enquiryMap.Email, sptrEmail_01));
-                SPtrPredicate sptrIdEq02(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_02));
-                SPtrPredicate sptrEmail02(new Comparative::NotLike(enquiryMap.Email, sptrEmail_02));
+                SPtrPredicate sptrIdEq02(new Comparative::Greater(enquiryMap.EnquiryId, sptrEnquiryId_02));
+                SPtrPredicate sptrEmail02(new Comparative::Like(enquiryMap.Email, sptrEmail_02));
 
                 SPtrPredicate sptrOR01(new Comparative::Or(sptrIdEq01, sptrEmail01));
                 SPtrPredicate sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
-                SPtrPredicate sptrAND(new Comparative::And(sptrOR01, sptrOR02));
+                SPtrPredicate sptrOR(new Comparative::Or(sptrOR01, sptrOR02));
 
                 auto fpCondition = [](const SPtrColumn &column, const int &index) -> std::string {
                     return std::string{"?"};
                 };
 
-                auto compound = Helper::SqlHelper::CreateSelectPreparedQuery(enquiryMap, sptrAND, fpCondition);
-                auto proxies = sqliteSourceDriver.Select(sptrAND, entityStore);
-
+                auto compound = Helper::SqlHelper::CreateSelectPreparedQuery(enquiryMap, sptrOR, fpCondition);
                 std::cout << compound.first << std::endl;
 
-                for (auto sptrPredicate : compound.second) {
-                    std::cout << sptrPredicate->getValue()->ToCString() << std::endl;
+                auto proxies = sqliteSourceDriver.Select(sptrOR, entityStore);
+                for (auto proxy : proxies) {
+                    auto sptrEmail = proxy->getField("Email");
+                    if (!sptrEmail->isNull()) std::cout << sptrEmail->getValue()->ToCString() << std::endl;
                 }
 
                 sqliteSourceDriver.Disconnect();

@@ -15,12 +15,11 @@ namespace Cloude {
 
         public:
             Identity() = default;
+            Identity(const std::initializer_list<Field *> &ptrFieldList);
+            Identity(const std::initializer_list<std::shared_ptr<Field>> &fieldsList);
             Identity(const Identity &srcIdentity) = default;
             Identity &operator=(const Identity &srcIdentity) = default;
             virtual ~Identity() = default;
-
-            explicit Identity(const std::initializer_list<Field *> ptrFieldList);
-            explicit Identity(const std::initializer_list<std::shared_ptr<Field>> &fieldsList);
 
             void setField(SPtrField &field);
             void setField(Field *ptrField);
@@ -31,6 +30,7 @@ namespace Cloude {
 
         protected:
             SptrFieldMap _fieldsMap;
+
         };
 
         using SPtrIdentity = std::shared_ptr<Identity>;

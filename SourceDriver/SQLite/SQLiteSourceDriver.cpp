@@ -381,11 +381,6 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
 
     auto &columnsForKey = _entityMap.getColumnsForKey();
     auto &columnsForSelect = _entityMap.getColumnsForSelect();
-
-    Foundation::SPtrColumnVector columnsVector;
-    columnsVector.insert(columnsVector.end(), columnsForSelect.begin(), columnsForSelect.end());
-    columnsVector.insert(columnsVector.end(), columnsForKey.begin(), columnsForKey.end());
-
     auto tuplQuery = SqlHelper::CreateSelectPreparedQuery(_entityMap, sptrPredicate, fpCondition);
     auto uptrCommand = _sqliteApiImpl->createCommand(tuplQuery.first);
 
@@ -403,20 +398,27 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
             break;
         }
 
+        auto sptrIdentity = std::make_shared<Foundation::Identity>();
+
+        std::for_each(columnsForKey.begin(), columnsForKey.cend(),
+                      [&sptrIdentity](const Foundation::SPtrColumn &sptrColumn) {
+                          sptrIdentity->setField(new Foundation::Field{sptrColumn});
+                      });
+
+        Foundation::SPtrProxy sptrProxy{new Foundation::EntityProxy{sptrIdentity, entityStore}};
+        Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForSelect, sptrProxy);
+
         int index = 0;
 
-        Foundation::SPtrProxy proxy;
-        Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsVector, proxy);
-
         std::for_each(columnsForSelect.cbegin(), columnsForSelect.cend(),
-                      [&proxy, &uptrCommand, &index](const Foundation::SPtrColumn &column) {
+                      [&sptrProxy, &uptrCommand, &index](const Foundation::SPtrColumn &column) {
 
                           if (sqlite3_column_type(uptrCommand->_ptrStmt, index) == SQLITE_NULL) {
                               ++index;
                               return;
                           }
 
-                          auto &field = proxy->getField(column->getName());
+                          auto &field = sptrProxy->getField(column->getName());
 
                           switch (column->getDataType()) {
 
@@ -439,7 +441,7 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
                           }
                       });
 
-        proxies.push_back(proxy);
+        proxies.push_back(sptrProxy);
 
     } while (resultCode == SQLITE_ROW);
 
