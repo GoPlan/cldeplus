@@ -3,6 +3,7 @@
 //
 
 #include <memory>
+#include <stdexcept>
 #include "Entity.h"
 #include "Identity.h"
 
@@ -12,6 +13,12 @@ namespace Cloude {
     namespace Foundation {
 
         Entity::Entity(const std::shared_ptr<Identity> &identity) : _identity(identity) {
+
+            if (!identity) {
+                std::string msg{"Identity can not be nullptr or undefined"};
+                throw std::invalid_argument{msg};
+            }
+
             for (auto fieldPair : _identity->getFieldsMap()) {
                 auto field = fieldPair.second;
                 setField(field);

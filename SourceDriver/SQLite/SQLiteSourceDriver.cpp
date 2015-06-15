@@ -92,20 +92,20 @@ namespace Cloude {
                 }
 
                 int initializeParamBindBuffers(const ColumnsList &columnsList,
-                                               const std::unique_ptr<Command> &command,
+                                               const std::unique_ptr<Command> &sptrCommand,
                                                std::shared_ptr<Foundation::Entity> &entity) {
 
                     int index = 1;
 
                     std::for_each(columnsList.cbegin(),
                                   columnsList.cend(),
-                                  [&command, &entity, &index](const std::shared_ptr<Foundation::Column> &column) {
+                                  [&sptrCommand, &entity, &index](const std::shared_ptr<Foundation::Column> &column) {
 
                                       auto &field = entity->getField(column->getName());
                                       auto &value = field->getValue();
 
                                       if (!value) {
-                                          sqlite3_bind_null(command->_ptrStmt, index++);
+                                          sqlite3_bind_null(sptrCommand->_ptrStmt, index++);
                                           return;
                                       }
 
@@ -113,18 +113,18 @@ namespace Cloude {
 
                                       switch (column->getDataType()) {
                                           case Type::Int64: {
-                                              auto value = reinterpret_cast<const sqlite3_int64 *>(ptrValueBuffer);
-                                              sqlite3_bind_int64(command->_ptrStmt,
+                                              auto tmp = reinterpret_cast<const sqlite3_int64 *>(ptrValueBuffer);
+                                              sqlite3_bind_int64(sptrCommand->_ptrStmt,
                                                                  index++,
-                                                                 *value);
+                                                                 *tmp);
                                               break;
                                           };
 
                                           case Type::Varchar: {
-                                              auto value = static_cast<const char *>(ptrValueBuffer);
-                                              sqlite3_bind_text(command->_ptrStmt,
+                                              auto tmp = static_cast<const char *>(ptrValueBuffer);
+                                              sqlite3_bind_text(sptrCommand->_ptrStmt,
                                                                 index++,
-                                                                value,
+                                                                tmp,
                                                                 -1,
                                                                 SQLITE_STATIC);
                                               break;
@@ -146,12 +146,6 @@ namespace Cloude {
                                   [&uptrCommand, &index](const Foundation::Query::SPtrPredicate &sptrPredicate) {
 
                                       auto &column = sptrPredicate->getColumn();
-
-                                      if (sqlite3_column_type(uptrCommand->_ptrStmt, index) == SQLITE_NULL) {
-                                          ++index;
-                                          return;
-                                      }
-
                                       auto &value = sptrPredicate->getValue();
 
                                       if (!value) {
@@ -163,18 +157,18 @@ namespace Cloude {
 
                                       switch (column->getDataType()) {
                                           case Type::Int64: {
-                                              auto value = reinterpret_cast<const sqlite3_int64 *>(ptrValueBuffer);
+                                              auto tmp = reinterpret_cast<const sqlite3_int64 *>(ptrValueBuffer);
                                               sqlite3_bind_int64(uptrCommand->_ptrStmt,
                                                                  index++,
-                                                                 *value);
+                                                                 *tmp);
                                               break;
                                           };
 
                                           case Type::Varchar: {
-                                              auto value = static_cast<const char *>( ptrValueBuffer);
+                                              auto tmp = static_cast<const char *>( ptrValueBuffer);
                                               sqlite3_bind_text(uptrCommand->_ptrStmt,
                                                                 index++,
-                                                                value,
+                                                                tmp,
                                                                 -1,
                                                                 SQLITE_STATIC);
                                               break;
@@ -389,7 +383,6 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
     auto &columnsForSelect = _entityMap.getColumnsForSelect();
 
     Foundation::SPtrColumnVector columnsVector;
-    columnsVector.reserve(columnsForSelect.size() + columnsForKey.size());
     columnsVector.insert(columnsVector.end(), columnsForSelect.begin(), columnsForSelect.end());
     columnsVector.insert(columnsVector.end(), columnsForKey.begin(), columnsForKey.end());
 
@@ -400,12 +393,14 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
 
     Foundation::SPtrProxyVector proxies;
 
-    int resultCode;;
+    int resultCode;
 
-    while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt) == SQLITE_ROW)) {
+    do {
 
-        if (sqlite3_column_type(uptrCommand->_ptrStmt, 0) == SQLITE_NULL) {
-            continue;
+        resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+        if (sqlite3_column_count(uptrCommand->_ptrStmt) == 0) {
+            break;
         }
 
         int index = 0;
@@ -424,6 +419,7 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
                           auto &field = proxy->getField(column->getName());
 
                           switch (column->getDataType()) {
+
                               case Type::Int64: {
                                   auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
                                   field->setValue(ValueFactory::CreateInt64(static_cast<int64_t>(value)));
@@ -444,11 +440,9 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
                       });
 
         proxies.push_back(proxy);
-    }
 
-    if (resultCode != SQLITE_DONE) {
-        // TODO: throws an appropriate exception
-    }
+    } while (resultCode == SQLITE_ROW);
+
 
     return proxies;
 }

@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.2)
-project(cloud_e_cplus)
+project(cloud_e_plus)
 
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_cplus_SOURCE_DIR}/local/build/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_plus_SOURCE_DIR}/local/build/bin")
 set(SOURCE_FILES main.cpp)
 
 
@@ -232,13 +232,13 @@ include_directories(${BOOST_DIR})
 # Examples Target
 set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/Examples)
 set(EXAMPLES_SOURCE_FILE ${EXAMPLES_DIR}/main.cpp)
-add_executable(cloud_e_cplus_example ${EXAMPLES_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_example examples mysqlclient mongoc-1.0 bson-1.0)
+add_executable(cloud_e_plus_example ${EXAMPLES_SOURCE_FILE})
+target_link_libraries(cloud_e_plus_example examples mysqlclient mongoc-1.0 bson-1.0)
 
 
 # Debug Target
-add_executable(cloud_e_cplus_debug ${SOURCE_FILES})
-target_link_libraries(cloud_e_cplus_debug foundation sourcedriver application mysqlclient pq mongoc-1.0)
+add_executable(cloud_e_plus_debug ${SOURCE_FILES})
+target_link_libraries(cloud_e_plus_debug foundation sourcedriver application mysqlclient pq mongoc-1.0)
 
 
 # AppTest Target (with Google Testing Foundation)
@@ -246,7 +246,7 @@ set(GTEST_LIB_DIR ${LIBS_DIR}/gtest-1.7.0)
 set(APPTEST_SOURCE_FILE ${CMAKE_SOURCE_DIR}/AppTest/main.cpp)
 include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
-add_executable(cloud_e_cplus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_cplus_test foundation)
-target_link_libraries(cloud_e_cplus_test sourcedriver mysqlclient pq mongoc-1.0 bson-1.0)
-target_link_libraries(cloud_e_cplus_test application apptest gtest)
+add_executable(cloud_e_plus_test ${APPTEST_SOURCE_FILE})
+target_link_libraries(cloud_e_plus_test foundation)
+target_link_libraries(cloud_e_plus_test sourcedriver mysqlclient pq mongoc-1.0 bson-1.0)
+target_link_libraries(cloud_e_plus_test application apptest gtest)
