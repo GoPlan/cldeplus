@@ -15,7 +15,8 @@ namespace Cloude {
                 class And : public Query::PredicateComposite {
 
                 public:
-                    And(const SPtrPredicate &lhs, const SPtrPredicate &rhs) : PredicateComposite(lhs, rhs) { }
+                    And(const SPtrPredicate &lhs, const SPtrPredicate &rhs)
+                            : PredicateComposite(lhs, rhs) { }
                     ~And() = default;
                     And(const And &rhs) = default;
                     And &operator=(const And &rhs) = default;

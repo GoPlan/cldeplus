@@ -15,7 +15,8 @@ namespace Cloude {
                 class Equal : public Query::PredicateLeaf {
 
                 public:
-                    Equal(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
+                    Equal(const SPtrColumn &column, const Type::SPtrCldeValue &value)
+                            : PredicateLeaf(column, value) { };
                     ~Equal() = default;
                     Equal(const Equal &rhs) = default;
                     Equal &operator=(const Equal &rhs) = default;

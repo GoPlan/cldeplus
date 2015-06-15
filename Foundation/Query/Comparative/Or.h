@@ -16,7 +16,8 @@ namespace Cloude {
                 class Or : public Query::PredicateComposite {
 
                 public:
-                    Or(const SPtrPredicate &lhs, const SPtrPredicate &rhs) : PredicateComposite(lhs, rhs) { }
+                    Or(const SPtrPredicate &lhs, const SPtrPredicate &rhs)
+                            : PredicateComposite(lhs, rhs) { }
                     ~Or() = default;
                     Or(const Or &rhs) = default;
                     Or &operator=(const Or &rhs) = default;

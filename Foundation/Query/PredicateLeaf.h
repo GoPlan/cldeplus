@@ -14,7 +14,7 @@ namespace Cloude {
             class PredicateLeaf : public Predicate {
 
             public:
-                PredicateLeaf(const Column &column, const Type::SPtrCldeValue &value)
+                PredicateLeaf(const SPtrColumn &column, const Type::SPtrCldeValue &value)
                         : _column(column), _value(value) { };
                 virtual ~PredicateLeaf() = default;
                 PredicateLeaf(const PredicateLeaf &rhs) = default;
@@ -22,11 +22,11 @@ namespace Cloude {
 
                 // Predicate
                 virtual const bool isComposite() const override;
-                virtual const Column &getColumn() const override;
+                virtual const SPtrColumn &getColumn() const override;
                 virtual const Type::SPtrCldeValue &getValue() const override;
 
             private:
-                const Column &_column;
+                const SPtrColumn &_column;
                 const Type::SPtrCldeValue &_value;
             };
         }

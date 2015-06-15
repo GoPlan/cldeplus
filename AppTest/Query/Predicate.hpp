@@ -33,30 +33,31 @@ namespace Cloude {
                 Application::Mapper::EnquiryMap enquiryMap;
                 SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
 
-                SPtrPredicate sptrIdEq01(new Comparative::Equal(*enquiryMap.EnquiryId, sptrEnquiryId_01));
-                SPtrPredicate sptrEmail01(new Comparative::Like(*enquiryMap.Email, sptrEmail_01));
-                SPtrPredicate sptrIdEq02(new Comparative::Equal(*enquiryMap.EnquiryId, sptrEnquiryId_02));
-                SPtrPredicate sptrEmail02(new Comparative::NotLike(*enquiryMap.Email, sptrEmail_02));
+                SPtrPredicate sptrIdEq01(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_01));
+                SPtrPredicate sptrEmail01(new Comparative::Like(enquiryMap.Email, sptrEmail_01));
+                SPtrPredicate sptrIdEq02(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_02));
+                SPtrPredicate sptrEmail02(new Comparative::NotLike(enquiryMap.Email, sptrEmail_02));
 
                 SPtrPredicate sptrOR01(new Comparative::Or(sptrIdEq01, sptrEmail01));
                 SPtrPredicate sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
                 SPtrPredicate sptrAND(new Comparative::And(sptrOR01, sptrOR02));
 
-                std::string strPredicate = Foundation::Query::Helper::SqlHelper::ToSqlStringCopy(sptrAND);
-                cout << strPredicate << endl;
+                auto fpCondition = [](const std::shared_ptr<Foundation::Column> &column, const int &index)
+                        -> std::string {
+                    return std::string{"?"};
+                };
 
-                SPtrPredicateIterator next(new PredicateIterator(sptrAND));
+                auto compound = Foundation::Query::Helper::SqlHelper::CreateSelectPreparedQuery(enquiryMap,
+                                                                                                sptrAND,
+                                                                                                fpCondition);
 
-                while (next) {
+                cout << compound.first << endl;
 
-                    if (!next->isVisited() && next->isLeaf()) {
-                        cout << next->getPredicate()->getValue()->ToCString() << endl;
-                    }
-
-                    next = next->operator++();
+                for (auto item : compound.second) {
+                    cout << item->ToCString() << endl;
                 }
 
-                cout << "Finishing .." << endl;
+                cout << "Finished!" << endl;
             }
         }
     }

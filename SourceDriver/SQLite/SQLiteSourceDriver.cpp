@@ -171,12 +171,12 @@ namespace Cloude {
 
             void SQLiteSourceDriver::Init() {
 
-                auto fpValue = [](const std::shared_ptr<Foundation::Column> &column, int index)
+                auto fpValue = [](const std::shared_ptr<Foundation::Column> &column, const int &index)
                         -> std::string {
                     return std::string("?");
                 };
 
-                auto fpCondition = [](const std::shared_ptr<Foundation::Column> &column, int index)
+                auto fpCondition = [](const std::shared_ptr<Foundation::Column> &column, const int &index)
                         -> std::string {
                     return column->getDatasourceName() + " = " + "?";
                 };
@@ -355,52 +355,7 @@ namespace Cloude {
                     return std::string();
                 };
 
-                auto selectCompound = Foundation::Query::Helper::SqlHelper::CreateSelectPreparedQuery(_entityMap,
-                                                                                                      *predicate,
-                                                                                                      F);
-                auto uptrCommand = _sqliteApiImpl->createCommand(selectCompound.statement);
-
-//                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
-
                 SPtrProxySPtrVector proxies;
-
-                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
-
-                int index = 0;
-//
-//                std::for_each(columnsForSelect.cbegin(),
-//                              columnsForSelect.cend(),
-//                              [&entity, &uptrCommand, &index](const std::shared_ptr<Foundation::Column> &column) {
-//
-//                                  if (sqlite3_column_type(uptrCommand->_ptrStmt, index) == SQLITE_NULL) {
-//                                      ++index;
-//                                      return;
-//                                  }
-//
-//                                  auto &field = entity->getField(column->getName());
-//
-//                                  switch (column->getDataType()) {
-//                                      case Type::Int64:
-//                                          int64_t int64Value;
-//                                          int64Value =
-//                                                  static_cast<int64_t>(sqlite3_column_int64(uptrCommand->_ptrStmt,
-//                                                                                            index++));
-//                                          field->setValue(cldeFactory::CreateInt64(int64Value));
-//                                          break;
-//                                      case Type::Varchar:
-//                                          const char *strValue;
-//                                          strValue =
-//                                                  reinterpret_cast<const char *>(sqlite3_column_text(
-//                                                          uptrCommand->_ptrStmt,
-//                                                          index++));
-//                                          field->setValue(cldeFactory::CreateString(strValue));
-//                                          break;
-//                                      default:
-//                                          ++index;
-//                                          const char *msg = "MySqlSourceDriver does not support this type.";
-//                                          throw Foundation::Exception::cldeNonSupportedDataTypeException(msg);
-//                                  }
-//                              });
 
                 return proxies;
             }

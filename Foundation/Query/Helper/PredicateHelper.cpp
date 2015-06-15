@@ -19,7 +19,6 @@ namespace Cloude {
                                                           const PredicateHelper::FPtrProcessor fptrProcessor) {
                     return fptrProcessor(predicate);
                 }
-
             }
         }
     }

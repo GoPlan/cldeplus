@@ -14,7 +14,7 @@ namespace Cloude {
                 const Enumeration::ComparativeType &IsNull::getComparativeType() const {
                     return _type;
                 }
-                const Column &IsNull::getColumn() const {
+                const SPtrColumn &IsNull::getColumn() const {
                     return _column;
                 }
                 const bool IsNull::isComposite() const {

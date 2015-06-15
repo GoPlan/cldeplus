@@ -26,18 +26,14 @@ namespace Cloude {
             namespace Helper {
 
                 class SqlHelper {
+
                 public:
                     using EntityMap = Foundation::EntityMap;
                     using Predicate = Foundation::Query::Predicate;
                     using SPtrPredicate = std::shared_ptr<Predicate>;
                     using SPtrColumn = std::shared_ptr<Foundation::Column>;
                     using SPtrValue = std::shared_ptr<Foundation::Type::cldeValue>;
-                    using FPtrParamProcessor = std::function<std::string(const SPtrColumn &column, int index)>;
-
-                    using SelectCompound = struct {
-                        std::string statement;
-                        std::vector<SPtrValue> params;
-                    };
+                    using FPtrParamProcessor = std::function<std::string(const SPtrColumn &column, const int &index)>;
 
                 public:
                     static std::string CreateGetPreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
@@ -45,11 +41,10 @@ namespace Cloude {
                     static std::string CreateUpdatePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
                     static std::string CreateDeletePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
 
-                    static SelectCompound CreateSelectPreparedQuery(const EntityMap &entityMap,
-                                                                    const Predicate &predicate,
-                                                                    FPtrParamProcessor fptr);
-
-                    static std::string ToSqlStringCopy(const SPtrPredicate &predicate);
+                    static std::pair<std::string, std::vector<SPtrValue>>
+                            CreateSelectPreparedQuery(const EntityMap &entityMap,
+                                                      const SPtrPredicate &sptrPredicate,
+                                                      const FPtrParamProcessor fptr);
                 };
             }
         }

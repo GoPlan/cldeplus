@@ -15,7 +15,8 @@ namespace Cloude {
                 class NotEqual : public PredicateLeaf {
 
                 public:
-                    NotEqual(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
+                    NotEqual(const SPtrColumn &column, const Type::SPtrCldeValue &value)
+                            : PredicateLeaf(column, value) { };
                     virtual ~NotEqual() = default;
                     NotEqual(const NotEqual &rhs) = default;
                     NotEqual &operator=(const NotEqual &rhs) = default;

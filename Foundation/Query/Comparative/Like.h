@@ -15,7 +15,8 @@ namespace Cloude {
                 class Like : public PredicateLeaf {
 
                 public:
-                    Like(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
+                    Like(const SPtrColumn &column, const Type::SPtrCldeValue &value)
+                            : PredicateLeaf(column, value) { };
                     ~Like() = default;
                     Like(const Like &rhs) = default;
                     Like &operator=(const Like &rhs) = default;

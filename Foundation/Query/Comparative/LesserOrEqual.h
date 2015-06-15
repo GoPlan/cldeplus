@@ -15,7 +15,7 @@ namespace Cloude {
                 class LesserOrEqual : public PredicateLeaf {
 
                 public:
-                    LesserOrEqual(const Column &column, const Type::SPtrCldeValue &value)
+                    LesserOrEqual(const SPtrColumn &column, const Type::SPtrCldeValue &value)
                             : PredicateLeaf(column, value) { };
                     virtual ~LesserOrEqual() = default;
                     LesserOrEqual(const LesserOrEqual &rhs) = default;

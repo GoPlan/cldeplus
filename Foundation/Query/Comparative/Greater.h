@@ -16,7 +16,8 @@ namespace Cloude {
                 class Greater : public Query::PredicateLeaf {
 
                 public:
-                    Greater(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
+                    Greater(const SPtrColumn &column, const Type::SPtrCldeValue &value)
+                            : PredicateLeaf(column, value) { };
                     ~Greater() = default;
                     Greater(const Greater &rhs) = default;
                     Greater &operator=(const Greater &rhs) = default;

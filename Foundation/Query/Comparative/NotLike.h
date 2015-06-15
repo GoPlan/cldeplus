@@ -15,7 +15,8 @@ namespace Cloude {
                 class NotLike : public PredicateLeaf {
 
                 public:
-                    NotLike(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
+                    NotLike(const SPtrColumn &column, const Type::SPtrCldeValue &value)
+                            : PredicateLeaf(column, value) { };
                     ~NotLike() = default;
                     NotLike(const NotLike &rhs) = default;
                     NotLike &operator=(const NotLike &rhs) = default;

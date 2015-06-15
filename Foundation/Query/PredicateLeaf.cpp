@@ -7,7 +7,7 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
-            const Column &PredicateLeaf::getColumn() const {
+            const SPtrColumn &PredicateLeaf::getColumn() const {
                 return _column;
             }
             const Type::SPtrCldeValue & PredicateLeaf::getValue() const {

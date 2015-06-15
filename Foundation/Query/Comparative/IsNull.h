@@ -16,19 +16,19 @@ namespace Cloude {
                 class IsNull : public Predicate {
 
                 public:
-                    IsNull(const Column &column) : _column(column) { };
+                    IsNull(const SPtrColumn &column) : _column(column) { };
                     virtual ~IsNull() = default;
                     IsNull(const IsNull &rhs) = default;
                     IsNull &operator=(const IsNull &rhs) = default;
 
                     // PredicateLeaf
-                    const Column &getColumn() const override;
+                    const SPtrColumn &getColumn() const override;
                     const bool isComposite() const override;
                     const Enumeration::ComparativeType &getComparativeType() const override;
                     const Type::SPtrCldeValue & getValue() const override;
 
                 private:
-                    const Column &_column;
+                    const SPtrColumn &_column;
                     static Enumeration::ComparativeType _type;
                 };
             }

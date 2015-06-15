@@ -15,7 +15,8 @@ namespace Cloude {
                 class Lesser : public PredicateLeaf {
 
                 public:
-                    Lesser(const Column &column, const Type::SPtrCldeValue &value) : PredicateLeaf(column, value) { };
+                    Lesser(const SPtrColumn &column, const Type::SPtrCldeValue &value)
+                            : PredicateLeaf(column, value) { };
                     virtual ~Lesser() = default;
                     Lesser(const Lesser &rhs) = default;
                     Lesser &operator=(const Lesser &rhs) = default;

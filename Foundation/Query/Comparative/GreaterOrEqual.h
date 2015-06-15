@@ -15,7 +15,7 @@ namespace Cloude {
                 class GreaterOrEqual : public PredicateLeaf {
 
                 public:
-                    GreaterOrEqual(const Column &column, const Type::SPtrCldeValue &value)
+                    GreaterOrEqual(const SPtrColumn &column, const Type::SPtrCldeValue &value)
                             : PredicateLeaf(column, value) { };
                     virtual ~GreaterOrEqual() = default;
                     GreaterOrEqual(const GreaterOrEqual &rhs) = default;

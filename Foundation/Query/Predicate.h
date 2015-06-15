@@ -29,7 +29,7 @@ namespace Cloude {
                 Predicate &operator=(const Predicate &srcExpression) = default;
 
                 virtual const bool isComposite() const = 0;
-                virtual const Column &getColumn() const = 0;
+                virtual const SPtrColumn &getColumn() const = 0;
                 virtual const Enumeration::ComparativeType &getComparativeType() const = 0;
                 virtual const Type::SPtrCldeValue &getValue() const = 0;
             };
