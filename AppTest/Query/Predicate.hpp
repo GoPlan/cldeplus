@@ -23,20 +23,30 @@ namespace Cloude {
                 using namespace Foundation::Query;
                 using namespace std;
 
-
-                const char *email = "goplan@cloud-e.biz";
+                const char *email01 = "goplan@cloud-e.biz";
+                const char *email02 = "ducanh.ki@cloud-e.biz";
 
                 auto sptrEnquiryId_01 = Foundation::Type::cldeValueFactory::CreateInt64(1);
                 auto sptrEnquiryId_02 = Foundation::Type::cldeValueFactory::CreateInt64(2);
-                auto sptrEmail_01 = Foundation::Type::cldeValueFactory::CreateVarchar(email);
-                auto sptrEmail_02 = Foundation::Type::cldeValueFactory::CreateVarchar(email);
+                auto sptrEmail_01 = Foundation::Type::cldeValueFactory::CreateVarchar(email01);
+                auto sptrEmail_02 = Foundation::Type::cldeValueFactory::CreateVarchar(email02);
 
                 Application::Mapper::EnquiryMap enquiryMap;
+                SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
 
                 SPtrPredicate sptrIdEq01(new Comparative::Equal(*enquiryMap.EnquiryId, sptrEnquiryId_01));
-                SPtrPredicate sptrEmail(new Comparative::Like(*enquiryMap.Email, sptrEmail_01));
-                SPtrPredicate sptrAnd(new Comparative::And(sptrIdEq01, sptrEmail));
-                SPtrPredicateIterator next(new PredicateIterator(sptrAnd));
+                SPtrPredicate sptrEmail01(new Comparative::Like(*enquiryMap.Email, sptrEmail_01));
+                SPtrPredicate sptrIdEq02(new Comparative::Equal(*enquiryMap.EnquiryId, sptrEnquiryId_02));
+                SPtrPredicate sptrEmail02(new Comparative::NotLike(*enquiryMap.Email, sptrEmail_02));
+
+                SPtrPredicate sptrOR01(new Comparative::Or(sptrIdEq01, sptrEmail01));
+                SPtrPredicate sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
+                SPtrPredicate sptrAND(new Comparative::And(sptrOR01, sptrOR02));
+
+                std::string strPredicate = sqliteSourceDriver.ParsePredicateToStringCopy(sptrAND);
+                cout << strPredicate << endl;
+
+                SPtrPredicateIterator next(new PredicateIterator(sptrAND));
 
                 while (next) {
 

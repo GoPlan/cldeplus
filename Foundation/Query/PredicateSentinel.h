@@ -18,7 +18,6 @@ namespace Cloude {
                 virtual ~PredicateSentinel() = default;
                 PredicateSentinel(const PredicateSentinel &rhs) = default;
                 PredicateSentinel &operator=(const PredicateSentinel &rhs) = default;
-
             };
         }
     }

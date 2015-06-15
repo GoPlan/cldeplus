@@ -37,7 +37,7 @@ namespace Cloude {
 
                 const std::string &cldeVarchar::ToString() const {
                     const char *msg = "Varchar does not support ToString." \
-                                        "Use CopyToString(), ToCString() instead.";
+                                        "Use ToStringCopy(), ToCString() instead.";
                     throw Exception::cldeNonSupportedFunctionException(msg);
                 }
 

@@ -42,8 +42,6 @@ namespace Cloude {
             SelectCompound CreateSelectPreparedQuery(const EntityMap &entityMap,
                                                      const Predicate &predicate,
                                                      FPtrParamProcessor fptr);
-
-
         }
     }
 }

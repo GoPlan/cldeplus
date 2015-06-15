@@ -113,12 +113,12 @@ add_library(foundation STATIC
     Foundation/Common/ICompoundAssignable.h
     Foundation/Common/IParsable.h
     Foundation/Common/IFormattable.h
-    Foundation/Query/Contract/IPredicationFormatter.h
+    Foundation/Query/Contract/IPredicateFormatter.h
     Foundation/Query/Comparative.h
     Foundation/Query/PredicateLeaf.cpp
     Foundation/Query/PredicateLeaf.h
     Foundation/Query/Query.h
-    Foundation/Query/PredicateComposite.cpp Foundation/Query/PredicateComposite.h Foundation/Query/PredicateSentinel.cpp Foundation/Query/PredicateSentinel.h Foundation/Query/PredicateIterator.cpp Foundation/Query/PredicateIterator.h)
+    Foundation/Query/PredicateComposite.cpp Foundation/Query/PredicateComposite.h Foundation/Query/PredicateSentinel.cpp Foundation/Query/PredicateSentinel.h Foundation/Query/PredicateIterator.cpp Foundation/Query/PredicateIterator.h Foundation/Query/Helper/PredicateHelper.cpp Foundation/Query/Helper/PredicateHelper.h)
 
 
 add_library(application STATIC

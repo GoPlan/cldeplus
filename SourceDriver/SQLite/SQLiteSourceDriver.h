@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <Foundation/EntitySourceDriver.h>
+#include <Foundation/Query/Contract/IPredicateFormatter.h>
 #include "SQLiteSourceException.h"
 
 namespace Cloude {
@@ -15,7 +16,7 @@ namespace Cloude {
 
             class SQLiteSourceDriver
                     : public Foundation::EntitySourceDriver,
-                      public Foundation::Query::Contract::IPredicationFormatter {
+                      public Foundation::Query::Contract::IPredicateFormatter {
 
             public:
                 using Options = struct {
@@ -42,7 +43,7 @@ namespace Cloude {
                                            Foundation::EntityStore &entityStore) const override;
 
                 // IPredicationFormatterPredication
-                std::string CopyFormat(const Foundation::Query::Predicate &predicate) const override;
+                std::string ParsePredicateToStringCopy(const SPtrPredicate &predicate) const override;
 
             private:
                 class SQLiteApiImpl;
