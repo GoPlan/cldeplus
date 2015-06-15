@@ -7,14 +7,18 @@
 namespace Cloude {
     namespace Foundation {
 
-        EntityProxy::EntityProxy(EntityStore &entityStore, std::shared_ptr<Identity> &identity)
-                : _entityStore(entityStore), _identity(identity) {
+        EntityProxy::EntityProxy(SPtrIdentity &identity, EntityStore &entityStore)
+                : Entity(identity), _entityStore(entityStore) {
             //
         }
 
-        std::shared_ptr<Entity> EntityProxy::Summon() {
+        SPtrEntity EntityProxy::Summon() {
             auto entity = _entityStore.Get(_identity);
             return entity;
+        }
+
+        EntityStore &EntityProxy::getEntityStore() const {
+            return _entityStore;
         }
     }
 }

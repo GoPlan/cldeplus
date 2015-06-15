@@ -14,7 +14,7 @@ namespace Cloude {
 
         public:
             virtual ~EntityLoader() = default;
-            virtual std::shared_ptr<Identity> NextPrimaryKey() const = 0;
+            virtual SPtrIdentity NextPrimaryKey() const = 0;
         };
     }
 }

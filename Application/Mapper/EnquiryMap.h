@@ -13,16 +13,13 @@ namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            using EntityMap = Foundation::EntityMap;
-            using Column = Foundation::Column;
-
-            class EnquiryMap : public EntityMap {
+            class EnquiryMap : public Foundation::EntityMap {
             public:
                 static std::string TableName;
-                static std::shared_ptr<Column> EnquiryId;
-                static std::shared_ptr<Column> ObjectId;
-                static std::shared_ptr<Column> Email;
-                static std::shared_ptr<Column> Subject;
+                static Foundation::SPtrColumn EnquiryId;
+                static Foundation::SPtrColumn ObjectId;
+                static Foundation::SPtrColumn Email;
+                static Foundation::SPtrColumn Subject;
 
             public:
                 virtual ~EnquiryMap() = default;

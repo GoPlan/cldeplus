@@ -14,8 +14,7 @@ namespace Cloude {
     namespace SourceDriver {
         namespace SQLite {
 
-            class SQLiteSourceDriver
-                    : public Foundation::EntitySourceDriver {
+            class SQLiteSourceDriver : public Foundation::EntitySourceDriver {
 
             public:
                 using Options = struct {
@@ -34,12 +33,13 @@ namespace Cloude {
                 Options &getOptionArgs() { return _optionArgs; }
 
                 // EntitySourceDriver
-                int Load(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
-                SPtrProxySPtrVector Select(const SPtrPredicate &predicate,
-                                           Foundation::EntityStore &entityStore) const override;
+                int Load(Foundation::SPtrEntity &entity) const override;
+                int Insert(Foundation::SPtrEntity &entity) const override;
+                int Save(Foundation::SPtrEntity &entity) const override;
+                int Delete(Foundation::SPtrEntity &entity) const override;
+
+                Foundation::SPtrProxyVector Select(const Foundation::Query::SPtrPredicate &sptrPredicate,
+                                                   Foundation::EntityStore &entityStore) const override;
 
             private:
                 class SQLiteApiImpl;

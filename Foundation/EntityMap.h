@@ -23,22 +23,22 @@ namespace Cloude {
             EntityMap &operator=(const EntityMap &srcEntityMap) = default;
             virtual ~EntityMap() = default;
 
-            const std::string& TableName() const {
+            const std::string &TableName() const {
                 return TableNameCore();
             }
 
-            const std::vector<std::shared_ptr<Column>> &getColumnsForKey() const { return _columnsForKey; }
-            const std::vector<std::shared_ptr<Column>> &getColumnsForGet() const { return _columnsForGet; }
-            const std::vector<std::shared_ptr<Column>> &getColumnsForUpdate() const { return _columnsForUpdate; }
-            const std::vector<std::shared_ptr<Column>> &getColumnsForSelect() const { return _columnsForSelect; }
+            const SPtrColumnVector &getColumnsForKey() const { return _columnsForKey; }
+            const SPtrColumnVector &getColumnsForGet() const { return _columnsForGet; }
+            const SPtrColumnVector &getColumnsForUpdate() const { return _columnsForUpdate; }
+            const SPtrColumnVector &getColumnsForSelect() const { return _columnsForSelect; }
 
         protected:
-            std::vector<std::shared_ptr<Column>> _columnsForKey;
-            std::vector<std::shared_ptr<Column>> _columnsForGet;
-            std::vector<std::shared_ptr<Column>> _columnsForUpdate;
-            std::vector<std::shared_ptr<Column>> _columnsForSelect;
+            SPtrColumnVector _columnsForKey;
+            SPtrColumnVector _columnsForGet;
+            SPtrColumnVector _columnsForUpdate;
+            SPtrColumnVector _columnsForSelect;
 
-            virtual const std::string& TableNameCore() const = 0;
+            virtual const std::string &TableNameCore() const = 0;
         };
     }
 }

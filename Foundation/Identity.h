@@ -13,9 +13,6 @@ namespace Cloude {
 
         class Identity {
 
-        private:
-            using FieldsMap = std::unordered_map<std::string, std::shared_ptr<Field>>;
-
         public:
             Identity() = default;
             Identity(const Identity &srcIdentity) = default;
@@ -25,16 +22,18 @@ namespace Cloude {
             explicit Identity(const std::initializer_list<Field *> ptrFieldList);
             explicit Identity(const std::initializer_list<std::shared_ptr<Field>> &fieldsList);
 
-            void setField(std::shared_ptr<Field> &field);
+            void setField(SPtrField &field);
             void setField(Field *ptrField);
             void setMultiFields(const std::initializer_list<Field *> &ptrFieldList);
             void setMultiFields(const std::initializer_list<std::shared_ptr<Field>> &spFieldList);
 
-            const FieldsMap &getFieldsMap() { return _fieldsMap; };
+            const SptrFieldMap &getFieldsMap() { return _fieldsMap; };
 
         protected:
-            FieldsMap _fieldsMap;
+            SptrFieldMap _fieldsMap;
         };
+
+        using SPtrIdentity = std::shared_ptr<Identity>;
     }
 }
 

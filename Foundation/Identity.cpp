@@ -8,12 +8,12 @@
 namespace Cloude {
     namespace Foundation {
 
-        void Identity::setField(std::shared_ptr<Field> &field) {
+        void Identity::setField(SPtrField &field) {
             _fieldsMap[field->getColumn()->getName()] = field;
         }
 
         void Identity::setField(Field *ptrField) {
-            std::shared_ptr<Field> spField(ptrField);
+            SPtrField spField(ptrField);
             _fieldsMap[ptrField->getColumn()->getName()] = spField;
         }
 
@@ -23,7 +23,7 @@ namespace Cloude {
             }
         }
 
-        void Identity::setMultiFields(const std::initializer_list<std::shared_ptr<Field>> &spFieldList) {
+        void Identity::setMultiFields(const std::initializer_list<SPtrField> &spFieldList) {
             for (auto spField : spFieldList) {
                 setField(const_cast<std::shared_ptr<Field> &>(spField));
             }
@@ -33,7 +33,7 @@ namespace Cloude {
             setMultiFields(ptrFieldList);
         }
 
-        Identity::Identity(const std::initializer_list<std::shared_ptr<Field>>& fieldsList) {
+        Identity::Identity(const std::initializer_list<SPtrField> &fieldsList) {
             setMultiFields(fieldsList);
         }
     }

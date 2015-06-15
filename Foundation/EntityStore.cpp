@@ -24,11 +24,11 @@ namespace Cloude {
             //
         }
 
-        bool EntityStore::HasIdentityInMap(const shared_ptr<Identity> &identity) const {
+        bool EntityStore::HasIdentityInMap(const SPtrIdentity &identity) const {
             return !(_identityMap.find(identity) == _identityMap.end());
         }
 
-        shared_ptr<Entity> EntityStore::Create() {
+        SPtrEntity EntityStore::Create() {
 
             auto identity = _entityLoader.NextPrimaryKey();
             auto entity = Create(identity);
@@ -36,7 +36,7 @@ namespace Cloude {
             return entity;
         }
 
-        shared_ptr<Entity> EntityStore::Create(const shared_ptr<Identity> &identity) {
+        SPtrEntity EntityStore::Create(const SPtrIdentity &identity) {
 
             if (!identity) {
                 const char *msg = "Identity is a nullptr or invalid";
@@ -47,14 +47,14 @@ namespace Cloude {
 
             std::shared_ptr<Entity> entity(new Entity(identity));
 
-            Foundation::Query::GenerateFieldsFromColumns(columnsForGet, entity, false);
+            Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, entity, false);
 
             Insert(entity);
 
             return entity;
         }
 
-        shared_ptr<Entity> EntityStore::Get(const shared_ptr<Identity> &identity) {
+        SPtrEntity EntityStore::Get(const SPtrIdentity &identity) {
 
             auto search = _identityMap.find(identity);
 
@@ -66,7 +66,7 @@ namespace Cloude {
 
             std::shared_ptr<Entity> entity(new Entity(identity));
 
-            Foundation::Query::GenerateFieldsFromColumns(columnsForGet, entity, false);
+            Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, entity, false);
 
             if (!_entitySourceDriver.Load(entity)) {
                 return std::shared_ptr<Entity>(nullptr);
@@ -79,7 +79,7 @@ namespace Cloude {
             return entity;
         }
 
-        void EntityStore::Insert(std::shared_ptr<Entity> &entity) {
+        void EntityStore::Insert(SPtrEntity &entity) {
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
@@ -88,11 +88,11 @@ namespace Cloude {
             }
         }
 
-        void EntityStore::Save(std::shared_ptr<Entity> &entity) {
+        void EntityStore::Save(SPtrEntity &entity) {
             _entitySourceDriver.Save(entity);
         }
 
-        void EntityStore::Delete(std::shared_ptr<Entity> &entity) {
+        void EntityStore::Delete(SPtrEntity &entity) {
             if (_entitySourceDriver.Delete(entity)) {
                 auto identity = entity->getIdentity();
                 _identityMap.erase(identity);

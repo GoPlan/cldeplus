@@ -41,7 +41,7 @@ namespace Cloude {
                     static std::string CreateUpdatePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
                     static std::string CreateDeletePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
 
-                    static std::pair<std::string, std::vector<SPtrValue>>
+                    static std::pair<std::string, std::vector<SPtrPredicate>>
                             CreateSelectPreparedQuery(const EntityMap &entityMap,
                                                       const SPtrPredicate &sptrPredicate,
                                                       const FPtrParamProcessor fptr);

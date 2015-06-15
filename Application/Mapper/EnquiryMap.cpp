@@ -13,22 +13,22 @@ namespace Cloude {
 
             std::string EnquiryMap::TableName = "Enquiry";
 
-            std::shared_ptr<Column> EnquiryMap::EnquiryId =
+            Foundation::SPtrColumn EnquiryMap::EnquiryId =
                     make_shared<Column>("EnquiryId",
                                         "EnquiryId",
                                         Type::cldeValueType::Int64);
 
-            std::shared_ptr<Column> EnquiryMap::ObjectId =
+            Foundation::SPtrColumn EnquiryMap::ObjectId =
                     make_shared<Column>("ObjectId",
                                         "_id",
                                         Type::cldeValueType::Varchar);
 
-            std::shared_ptr<Column> EnquiryMap::Email =
+            Foundation::SPtrColumn EnquiryMap::Email =
                     make_shared<Column>("Email",
                                         "Email",
                                         Type::cldeValueType::Varchar);
 
-            std::shared_ptr<Column> EnquiryMap::Subject =
+            Foundation::SPtrColumn EnquiryMap::Subject =
                     make_shared<Column>("Subject",
                                         "Subject",
                                         Type::cldeValueType::Varchar);
@@ -47,7 +47,6 @@ namespace Cloude {
                 this->_columnsForUpdate.push_back(Subject);
                 this->_columnsForSelect.push_back(Email);
                 this->_columnsForSelect.push_back(Subject);
-
             }
         }
     }

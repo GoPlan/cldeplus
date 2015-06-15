@@ -19,19 +19,25 @@ namespace Cloude {
 
             TEST(Predicate, case01) {
 
+                using namespace Foundation;
                 using namespace Foundation::Query;
-                using namespace std;
 
                 const char *email01 = "goplan@cloud-e.biz";
                 const char *email02 = "ducanh.ki@cloud-e.biz";
 
-                auto sptrEnquiryId_01 = Foundation::Type::cldeValueFactory::CreateInt64(1);
-                auto sptrEnquiryId_02 = Foundation::Type::cldeValueFactory::CreateInt64(2);
-                auto sptrEmail_01 = Foundation::Type::cldeValueFactory::CreateVarchar(email01);
-                auto sptrEmail_02 = Foundation::Type::cldeValueFactory::CreateVarchar(email02);
+                auto sptrEnquiryId_01 = Type::cldeValueFactory::CreateInt64(1);
+                auto sptrEnquiryId_02 = Type::cldeValueFactory::CreateInt64(2);
+                auto sptrEmail_01 = Type::cldeValueFactory::CreateVarchar(email01);
+                auto sptrEmail_02 = Type::cldeValueFactory::CreateVarchar(email02);
 
                 Application::Mapper::EnquiryMap enquiryMap;
+                Application::Mapper::EnquiryLoader enquiryLoader;
                 SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
+                EntityStore entityStore{enquiryMap, enquiryLoader, sqliteSourceDriver};
+
+                auto &options = sqliteSourceDriver.getOptionArgs();
+                options.ConnectionString = "../ex1.db";
+                sqliteSourceDriver.Connect();
 
                 SPtrPredicate sptrIdEq01(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_01));
                 SPtrPredicate sptrEmail01(new Comparative::Like(enquiryMap.Email, sptrEmail_01));
@@ -42,22 +48,22 @@ namespace Cloude {
                 SPtrPredicate sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
                 SPtrPredicate sptrAND(new Comparative::And(sptrOR01, sptrOR02));
 
-                auto fpCondition = [](const std::shared_ptr<Foundation::Column> &column, const int &index)
-                        -> std::string {
+                auto fpCondition = [](const SPtrColumn &column, const int &index) -> std::string {
                     return std::string{"?"};
                 };
 
-                auto compound = Foundation::Query::Helper::SqlHelper::CreateSelectPreparedQuery(enquiryMap,
-                                                                                                sptrAND,
-                                                                                                fpCondition);
+                auto compound = Helper::SqlHelper::CreateSelectPreparedQuery(enquiryMap, sptrAND, fpCondition);
+                auto proxies = sqliteSourceDriver.Select(sptrAND, entityStore);
 
-                cout << compound.first << endl;
+                std::cout << compound.first << std::endl;
 
-                for (auto item : compound.second) {
-                    cout << item->ToCString() << endl;
+                for (auto sptrPredicate : compound.second) {
+                    std::cout << sptrPredicate->getValue()->ToCString() << std::endl;
                 }
 
-                cout << "Finished!" << endl;
+                sqliteSourceDriver.Disconnect();
+
+                std::cout << "Finished!" << std::endl;
             }
         }
     }

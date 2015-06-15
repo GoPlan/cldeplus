@@ -11,11 +11,15 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Query {
-            void GenerateFieldsFromColumns (const SPtrColumnVector &columnVector,
-                                            SPtrEntity &entity,
-                                            bool checkIfFieldExists);
+        namespace Store {
 
+            class EntityStoreHelper {
+
+            public:
+                static void GenerateFieldsFromColumns(const SPtrColumnVector &columnVector,
+                                                      const SPtrEntity &entity,
+                                                      bool checkIfFieldExists = true);
+            };
         }
     }
 }

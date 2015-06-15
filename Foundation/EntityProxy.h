@@ -12,20 +12,24 @@
 namespace Cloude {
     namespace Foundation {
 
-        class EntityProxy {
+        class EntityProxy : public Entity {
 
         public:
-            explicit EntityProxy(EntityStore &entityStore, std::shared_ptr<Identity> &identity);
-            virtual ~EntityProxy() = default;
-            EntityProxy(const EntityProxy &srcEntityProxy) = default;
-            EntityProxy &operator=(const EntityProxy &srcEntityProxy) = default;
+            explicit EntityProxy(SPtrIdentity &identity, EntityStore &entityStore);
+            ~EntityProxy() = default;
+            EntityProxy(EntityProxy &) = default;
+            EntityProxy &operator=(EntityProxy &) = default;
 
-            std::shared_ptr<Entity> Summon();
+            // Locals
+            SPtrEntity Summon();
+            EntityStore &getEntityStore() const;
 
         private:
             EntityStore &_entityStore;
-            std::shared_ptr<Identity> &_identity;
         };
+
+        using SPtrProxy = std::shared_ptr<EntityProxy>;
+        using SPtrProxyVector = std::vector<SPtrProxy>;
     }
 }
 

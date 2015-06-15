@@ -168,7 +168,7 @@ namespace Cloude {
                     return strQuery;
                 }
 
-                std::pair<std::string, std::vector<SqlHelper::SPtrValue>> SqlHelper::CreateSelectPreparedQuery(
+                std::pair<std::string, std::vector<SqlHelper::SPtrPredicate>> SqlHelper::CreateSelectPreparedQuery(
                         const EntityMap &entityMap,
                         const SPtrPredicate &sptrPredicate,
                         const FPtrParamProcessor fptrParamProcessor) {
@@ -279,7 +279,7 @@ namespace Cloude {
                     };
 
                     std::string statement;
-                    std::vector<SPtrValue> values;
+                    std::vector<SPtrPredicate> values;
 
                     auto const &columnsForSelect = entityMap.getColumnsForSelect();
 
@@ -307,7 +307,7 @@ namespace Cloude {
                     while (iter) {
 
                         if (!iter->isVisited() && iter->isLeaf()) {
-                            values.push_back(iter->getPredicate()->getValue());
+                            values.push_back(iter->getPredicate());
                             ++y;
                         }
 

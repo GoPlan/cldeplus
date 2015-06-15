@@ -7,23 +7,14 @@
 
 #include <memory>
 #include <vector>
+#include "EntityProxy.h"
+#include "EntityStore.h"
+#include "Query/Predicate.h"
 
 namespace Cloude {
     namespace Foundation {
-        namespace Query {
-            class Predicate;
-        }
-
-        class EntityProxy;
-        class EntityMap;
-        class EntityStore;
-        class EntitySourceDriver;
 
         class EntityQuery {
-
-        public:
-            using SPtrProxy = std::shared_ptr<EntityProxy>;
-            using SPtrProxyVector = std::shared_ptr<std::vector<SPtrProxy>>;
 
         public:
             explicit EntityQuery(EntityStore &entityStore);
@@ -31,12 +22,11 @@ namespace Cloude {
             EntityQuery(const EntityQuery &srcEntityQuery) = default;
             EntityQuery &operator=(const EntityQuery &srcEntityQuery) = default;
 
-            SPtrProxyVector Compose(const std::shared_ptr<Query::Predicate> &predicate);
-            SPtrProxy ComposeGetFirst(const std::shared_ptr<Query::Predicate> &predicate);
+            SPtrProxyVector Compose(const Query::SPtrPredicate &predicate);
+            SPtrProxy ComposeGetFirst(const Query::SPtrPredicate &predicate);
 
         private:
             EntityStore &_entityStore;
-
         };
     }
 }

@@ -18,23 +18,17 @@ namespace Cloude {
         class EntitySourceDriver {
 
         public:
-            using SPtrProxy = std::shared_ptr<EntityProxy>;
-            using SPtrProxySPtrVector = std::shared_ptr<std::vector<SPtrProxy>>;
-            using SPtrPredicate = std::shared_ptr<Query::Predicate>;
-
-        public:
             explicit EntitySourceDriver(const EntityMap &entityMap) : _entityMap(entityMap) { };
             virtual ~EntitySourceDriver() = default;
             EntitySourceDriver(const EntitySourceDriver &rhs) = delete;
             EntitySourceDriver &operator=(const EntitySourceDriver &rhs) = delete;
 
-            virtual int Load(std::shared_ptr<Entity> &entity) const = 0;
-            virtual int Insert(std::shared_ptr<Entity> &entity) const = 0;
-            virtual int Save(std::shared_ptr<Entity> &entity) const = 0;
-            virtual int Delete(std::shared_ptr<Entity> &entity) const = 0;
+            virtual int Load(SPtrEntity &entity) const = 0;
+            virtual int Insert(SPtrEntity &entity) const = 0;
+            virtual int Save(SPtrEntity &entity) const = 0;
+            virtual int Delete(SPtrEntity &entity) const = 0;
 
-            virtual SPtrProxySPtrVector Select(const SPtrPredicate &predicate,
-                                               EntityStore &entityStore) const = 0;
+            virtual SPtrProxyVector Select(const Query::SPtrPredicate &predicate, EntityStore &entityStore) const = 0;
 
         protected:
             const EntityMap &_entityMap;
