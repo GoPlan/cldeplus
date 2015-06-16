@@ -13,32 +13,21 @@
 namespace Cloude {
     namespace Foundation {
 
-        class Entity {
+        class Entity : public Store::IDataRecord {
 
         public:
-            explicit Entity(const SPtrIdentity &identity);
+            Entity() = delete;
             ~Entity() = default;
-            Entity(const Entity &srcEntity) = delete;
-            Entity &operator=(Entity &srcEntity) = delete;
+            Entity(const Entity &) = default;
+            Entity(Entity &&) = default;
+            Entity &operator=(const Entity &) = default;
+            Entity &operator=(Entity &&) = default;
 
-            const SPtrField &operator[](const std::string &columnName) const;
-            const SPtrField &operator[](const char *columnName) const;
-            const SPtrField &getField(const std::string &columnName) const;
-            const SPtrField &getField(const char *columnName) const;
-
-            void setField(SPtrField &field);
-            void setField(Field *ptrField);
-            void setMultiFields(std::initializer_list<SPtrField> &fieldsList);
-            void setMultiFields(std::initializer_list<Field *> ptrFieldsList);
-
-            bool HasField(const std::string &fieldName);
-            unsigned long Size();
-
+            explicit Entity(const SPtrIdentity &identity);
             const SPtrIdentity &getIdentity() { return _identity; }
 
         protected:
             SPtrIdentity _identity;
-            SptrFieldMap _fieldsMap;
         };
 
         using SPtrEntity = std::shared_ptr<Entity>;

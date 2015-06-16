@@ -32,7 +32,6 @@ namespace Cloude {
 
         protected:
             const EntityMap &_entityMap;
-
         };
     }
 }

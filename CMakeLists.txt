@@ -124,7 +124,7 @@ add_library(foundation STATIC
     Foundation/Query/PredicateIterator.h
     Foundation/Query/Helper/PredicateHelper.cpp
     Foundation/Query/Helper/PredicateHelper.h
-    Foundation/Enums.h)
+    Foundation/Enums.h Foundation/Store/IDataRecord.h Foundation/Store/IDataRecord.cpp)
 
 
 add_library(application STATIC

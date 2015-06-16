@@ -1,5 +1,5 @@
 //
-// Created by GoPlan on 14/05/2015.
+// Created by LE, Duc Anh on 14/05/2015.
 //
 
 #ifndef CLOUD_E_CPLUS_FOUNDATION_FIELD_H
@@ -18,10 +18,12 @@ namespace Cloude {
         class Field {
 
         public:
-            explicit Field(const SPtrColumn &column);
+            Field() = delete;
             ~Field() = default;
             Field(const Field &srcField) = default;
             Field &operator=(const Field &srcField) = default;
+
+            explicit Field(const SPtrColumn &column);
 
             const SPtrColumn &getColumn() const { return _column; }
             const Type::SPtrCldeValue &getValue() const { return _value; }
@@ -35,7 +37,8 @@ namespace Cloude {
         };
 
         using SPtrField = std::shared_ptr<Field>;
-        using SptrFieldMap = std::unordered_map<std::string, SPtrField>;
+        using SPtrFieldMap = std::unordered_map<std::string, SPtrField>;
+        using SPtrFieldVector = std::vector<SPtrField>;
     }
 }
 

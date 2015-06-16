@@ -276,7 +276,6 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Load(Foundation::SPtrEntit
 
     auto const &columnsForGet = _entityMap.getColumnsForGet();
     auto const &columnsForKey = _entityMap.getColumnsForKey();
-
     auto uptrCommand = _sqliteApiImpl->createCommand(_getStatement);
 
     _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
@@ -415,7 +414,7 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
             break;
         }
 
-        auto sptrIdentity = std::make_shared<Foundation::Identity>();
+        Foundation::SPtrIdentity sptrIdentity{new Foundation::Identity{}};
 
         std::for_each(columnsForKey.begin(), columnsForKey.cend(),
                       [&sptrIdentity](const Foundation::SPtrColumn &sptrColumn) {

@@ -52,7 +52,6 @@ namespace Cloude {
 
         private:
             SPtrIdentityMap _identityMap;
-
         };
     }
 }

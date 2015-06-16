@@ -3,38 +3,16 @@
 //
 
 #include "Identity.h"
-#include "Field.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        Identity::Identity(const std::initializer_list<Field *> &ptrFieldList) {
-            setMultiFields(ptrFieldList);
+        Identity::Identity(const std::vector<SPtrField> &fieldVector) {
+            Store::IDataRecord::setMultiFields(fieldVector);
         }
 
-        Identity::Identity(const std::initializer_list<SPtrField> &fieldsList) {
-            setMultiFields(fieldsList);
-        }
-
-        void Identity::setField(SPtrField &field) {
-            _fieldsMap[field->getColumn()->getName()] = field;
-        }
-
-        void Identity::setField(Field *ptrField) {
-            SPtrField spField(ptrField);
-            _fieldsMap[ptrField->getColumn()->getName()] = spField;
-        }
-
-        void Identity::setMultiFields(const std::initializer_list<Field *> &ptrFieldList) {
-            for (auto ptrField : ptrFieldList) {
-                setField(ptrField);
-            }
-        }
-
-        void Identity::setMultiFields(const std::initializer_list<SPtrField> &spFieldList) {
-            for (auto spField : spFieldList) {
-                setField(const_cast<SPtrField &>(spField));
-            }
+        Identity::Identity(const std::vector<Field *> &fieldVector) {
+            Store::IDataRecord::setMultiFields(fieldVector);
         }
     }
 }
