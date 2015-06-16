@@ -10,8 +10,8 @@ namespace Cloude {
         Column::Column(std::string name,
                        std::string datasourceName,
                        Type::cldeValueType dataType) : _name(name),
-                                        _datasourceName(datasourceName),
-                                        _dataType(dataType) {
+                                                       _datasourceName(datasourceName),
+                                                       _dataType(dataType) {
             //
         }
 
@@ -19,9 +19,9 @@ namespace Cloude {
                        std::string datasourceName,
                        size_t length,
                        Type::cldeValueType dataType) : _name(name),
-                                        _datasourceName(datasourceName),
-                                        _length(length),
-                                        _dataType(dataType) {
+                                                       _datasourceName(datasourceName),
+                                                       _length(length),
+                                                       _dataType(dataType) {
             //
         }
     }

@@ -57,8 +57,13 @@ namespace Cloude {
 
                 auto proxies = sqliteSourceDriver.Select(sptrOR, entityStore);
                 for (auto proxy : proxies) {
+
                     auto sptrEmail = proxy->getField("Email");
                     if (!sptrEmail->isNull()) std::cout << sptrEmail->getValue()->ToCString() << std::endl;
+
+                    auto sptrEntity = proxy->Summon();
+                    auto sptrEnquiryId = sptrEntity->getField("EnquiryId");
+                    if (!sptrEnquiryId->isNull()) std::cout << sptrEnquiryId->getValue()->ToCString() << std::endl;
                 }
 
                 sqliteSourceDriver.Disconnect();

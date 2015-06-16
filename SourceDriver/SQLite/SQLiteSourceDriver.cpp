@@ -409,15 +409,13 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
 
     int resultCode;
 
-    do {
-
-        resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+    while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
 
         if (sqlite3_column_count(uptrCommand->_ptrStmt) == 0) {
             break;
         }
 
-        Foundation::SPtrIdentity sptrIdentity{new Foundation::Identity{}};
+        auto sptrIdentity = std::make_shared<Foundation::Identity>();
 
         std::for_each(columnsForKey.begin(), columnsForKey.cend(),
                       [&sptrIdentity](const Foundation::SPtrColumn &sptrColumn) {
@@ -430,9 +428,11 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
         _sqliteApiImpl->bindResultToFields(sptrProxy, columnsVector, uptrCommand);
 
         proxies.push_back(sptrProxy);
+    }
 
-    } while (resultCode == SQLITE_ROW);
-
+    if (resultCode != SQLITE_DONE) {
+        // TODO: throws an appropriate exception
+    }
 
     return proxies;
 }
