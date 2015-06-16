@@ -14,17 +14,14 @@ namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            using EntityLoader = Cloude::Foundation::EntityLoader;
-            using Identity = Cloude::Foundation::Identity;
-
-            class StockGroupLoader : public EntityLoader {
+            class StockGroupLoader : public Foundation::EntityLoader {
             public:
                 StockGroupLoader() = default;
                 StockGroupLoader(const StockGroupLoader &srcStockGroupLoader) = default;
                 StockGroupLoader &operator=(const StockGroupLoader &srcStockGroupLoader) = default;
-                virtual ~StockGroupLoader();
+                ~StockGroupLoader() = default;
 
-                std::shared_ptr<Identity> NextPrimaryKey() const override;
+                Foundation::SPtrIdentity NextPrimaryKey() const override;
 
             private:
             };

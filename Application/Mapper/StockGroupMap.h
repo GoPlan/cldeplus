@@ -15,16 +15,16 @@ namespace Cloude {
             class StockGroupMap : public Foundation::EntityMap {
             public:
                 StockGroupMap();
-                virtual ~StockGroupMap() = default;
+                ~StockGroupMap() = default;
 
                 static std::string TableName;
 
-                static std::shared_ptr<Foundation::Column> Code;
-                static std::shared_ptr<Foundation::Column> UniqueName;
-                static std::shared_ptr<Foundation::Column> DefaultStockCode;
+                static Foundation::SPtrColumn Code;
+                static Foundation::SPtrColumn UniqueName;
+                static Foundation::SPtrColumn DefaultStockCode;
 
             protected:
-                virtual const std::string& TableNameCore() const;
+                virtual const std::string &TableNameCore() const;
 
             };
         }

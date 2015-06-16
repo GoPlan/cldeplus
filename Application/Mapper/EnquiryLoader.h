@@ -12,17 +12,15 @@ namespace Cloude {
     namespace Application {
         namespace Mapper {
 
-            using EntityLoader = Foundation::EntityLoader;
-            using Identity = Foundation::Identity;
+            class EnquiryLoader : public Foundation::EntityLoader {
 
-            class EnquiryLoader : public EntityLoader {
             public:
                 EnquiryLoader() = default;
                 virtual ~EnquiryLoader() = default;
                 EnquiryLoader(const EnquiryLoader &srcEnquiryLoader) = default;
                 EnquiryLoader &operator=(const EnquiryLoader &srcEnquiryLoader) = default;
 
-                virtual std::shared_ptr<Identity> NextPrimaryKey() const override;
+                Foundation::SPtrIdentity NextPrimaryKey() const override;
             };
         }
     }

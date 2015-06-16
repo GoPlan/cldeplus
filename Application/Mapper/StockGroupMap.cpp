@@ -13,19 +13,19 @@ namespace Cloude {
 
             string StockGroupMap::TableName = "StockGroup";
 
-            shared_ptr<Column> StockGroupMap::Code = make_shared<Column>("Code",
-                                                                         "code",
-                                                                         50,
-                                                                         Type::cldeValueType::Varchar);
+            Foundation::SPtrColumn StockGroupMap::Code = make_shared<Column>("Code",
+                                                                             "code",
+                                                                             50,
+                                                                             Type::cldeValueType::Varchar);
 
-            shared_ptr<Column> StockGroupMap::UniqueName = make_shared<Column>("UniqueName",
-                                                                               "uniquename",
-                                                                               50,
-                                                                               Type::cldeValueType::Varchar);
-            shared_ptr<Column>StockGroupMap::DefaultStockCode = make_shared<Column>("DefaultStockCode",
-                                                                                    "defaultstockcode",
-                                                                                    50,
-                                                                                    Type::cldeValueType::Varchar);
+            Foundation::SPtrColumn StockGroupMap::UniqueName = make_shared<Column>("UniqueName",
+                                                                                   "uniquename",
+                                                                                   50,
+                                                                                   Type::cldeValueType::Varchar);
+            Foundation::SPtrColumn StockGroupMap::DefaultStockCode = make_shared<Column>("DefaultStockCode",
+                                                                                         "defaultstockcode",
+                                                                                         50,
+                                                                                         Type::cldeValueType::Varchar);
 
             StockGroupMap::StockGroupMap() {
                 this->_columnsForKey.push_back(Code);

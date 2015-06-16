@@ -29,7 +29,7 @@ namespace Cloude {
                 EnquiryMap();
 
             protected:
-                virtual const std::string &TableNameCore() const;
+                const std::string &TableNameCore() const override;
             };
         }
     }

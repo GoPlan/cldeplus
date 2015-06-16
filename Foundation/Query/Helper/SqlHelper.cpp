@@ -282,12 +282,17 @@ namespace Cloude {
                     std::vector<SPtrPredicate> values;
 
                     auto const &columnsForSelect = entityMap.getColumnsForSelect();
+                    auto const &columnsForKey = entityMap.getColumnsForKey();
+
+                    SPtrColumnVector columnsVector;
+                    columnsVector.insert(columnsVector.end(), columnsForKey.begin(), columnsForKey.end());
+                    columnsVector.insert(columnsVector.cend(), columnsForSelect.begin(), columnsForSelect.end());
 
                     // Prepare Columns segment
                     std::string strColumns;
                     strColumns.reserve(Foundation::BufferSize::EIGHTY);
 
-                    std::for_each(columnsForSelect.cbegin(), columnsForSelect.cend(),
+                    std::for_each(columnsVector.cbegin(), columnsVector.cend(),
                                   [&strColumns](const std::shared_ptr<Column> &p) {
                                       if (strColumns.length() != 0)
                                           strColumns += ", ";

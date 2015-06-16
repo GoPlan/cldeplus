@@ -5,14 +5,13 @@
 #include <memory>
 #include <stdexcept>
 #include "Entity.h"
-#include "Identity.h"
 
 using namespace std;
 
 namespace Cloude {
     namespace Foundation {
 
-        Entity::Entity(const std::shared_ptr<Identity> &identity) : _identity(identity) {
+        Entity::Entity(const SPtrIdentity &identity) : _identity(identity) {
 
             if (!identity) {
                 std::string msg{"Identity can not be nullptr or undefined"};
@@ -25,11 +24,11 @@ namespace Cloude {
             }
         }
 
-        const shared_ptr<Field> &Entity::operator[](const string &columnName) const {
+        const SPtrField &Entity::operator[](const string &columnName) const {
             return getField(columnName);
         }
 
-        const shared_ptr<Field> &Entity::getField(const string &columnName) const {
+        const SPtrField &Entity::getField(const string &columnName) const {
 
             auto search = _fieldsMap.find(columnName);
 
@@ -40,17 +39,17 @@ namespace Cloude {
             return search->second;
         }
 
-        const std::shared_ptr<Field> &Entity::operator[](const char *columnName) const {
+        const SPtrField &Entity::operator[](const char *columnName) const {
             return getField(columnName);
         }
 
-        const shared_ptr<Field> &Entity::getField(const char *columnName) const {
+        const SPtrField &Entity::getField(const char *columnName) const {
             std::string columnNameStr(columnName);
             return getField(columnNameStr);
         }
 
-        void Entity::setField(shared_ptr<Field> &field) {
-            shared_ptr<Field> spField(field);
+        void Entity::setField(SPtrField &field) {
+            SPtrField spField(field);
             _fieldsMap[field->getColumn()->getName()] = spField;
         }
 
@@ -59,9 +58,9 @@ namespace Cloude {
             _fieldsMap[ptrField->getColumn()->getName()] = spField;
         }
 
-        void Entity::setMultiFields(std::initializer_list<std::shared_ptr<Field>> &fieldsList) {
+        void Entity::setMultiFields(std::initializer_list<SPtrField> &fieldsList) {
             for (auto field : fieldsList) {
-                setField(const_cast<std::shared_ptr<Field> &>(field));
+                setField(const_cast<SPtrField &>(field));
             }
         }
 

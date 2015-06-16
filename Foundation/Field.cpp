@@ -11,7 +11,7 @@ using namespace std;
 namespace Cloude {
     namespace Foundation {
 
-        Field::Field(const shared_ptr<Column> &column) : _column(column) {
+        Field::Field(const SPtrColumn &column) : _column(column) {
             //
         }
     }

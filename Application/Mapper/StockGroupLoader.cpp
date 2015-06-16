@@ -7,13 +7,8 @@
 namespace Cloude {
     namespace Application {
         namespace Mapper {
-
-            StockGroupLoader::~StockGroupLoader() {
-                //
-            }
-
-            std::shared_ptr<Identity> StockGroupLoader::NextPrimaryKey() const {
-                return std::make_shared<Identity>();
+            Foundation::SPtrIdentity StockGroupLoader::NextPrimaryKey() const {
+                return Foundation::SPtrIdentity{};
             }
         }
     }

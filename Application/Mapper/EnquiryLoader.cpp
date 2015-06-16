@@ -7,8 +7,8 @@
 namespace Cloude {
     namespace Application {
         namespace Mapper {
-            std::shared_ptr<Identity> EnquiryLoader::NextPrimaryKey() const {
-                auto identity = std::make_shared<Identity>();
+            Foundation::SPtrIdentity EnquiryLoader::NextPrimaryKey() const {
+                auto identity = Foundation::SPtrIdentity{};
                 return identity;
             }
         }
