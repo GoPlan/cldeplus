@@ -2,13 +2,14 @@
 // Created by LE, Duc Anh on 5/26/15.
 //
 
-#include "PredicateHelper.h"
-#include "SqlHelper.h"
-#include <Foundation/Enums.h>
+#include <Foundation/Enum/BufferSize.h>
 #include <Foundation/EntityMap.h>
 #include <Foundation/Query/Contract/IPredicateFormatter.h>
 #include <Foundation/Query/Comparative.h>
 #include <Foundation/Query/PredicateIterator.h>
+
+#include "PredicateHelper.h"
+#include "SqlHelper.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -191,82 +192,82 @@ namespace Cloude {
                         result.reserve(Cloude::Foundation::THIRTYTWO);
 
                         switch (fptrSPtrPredicate->getComparativeType()) {
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::And: {
+                            case Cloude::Foundation::Query::ComparativeType::And: {
                                 auto sptrComposite = std::dynamic_pointer_cast<PredicateComposite>(fptrSPtrPredicate);
                                 result += "(" + fptr(sptrComposite->getLhs(), index) + ")";
                                 result += " AND ";
                                 result += "(" + fptr(sptrComposite->getRhs(), index) + ")";
                                 break;
                             }
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::Or: {
+                            case Cloude::Foundation::Query::ComparativeType::Or: {
                                 auto sptrComposite = std::dynamic_pointer_cast<PredicateComposite>(fptrSPtrPredicate);
                                 result += "(" + fptr(sptrComposite->getLhs(), index) + ")";
                                 result += " OR ";
                                 result += "(" + fptr(sptrComposite->getRhs(), index) + ")";
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::Like: {
+                            case Cloude::Foundation::Query::ComparativeType::Like: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " LIKE ";
                                 result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
                                 ++index;
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::NotLike: {
+                            case Cloude::Foundation::Query::ComparativeType::NotLike: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " NOT LIKE ";
                                 result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
                                 ++index;
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::IsNull: {
+                            case Cloude::Foundation::Query::ComparativeType::IsNull: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " IS NULL ";
                                 ++index;
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::IsNotNull: {
+                            case Cloude::Foundation::Query::ComparativeType::IsNotNull: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " IS NOT NULL ";
                                 ++index;
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::Equal: {
+                            case Cloude::Foundation::Query::ComparativeType::Equal: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " = ";
                                 result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
                                 ++index;
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::NotEqual: {
+                            case Cloude::Foundation::Query::ComparativeType::NotEqual: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " != ";
                                 result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
                                 ++index;
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::Greater: {
+                            case Cloude::Foundation::Query::ComparativeType::Greater: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " > ";
                                 result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
                                 ++index;
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::GreaterOrEqual: {
+                            case Cloude::Foundation::Query::ComparativeType::GreaterOrEqual: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " >= ";
                                 result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
                                 ++index;
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::Lesser: {
+                            case Cloude::Foundation::Query::ComparativeType::Lesser: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " < ";
                                 result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
                                 ++index;
                                 break;
                             };
-                            case Cloude::Foundation::Query::Enumeration::ComparativeType::LesserOrEqual: {
+                            case Cloude::Foundation::Query::ComparativeType::LesserOrEqual: {
                                 result += fptrSPtrPredicate->getColumn()->getDatasourceName();
                                 result += " <= ";
                                 result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);

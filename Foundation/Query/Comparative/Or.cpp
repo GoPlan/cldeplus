@@ -9,7 +9,7 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
-                Enumeration::ComparativeType Or::_type = Enumeration::ComparativeType::Or;
+                ComparativeType Or::_type = ComparativeType::Or;
             }
         }
     }

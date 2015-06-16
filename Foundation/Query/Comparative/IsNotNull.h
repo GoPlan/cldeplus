@@ -24,12 +24,12 @@ namespace Cloude {
                     // PredicateLeaf
                     const SPtrColumn &getColumn() const override;
                     const bool isComposite() const override;
-                    const Enumeration::ComparativeType &getComparativeType() const override;
-                    const Type::SPtrCldeValue & getValue() const override;
+                    const ComparativeType &getComparativeType() const override;
+                    const Type::SPtrCldeValue &getValue() const override;
 
                 private:
                     const SPtrColumn &_column;
-                    static Enumeration::ComparativeType _type;
+                    static ComparativeType _type;
                 };
             }
         }

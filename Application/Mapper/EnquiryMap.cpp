@@ -4,9 +4,6 @@
 
 #include "EnquiryMap.h"
 
-using namespace std;
-using namespace Cloude::Foundation;
-
 namespace Cloude {
     namespace Application {
         namespace Mapper {
@@ -14,35 +11,29 @@ namespace Cloude {
             std::string EnquiryMap::TableName = "Enquiry";
 
             Foundation::SPtrColumn EnquiryMap::EnquiryId =
-                    make_shared<Column>("EnquiryId",
-                                        "EnquiryId",
-                                        Type::cldeValueType::Int64);
+                    std::make_shared<Foundation::Column>("EnquiryId", "EnquiryId",
+                                                         Foundation::Type::cldeValueType::Int64);
 
             Foundation::SPtrColumn EnquiryMap::ObjectId =
-                    make_shared<Column>("ObjectId",
-                                        "_id",
-                                        Type::cldeValueType::Varchar);
+                    std::make_shared<Foundation::Column>("ObjectId", "_id",
+                                                         Foundation::Type::cldeValueType::Varchar);
 
             Foundation::SPtrColumn EnquiryMap::Email =
-                    make_shared<Column>("Email",
-                                        "Email",
-                                        Type::cldeValueType::Varchar);
+                    std::make_shared<Foundation::Column>("Email", "Email",
+                                                         Foundation::Type::cldeValueType::Varchar);
 
             Foundation::SPtrColumn EnquiryMap::Subject =
-                    make_shared<Column>("Subject",
-                                        "Subject",
-                                        Type::cldeValueType::Varchar);
+                    std::make_shared<Foundation::Column>("Subject", "Subject",
+                                                         Foundation::Type::cldeValueType::Varchar);
 
             const std::string &EnquiryMap::TableNameCore() const {
                 return TableName;
             }
 
             EnquiryMap::EnquiryMap() {
-
                 this->_columnsForKey.push_back(EnquiryId);
                 this->_columnsForGet.push_back(Email);
                 this->_columnsForGet.push_back(Subject);
-
                 this->_columnsForUpdate.push_back(Email);
                 this->_columnsForUpdate.push_back(Subject);
                 this->_columnsForSelect.push_back(Email);

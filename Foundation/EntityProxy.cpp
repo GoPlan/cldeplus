@@ -20,6 +20,29 @@ namespace Cloude {
         EntityStore &EntityProxy::getEntityStore() const {
             return _entityStore;
         }
+
+        bool EntityProxy::isSummonable() {
+
+            switch (_summonState) {
+                case EntityProxySummonState::Undefined: {
+
+                    auto &columnsForKey = _entityStore.getEntityMap().getColumnsForKey();
+
+                    for (auto &column : columnsForKey) {
+                        if (getField(column->getName())->isNull())
+                            _summonState = EntityProxySummonState::No;
+                    }
+
+                    _summonState = EntityProxySummonState::Yes;
+
+                    return isSummonable();
+                };
+                case EntityProxySummonState::Yes:
+                    return true;
+                case EntityProxySummonState::No:
+                    return false;
+            };
+        }
     }
 }
 

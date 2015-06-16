@@ -9,9 +9,9 @@ namespace Cloude {
         namespace Query {
             namespace Comparative {
 
-                Enumeration::ComparativeType IsNull::_type = Enumeration::ComparativeType::IsNull;
+                ComparativeType IsNull::_type = ComparativeType::IsNull;
 
-                const Enumeration::ComparativeType &IsNull::getComparativeType() const {
+                const ComparativeType &IsNull::getComparativeType() const {
                     return _type;
                 }
                 const SPtrColumn &IsNull::getColumn() const {
@@ -21,7 +21,7 @@ namespace Cloude {
                     return false;
                 }
 
-                const Type::SPtrCldeValue & IsNull::getValue() const {
+                const Type::SPtrCldeValue &IsNull::getValue() const {
                     const char *msg = "IsNull comparator does not support getValue() method.";
                     throw Exception::cldeNonSupportedFunctionException(msg);
                 }

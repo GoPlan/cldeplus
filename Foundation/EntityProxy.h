@@ -13,19 +13,27 @@ namespace Cloude {
     namespace Foundation {
 
         class EntityProxy : public Entity {
+            enum class EntityProxySummonState {
+                Undefined,
+                Yes,
+                No
+            };
 
         public:
-            explicit EntityProxy(SPtrIdentity &identity, EntityStore &entityStore);
+            EntityProxy(SPtrIdentity &identity, EntityStore &entityStore);
             ~EntityProxy() = default;
             EntityProxy(EntityProxy &) = default;
             EntityProxy &operator=(EntityProxy &) = default;
 
             // Locals
+            bool isSummonable();
             SPtrEntity Summon();
             EntityStore &getEntityStore() const;
 
         private:
             EntityStore &_entityStore;
+            EntityProxySummonState _summonState{EntityProxySummonState::Undefined};
+
         };
 
         using SPtrProxy = std::shared_ptr<EntityProxy>;

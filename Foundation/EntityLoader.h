@@ -1,5 +1,5 @@
 //
-// Created by GoPlan on 15/05/2015.
+// Created by LE, Duc Anh on 15/05/2015.
 //
 
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYLOADER_H

@@ -9,9 +9,9 @@ namespace Cloude {
         namespace Query {
             namespace Comparative {
 
-                Enumeration::ComparativeType IsNotNull::_type = Enumeration::ComparativeType::IsNotNull;
+                ComparativeType IsNotNull::_type = ComparativeType::IsNotNull;
 
-                const Enumeration::ComparativeType &IsNotNull::getComparativeType() const {
+                const ComparativeType &IsNotNull::getComparativeType() const {
                     return _type;
                 }
                 const SPtrColumn &IsNotNull::getColumn() const {

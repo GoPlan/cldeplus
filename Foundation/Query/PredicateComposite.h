@@ -24,7 +24,7 @@ namespace Cloude {
 
                 // Predicate
                 virtual const bool isComposite() const override { return true; };
-                virtual const Enumeration::ComparativeType &getComparativeType() const override;
+                virtual const ComparativeType &getComparativeType() const override;
                 virtual const SPtrColumn &getColumn() const override;
                 virtual const Type::SPtrCldeValue &getValue() const override;
 

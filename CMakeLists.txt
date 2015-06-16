@@ -72,8 +72,8 @@ add_library(foundation STATIC
     Foundation/Query/Comparative/IsNull.h
     Foundation/Query/Comparative/IsNotNull.cpp
     Foundation/Query/Comparative/IsNotNull.h
-    Foundation/Query/Enumeration/ComparativeType.cpp
-    Foundation/Query/Enumeration/ComparativeType.h
+    Foundation/Query/ComparativeType.cpp
+    Foundation/Query/ComparativeType.h
     Foundation/Type/cldeValue.cpp
     Foundation/Type/cldeValue.h
     Foundation/Type/cldeValueType.cpp
@@ -124,7 +124,7 @@ add_library(foundation STATIC
     Foundation/Query/PredicateIterator.h
     Foundation/Query/Helper/PredicateHelper.cpp
     Foundation/Query/Helper/PredicateHelper.h
-    Foundation/Enums.h Foundation/Store/IDataRecord.h Foundation/Store/IDataRecord.cpp)
+    Foundation/Enum/BufferSize.h Foundation/Store/IDataRecord.h Foundation/Store/IDataRecord.cpp Foundation/EntityRelationship.cpp Foundation/EntityRelationship.h Foundation/EntityLink.cpp Foundation/EntityLink.h Foundation/Link/Join.cpp Foundation/Link/Join.h)
 
 
 add_library(application STATIC

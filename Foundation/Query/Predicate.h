@@ -9,7 +9,7 @@
 #include <iterator>
 #include <Foundation/Column.h>
 #include <Foundation/Type/cldeValue.h>
-#include <Foundation/Query/Enumeration/ComparativeType.h>
+#include <Foundation/Query/ComparativeType.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -25,7 +25,7 @@ namespace Cloude {
 
                 virtual const bool isComposite() const = 0;
                 virtual const SPtrColumn &getColumn() const = 0;
-                virtual const Enumeration::ComparativeType &getComparativeType() const = 0;
+                virtual const ComparativeType &getComparativeType() const = 0;
                 virtual const Type::SPtrCldeValue &getValue() const = 0;
             };
 

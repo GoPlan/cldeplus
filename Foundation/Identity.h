@@ -1,5 +1,5 @@
 //
-// Created by GoPlan on 14/05/2015.
+// Created by LE, Duc Anh on 14/05/2015.
 //
 
 #ifndef CLOUD_E_CPLUS_FOUNDATION_IDENTITY_H

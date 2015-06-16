@@ -8,7 +8,7 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
 
-            const Enumeration::ComparativeType &PredicateComposite::getComparativeType() const {
+            const ComparativeType &PredicateComposite::getComparativeType() const {
                 const char *msg = "Composite comparative does not support getComparativeType()";
                 throw Exception::cldeNonSupportedFunctionException(msg);
             }

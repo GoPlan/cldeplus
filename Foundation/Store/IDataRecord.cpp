@@ -68,23 +68,25 @@ const std::string Cloude::Foundation::Store::IDataRecord::CopyToString() const {
 
     std::string result;
 
-    for (auto pairField : _fieldMap) {
+    auto sptrFieldVector = getFields();
 
-        if (result.length() != 0) {
-            result += " | ";
-        }
+    std::for_each(sptrFieldVector.crbegin(), sptrFieldVector.crend(),
+                  [&result](const SPtrField &field) {
+                      if (result.length() != 0) {
+                          result += " | ";
+                      }
 
-        if (pairField.second->isNull()) {
-            result += "null";
-        } else {
-            result += pairField.second->getValue()->CopyToString();
-        }
-    }
+                      if (field->isNull()) {
+                          result += "null";
+                      } else {
+                          result += field->getValue()->CopyToString();
+                      }
+                  });
 
     return result;
 }
 
-Cloude::Foundation::SPtrFieldVector Cloude::Foundation::Store::IDataRecord::getFields() {
+Cloude::Foundation::SPtrFieldVector Cloude::Foundation::Store::IDataRecord::getFields() const {
 
     SPtrFieldVector fieldVector;
 
@@ -95,7 +97,7 @@ Cloude::Foundation::SPtrFieldVector Cloude::Foundation::Store::IDataRecord::getF
     return fieldVector;
 }
 
-Cloude::Foundation::SPtrColumnVector Cloude::Foundation::Store::IDataRecord::getColumns() {
+Cloude::Foundation::SPtrColumnVector Cloude::Foundation::Store::IDataRecord::getColumns() const {
 
     SPtrColumnVector columnVector;
 

@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_CLOUDE_H
 #define CLOUD_E_CPLUS_CLOUDE_H
 
-
+#include "Foundation/Enum/BufferSize.h"
 
 #include "Foundation/Column.h"
 #include "Foundation/Field.h"

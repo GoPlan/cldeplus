@@ -22,10 +22,10 @@ namespace Cloude {
                     And &operator=(const And &rhs) = default;
 
                     // Predicate
-                    const Enumeration::ComparativeType &getComparativeType() const override { return _type; };
+                    const ComparativeType &getComparativeType() const override { return _type; };
 
                 private:
-                    static Enumeration::ComparativeType _type;
+                    static ComparativeType _type;
                 };
             }
         }

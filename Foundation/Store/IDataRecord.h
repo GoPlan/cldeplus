@@ -35,8 +35,8 @@ namespace Cloude {
 
                 const SPtrFieldMap &getFieldsMap() { return _fieldMap; };
 
-                SPtrFieldVector getFields();
-                SPtrColumnVector getColumns();
+                SPtrFieldVector getFields() const;
+                SPtrColumnVector getColumns() const;
 
                 // IPrintable
                 const std::string CopyToString() const override;

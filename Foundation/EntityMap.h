@@ -1,5 +1,5 @@
 //
-// Created by GoPlan on 14/05/2015.
+// Created by LE, Duc Anh on 14/05/2015.
 //
 
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
@@ -11,14 +11,16 @@
 #include <unordered_map>
 
 #include "Column.h"
+#include "EntityLink.h"
 
 namespace Cloude {
     namespace Foundation {
 
+        using LinkMap = std::unordered_map<std::string, EntityLink>;
+
         class EntityMap {
 
         public:
-            EntityMap() = default;
             EntityMap(const EntityMap &srcEntityMap) = default;
             EntityMap &operator=(const EntityMap &srcEntityMap) = default;
             virtual ~EntityMap() = default;
@@ -32,11 +34,17 @@ namespace Cloude {
             const SPtrColumnVector &getColumnsForUpdate() const { return _columnsForUpdate; }
             const SPtrColumnVector &getColumnsForSelect() const { return _columnsForSelect; }
 
+            const LinkMap &getLinkMap() const { return _linkMap; }
+
         protected:
+            EntityMap() = default;
+
             SPtrColumnVector _columnsForKey;
             SPtrColumnVector _columnsForGet;
             SPtrColumnVector _columnsForUpdate;
             SPtrColumnVector _columnsForSelect;
+
+            LinkMap _linkMap;
 
             virtual const std::string &TableNameCore() const = 0;
         };
