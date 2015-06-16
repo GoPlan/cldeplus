@@ -23,6 +23,7 @@ namespace Cloude {
             Entity &operator=(const Entity &) = default;
             Entity &operator=(Entity &&) = default;
 
+            // Locals
             explicit Entity(const SPtrIdentity &identity);
             const SPtrIdentity &getIdentity() { return _identity; }
 

@@ -8,18 +8,18 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
 
-            cldeCharacterValue::cldeCharacterValue(cldeValueType dataType, size_t length) : cldeValue(dataType,
-                                                                                                      length) {
+            cldeCharacterValue::cldeCharacterValue(cldeValueType dataType, size_t length)
+                    : cldeValue(dataType, length) {
                 //
             }
 
             cldeValueCategory cldeCharacterValue::_category = cldeValueCategory::CharacterBased;
 
-            const cldeValueCategory & cldeCharacterValue::getCategory() const {
+            const cldeValueCategory &cldeCharacterValue::getCategory() const {
                 return _category;
             }
 
-            bool cldeCharacterValue::isNumeric()const {
+            bool cldeCharacterValue::isNumeric() const {
                 return false;
             }
 

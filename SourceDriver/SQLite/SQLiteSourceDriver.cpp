@@ -204,15 +204,14 @@ namespace Cloude {
                                  switch (column->getDataType()) {
                                      case Cloude::Foundation::Type::cldeValueType::Int64: {
                                          auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
-                                         sptrField->setValue(
-                                                 cldeValueFactory::CreateInt64(static_cast<int64_t>(value)));
+                                         sptrField->setValue(cldeValueFactory::CreateInt64(value));
                                          break;
                                      };
 
                                      case Cloude::Foundation::Type::cldeValueType::Varchar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
-                                         sptrField->setValue(
-                                                 cldeValueFactory::CreateString(reinterpret_cast<const char *>(value)));
+                                         auto cstr = reinterpret_cast<const char *>(value);
+                                         sptrField->setValue(cldeValueFactory::CreateVarchar(cstr));
                                          break;
                                      };
 

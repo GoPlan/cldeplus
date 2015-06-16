@@ -11,7 +11,7 @@ namespace Cloude {
     namespace Foundation {
         namespace Store {
 
-            class IDataRecord {
+            class IDataRecord : public Common::IPrintable {
 
             public:
                 virtual ~IDataRecord() = default;
@@ -34,6 +34,14 @@ namespace Cloude {
                 virtual unsigned long Size();
 
                 const SPtrFieldMap &getFieldsMap() { return _fieldMap; };
+
+                SPtrFieldVector getFields();
+                SPtrColumnVector getColumns();
+
+                // IPrintable
+                const std::string CopyToString() const override;
+                const std::string &ToString() const override;
+                const char *ToCString() const override;
 
             protected:
                 IDataRecord() = default;

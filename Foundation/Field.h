@@ -15,7 +15,7 @@
 namespace Cloude {
     namespace Foundation {
 
-        class Field {
+        class Field : public Common::IPrintable {
 
         public:
             Field() = delete;
@@ -24,16 +24,23 @@ namespace Cloude {
             Field &operator=(const Field &srcField) = default;
 
             explicit Field(const SPtrColumn &column);
+            Field(const SPtrColumn &column, const Type::SPtrValue &value);
 
+            // IPrintable
+            const std::string CopyToString() const override;
+            const std::string &ToString() const override;
+            const char *ToCString() const override;
+
+            // Locals
             const SPtrColumn &getColumn() const { return _column; }
-            const Type::SPtrCldeValue &getValue() const { return _value; }
-            void setValue(const Type::SPtrCldeValue &value) { _value = value; }
-
+            const Type::SPtrValue &getValue() const { return _value; }
             bool isNull() const { return _value.get() == nullptr; };
+
+            void setValue(const Type::SPtrValue &value);
 
         private:
             SPtrColumn _column;
-            Type::SPtrCldeValue _value;
+            Type::SPtrValue _value;
         };
 
         using SPtrField = std::shared_ptr<Field>;

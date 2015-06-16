@@ -12,7 +12,7 @@
 namespace Cloude {
     namespace Foundation {
 
-        class Column {
+        class Column : public Common::IPrintable {
 
         public:
             Column() = default;
@@ -20,6 +20,12 @@ namespace Cloude {
             Column &operator=(const Column &srcColumn) = default;
             virtual ~Column() = default;
 
+            // IPrintable
+            const std::string CopyToString() const override;
+            const std::string &ToString() const override;
+            const char *ToCString() const override;
+
+            // Locals
             Column(std::string name,
                    std::string datasourceName,
                    Foundation::Type::cldeValueType dataType);

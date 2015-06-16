@@ -24,21 +24,13 @@ namespace Cloude {
                 cldeValue(const cldeValue &rhs) = default;
                 virtual cldeValue &operator=(const cldeValue &rhs) = default;
 
-                virtual const cldeValueCategory & getCategory() const = 0;
+                virtual const cldeValueCategory &getCategory() const = 0;
                 virtual bool isNumeric() const = 0;
                 virtual void *RawPointerToValueBuffer() = 0;
 
-                void *RawPointerToValueLength() {
-                    return &_length;
-                }
-
-                cldeValueType &DataType() {
-                    return _dataType;
-                }
-
-                size_t getLength() {
-                    return _length;
-                }
+                void *RawPointerToValueLength() { return &_length; }
+                cldeValueType getDataType() const { return _dataType; }
+                size_t getLength() const { return _length; }
 
             protected:
                 cldeValueType _dataType;
@@ -46,6 +38,7 @@ namespace Cloude {
             };
 
             using SPtrCldeValue = std::shared_ptr<cldeValue>;
+            using SPtrValue = SPtrCldeValue;
         }
     }
 }

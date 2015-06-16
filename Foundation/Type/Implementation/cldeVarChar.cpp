@@ -11,13 +11,13 @@ namespace Cloude {
         namespace Type {
             namespace Implementation {
 
-                cldeVarchar::cldeVarchar(size_t length) : cldeCharacterValue(cldeValueType::Varchar,
-                                                                             sizeof(char) * (length + 1)) {
+                cldeVarchar::cldeVarchar(size_t length)
+                        : cldeCharacterValue(cldeValueType::Varchar, sizeof(char) * (length + 1)) {
                     init();
                 }
 
-                cldeVarchar::cldeVarchar(const char *value) : cldeCharacterValue(cldeValueType::Varchar,
-                                                                                 sizeof(char) * (strlen(value) + 1)) {
+                cldeVarchar::cldeVarchar(const char *value)
+                        : cldeCharacterValue(cldeValueType::Varchar, sizeof(char) * (strlen(value) + 1)) {
                     init(value);
                 }
 
@@ -37,7 +37,7 @@ namespace Cloude {
 
                 const std::string &cldeVarchar::ToString() const {
                     const char *msg = "Varchar does not support ToString." \
-                                        "Use ToStringCopy(), ToCString() instead.";
+                                        "Use CopyToString(), ToCString() instead.";
                     throw Exception::cldeNonSupportedFunctionException(msg);
                 }
 

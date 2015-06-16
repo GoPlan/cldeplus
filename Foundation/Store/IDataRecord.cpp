@@ -3,33 +3,40 @@
 //
 
 #include <Foundation/Exception/cldeEntityException.h>
+#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include "IDataRecord.h"
 
 void Cloude::Foundation::Store::IDataRecord::setField(const SPtrField &field) {
     _fieldMap[field->getColumn()->getName()] = field;
 }
+
 void Cloude::Foundation::Store::IDataRecord::setField(Field *ptrField) {
     SPtrField spField(ptrField);
     _fieldMap[ptrField->getColumn()->getName()] = spField;
 }
+
 void Cloude::Foundation::Store::IDataRecord::setMultiFields(const SPtrFieldVector &fieldVector) {
     for (auto &sptrField : fieldVector) {
         setField(sptrField);
     }
 }
+
 void Cloude::Foundation::Store::IDataRecord::setMultiFields(const std::vector<Field *> &fieldVector) {
     for (auto ptrField : fieldVector) {
         setField(ptrField);
     }
 }
+
 const Cloude::Foundation::SPtrField &Cloude::Foundation::Store::IDataRecord::operator[](
         const std::string &columnName) const {
     return getField(columnName);
 }
+
 const Cloude::Foundation::SPtrField &Cloude::Foundation::Store::IDataRecord::operator[](
         const char *columnName) const {
     return getField(columnName);
 }
+
 const Cloude::Foundation::SPtrField &Cloude::Foundation::Store::IDataRecord::getField(
         const std::string &columnName) const {
 
@@ -41,15 +48,70 @@ const Cloude::Foundation::SPtrField &Cloude::Foundation::Store::IDataRecord::get
 
     return search->second;
 }
+
 const Cloude::Foundation::SPtrField &Cloude::Foundation::Store::IDataRecord::getField(const char *columnName) const {
     std::string columnNameStr(columnName);
     return getField(columnNameStr);
 }
+
 bool Cloude::Foundation::Store::IDataRecord::HasField(const std::string &fieldName) {
     auto search = _fieldMap.find(fieldName);
     auto result = !(search == _fieldMap.end());
     return result;
 }
+
 unsigned long Cloude::Foundation::Store::IDataRecord::Size() {
     return _fieldMap.size();
+}
+
+const std::string Cloude::Foundation::Store::IDataRecord::CopyToString() const {
+
+    std::string result;
+
+    for (auto pairField : _fieldMap) {
+
+        if (result.length() != 0) {
+            result += " | ";
+        }
+
+        if (pairField.second->isNull()) {
+            result += "null";
+        } else {
+            result += pairField.second->getValue()->CopyToString();
+        }
+    }
+
+    return result;
+}
+
+Cloude::Foundation::SPtrFieldVector Cloude::Foundation::Store::IDataRecord::getFields() {
+
+    SPtrFieldVector fieldVector;
+
+    for (auto pairField : _fieldMap) {
+        fieldVector.push_back(pairField.second);
+    }
+
+    return fieldVector;
+}
+
+Cloude::Foundation::SPtrColumnVector Cloude::Foundation::Store::IDataRecord::getColumns() {
+
+    SPtrColumnVector columnVector;
+
+    for (auto pairField : _fieldMap) {
+        columnVector.push_back(pairField.second->getColumn());
+    }
+
+    return columnVector;
+}
+
+const std::string &Cloude::Foundation::Store::IDataRecord::ToString() const {
+    std::string msg{"ToString is not supported, use CopyToString intead"};
+    throw Exception::cldeNonSupportedFunctionException{msg};
+}
+
+const char *Cloude::Foundation::Store::IDataRecord::ToCString() const {
+    std::string msg{"ToCString is not supported, use CopyToString intead"};
+    throw Exception::cldeNonSupportedFunctionException{msg};
 }
