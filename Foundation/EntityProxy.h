@@ -21,9 +21,11 @@ namespace Cloude {
 
         public:
             EntityProxy(SPtrIdentity &identity, EntityStore &entityStore);
+            EntityProxy(const EntityProxy &) = default;
+            EntityProxy(EntityProxy &&) = default;
+            EntityProxy &operator=(const EntityProxy &) = default;
+            EntityProxy &operator=(EntityProxy &&) = default;
             ~EntityProxy() = default;
-            EntityProxy(EntityProxy &) = default;
-            EntityProxy &operator=(EntityProxy &) = default;
 
             // Locals
             bool isSummonable();

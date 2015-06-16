@@ -10,9 +10,9 @@ namespace Cloude {
         class EntityRelationship {
         public:
             EntityRelationship() = default;
-            virtual ~EntityRelationship() = default;
             EntityRelationship(const EntityRelationship &rhs) = default;
             EntityRelationship &operator=(const EntityRelationship &rhs) = default;
+            ~EntityRelationship() = default;
 
         };
     }

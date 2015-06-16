@@ -18,13 +18,13 @@ namespace Cloude {
         class Field : public Common::IPrintable {
 
         public:
-            Field() = delete;
-            ~Field() = default;
-            Field(const Field &srcField) = default;
-            Field &operator=(const Field &srcField) = default;
-
             explicit Field(const SPtrColumn &column);
-            Field(const SPtrColumn &column, const Type::SPtrValue &value);
+            explicit Field(const SPtrColumn &column, const Type::SPtrValue &value);
+            Field(const Field &) = default;
+            Field(Field &&) = default;
+            Field &operator=(const Field &) = default;
+            Field &operator=(Field &&) = default;
+            ~Field() = default;
 
             // IPrintable
             const std::string CopyToString() const override;

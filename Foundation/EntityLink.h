@@ -25,12 +25,12 @@ namespace Cloude {
         class EntityLink {
 
         public:
-            EntityLink() = delete;
-            ~EntityLink() = default;
+            EntityLink() = default;
             EntityLink(const EntityLink &) = default;
             EntityLink(EntityLink &&) = default;
             EntityLink &operator=(const EntityLink &) = default;
             EntityLink &operator=(EntityLink &&) = default;
+            ~EntityLink() = default;
 
             // Locals
             const SPtrColumnToColumnMap &getColumnMap() const { return _columnMap; }

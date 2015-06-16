@@ -16,15 +16,14 @@ namespace Cloude {
         class Entity : public Store::IDataRecord {
 
         public:
-            Entity() = delete;
-            ~Entity() = default;
+            explicit Entity(const SPtrIdentity &identity);
             Entity(const Entity &) = default;
             Entity(Entity &&) = default;
             Entity &operator=(const Entity &) = default;
             Entity &operator=(Entity &&) = default;
+            ~Entity() = default;
 
             // Locals
-            explicit Entity(const SPtrIdentity &identity);
             const SPtrIdentity &getIdentity() { return _identity; }
 
         protected:

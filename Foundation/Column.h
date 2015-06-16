@@ -16,9 +16,11 @@ namespace Cloude {
 
         public:
             Column() = default;
-            Column(const Column &srcColumn) = default;
-            Column &operator=(const Column &srcColumn) = default;
-            virtual ~Column() = default;
+            Column(const Column &) = default;
+            Column(Column &&) = default;
+            Column &operator=(const Column &) = default;
+            Column &operator=(Column &&) = default;
+            ~Column() = default;
 
             // IPrintable
             const std::string CopyToString() const override;

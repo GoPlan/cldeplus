@@ -23,9 +23,9 @@ namespace Cloude {
 
             public:
                 explicit SQLiteSourceDriver(const Foundation::EntityMap &entityMap);
-                ~SQLiteSourceDriver();
                 SQLiteSourceDriver(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
                 SQLiteSourceDriver &operator=(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
+                ~SQLiteSourceDriver();
 
                 // Locals
                 void Connect();

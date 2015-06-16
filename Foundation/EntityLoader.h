@@ -13,8 +13,17 @@ namespace Cloude {
         class EntityLoader {
 
         public:
+            EntityLoader(const EntityLoader &) = default;
+            EntityLoader(EntityLoader &&) = default;
+            EntityLoader &operator=(const EntityLoader &) = default;
+            EntityLoader &operator=(EntityLoader &&) = default;
             virtual ~EntityLoader() = default;
+
+            // Locals
             virtual SPtrIdentity NextPrimaryKey() const = 0;
+
+        protected:
+            EntityLoader() = default;
         };
     }
 }

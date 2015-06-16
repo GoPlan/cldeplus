@@ -21,8 +21,10 @@ namespace Cloude {
         class EntityMap {
 
         public:
-            EntityMap(const EntityMap &srcEntityMap) = default;
-            EntityMap &operator=(const EntityMap &srcEntityMap) = default;
+            EntityMap(const EntityMap &) = default;
+            EntityMap(EntityMap &&) = default;
+            EntityMap &operator=(const EntityMap &) = default;
+            EntityMap &operator=(EntityMap &&) = default;
             virtual ~EntityMap() = default;
 
             const std::string &TableName() const {

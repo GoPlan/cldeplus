@@ -11,10 +11,11 @@ namespace Cloude {
             class SQLiteSourceException {
             public:
                 SQLiteSourceException() = default;
-                virtual ~SQLiteSourceException() = default;
-                SQLiteSourceException(const SQLiteSourceException &srcSQLiteSourceException) = default;
-                SQLiteSourceException &operator=(const SQLiteSourceException &srcSQLiteSourceException) = default;
-
+                SQLiteSourceException(const SQLiteSourceException &) = default;
+                SQLiteSourceException(SQLiteSourceException &&) = default;
+                SQLiteSourceException &operator=(const SQLiteSourceException &) = default;
+                SQLiteSourceException &operator=(SQLiteSourceException &&) = default;
+                ~SQLiteSourceException() = default;
             };
         }
     }

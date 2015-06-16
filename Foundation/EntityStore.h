@@ -25,9 +25,11 @@ namespace Cloude {
                         const EntityLoader &entityLoader,
                         const EntitySourceDriver &entitySourceDriver);
 
+            EntityStore(const EntityStore &) = default;
+            EntityStore(EntityStore &&) = default;
+            EntityStore &operator=(const EntityStore &) = default;
+            EntityStore &operator=(EntityStore &&) = default;
             ~EntityStore() = default;
-            EntityStore(const EntityStore &srcEntityStore) = default;
-            EntityStore &operator=(const EntityStore &srcEntityStore) = default;
 
             bool HasIdentityInMap(const SPtrIdentity &identity) const;
 
