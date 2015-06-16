@@ -6,7 +6,7 @@
 #include <Foundation/EntityMap.h>
 #include <Foundation/Query/Contract/IPredicateFormatter.h>
 #include <Foundation/Query/Comparative.h>
-#include <Foundation/Query/PredicateIterator.h>
+#include "../CriteriaIterator.h"
 
 #include "PredicateHelper.h"
 #include "SqlHelper.h"
@@ -169,108 +169,108 @@ namespace Cloude {
                     return strQuery;
                 }
 
-                std::pair<std::string, std::vector<SqlHelper::SPtrPredicate>> SqlHelper::CreateSelectPreparedQuery(
+                std::pair<std::string, std::vector<SqlHelper::SPtrCriteria>> SqlHelper::CreateSelectPreparedQuery(
                         const EntityMap &entityMap,
-                        const SPtrPredicate &sptrPredicate,
+                        const SPtrCriteria &sptrCriteria,
                         const FPtrParamProcessor fptrParamProcessor) {
 
-                    using PredicateComposite = Foundation::Query::PredicateComposite;
+                    using PredicateComposite = Foundation::Query::CriteriaComposite;
 
-                    /// Internal (recursive) Predicate to string copy parser lambda.
-                    /// FPtrParamProcessor is forwarded from outter scope, while SPtrPredicate is not.
+                    /// Internal (recursive) Criteria to string copy parser lambda.
+                    /// FPtrParamProcessor is forwarded from outter scope, while SPtrCriteria is not.
                     /// This forward approach is due to FPtrParamProcess does not change at (each) predicate parsing.
                     ///
                     /// Note: This lambda is RECURSIVE.
                     ///
-                    std::function<std::string(const SPtrPredicate, int &)>
-                            fptr = [&fptr, &fptrParamProcessor](const SPtrPredicate &fptrSPtrPredicate,
+                    std::function<std::string(const SPtrCriteria, int &)>
+                            fptr = [&fptr, &fptrParamProcessor](const SPtrCriteria &fptrSPtrCriteria,
                                                                 int &index) -> std::string {
 
-                        using PredicateComposite = Foundation::Query::PredicateComposite;
+                        using PredicateComposite = Foundation::Query::CriteriaComposite;
 
                         std::string result;
                         result.reserve(Cloude::Foundation::THIRTYTWO);
 
-                        switch (fptrSPtrPredicate->getComparativeType()) {
+                        switch (fptrSPtrCriteria->getComparativeType()) {
                             case Cloude::Foundation::Query::ComparativeType::And: {
-                                auto sptrComposite = std::dynamic_pointer_cast<PredicateComposite>(fptrSPtrPredicate);
+                                auto sptrComposite = std::dynamic_pointer_cast<PredicateComposite>(fptrSPtrCriteria);
                                 result += "(" + fptr(sptrComposite->getLhs(), index) + ")";
                                 result += " AND ";
                                 result += "(" + fptr(sptrComposite->getRhs(), index) + ")";
                                 break;
                             }
                             case Cloude::Foundation::Query::ComparativeType::Or: {
-                                auto sptrComposite = std::dynamic_pointer_cast<PredicateComposite>(fptrSPtrPredicate);
+                                auto sptrComposite = std::dynamic_pointer_cast<PredicateComposite>(fptrSPtrCriteria);
                                 result += "(" + fptr(sptrComposite->getLhs(), index) + ")";
                                 result += " OR ";
                                 result += "(" + fptr(sptrComposite->getRhs(), index) + ")";
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::Like: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " LIKE ";
-                                result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
+                                result += fptrParamProcessor(fptrSPtrCriteria->getColumn(), index);
                                 ++index;
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::NotLike: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " NOT LIKE ";
-                                result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
+                                result += fptrParamProcessor(fptrSPtrCriteria->getColumn(), index);
                                 ++index;
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::IsNull: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " IS NULL ";
                                 ++index;
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::IsNotNull: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " IS NOT NULL ";
                                 ++index;
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::Equal: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " = ";
-                                result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
+                                result += fptrParamProcessor(fptrSPtrCriteria->getColumn(), index);
                                 ++index;
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::NotEqual: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " != ";
-                                result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
+                                result += fptrParamProcessor(fptrSPtrCriteria->getColumn(), index);
                                 ++index;
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::Greater: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " > ";
-                                result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
+                                result += fptrParamProcessor(fptrSPtrCriteria->getColumn(), index);
                                 ++index;
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::GreaterOrEqual: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " >= ";
-                                result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
+                                result += fptrParamProcessor(fptrSPtrCriteria->getColumn(), index);
                                 ++index;
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::Lesser: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " < ";
-                                result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
+                                result += fptrParamProcessor(fptrSPtrCriteria->getColumn(), index);
                                 ++index;
                                 break;
                             };
                             case Cloude::Foundation::Query::ComparativeType::LesserOrEqual: {
-                                result += fptrSPtrPredicate->getColumn()->getDatasourceName();
+                                result += fptrSPtrCriteria->getColumn()->getDatasourceName();
                                 result += " <= ";
-                                result += fptrParamProcessor(fptrSPtrPredicate->getColumn(), index);
+                                result += fptrParamProcessor(fptrSPtrCriteria->getColumn(), index);
                                 ++index;
                                 break;
                             };
@@ -280,7 +280,7 @@ namespace Cloude {
                     };
 
                     std::string statement;
-                    std::vector<SPtrPredicate> values;
+                    std::vector<SPtrCriteria> values;
 
                     auto const &columnsForSelect = entityMap.getColumnsForSelect();
                     auto const &columnsForKey = entityMap.getColumnsForKey();
@@ -305,11 +305,11 @@ namespace Cloude {
 
                     // Prepare Conditions segment
                     int x = 0;
-                    std::string strCondition = fptr(sptrPredicate, x);
+                    std::string strCondition = fptr(sptrCriteria, x);
                     strCondition.reserve(Foundation::BufferSize::EIGHTY);
 
                     int y = 0;
-                    SPtrPredicateIterator iter(new PredicateIterator(sptrPredicate));
+                    SPtrCriteriaIterator iter(new CriteriaIterator(sptrCriteria));
                     while (iter) {
 
                         if (!iter->isVisited() && iter->isLeaf()) {

@@ -15,14 +15,14 @@ namespace Cloude {
                 class IPredicateFormatter;
             }
 
-            class Predicate;
+            class Criteria;
 
             namespace Helper {
 
                 class PredicateHelper {
 
                 public:
-                    using SPtrPredicate = std::shared_ptr<Query::Predicate>;
+                    using SPtrPredicate = std::shared_ptr<Query::Criteria>;
                     using FPtrProcessor = std::function<std::string(const SPtrPredicate &)>;
 
                 public:

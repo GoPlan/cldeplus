@@ -2,18 +2,18 @@
 // Created by LE, Duc Anh on 6/11/15.
 //
 
-#include "PredicateLeaf.h"
+#include "CriteriaLeaf.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
-            const SPtrColumn &PredicateLeaf::getColumn() const {
+            const SPtrColumn &CriteriaLeaf::getColumn() const {
                 return _column;
             }
-            const Type::SPtrCldeValue & PredicateLeaf::getValue() const {
+            const Type::SPtrCldeValue &CriteriaLeaf::getValue() const {
                 return _value;
             }
-            const bool PredicateLeaf::isComposite() const {
+            const bool CriteriaLeaf::isComposite() const {
                 return false;
             }
         }

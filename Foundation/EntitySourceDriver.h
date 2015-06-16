@@ -10,7 +10,7 @@
 #include "EntityMap.h"
 #include "EntityProxy.h"
 #include "Entity.h"
-#include "Query/Predicate.h"
+#include "Query/Criteria.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -28,7 +28,7 @@ namespace Cloude {
             virtual int Save(SPtrEntity &entity) const = 0;
             virtual int Delete(SPtrEntity &entity) const = 0;
 
-            virtual SPtrProxyVector Select(const Query::SPtrPredicate &predicate, EntityStore &entityStore) const = 0;
+            virtual SPtrProxyVector Select(const Query::SPtrCriteria &sptrCriteria, EntityStore &entityStore) const = 0;
 
         protected:
             const EntityMap &_entityMap;

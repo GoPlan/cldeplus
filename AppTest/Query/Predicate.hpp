@@ -39,14 +39,14 @@ namespace Cloude {
                 options.ConnectionString = "../ex1.db";
                 sqliteSourceDriver.Connect();
 
-                SPtrPredicate sptrIdEq01(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_01));
-                SPtrPredicate sptrIdEq02(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_02));
-                SPtrPredicate sptrEmail01(new Comparative::Like(enquiryMap.Email, sptrEmail_01));
-                SPtrPredicate sptrEmail02(new Comparative::Like(enquiryMap.Email, sptrEmail_02));
+                SPtrCriteria sptrIdEq01(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_01));
+                SPtrCriteria sptrIdEq02(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_02));
+                SPtrCriteria sptrEmail01(new Comparative::Like(enquiryMap.Email, sptrEmail_01));
+                SPtrCriteria sptrEmail02(new Comparative::Like(enquiryMap.Email, sptrEmail_02));
 
-                SPtrPredicate sptrOR01(new Comparative::Or(sptrIdEq01, sptrEmail01));
-                SPtrPredicate sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
-                SPtrPredicate sptrOR__(new Comparative::Or(sptrOR01, sptrOR02));
+                SPtrCriteria sptrOR01(new Comparative::Or(sptrIdEq01, sptrEmail01));
+                SPtrCriteria sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
+                SPtrCriteria sptrOR__(new Comparative::Or(sptrOR01, sptrOR02));
 
                 auto fpCondition = [](const SPtrColumn &column, const int &index) -> std::string {
                     return std::string{"?"};

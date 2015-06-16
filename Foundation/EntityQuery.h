@@ -9,7 +9,7 @@
 #include <vector>
 #include "EntityProxy.h"
 #include "EntityStore.h"
-#include "Query/Predicate.h"
+#include "Query/Criteria.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -22,8 +22,8 @@ namespace Cloude {
             EntityQuery(const EntityQuery &srcEntityQuery) = default;
             EntityQuery &operator=(const EntityQuery &srcEntityQuery) = default;
 
-            SPtrProxyVector Compose(const Query::SPtrPredicate &predicate);
-            SPtrProxy ComposeGetFirst(const Query::SPtrPredicate &predicate);
+            SPtrProxyVector Compose(const Query::SPtrCriteria &sptrCriteria);
+            SPtrProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);
 
         private:
             EntityStore &_entityStore;

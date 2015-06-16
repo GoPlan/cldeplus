@@ -5,23 +5,23 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_LIKE_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_LIKE_H
 
-#include "../PredicateLeaf.h"
+#include "../CriteriaLeaf.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
 
-                class Like : public PredicateLeaf {
+                class Like : public CriteriaLeaf {
 
                 public:
                     Like(const SPtrColumn &column, const Type::SPtrCldeValue &value)
-                            : PredicateLeaf(column, value) { };
+                            : CriteriaLeaf(column, value) { };
                     ~Like() = default;
                     Like(const Like &rhs) = default;
                     Like &operator=(const Like &rhs) = default;
 
-                    // Predicate
+                    // Criteria
                     const ComparativeType &getComparativeType() const override { return _type; };
 
                 private:

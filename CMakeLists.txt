@@ -46,8 +46,8 @@ add_library(foundation STATIC
     Foundation/Store/EntityStoreHelper.cpp
     Foundation/Store/EntityStoreHelper.h
     Foundation/Common/IPrintable.h
-    Foundation/Query/Predicate.cpp
-    Foundation/Query/Predicate.h
+    Foundation/Query/Criteria.cpp
+    Foundation/Query/Criteria.h
     Foundation/Query/Comparative/And.cpp
     Foundation/Query/Comparative/And.h
     Foundation/Query/Comparative/Or.cpp
@@ -115,13 +115,13 @@ add_library(foundation STATIC
     Foundation/Common/IFormattable.h
     Foundation/Query/Contract/IPredicateFormatter.h
     Foundation/Query/Comparative.h
-    Foundation/Query/PredicateLeaf.cpp
-    Foundation/Query/PredicateLeaf.h
+    Foundation/Query/CriteriaLeaf.cpp
+    Foundation/Query/CriteriaLeaf.h
     Foundation/Query/Query.h
-    Foundation/Query/PredicateComposite.cpp
-    Foundation/Query/PredicateComposite.h
-    Foundation/Query/PredicateIterator.cpp
-    Foundation/Query/PredicateIterator.h
+    Foundation/Query/CriteriaComposite.cpp
+    Foundation/Query/CriteriaComposite.h
+    Foundation/Query/CriteriaIterator.cpp
+    Foundation/Query/CriteriaIterator.h
     Foundation/Query/Helper/PredicateHelper.cpp
     Foundation/Query/Helper/PredicateHelper.h
     Foundation/Enum/BufferSize.h Foundation/Store/IDataRecord.h Foundation/Store/IDataRecord.cpp Foundation/EntityRelationship.cpp Foundation/EntityRelationship.h Foundation/EntityLink.cpp Foundation/EntityLink.h Foundation/Link/Join.cpp Foundation/Link/Join.h)

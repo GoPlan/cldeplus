@@ -21,7 +21,7 @@ namespace Cloude {
 
         namespace Query {
 
-            class Predicate;
+            class Criteria;
 
             namespace Helper {
 
@@ -29,8 +29,8 @@ namespace Cloude {
 
                 public:
                     using EntityMap = Foundation::EntityMap;
-                    using Predicate = Foundation::Query::Predicate;
-                    using SPtrPredicate = std::shared_ptr<Predicate>;
+                    using Criteria = Foundation::Query::Criteria;
+                    using SPtrCriteria = std::shared_ptr<Criteria>;
                     using SPtrColumn = std::shared_ptr<Foundation::Column>;
                     using SPtrValue = std::shared_ptr<Foundation::Type::cldeValue>;
                     using FPtrParamProcessor = std::function<std::string(const SPtrColumn &column, const int &index)>;
@@ -41,9 +41,9 @@ namespace Cloude {
                     static std::string CreateUpdatePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
                     static std::string CreateDeletePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
 
-                    static std::pair<std::string, std::vector<SPtrPredicate>>
+                    static std::pair<std::string, std::vector<SPtrCriteria>>
                             CreateSelectPreparedQuery(const EntityMap &entityMap,
-                                                      const SPtrPredicate &sptrPredicate,
+                                                      const SPtrCriteria &sptrCriteria,
                                                       const FPtrParamProcessor fptr);
                 };
             }

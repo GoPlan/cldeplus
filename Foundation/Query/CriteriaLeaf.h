@@ -2,25 +2,25 @@
 // Created by LE, Duc Anh on 6/11/15.
 //
 
-#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATELEAF_H
-#define CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATELEAF_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_CRITERIALEAF_H
+#define CLOUD_E_CPLUS_FOUNDATION_QUERY_CRITERIALEAF_H
 
-#include "Predicate.h"
+#include "Criteria.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
 
-            class PredicateLeaf : public Predicate {
+            class CriteriaLeaf : public Criteria {
 
             public:
-                PredicateLeaf(const SPtrColumn &column, const Type::SPtrCldeValue &value)
+                CriteriaLeaf(const SPtrColumn &column, const Type::SPtrCldeValue &value)
                         : _column(column), _value(value) { };
-                virtual ~PredicateLeaf() = default;
-                PredicateLeaf(const PredicateLeaf &rhs) = default;
-                PredicateLeaf &operator=(const PredicateLeaf &rhs) = default;
+                virtual ~CriteriaLeaf() = default;
+                CriteriaLeaf(const CriteriaLeaf &rhs) = default;
+                CriteriaLeaf &operator=(const CriteriaLeaf &rhs) = default;
 
-                // Predicate
+                // Criteria
                 virtual const bool isComposite() const override;
                 virtual const SPtrColumn &getColumn() const override;
                 virtual const Type::SPtrCldeValue &getValue() const override;
@@ -34,4 +34,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_PREDICATELEAF_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_QUERY_CRITERIALEAF_H

@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <Foundation/Type/cldeValueFactory.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
-#include <Foundation/Query/PredicateComposite.h>
+#include <Foundation/Query/CriteriaComposite.h>
 #include <Foundation/Query/Comparative.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
 #include <Foundation/Query/Helper/PredicateHelper.h>
@@ -139,23 +139,23 @@ namespace Cloude {
                     return 1;
                 }
 
-                int initializeParamBindBuffers(const Foundation::Query::SPtrPredicateVector &params,
+                int initializeParamBindBuffers(const Foundation::Query::SPtrCriteriaVector &params,
                                                const UPtrCommand &uptrCommand) {
 
                     int index = 1;
 
                     std::for_each(params.cbegin(), params.cend(),
-                                  [&uptrCommand, &index](const Foundation::Query::SPtrPredicate &sptrPredicate) {
+                                  [&uptrCommand, &index](const Foundation::Query::SPtrCriteria &sptrCriteria) {
 
-                                      auto &column = sptrPredicate->getColumn();
-                                      auto &value = sptrPredicate->getValue();
+                                      auto &column = sptrCriteria->getColumn();
+                                      auto &value = sptrCriteria->getValue();
 
                                       if (!value) {
                                           sqlite3_bind_null(uptrCommand->_ptrStmt, index++);
                                           return;
                                       }
 
-                                      const auto ptrValueBuffer = sptrPredicate->getValue()->RawPointerToValueBuffer();
+                                      const auto ptrValueBuffer = sptrCriteria->getValue()->RawPointerToValueBuffer();
 
                                       switch (column->getDataType()) {
                                           case cldeValueType::Int64: {
@@ -384,7 +384,7 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEnt
 }
 
 Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Select(
-        const Foundation::Query::SPtrPredicate &sptrPredicate,
+        const Foundation::Query::SPtrCriteria &sptrCriteria,
         Foundation::EntityStore &entityStore) const {
 
     auto fpCondition = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
@@ -398,7 +398,7 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
     columnsVector.insert(columnsVector.end(), columnsForKey.begin(), columnsForKey.end());
     columnsVector.insert(columnsVector.cend(), columnsForSelect.begin(), columnsForSelect.end());
 
-    auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(_entityMap, sptrPredicate, fpCondition);
+    auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(_entityMap, sptrCriteria, fpCondition);
     auto uptrCommand = _sqliteApiImpl->createCommand(tuplQuery.first);
 
     _sqliteApiImpl->initializeParamBindBuffers(tuplQuery.second, uptrCommand);

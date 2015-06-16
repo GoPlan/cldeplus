@@ -14,12 +14,12 @@ namespace Cloude {
             //
         }
 
-        SPtrProxyVector EntityQuery::Compose(const Query::SPtrPredicate &predicate) {
-            return _entityStore.getEntitySourceDriver().Select(predicate, _entityStore);
+        SPtrProxyVector EntityQuery::Compose(const Query::SPtrCriteria &sptrCriteria) {
+            return _entityStore.getEntitySourceDriver().Select(sptrCriteria, _entityStore);
         }
 
-        SPtrProxy EntityQuery::ComposeGetFirst(const Query::SPtrPredicate &predicate) {
-            return Compose(predicate).front();
+        SPtrProxy EntityQuery::ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria) {
+            return Compose(sptrCriteria).front();
         }
     }
 }

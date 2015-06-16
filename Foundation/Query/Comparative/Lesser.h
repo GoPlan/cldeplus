@@ -5,23 +5,23 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_LESSER_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_LESSER_H
 
-#include "../PredicateLeaf.h"
+#include "../CriteriaLeaf.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
 
-                class Lesser : public PredicateLeaf {
+                class Lesser : public CriteriaLeaf {
 
                 public:
                     Lesser(const SPtrColumn &column, const Type::SPtrCldeValue &value)
-                            : PredicateLeaf(column, value) { };
+                            : CriteriaLeaf(column, value) { };
                     virtual ~Lesser() = default;
                     Lesser(const Lesser &rhs) = default;
                     Lesser &operator=(const Lesser &rhs) = default;
 
-                    // PredicateLeaf
+                    // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };
 
                 private:

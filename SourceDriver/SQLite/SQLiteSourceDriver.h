@@ -39,7 +39,7 @@ namespace Cloude {
                 int Delete(Foundation::SPtrEntity &entity) const override;
 
                 Foundation::SPtrProxyVector Select(
-                        const Foundation::Query::SPtrPredicate &sptrPredicate,
+                        const Foundation::Query::SPtrCriteria &sptrCriteria,
                         Foundation::EntityStore &entityStore) const override;
 
             private:

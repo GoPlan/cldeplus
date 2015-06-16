@@ -6,7 +6,7 @@
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_CONTRACT_IPREDICATEFORMATTER_H
 
 #include <string>
-#include <Foundation/Query/Predicate.h>
+#include "../Criteria.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -16,7 +16,7 @@ namespace Cloude {
                 class IPredicateFormatter {
 
                 public:
-                    virtual std::string ParsePredicateToStringCopy(const SPtrPredicate &predicate) const = 0;
+                    virtual std::string ParsePredicateToStringCopy(const SPtrCriteria &criteria) const = 0;
                 };
             }
         }

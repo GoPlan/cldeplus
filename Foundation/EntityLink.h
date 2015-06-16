@@ -20,7 +20,7 @@ namespace Cloude {
         class EntityLink;
 
         using SPtrColumnToColumnMap = std::unordered_map<SPtrColumn, SPtrColumn>;
-        using SPtrEntityLink = std::shared_ptr<EntityLink>
+        using SPtrEntityLink = std::shared_ptr<EntityLink>;
 
         class EntityLink {
 

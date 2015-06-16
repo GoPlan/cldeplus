@@ -5,23 +5,23 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARIVE_GREATEROREQUAL_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARIVE_GREATEROREQUAL_H
 
-#include "../PredicateLeaf.h"
+#include "../CriteriaLeaf.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
 
-                class GreaterOrEqual : public PredicateLeaf {
+                class GreaterOrEqual : public CriteriaLeaf {
 
                 public:
                     GreaterOrEqual(const SPtrColumn &column, const Type::SPtrCldeValue &value)
-                            : PredicateLeaf(column, value) { };
+                            : CriteriaLeaf(column, value) { };
                     virtual ~GreaterOrEqual() = default;
                     GreaterOrEqual(const GreaterOrEqual &rhs) = default;
                     GreaterOrEqual &operator=(const GreaterOrEqual &rhs) = default;
 
-                    // PredicateLeaf
+                    // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };
 
                 private:

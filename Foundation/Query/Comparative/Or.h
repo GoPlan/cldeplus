@@ -6,18 +6,18 @@
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_OR_H
 
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
-#include <Foundation/Query/PredicateComposite.h>
+#include "../CriteriaComposite.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
 
-                class Or : public Query::PredicateComposite {
+                class Or : public Query::CriteriaComposite {
 
                 public:
-                    Or(const SPtrPredicate &lhs, const SPtrPredicate &rhs)
-                            : PredicateComposite(lhs, rhs) { }
+                    Or(const SPtrCriteria &lhs, const SPtrCriteria &rhs)
+                            : CriteriaComposite(lhs, rhs) { }
                     ~Or() = default;
                     Or(const Or &rhs) = default;
                     Or &operator=(const Or &rhs) = default;
