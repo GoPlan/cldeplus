@@ -18,9 +18,11 @@ namespace Cloude {
 
                 public:
                     cldeString(const char *string);
-                    virtual ~cldeString() = default;
-                    cldeString(const cldeString &rhs) = default;
-                    cldeString &operator=(const cldeString &rhs) = default;
+                    cldeString(const cldeString &) = default;
+                    cldeString(cldeString &&) = default;
+                    cldeString &operator=(const cldeString &) = default;
+                    cldeString &operator=(cldeString &&) = default;
+                    ~cldeString() = default;
 
                     // cldeValue
                     virtual void *RawPointerToValueBuffer();

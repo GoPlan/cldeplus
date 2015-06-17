@@ -101,7 +101,7 @@ add_library(foundation STATIC
     Foundation/Type/Implementation/cldeMatrix.h
     Foundation/Type/cldeValueFactory.cpp
     Foundation/Type/cldeValueFactory.h
-    Foundation/Type/cldeData.h
+    Foundation/Type/cldeType.h
     Foundation/Type/Implementation/cldeString.cpp
     Foundation/Type/Implementation/cldeString.h
     Foundation/Exception/cldeNonSupportedFunctionException.cpp
@@ -124,7 +124,7 @@ add_library(foundation STATIC
     Foundation/Query/CriteriaIterator.h
     Foundation/Query/Helper/PredicateHelper.cpp
     Foundation/Query/Helper/PredicateHelper.h
-    Foundation/Enum/BufferSize.h Foundation/Store/IDataRecord.h Foundation/Store/IDataRecord.cpp Foundation/EntityRelationship.cpp Foundation/EntityRelationship.h Foundation/EntityLink.cpp Foundation/EntityLink.h Foundation/Link/Join.cpp Foundation/Link/Join.h)
+    Foundation/Enum/BufferSize.h Foundation/Store/IDataRecord.h Foundation/Store/IDataRecord.cpp Foundation/EntityRelationship.cpp Foundation/EntityRelationship.h Foundation/EntityLink.cpp Foundation/EntityLink.h Foundation/Link/Join.cpp Foundation/Link/Join.h Foundation/Type/Implementation/cldeBlob.cpp Foundation/Type/Implementation/cldeBlob.h)
 
 
 add_library(application STATIC

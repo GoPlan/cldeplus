@@ -18,9 +18,11 @@ namespace Cloude {
                 public:
                     explicit cldeVarchar(size_t length);
                     explicit cldeVarchar(const char *value);
-                    virtual ~cldeVarchar();
-                    cldeVarchar(const cldeVarchar &rhs) = default;
-                    cldeVarchar &operator=(const cldeVarchar &rhs) = default;
+                    cldeVarchar(const cldeVarchar &) = default;
+                    cldeVarchar(cldeVarchar &&) = default;
+                    cldeVarchar &operator=(const cldeVarchar &) = default;
+                    cldeVarchar &operator=(cldeVarchar &&) = default;
+                    ~cldeVarchar();
 
                     // cldeValue
                     virtual void *RawPointerToValueBuffer() override;

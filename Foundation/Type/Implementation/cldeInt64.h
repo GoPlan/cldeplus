@@ -15,10 +15,12 @@ namespace Cloude {
                 class cldeInt64 : public cldeNumericValue {
 
                 public:
-                    cldeInt64(int64_t value);
-                    virtual ~cldeInt64() = default;
-                    cldeInt64(const cldeInt64 &rhs) = default;
-                    cldeInt64 &operator=(const cldeInt64 &rhs) = default;
+                    explicit cldeInt64(int64_t value);
+                    cldeInt64(const cldeInt64 &) = default;
+                    cldeInt64(cldeInt64 &&) = default;
+                    cldeInt64 &operator=(const cldeInt64 &) = default;
+                    cldeInt64 &operator=(cldeInt64 &&) = default;
+                    ~cldeInt64() = default;
 
                     // cldeValue
                     virtual void *RawPointerToValueBuffer() override;

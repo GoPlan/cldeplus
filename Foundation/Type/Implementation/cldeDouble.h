@@ -14,12 +14,16 @@ namespace Cloude {
             namespace Implementation {
 
                 class cldeDouble : public cldeNumericValue {
+                    double _value;
+                    mutable std::string _string;
 
                 public:
-                    cldeDouble(double value);
-                    virtual ~cldeDouble() = default;
-                    cldeDouble(const cldeDouble &rhs) = default;
-                    cldeDouble &operator=(const cldeDouble &rhs) = default;
+                    explicit cldeDouble(double value);
+                    cldeDouble(const cldeDouble &) = default;
+                    cldeDouble(cldeDouble &&) = default;
+                    cldeDouble &operator=(const cldeDouble &) = default;
+                    cldeDouble &operator=(cldeDouble &&) = default;
+                    ~cldeDouble() = default;
 
                     // cldeValue
                     virtual void *RawPointerToValueBuffer() override;
@@ -38,10 +42,6 @@ namespace Cloude {
                     virtual cldeValue &operator*(const cldeValue &rhs) override;
                     virtual cldeValue &operator/(const cldeValue &rhs) override;
                     virtual cldeValue &operator%(const cldeValue &rhs) override;
-
-                private:
-                    double _value;
-                    mutable std::string _string;
                 };
             }
         }
