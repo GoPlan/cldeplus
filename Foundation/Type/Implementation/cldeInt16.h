@@ -41,7 +41,6 @@ namespace Cloude {
                     virtual cldeValue &operator*(const cldeValue &rhs) override;
                     virtual cldeValue &operator/(const cldeValue &rhs) override;
                     virtual cldeValue &operator%(const cldeValue &rhs) override;
-
                 };
             }
         }

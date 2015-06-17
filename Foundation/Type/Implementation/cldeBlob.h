@@ -22,8 +22,6 @@ namespace Cloude {
                     cldeBlob &operator=(const cldeBlob &) = default;
                     cldeBlob &operator=(cldeBlob &&) = default;
                     ~cldeBlob() = default;
-
-
                 };
             }
         }

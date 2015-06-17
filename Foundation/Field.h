@@ -16,6 +16,8 @@ namespace Cloude {
     namespace Foundation {
 
         class Field : public Common::IPrintable {
+            SPtrColumn _column;
+            Type::SPtrValue _value;
 
         public:
             explicit Field(const SPtrColumn &column);
@@ -36,10 +38,6 @@ namespace Cloude {
             const Type::SPtrValue &getValue() const { return _value; }
             bool isNull() const { return _value.get() == nullptr; };
             void setValue(const Type::SPtrValue &value);
-
-        private:
-            SPtrColumn _column;
-            Type::SPtrValue _value;
         };
 
         using SPtrField = std::shared_ptr<Field>;

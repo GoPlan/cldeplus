@@ -14,6 +14,8 @@ namespace Cloude {
             namespace Comparative {
 
                 class IsNull : public Criteria {
+                    const SPtrColumn &_column;
+                    static ComparativeType _type;
 
                 public:
                     IsNull(const SPtrColumn &column) : _column(column) { };
@@ -26,10 +28,6 @@ namespace Cloude {
                     const bool isComposite() const override;
                     const ComparativeType &getComparativeType() const override;
                     const Type::SPtrCldeValue &getValue() const override;
-
-                private:
-                    const SPtrColumn &_column;
-                    static ComparativeType _type;
                 };
             }
         }

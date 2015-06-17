@@ -14,6 +14,10 @@ namespace Cloude {
             namespace Implementation {
 
                 class cldeVarchar : public cldeCharacterValue {
+                    char *_value;
+
+                    void init();
+                    void init(const char *value);
 
                 public:
                     explicit cldeVarchar(size_t length);
@@ -34,12 +38,6 @@ namespace Cloude {
                     virtual const std::string CopyToString() const override;
                     virtual const std::string &ToString() const override;
                     virtual const char *ToCString() const override;
-
-                private:
-                    char *_value;
-
-                    void init();
-                    void init(const char *value);
                 };
             }
         }

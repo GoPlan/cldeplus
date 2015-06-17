@@ -15,6 +15,7 @@ namespace Cloude {
     namespace Foundation {
 
         class EntityQuery {
+            EntityStore &_entityStore;
 
         public:
             explicit EntityQuery(EntityStore &entityStore);
@@ -26,9 +27,6 @@ namespace Cloude {
 
             virtual SPtrProxyVector Compose(const Query::SPtrCriteria &sptrCriteria);
             virtual SPtrProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);
-
-        private:
-            EntityStore &_entityStore;
         };
     }
 }

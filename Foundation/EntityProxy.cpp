@@ -13,7 +13,7 @@ namespace Cloude {
         }
 
         SPtrEntity EntityProxy::Summon() {
-            auto entity = _entityStore.Get(_identity);
+            auto entity = _entityStore.Get(getIdentity());
             return entity;
         }
 

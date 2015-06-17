@@ -12,6 +12,8 @@ namespace Cloude {
         namespace Query {
 
             class CriteriaLeaf : public Criteria {
+                const SPtrColumn &_column;
+                const Type::SPtrCldeValue &_value;
 
             public:
                 CriteriaLeaf(const SPtrColumn &column, const Type::SPtrCldeValue &value)
@@ -24,10 +26,6 @@ namespace Cloude {
                 virtual const bool isComposite() const override;
                 virtual const SPtrColumn &getColumn() const override;
                 virtual const Type::SPtrCldeValue &getValue() const override;
-
-            private:
-                const SPtrColumn &_column;
-                const Type::SPtrCldeValue &_value;
             };
         }
     }

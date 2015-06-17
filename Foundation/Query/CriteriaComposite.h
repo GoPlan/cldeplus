@@ -13,6 +13,8 @@ namespace Cloude {
         namespace Query {
 
             class CriteriaComposite : public Criteria {
+                SPtrCriteria _sptrRhs;
+                SPtrCriteria _sptrLhs;
 
             public:
                 CriteriaComposite(const SPtrCriteria &lhs, const SPtrCriteria &rhs)
@@ -31,10 +33,6 @@ namespace Cloude {
                 // Locals
                 const SPtrCriteria &getRhs() const { return _sptrRhs; }
                 const SPtrCriteria &getLhs() const { return _sptrLhs; }
-
-            protected:
-                SPtrCriteria _sptrRhs;
-                SPtrCriteria _sptrLhs;
             };
         }
     }

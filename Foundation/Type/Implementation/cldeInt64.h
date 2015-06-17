@@ -13,6 +13,8 @@ namespace Cloude {
             namespace Implementation {
 
                 class cldeInt64 : public cldeNumericValue {
+                    int64_t _value;
+                    mutable std::string _string;
 
                 public:
                     explicit cldeInt64(int64_t value);
@@ -39,10 +41,6 @@ namespace Cloude {
                     virtual cldeValue &operator*(const cldeValue &rhs) override;
                     virtual cldeValue &operator/(const cldeValue &rhs) override;
                     virtual cldeValue &operator%(const cldeValue &rhs) override;
-
-                private:
-                    int64_t _value;
-                    mutable std::string _string;
                 };
             }
         }

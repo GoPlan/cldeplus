@@ -13,6 +13,7 @@ namespace Cloude {
         namespace Type {
 
             class cldeCharacterValue : public cldeValue {
+                static cldeValueCategory _category;
 
             public:
                 cldeCharacterValue(cldeValueType dataType, size_t length);
@@ -28,9 +29,6 @@ namespace Cloude {
                 virtual cldeValue &operator*(const cldeValue &rhs) override;
                 virtual cldeValue &operator/(const cldeValue &rhs) override;
                 virtual cldeValue &operator%(const cldeValue &rhs) override;
-
-            private:
-                static cldeValueCategory _category;
             };
         }
     }

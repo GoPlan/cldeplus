@@ -19,6 +19,7 @@ namespace Cloude {
         using LinkMap = std::unordered_map<std::string, EntityLink>;
 
         class EntityMap {
+            LinkMap _linkMap;
 
         public:
             EntityMap(const EntityMap &) = delete;
@@ -45,8 +46,6 @@ namespace Cloude {
             SPtrColumnVector _columnsForGet;
             SPtrColumnVector _columnsForUpdate;
             SPtrColumnVector _columnsForSelect;
-
-            LinkMap _linkMap;
 
             virtual const std::string &TableNameCore() const = 0;
         };

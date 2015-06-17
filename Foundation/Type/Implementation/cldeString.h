@@ -15,6 +15,7 @@ namespace Cloude {
             namespace Implementation {
 
                 class cldeString : public cldeCharacterValue {
+                    mutable std::string _value;
 
                 public:
                     cldeString(const char *string);
@@ -34,9 +35,6 @@ namespace Cloude {
                     virtual const std::string CopyToString() const;
                     virtual const std::string &ToString() const;
                     virtual const char *ToCString() const override;
-
-                private:
-                    mutable std::string _value;
                 };
             }
         }

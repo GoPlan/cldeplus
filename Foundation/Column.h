@@ -13,6 +13,10 @@ namespace Cloude {
     namespace Foundation {
 
         class Column : public Common::IPrintable {
+            std::string _name;
+            std::string _datasourceName;
+            Foundation::Type::cldeValueType _dataType;
+            size_t _length;
 
         public:
             Column() = default;
@@ -42,12 +46,6 @@ namespace Cloude {
             const Foundation::Type::cldeValueType &getDataType() const { return _dataType; }
             size_t getLength() const { return _length; }
             void setLength(size_t length) { _length = length; }
-
-        private:
-            std::string _name;
-            std::string _datasourceName;
-            Foundation::Type::cldeValueType _dataType;
-            size_t _length;
         };
 
         using SPtrColumn = std::shared_ptr<Column>;

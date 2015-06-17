@@ -13,6 +13,7 @@ namespace Cloude {
             namespace Comparative {
 
                 class LesserOrEqual : public CriteriaLeaf {
+                    static ComparativeType _type;
 
                 public:
                     LesserOrEqual(const SPtrColumn &column, const Type::SPtrCldeValue &value)
@@ -23,10 +24,6 @@ namespace Cloude {
 
                     // Criteria
                     const ComparativeType &getComparativeType() const override { return _type; };
-
-                private:
-                    static ComparativeType _type;
-
                 };
             }
         }

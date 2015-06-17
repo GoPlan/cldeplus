@@ -13,6 +13,7 @@ namespace Cloude {
         namespace Type {
 
             class cldeNumericValue : public cldeValue {
+                static cldeValueCategory _category;
 
             public:
                 cldeNumericValue(cldeValueType dataType, size_t length);
@@ -22,10 +23,6 @@ namespace Cloude {
 
                 const cldeValueCategory &getCategory() const override;
                 bool isNumeric() const override;
-
-            private:
-                static cldeValueCategory _category;
-
             };
         }
     }

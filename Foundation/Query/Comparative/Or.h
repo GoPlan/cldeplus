@@ -14,6 +14,7 @@ namespace Cloude {
             namespace Comparative {
 
                 class Or : public Query::CriteriaComposite {
+                    static ComparativeType _type;
 
                 public:
                     Or(const SPtrCriteria &lhs, const SPtrCriteria &rhs)
@@ -24,9 +25,6 @@ namespace Cloude {
 
                     // Locals
                     const ComparativeType &getComparativeType() const override { return _type; };
-
-                private:
-                    static ComparativeType _type;
                 };
             }
         }

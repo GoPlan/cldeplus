@@ -13,6 +13,7 @@ namespace Cloude {
             namespace Comparative {
 
                 class NotEqual : public CriteriaLeaf {
+                    static ComparativeType _type;
 
                 public:
                     NotEqual(const SPtrColumn &column, const Type::SPtrCldeValue &value)
@@ -23,9 +24,6 @@ namespace Cloude {
 
                     // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };
-
-                private:
-                    static ComparativeType _type;
                 };
             }
         }

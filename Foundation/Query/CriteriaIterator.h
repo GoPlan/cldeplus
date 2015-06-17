@@ -19,6 +19,11 @@ namespace Cloude {
             using WPtrCriteriaIterator = std::weak_ptr<CriteriaIterator>;
 
             class CriteriaIterator : public std::enable_shared_from_this<CriteriaIterator> {
+                bool _finishedLeft = false;
+                bool _finishedRight = false;
+                bool _isVisited = false;
+                SPtrCriteria _sptrCriteria;
+                SPtrCriteriaIterator _parent;
 
             public:
                 CriteriaIterator(const SPtrCriteria &sptrCriteria) : _sptrCriteria(sptrCriteria) { };
@@ -28,13 +33,6 @@ namespace Cloude {
                 const SPtrCriteria &getPredicate() const { return _sptrCriteria; };
                 bool isVisited() const { return _isVisited; }
                 bool isLeaf() const { return !getPredicate()->isComposite(); }
-
-            private:
-                bool _finishedLeft = false;
-                bool _finishedRight = false;
-                bool _isVisited = false;
-                SPtrCriteria _sptrCriteria;
-                SPtrCriteriaIterator _parent;
             };
         }
     }

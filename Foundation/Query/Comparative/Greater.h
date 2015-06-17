@@ -13,6 +13,7 @@ namespace Cloude {
             namespace Comparative {
 
                 class Greater : public Query::CriteriaLeaf {
+                    static ComparativeType _type;
 
                 public:
                     Greater(const SPtrColumn &column, const Type::SPtrCldeValue &value)
@@ -23,9 +24,6 @@ namespace Cloude {
 
                     // Criteria
                     const ComparativeType &getComparativeType() const override { return _type; }
-
-                private:
-                    static ComparativeType _type;
                 };
             }
         }

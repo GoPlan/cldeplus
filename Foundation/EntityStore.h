@@ -19,6 +19,10 @@ namespace Cloude {
         class EntitySourceDriver;
 
         class EntityStore {
+            const EntityMap &_entityMap;
+            const EntityLoader &_entityLoader;
+            const EntitySourceDriver &_entitySourceDriver;
+            SPtrIdentityMap _identityMap;
 
         public:
             EntityStore(const EntityMap &entityMap,
@@ -46,14 +50,6 @@ namespace Cloude {
 
             const EntityMap &getEntityMap() const { return _entityMap; }
             const EntitySourceDriver &getEntitySourceDriver() const { return _entitySourceDriver; }
-
-        protected:
-            const EntityMap &_entityMap;
-            const EntityLoader &_entityLoader;
-            const EntitySourceDriver &_entitySourceDriver;
-
-        private:
-            SPtrIdentityMap _identityMap;
         };
     }
 }

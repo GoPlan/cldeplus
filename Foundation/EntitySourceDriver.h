@@ -14,6 +14,7 @@ namespace Cloude {
     namespace Foundation {
 
         class EntitySourceDriver {
+            const EntityMap &_entityMap;
 
         public:
             explicit EntitySourceDriver(const EntityMap &entityMap);
@@ -30,8 +31,7 @@ namespace Cloude {
 
             virtual SPtrProxyVector Select(const Query::SPtrCriteria &sptrCriteria, EntityStore &entityStore) const = 0;
 
-        protected:
-            const EntityMap &_entityMap;
+            const EntityMap &getEntityMap() const { return _entityMap; }
         };
     }
 }

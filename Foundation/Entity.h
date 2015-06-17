@@ -14,6 +14,7 @@ namespace Cloude {
     namespace Foundation {
 
         class Entity : public Store::IDataRecord {
+            SPtrIdentity _identity;
 
         public:
             explicit Entity(const SPtrIdentity &identity);
@@ -25,9 +26,6 @@ namespace Cloude {
 
             // Locals
             const SPtrIdentity &getIdentity() { return _identity; }
-
-        protected:
-            SPtrIdentity _identity;
         };
 
         using SPtrEntity = std::shared_ptr<Entity>;
