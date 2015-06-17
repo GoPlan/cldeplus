@@ -5,8 +5,6 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYSOURCEDRIVER_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYSOURCEDRIVER_H
 
-#include <memory>
-#include <vector>
 #include "EntityMap.h"
 #include "EntityProxy.h"
 #include "Entity.h"

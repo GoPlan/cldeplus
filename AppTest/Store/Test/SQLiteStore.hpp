@@ -58,15 +58,15 @@ namespace Cloude {
 
                     // DELETE
                     {
-                        auto spEntity = _entityStore.Get(spIdentity);
-                        ASSERT_TRUE(spEntity.get() != 0);
+                        auto sptrEntity = _entityStore.Get(spIdentity);
+                        ASSERT_TRUE(sptrEntity.get() != 0);
                         ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
 
-                        auto &spEmailField = spEntity->getField("Email");
-                        auto &spEmailValue = spEmailField->getValue();
-                        EXPECT_TRUE(strcmp(email, spEmailValue->ToCString()) == 0);
+                        auto &sptrEmailField = sptrEntity->getField("Email");
+                        auto &sptrEmailValue = sptrEmailField->getValue();
+                        EXPECT_TRUE(strcmp(email, sptrEmailValue->ToCString()) == 0);
 
-                        _entityStore.Delete(spEntity);
+                        _entityStore.Delete(sptrEntity);
                         EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
                         EXPECT_TRUE(_entityStore.Size() == 0);
 

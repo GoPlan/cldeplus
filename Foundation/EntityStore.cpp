@@ -2,10 +2,7 @@
 // Created by LE, Duc-Anh on 5/23/15.
 //
 
-#include <memory>
 #include <string>
-#include "Exception/cldeEntityStoreRoutineException.h"
-#include "EntityLoader.h"
 #include "EntitySourceDriver.h"
 #include "Query/Helper/SqlHelper.h"
 #include "Store/EntityStoreHelper.h"
@@ -39,8 +36,8 @@ namespace Cloude {
         SPtrEntity EntityStore::Create(const SPtrIdentity &identity) {
 
             if (!identity) {
-                const char *msg = "Identity is a nullptr or invalid";
-                throw Foundation::Exception::cldeEntityStoreRoutineException(msg);
+                std::string msg{"Identity is either a nullptr or invalid"};
+                throw std::invalid_argument(msg);
             }
 
             auto &columnsForGet = _entityMap.getColumnsForGet();
@@ -64,19 +61,19 @@ namespace Cloude {
 
             auto &columnsForGet = _entityMap.getColumnsForGet();
 
-            SPtrEntity entity(new Entity(identity));
+            SPtrEntity sptrEntity(new Entity(identity));
 
-            Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, entity, false);
+            Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, sptrEntity, false);
 
-            if (!_entitySourceDriver.Load(entity)) {
+            if (!_entitySourceDriver.Load(sptrEntity)) {
                 return SPtrEntity(nullptr);
             }
 
             // Entity makes a copy of std::shared_ptr<Identity>,
             // Therefore, Identity must be taken from Entity
-            _identityMap.insert(make_pair(entity->getIdentity(), entity));
+            _identityMap.insert(make_pair(sptrEntity->getIdentity(), sptrEntity));
 
-            return entity;
+            return sptrEntity;
         }
 
         void EntityStore::Insert(SPtrEntity &entity) {

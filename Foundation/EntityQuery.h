@@ -18,11 +18,11 @@ namespace Cloude {
 
         public:
             explicit EntityQuery(EntityStore &entityStore);
-            virtual ~EntityQuery() = default;
             EntityQuery(const EntityQuery &) = default;
             EntityQuery(EntityQuery &&) = default;
             EntityQuery &operator=(const EntityQuery &) = default;
             EntityQuery &operator=(EntityQuery &&) = default;
+            virtual ~EntityQuery() = default;
 
             virtual SPtrProxyVector Compose(const Query::SPtrCriteria &sptrCriteria);
             virtual SPtrProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);

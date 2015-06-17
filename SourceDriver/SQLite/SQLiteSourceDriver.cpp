@@ -10,8 +10,9 @@
 #include <Foundation/Query/Helper/SqlHelper.h>
 #include <Foundation/Query/Helper/PredicateHelper.h>
 #include <Foundation/Store/EntityStoreHelper.h>
-#include "SQLiteSourceDriver.h"
 #include "Amalgamation/sqlite3.h"
+#include "SQLiteSourceDriver.h"
+#include "SQLiteSourceHelper.h"
 
 using namespace Cloude::SourceDriver::SQLite;
 
@@ -22,17 +23,14 @@ namespace Cloude {
             class Command {
 
             public:
-                Command(const std::string &query) : query(query) {
-                    //
-                };
+                Command(const std::string &query) : query(query) { };
+                Command(const Command &) = default;
+                Command(Command &&) = default;
+                Command &operator=(const Command &) = default;
+                Command &operator=(Command &&) = default;
+                ~Command() { if (_ptrStmt != nullptr) { sqlite3_finalize(_ptrStmt); }};
 
-                ~Command() {
-                    if (_ptrStmt != nullptr) {
-                        sqlite3_finalize(_ptrStmt);
-                    }
-                };
-
-                int PrepareStatment(sqlite3 *ptrDb) {
+                int prepareStatment(sqlite3 *ptrDb) {
 
                     if (ptrDb == NULL) {
                         fprintf(stderr, "Database is not open\n");
@@ -41,8 +39,7 @@ namespace Cloude {
                     int resultCode = sqlite3_prepare_v2(ptrDb, query.c_str(), -1, &_ptrStmt, NULL);
 
                     if (resultCode != SQLITE_OK) {
-                        // TODO: throw an appropriate exception
-                        fprintf(stderr, "Could not prepare statement.\n");
+                        throw SQLiteSourceException{resultCode};
                     }
 
                     return 1;
@@ -79,9 +76,7 @@ namespace Cloude {
                     int resultCode = sqlite3_open_v2(tmpConnString, &_ptrSqlite3, SQLITE_OPEN_READWRITE, NULL);
 
                     if (resultCode != SQLITE_OK) {
-                        // TODO: throw an approriate exception
-                        fprintf(stderr, "%s\n", sqlite3_errmsg(_ptrSqlite3));
-                        exit(EXIT_FAILURE);
+                        throw SQLiteSourceException{resultCode};
                     }
 
                     return 1;
@@ -89,7 +84,7 @@ namespace Cloude {
 
                 UPtrCommand createCommand(const std::string &query) {
                     UPtrCommand command(new Command(query));
-                    command->PrepareStatment(_ptrSqlite3);
+                    command->prepareStatment(_ptrSqlite3);
                     return command;
                 }
 
@@ -217,7 +212,7 @@ namespace Cloude {
 
                                      default:
                                          ++index;
-                                         const char *msg = "This type is not yet supported";
+                                         std::string msg{"This type is not yet supported"};
                                          throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
                                  }
                              });
@@ -281,19 +276,15 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Load(Foundation::SPtrEntit
 
     int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
 
-    if (resultCode != SQLITE_DONE && resultCode != SQLITE_ROW) {
-        // TODO: throws an appropriate exception
-        return 0;
+    switch (resultCode) {
+        case SQLITE_DONE:
+            return 0;
+        case SQLITE_ROW:
+            _sqliteApiImpl->bindResultToFields(entity, columnsForGet, uptrCommand);
+            return 1;
+        default:
+            throw SQLiteSourceException(resultCode);
     }
-
-    if (sqlite3_column_type(uptrCommand->_ptrStmt, 0) == SQLITE_NULL) {
-        // TODO: throws an appropriate exception
-        return 0;
-    }
-
-    _sqliteApiImpl->bindResultToFields(entity, columnsForGet, uptrCommand);
-
-    return 1;
 }
 
 int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
@@ -305,19 +296,8 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Insert(Foundation::SPtrEnt
 
     int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
 
-    switch (resultCode) {
-        case SQLITE_BUSY:
-            break;
-        case SQLITE_DONE:
-            break;
-        case SQLITE_ERROR:
-            // TODO: throws an appropriate exception
-            break;
-        case SQLITE_MISUSE:
-            // TODO: throws an appropriate exception
-            return 0;
-        default:
-            break;
+    if (resultCode != SQLITE_DONE) {
+        throw SQLiteSourceException(resultCode);
     }
 
     return 1;
@@ -338,20 +318,8 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Save(Foundation::SPtrEntit
 
     int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
 
-    switch (resultCode) {
-        case SQLITE_BUSY:
-            // TODO: throws an appropriate exception
-            return 0;
-        case SQLITE_DONE:
-            break;
-        case SQLITE_ERROR:
-            // TODO: throws an appropriate exception
-            return 0;
-        case SQLITE_MISUSE:
-            // TODO: throws an appropriate exception
-            return 0;
-        default:
-            break;
+    if (resultCode != SQLITE_DONE) {
+        throw SQLiteSourceException(resultCode);
     }
 
     return 1;
@@ -366,21 +334,11 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEnt
 
     int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
 
-    switch (resultCode) {
-        case SQLITE_BUSY:
-            // TODO: throws an appropriate exception
-            return 0;
-        case SQLITE_DONE:
-            return 1;
-        case SQLITE_ERROR:
-            // TODO: throws an appropriate exception
-            return 0;
-        case SQLITE_MISUSE:
-            // TODO: throws an appropriate exception
-            return 0;
-        default:
-            return 0;
+    if (resultCode != SQLITE_DONE) {
+        throw SQLiteSourceException(resultCode);
     }
+
+    return 1;
 }
 
 Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Select(
@@ -412,10 +370,6 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
 
     while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
 
-        if (sqlite3_column_count(uptrCommand->_ptrStmt) == 0) {
-            break;
-        }
-
         Foundation::SPtrIdentity sptrIdentity{new Foundation::Identity{}};
 
         std::for_each(columnsForKey.begin(), columnsForKey.cend(),
@@ -432,7 +386,7 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
     }
 
     if (resultCode != SQLITE_DONE) {
-        // TODO: throws an appropriate exception
+        throw SQLiteSourceException{resultCode};
     }
 
     return proxies;

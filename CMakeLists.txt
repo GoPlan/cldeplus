@@ -163,7 +163,7 @@ add_library(sourcedriver STATIC
 #    SourceDriver/DynamoDb/DynamoDbSourceDriver.h
 #    SourceDriver/DynamoDb/DynamoDbSourceException.cpp
 #    SourceDriver/DynamoDb/DynamoDbSourceException.h
-    )
+    SourceDriver/SQLite/SQLiteSourceHelper.cpp SourceDriver/SQLite/SQLiteSourceHelper.h)
 
 
 add_library(apptest STATIC

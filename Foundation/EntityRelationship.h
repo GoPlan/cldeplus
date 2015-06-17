@@ -15,7 +15,6 @@ namespace Cloude {
             EntityRelationship &operator=(const EntityRelationship &) = default;
             EntityRelationship &operator=(EntityRelationship &&) = default;
             ~EntityRelationship() = default;
-
         };
     }
 }
