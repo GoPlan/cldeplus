@@ -18,9 +18,11 @@ namespace Cloude {
         class EntitySourceDriver {
 
         public:
-            explicit EntitySourceDriver(const EntityMap &entityMap) : _entityMap(entityMap) { };
+            explicit EntitySourceDriver(const EntityMap &entityMap);
             EntitySourceDriver(const EntitySourceDriver &) = delete;
+            EntitySourceDriver(EntitySourceDriver &&) = delete;
             EntitySourceDriver &operator=(const EntitySourceDriver &) = delete;
+            EntitySourceDriver &operator=(EntitySourceDriver &&) = delete;
             virtual ~EntitySourceDriver() = default;
 
             virtual int Load(SPtrEntity &entity) const = 0;

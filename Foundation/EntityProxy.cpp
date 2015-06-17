@@ -22,7 +22,6 @@ namespace Cloude {
         }
 
         bool EntityProxy::isSummonable() {
-
             switch (_summonState) {
                 case EntityProxySummonState::Undefined: {
 

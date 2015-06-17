@@ -23,8 +23,10 @@ namespace Cloude {
 
             public:
                 explicit SQLiteSourceDriver(const Foundation::EntityMap &entityMap);
-                SQLiteSourceDriver(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
-                SQLiteSourceDriver &operator=(const SQLiteSourceDriver &srcSQLiteSourceDriver) = default;
+                SQLiteSourceDriver(const SQLiteSourceDriver &) = default;
+                SQLiteSourceDriver(SQLiteSourceDriver &&) = default;
+                SQLiteSourceDriver &operator=(const SQLiteSourceDriver &) = default;
+                SQLiteSourceDriver &operator=(SQLiteSourceDriver &&) = default;
                 ~SQLiteSourceDriver();
 
                 // Locals
@@ -44,8 +46,8 @@ namespace Cloude {
 
             private:
                 class SQLiteApiImpl;
-
-                std::shared_ptr<SQLiteApiImpl> _sqliteApiImpl;
+                using SPtrSQLiteApiImpl = std::shared_ptr<SQLiteApiImpl>;
+                SPtrSQLiteApiImpl _sqliteApiImpl;
 
                 Options _optionArgs;
 

@@ -13,10 +13,10 @@ namespace Cloude {
         class EntityLoader {
 
         public:
-            EntityLoader(const EntityLoader &) = default;
-            EntityLoader(EntityLoader &&) = default;
-            EntityLoader &operator=(const EntityLoader &) = default;
-            EntityLoader &operator=(EntityLoader &&) = default;
+            EntityLoader(const EntityLoader &) = delete;
+            EntityLoader(EntityLoader &&) = delete;
+            EntityLoader &operator=(const EntityLoader &) = delete;
+            EntityLoader &operator=(EntityLoader &&) = delete;
             virtual ~EntityLoader() = default;
 
             // Locals

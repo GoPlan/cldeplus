@@ -394,7 +394,10 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
     auto &columnsForKey = _entityMap.getColumnsForKey();
     auto &columnsForSelect = _entityMap.getColumnsForSelect();
 
+    auto size = columnsForKey.size() + columnsForSelect.size();
+
     SPtrColumnVector columnsVector;
+    columnsVector.reserve(size);
     columnsVector.insert(columnsVector.end(), columnsForKey.begin(), columnsForKey.end());
     columnsVector.insert(columnsVector.cend(), columnsForSelect.begin(), columnsForSelect.end());
 

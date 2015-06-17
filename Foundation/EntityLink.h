@@ -26,10 +26,10 @@ namespace Cloude {
 
         public:
             EntityLink() = default;
-            EntityLink(const EntityLink &) = default;
-            EntityLink(EntityLink &&) = default;
-            EntityLink &operator=(const EntityLink &) = default;
-            EntityLink &operator=(EntityLink &&) = default;
+            EntityLink(const EntityLink &) = delete;
+            EntityLink(EntityLink &&) = delete;
+            EntityLink &operator=(const EntityLink &) = delete;
+            EntityLink &operator=(EntityLink &&) = delete;
             ~EntityLink() = default;
 
             // Locals
