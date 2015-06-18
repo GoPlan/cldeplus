@@ -5,10 +5,13 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 
-#include "unordered_map"
+#include <memory>
+#include <stdexcept>
+#include <list>
+#include <set>
+#include <Foundation/Store/IDataRecord.h>
 #include "Field.h"
 #include "Identity.h"
-#include "Exception/cldeEntityException.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -29,6 +32,9 @@ namespace Cloude {
         };
 
         using SPtrEntity = std::shared_ptr<Entity>;
+        using SPtrEntityVector = std::vector<SPtrEntity>;
+        using SPtrEntityList = std::list<SPtrEntity>;
+        using SPtrEntitySet = std::set<SPtrEntity>;
     }
 }
 

@@ -124,7 +124,19 @@ add_library(foundation STATIC
     Foundation/Query/CriteriaIterator.h
     Foundation/Query/Helper/PredicateHelper.cpp
     Foundation/Query/Helper/PredicateHelper.h
-    Foundation/Enum/BufferSize.h Foundation/Store/IDataRecord.h Foundation/Store/IDataRecord.cpp Foundation/EntityRelationship.cpp Foundation/EntityRelationship.h Foundation/EntityLink.cpp Foundation/EntityLink.h Foundation/Link/Join.cpp Foundation/Link/Join.h Foundation/Type/Implementation/cldeBlob.cpp Foundation/Type/Implementation/cldeBlob.h)
+    Foundation/Enum/BufferSize.h
+    Foundation/Store/IDataRecord.h
+    Foundation/Store/IDataRecord.cpp
+    Foundation/EntityRelationship.cpp
+    Foundation/EntityRelationship.h
+    Foundation/EntityLink.cpp
+    Foundation/EntityLink.h
+    Foundation/Segmentation/Join.cpp
+    Foundation/Segmentation/Join.h
+    Foundation/Type/Implementation/cldeBlob.cpp
+    Foundation/Type/Implementation/cldeBlob.h
+    Foundation/Segmentation/Target.cpp
+    Foundation/Segmentation/Target.h Foundation/Segmentation/Segment.cpp Foundation/Segmentation/Segment.h)
 
 
 add_library(application STATIC

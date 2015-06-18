@@ -2,8 +2,6 @@
 // Created by LE, Duc Anh on 14/05/2015.
 //
 
-#include <memory>
-#include <stdexcept>
 #include "Entity.h"
 
 using namespace std;
