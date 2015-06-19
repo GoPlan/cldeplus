@@ -15,9 +15,9 @@ namespace Cloude {
         void Segmentation::Join::Evaluate() {
 
         }
-        const SPtrEntityProxySet &Segmentation::Join::ResultSet() const {
-            SPtr
-            return <#initializer#>;
+
+        const SPtrEntityProxyVector &Segmentation::Join::ResultSet() const {
+            return _resultStorage;
         }
     }
 }

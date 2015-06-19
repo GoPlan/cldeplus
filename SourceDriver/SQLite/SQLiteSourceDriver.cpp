@@ -3,6 +3,7 @@
 //
 
 #include <cstdlib>
+#include <stdexcept>
 #include <Foundation/Type/cldeValueFactory.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include <Foundation/Query/CriteriaComposite.h>
@@ -12,7 +13,6 @@
 #include <Foundation/Store/EntityStoreHelper.h>
 #include "Amalgamation/sqlite3.h"
 #include "SQLiteSourceDriver.h"
-#include "SQLiteSourceHelper.h"
 
 using namespace Cloude::SourceDriver::SQLite;
 
@@ -21,7 +21,6 @@ namespace Cloude {
         namespace SQLite {
 
             class Command {
-
             public:
                 Command(const std::string &query) : query(query) { };
                 Command(const Command &) = default;
@@ -33,7 +32,8 @@ namespace Cloude {
                 int prepareStatment(sqlite3 *ptrDb) {
 
                     if (ptrDb == NULL) {
-                        fprintf(stderr, "Database is not open\n");
+                        std::string msg{"sqlite3 pointer is either nullptr or NULL"};
+                        throw std::invalid_argument{msg};
                     }
 
                     int resultCode = sqlite3_prepare_v2(ptrDb, query.c_str(), -1, &_ptrStmt, NULL);
@@ -53,7 +53,6 @@ namespace Cloude {
             using cldeSqlHelper = Foundation::Query::Helper::SqlHelper;
             using cldeValueFactory = Foundation::Type::cldeValueFactory;
             using cldeValueType = Foundation::Type::cldeValueType;
-            using SPtrColumnVector = std::vector<Foundation::SPtrColumn>;
             using UPtrCommand = std::unique_ptr<Command>;
 
             class SQLiteSourceDriver::SQLiteApiImpl {
@@ -88,7 +87,7 @@ namespace Cloude {
                     return command;
                 }
 
-                int initializeParamBindBuffers(const SPtrColumnVector &columnsList,
+                int initializeParamBindBuffers(const Foundation::SPtrColumnVector &columnsList,
                                                const UPtrCommand &sptrCommand,
                                                Foundation::SPtrEntity &entity) {
 
@@ -329,7 +328,7 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Save(Foundation::SPtrEntit
     auto &columnsForKey = getEntityMap().getColumnsForKey();
     auto size = columnsForUpdate.size() + columnsForKey.size();
 
-    SPtrColumnVector columnsList;
+    Foundation::SPtrColumnVector columnsList;
     columnsList.reserve(size);
     columnsList.insert(columnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
     columnsList.insert(columnsList.end(), columnsForKey.begin(), columnsForKey.end());
@@ -364,21 +363,14 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEnt
 }
 
 Cloude::Foundation::SPtrEntityProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Select(
+        const Foundation::SPtrColumnVector &columnsForProjection,
+        const Foundation::SPtrColumnVector &columnsForKey,
         const Foundation::Query::SPtrCriteria &sptrCriteria,
         Foundation::EntityStore &entityStore) const {
 
     auto fptrConditionProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
         return std::string{"?"};
     };
-
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto &columnsForSelect = getEntityMap().getColumnsForSelect();
-    auto size = columnsForKey.size() + columnsForSelect.size();
-
-    SPtrColumnVector columnsForProjection;
-    columnsForProjection.reserve(size);
-    columnsForProjection.insert(columnsForProjection.end(), columnsForKey.begin(), columnsForKey.end());
-    columnsForProjection.insert(columnsForProjection.cend(), columnsForSelect.begin(), columnsForSelect.end());
 
     auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
                                                               columnsForProjection,
@@ -403,7 +395,7 @@ Cloude::Foundation::SPtrEntityProxyVector Cloude::SourceDriver::SQLite::SQLiteSo
                       });
 
         Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{sptrIdentity, entityStore}};
-        Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForSelect, sptrProxy);
+        Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
 
         _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
 

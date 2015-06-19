@@ -15,7 +15,7 @@ namespace Cloude {
 
             class Target : public Segment {
 
-                SPtrEntityProxySet _resultSet;
+                SPtrColumnVector _selectedColumns;
                 EntityQuery _entityQuery;
                 Query::SPtrCriteria _criteria;
 
@@ -29,7 +29,15 @@ namespace Cloude {
 
                 // Segment implementation
                 virtual void Evaluate() override;
-                virtual const SPtrEntityProxySet & ResultSet() const override;
+                virtual const SPtrEntityProxyVector &ResultSet() const override;
+
+                // Locals
+                const SPtrColumnVector &getSelectedColumns() const {
+                    return _selectedColumns;
+                }
+                void setSelectedColumns(const SPtrColumnVector &selectedColumns) {
+                    Target::_selectedColumns = selectedColumns;
+                }
             };
 
             using SPtrTarget = std::shared_ptr<Target>;

@@ -23,12 +23,12 @@ namespace Cloude {
                 virtual ~Segment() = default;
 
                 virtual void Evaluate() = 0;
-                virtual const SPtrEntityProxySet &ResultSet() const = 0;
+                virtual const SPtrEntityProxyVector &ResultSet() const = 0;
 
 
             protected:
                 Segment() = default;
-                SPtrEntityProxySet _proxySet;
+                SPtrEntityProxyVector _resultStorage;
             };
 
             using SPtrSegment = std::shared_ptr<Segment>;

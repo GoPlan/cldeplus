@@ -37,7 +37,7 @@ namespace Cloude {
 
                 // Segment implementation
                 virtual void Evaluate() override;
-                virtual const SPtrEntityProxySet &ResultSet() const override;
+                virtual const SPtrEntityProxyVector &ResultSet() const override;
             };
 
             using SPtrJoin = std::shared_ptr<Join>;

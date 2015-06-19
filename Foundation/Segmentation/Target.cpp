@@ -7,11 +7,12 @@
 namespace Cloude {
     namespace Foundation {
 
-        const SPtrEntityProxySet & Segmentation::Target::ResultSet() const {
-            return _resultSet;
+        const SPtrEntityProxyVector &Segmentation::Target::ResultSet() const {
+            return _resultStorage;
         }
-        void Segmentation::Target::Evaluate() {
 
+        void Segmentation::Target::Evaluate() {
+            _resultStorage = _entityQuery.Compose(_criteria);
         }
     }
 }

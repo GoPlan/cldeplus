@@ -15,7 +15,24 @@ namespace Cloude {
         }
 
         SPtrEntityProxyVector EntityQuery::Compose(const Query::SPtrCriteria &sptrCriteria) {
-            return _entityStore.getEntitySourceDriver().Select(sptrCriteria, _entityStore);
+
+            auto &columnsForKey = _entityStore.getEntityMap().getColumnsForKey();
+            auto &columnsForSelect = _entityStore.getEntityMap().getColumnsForSelect();
+            auto size = columnsForKey.size() + columnsForSelect.size();
+
+            SPtrColumnVector columnsForProjection;
+            columnsForProjection.reserve(size);
+            columnsForProjection.insert(columnsForProjection.end(), columnsForKey.begin(), columnsForKey.end());
+            columnsForProjection.insert(columnsForProjection.cend(), columnsForSelect.begin(), columnsForSelect.end());
+
+            return Compose(columnsForProjection, columnsForKey, sptrCriteria);
+        }
+
+        SPtrEntityProxyVector EntityQuery::Compose(const SPtrColumnVector &columnsForProjection,
+                                                   const SPtrColumnVector &columnsForKey,
+                                                   const Query::SPtrCriteria &sptrCriteria) {
+            return _entityStore.getEntitySourceDriver()
+                               .Select(columnsForProjection, columnsForKey, sptrCriteria, _entityStore);
         }
 
         SPtrEntityProxy EntityQuery::ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria) {
