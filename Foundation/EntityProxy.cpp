@@ -8,35 +8,36 @@
 namespace Cloude {
     namespace Foundation {
 
-        EntityProxy::EntityProxy(SPtrIdentity &identity, EntityStore &entityStore)
-                : Entity(identity), _entityStore(entityStore) {
-            //
-        }
-
-        /// Summon solid entity from proxy.
+        /// Summon solid entity from proxy from a store
         /// If Identity can not be generated from selected columns, function throws an cldeEntityException.
         /// IsSummonable() should be check prior to this function call.
-        SPtrEntity EntityProxy::Summon() {
+        SPtrEntity EntityProxy::Summon(EntityStore &entityStore) const {
 
-            if (!isSummonable()) {
+            if (!isIdentifiableInStore(entityStore)) {
                 std::string msg{"Proxy is not summonable. See if selected columns are sufficient for Identity."};
                 throw Exception::cldeEntityException{msg};
             }
 
-            auto entity = _entityStore.Get(getIdentity());
+            Foundation::SPtrIdentity sptrIdentity{new Foundation::Identity{}};
+
+            std::for_each(entityStore.getEntityMap().getColumnsForKey().begin(),
+                          entityStore.getEntityMap().getColumnsForKey().cend(),
+                          [&sptrIdentity, this](const Foundation::SPtrColumn &sptrColumn) {
+                              auto &field = getField(sptrColumn->getName());
+                              sptrIdentity->setField(field);
+                          });
+
+            auto entity = entityStore.Get(sptrIdentity);
 
             return entity;
         }
 
-        EntityStore &EntityProxy::getEntityStore() const {
-            return _entityStore;
-        }
+        bool EntityProxy::isIdentifiableInStore(const EntityStore &entityStore) const {
 
-        bool EntityProxy::isSummonable() {
             switch (_summonState) {
                 case EntityProxySummonState::Undefined: {
 
-                    auto &columnsForKey = _entityStore.getEntityMap().getColumnsForKey();
+                    auto &columnsForKey = entityStore.getEntityMap().getColumnsForKey();
 
                     for (auto &column : columnsForKey) {
                         if (getField(column->getName())->isNull())
@@ -45,7 +46,7 @@ namespace Cloude {
 
                     _summonState = EntityProxySummonState::Yes;
 
-                    return isSummonable();
+                    return isIdentifiableInStore(entityStore);
                 };
                 case EntityProxySummonState::Yes:
                     return true;

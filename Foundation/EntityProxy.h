@@ -12,7 +12,7 @@
 namespace Cloude {
     namespace Foundation {
 
-        class EntityProxy : public Entity {
+        class EntityProxy : public Store::IDataRecord {
 
             enum class EntityProxySummonState {
                 Undefined,
@@ -20,11 +20,10 @@ namespace Cloude {
                 No
             };
 
-            EntityStore &_entityStore;
-            EntityProxySummonState _summonState{EntityProxySummonState::Undefined};
+            mutable EntityProxySummonState _summonState{EntityProxySummonState::Undefined};
 
         public:
-            EntityProxy(SPtrIdentity &identity, EntityStore &entityStore);
+            EntityProxy() = default;
             EntityProxy(const EntityProxy &) = default;
             EntityProxy(EntityProxy &&) = default;
             EntityProxy &operator=(const EntityProxy &) = default;
@@ -32,9 +31,8 @@ namespace Cloude {
             ~EntityProxy() = default;
 
             // Locals
-            bool isSummonable();
-            SPtrEntity Summon();
-            EntityStore &getEntityStore() const;
+            SPtrEntity Summon(EntityStore &entityStore) const;
+            bool isIdentifiableInStore(const EntityStore &entityStore) const;
         };
 
         using SPtrEntityProxy = std::shared_ptr<EntityProxy>;

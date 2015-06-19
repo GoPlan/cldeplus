@@ -219,6 +219,46 @@ namespace Cloude {
                     return 1;
                 }
 
+                int bindResultToFields(const Foundation::SPtrEntityProxy &proxy,
+                                       const Foundation::SPtrColumnVector &columnsVector,
+                                       const UPtrCommand &uptrCommand) const {
+
+                    int index = 0;
+
+                    for_each(columnsVector.cbegin(), columnsVector.cend(),
+                             [&proxy, &uptrCommand, &index](const Cloude::Foundation::SPtrColumn &column) {
+
+                                 if (sqlite3_column_type(uptrCommand->_ptrStmt, index) == SQLITE_NULL) {
+                                     ++index;
+                                     return;
+                                 }
+
+                                 auto &sptrField = proxy->getField(column->getName());
+
+                                 switch (column->getDataType()) {
+                                     case Cloude::Foundation::Type::cldeValueType::Int64: {
+                                         auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
+                                         sptrField->setValue(cldeValueFactory::CreateInt64(value));
+                                         break;
+                                     };
+
+                                     case Cloude::Foundation::Type::cldeValueType::Varchar: {
+                                         auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
+                                         auto cstr = reinterpret_cast<const char *>(value);
+                                         sptrField->setValue(cldeValueFactory::CreateVarchar(cstr));
+                                         break;
+                                     };
+
+                                     default:
+                                         ++index;
+                                         std::string msg{"This type is not yet supported"};
+                                         throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
+                                 }
+                             });
+
+                    return 1;
+                }
+
                 std::string &connectionString;
                 sqlite3 *_ptrSqlite3 = nullptr;
             };
@@ -364,9 +404,7 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEnt
 
 Cloude::Foundation::SPtrEntityProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Select(
         const Foundation::SPtrColumnVector &columnsForProjection,
-        const Foundation::SPtrColumnVector &columnsForKey,
-        const Foundation::Query::SPtrCriteria &sptrCriteria,
-        Foundation::EntityStore &entityStore) const {
+        const Foundation::Query::SPtrCriteria &sptrCriteria) const {
 
     auto fptrConditionProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
         return std::string{"?"};
@@ -387,14 +425,7 @@ Cloude::Foundation::SPtrEntityProxyVector Cloude::SourceDriver::SQLite::SQLiteSo
 
     while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
 
-        Foundation::SPtrIdentity sptrIdentity{new Foundation::Identity{}};
-
-        std::for_each(columnsForKey.begin(), columnsForKey.cend(),
-                      [&sptrIdentity](const Foundation::SPtrColumn &sptrColumn) {
-                          sptrIdentity->setField(new Foundation::Field{sptrColumn});
-                      });
-
-        Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{sptrIdentity, entityStore}};
+        Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
         Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
 
         _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);

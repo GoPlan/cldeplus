@@ -15,9 +15,15 @@ namespace Cloude {
 
             class Target : public Segment {
 
-                SPtrColumnVector _selectedColumns;
+                using SPtrDisplayColumnPair = std::pair<std::string, Foundation::SPtrColumn>;
+                using SPtrDisplayColumnPairVector= std::vector<SPtrDisplayColumnPair>;
+
+                SPtrDisplayColumnPairVector _displayColumns;
                 EntityQuery _entityQuery;
                 Query::SPtrCriteria _criteria;
+
+                // TODO: Review Criteria copy/assignment ctors
+                // TODO: Review EntityQuery copy/assignment ctors
 
             public:
                 Target() = default;
@@ -32,11 +38,15 @@ namespace Cloude {
                 virtual const SPtrEntityProxyVector &ResultSet() const override;
 
                 // Locals
-                const SPtrColumnVector &getSelectedColumns() const {
-                    return _selectedColumns;
+                void AddDisplayColumn(const std::pair<std::string, Foundation::SPtrColumn> &column);
+                void ClearDisplayColumns();
+
+                // Accessors & Mutators
+                void setEntityQuery(const EntityQuery &entityQuery) {
+                    _entityQuery = entityQuery;
                 }
-                void setSelectedColumns(const SPtrColumnVector &selectedColumns) {
-                    Target::_selectedColumns = selectedColumns;
+                void setCriteria(const Query::SPtrCriteria &criteria) {
+                    _criteria = criteria;
                 }
             };
 

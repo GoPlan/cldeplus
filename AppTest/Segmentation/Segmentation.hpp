@@ -1,0 +1,8 @@
+//
+// Created by LE, Duc Anh on 6/19/15.
+//
+
+#ifndef CLOUD_E_PLUS_SEGMENTATION_HPP
+#define CLOUD_E_PLUS_SEGMENTATION_HPP
+
+#endif //CLOUD_E_PLUS_SEGMENTATION_HPP

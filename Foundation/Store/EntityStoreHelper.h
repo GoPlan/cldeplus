@@ -16,9 +16,18 @@ namespace Cloude {
             class EntityStoreHelper {
 
             public:
+                EntityStoreHelper() = delete;
+                EntityStoreHelper(const EntityStoreHelper &) = delete;
+                EntityStoreHelper(EntityStoreHelper &&) = delete;
+                EntityStoreHelper &operator=(const EntityStoreHelper &) = delete;
+                EntityStoreHelper &operator=(EntityStoreHelper &&) = delete;
+                ~EntityStoreHelper() = delete;
+
                 static void GenerateFieldsFromColumns(const SPtrColumnVector &columnVector,
-                                                      const SPtrEntity &entity,
+                                                      const Store::SPtrDataRecord &dataRecord,
                                                       bool checkIfFieldExists = true);
+
+
             };
         }
     }

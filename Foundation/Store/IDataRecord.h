@@ -14,11 +14,11 @@ namespace Cloude {
             class IDataRecord : public Common::IPrintable {
 
             public:
-                virtual ~IDataRecord() = default;
                 IDataRecord(const IDataRecord &) = default;
                 IDataRecord(IDataRecord &&) = default;
                 IDataRecord &operator=(const IDataRecord &) = default;
                 IDataRecord &operator=(IDataRecord &&) = default;
+                virtual ~IDataRecord() = default;
 
                 virtual void setField(const SPtrField &field);
                 virtual void setField(Field *ptrField);
@@ -46,7 +46,10 @@ namespace Cloude {
             protected:
                 IDataRecord() = default;
                 SPtrFieldMap _fieldMap;
+
             };
+
+            using SPtrDataRecord = std::shared_ptr<IDataRecord>;
         }
     }
 }

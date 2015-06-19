@@ -33,8 +33,8 @@ namespace Cloude {
                 Application::Mapper::EnquiryMap enquiryMap;
                 Application::Mapper::EnquiryLoader enquiryLoader;
                 SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
-                EntityStore entityStore{enquiryMap, enquiryLoader, sqliteSourceDriver};
-                EntityQuery entityQuery{entityStore};
+                EntityStore enquiryStore{enquiryMap, enquiryLoader, sqliteSourceDriver};
+                EntityQuery enquiryQuery{enquiryStore};
 
                 auto &options = sqliteSourceDriver.getOptionArgs();
                 options.ConnectionString = "../ex1.db";
@@ -59,19 +59,23 @@ namespace Cloude {
                 std::cout << compound.first << std::endl;
 
                 {
-                    auto proxies = entityQuery.Compose(sptrOR__);
+                    auto proxies = enquiryQuery.Compose(sptrOR__);
 
                     for (auto proxy : proxies) {
-                        auto sptrEntity = proxy->Summon();
+
+                        auto sptrEntity = proxy->Summon(enquiryStore);
+
+                        ASSERT_TRUE(sptrEntity.get() != 0);
                         std::cout << proxy->CopyToString() << endl;
                         std::cout << sptrEntity->CopyToString() << endl;
                     }
                 }
 
                 {
-                    auto proxy = entityQuery.ComposeGetFirst(sptrOR__);
-                    auto sptrEntity = proxy->Summon();
+                    auto proxy = enquiryQuery.ComposeGetFirst(sptrOR__);
+                    auto sptrEntity = proxy->Summon(enquiryStore);
 
+                    ASSERT_TRUE(sptrEntity.get() != 0);
                     std::cout << proxy->CopyToString() << endl;
                     std::cout << sptrEntity->CopyToString() << endl;
                 }

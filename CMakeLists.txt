@@ -148,7 +148,7 @@ add_library(application STATIC
     Application/Mapper/EnquiryMap.h
     Application/Mapper/EnquiryLoader.cpp
     Application/Mapper/EnquiryLoader.h
-    )
+    AppTest/Segmentation/Segmentation.hpp)
 
 
 add_library(sourcedriver STATIC

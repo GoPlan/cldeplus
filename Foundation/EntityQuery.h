@@ -27,10 +27,9 @@ namespace Cloude {
 
             // Locals
             virtual SPtrEntityProxyVector Compose(const Query::SPtrCriteria &sptrCriteria);
-
-            virtual SPtrEntityProxyVector Compose(const SPtrColumnVector &columnsForProjection,
-                                                  const SPtrColumnVector &columnsForKey,
-                                                  const Query::SPtrCriteria &sptrCriteria);
+            virtual SPtrEntityProxyVector Compose(
+                    const SPtrColumnVector &columnsForProjection,
+                    const Query::SPtrCriteria &sptrCriteria);
 
             virtual SPtrEntityProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);
         };
