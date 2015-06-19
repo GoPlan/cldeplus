@@ -14,7 +14,9 @@ namespace Cloude {
         namespace Segmentation {
 
             class Target : public Segment {
-                const EntityQuery &_entityQuery;
+
+                SPtrEntityProxySet _resultSet;
+                EntityQuery _entityQuery;
                 Query::SPtrCriteria _criteria;
 
             public:
@@ -24,6 +26,10 @@ namespace Cloude {
                 Target &operator=(const Target &) = default;
                 Target &operator=(Target &&) = default;
                 virtual ~Target() = default;
+
+                // Segment implementation
+                virtual void Evaluate() override;
+                virtual const SPtrEntityProxySet & ResultSet() const override;
             };
 
             using SPtrTarget = std::shared_ptr<Target>;

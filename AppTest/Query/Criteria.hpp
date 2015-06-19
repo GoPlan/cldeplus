@@ -34,6 +34,7 @@ namespace Cloude {
                 Application::Mapper::EnquiryLoader enquiryLoader;
                 SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
                 EntityStore entityStore{enquiryMap, enquiryLoader, sqliteSourceDriver};
+                EntityQuery entityQuery{entityStore};
 
                 auto &options = sqliteSourceDriver.getOptionArgs();
                 options.ConnectionString = "../ex1.db";
@@ -48,18 +49,29 @@ namespace Cloude {
                 SPtrCriteria sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
                 SPtrCriteria sptrOR__(new Comparative::Or(sptrOR01, sptrOR02));
 
-                auto fpCondition = [](const SPtrColumn &column, const int &index) -> std::string {
+                auto fptrCondition = [](const SPtrColumn &column, const int &index) -> std::string {
                     return std::string{"?"};
                 };
 
-                auto compound = Helper::SqlHelper::CreateSelectPreparedQuery(enquiryMap, sptrOR__, fpCondition);
+                auto compound = Helper::SqlHelper::CreateSelectPreparedQuery
+                        (enquiryMap.getTableName(), enquiryMap.getColumnsForSelect(), sptrOR__, fptrCondition);
 
                 std::cout << compound.first << std::endl;
 
-                auto proxies = sqliteSourceDriver.Select(sptrOR__, entityStore);
+                {
+                    auto proxies = entityQuery.Compose(sptrOR__);
 
-                for (auto proxy : proxies) {
+                    for (auto proxy : proxies) {
+                        auto sptrEntity = proxy->Summon();
+                        std::cout << proxy->CopyToString() << endl;
+                        std::cout << sptrEntity->CopyToString() << endl;
+                    }
+                }
+
+                {
+                    auto proxy = entityQuery.ComposeGetFirst(sptrOR__);
                     auto sptrEntity = proxy->Summon();
+
                     std::cout << proxy->CopyToString() << endl;
                     std::cout << sptrEntity->CopyToString() << endl;
                 }

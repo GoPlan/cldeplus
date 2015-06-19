@@ -122,9 +122,9 @@ add_library(foundation STATIC
     Foundation/Query/CriteriaComposite.h
     Foundation/Query/CriteriaIterator.cpp
     Foundation/Query/CriteriaIterator.h
-    Foundation/Query/Helper/PredicateHelper.cpp
-    Foundation/Query/Helper/PredicateHelper.h
-    Foundation/Enum/BufferSize.h
+    Foundation/Query/Helper/CriteriaHelper.cpp
+    Foundation/Query/Helper/CriteriaHelper.h
+    Foundation/Enum/CommonBufferSize.h
     Foundation/Store/IDataRecord.h
     Foundation/Store/IDataRecord.cpp
     Foundation/EntityRelationship.cpp
@@ -192,7 +192,7 @@ add_library(apptest STATIC
 #    AppTest/Store/StockGroupPostgreStore.cpp
 #    AppTest/Store/StockGroupPostgreStore.h
 #    AppTest/Store/Test/PostgreStore.hpp
-    AppTest/Query/Predicate.hpp
+    AppTest/Query/Criteria.hpp
     )
 
 

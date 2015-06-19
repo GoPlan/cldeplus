@@ -19,6 +19,7 @@ namespace Cloude {
         class EntitySourceDriver;
 
         class EntityStore {
+
             const EntityMap &_entityMap;
             const EntityLoader &_entityLoader;
             const EntitySourceDriver &_entitySourceDriver;

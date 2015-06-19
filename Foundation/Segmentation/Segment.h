@@ -13,7 +13,7 @@ namespace Cloude {
     namespace Foundation {
         namespace Segmentation {
 
-            class Segment : public Common::IPrintable {
+            class Segment {
 
             public:
                 Segment(const Segment &) = default;
@@ -22,13 +22,13 @@ namespace Cloude {
                 Segment &operator=(Segment &&) = default;
                 virtual ~Segment() = default;
 
-                virtual const SPtrEntitySet ResultSet() const;
                 virtual void Evaluate() = 0;
+                virtual const SPtrEntityProxySet &ResultSet() const = 0;
+
 
             protected:
                 Segment() = default;
-                SPtrEntitySet _resultSet;
-
+                SPtrEntityProxySet _proxySet;
             };
 
             using SPtrSegment = std::shared_ptr<Segment>;

@@ -7,7 +7,7 @@
 
 namespace Cloude {
     namespace Foundation {
-        enum BufferSize {
+        enum CommonBufferSize {
             ONE = 1,
             TWO = 2,
             EIGHT = 8,

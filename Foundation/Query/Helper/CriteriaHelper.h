@@ -7,6 +7,7 @@
 
 #include <string>
 #include <functional>
+#include <Foundation/Query/Criteria.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -15,26 +16,24 @@ namespace Cloude {
                 class IPredicateFormatter;
             }
 
-            class Criteria;
-
             namespace Helper {
 
-                class PredicateHelper {
+                class CriteriaHelper {
+                    CriteriaHelper() = delete;
+                    CriteriaHelper(const CriteriaHelper &) = delete;
+                    CriteriaHelper(CriteriaHelper &&) = delete;
+                    CriteriaHelper &operator=(const CriteriaHelper &) = delete;
+                    CriteriaHelper &operator=(CriteriaHelper &&) = delete;
+                    virtual ~CriteriaHelper() = delete;
 
                 public:
-                    using SPtrPredicate = std::shared_ptr<Query::Criteria>;
-                    using FPtrProcessor = std::function<std::string(const SPtrPredicate &)>;
+                    using FPtrProcessor = std::function<std::string(const SPtrCriteria &)>;
 
                 public:
-                    PredicateHelper() = delete;
-                    virtual ~PredicateHelper() = delete;
-                    PredicateHelper(const PredicateHelper &rhs) = delete;
-                    PredicateHelper &operator=(const PredicateHelper &rhs) = delete;
-
-                    static std::string ToStringCopy(const SPtrPredicate &predicate,
+                    static std::string ToStringCopy(const SPtrCriteria &sptrCriteria,
                                                     const Contract::IPredicateFormatter &formatter);
 
-                    static std::string ToStringCopy(const SPtrPredicate &predicate,
+                    static std::string ToStringCopy(const SPtrCriteria &sptrCriteria,
                                                     const FPtrProcessor fptrProcessor);
 
                 };

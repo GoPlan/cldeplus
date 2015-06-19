@@ -25,8 +25,8 @@ namespace Cloude {
             EntityQuery &operator=(EntityQuery &&) = default;
             virtual ~EntityQuery() = default;
 
-            virtual SPtrProxyVector Compose(const Query::SPtrCriteria &sptrCriteria);
-            virtual SPtrProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);
+            virtual SPtrEntityProxyVector Compose(const Query::SPtrCriteria &sptrCriteria);
+            virtual SPtrEntityProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);
         };
     }
 }

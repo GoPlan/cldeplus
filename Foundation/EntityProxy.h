@@ -13,6 +13,7 @@ namespace Cloude {
     namespace Foundation {
 
         class EntityProxy : public Entity {
+
             enum class EntityProxySummonState {
                 Undefined,
                 Yes,
@@ -36,8 +37,10 @@ namespace Cloude {
             EntityStore &getEntityStore() const;
         };
 
-        using SPtrProxy = std::shared_ptr<EntityProxy>;
-        using SPtrProxyVector = std::vector<SPtrProxy>;
+        using SPtrEntityProxy = std::shared_ptr<EntityProxy>;
+        using SPtrEntityProxyVector = std::vector<SPtrEntityProxy>;
+        using SPtrEntityProxySet = std::set<SPtrEntityProxy>;
+        using SPtrEntityProxyList = std::list<SPtrEntityProxy>;
     }
 }
 

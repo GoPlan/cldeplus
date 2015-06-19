@@ -28,9 +28,7 @@ namespace Cloude {
             EntityMap &operator=(EntityMap &&) = delete;
             virtual ~EntityMap() = default;
 
-            const std::string &TableName() const {
-                return TableNameCore();
-            }
+            const std::string &getTableName() const { return TableNameCore(); }
 
             const SPtrColumnVector &getColumnsForKey() const { return _columnsForKey; }
             const SPtrColumnVector &getColumnsForGet() const { return _columnsForGet; }

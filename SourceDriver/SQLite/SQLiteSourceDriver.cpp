@@ -8,7 +8,7 @@
 #include <Foundation/Query/CriteriaComposite.h>
 #include <Foundation/Query/Comparative.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
-#include <Foundation/Query/Helper/PredicateHelper.h>
+#include <Foundation/Query/Helper/CriteriaHelper.h>
 #include <Foundation/Store/EntityStoreHelper.h>
 #include "Amalgamation/sqlite3.h"
 #include "SQLiteSourceDriver.h"
@@ -239,18 +239,38 @@ Cloude::SourceDriver::SQLite::SQLiteSourceDriver::~SQLiteSourceDriver() {
 
 void Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Init() {
 
-    auto fpValue = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
+    auto fptrValueProcessor = [](const Foundation::SPtrColumn &column, const int &index)
+            -> std::string {
         return std::string("?");
     };
 
-    auto fpCondition = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
+    auto fptrConditionProcessor = [](const Foundation::SPtrColumn &column, const int &index)
+            -> std::string {
         return std::string(column->getDatasourceName() + " = " + "?");
     };
 
-    _getStatement = cldeSqlHelper::CreateGetPreparedQuery(getEntityMap(), fpCondition);
-    _insertStatement = cldeSqlHelper::CreateInsertPreparedQuery(getEntityMap(), fpValue);
-    _updateStatement = cldeSqlHelper::CreateUpdatePreparedQuery(getEntityMap(), fpCondition);
-    _deleteStatement = cldeSqlHelper::CreateDeletePreparedQuery(getEntityMap(), fpCondition);
+    auto &sourceName = getEntityMap().getTableName();
+    auto &columnsForKey = getEntityMap().getColumnsForKey();
+    auto &columnsForGet = getEntityMap().getColumnsForGet();
+    auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
+
+    _getStatement = cldeSqlHelper::CreateGetPreparedQuery(sourceName,
+                                                          columnsForGet,
+                                                          columnsForKey,
+                                                          fptrConditionProcessor);
+
+    _insertStatement = cldeSqlHelper::CreateInsertPreparedQuery(sourceName,
+                                                                columnsForKey,
+                                                                fptrValueProcessor);
+
+    _updateStatement = cldeSqlHelper::CreateUpdatePreparedQuery(sourceName,
+                                                                columnsForUpdate,
+                                                                columnsForKey,
+                                                                fptrConditionProcessor);
+
+    _deleteStatement = cldeSqlHelper::CreateDeletePreparedQuery(sourceName,
+                                                                columnsForKey,
+                                                                fptrConditionProcessor);
 }
 
 void Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Connect() {
@@ -268,8 +288,8 @@ void Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Disconnect() {
 
 int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Load(Foundation::SPtrEntity &entity) const {
 
-    auto const &columnsForGet = getEntityMap().getColumnsForGet();
-    auto const &columnsForKey = getEntityMap().getColumnsForKey();
+    auto &columnsForGet = getEntityMap().getColumnsForGet();
+    auto &columnsForKey = getEntityMap().getColumnsForKey();
     auto uptrCommand = _sqliteApiImpl->createCommand(_getStatement);
 
     _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
@@ -307,8 +327,10 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Save(Foundation::SPtrEntit
 
     auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
     auto &columnsForKey = getEntityMap().getColumnsForKey();
+    auto size = columnsForUpdate.size() + columnsForKey.size();
 
     SPtrColumnVector columnsList;
+    columnsList.reserve(size);
     columnsList.insert(columnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
     columnsList.insert(columnsList.end(), columnsForKey.begin(), columnsForKey.end());
 
@@ -327,7 +349,7 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Save(Foundation::SPtrEntit
 
 int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEntity &entity) const {
 
-    auto const &columnsForKey = getEntityMap().getColumnsForKey();
+    auto &columnsForKey = getEntityMap().getColumnsForKey();
     auto uptrCommand = _sqliteApiImpl->createCommand(_deleteStatement);
 
     _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
@@ -341,30 +363,33 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEnt
     return 1;
 }
 
-Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Select(
+Cloude::Foundation::SPtrEntityProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Select(
         const Foundation::Query::SPtrCriteria &sptrCriteria,
         Foundation::EntityStore &entityStore) const {
 
-    auto fpCondition = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
+    auto fptrConditionProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
         return std::string{"?"};
     };
 
     auto &columnsForKey = getEntityMap().getColumnsForKey();
     auto &columnsForSelect = getEntityMap().getColumnsForSelect();
-
     auto size = columnsForKey.size() + columnsForSelect.size();
 
-    SPtrColumnVector columnsVector;
-    columnsVector.reserve(size);
-    columnsVector.insert(columnsVector.end(), columnsForKey.begin(), columnsForKey.end());
-    columnsVector.insert(columnsVector.cend(), columnsForSelect.begin(), columnsForSelect.end());
+    SPtrColumnVector columnsForProjection;
+    columnsForProjection.reserve(size);
+    columnsForProjection.insert(columnsForProjection.end(), columnsForKey.begin(), columnsForKey.end());
+    columnsForProjection.insert(columnsForProjection.cend(), columnsForSelect.begin(), columnsForSelect.end());
 
-    auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(getEntityMap(), sptrCriteria, fpCondition);
+    auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
+                                                              columnsForProjection,
+                                                              sptrCriteria,
+                                                              fptrConditionProcessor);
+
     auto uptrCommand = _sqliteApiImpl->createCommand(tuplQuery.first);
 
     _sqliteApiImpl->initializeParamBindBuffers(tuplQuery.second, uptrCommand);
 
-    Foundation::SPtrProxyVector proxies;
+    Foundation::SPtrEntityProxyVector proxies;
 
     int resultCode;
 
@@ -377,10 +402,10 @@ Cloude::Foundation::SPtrProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDr
                           sptrIdentity->setField(new Foundation::Field{sptrColumn});
                       });
 
-        Foundation::SPtrProxy sptrProxy{new Foundation::EntityProxy{sptrIdentity, entityStore}};
+        Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{sptrIdentity, entityStore}};
         Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForSelect, sptrProxy);
 
-        _sqliteApiImpl->bindResultToFields(sptrProxy, columnsVector, uptrCommand);
+        _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
 
         proxies.push_back(sptrProxy);
     }

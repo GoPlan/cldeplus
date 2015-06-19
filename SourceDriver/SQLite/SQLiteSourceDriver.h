@@ -40,8 +40,9 @@ namespace Cloude {
                 int Save(Foundation::SPtrEntity &entity) const override;
                 int Delete(Foundation::SPtrEntity &entity) const override;
 
-                Foundation::SPtrProxyVector Select(const Foundation::Query::SPtrCriteria &sptrCriteria,
-                                                   Foundation::EntityStore &entityStore) const override;
+                Foundation::SPtrEntityProxyVector
+                        Select(const Foundation::Query::SPtrCriteria &sptrCriteria,
+                               Foundation::EntityStore &entityStore) const override;
 
             private:
                 class SQLiteApiImpl;

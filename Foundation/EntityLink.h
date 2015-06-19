@@ -23,6 +23,7 @@ namespace Cloude {
         using SPtrEntityLink = std::shared_ptr<EntityLink>;
 
         class EntityLink {
+
             SPtrColumnToColumnMap _columnMap;
             EntityLinkType _linkType;
 

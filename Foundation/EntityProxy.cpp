@@ -2,6 +2,7 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
+#include <Foundation/Exception/cldeEntityException.h>
 #include "EntityProxy.h"
 
 namespace Cloude {
@@ -12,8 +13,18 @@ namespace Cloude {
             //
         }
 
+        /// Summon solid entity from proxy.
+        /// If Identity can not be generated from selected columns, function throws an cldeEntityException.
+        /// IsSummonable() should be check prior to this function call.
         SPtrEntity EntityProxy::Summon() {
+
+            if (!isSummonable()) {
+                std::string msg{"Proxy is not summonable. See if selected columns are sufficient for Identity."};
+                throw Exception::cldeEntityException{msg};
+            }
+
             auto entity = _entityStore.Get(getIdentity());
+
             return entity;
         }
 

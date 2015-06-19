@@ -15,15 +15,9 @@ namespace Cloude {
         void Segmentation::Join::Evaluate() {
 
         }
-
-        const std::string Segmentation::Join::CopyToString() const {
-            return __1::basic_string < char, char_traits < char >, allocator < char >> ();
-        }
-        const std::string &Segmentation::Join::ToString() const {
+        const SPtrEntityProxySet &Segmentation::Join::ResultSet() const {
+            SPtr
             return <#initializer#>;
-        }
-        const char *Segmentation::Join::ToCString() const {
-            return nullptr;
         }
     }
 }

@@ -4,6 +4,16 @@
 
 #include "Target.h"
 
+namespace Cloude {
+    namespace Foundation {
 
+        const SPtrEntityProxySet & Segmentation::Target::ResultSet() const {
+            return _resultSet;
+        }
+        void Segmentation::Target::Evaluate() {
+
+        }
+    }
+}
 
 

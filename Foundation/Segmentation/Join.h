@@ -14,18 +14,18 @@ namespace Cloude {
     namespace Foundation {
         namespace Segmentation {
 
-            class Join : public Segment {
-                JoinType _joinType;
-                const SPtrTarget &_lhs;
-                const SPtrTarget &_rhs;
+            enum class JoinType {
+                Inner,
+                Left,
+                Right,
+                Cross
+            };
 
-            public:
-                enum class JoinType {
-                    Inner,
-                    Left,
-                    Right,
-                    Cross
-                };
+            class Join : public Segment {
+
+                JoinType _joinType;
+                SPtrTarget _rhs;
+                SPtrTarget _lhs;
 
             public:
                 Join(JoinType joinType, const SPtrTarget &lhs, const SPtrTarget &rhs);
@@ -35,20 +35,14 @@ namespace Cloude {
                 Join &operator=(Join &&) = default;
                 virtual ~Join() = default;
 
-                // Segment
+                // Segment implementation
                 virtual void Evaluate() override;
-
-                // IPrintable
-                virtual const std::string CopyToString() const override;
-                virtual const std::string &ToString() const override;
-                virtual const char *ToCString() const override;
-
+                virtual const SPtrEntityProxySet &ResultSet() const override;
             };
 
             using SPtrJoin = std::shared_ptr<Join>;
         }
     }
 }
-
 
 #endif //CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_JOIN_H

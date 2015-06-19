@@ -8,6 +8,7 @@
 #include <memory>
 #include <vector>
 #include <functional>
+#include <Foundation/Query/Criteria.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -26,25 +27,39 @@ namespace Cloude {
             namespace Helper {
 
                 class SqlHelper {
+                    SqlHelper() = delete;
+                    SqlHelper(const SqlHelper &) = delete;
+                    SqlHelper(SqlHelper &&) = delete;
+                    SqlHelper &operator=(const SqlHelper &) = delete;
+                    SqlHelper &operator=(SqlHelper &&) = delete;
 
                 public:
-                    using EntityMap = Foundation::EntityMap;
-                    using Criteria = Foundation::Query::Criteria;
-                    using SPtrCriteria = std::shared_ptr<Criteria>;
-                    using SPtrColumn = std::shared_ptr<Foundation::Column>;
-                    using SPtrValue = std::shared_ptr<Foundation::Type::cldeValue>;
                     using FPtrParamProcessor = std::function<std::string(const SPtrColumn &column, const int &index)>;
 
                 public:
-                    static std::string CreateGetPreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
-                    static std::string CreateInsertPreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
-                    static std::string CreateUpdatePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
-                    static std::string CreateDeletePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr);
+                    static std::string CreateGetPreparedQuery(const std::string &strSourceName,
+                                                              const SPtrColumnVector &columnsForProjection,
+                                                              const SPtrColumnVector &columnsForKey,
+                                                              FPtrParamProcessor fptrProcessor);
 
-                    static std::pair<std::string, std::vector<SPtrCriteria>>
-                            CreateSelectPreparedQuery(const EntityMap &entityMap,
-                                                      const SPtrCriteria &sptrCriteria,
-                                                      const FPtrParamProcessor fptr);
+                    static std::string CreateInsertPreparedQuery(const std::string &strSourceName,
+                                                                 const SPtrColumnVector &columnsForValue,
+                                                                 FPtrParamProcessor fptrProcessor);
+
+                    static std::string CreateUpdatePreparedQuery(const std::string &strSourceName,
+                                                                 const SPtrColumnVector &columnsForValue,
+                                                                 const SPtrColumnVector &conditionalColumns,
+                                                                 FPtrParamProcessor fptrProcessor);
+
+                    static std::string CreateDeletePreparedQuery(const std::string &strSourceName,
+                                                                 const SPtrColumnVector &conditionalColumns,
+                                                                 FPtrParamProcessor fptrProcessor);
+
+                    static std::pair<std::string, std::vector<SPtrCriteria>> CreateSelectPreparedQuery
+                            (const std::string &strSourceName,
+                             const SPtrColumnVector &columnsForProjection,
+                             const SPtrCriteria &sptrCriteria,
+                             const FPtrParamProcessor fptrProcessor);
                 };
             }
         }

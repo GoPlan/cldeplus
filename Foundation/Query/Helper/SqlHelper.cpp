@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 5/26/15.
 //
 
-#include <Foundation/Enum/BufferSize.h>
+#include <Foundation/Enum/CommonBufferSize.h>
 #include <Foundation/EntityMap.h>
 #include <Foundation/Query/Contract/IPredicateFormatter.h>
 #include <Foundation/Query/Comparative.h>
 #include "../CriteriaIterator.h"
 
-#include "PredicateHelper.h"
+#include "CriteriaHelper.h"
 #include "SqlHelper.h"
 
 namespace Cloude {
@@ -16,16 +16,14 @@ namespace Cloude {
         namespace Query {
             namespace Helper {
 
-                std::string SqlHelper::CreateGetPreparedQuery(const EntityMap &entityMap,
-                                                              FPtrParamProcessor fptr) {
+                std::string SqlHelper::CreateGetPreparedQuery(const std::string &strSourceName,
+                                                              const SPtrColumnVector &columnsForProjection,
+                                                              const SPtrColumnVector &columnsForKey,
+                                                              FPtrParamProcessor fptrProcessor) {
 
-                    auto const &columnsForGet = entityMap.getColumnsForGet();
-                    auto const &columnsForKey = entityMap.getColumnsForKey();
-
-                    std::string strTableName = entityMap.TableName();
                     std::string strColumns;
 
-                    std::for_each(columnsForGet.cbegin(), columnsForGet.cend(),
+                    std::for_each(columnsForProjection.cbegin(), columnsForProjection.cend(),
                                   [&strColumns](const std::shared_ptr<Column> &p) {
                                       if (strColumns.length() != 0)
                                           strColumns += ", ";
@@ -46,7 +44,7 @@ namespace Cloude {
                                           strCondition += " AND ";
                                       }
 
-                                      strCondition += fptr(column, index);
+                                      strCondition += fptrProcessor(column, index);
 
                                       ++index;
                                   });
@@ -54,16 +52,15 @@ namespace Cloude {
                     std::string strQuery;
 
                     strQuery += " SELECT " + strColumns;
-                    strQuery += " FROM " + strTableName;
+                    strQuery += " FROM " + strSourceName;
                     strQuery += " WHERE " + strCondition;
 
                     return strQuery;
                 }
 
-                std::string SqlHelper::CreateInsertPreparedQuery(const EntityMap &entityMap,
-                                                                 FPtrParamProcessor fptr) {
-
-                    auto const &columnsForKey = entityMap.getColumnsForKey();
+                std::string SqlHelper::CreateInsertPreparedQuery(const std::string &strSourceName,
+                                                                 const SPtrColumnVector &columnsForValue,
+                                                                 FPtrParamProcessor fptrProcessor) {
 
                     std::string strColumns;
                     std::string strCondition;
@@ -71,8 +68,8 @@ namespace Cloude {
 
                     int index = 0;
 
-                    std::for_each(columnsForKey.cbegin(),
-                                  columnsForKey.cend(),
+                    std::for_each(columnsForValue.cbegin(),
+                                  columnsForValue.cend(),
                                   [&](const std::shared_ptr<Column> &column) -> void {
 
                                       if (index != 0) {
@@ -81,21 +78,21 @@ namespace Cloude {
                                       }
 
                                       strColumns += column->getDatasourceName();
-                                      strCondition += fptr(column, index);
+                                      strCondition += fptrProcessor(column, index);
 
                                       ++index;
                                   });
 
-                    strQuery += " INSERT INTO " + entityMap.TableName() + " (" + strColumns + ")";
+                    strQuery += " INSERT INTO " + strSourceName + " (" + strColumns + ")";
                     strQuery += " VALUES (" + strCondition + ")";
 
                     return strQuery;
                 }
 
-                std::string SqlHelper::CreateUpdatePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr) {
-
-                    auto const &columnsForUpdate = entityMap.getColumnsForUpdate();
-                    auto const &columnsForKey = entityMap.getColumnsForKey();
+                std::string SqlHelper::CreateUpdatePreparedQuery(const std::string &strSourceName,
+                                                                 const SPtrColumnVector &columnsForValue,
+                                                                 const SPtrColumnVector &conditionalColumns,
+                                                                 FPtrParamProcessor fptrProcessor) {
 
                     std::string strColumns;
                     std::string strCondition;
@@ -106,7 +103,7 @@ namespace Cloude {
                     bool isSetStart = true;
                     bool isWhereStart = true;
 
-                    std::for_each(columnsForUpdate.cbegin(), columnsForUpdate.cend(),
+                    std::for_each(columnsForValue.cbegin(), columnsForValue.cend(),
                                   [&](const std::shared_ptr<Column> &column) -> void {
 
                                       if (!isSetStart) {
@@ -116,12 +113,12 @@ namespace Cloude {
                                           isSetStart = false;
                                       }
 
-                                      strColumns += fptr(column, index);
+                                      strColumns += fptrProcessor(column, index);
 
                                       ++index;
                                   });
 
-                    std::for_each(columnsForKey.cbegin(), columnsForKey.cend(),
+                    std::for_each(conditionalColumns.cbegin(), conditionalColumns.cend(),
                                   [&](const std::shared_ptr<Column> &column) -> void {
 
                                       if (!isWhereStart) {
@@ -130,49 +127,48 @@ namespace Cloude {
                                           isWhereStart = false;
                                       }
 
-                                      strCondition += fptr(column, index);
+                                      strCondition += fptrProcessor(column, index);
 
                                       ++index;
                                   });
 
-                    strQuery += " UPDATE " + entityMap.TableName();
+                    strQuery += " UPDATE " + strSourceName;
                     strQuery += " SET " + strColumns;
                     strQuery += " WHERE (" + strCondition + ")";
 
                     return strQuery;
                 }
 
-                std::string SqlHelper::CreateDeletePreparedQuery(const EntityMap &entityMap, FPtrParamProcessor fptr) {
-
-                    auto const &columnsForKey = entityMap.getColumnsForKey();
+                std::string SqlHelper::CreateDeletePreparedQuery(const std::string &strSourceName,
+                                                                 const SPtrColumnVector &conditionalColumns,
+                                                                 FPtrParamProcessor fptrProcessor) {
 
                     std::string strCondition;
                     std::string strQuery;
 
                     int i = 0;
 
-                    std::for_each(columnsForKey.cbegin(), columnsForKey.cend(),
+                    std::for_each(conditionalColumns.cbegin(), conditionalColumns.cend(),
                                   [&](const std::shared_ptr<Column> &column) -> void {
 
                                       if (i != 0) {
                                           strCondition += ", ";
                                       }
 
-                                      strCondition += fptr(column, i);
+                                      strCondition += fptrProcessor(column, i);
 
                                       ++i;
                                   });
 
-                    strQuery += " DELETE FROM " + entityMap.TableName();
+                    strQuery += " DELETE FROM " + strSourceName;
                     strQuery += " WHERE (" + strCondition + ")";
 
                     return strQuery;
                 }
 
-                std::pair<std::string, std::vector<SqlHelper::SPtrCriteria>> SqlHelper::CreateSelectPreparedQuery(
-                        const EntityMap &entityMap,
-                        const SPtrCriteria &sptrCriteria,
-                        const FPtrParamProcessor fptrParamProcessor) {
+                std::pair<std::string, std::vector<SPtrCriteria>> SqlHelper::CreateSelectPreparedQuery
+                        (const std::string &strSourceName, const SPtrColumnVector &columnsForProjection,
+                         const SPtrCriteria &sptrCriteria, const FPtrParamProcessor fptrParamProcessor) {
 
                     using PredicateComposite = Foundation::Query::CriteriaComposite;
 
@@ -282,18 +278,11 @@ namespace Cloude {
                     std::string statement;
                     std::vector<SPtrCriteria> values;
 
-                    auto const &columnsForSelect = entityMap.getColumnsForSelect();
-                    auto const &columnsForKey = entityMap.getColumnsForKey();
-
-                    SPtrColumnVector columnsVector;
-                    columnsVector.insert(columnsVector.end(), columnsForKey.begin(), columnsForKey.end());
-                    columnsVector.insert(columnsVector.cend(), columnsForSelect.begin(), columnsForSelect.end());
-
                     // Prepare Columns segment
                     std::string strColumns;
-                    strColumns.reserve(Foundation::BufferSize::EIGHTY);
+                    strColumns.reserve(Foundation::CommonBufferSize::EIGHTY);
 
-                    std::for_each(columnsVector.cbegin(), columnsVector.cend(),
+                    std::for_each(columnsForProjection.cbegin(), columnsForProjection.cend(),
                                   [&strColumns](const std::shared_ptr<Column> &p) {
                                       if (strColumns.length() != 0)
                                           strColumns += ", ";
@@ -306,7 +295,7 @@ namespace Cloude {
                     // Prepare Conditions segment
                     int x = 0;
                     std::string strCondition = fptr(sptrCriteria, x);
-                    strCondition.reserve(Foundation::BufferSize::EIGHTY);
+                    strCondition.reserve(Foundation::CommonBufferSize::EIGHTY);
 
                     int y = 0;
                     SPtrCriteriaIterator iter(new CriteriaIterator(sptrCriteria));
@@ -323,7 +312,7 @@ namespace Cloude {
                     strCondition.shrink_to_fit();
 
                     statement += " SELECT " + strColumns;
-                    statement += " FROM " + entityMap.TableName();
+                    statement += " FROM " + strSourceName;
                     statement += " WHERE " + strCondition;
 
                     return std::make_pair(statement, values);
