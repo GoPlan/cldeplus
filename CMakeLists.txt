@@ -136,7 +136,7 @@ add_library(foundation STATIC
     Foundation/Type/Implementation/cldeBlob.cpp
     Foundation/Type/Implementation/cldeBlob.h
     Foundation/Segmentation/Target.cpp
-    Foundation/Segmentation/Target.h Foundation/Segmentation/Segment.cpp Foundation/Segmentation/Segment.h)
+    Foundation/Segmentation/Target.h Foundation/Segmentation/Segment.cpp Foundation/Segmentation/Segment.h Foundation/Query/Helper/ProxyHelper.cpp Foundation/Query/Helper/ProxyHelper.h)
 
 
 add_library(application STATIC

@@ -20,22 +20,22 @@ namespace Cloude {
                 IDataRecord &operator=(IDataRecord &&) = default;
                 virtual ~IDataRecord() = default;
 
-                virtual void setField(const SPtrCell &cell);
-                virtual void setField(Cell *ptrCell);
-                virtual void setMultiFields(const SPtrCellVector &cellVector);
-                virtual void setMultiFields(const std::vector<Cell *> &cellVector);
+                virtual void setCell(const SPtrCell &cell);
+                virtual void setCell(Cell *ptrCell);
+                virtual void setMultiCells(const SPtrCellVector &cellVector);
+                virtual void setMultiCells(const std::vector<Cell *> &cellVector);
 
                 virtual const SPtrCell &operator[](const std::string &columnName) const;
                 virtual const SPtrCell &operator[](const char *columnName) const;
-                virtual const SPtrCell &getField(const std::string &columnName) const;
-                virtual const SPtrCell &getField(const char *columnName) const;
+                virtual const SPtrCell &getCell(const std::string &columnName) const;
+                virtual const SPtrCell &getCell(const char *columnName) const;
 
-                virtual bool HasCell(const std::string &cellName);
+                virtual bool hasCell(const std::string &cellName);
                 virtual unsigned long Size();
 
                 const SPtrCellMap &getCellsMap() { return _cellMap; };
 
-                SPtrCellVector getFields() const;
+                SPtrCellVector getCells() const;
                 SPtrColumnVector getColumns() const;
 
                 // IPrintable

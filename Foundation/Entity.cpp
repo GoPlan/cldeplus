@@ -18,7 +18,7 @@ namespace Cloude {
 
             for (auto fieldPair : _identity->getCellsMap()) {
                 auto field = fieldPair.second;
-                setField(field);
+                setCell(field);
             }
         }
     }

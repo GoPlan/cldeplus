@@ -18,11 +18,11 @@ void Cloude::Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(
 
     for (auto column : columnVector) {
 
-        if (checkIfFieldExists && dataRecord->HasCell(column->getName())) {
+        if (checkIfFieldExists && dataRecord->hasCell(column->getName())) {
             continue;
         }
 
         auto field = std::make_shared<Cell>(const_cast<SPtrColumn &>(column));
-        dataRecord->setField(field);
+        dataRecord->setCell(field);
     }
 }

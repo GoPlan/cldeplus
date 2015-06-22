@@ -44,7 +44,7 @@ namespace Cloude {
                         ASSERT_TRUE(spEntity.get() != 0);
                         ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
 
-                        auto &spEmailField = spEntity->getField("Email");
+                        auto &spEmailField = spEntity->getCell("Email");
                         ASSERT_TRUE(spEmailField.get() != 0);
 
                         spEmailField->setValue(spEnquiryEmail);
@@ -62,7 +62,7 @@ namespace Cloude {
                         ASSERT_TRUE(sptrEntity.get() != 0);
                         ASSERT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
 
-                        auto &sptrEmailField = sptrEntity->getField("Email");
+                        auto &sptrEmailField = sptrEntity->getCell("Email");
                         auto &sptrEmailValue = sptrEmailField->getValue();
                         EXPECT_TRUE(strcmp(email, sptrEmailValue->ToCString()) == 0);
 

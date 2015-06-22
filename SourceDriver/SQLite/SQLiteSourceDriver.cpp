@@ -97,7 +97,7 @@ namespace Cloude {
                                   columnsList.cend(),
                                   [&sptrCommand, &entity, &index](const Foundation::SPtrColumn &column) {
 
-                                      auto &field = entity->getField(column->getName());
+                                      auto &field = entity->getCell(column->getName());
                                       auto &value = field->getValue();
 
                                       if (!value) {
@@ -193,7 +193,7 @@ namespace Cloude {
                                      return;
                                  }
 
-                                 auto &sptrField = entity->getField(column->getName());
+                                 auto &sptrField = entity->getCell(column->getName());
 
                                  switch (column->getDataType()) {
                                      case Cloude::Foundation::Type::cldeValueType::Int64: {
@@ -233,7 +233,7 @@ namespace Cloude {
                                      return;
                                  }
 
-                                 auto &sptrField = proxy->getField(column->getName());
+                                 auto &sptrField = proxy->getCell(column->getName());
 
                                  switch (column->getDataType()) {
                                      case Cloude::Foundation::Type::cldeValueType::Int64: {
