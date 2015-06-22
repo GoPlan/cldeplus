@@ -14,7 +14,7 @@ namespace Cloude {
                     //
                 }
 
-                bool cldeFloat::Equal(const Common::IEquatable &rhs) {
+                bool cldeFloat::Equal(const Common::IEquatable &rhs) const {
                     return false;
                 }
 

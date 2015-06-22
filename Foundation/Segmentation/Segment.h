@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <Foundation/Common/IPrintable.h>
-#include <Foundation/Entity.h>
+#include <Foundation/EntityProxy.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -16,6 +16,13 @@ namespace Cloude {
             class Segment {
 
             public:
+                enum class SegmentType {
+                    Join,
+                    Target
+                };
+
+                // TODO: Review Copy/Assignment ctors
+                // TODO: Consider container to be either Vector or Set
                 Segment(const Segment &) = default;
                 Segment(Segment &&) = default;
                 Segment &operator=(const Segment &) = default;
@@ -23,6 +30,7 @@ namespace Cloude {
                 virtual ~Segment() = default;
 
                 virtual void Evaluate() = 0;
+                virtual SegmentType getSegmentType() = 0;
                 virtual const SPtrEntityProxyVector &ResultSet() const = 0;
 
             protected:

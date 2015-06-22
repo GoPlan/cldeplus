@@ -136,7 +136,7 @@ add_library(foundation STATIC
     Foundation/Type/Implementation/cldeBlob.cpp
     Foundation/Type/Implementation/cldeBlob.h
     Foundation/Segmentation/Target.cpp
-    Foundation/Segmentation/Target.h Foundation/Segmentation/Segment.cpp Foundation/Segmentation/Segment.h Foundation/Query/Helper/ProxyHelper.cpp Foundation/Query/Helper/ProxyHelper.h)
+    Foundation/Segmentation/Target.h Foundation/Segmentation/Segment.cpp Foundation/Segmentation/Segment.h Foundation/Query/Helper/ProxyHelper.cpp Foundation/Query/Helper/ProxyHelper.h Foundation/Segmentation/Helper/SegmentationHelper.cpp Foundation/Segmentation/Helper/SegmentationHelper.h Foundation/Comparer/EntityProxyCmp.cpp Foundation/Comparer/EntityProxyCmp.h Foundation/Exception/cldeSegmentationException.cpp Foundation/Exception/cldeSegmentationException.h)
 
 
 add_library(application STATIC

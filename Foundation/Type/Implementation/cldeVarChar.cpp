@@ -27,7 +27,7 @@ namespace Cloude {
                     }
                 }
 
-                bool cldeVarchar::Equal(const Common::IEquatable &rhs) {
+                bool cldeVarchar::Equal(const Common::IEquatable &rhs) const {
                     return false;
                 }
 

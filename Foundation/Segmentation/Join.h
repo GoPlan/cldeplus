@@ -37,6 +37,7 @@ namespace Cloude {
 
                 // Segment implementation
                 virtual void Evaluate() override;
+                virtual SegmentType getSegmentType();
                 virtual const SPtrEntityProxyVector &ResultSet() const override;
             };
 

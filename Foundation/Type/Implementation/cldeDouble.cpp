@@ -15,7 +15,7 @@ namespace Cloude {
                     //
                 }
 
-                bool cldeDouble::Equal(const Common::IEquatable &rhs) {
+                bool cldeDouble::Equal(const Common::IEquatable &rhs) const {
                     return false;
                 }
 

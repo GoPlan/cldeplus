@@ -403,8 +403,8 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEnt
 }
 
 Cloude::Foundation::SPtrEntityProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Select(
-        const Foundation::SPtrColumnVector &columnsForProjection,
-        const Foundation::Query::SPtrCriteria &sptrCriteria) const {
+        const Foundation::Query::SPtrCriteria &sptrCriteria,
+        const Foundation::SPtrColumnVector &columnsForProjection) const {
 
     auto fptrConditionProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
         return std::string{"?"};

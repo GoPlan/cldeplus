@@ -5,6 +5,7 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
+            //
         }
     }
 }

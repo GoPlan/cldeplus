@@ -16,6 +16,10 @@ namespace Cloude {
 
         }
 
+        Segmentation::Segment::SegmentType Segmentation::Join::getSegmentType() {
+            return SegmentType::Join;
+        }
+
         const SPtrEntityProxyVector &Segmentation::Join::ResultSet() const {
             return _resultStorage;
         }

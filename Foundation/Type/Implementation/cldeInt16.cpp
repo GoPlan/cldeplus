@@ -18,7 +18,7 @@ namespace Cloude {
                     return &this->_value;
                 }
 
-                bool cldeInt16::Equal(const Common::IEquatable &rhs) {
+                bool cldeInt16::Equal(const Common::IEquatable &rhs) const {
                     try {
                         auto cast = dynamic_cast<const cldeInt16 &>(rhs);
                         return (cast._value == this->_value);

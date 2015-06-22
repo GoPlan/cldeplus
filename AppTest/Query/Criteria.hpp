@@ -8,10 +8,12 @@
 #include "gtest/gtest.h"
 #include <memory>
 #include <iostream>
+#include <functional>
 #include <Cloude.h>
 #include <Application/Mapper/EnquiryMap.h>
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
+#include <Foundation/Comparer/EntityProxyCmp.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -69,14 +71,19 @@ namespace Cloude {
                         std::cout << proxy->CopyToString() << endl;
                         std::cout << sptrEntity->CopyToString() << endl;
                     }
-                }
 
-                {
-                    auto proxy = enquiryQuery->ComposeGetFirst(sptrOR__);
-                    auto sptrEntity = proxy->Summon(enquiryStore);
+                    auto proxy00 = proxies[0];
+                    auto proxy01 = enquiryQuery->ComposeGetFirst(sptrOR__);
 
+                    Foundation::Comparer::EntityProxyCmp cmp{enquiryMap.getColumnsForKey(),
+                                                             enquiryMap.getColumnsForKey()};
+
+                    ASSERT_TRUE(cmp(proxy00, proxy01));
+
+
+                    auto sptrEntity = proxy00->Summon(enquiryStore);
                     ASSERT_TRUE(sptrEntity.get() != 0);
-                    std::cout << proxy->CopyToString() << endl;
+                    std::cout << proxy00->CopyToString() << endl;
                     std::cout << sptrEntity->CopyToString() << endl;
                 }
 

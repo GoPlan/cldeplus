@@ -15,7 +15,7 @@ namespace Cloude {
                     //
                 }
 
-                bool cldeString::Equal(const Common::IEquatable &rhs) {
+                bool cldeString::Equal(const Common::IEquatable &rhs) const {
                     try {
                         auto cast = dynamic_cast<const cldeString &>(rhs);
                         return ((cast._value.compare(this->_value)) == 0);

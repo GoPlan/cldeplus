@@ -19,9 +19,11 @@ namespace Cloude {
 
             public:
                 Criteria() = default;
-                virtual ~Criteria() = default;
-                Criteria(const Criteria &srcExpression) = default;
+                Criteria(const Criteria &) = default;
+                Criteria(Criteria &&) = default;
                 Criteria &operator=(const Criteria &srcExpression) = default;
+                Criteria &operator=(Criteria &&srcExpression) = default;
+                ~Criteria() = default;
 
                 virtual const bool isComposite() const = 0;
                 virtual const SPtrColumn &getColumn() const = 0;

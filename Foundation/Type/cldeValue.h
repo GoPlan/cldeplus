@@ -20,9 +20,11 @@ namespace Cloude {
 
             public:
                 cldeValue(cldeValueType dataType, size_t length);
+                cldeValue(const cldeValue &) = default;
+                cldeValue(cldeValue &&) = default;
+                cldeValue &operator=(const cldeValue &) = default;
+                cldeValue &operator=(cldeValue &&) = default;
                 virtual ~cldeValue() = default;
-                cldeValue(const cldeValue &rhs) = default;
-                virtual cldeValue &operator=(const cldeValue &rhs) = default;
 
                 virtual const cldeValueCategory &getCategory() const = 0;
                 virtual bool isNumeric() const = 0;

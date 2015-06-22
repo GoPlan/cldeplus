@@ -25,12 +25,12 @@ namespace Cloude {
             columnsForProjection.insert(columnsForProjection.end(), columnsForKey.begin(), columnsForKey.end());
             columnsForProjection.insert(columnsForProjection.cend(), columnsForSelect.begin(), columnsForSelect.end());
 
-            return Compose(columnsForProjection, sptrCriteria);
+            return Compose(sptrCriteria, columnsForProjection);
         }
 
-        SPtrEntityProxyVector EntityQuery::Compose(const SPtrColumnVector &columnsForProjection,
-                                                   const Query::SPtrCriteria &sptrCriteria) {
-            return _entityStore->getEntitySourceDriver().Select(columnsForProjection, sptrCriteria);
+        SPtrEntityProxyVector EntityQuery::Compose(const Query::SPtrCriteria &sptrCriteria,
+                                                   const SPtrColumnVector &columnsForProjection) {
+            return _entityStore->getEntitySourceDriver().Select(sptrCriteria, columnsForProjection);
         }
 
         SPtrEntityProxy EntityQuery::ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria) {

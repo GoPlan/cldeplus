@@ -22,9 +22,6 @@ namespace Cloude {
                 SPtrEntityQuery _entityQuery;
                 Query::SPtrCriteria _criteria;
 
-                // TODO: Review Criteria copy/assignment ctors
-                // TODO: Review EntityQuery copy/assignment ctors
-
             public:
                 Target() = default;
                 Target(const Target &) = default;
@@ -35,6 +32,7 @@ namespace Cloude {
 
                 // Segment implementation
                 virtual void Evaluate() override;
+                virtual SegmentType getSegmentType();
                 virtual const SPtrEntityProxyVector &ResultSet() const override;
 
                 // Locals

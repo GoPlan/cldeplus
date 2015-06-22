@@ -13,15 +13,20 @@ namespace Cloude {
         namespace Mapper {
 
             class StockGroupMap : public Foundation::EntityMap {
+
             public:
-                StockGroupMap();
-                ~StockGroupMap() = default;
-
                 static std::string TableName;
-
                 static Foundation::SPtrColumn Code;
                 static Foundation::SPtrColumn UniqueName;
                 static Foundation::SPtrColumn DefaultStockCode;
+
+            public:
+                StockGroupMap();
+                StockGroupMap(const StockGroupMap &) = default;
+                StockGroupMap(StockGroupMap &&) = default;
+                StockGroupMap &operator=(const StockGroupMap &) = default;
+                StockGroupMap &operator=(StockGroupMap &&) = default;
+                ~StockGroupMap() = default;
 
             protected:
                 virtual const std::string &TableNameCore() const;

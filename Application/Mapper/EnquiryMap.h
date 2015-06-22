@@ -23,11 +23,12 @@ namespace Cloude {
                 static Foundation::SPtrColumn Subject;
 
             public:
-                virtual ~EnquiryMap() = default;
-                EnquiryMap(const EnquiryMap &srcEnquiryMap) = default;
-                EnquiryMap &operator=(const EnquiryMap &srcEnquiryMap) = default;
-
                 EnquiryMap();
+                EnquiryMap(const EnquiryMap &) = default;
+                EnquiryMap(EnquiryMap &&) = default;
+                EnquiryMap &operator=(const EnquiryMap &) = default;
+                EnquiryMap &operator=(EnquiryMap &&) = default;
+                virtual ~EnquiryMap() = default;
 
             protected:
                 const std::string &TableNameCore() const override;

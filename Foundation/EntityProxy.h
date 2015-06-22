@@ -22,7 +22,7 @@ namespace Cloude {
             };
 
         private:
-            mutable EntityProxySummonState _summonState{EntityProxySummonState::Undefined};
+            EntityProxySummonState _summonState{EntityProxySummonState::Undefined};
 
         public:
 
@@ -44,7 +44,6 @@ namespace Cloude {
         using SPtrEntityProxy = std::shared_ptr<EntityProxy>;
         using SPtrEntityProxyVector = std::vector<SPtrEntityProxy>;
         using SPtrEntityProxySet = std::set<SPtrEntityProxy>;
-        using SPtrEntityProxyList = std::list<SPtrEntityProxy>;
     }
 }
 
