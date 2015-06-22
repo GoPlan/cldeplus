@@ -16,7 +16,7 @@ namespace Cloude {
                 throw std::invalid_argument{msg};
             }
 
-            for (auto fieldPair : _identity->getFieldsMap()) {
+            for (auto fieldPair : _identity->getCellsMap()) {
                 auto field = fieldPair.second;
                 setField(field);
             }

@@ -9,15 +9,15 @@
 namespace Cloude {
     namespace Foundation {
 
-        EntityQuery::EntityQuery(EntityStore &entityStore)
+        EntityQuery::EntityQuery(const SPtrEntityStore &entityStore)
                 : _entityStore(entityStore) {
             //
         }
 
         SPtrEntityProxyVector EntityQuery::Compose(const Query::SPtrCriteria &sptrCriteria) {
 
-            auto &columnsForKey = _entityStore.getEntityMap().getColumnsForKey();
-            auto &columnsForSelect = _entityStore.getEntityMap().getColumnsForSelect();
+            auto &columnsForKey = _entityStore->getEntityMap().getColumnsForKey();
+            auto &columnsForSelect = _entityStore->getEntityMap().getColumnsForSelect();
             auto size = columnsForKey.size() + columnsForSelect.size();
 
             SPtrColumnVector columnsForProjection;
@@ -30,7 +30,7 @@ namespace Cloude {
 
         SPtrEntityProxyVector EntityQuery::Compose(const SPtrColumnVector &columnsForProjection,
                                                    const Query::SPtrCriteria &sptrCriteria) {
-            return _entityStore.getEntitySourceDriver().Select(columnsForProjection, sptrCriteria);
+            return _entityStore->getEntitySourceDriver().Select(columnsForProjection, sptrCriteria);
         }
 
         SPtrEntityProxy EntityQuery::ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria) {

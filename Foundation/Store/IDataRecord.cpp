@@ -6,62 +6,62 @@
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include "IDataRecord.h"
 
-void Cloude::Foundation::Store::IDataRecord::setField(const SPtrField &field) {
-    _fieldMap[field->getColumn()->getName()] = field;
+void Cloude::Foundation::Store::IDataRecord::setField(const SPtrCell &cell) {
+    _cellMap[cell->getColumn()->getName()] = cell;
 }
 
-void Cloude::Foundation::Store::IDataRecord::setField(Field *ptrField) {
-    SPtrField spField(ptrField);
-    _fieldMap[ptrField->getColumn()->getName()] = spField;
+void Cloude::Foundation::Store::IDataRecord::setField(Cell *ptrCell) {
+    SPtrCell sptrCell(ptrCell);
+    _cellMap[ptrCell->getColumn()->getName()] = sptrCell;
 }
 
-void Cloude::Foundation::Store::IDataRecord::setMultiFields(const SPtrFieldVector &fieldVector) {
-    for (auto &sptrField : fieldVector) {
+void Cloude::Foundation::Store::IDataRecord::setMultiFields(const SPtrCellVector &cellVector) {
+    for (auto &sptrField : cellVector) {
         setField(sptrField);
     }
 }
 
-void Cloude::Foundation::Store::IDataRecord::setMultiFields(const std::vector<Field *> &fieldVector) {
-    for (auto ptrField : fieldVector) {
+void Cloude::Foundation::Store::IDataRecord::setMultiFields(const std::vector<Cell *> &cellVector) {
+    for (auto ptrField : cellVector) {
         setField(ptrField);
     }
 }
 
-const Cloude::Foundation::SPtrField &Cloude::Foundation::Store::IDataRecord::operator[](
+const Cloude::Foundation::SPtrCell &Cloude::Foundation::Store::IDataRecord::operator[](
         const std::string &columnName) const {
     return getField(columnName);
 }
 
-const Cloude::Foundation::SPtrField &Cloude::Foundation::Store::IDataRecord::operator[](
+const Cloude::Foundation::SPtrCell &Cloude::Foundation::Store::IDataRecord::operator[](
         const char *columnName) const {
     return getField(columnName);
 }
 
-const Cloude::Foundation::SPtrField &Cloude::Foundation::Store::IDataRecord::getField(
+const Cloude::Foundation::SPtrCell &Cloude::Foundation::Store::IDataRecord::getField(
         const std::string &columnName) const {
 
-    auto search = _fieldMap.find(columnName);
+    auto search = _cellMap.find(columnName);
 
-    if (search == _fieldMap.end()) {
+    if (search == _cellMap.end()) {
         throw Exception::cldeEntityException(columnName + " field is not found");
     }
 
     return search->second;
 }
 
-const Cloude::Foundation::SPtrField &Cloude::Foundation::Store::IDataRecord::getField(const char *columnName) const {
+const Cloude::Foundation::SPtrCell &Cloude::Foundation::Store::IDataRecord::getField(const char *columnName) const {
     std::string columnNameStr(columnName);
     return getField(columnNameStr);
 }
 
-bool Cloude::Foundation::Store::IDataRecord::HasField(const std::string &fieldName) {
-    auto search = _fieldMap.find(fieldName);
-    auto result = !(search == _fieldMap.end());
+bool Cloude::Foundation::Store::IDataRecord::HasCell(const std::string &cellName) {
+    auto search = _cellMap.find(cellName);
+    auto result = !(search == _cellMap.end());
     return result;
 }
 
 unsigned long Cloude::Foundation::Store::IDataRecord::Size() {
-    return _fieldMap.size();
+    return _cellMap.size();
 }
 
 const std::string Cloude::Foundation::Store::IDataRecord::CopyToString() const {
@@ -71,7 +71,7 @@ const std::string Cloude::Foundation::Store::IDataRecord::CopyToString() const {
     auto sptrFieldVector = getFields();
 
     std::for_each(sptrFieldVector.crbegin(), sptrFieldVector.crend(),
-                  [&result](const SPtrField &field) {
+                  [&result](const SPtrCell &field) {
                       if (result.length() != 0) {
                           result += " | ";
                       }
@@ -86,11 +86,11 @@ const std::string Cloude::Foundation::Store::IDataRecord::CopyToString() const {
     return result;
 }
 
-Cloude::Foundation::SPtrFieldVector Cloude::Foundation::Store::IDataRecord::getFields() const {
+Cloude::Foundation::SPtrCellVector Cloude::Foundation::Store::IDataRecord::getFields() const {
 
-    SPtrFieldVector fieldVector;
+    SPtrCellVector fieldVector;
 
-    for (auto pairField : _fieldMap) {
+    for (auto pairField : _cellMap) {
         fieldVector.push_back(pairField.second);
     }
 
@@ -101,7 +101,7 @@ Cloude::Foundation::SPtrColumnVector Cloude::Foundation::Store::IDataRecord::get
 
     SPtrColumnVector columnVector;
 
-    for (auto pairField : _fieldMap) {
+    for (auto pairField : _cellMap) {
         columnVector.push_back(pairField.second->getColumn());
     }
 

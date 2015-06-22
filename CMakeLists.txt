@@ -15,8 +15,8 @@ add_library(foundation STATIC
     Foundation/Type/cldeValueType.h
     Foundation/Column.cpp
     Foundation/Column.h
-    Foundation/Field.cpp
-    Foundation/Field.h
+    Foundation/Cell.cpp
+    Foundation/Cell.h
     Foundation/Identity.cpp
     Foundation/Identity.h
     Foundation/Entity.cpp

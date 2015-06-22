@@ -19,6 +19,7 @@ namespace Cloude {
         using LinkMap = std::unordered_map<std::string, EntityLink>;
 
         class EntityMap {
+
             LinkMap _linkMap;
 
         public:

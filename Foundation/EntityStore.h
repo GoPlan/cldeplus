@@ -52,6 +52,8 @@ namespace Cloude {
             const EntityMap &getEntityMap() const { return _entityMap; }
             const EntitySourceDriver &getEntitySourceDriver() const { return _entitySourceDriver; }
         };
+
+        using SPtrEntityStore = std::shared_ptr<EntityStore>;
     }
 }
 

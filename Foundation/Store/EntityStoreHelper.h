@@ -27,7 +27,6 @@ namespace Cloude {
                                                       const Store::SPtrDataRecord &dataRecord,
                                                       bool checkIfFieldExists = true);
 
-
             };
         }
     }

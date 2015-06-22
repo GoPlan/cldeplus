@@ -25,7 +25,6 @@ namespace Cloude {
                 virtual void Evaluate() = 0;
                 virtual const SPtrEntityProxyVector &ResultSet() const = 0;
 
-
             protected:
                 Segment() = default;
                 SPtrEntityProxyVector _resultStorage;

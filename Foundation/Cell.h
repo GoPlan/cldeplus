@@ -15,18 +15,19 @@
 namespace Cloude {
     namespace Foundation {
 
-        class Field : public Common::IPrintable {
+        class Cell : public Common::IPrintable {
+
             SPtrColumn _column;
             Type::SPtrValue _value;
 
         public:
-            explicit Field(const SPtrColumn &column);
-            explicit Field(const SPtrColumn &column, const Type::SPtrValue &value);
-            Field(const Field &) = default;
-            Field(Field &&) = default;
-            Field &operator=(const Field &) = default;
-            Field &operator=(Field &&) = default;
-            ~Field() = default;
+            explicit Cell(const SPtrColumn &column);
+            explicit Cell(const SPtrColumn &column, const Type::SPtrValue &value);
+            Cell(const Cell &) = default;
+            Cell(Cell &&) = default;
+            Cell &operator=(const Cell &) = default;
+            Cell &operator=(Cell &&) = default;
+            ~Cell() = default;
 
             // IPrintable
             const std::string CopyToString() const override;
@@ -40,9 +41,9 @@ namespace Cloude {
             void setValue(const Type::SPtrValue &value);
         };
 
-        using SPtrField = std::shared_ptr<Field>;
-        using SPtrFieldMap = std::unordered_map<std::string, SPtrField>;
-        using SPtrFieldVector = std::vector<SPtrField>;
+        using SPtrCell = std::shared_ptr<Cell>;
+        using SPtrCellMap = std::unordered_map<std::string, SPtrCell>;
+        using SPtrCellVector = std::vector<SPtrCell>;
     }
 }
 

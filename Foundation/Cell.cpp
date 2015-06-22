@@ -3,33 +3,33 @@
 //
 
 #include <stdexcept>
-#include "Field.h"
+#include "Cell.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        Field::Field(const SPtrColumn &column) : _column(column) {
+        Cell::Cell(const SPtrColumn &column) : _column(column) {
             //
         }
 
-        Field::Field(const SPtrColumn &column, const Type::SPtrValue &value) : Field{column} {
+        Cell::Cell(const SPtrColumn &column, const Type::SPtrValue &value) : Cell{column} {
             setValue(value);
         }
 
-        const std::string Field::CopyToString() const {
+        const std::string Cell::CopyToString() const {
             std::string result{_value->ToString() + "(" + Type::cldeType::CopyToString(_value->getDataType()) + ")"};
             return result;
         }
 
-        const std::string &Field::ToString() const {
+        const std::string &Cell::ToString() const {
             return _value->ToString();
         }
 
-        const char *Field::ToCString() const {
+        const char *Cell::ToCString() const {
             return _value->ToCString();
         }
 
-        void Field::setValue(const Type::SPtrValue &value) {
+        void Cell::setValue(const Type::SPtrValue &value) {
 
             if (value->getDataType() != _column->getDataType()) {
                 std::string msg{"Value has type " + Type::cldeType::CopyToString(value->getDataType()) + " " +

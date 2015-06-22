@@ -15,15 +15,16 @@ namespace Cloude {
     namespace Foundation {
 
         class EntityQuery {
-            EntityStore &_entityStore;
+
+            SPtrEntityStore _entityStore;
 
         public:
-            explicit EntityQuery(EntityStore &entityStore);
+            explicit EntityQuery(const SPtrEntityStore &entityStore);
             EntityQuery(const EntityQuery &) = default;
             EntityQuery(EntityQuery &&) = default;
             EntityQuery &operator=(const EntityQuery &) = default;
             EntityQuery &operator=(EntityQuery &&) = default;
-            virtual ~EntityQuery() = default;
+            ~EntityQuery() = default;
 
             // Locals
             virtual SPtrEntityProxyVector Compose(const Query::SPtrCriteria &sptrCriteria);
@@ -33,6 +34,8 @@ namespace Cloude {
 
             virtual SPtrEntityProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);
         };
+
+        using SPtrEntityQuery = std::shared_ptr<EntityQuery>;
     }
 }
 

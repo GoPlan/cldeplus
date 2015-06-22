@@ -13,6 +13,7 @@ namespace Cloude {
     namespace Foundation {
 
         class Column : public Common::IPrintable {
+
             std::string _name;
             std::string _datasourceName;
             Foundation::Type::cldeValueType _dataType;

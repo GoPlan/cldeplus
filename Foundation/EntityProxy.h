@@ -31,8 +31,8 @@ namespace Cloude {
             ~EntityProxy() = default;
 
             // Locals
-            SPtrEntity Summon(EntityStore &entityStore) const;
-            bool isIdentifiableInStore(const EntityStore &entityStore) const;
+            SPtrEntity Summon(SPtrEntityStore &entityStore) const;
+            bool isIdentifiableInStore(SPtrEntityStore &entityStore) const;
         };
 
         using SPtrEntityProxy = std::shared_ptr<EntityProxy>;

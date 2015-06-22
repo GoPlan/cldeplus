@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_CONTRACT_IRECORD_H
 #define CLOUD_E_PLUS_FOUNDATION_CONTRACT_IRECORD_H
 
-#include <Foundation/Field.h>
+#include <Foundation/Cell.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -20,22 +20,22 @@ namespace Cloude {
                 IDataRecord &operator=(IDataRecord &&) = default;
                 virtual ~IDataRecord() = default;
 
-                virtual void setField(const SPtrField &field);
-                virtual void setField(Field *ptrField);
-                virtual void setMultiFields(const SPtrFieldVector &fieldVector);
-                virtual void setMultiFields(const std::vector<Field *> &fieldVector);
+                virtual void setField(const SPtrCell &cell);
+                virtual void setField(Cell *ptrCell);
+                virtual void setMultiFields(const SPtrCellVector &cellVector);
+                virtual void setMultiFields(const std::vector<Cell *> &cellVector);
 
-                virtual const SPtrField &operator[](const std::string &columnName) const;
-                virtual const SPtrField &operator[](const char *columnName) const;
-                virtual const SPtrField &getField(const std::string &columnName) const;
-                virtual const SPtrField &getField(const char *columnName) const;
+                virtual const SPtrCell &operator[](const std::string &columnName) const;
+                virtual const SPtrCell &operator[](const char *columnName) const;
+                virtual const SPtrCell &getField(const std::string &columnName) const;
+                virtual const SPtrCell &getField(const char *columnName) const;
 
-                virtual bool HasField(const std::string &fieldName);
+                virtual bool HasCell(const std::string &cellName);
                 virtual unsigned long Size();
 
-                const SPtrFieldMap &getFieldsMap() { return _fieldMap; };
+                const SPtrCellMap &getCellsMap() { return _cellMap; };
 
-                SPtrFieldVector getFields() const;
+                SPtrCellVector getFields() const;
                 SPtrColumnVector getColumns() const;
 
                 // IPrintable
@@ -45,7 +45,7 @@ namespace Cloude {
 
             protected:
                 IDataRecord() = default;
-                SPtrFieldMap _fieldMap;
+                SPtrCellMap _cellMap;
 
             };
 

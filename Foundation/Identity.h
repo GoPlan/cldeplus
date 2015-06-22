@@ -7,7 +7,7 @@
 
 #include <unordered_map>
 #include <Foundation/Store/IDataRecord.h>
-#include "Field.h"
+#include "Cell.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -22,8 +22,8 @@ namespace Cloude {
             Identity &operator=(Identity &&) = default;
             ~Identity() = default;
 
-            Identity(const std::vector<SPtrField> &fieldVector);
-            Identity(const std::vector<Field *> &fieldVector);
+            Identity(const std::vector<SPtrCell> &fieldVector);
+            Identity(const std::vector<Cell *> &fieldVector);
         };
 
         using SPtrIdentity = std::shared_ptr<Identity>;

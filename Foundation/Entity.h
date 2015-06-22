@@ -10,13 +10,14 @@
 #include <list>
 #include <set>
 #include <Foundation/Store/IDataRecord.h>
-#include "Field.h"
+#include "Cell.h"
 #include "Identity.h"
 
 namespace Cloude {
     namespace Foundation {
 
         class Entity : public Store::IDataRecord {
+
             SPtrIdentity _identity;
 
         public:

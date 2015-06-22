@@ -19,7 +19,7 @@ namespace Cloude {
                 using SPtrDisplayColumnPairVector= std::vector<SPtrDisplayColumnPair>;
 
                 SPtrDisplayColumnPairVector _displayColumns;
-                EntityQuery _entityQuery;
+                SPtrEntityQuery _entityQuery;
                 Query::SPtrCriteria _criteria;
 
                 // TODO: Review Criteria copy/assignment ctors
@@ -42,12 +42,8 @@ namespace Cloude {
                 void ClearDisplayColumns();
 
                 // Accessors & Mutators
-                void setEntityQuery(const EntityQuery &entityQuery) {
-                    _entityQuery = entityQuery;
-                }
-                void setCriteria(const Query::SPtrCriteria &criteria) {
-                    _criteria = criteria;
-                }
+                void setEntityQuery(const SPtrEntityQuery &entityQuery) { _entityQuery = entityQuery; }
+                void setCriteria(const Query::SPtrCriteria &criteria) { _criteria = criteria; }
             };
 
             using SPtrTarget = std::shared_ptr<Target>;

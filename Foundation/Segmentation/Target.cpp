@@ -21,7 +21,7 @@ namespace Cloude {
                               columns.push_back(displayColumnPair.second);
                           });
 
-            _resultStorage = _entityQuery.Compose(columns, _criteria);
+            _resultStorage = _entityQuery->Compose(columns, _criteria);
         }
 
         void Segmentation::Target::AddDisplayColumn(const std::pair<std::string, Foundation::SPtrColumn> &column) {

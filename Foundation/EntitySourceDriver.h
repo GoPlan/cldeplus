@@ -14,6 +14,7 @@ namespace Cloude {
     namespace Foundation {
 
         class EntitySourceDriver {
+
             const EntityMap &_entityMap;
 
         public:
@@ -30,10 +31,12 @@ namespace Cloude {
             virtual int Delete(SPtrEntity &entity) const = 0;
 
             virtual SPtrEntityProxyVector Select(const Foundation::SPtrColumnVector &columnsForProjection,
-                           const Foundation::Query::SPtrCriteria &sptrCriteria) const = 0;
+                                                 const Foundation::Query::SPtrCriteria &sptrCriteria) const = 0;
 
             const EntityMap &getEntityMap() const { return _entityMap; }
         };
+
+        using SPtrEntitySourceDriver = std::shared_ptr<EntitySourceDriver>;
     }
 }
 

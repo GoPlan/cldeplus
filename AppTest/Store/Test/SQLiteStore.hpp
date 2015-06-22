@@ -15,7 +15,7 @@ namespace Cloude {
         namespace Store {
             namespace Test {
 
-                using Field = Cloude::Foundation::Field;
+                using Field = Cloude::Foundation::Cell;
                 using Identity = Cloude::Foundation::Identity;
 
                 TEST_F(EnquirySQLiteStore, CreateGetSaveDelete) {
