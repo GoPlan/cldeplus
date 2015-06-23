@@ -30,8 +30,13 @@ namespace Cloude {
             virtual int Save(SPtrEntity &entity) const = 0;
             virtual int Delete(SPtrEntity &entity) const = 0;
 
-            virtual SPtrEntityProxyVector Select(const Foundation::Query::SPtrCriteria &sptrCriteria,
-                                                 const Foundation::SPtrColumnVector &columnsForProjection) const = 0;
+            virtual SPtrEntityProxyVector SelectVector(
+                    const Foundation::Query::SPtrCriteria &sptrCriteria,
+                    const Foundation::SPtrColumnVector &columnsForProjection) const = 0;
+
+            virtual SPtrEntityProxySet SelectSet(
+                    const Foundation::Query::SPtrCriteria &sptrCriteria,
+                    const Foundation::SPtrColumnVector &columnsForProjection) const = 0;
 
             const EntityMap &getEntityMap() const { return _entityMap; }
         };

@@ -2,34 +2,35 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_COMPARER_ENTITYPROXYCMP_H
-#define CLOUD_E_PLUS_FOUNDATION_COMPARER_ENTITYPROXYCMP_H
+#ifndef CLOUD_E_PLUS_FOUNDATION_COMPARER_ENTITYPROXYCOMPARER_H
+#define CLOUD_E_PLUS_FOUNDATION_COMPARER_ENTITYPROXYCOMPARER_H
 
 #include <Foundation/Exception/cldeSegmentationException.h>
 #include <Foundation/EntityProxy.h>
-
 
 namespace Cloude {
     namespace Foundation {
         namespace Comparer {
 
-            struct EntityProxyCmp : std::binary_function<SPtrEntityProxy, SPtrEntityProxy, bool> {
+            struct EntityProxyComparer : std::binary_function<SPtrEntityProxy, SPtrEntityProxy, bool> {
 
-                EntityProxyCmp(const SPtrColumnVector &lhsColumns, const SPtrColumnVector &rhsColumns)
-                        : lhsColumns{lhsColumns}, rhsColumns{rhsColumns} { };
+                EntityProxyComparer(const SPtrColumnVector &lhsComparingColumns,
+                                    const SPtrColumnVector &rhsComparingColumns)
+                        : lhsComparingColumns{lhsComparingColumns},
+                          rhsComparingColumns{rhsComparingColumns} { };
 
-                const SPtrColumnVector &lhsColumns;
-                const SPtrColumnVector &rhsColumns;
+                const SPtrColumnVector &lhsComparingColumns;
+                const SPtrColumnVector &rhsComparingColumns;
 
                 bool operator()(const SPtrEntityProxy &lhs, const SPtrEntityProxy &rhs) const {
 
-                    if (lhsColumns.size() != rhsColumns.size()) {
+                    if (lhsComparingColumns.size() != rhsComparingColumns.size()) {
                         return false;
                     }
 
-                    auto rhsColumnIter = rhsColumns.cbegin();
+                    auto rhsColumnIter = rhsComparingColumns.cbegin();
 
-                    for (auto column : lhsColumns) {
+                    for (auto column : lhsComparingColumns) {
 
                         auto &lhsCell = lhs->getCell(column->getName());
                         auto &rhsCell = rhs->getCell((*rhsColumnIter)->getName());
@@ -57,4 +58,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_COMPARER_ENTITYPROXYCMP_H
+#endif //CLOUD_E_PLUS_FOUNDATION_COMPARER_ENTITYPROXYCOMPARER_H

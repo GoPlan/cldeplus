@@ -13,7 +13,7 @@
 #include <Application/Mapper/EnquiryMap.h>
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
-#include <Foundation/Comparer/EntityProxyCmp.h>
+#include <Foundation/Comparer/EntityProxyComparer.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -61,7 +61,7 @@ namespace Cloude {
                 std::cout << compound.first << std::endl;
 
                 {
-                    auto proxies = enquiryQuery->Compose(sptrOR__);
+                    auto proxies = enquiryQuery->ComposeVector(sptrOR__);
 
                     for (auto proxy : proxies) {
 
@@ -75,11 +75,10 @@ namespace Cloude {
                     auto proxy00 = proxies[0];
                     auto proxy01 = enquiryQuery->ComposeGetFirst(sptrOR__);
 
-                    Foundation::Comparer::EntityProxyCmp cmp{enquiryMap.getColumnsForKey(),
-                                                             enquiryMap.getColumnsForKey()};
+                    Foundation::Comparer::EntityProxyComparer compare{enquiryMap.getColumnsForKey(),
+                                                                      enquiryMap.getColumnsForKey()};
 
-                    ASSERT_TRUE(cmp(proxy00, proxy01));
-
+                    ASSERT_TRUE(compare(proxy00, proxy01));
 
                     auto sptrEntity = proxy00->Summon(enquiryStore);
                     ASSERT_TRUE(sptrEntity.get() != 0);

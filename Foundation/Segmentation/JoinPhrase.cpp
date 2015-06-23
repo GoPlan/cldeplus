@@ -7,11 +7,11 @@
 namespace Cloude {
     namespace Foundation {
 
-        void Segmentation::JoinPhrase::AddComparingColumn(const SPtrColumn &column) {
-            _vectorComparingColumns.push_back(column);
+        void Segmentation::JoinPhrase::AddComparingColumnPair(const ColumnNamePair &pairName) {
+            _vectorComparingColumns.push_back(pairName);
         }
-        void Segmentation::JoinPhrase::AddDisplayColumn(const SPtrColumn &column) {
-            _vectorDisplayColumns.push_back(column);
+        void Segmentation::JoinPhrase::AddDisplayColumnPair(const ColumnNamePair &pairName) {
+            _vectorDisplayColumns.push_back(pairName);
         }
     }
 }

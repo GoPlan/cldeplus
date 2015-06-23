@@ -11,10 +11,15 @@
 namespace Cloude {
     namespace Foundation {
         namespace Segmentation {
+
+            using ColumnNamePair = std::pair<std::string, std::string>;
+            using ColumnNamePairVector = std::vector<ColumnNamePair>;
+
             class JoinPhrase {
+
                 const SPtrEntityProxySet &_setProxies;
-                SPtrColumnVector _vectorComparingColumns;
-                SPtrColumnVector _vectorDisplayColumns;
+                ColumnNamePairVector _vectorDisplayColumns;
+                ColumnNamePairVector _vectorComparingColumns;
 
             public:
                 JoinPhrase(const SPtrEntityProxySet &setProxies) : _setProxies{setProxies} { };
@@ -26,12 +31,12 @@ namespace Cloude {
 
                 // Locals - Accessors
                 const SPtrEntityProxySet &getSetProxies() const { return _setProxies; }
-                const SPtrColumnVector &getVectorComparingColumns() const { return _vectorComparingColumns; }
-                const SPtrColumnVector &getVectorDisplayColumns() const { return _vectorDisplayColumns; }
+                const ColumnNamePairVector &getVectorComparingColumns() const { return _vectorComparingColumns; }
+                const ColumnNamePairVector &getVectorDisplayColumns() const { return _vectorDisplayColumns; }
 
                 // Locals - Mutators
-                void AddComparingColumn(const SPtrColumn &column);
-                void AddDisplayColumn(const SPtrColumn &column);
+                void AddDisplayColumnPair(const ColumnNamePair &pairName);
+                void AddComparingColumnPair(const ColumnNamePair &pairName);
             };
         }
     }

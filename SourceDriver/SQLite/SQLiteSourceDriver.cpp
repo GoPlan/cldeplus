@@ -262,6 +262,84 @@ namespace Cloude {
                 std::string &connectionString;
                 sqlite3 *_ptrSqlite3 = nullptr;
             };
+
+            Foundation::SPtrEntityProxyVector SQLiteSourceDriver::SelectVector(
+                    const Foundation::Query::SPtrCriteria &sptrCriteria,
+                    const Foundation::SPtrColumnVector &columnsForProjection) const {
+
+                auto fptrConditionProcessor =
+                        [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
+                            return std::string{"?"};
+                        };
+
+                auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
+                                                                          columnsForProjection,
+                                                                          sptrCriteria,
+                                                                          fptrConditionProcessor);
+
+                auto uptrCommand = _sqliteApiImpl->createCommand(tuplQuery.first);
+
+                _sqliteApiImpl->initializeParamBindBuffers(tuplQuery.second, uptrCommand);
+
+                Foundation::SPtrEntityProxyVector proxies;
+
+                int resultCode;
+
+                while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
+
+                    Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
+                    Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
+
+                    _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
+
+                    proxies.push_back(sptrProxy);
+                }
+
+                if (resultCode != SQLITE_DONE) {
+                    throw SQLiteSourceException{resultCode};
+                }
+
+                return proxies;
+            }
+
+            Foundation::SPtrEntityProxySet SQLiteSourceDriver::SelectSet(
+                    const Foundation::Query::SPtrCriteria &sptrCriteria,
+                    const Foundation::SPtrColumnVector &columnsForProjection) const {
+
+                auto fptrConditionProcessor =
+                        [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
+                            return std::string{"?"};
+                        };
+
+                auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
+                                                                          columnsForProjection,
+                                                                          sptrCriteria,
+                                                                          fptrConditionProcessor);
+
+                auto uptrCommand = _sqliteApiImpl->createCommand(tuplQuery.first);
+
+                _sqliteApiImpl->initializeParamBindBuffers(tuplQuery.second, uptrCommand);
+
+                Foundation::SPtrEntityProxySet proxies;
+
+                int resultCode;
+
+                while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
+
+                    Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
+                    Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
+
+                    _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
+
+                    proxies.insert(sptrProxy);
+                }
+
+                if (resultCode != SQLITE_DONE) {
+                    throw SQLiteSourceException{resultCode};
+                }
+
+                return proxies;
+            }
         }
     }
 }
@@ -400,43 +478,5 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEnt
     }
 
     return 1;
-}
-
-Cloude::Foundation::SPtrEntityProxyVector Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Select(
-        const Foundation::Query::SPtrCriteria &sptrCriteria,
-        const Foundation::SPtrColumnVector &columnsForProjection) const {
-
-    auto fptrConditionProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
-        return std::string{"?"};
-    };
-
-    auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
-                                                              columnsForProjection,
-                                                              sptrCriteria,
-                                                              fptrConditionProcessor);
-
-    auto uptrCommand = _sqliteApiImpl->createCommand(tuplQuery.first);
-
-    _sqliteApiImpl->initializeParamBindBuffers(tuplQuery.second, uptrCommand);
-
-    Foundation::SPtrEntityProxyVector proxies;
-
-    int resultCode;
-
-    while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
-
-        Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
-        Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
-
-        _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
-
-        proxies.push_back(sptrProxy);
-    }
-
-    if (resultCode != SQLITE_DONE) {
-        throw SQLiteSourceException{resultCode};
-    }
-
-    return proxies;
 }
 

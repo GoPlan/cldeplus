@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_SEGMENTATIONHELPER_H
-#define CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_SEGMENTATIONHELPER_H
+#ifndef CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_SEGMENTHELPER_H
+#define CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_SEGMENTHELPER_H
 
 #include <Foundation/EntityProxy.h>
 #include <Foundation/Segmentation/Segment.h>
@@ -14,13 +14,14 @@ namespace Cloude {
         namespace Segmentation {
             namespace Helper {
 
-                class SegmentationHelper {
-                    SegmentationHelper() = delete;
-                    SegmentationHelper(const SegmentationHelper &) = delete;
-                    SegmentationHelper(SegmentationHelper &&) = delete;
-                    SegmentationHelper &operator=(const SegmentationHelper &) = delete;
-                    SegmentationHelper &operator=(SegmentationHelper &&) = delete;
-                    virtual ~SegmentationHelper() = delete;
+                class SegmentHelper {
+
+                    SegmentHelper() = delete;
+                    SegmentHelper(const SegmentHelper &) = delete;
+                    SegmentHelper(SegmentHelper &&) = delete;
+                    SegmentHelper &operator=(const SegmentHelper &) = delete;
+                    SegmentHelper &operator=(SegmentHelper &&) = delete;
+                    virtual ~SegmentHelper() = delete;
 
                 public:
                     using FPtrProxyProjection = std::function<SPtrEntityProxy(const SPtrEntityProxy &)>;
@@ -43,4 +44,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_SEGMENTATIONHELPER_H
+#endif //CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_SEGMENTHELPER_H

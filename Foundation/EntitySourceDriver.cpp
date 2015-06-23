@@ -4,7 +4,12 @@
 
 #include "EntitySourceDriver.h"
 
-Cloude::Foundation::EntitySourceDriver::EntitySourceDriver(const Cloude::Foundation::EntityMap &entityMap)
-        : _entityMap(entityMap) {
-    //
+namespace Cloude {
+    namespace Foundation {
+        EntitySourceDriver::EntitySourceDriver(const EntityMap &entityMap)
+                : _entityMap(entityMap) {
+            //
+        }
+    }
 }
+
