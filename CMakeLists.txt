@@ -146,7 +146,7 @@ add_library(foundation STATIC
     Foundation/Segmentation/Helper/Inner.cpp
     Foundation/Segmentation/Helper/Inner.h
     Foundation/Segmentation/JoinPhrase.cpp
-    Foundation/Segmentation/JoinPhrase.h)
+    Foundation/Segmentation/JoinPhrase.h Foundation/Comparer/CellComparer.cpp Foundation/Comparer/CellComparer.h)
 
 
 add_library(application STATIC

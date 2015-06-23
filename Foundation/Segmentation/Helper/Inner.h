@@ -14,7 +14,6 @@ namespace Cloude {
             namespace Helper {
 
                 class Inner {
-
                     Inner() = delete;
                     Inner(const Inner &) = delete;
                     Inner(Inner &&) = delete;

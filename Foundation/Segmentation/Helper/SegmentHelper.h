@@ -6,7 +6,6 @@
 #define CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_SEGMENTHELPER_H
 
 #include <Foundation/EntityProxy.h>
-#include <Foundation/Segmentation/Segment.h>
 #include <Foundation/Segmentation/JoinPhrase.h>
 
 namespace Cloude {

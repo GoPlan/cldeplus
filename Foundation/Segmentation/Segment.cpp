@@ -9,25 +9,20 @@
 namespace Cloude {
     namespace Foundation {
 
-//        const std::string Segmentation::Segment::CopyToString() const {
-//            return __1::basic_string < char, char_traits < char >, allocator < char >> ();
-//        }
-//        const std::string &Segmentation::Segment::ToString() const {
-//            return <#initializer#>;
-//        }
-//        const char *Segmentation::Segment::ToCString() const {
-//            return nullptr;
-//        }
+        Segmentation::Segment::Segment(const SPtrEntityProxySet proxySet) : _resultSet{proxySet} {
+            //
+        }
 
         const SPtrEntityProxySet &Segmentation::Segment::ResultSet() {
             return _resultSet;
         }
 
-        SPtrEntityProxySet Segmentation::Segment::Join(const SPtrEntityProxySet &targetSet,
-                                                       SPtrEntityProxySet (*joinfunctor)(
-                                                               const Segmentation::JoinPhrase &,
-                                                               const Segmentation::JoinPhrase &)) {
-            return Segmentation::Helper::SegmentHelper::Join(_resultSet, targetSet, joinfunctor);
+        Segmentation::SPtrSegment Segmentation::Segment::Join(const SPtrSegment &targetSegment,
+                                                              SPtrEntityProxySet (*fptrJoin)(
+                                                                      const Segmentation::JoinPhrase &,
+                                                                      const Segmentation::JoinPhrase &)) {
+            auto resultSet = SegmentHelper::Join(_resultSet, targetSegment->_resultSet, fptrJoin);
+            return SPtrSegment{new Segment{resultSet}};
         }
     }
 }

@@ -13,10 +13,11 @@ namespace Cloude {
             SPtrColumnVector lhsComparingColumns;
             SPtrColumnVector rhsComparingColumns;
 
+            // Generate comparing columns
+
             Comparer::EntityProxyComparer compare{lhsComparingColumns, rhsComparingColumns};
 
             SPtrEntityProxySet setProxies;
-
             auto lhsIter = lhs.getSetProxies().cbegin();
             auto rhsIter = rhs.getSetProxies().cbegin();
 
@@ -29,6 +30,9 @@ namespace Cloude {
 
                     SPtrEntityProxy proxy = std::make_shared<EntityProxy>();
 
+                    // Set proxy cells
+
+                    setProxies.insert(proxy);
 
                     ++rhsIter;
                 }
