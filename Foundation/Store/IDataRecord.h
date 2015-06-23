@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/16/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_CONTRACT_IRECORD_H
-#define CLOUD_E_PLUS_FOUNDATION_CONTRACT_IRECORD_H
+#ifndef CLOUD_E_PLUS_FOUNDATION_CONTRACT_IDATARECORD_H
+#define CLOUD_E_PLUS_FOUNDATION_CONTRACT_IDATARECORD_H
 
 #include <Foundation/Cell.h>
 
@@ -25,10 +25,10 @@ namespace Cloude {
                 virtual void setMultiCells(const SPtrCellVector &cellVector);
                 virtual void setMultiCells(const std::vector<Cell *> &cellVector);
 
-                virtual const SPtrCell &operator[](const std::string &columnName) const;
-                virtual const SPtrCell &operator[](const char *columnName) const;
                 virtual const SPtrCell &getCell(const std::string &columnName) const;
-                virtual const SPtrCell &getCell(const char *columnName) const;
+                virtual const SPtrCell &operator[](const std::string &columnName) const;
+
+                virtual bool TryGetCell(const std::string &columnName, SPtrCell &sptrOutCell) const;
 
                 virtual bool hasCell(const std::string &cellName);
                 virtual unsigned long Size();
@@ -36,6 +36,8 @@ namespace Cloude {
                 const SPtrCellMap &getCellsMap() { return _cellMap; };
 
                 SPtrCellVector getCells() const;
+                SPtrCellVector getCells(const SPtrColumnVector &selectedColumns) const;
+
                 SPtrColumnVector getColumns() const;
 
                 // IPrintable
@@ -54,4 +56,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_CONTRACT_IRECORD_H
+#endif //CLOUD_E_PLUS_FOUNDATION_CONTRACT_IDATARECORD_H

@@ -14,7 +14,6 @@ namespace Cloude {
         namespace Segmentation {
 
             class Target : public Segment {
-
                 using SPtrDisplayColumnPair = std::pair<std::string, Foundation::SPtrColumn>;
                 using SPtrDisplayColumnPairVector= std::vector<SPtrDisplayColumnPair>;
 

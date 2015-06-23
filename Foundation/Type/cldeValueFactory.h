@@ -16,9 +16,11 @@ namespace Cloude {
 
             public:
                 cldeValueFactory() = delete;
+                cldeValueFactory(const cldeValueFactory &) = delete;
+                cldeValueFactory(cldeValueFactory &&) = delete;
+                cldeValueFactory &operator=(const cldeValueFactory &) = delete;
+                cldeValueFactory &operator=(cldeValueFactory &&) = delete;
                 ~cldeValueFactory() = delete;
-                cldeValueFactory(const cldeValueFactory &rhs) = delete;
-                cldeValueFactory &operator=(const cldeValueFactory &rhs) = delete;
 
                 static SPtrCldeValue CreateDouble(double value);
                 static SPtrCldeValue CreateInt32(int32_t value);

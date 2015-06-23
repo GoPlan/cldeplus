@@ -25,7 +25,6 @@ namespace Cloude {
             EntityProxySummonState _summonState{EntityProxySummonState::Undefined};
 
         public:
-
             EntityProxy() = default;
             EntityProxy(const EntityProxy &) = default;
             EntityProxy(EntityProxy &&) = default;

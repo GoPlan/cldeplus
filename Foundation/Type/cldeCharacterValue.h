@@ -17,11 +17,13 @@ namespace Cloude {
 
             public:
                 cldeCharacterValue(cldeValueType dataType, size_t length);
+                cldeCharacterValue(const cldeCharacterValue &) = default;
+                cldeCharacterValue(cldeCharacterValue &&) = default;
+                cldeCharacterValue &operator=(const cldeCharacterValue &) = default;
+                cldeCharacterValue &operator=(cldeCharacterValue &&) = default;
                 virtual ~cldeCharacterValue() = default;
-                cldeCharacterValue(const cldeCharacterValue &rhs) = default;
-                cldeCharacterValue &operator=(const cldeCharacterValue &rhs) = default;
 
-                const cldeValueCategory & getCategory() const override;
+                const cldeValueCategory &getCategory() const override;
                 bool isNumeric() const override;
 
                 virtual cldeValue &operator+(const cldeValue &rhs) override;

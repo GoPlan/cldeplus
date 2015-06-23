@@ -14,8 +14,6 @@ namespace Cloude {
         namespace Store {
 
             class EntityStoreHelper {
-
-            public:
                 EntityStoreHelper() = delete;
                 EntityStoreHelper(const EntityStoreHelper &) = delete;
                 EntityStoreHelper(EntityStoreHelper &&) = delete;
@@ -23,6 +21,7 @@ namespace Cloude {
                 EntityStoreHelper &operator=(EntityStoreHelper &&) = delete;
                 ~EntityStoreHelper() = delete;
 
+            public:
                 static void GenerateFieldsFromColumns(const SPtrColumnVector &columnVector,
                                                       const Store::SPtrDataRecord &dataRecord,
                                                       bool checkIfFieldExists = true);

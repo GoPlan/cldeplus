@@ -7,6 +7,7 @@
 
 #include <Foundation/EntityProxy.h>
 #include <Foundation/Segmentation/Segment.h>
+#include <Foundation/Segmentation/JoinPhrase.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -14,33 +15,6 @@ namespace Cloude {
             namespace Helper {
 
                 class SegmentationHelper {
-
-                public:
-                    static SPtrEntityProxySet InnerJoin(const SPtrEntityProxySet &lhs,
-                                                        const SPtrEntityProxySet &rhs,
-                                                        const SPtrColumnVector &columnsForKey);
-
-                    static SPtrEntityProxySet CrossJoin(const SPtrEntityProxySet &lhs,
-                                                        const SPtrEntityProxySet &rhs,
-                                                        const SPtrColumnVector &columnsForKey);
-
-                    static SPtrEntityProxySet LeftOuterJoin(const SPtrEntityProxySet &lhs,
-                                                            const SPtrEntityProxySet &rhs,
-                                                            const SPtrColumnVector &columnsForKey);
-
-                    static SPtrEntityProxySet RightOuterJoin(const SPtrEntityProxySet &lhs,
-                                                             const SPtrEntityProxySet &rhs,
-                                                             const SPtrColumnVector &columnsForKey);
-
-                    static SPtrEntityProxySet Merge(const SPtrEntityProxySet &lhs,
-                                                    const SPtrEntityProxySet &rhs,
-                                                    const SPtrColumnVector &columnsForKey);
-
-                    static SPtrEntityProxySet Differ(const SPtrEntityProxySet &lhs,
-                                                     const SPtrEntityProxySet &rhs,
-                                                     const SPtrColumnVector &columnsForKey);
-
-                public:
                     SegmentationHelper() = delete;
                     SegmentationHelper(const SegmentationHelper &) = delete;
                     SegmentationHelper(SegmentationHelper &&) = delete;
@@ -48,6 +22,20 @@ namespace Cloude {
                     SegmentationHelper &operator=(SegmentationHelper &&) = delete;
                     virtual ~SegmentationHelper() = delete;
 
+                public:
+                    using FPtrProxyProjection = std::function<SPtrEntityProxy(const SPtrEntityProxy &)>;
+                    using FPtrProxyPredicate = std::function<bool(const SPtrEntityProxy &)>;
+                    using DisplaySPtrColumn = std::pair<std::string, SPtrColumn>;
+                    using DisplaySptrColumnVector = std::vector<DisplaySPtrColumn>;
+
+                    static SPtrEntityProxySet VectorToSet(const SPtrEntityProxyVector &sptrProxyVector,
+                                                          FPtrProxyProjection projection,
+                                                          FPtrProxyPredicate predicate);
+
+                    static SPtrEntityProxySet Join(const SPtrEntityProxySet &lhs,
+                                                   const SPtrEntityProxySet &rhs,
+                                                   SPtrEntityProxySet (*joinfunctor)(const JoinPhrase &lhs,
+                                                                                     const JoinPhrase &rhs));
                 };
             }
         }

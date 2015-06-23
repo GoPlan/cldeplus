@@ -136,7 +136,7 @@ add_library(foundation STATIC
     Foundation/Type/Implementation/cldeBlob.cpp
     Foundation/Type/Implementation/cldeBlob.h
     Foundation/Segmentation/Target.cpp
-    Foundation/Segmentation/Target.h Foundation/Segmentation/Segment.cpp Foundation/Segmentation/Segment.h Foundation/Query/Helper/ProxyHelper.cpp Foundation/Query/Helper/ProxyHelper.h Foundation/Segmentation/Helper/SegmentationHelper.cpp Foundation/Segmentation/Helper/SegmentationHelper.h Foundation/Comparer/EntityProxyCmp.cpp Foundation/Comparer/EntityProxyCmp.h Foundation/Exception/cldeSegmentationException.cpp Foundation/Exception/cldeSegmentationException.h)
+    Foundation/Segmentation/Target.h Foundation/Segmentation/Segment.cpp Foundation/Segmentation/Segment.h Foundation/Query/Helper/ProxyHelper.cpp Foundation/Query/Helper/ProxyHelper.h Foundation/Segmentation/Helper/SegmentationHelper.cpp Foundation/Segmentation/Helper/SegmentationHelper.h Foundation/Comparer/EntityProxyCmp.cpp Foundation/Comparer/EntityProxyCmp.h Foundation/Exception/cldeSegmentationException.cpp Foundation/Exception/cldeSegmentationException.h Foundation/Segmentation/Helper/InnerFunctor.cpp Foundation/Segmentation/Helper/InnerFunctor.h Foundation/Segmentation/JoinPhrase.cpp Foundation/Segmentation/JoinPhrase.h Foundation/Segmentation/Helper/InnerFunctor.cpp Foundation/Segmentation/Helper/InnerFunctor.h Foundation/Segmentation/Helper/JoinFunctor.cpp Foundation/Segmentation/Helper/JoinFunctor.h)
 
 
 add_library(application STATIC

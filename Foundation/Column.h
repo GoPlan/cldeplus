@@ -20,6 +20,8 @@ namespace Cloude {
             size_t _length;
 
         public:
+            Column(std::string name, std::string datasourceName, Type::cldeValueType dataType);
+            Column(std::string name, std::string datasourceName, size_t length, Type::cldeValueType dataType);
             Column() = default;
             Column(const Column &) = default;
             Column(Column &&) = default;
@@ -32,21 +34,17 @@ namespace Cloude {
             const std::string &ToString() const override;
             const char *ToCString() const override;
 
-            // Locals
-            Column(std::string name,
-                   std::string datasourceName,
-                   Foundation::Type::cldeValueType dataType);
+            // Locals - Mutators
+            void setDatasourceName(const std::string &datasourceName) { _datasourceName = datasourceName; }
+            void setName(const std::string &name) { _name = name; }
+            void setDataType(const Type::cldeValueType &dataType) { _dataType = dataType; }
+            void setLength(size_t length) { _length = length; }
 
-            Column(std::string name,
-                   std::string datasourceName,
-                   size_t length,
-                   Foundation::Type::cldeValueType dataType);
-
+            // Locals - Accessors
             const std::string &getDatasourceName() const { return _datasourceName; }
             const std::string &getName() const { return _name; }
             const Foundation::Type::cldeValueType &getDataType() const { return _dataType; }
             size_t getLength() const { return _length; }
-            void setLength(size_t length) { _length = length; }
         };
 
         using SPtrColumn = std::shared_ptr<Column>;

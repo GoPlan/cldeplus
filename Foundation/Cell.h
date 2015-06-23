@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 14/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_FOUNDATION_FIELD_H
-#define CLOUD_E_CPLUS_FOUNDATION_FIELD_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_CELL_H
+#define CLOUD_E_CPLUS_FOUNDATION_CELL_H
 
 #include <string>
 #include <memory>
@@ -35,9 +35,11 @@ namespace Cloude {
             const char *ToCString() const override;
 
             // Locals
+            bool isNull() const { return _value.get() == nullptr; };
+
             const SPtrColumn &getColumn() const { return _column; }
             const Type::SPtrValue &getValue() const { return _value; }
-            bool isNull() const { return _value.get() == nullptr; };
+
             void setValue(const Type::SPtrValue &value);
         };
 
@@ -48,4 +50,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_FOUNDATION_FIELD_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_CELL_H

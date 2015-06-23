@@ -2,28 +2,37 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
+#include <Foundation/Comparer/EntityProxyCmp.h>
 #include "SegmentationHelper.h"
 
+namespace Cloude {
+    namespace Foundation {
 
-Cloude::Foundation::SPtrEntityProxySet Cloude::Foundation::Segmentation::Helper::SegmentationHelper::InnerJoin(
-        const SPtrEntityProxySet &lhs, const SPtrEntityProxySet &rhs, const SPtrColumnVector &columnsForKey) {
-    SPtrEntityProxySet proxies;
-    return proxies;
+        SPtrEntityProxySet Segmentation::Helper::SegmentationHelper::VectorToSet(
+                const SPtrEntityProxyVector &sptrProxyVector,
+                FPtrProxyProjection projection,
+                FPtrProxyPredicate predicate) {
+
+            SPtrEntityProxySet setProxies;
+
+            for (auto proxy : sptrProxyVector) {
+                if (predicate(proxy)) {
+                    setProxies.insert(projection(proxy));
+                }
+            }
+
+            return setProxies;
+        }
+
+        SPtrEntityProxySet Segmentation::Helper::SegmentationHelper::Join(const SPtrEntityProxySet &lhs,
+                                                                          const SPtrEntityProxySet &rhs,
+                                                                          SPtrEntityProxySet (*joinfunctor)(
+                                                                                  const Segmentation::JoinPhrase &,
+                                                                                  const Segmentation::JoinPhrase &)) {
+            return joinfunctor(lhs, rhs);
+        }
+    }
 }
 
-Cloude::Foundation::SPtrEntityProxySet Cloude::Foundation::Segmentation::Helper::SegmentationHelper::CrossJoin(
-        const SPtrEntityProxySet &lhs, const SPtrEntityProxySet &rhs, const SPtrColumnVector &columnsForKey) {
-    SPtrEntityProxySet proxies;
-    return proxies;
-}
 
-Cloude::Foundation::SPtrEntityProxySet Cloude::Foundation::Segmentation::Helper::SegmentationHelper::LeftOuterJoin(
-        const SPtrEntityProxySet &lhs, const SPtrEntityProxySet &rhs, const SPtrColumnVector &columnsForKey) {
-    SPtrEntityProxySet proxies;
-    return proxies;
-}
 
-Cloude::Foundation::SPtrEntityProxySet Cloude::Foundation::Segmentation::Helper::SegmentationHelper::RightOuterJoin(
-        const SPtrEntityProxySet &lhs, const SPtrEntityProxySet &rhs, const SPtrColumnVector &columnsForKey) {
-    return LeftOuterJoin(rhs, lhs, columnsForKey);
-}
