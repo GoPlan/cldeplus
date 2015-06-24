@@ -16,6 +16,7 @@
 #include <Foundation/Type/Implementation/cldeTime.h>
 #include <Foundation/Type/Implementation/cldeDate.h>
 #include <Foundation/Type/Implementation/cldeCurrency.h>
+#include <Foundation/Type/Implementation/cldeDateTime.h>
 #include "cldeValueHelper.h"
 
 namespace Cloude {
@@ -25,7 +26,7 @@ namespace Cloude {
 
             switch (sptrValue->getDataType()) {
                 case cldeValueType::Boolean: {
-                    return std::dynamic_pointer_cast<Type::Implementation::cldeBoolean>(sptrValue);
+                    return std::dynamic_pointer_cast<Type::Implementation::cldeBoolean>(sptrValue);;
                 }
                 case cldeValueType::Byte: {
                     return std::dynamic_pointer_cast<Type::Implementation::cldeByte>(sptrValue);
@@ -74,6 +75,9 @@ namespace Cloude {
                 }
                 case cldeValueType::Time: {
                     return std::dynamic_pointer_cast<Type::Implementation::cldeTime>(sptrValue);
+                }
+                case cldeValueType::DateTime: {
+                    return std::dynamic_pointer_cast<Type::Implementation::cldeDateTime>(sptrValue);
                 }
                 case cldeValueType::Timestamp: {
                     return std::dynamic_pointer_cast<Type::Implementation::cldeTimeStamp>(sptrValue);

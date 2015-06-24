@@ -5,12 +5,14 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEDATETIME_H
 #define CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEDATETIME_H
 
+#include <Foundation/Type/cldeValue.h>
+
 namespace Cloude {
     namespace Foundation {
-        namespace Type{
+        namespace Type {
             namespace Implementation {
 
-                class cldeDateTime {
+                class cldeDateTime : public cldeValue {
 
                 public:
                     cldeDateTime() = default;
@@ -18,7 +20,7 @@ namespace Cloude {
                     cldeDateTime(cldeDateTime &&) = default;
                     cldeDateTime &operator=(const cldeDateTime &) = default;
                     cldeDateTime &operator=(cldeDateTime &&) = default;
-                    virtual ~cldeDateTime() = default;
+                    ~cldeDateTime() = default;
                 };
             }
         }

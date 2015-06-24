@@ -5,12 +5,14 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEUINT16_H
 #define CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEUINT16_H
 
+#include <Foundation/Type/cldeValue.h>
+
 namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
 
-                class cldeUInt16 {
+                class cldeUInt16 : public cldeValue {
 
                 public:
                     cldeUInt16() = default;

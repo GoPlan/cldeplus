@@ -5,12 +5,14 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEPOINT_H
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEPOINT_H
 
+#include <Foundation/Type/cldeValue.h>
+
 namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
 
-                class cldePoint {
+                class cldePoint : public cldeValue {
 
                 public:
                     cldePoint() = default;

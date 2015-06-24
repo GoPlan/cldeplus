@@ -10,11 +10,10 @@ namespace Cloude {
         SPtrCell Store::CellHelper::CopySptrCell(const SPtrCell &sptrCell) {
 
             SPtrColumn sptrColumn{new Column{*(sptrCell->getColumn())}};
-            SPtrCell sptrCell{new Cell{sptrColumn}};
+            SPtrCell sptrNewCell{new Cell{sptrColumn}};
 
-            return sptrCell;
+            return sptrNewCell;
         }
     }
 }
-
 

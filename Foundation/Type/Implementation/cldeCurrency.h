@@ -5,12 +5,14 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDECURRENCY_H
 #define CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDECURRENCY_H
 
+#include <Foundation/Type/cldeValue.h>
+
 namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
 
-                class cldeCurrency {
+                class cldeCurrency : public cldeValue {
 
                 public:
                     cldeCurrency() = default;

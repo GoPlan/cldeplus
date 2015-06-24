@@ -5,11 +5,14 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEMATRIX_H
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEMATRIX_H
 
+#include <Foundation/Type/cldeValue.h>
+
 namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
-                class cldeMatrix {
+
+                class cldeMatrix : public cldeValue {
 
                 public:
                     cldeMatrix() = default;

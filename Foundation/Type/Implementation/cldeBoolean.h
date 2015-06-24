@@ -5,12 +5,15 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEBOOLEAN_H
 #define CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEBOOLEAN_H
 
+#include <Foundation/Type/cldeValue.h>
+
 namespace Cloude {
     namespace Foundation {
-        namespace Type{
+        namespace Type {
             namespace Implementation {
 
-                class cldeBoolean {
+                class cldeBoolean : public cldeValue {
+                    bool _value;
 
                 public:
                     cldeBoolean() = default;
@@ -18,7 +21,7 @@ namespace Cloude {
                     cldeBoolean(cldeBoolean &&) = default;
                     cldeBoolean &operator=(const cldeBoolean &) = default;
                     cldeBoolean &operator=(cldeBoolean &&) = default;
-                    virtual ~cldeBoolean() = default;
+                    ~cldeBoolean() = default;
                 };
             }
         }
