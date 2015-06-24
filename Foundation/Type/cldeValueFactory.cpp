@@ -33,13 +33,18 @@ namespace Cloude {
                 return spValue;
             }
 
-            SPtrCldeValue cldeValueFactory::CreateVarchar(const char *value) {
-                auto spValue = std::make_shared<Implementation::cldeVarchar>(value);
+            SPtrCldeValue cldeValueFactory::CreateVarChar(const char *value) {
+                auto spValue = std::make_shared<Implementation::cldeVarChar>(value);
                 return spValue;
             }
 
-            SPtrCldeValue cldeValueFactory::CreateVarchar(unsigned long length) {
-                auto spValue = std::make_shared<Implementation::cldeVarchar>(length);
+            SPtrCldeValue cldeValueFactory::CreateVarChar(const std::string &value) {
+                auto spValue = std::make_shared<Implementation::cldeVarChar>(value.c_str());
+                return spValue;
+            }
+
+            SPtrCldeValue cldeValueFactory::CreateVarChar(unsigned long length) {
+                auto spValue = std::make_shared<Implementation::cldeVarChar>(length);
                 return spValue;
             }
         }

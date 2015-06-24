@@ -18,7 +18,7 @@ namespace Cloude {
                     mutable std::string _value;
 
                 public:
-                    cldeString(const char *string);
+                    cldeString(const std::string &string);
                     cldeString(const cldeString &) = default;
                     cldeString(cldeString &&) = default;
                     cldeString &operator=(const cldeString &) = default;

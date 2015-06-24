@@ -13,20 +13,21 @@ namespace Cloude {
         namespace Type {
             namespace Implementation {
 
-                class cldeVarchar : public cldeCharacterValue {
+                class cldeVarChar : public cldeCharacterValue {
                     char *_value;
 
                     void init();
                     void init(const char *value);
 
                 public:
-                    explicit cldeVarchar(size_t length);
-                    explicit cldeVarchar(const char *value);
-                    cldeVarchar(const cldeVarchar &) = default;
-                    cldeVarchar(cldeVarchar &&) = default;
-                    cldeVarchar &operator=(const cldeVarchar &) = default;
-                    cldeVarchar &operator=(cldeVarchar &&) = default;
-                    ~cldeVarchar();
+                    explicit cldeVarChar(size_t length);
+                    explicit cldeVarChar(const std::string &value);
+                    explicit cldeVarChar(const char *value);
+                    cldeVarChar(const cldeVarChar &);
+                    cldeVarChar(cldeVarChar &&);
+                    cldeVarChar &operator=(const cldeVarChar &);
+                    cldeVarChar &operator=(cldeVarChar &&);
+                    ~cldeVarChar();
 
                     // cldeValue
                     virtual void *RawPointerToValueBuffer() override;

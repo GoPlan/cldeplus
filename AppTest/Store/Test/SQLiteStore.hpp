@@ -23,7 +23,7 @@ namespace Cloude {
                     const char *email = "goplan@cloud-e.biz";
 
                     auto spEnquiryId = Foundation::Type::cldeValueFactory::CreateInt64(15);
-                    auto spEnquiryEmail = Foundation::Type::cldeValueFactory::CreateVarchar(email);
+                    auto spEnquiryEmail = Foundation::Type::cldeValueFactory::CreateVarChar(email);
 
                     auto spEnquiryIdField = make_shared<Field>(_enquiryMap.EnquiryId);
                     spEnquiryIdField->setValue(spEnquiryId);

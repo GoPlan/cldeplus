@@ -2,26 +2,25 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_CROSS_H
-#define CLOUD_E_PLUS_CROSS_H
+#ifndef CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_CROSS_H
+#define CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_CROSS_H
+
+#include <Foundation/EntityProxy.h>
+#include <Foundation/Segmentation/JoinPhrase.h>
 
 namespace Cloude {
-    namespace Segmentation {
-        namespace Helper {
+    namespace Foundation {
+        namespace Segmentation {
+            namespace Helper {
 
-            class Cross {
-
-            public:
-                Cross() = default;
-                Cross(const Cross &) = default;
-                Cross(Cross &&) = default;
-                Cross &operator=(const Cross &) = default;
-                Cross &operator=(Cross &&) = default;
-                virtual ~Cross() = default;
-            };
+                struct Cross : public std::binary_function<JoinPhrase, JoinPhrase, bool> {
+                public:
+                    SPtrEntityProxySet operator()(const JoinPhrase &lhsPhrase, const JoinPhrase &rhsPhrase) const;
+                };
+            }
         }
     }
 }
 
 
-#endif //CLOUD_E_PLUS_CROSS_H
+#endif //CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_CROSS_H

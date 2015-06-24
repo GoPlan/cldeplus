@@ -2,11 +2,14 @@
 // Created by LE, Duc-Anh on 5/21/15.
 //
 
+
 #include "Store/Test/SQLiteStore.hpp"
+#include "Query/Criteria.hpp"
+#include "Type/Type.hpp"
 //#include "Store/Test/MongoDbStore.hpp"
 //#include "Store/Test/MySqlStore.hpp"
 //#include "Store/Test/PostgreStore.hpp"
-#include "Query/Criteria.hpp"
+
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);

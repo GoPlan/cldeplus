@@ -11,49 +11,99 @@ namespace Cloude {
         namespace Type {
             namespace Implementation {
 
-                cldeVarchar::cldeVarchar(size_t length)
-                        : cldeCharacterValue(cldeValueType::Varchar, sizeof(char) * (length + 1)) {
+                cldeVarChar::cldeVarChar(size_t length)
+                        : cldeCharacterValue(cldeValueType::VarChar, sizeof(char) * (length + 1)) {
                     init();
                 }
 
-                cldeVarchar::cldeVarchar(const char *value)
-                        : cldeCharacterValue(cldeValueType::Varchar, sizeof(char) * (strlen(value) + 1)) {
+                cldeVarChar::cldeVarChar(const std::string &value)
+                        : cldeVarChar(value.c_str()) {
+                    //
+                }
+
+                cldeVarChar::cldeVarChar(const char *value)
+                        : cldeCharacterValue(cldeValueType::VarChar, sizeof(char) * (strlen(value) + 1)) {
                     init(value);
                 }
 
-                cldeVarchar::~cldeVarchar() {
+                cldeVarChar::cldeVarChar(const cldeVarChar &varchar)
+                        : cldeCharacterValue(cldeValueType::VarChar, sizeof(char) * (strlen(varchar._value) + 1)),
+                          _value{strdup(varchar._value)} {
+                    //
+                }
+
+                cldeVarChar::cldeVarChar(cldeVarChar &&varchar)
+                        : cldeCharacterValue(cldeValueType::VarChar, sizeof(char) * (strlen(varchar._value) + 1)),
+                          _value{varchar._value} {
+                    varchar._length = 0;
+                    varchar._value = nullptr;
+                }
+
+                cldeVarChar &cldeVarChar::operator=(const cldeVarChar &varchar) {
+
+                    if (this == &varchar)
+                        return *this;
+
+                    if (_value != nullptr && _value != NULL) {
+                        memset(_value, 0x0, _length);
+                        free(_value);
+                        _value = nullptr;
+                    }
+
+                    _dataType = varchar._dataType;
+                    _length = varchar._length;
+                    _value = strdup(varchar._value);
+
+                    return *this;
+                }
+
+                cldeVarChar &cldeVarChar::operator=(cldeVarChar &&varchar) {
+
+                    if (_value != nullptr && _value != NULL) {
+                        memset(_value, 0x0, _length);
+                        free(_value);
+                        _value = nullptr;
+                    }
+
+                    _dataType = std::move(varchar._dataType);
+                    _length = std::move(varchar._length);
+                    _value = std::move(varchar._value);
+
+                    return *this;
+                }
+
+                cldeVarChar::~cldeVarChar() {
                     if (_value != nullptr && _value != NULL) {
                         free(_value);
                     }
                 }
 
-                bool cldeVarchar::Equal(const Common::IEquatable &rhs) const {
+                bool cldeVarChar::Equal(const Common::IEquatable &rhs) const {
                     return false;
                 }
 
-                const std::string cldeVarchar::CopyToString() const {
+                const std::string cldeVarChar::CopyToString() const {
                     return std::string(_value);
                 }
 
-                const std::string &cldeVarchar::ToString() const {
-                    const char *msg = "Varchar does not support ToString." \
-                                        "Use CopyToString(), ToCString() instead.";
-                    throw Exception::cldeNonSupportedFunctionException(msg);
+                const std::string &cldeVarChar::ToString() const {
+                    std::string msg{"VarChar does not support ToString. Use CopyToString(), ToCString() instead."};
+                    throw Exception::cldeNonSupportedFunctionException{msg};
                 }
 
-                const char *cldeVarchar::ToCString() const {
+                const char *cldeVarChar::ToCString() const {
                     return _value;
                 }
 
-                void *cldeVarchar::RawPointerToValueBuffer() {
+                void *cldeVarChar::RawPointerToValueBuffer() {
                     return _value;
                 }
 
-                void cldeVarchar::init() {
+                void cldeVarChar::init() {
                     _value = (char *) calloc(_length, sizeof(char));
                 }
 
-                void cldeVarchar::init(const char *value) {
+                void cldeVarChar::init(const char *value) {
                     _value = strdup(value);
                 }
             }

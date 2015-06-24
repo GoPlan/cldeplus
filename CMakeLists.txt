@@ -37,8 +37,6 @@ add_library(foundation STATIC
     Foundation/Exception/cldeDataSourceRoutineException.h
     Foundation/Exception/cldeEntityStoreRoutineException.cpp
     Foundation/Exception/cldeEntityStoreRoutineException.h
-    Foundation/Query/Helper/SqlHelper.cpp
-    Foundation/Query/Helper/SqlHelper.h
     Foundation/Exception/cldeEntityException.cpp
     Foundation/Exception/cldeEntityException.h
     Foundation/EntitySourceDriver.cpp
@@ -48,6 +46,8 @@ add_library(foundation STATIC
     Foundation/Common/IPrintable.h
     Foundation/Query/Criteria.cpp
     Foundation/Query/Criteria.h
+    Foundation/Query/Helper/SqlHelper.cpp
+    Foundation/Query/Helper/SqlHelper.h
     Foundation/Query/Comparative/And.cpp
     Foundation/Query/Comparative/And.h
     Foundation/Query/Comparative/Or.cpp
@@ -77,31 +77,51 @@ add_library(foundation STATIC
     Foundation/Type/cldeValue.cpp
     Foundation/Type/cldeValue.h
     Foundation/Type/cldeValueType.cpp
+    Foundation/Type/cldeNumericValue.cpp
+    Foundation/Type/cldeNumericValue.h
+    Foundation/Type/cldeCharacterValue.cpp
+    Foundation/Type/cldeCharacterValue.h
+    Foundation/Type/cldeValueFactory.cpp
+    Foundation/Type/cldeValueFactory.h
+    Foundation/Type/cldeType.h
     Foundation/Type/Implementation/cldeInt32.cpp
     Foundation/Type/Implementation/cldeInt32.h
     Foundation/Type/Implementation/cldeInt64.cpp
     Foundation/Type/Implementation/cldeInt64.h
-    Foundation/Type/Implementation/cldeVarchar.cpp
-    Foundation/Type/Implementation/cldeVarchar.h
+    Foundation/Type/Implementation/cldeVarChar.cpp
+    Foundation/Type/Implementation/cldeVarChar.h
     Foundation/Type/Implementation/cldeDouble.cpp
     Foundation/Type/Implementation/cldeDouble.h
     Foundation/Type/Implementation/cldeText.cpp
     Foundation/Type/Implementation/cldeText.h
     Foundation/Type/Implementation/cldeInt16.cpp
     Foundation/Type/Implementation/cldeInt16.h
-    Foundation/Type/cldeNumericValue.cpp
-    Foundation/Type/cldeNumericValue.h
-    Foundation/Type/cldeCharacterValue.cpp
-    Foundation/Type/cldeCharacterValue.h
+    Foundation/Type/Implementation/cldeBoolean.cpp
+    Foundation/Type/Implementation/cldeBoolean.h
+    Foundation/Type/Implementation/cldeDate.cpp
+    Foundation/Type/Implementation/cldeDate.h
+    Foundation/Type/Implementation/cldeDateTime.cpp
+    Foundation/Type/Implementation/cldeDateTime.h
+    Foundation/Type/Implementation/cldeTime.cpp
+    Foundation/Type/Implementation/cldeTime.h
+    Foundation/Type/Implementation/cldeUInt16.cpp
+    Foundation/Type/Implementation/cldeUInt16.h
+    Foundation/Type/Implementation/cldeUInt32.cpp
+    Foundation/Type/Implementation/cldeUInt32.h
+    Foundation/Type/Implementation/cldeUInt64.cpp
+    Foundation/Type/Implementation/cldeUInt64.h
+    Foundation/Type/Implementation/cldeByte.cpp
+    Foundation/Type/Implementation/cldeByte.h
+    Foundation/Type/Implementation/cldeTimeStamp.cpp
+    Foundation/Type/Implementation/cldeTimeStamp.h
+    Foundation/Type/Implementation/cldeCurrency.cpp
+    Foundation/Type/Implementation/cldeCurrency.h
     Foundation/Type/Implementation/cldeFloat.cpp
     Foundation/Type/Implementation/cldeFloat.h
     Foundation/Type/Implementation/cldePoint.cpp
     Foundation/Type/Implementation/cldePoint.h
     Foundation/Type/Implementation/cldeMatrix.cpp
     Foundation/Type/Implementation/cldeMatrix.h
-    Foundation/Type/cldeValueFactory.cpp
-    Foundation/Type/cldeValueFactory.h
-    Foundation/Type/cldeType.h
     Foundation/Type/Implementation/cldeString.cpp
     Foundation/Type/Implementation/cldeString.h
     Foundation/Exception/cldeNonSupportedFunctionException.cpp
@@ -146,7 +166,18 @@ add_library(foundation STATIC
     Foundation/Segmentation/Helper/Inner.cpp
     Foundation/Segmentation/Helper/Inner.h
     Foundation/Segmentation/JoinPhrase.cpp
-    Foundation/Segmentation/JoinPhrase.h Foundation/Comparer/CellComparer.cpp Foundation/Comparer/CellComparer.h Foundation/Segmentation/Helper/Cross.cpp Foundation/Segmentation/Helper/Cross.h Foundation/Segmentation/Helper/Left.cpp Foundation/Segmentation/Helper/Left.h Foundation/Store/CellHelper.cpp Foundation/Store/CellHelper.h Foundation/Type/Helper/cldeValueHelper.cpp Foundation/Type/Helper/cldeValueHelper.h Foundation/Type/Implementation/cldeBoolean.cpp Foundation/Type/Implementation/cldeBoolean.h Foundation/Type/Implementation/cldeDate.cpp Foundation/Type/Implementation/cldeDate.h Foundation/Type/Implementation/cldeDateTime.cpp Foundation/Type/Implementation/cldeDateTime.h Foundation/Type/Implementation/cldeTime.cpp Foundation/Type/Implementation/cldeTime.h Foundation/Type/Implementation/cldeUInt16.cpp Foundation/Type/Implementation/cldeUInt16.h Foundation/Type/Implementation/cldeUInt32.cpp Foundation/Type/Implementation/cldeUInt32.h Foundation/Type/Implementation/cldeUInt64.cpp Foundation/Type/Implementation/cldeUInt64.h Foundation/Type/Implementation/cldeByte.cpp Foundation/Type/Implementation/cldeByte.h Foundation/Type/Implementation/cldeTimeStamp.cpp Foundation/Type/Implementation/cldeTimeStamp.h Foundation/Type/Implementation/cldeCurrency.cpp Foundation/Type/Implementation/cldeCurrency.h)
+    Foundation/Segmentation/JoinPhrase.h
+    Foundation/Comparer/CellComparer.cpp
+    Foundation/Comparer/CellComparer.h
+    Foundation/Segmentation/Helper/Cross.cpp
+    Foundation/Segmentation/Helper/Cross.h
+    Foundation/Segmentation/Helper/Left.cpp
+    Foundation/Segmentation/Helper/Left.h
+    Foundation/Store/CellHelper.cpp
+    Foundation/Store/CellHelper.h
+    Foundation/Type/Helper/cldeValueHelper.cpp
+    Foundation/Type/Helper/cldeValueHelper.h
+    Foundation/Segmentation/Helper/Right.cpp Foundation/Segmentation/Helper/Right.h)
 
 
 add_library(application STATIC
@@ -158,7 +189,7 @@ add_library(application STATIC
     Application/Mapper/EnquiryMap.h
     Application/Mapper/EnquiryLoader.cpp
     Application/Mapper/EnquiryLoader.h
-    AppTest/Segmentation/Segmentation.hpp)
+    )
 
 
 add_library(sourcedriver STATIC
@@ -203,7 +234,8 @@ add_library(apptest STATIC
 #    AppTest/Store/StockGroupPostgreStore.h
 #    AppTest/Store/Test/PostgreStore.hpp
     AppTest/Query/Criteria.hpp
-    )
+    AppTest/Segmentation/Segmentation.hpp
+    AppTest/Type/Type.hpp)
 
 
 

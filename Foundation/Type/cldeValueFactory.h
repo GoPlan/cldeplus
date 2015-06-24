@@ -26,8 +26,9 @@ namespace Cloude {
                 static SPtrCldeValue CreateInt32(int32_t value);
                 static SPtrCldeValue CreateInt64(int64_t value);
                 static SPtrCldeValue CreateString(const char *value);
-                static SPtrCldeValue CreateVarchar(const char *value);
-                static SPtrCldeValue CreateVarchar(unsigned long length);
+                static SPtrCldeValue CreateVarChar(const char *value);
+                static SPtrCldeValue CreateVarChar(const std::string &value);
+                static SPtrCldeValue CreateVarChar(unsigned long length);
             };
         }
     }

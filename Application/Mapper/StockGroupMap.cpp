@@ -12,15 +12,15 @@ namespace Cloude {
 
             Foundation::SPtrColumn StockGroupMap::Code =
                     std::make_shared<Foundation::Column>("Code", "code", 50,
-                                                         Foundation::Type::cldeValueType::Varchar);
+                                                         Foundation::Type::cldeValueType::VarChar);
 
             Foundation::SPtrColumn StockGroupMap::UniqueName =
                     std::make_shared<Foundation::Column>("UniqueName", "uniquename", 50,
-                                                         Foundation::Type::cldeValueType::Varchar);
+                                                         Foundation::Type::cldeValueType::VarChar);
 
             Foundation::SPtrColumn StockGroupMap::DefaultStockCode =
                     std::make_shared<Foundation::Column>("DefaultStockCode", "defaultstockcode", 50,
-                                                         Foundation::Type::cldeValueType::Varchar);
+                                                         Foundation::Type::cldeValueType::VarChar);
 
             StockGroupMap::StockGroupMap() {
                 this->_columnsForKey.push_back(Code);

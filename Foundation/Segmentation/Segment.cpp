@@ -9,7 +9,8 @@
 namespace Cloude {
     namespace Foundation {
 
-        Segmentation::Segment::Segment(const SPtrEntityProxySet &proxySet) : _resultSet{proxySet} {
+        Segmentation::Segment::Segment(const SPtrEntityProxySet &proxySet)
+                : _resultSet{proxySet} {
             //
         }
 

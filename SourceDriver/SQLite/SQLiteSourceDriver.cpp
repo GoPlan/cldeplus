@@ -116,7 +116,7 @@ namespace Cloude {
                                               break;
                                           };
 
-                                          case cldeValueType::Varchar: {
+                                          case cldeValueType::VarChar: {
                                               auto tmp = static_cast<const char *>(ptrValueBuffer);
                                               sqlite3_bind_text(sptrCommand->_ptrStmt,
                                                                 index++,
@@ -160,7 +160,7 @@ namespace Cloude {
                                               break;
                                           };
 
-                                          case cldeValueType::Varchar: {
+                                          case cldeValueType::VarChar: {
                                               auto tmp = static_cast<const char *>( ptrValueBuffer);
                                               sqlite3_bind_text(uptrCommand->_ptrStmt,
                                                                 index++,
@@ -202,10 +202,10 @@ namespace Cloude {
                                          break;
                                      };
 
-                                     case Cloude::Foundation::Type::cldeValueType::Varchar: {
+                                     case Cloude::Foundation::Type::cldeValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
-                                         sptrField->setValue(cldeValueFactory::CreateVarchar(cstr));
+                                         sptrField->setValue(cldeValueFactory::CreateVarChar(cstr));
                                          break;
                                      };
 
@@ -242,10 +242,10 @@ namespace Cloude {
                                          break;
                                      };
 
-                                     case Cloude::Foundation::Type::cldeValueType::Varchar: {
+                                     case Cloude::Foundation::Type::cldeValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
-                                         sptrField->setValue(cldeValueFactory::CreateVarchar(cstr));
+                                         sptrField->setValue(cldeValueFactory::CreateVarChar(cstr));
                                          break;
                                      };
 

@@ -31,23 +31,13 @@ namespace Cloude {
                     return std::to_string(_value);
                 }
 
-
                 const std::string &cldeInt32::ToString() const {
-
-                    if (_string.empty()) {
-                        _string.assign(std::to_string(_value));
-                    }
-
+                    _string.assign(std::to_string(_value));
                     return _string;
                 }
 
                 const char *cldeInt32::ToCString() const {
-
-                    if (_string.empty()) {
-                        _string.assign(std::to_string(_value));
-                    }
-
-                    return _string.c_str();
+                    return ToString().c_str();
                 }
 
                 cldeValue &cldeInt32::operator+(const cldeValue &rhs) {

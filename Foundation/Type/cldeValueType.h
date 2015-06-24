@@ -31,15 +31,14 @@ namespace Cloude {
                     UInt64,
                     Double,
                     Float,
-                    Decimal,
                     String,
-                    Varchar,
+                    VarChar,
                     Text,
                     Currency,
                     Date,
                     Time,
                     DateTime,
-                    Timestamp,
+                    TimeStamp,
                     Point,
                     Matrix
                 };

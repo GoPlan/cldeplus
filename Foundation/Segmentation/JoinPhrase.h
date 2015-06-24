@@ -18,11 +18,11 @@ namespace Cloude {
             class JoinPhrase {
 
                 const SPtrEntityProxySet &_setProxies;
-                ColumnNamePairVector _vectorDisplayColumns;
-                ColumnNamePairVector _vectorComparingColumns;
+                ColumnNamePairVector _vectorDisplayColumnPairs;
+                SPtrColumnVector _vectorComparingColumns;
 
             public:
-                explicit JoinPhrase(const SPtrEntityProxySet &setProxies) : _setProxies{setProxies} { };
+                explicit JoinPhrase(const SPtrEntityProxySet &setProxies, const SPtrColumnVector &comparingColumns);
                 JoinPhrase(const JoinPhrase &) = default;
                 JoinPhrase(JoinPhrase &&) = default;
                 JoinPhrase &operator=(const JoinPhrase &) = default;
@@ -31,12 +31,11 @@ namespace Cloude {
 
                 // Locals - Accessors
                 const SPtrEntityProxySet &getSetProxies() const { return _setProxies; }
-                const ColumnNamePairVector &getVectorComparingColumns() const { return _vectorComparingColumns; }
-                const ColumnNamePairVector &getVectorDisplayColumns() const { return _vectorDisplayColumns; }
+                const SPtrColumnVector &getVectorComparingColumns() const { return _vectorComparingColumns; }
+                const ColumnNamePairVector &getVectorDisplayColumnPairs() const { return _vectorDisplayColumnPairs; }
 
                 // Locals - Mutators
                 void AddDisplayColumnPair(const ColumnNamePair &pairName);
-                void AddComparingColumnPair(const ColumnNamePair &pairName);
             };
         }
     }

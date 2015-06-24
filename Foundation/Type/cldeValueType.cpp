@@ -62,14 +62,11 @@ std::string Cloude::Foundation::Type::cldeType::CopyToString(const cldeType::cld
         case cldeValueType::Float:
             result = "Float";
             break;
-        case cldeValueType::Decimal:
-            result = "Decimal";
-            break;
         case cldeValueType::String:
             result = "String";
             break;
-        case cldeValueType::Varchar:
-            result = "Varchar";
+        case cldeValueType::VarChar:
+            result = "VarChar";
             break;
         case cldeValueType::Text:
             result = "Text";
@@ -86,8 +83,8 @@ std::string Cloude::Foundation::Type::cldeType::CopyToString(const cldeType::cld
         case cldeValueType::DateTime:
             result = "DateTime";
             break;
-        case cldeValueType::Timestamp:
-            result = "Timestamp";
+        case cldeValueType::TimeStamp:
+            result = "TimeStamp";
             break;
         case cldeValueType::Point:
             result = "Point";

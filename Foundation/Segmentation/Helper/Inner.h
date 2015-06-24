@@ -13,18 +13,9 @@ namespace Cloude {
         namespace Segmentation {
             namespace Helper {
 
-                class Inner {
-
-                    Inner() = delete;
-                    Inner(const Inner &) = delete;
-                    Inner(Inner &&) = delete;
-                    Inner &operator=(const Inner &) = delete;
-                    Inner &operator=(Inner &&) = delete;
-                    ~Inner() = delete;
-
+                struct Inner : public std::binary_function<JoinPhrase, JoinPhrase, bool> {
                 public:
                     SPtrEntityProxySet operator()(const JoinPhrase &lhsPhrase, const JoinPhrase &rhsPhrase) const;
-
                 };
             }
         }

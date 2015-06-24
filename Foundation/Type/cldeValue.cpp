@@ -9,8 +9,8 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
 
-            cldeValue::cldeValue(cldeValueType dataType, size_t length) : _dataType(dataType),
-                                                         _length(length) {
+            cldeValue::cldeValue(cldeValueType dataType, size_t length)
+                    : _dataType(dataType), _length(length) {
                 //
             }
         }

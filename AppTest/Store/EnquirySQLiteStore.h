@@ -11,7 +11,6 @@
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Application/Mapper/EnquiryMap.h>
 
-
 namespace Cloude {
     namespace AppTest {
         class EnquirySQLiteStore : public ::testing::Test {

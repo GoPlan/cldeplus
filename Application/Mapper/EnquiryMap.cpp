@@ -16,15 +16,15 @@ namespace Cloude {
 
             Foundation::SPtrColumn EnquiryMap::ObjectId =
                     std::make_shared<Foundation::Column>("ObjectId", "_id",
-                                                         Foundation::Type::cldeValueType::Varchar);
+                                                         Foundation::Type::cldeValueType::VarChar);
 
             Foundation::SPtrColumn EnquiryMap::Email =
                     std::make_shared<Foundation::Column>("Email", "Email",
-                                                         Foundation::Type::cldeValueType::Varchar);
+                                                         Foundation::Type::cldeValueType::VarChar);
 
             Foundation::SPtrColumn EnquiryMap::Subject =
                     std::make_shared<Foundation::Column>("Subject", "Subject",
-                                                         Foundation::Type::cldeValueType::Varchar);
+                                                         Foundation::Type::cldeValueType::VarChar);
 
             const std::string &EnquiryMap::TableNameCore() const {
                 return TableName;

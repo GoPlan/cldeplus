@@ -28,21 +28,12 @@ namespace Cloude {
                 }
 
                 const std::string &cldeDouble::ToString() const {
-
-                    if (_string.empty()) {
-                        _string.assign(std::to_string(_value));
-                    }
-
+                    _string.assign(std::to_string(_value));
                     return _string;
                 }
 
                 const char *cldeDouble::ToCString() const {
-
-                    if (_string.empty()) {
-                        _string.assign(std::to_string(_value));
-                    }
-
-                    return _string.c_str();
+                    return ToString().c_str();
                 }
 
                 cldeValue &cldeDouble::operator+(const cldeValue &rhs) {

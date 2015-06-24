@@ -29,8 +29,8 @@ namespace Cloude {
 
                 auto sptrEnquiryId_01 = Type::cldeValueFactory::CreateInt64(1);
                 auto sptrEnquiryId_02 = Type::cldeValueFactory::CreateInt64(2);
-                auto sptrEmail_01 = Type::cldeValueFactory::CreateVarchar(email_01);
-                auto sptrEmail_02 = Type::cldeValueFactory::CreateVarchar(email_02);
+                auto sptrEmail_01 = Type::cldeValueFactory::CreateVarChar(email_01);
+                auto sptrEmail_02 = Type::cldeValueFactory::CreateVarChar(email_02);
 
                 Application::Mapper::EnquiryMap enquiryMap;
                 Application::Mapper::EnquiryLoader enquiryLoader;

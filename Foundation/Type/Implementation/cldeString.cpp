@@ -9,9 +9,8 @@ namespace Cloude {
         namespace Type {
             namespace Implementation {
 
-                cldeString::cldeString(const char *string) : _value(string),
-                                                             cldeCharacterValue(cldeValueType::String,
-                                                                                _value.length()) {
+                cldeString::cldeString(const std::string &string)
+                        : _value(string), cldeCharacterValue(cldeValueType::String, _value.length()) {
                     //
                 }
 
@@ -25,9 +24,9 @@ namespace Cloude {
                 }
 
                 void *cldeString::RawPointerToValueBuffer() {
-                    const char *msg = "String type does not support non-const RawPointerToValueBuffer." \
-                                                        "Use Varchar instead.";
-                    throw Exception::cldeNonSupportedFunctionException(msg);
+                    std::string msg{"String type does not support non-const RawPointerToValueBuffer." \
+                                                        "Use VarChar instead."};
+                    throw Exception::cldeNonSupportedFunctionException{msg};
                 }
 
                 const std::string cldeString::CopyToString() const {
