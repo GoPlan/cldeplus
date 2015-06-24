@@ -8,29 +8,47 @@
 namespace Cloude {
     namespace Foundation {
 
-        SPtrEntityProxySet Segmentation::Helper::Inner::operator()(const JoinPhrase &lhs,
-                                                                   const JoinPhrase &rhs) const {
+        SPtrEntityProxySet Segmentation::Helper::Inner::operator()(const JoinPhrase &lhsPhrase,
+                                                                   const JoinPhrase &rhsPhrase) const {
+
             SPtrColumnVector lhsComparingColumns;
             SPtrColumnVector rhsComparingColumns;
 
-            // Generate comparing columns
+            for (auto &pairColumnName : lhsPhrase.getVectorComparingColumns()) {
+
+            }
+
 
             Comparer::EntityProxyComparer compare{lhsComparingColumns, rhsComparingColumns};
 
             SPtrEntityProxySet setProxies;
-            auto lhsIter = lhs.getSetProxies().cbegin();
-            auto rhsIter = rhs.getSetProxies().cbegin();
+            auto lhsIter = lhsPhrase.getSetProxies().cbegin();
+            auto rhsIter = rhsPhrase.getSetProxies().cbegin();
 
-            while (lhsIter != lhs.getSetProxies().cend()) {
+            while (lhsIter != lhsPhrase.getSetProxies().cend()) {
 
-                if (rhsIter == rhs.getSetProxies().cend())
+                if (rhsIter == rhsPhrase.getSetProxies().cend())
                     break;
 
                 while (compare(*lhsIter, *rhsIter)) {
 
-                    SPtrEntityProxy proxy = std::make_shared<EntityProxy>();
+                    auto proxy = std::make_shared<EntityProxy>();
 
-                    // Set proxy cells
+                    for (auto &columnPair : lhsPhrase.getVectorDisplayColumns()) {
+
+                        auto sptrCell = (*lhsIter)->getCell(columnPair.first);
+                        auto &sptrColumn = sptrCell->getColumn();
+
+                        sptrColumn->setName(columnPair.second);
+                    }
+
+                    for (auto &columnPair : rhsPhrase.getVectorDisplayColumns()) {
+
+                        auto sptrCell = (*rhsIter)->getCell(columnPair.first);
+                        auto &sptrColumn = sptrCell->getColumn();
+
+                        sptrColumn->setName(columnPair.second);
+                    }
 
                     setProxies.insert(proxy);
 

@@ -146,7 +146,7 @@ add_library(foundation STATIC
     Foundation/Segmentation/Helper/Inner.cpp
     Foundation/Segmentation/Helper/Inner.h
     Foundation/Segmentation/JoinPhrase.cpp
-    Foundation/Segmentation/JoinPhrase.h Foundation/Comparer/CellComparer.cpp Foundation/Comparer/CellComparer.h)
+    Foundation/Segmentation/JoinPhrase.h Foundation/Comparer/CellComparer.cpp Foundation/Comparer/CellComparer.h Foundation/Segmentation/Helper/Cross.cpp Foundation/Segmentation/Helper/Cross.h Foundation/Segmentation/Helper/Left.cpp Foundation/Segmentation/Helper/Left.h Foundation/Store/CellHelper.cpp Foundation/Store/CellHelper.h Foundation/Type/Helper/cldeValueHelper.cpp Foundation/Type/Helper/cldeValueHelper.h Foundation/Type/Implementation/cldeBoolean.cpp Foundation/Type/Implementation/cldeBoolean.h Foundation/Type/Implementation/cldeDate.cpp Foundation/Type/Implementation/cldeDate.h Foundation/Type/Implementation/cldeDateTime.cpp Foundation/Type/Implementation/cldeDateTime.h Foundation/Type/Implementation/cldeTime.cpp Foundation/Type/Implementation/cldeTime.h Foundation/Type/Implementation/cldeUInt16.cpp Foundation/Type/Implementation/cldeUInt16.h Foundation/Type/Implementation/cldeUInt32.cpp Foundation/Type/Implementation/cldeUInt32.h Foundation/Type/Implementation/cldeUInt64.cpp Foundation/Type/Implementation/cldeUInt64.h Foundation/Type/Implementation/cldeByte.cpp Foundation/Type/Implementation/cldeByte.h Foundation/Type/Implementation/cldeTimeStamp.cpp Foundation/Type/Implementation/cldeTimeStamp.h Foundation/Type/Implementation/cldeCurrency.cpp Foundation/Type/Implementation/cldeCurrency.h)
 
 
 add_library(application STATIC

@@ -14,15 +14,16 @@ namespace Cloude {
             namespace Helper {
 
                 class Inner {
+
                     Inner() = delete;
                     Inner(const Inner &) = delete;
                     Inner(Inner &&) = delete;
                     Inner &operator=(const Inner &) = delete;
                     Inner &operator=(Inner &&) = delete;
-                    virtual ~Inner() = delete;
+                    ~Inner() = delete;
 
                 public:
-                    SPtrEntityProxySet operator()(const JoinPhrase &lhs, const JoinPhrase &rhs) const;
+                    SPtrEntityProxySet operator()(const JoinPhrase &lhsPhrase, const JoinPhrase &rhsPhrase) const;
 
                 };
             }

@@ -22,12 +22,12 @@ namespace Cloude {
                 ColumnNamePairVector _vectorComparingColumns;
 
             public:
-                JoinPhrase(const SPtrEntityProxySet &setProxies) : _setProxies{setProxies} { };
+                explicit JoinPhrase(const SPtrEntityProxySet &setProxies) : _setProxies{setProxies} { };
                 JoinPhrase(const JoinPhrase &) = default;
                 JoinPhrase(JoinPhrase &&) = default;
                 JoinPhrase &operator=(const JoinPhrase &) = default;
                 JoinPhrase &operator=(JoinPhrase &&) = default;
-                virtual ~JoinPhrase() = default;
+                ~JoinPhrase() = default;
 
                 // Locals - Accessors
                 const SPtrEntityProxySet &getSetProxies() const { return _setProxies; }

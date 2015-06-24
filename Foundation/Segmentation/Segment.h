@@ -23,7 +23,7 @@ namespace Cloude {
                 using SegmentHelper = Foundation::Segmentation::Helper::SegmentHelper;
 
             public:
-                explicit Segment(const SPtrEntityProxySet proxySet);
+                explicit Segment(const SPtrEntityProxySet &proxySet);
                 Segment() = default;
                 Segment(const Segment &) = default;
                 Segment(Segment &&) = default;
@@ -33,7 +33,9 @@ namespace Cloude {
 
                 // Locals - Accessors
                 virtual const SPtrEntityProxySet &ResultSet();
-                virtual SPtrSegment Join(const SPtrSegment &targetSegment,
+                virtual SPtrSegment Join(const SPtrSegment &rhsSegment,
+                                         const JoinPhrase &lhsJoinPhrase,
+                                         const JoinPhrase &rhsJoinPhrase,
                                          SPtrEntityProxySet (*fptrJoin)(const JoinPhrase &lhs, const JoinPhrase &rhs));
 
             protected:

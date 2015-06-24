@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <Foundation/Common/IPrintable.h>
 #include "Type/cldeValueType.h"
 
 namespace Cloude {

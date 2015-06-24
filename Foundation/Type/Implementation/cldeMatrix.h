@@ -10,6 +10,7 @@ namespace Cloude {
         namespace Type {
             namespace Implementation {
                 class cldeMatrix {
+
                 public:
                     cldeMatrix() = default;
                     cldeMatrix(const cldeMatrix &) = default;

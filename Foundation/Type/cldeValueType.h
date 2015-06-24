@@ -6,7 +6,6 @@
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUETYPE_H
 
 #include <string>
-#include <Foundation/Common/IPrintable.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -33,15 +32,14 @@ namespace Cloude {
                     Double,
                     Float,
                     Decimal,
-                    Numeric,
                     String,
                     Varchar,
                     Text,
                     Currency,
                     Date,
                     Time,
+                    DateTime,
                     Timestamp,
-                    Interval,
                     Point,
                     Matrix
                 };

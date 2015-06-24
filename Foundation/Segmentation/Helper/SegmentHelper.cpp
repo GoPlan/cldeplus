@@ -25,10 +25,11 @@ namespace Cloude {
         }
 
         SPtrEntityProxySet Segmentation::Helper::SegmentHelper::Join(
-                const SPtrEntityProxySet &lhs,
-                const SPtrEntityProxySet &rhs,
-                SPtrEntityProxySet (*joinfunctor)(const Segmentation::JoinPhrase &, const Segmentation::JoinPhrase &)) {
-            return joinfunctor(lhs, rhs);
+                const JoinPhrase &lhsJoinPhrase,
+                const JoinPhrase &rhsJoinPhrase,
+                SPtrEntityProxySet (*fptrJoin)(const Segmentation::JoinPhrase &lhsPhrase,
+                                               const Segmentation::JoinPhrase &rhsPhrase)) {
+            return fptrJoin(lhsJoinPhrase, rhsJoinPhrase);
         }
     }
 }

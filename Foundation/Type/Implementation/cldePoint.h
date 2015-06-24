@@ -9,7 +9,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
+
                 class cldePoint {
+
                 public:
                     cldePoint() = default;
                     cldePoint(const cldePoint &) = default;

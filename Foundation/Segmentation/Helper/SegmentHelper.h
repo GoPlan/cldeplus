@@ -32,10 +32,10 @@ namespace Cloude {
                                                           FPtrProxyProjection projection,
                                                           FPtrProxyPredicate predicate);
 
-                    static SPtrEntityProxySet Join(const SPtrEntityProxySet &lhs,
-                                                   const SPtrEntityProxySet &rhs,
-                                                   SPtrEntityProxySet (*joinfunctor)(const JoinPhrase &lhs,
-                                                                                     const JoinPhrase &rhs));
+                    static SPtrEntityProxySet Join(const JoinPhrase &lhsJoinPhrase,
+                                                   const JoinPhrase &rhsJoinPhrase,
+                                                   SPtrEntityProxySet (*fptrJoin)(const JoinPhrase &lhs,
+                                                                                  const JoinPhrase &rhs));
                 };
             }
         }

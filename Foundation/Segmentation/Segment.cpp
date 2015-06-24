@@ -9,7 +9,7 @@
 namespace Cloude {
     namespace Foundation {
 
-        Segmentation::Segment::Segment(const SPtrEntityProxySet proxySet) : _resultSet{proxySet} {
+        Segmentation::Segment::Segment(const SPtrEntityProxySet &proxySet) : _resultSet{proxySet} {
             //
         }
 
@@ -17,11 +17,13 @@ namespace Cloude {
             return _resultSet;
         }
 
-        Segmentation::SPtrSegment Segmentation::Segment::Join(const SPtrSegment &targetSegment,
+        Segmentation::SPtrSegment Segmentation::Segment::Join(const SPtrSegment &rhsSegment,
+                                                              const JoinPhrase &lhsJoinPhrase,
+                                                              const JoinPhrase &rhsJoinPhrase,
                                                               SPtrEntityProxySet (*fptrJoin)(
                                                                       const Segmentation::JoinPhrase &,
                                                                       const Segmentation::JoinPhrase &)) {
-            auto resultSet = SegmentHelper::Join(_resultSet, targetSegment->_resultSet, fptrJoin);
+            auto resultSet = SegmentHelper::Join(lhsJoinPhrase, rhsJoinPhrase, fptrJoin);
             return SPtrSegment{new Segment{resultSet}};
         }
     }

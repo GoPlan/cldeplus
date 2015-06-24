@@ -65,9 +65,6 @@ std::string Cloude::Foundation::Type::cldeType::CopyToString(const cldeType::cld
         case cldeValueType::Decimal:
             result = "Decimal";
             break;
-        case cldeValueType::Numeric:
-            result = "Numeric";
-            break;
         case cldeValueType::String:
             result = "String";
             break;
@@ -86,11 +83,11 @@ std::string Cloude::Foundation::Type::cldeType::CopyToString(const cldeType::cld
         case cldeValueType::Time:
             result = "Time";
             break;
+        case cldeValueType::DateTime:
+            result = "DateTime";
+            break;
         case cldeValueType::Timestamp:
             result = "Timestamp";
-            break;
-        case cldeValueType::Interval:
-            result = "Interval";
             break;
         case cldeValueType::Point:
             result = "Point";
