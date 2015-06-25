@@ -2,7 +2,6 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
-#include "Foundation/Comparer/EntityProxyComparer.h"
 #include "SegmentHelper.h"
 
 namespace Cloude {

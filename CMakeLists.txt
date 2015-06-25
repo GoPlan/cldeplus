@@ -84,6 +84,8 @@ add_library(foundation STATIC
     Foundation/Type/cldeValueFactory.cpp
     Foundation/Type/cldeValueFactory.h
     Foundation/Type/cldeType.h
+    Foundation/Type/Helper/cldeValueHelper.cpp
+    Foundation/Type/Helper/cldeValueHelper.h
     Foundation/Type/Implementation/cldeInt32.cpp
     Foundation/Type/Implementation/cldeInt32.h
     Foundation/Type/Implementation/cldeInt64.cpp
@@ -124,6 +126,10 @@ add_library(foundation STATIC
     Foundation/Type/Implementation/cldeMatrix.h
     Foundation/Type/Implementation/cldeString.cpp
     Foundation/Type/Implementation/cldeString.h
+    Foundation/Type/Implementation/cldeBlob.cpp
+    Foundation/Type/Implementation/cldeBlob.h
+    Foundation/Type/Comparer/cldeValueComparer.cpp
+    Foundation/Type/Comparer/cldeValueComparer.h
     Foundation/Exception/cldeNonSupportedFunctionException.cpp
     Foundation/Exception/cldeNonSupportedFunctionException.h
     Foundation/Exception/cldeException.cpp
@@ -151,33 +157,35 @@ add_library(foundation STATIC
     Foundation/EntityRelationship.h
     Foundation/EntityLink.cpp
     Foundation/EntityLink.h
-    Foundation/Type/Implementation/cldeBlob.cpp
-    Foundation/Type/Implementation/cldeBlob.h
     Foundation/Segmentation/Segment.cpp
     Foundation/Segmentation/Segment.h
     Foundation/Query/Helper/ProxyHelper.cpp
     Foundation/Query/Helper/ProxyHelper.h
     Foundation/Segmentation/Helper/SegmentHelper.cpp
     Foundation/Segmentation/Helper/SegmentHelper.h
-    Foundation/Comparer/EntityProxyComparer.cpp
-    Foundation/Comparer/EntityProxyComparer.h
+    Foundation/Comparer/EntityProxyEqual.cpp
+    Foundation/Comparer/EntityProxyEqual.h
     Foundation/Exception/cldeSegmentationException.cpp
     Foundation/Exception/cldeSegmentationException.h
     Foundation/Segmentation/Helper/Inner.cpp
     Foundation/Segmentation/Helper/Inner.h
     Foundation/Segmentation/JoinPhrase.cpp
     Foundation/Segmentation/JoinPhrase.h
-    Foundation/Comparer/CellComparer.cpp
-    Foundation/Comparer/CellComparer.h
+    Foundation/Comparer/CellEqual.cpp
+    Foundation/Comparer/CellEqual.h
     Foundation/Segmentation/Helper/Cross.cpp
     Foundation/Segmentation/Helper/Cross.h
     Foundation/Segmentation/Helper/Left.cpp
     Foundation/Segmentation/Helper/Left.h
     Foundation/Store/CellHelper.cpp
     Foundation/Store/CellHelper.h
-    Foundation/Type/Helper/cldeValueHelper.cpp
-    Foundation/Type/Helper/cldeValueHelper.h
-    Foundation/Segmentation/Helper/Right.cpp Foundation/Segmentation/Helper/Right.h)
+    Foundation/Segmentation/Helper/Right.cpp
+    Foundation/Segmentation/Helper/Right.h
+    Foundation/Comparer/RecordComparisonResult.cpp
+    Foundation/Comparer/RecordComparisonResult.h
+    Foundation/Comparer/EntityProxyComparer.cpp
+    Foundation/Comparer/EntityProxyComparer.h
+    )
 
 
 add_library(application STATIC

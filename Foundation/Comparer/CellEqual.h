@@ -11,11 +11,8 @@ namespace Cloude {
     namespace Foundation {
         namespace Comparer {
 
-            struct CellComparer : std::binary_function<SPtrCell, SPtrCell, bool> {
-
+            struct CellEqual : std::binary_function<SPtrCell, SPtrCell, bool> {
                 bool operator()(const SPtrCell lhs, const SPtrCell &rhs) const {
-
-
                     return true;
                 };
             };

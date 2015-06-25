@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 6/25/15.
 //
 
-#include "EntityProxyComparer.h"
+#include "RecordComparisonResult.h"
 
 
 

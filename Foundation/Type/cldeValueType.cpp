@@ -22,6 +22,12 @@ std::string Cloude::Foundation::Type::cldeType::CopyToString(const cldeType::cld
         case cldeValueCategory::UserDefined:
             result = "UserDefined";
             break;
+        case cldeValueCategory::DateTime:
+            result = "DateTime";
+            break;
+        case cldeValueCategory::Mathematic:
+            result = "Mathematic";
+            break;
     }
 
     return result;

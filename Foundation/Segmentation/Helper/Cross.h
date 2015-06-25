@@ -14,7 +14,6 @@ namespace Cloude {
             namespace Helper {
 
                 struct Cross : public std::binary_function<JoinPhrase, JoinPhrase, bool> {
-                public:
                     SPtrEntityProxySet operator()(const JoinPhrase &lhsPhrase, const JoinPhrase &rhsPhrase) const;
                 };
             }

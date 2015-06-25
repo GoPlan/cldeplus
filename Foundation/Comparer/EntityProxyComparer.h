@@ -1,61 +1,81 @@
 //
-// Created by LE, Duc Anh on 6/22/15.
+// Created by LE, Duc Anh on 6/25/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_COMPARER_ENTITYPROXYCOMPARER_H
-#define CLOUD_E_PLUS_FOUNDATION_COMPARER_ENTITYPROXYCOMPARER_H
+#ifndef CLOUD_E_PLUS_ENTITYPROXYCOMPARER_H
+#define CLOUD_E_PLUS_ENTITYPROXYCOMPARER_H
 
-#include <Foundation/Exception/cldeSegmentationException.h>
 #include <Foundation/EntityProxy.h>
+#include <Foundation/Exception/cldeEntityException.h>
+#include <Foundation/Type/Comparer/cldeValueComparer.h>
+#include "RecordComparisonResult.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Comparer {
 
-            struct EntityProxyComparer : std::binary_function<SPtrEntityProxy, SPtrEntityProxy, bool> {
-
-                EntityProxyComparer(const SPtrColumnVector &lhsComparingColumns,
-                                    const SPtrColumnVector &rhsComparingColumns)
-                        : lhsComparingColumns{lhsComparingColumns},
-                          rhsComparingColumns{rhsComparingColumns} { };
+            struct EntityProxyComparer {
 
                 const SPtrColumnVector &lhsComparingColumns;
                 const SPtrColumnVector &rhsComparingColumns;
 
-                bool operator()(const SPtrEntityProxy &lhs, const SPtrEntityProxy &rhs) const {
+                EntityProxyComparer(const SPtrColumnVector lhsColumns, const SPtrColumnVector rhsColumns)
+                        : lhsComparingColumns{lhsColumns}, rhsComparingColumns{rhsColumns} { };
 
-                    if (lhsComparingColumns.size() != rhsComparingColumns.size()) {
-                        return false;
+                RecCmpRes operator()(const SPtrEntityProxy &lhs, const SPtrEntityProxy &rhs) const {
+
+                    RecCmpRes result{};
+
+                    if (lhsComparingColumns.size() > rhsComparingColumns.size()) {
+                        std::string msg{"Lhs phrase has comparing column size larger than Rhs"};
+                        throw Exception::cldeEntityException{msg};
                     }
 
                     auto rhsColumnIter = rhsComparingColumns.cbegin();
 
                     for (auto column : lhsComparingColumns) {
 
-                        auto &lhsCell = lhs->getCell(column->getName());
-                        auto &rhsCell = rhs->getCell((*rhsColumnIter)->getName());
+                        const SPtrCell &lhsCell = lhs->getCell(column->getName());
+                        const SPtrCell &rhsCell = rhs->getCell((*rhsColumnIter)->getName());
 
                         ++rhsColumnIter;
 
-                        if (lhsCell->isNull() || rhsCell->isNull())
-                            return false;
+                        if (lhsCell->isNull()) {
+                            result.result = -1;
+                            return result;
+                        }
 
-                        auto &lhsValue = lhsCell->getValue();
-                        auto &rhsValue = rhsCell->getValue();
+                        if (rhsCell->isNull()) {
+                            result.result = 1;
+                            return result;
+                        }
 
-                        auto lhsPtr = static_cast<const Cloude::Foundation::Common::IEquatable *>(lhsValue.get());
-                        auto rhsPtr = static_cast<const Cloude::Foundation::Common::IEquatable *>(rhsValue.get());
+                        const Type::SPtrValue &lhsValue = lhsCell->getValue();
+                        const Type::SPtrValue &rhsValue = rhsCell->getValue();
 
-                        if (!lhsPtr->Equal(*rhsPtr))
-                            return false;
+                        auto valueCmpRes = Type::Comparer::cldeValueComparer::Compare(lhsValue, rhsValue);
 
+                        switch (valueCmpRes) {
+                            case Type::Comparer::ValueComparingResult::LhsValueIsGreater:
+                                result.result = 1;
+                                break;
+                            case Type::Comparer::ValueComparingResult::RhsValueIsGreater:
+                                result.result = -1;
+                                break;
+                            case Type::Comparer::ValueComparingResult::Equal:
+                                result.result = 0;
+                                break;
+                        }
+
+                        if (result.result != 0) return result;
                     }
 
-                    return true;
-                };
+                    return result;
+                }
             };
         }
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_COMPARER_ENTITYPROXYCOMPARER_H
+
+#endif //CLOUD_E_PLUS_ENTITYPROXYCOMPARER_H

@@ -3,7 +3,7 @@
 //
 
 #include <Foundation/Store/CellHelper.h>
-#include "Foundation/Comparer/EntityProxyComparer.h"
+#include <Foundation/Comparer/EntityProxyComparer.h>
 #include "Inner.h"
 
 namespace Cloude {
@@ -24,24 +24,24 @@ namespace Cloude {
                 if (rhsIter == rhsPhrase.getSetProxies().cend())
                     break;
 
-                while (compare(*lhsIter, *rhsIter)) {
+                while (compare(*lhsIter, *rhsIter).result == 0) {
 
                     auto proxy = std::make_shared<EntityProxy>();
 
-                    for (auto &columnPair : lhsPhrase.getVectorDisplayColumnPairs()) {
+                    for (auto &pairColumnNames : lhsPhrase.getVectorDisplayColumnPairs()) {
 
-                        auto sptrCell = Store::CellHelper::CopySptrCell((*lhsIter)->getCell(columnPair.first));
+                        auto sptrCell = Store::CellHelper::CopySptrCell((*lhsIter)->getCell(pairColumnNames.first));
                         auto &sptrColumn = sptrCell->getColumn();
 
-                        sptrColumn->setName(columnPair.second);
+                        sptrColumn->setName(pairColumnNames.second);
                     }
 
-                    for (auto &columnPair : rhsPhrase.getVectorDisplayColumnPairs()) {
+                    for (auto &pairColumnNames : rhsPhrase.getVectorDisplayColumnPairs()) {
 
-                        auto sptrCell = Store::CellHelper::CopySptrCell((*lhsIter)->getCell(columnPair.first));
+                        auto sptrCell = Store::CellHelper::CopySptrCell((*lhsIter)->getCell(pairColumnNames.first));
                         auto &sptrColumn = sptrCell->getColumn();
 
-                        sptrColumn->setName(columnPair.second);
+                        sptrColumn->setName(pairColumnNames.second);
                     }
 
                     setProxies.insert(proxy);

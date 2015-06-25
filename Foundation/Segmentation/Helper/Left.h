@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_LEFT_H
-#define CLOUD_E_PLUS_LEFT_H
+#ifndef CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_LEFT_H
+#define CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_LEFT_H
 
 namespace Cloude {
     namespace Foundation {

@@ -16,6 +16,8 @@ namespace Cloude {
                 enum class cldeValueCategory {
                     Undefined,
                     Numeric,
+                    DateTime,
+                    Mathematic,
                     CharacterBased,
                     UserDefined,
                 };
