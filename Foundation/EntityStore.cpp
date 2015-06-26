@@ -5,7 +5,7 @@
 #include <string>
 #include "EntitySourceDriver.h"
 #include "Query/Helper/SqlHelper.h"
-#include "Store/EntityStoreHelper.h"
+#include "Store/Helper/EntityStoreHelper.h"
 
 using namespace std;
 
@@ -44,7 +44,7 @@ namespace Cloude {
 
             SPtrEntity entity(new Entity(identity));
 
-            Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, entity, false);
+            Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, entity, false);
 
             Insert(entity);
 
@@ -63,7 +63,7 @@ namespace Cloude {
 
             SPtrEntity sptrEntity(new Entity(identity));
 
-            Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, sptrEntity, false);
+            Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, sptrEntity, false);
 
             if (!_entitySourceDriver.Load(sptrEntity)) {
                 return SPtrEntity(nullptr);

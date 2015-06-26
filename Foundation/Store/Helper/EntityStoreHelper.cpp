@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include "EntityStoreHelper.h"
 
-void Cloude::Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(
+void Cloude::Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(
         const Cloude::Foundation::SPtrColumnVector &columnVector,
         const Cloude::Foundation::Store::SPtrDataRecord &dataRecord,
         bool checkIfFieldExists) {

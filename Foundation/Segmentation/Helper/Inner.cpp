@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/23/15.
 //
 
-#include <Foundation/Store/CellHelper.h>
-#include <Foundation/Comparer/EntityProxyEqual.h>
+#include <Foundation/Store/Helper/CellHelper.h>
+#include <Foundation/Store/Comparer/DataRecordEqual.h>
 #include "Inner.h"
 
 namespace Cloude {
@@ -12,7 +12,7 @@ namespace Cloude {
         SPtrEntityProxySet Segmentation::Helper::Inner::operator()(const JoinPhrase &lhsPhrase,
                                                                    const JoinPhrase &rhsPhrase) const {
 
-            Comparer::EntityProxyEqual<> compare{lhsPhrase.getVectorComparingColumns(),
+            Store::Comparer::DataRecordEqual<> compare{lhsPhrase.getVectorComparingColumns(),
                                                rhsPhrase.getVectorComparingColumns()};
 
             SPtrEntityProxySet setProxies;
@@ -30,7 +30,7 @@ namespace Cloude {
 
                     for (auto &pairColumnNames : lhsPhrase.getVectorDisplayColumnPairs()) {
 
-                        auto sptrCell = Store::CellHelper::CopySptrCell((*lhsIter)->getCell(pairColumnNames.first));
+                        auto sptrCell = Store::Helper::CellHelper::CopySptrCell((*lhsIter)->getCell(pairColumnNames.first));
                         auto &sptrColumn = sptrCell->getColumn();
 
                         sptrColumn->setName(pairColumnNames.second);
@@ -38,7 +38,7 @@ namespace Cloude {
 
                     for (auto &pairColumnNames : rhsPhrase.getVectorDisplayColumnPairs()) {
 
-                        auto sptrCell = Store::CellHelper::CopySptrCell((*lhsIter)->getCell(pairColumnNames.first));
+                        auto sptrCell = Store::Helper::CellHelper::CopySptrCell((*lhsIter)->getCell(pairColumnNames.first));
                         auto &sptrColumn = sptrCell->getColumn();
 
                         sptrColumn->setName(pairColumnNames.second);

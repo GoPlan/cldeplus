@@ -4,37 +4,37 @@
 
 #include <Foundation/Exception/cldeEntityException.h>
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
-#include "IDataRecord.h"
+#include "AbstractionEntity.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        void Store::IDataRecord::setCell(const SPtrCell &cell) {
+        void Store::AbstractionEntity::setCell(const SPtrCell &cell) {
             _cellMap[cell->getColumn()->getName()] = cell;
         }
 
-        void Store::IDataRecord::setCell(Cell *ptrCell) {
+        void Store::AbstractionEntity::setCell(Cell *ptrCell) {
             SPtrCell sptrCell(ptrCell);
             _cellMap[ptrCell->getColumn()->getName()] = sptrCell;
         }
 
-        void Store::IDataRecord::setMultiCells(const SPtrCellVector &cellVector) {
+        void Store::AbstractionEntity::setMultiCells(const SPtrCellVector &cellVector) {
             for (auto &sptrField : cellVector) {
                 setCell(sptrField);
             }
         }
 
-        void Store::IDataRecord::setMultiCells(const std::vector<Cell *> &cellVector) {
+        void Store::AbstractionEntity::setMultiCells(const std::vector<Cell *> &cellVector) {
             for (auto ptrField : cellVector) {
                 setCell(ptrField);
             }
         }
 
-        const SPtrCell &Cloude::Foundation::Store::IDataRecord::operator[](const std::string &columnName) const {
+        const SPtrCell &Cloude::Foundation::Store::AbstractionEntity::operator[](const std::string &columnName) const {
             return getCell(columnName);
         }
 
-        const SPtrCell &Cloude::Foundation::Store::IDataRecord::getCell(const std::string &columnName) const {
+        const SPtrCell &Cloude::Foundation::Store::AbstractionEntity::getCell(const std::string &columnName) const {
 
             auto search = _cellMap.find(columnName);
 
@@ -47,7 +47,7 @@ namespace Cloude {
         }
 
 
-        bool Store::IDataRecord::TryGetCell(const std::string &columnName, SPtrCell &sptrOutCell) const {
+        bool Store::AbstractionEntity::TryGetCell(const std::string &columnName, SPtrCell &sptrOutCell) const {
 
             auto search = _cellMap.find(columnName);
 
@@ -60,17 +60,17 @@ namespace Cloude {
             return true;
         }
 
-        bool Store::IDataRecord::hasCell(const std::string &cellName) {
+        bool Store::AbstractionEntity::hasCell(const std::string &cellName) {
             auto search = _cellMap.find(cellName);
             auto result = !(search == _cellMap.end());
             return result;
         }
 
-        unsigned long Store::IDataRecord::Size() {
+        unsigned long Store::AbstractionEntity::Size() {
             return _cellMap.size();
         }
 
-        Foundation::SPtrCellVector Store::IDataRecord::getCells() const {
+        Foundation::SPtrCellVector Store::AbstractionEntity::getCells() const {
 
             SPtrCellVector vectorCells;
 
@@ -81,7 +81,7 @@ namespace Cloude {
             return vectorCells;
         }
 
-        Foundation::SPtrCellVector Store::IDataRecord::getCells(const SPtrColumnVector &selectedColumns) const {
+        Foundation::SPtrCellVector Store::AbstractionEntity::getCells(const SPtrColumnVector &selectedColumns) const {
 
             SPtrCellVector vectorCells;
 
@@ -97,7 +97,7 @@ namespace Cloude {
             return vectorCells;
         }
 
-        Foundation::SPtrColumnVector Store::IDataRecord::getColumns() const {
+        Foundation::SPtrColumnVector Store::AbstractionEntity::getColumns() const {
 
             SPtrColumnVector columnVector;
 
@@ -108,17 +108,17 @@ namespace Cloude {
             return columnVector;
         }
 
-        const std::string &Store::IDataRecord::ToString() const {
+        const std::string &Store::AbstractionEntity::ToString() const {
             std::string msg{"ToString is not supported, use CopyToString intead"};
             throw Exception::cldeNonSupportedFunctionException{msg};
         }
 
-        const char *Store::IDataRecord::ToCString() const {
+        const char *Store::AbstractionEntity::ToCString() const {
             std::string msg{"ToCString is not supported, use CopyToString intead"};
             throw Exception::cldeNonSupportedFunctionException{msg};
         }
 
-        const std::string Store::IDataRecord::CopyToString() const {
+        const std::string Store::AbstractionEntity::CopyToString() const {
 
             std::string result;
 

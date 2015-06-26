@@ -14,7 +14,7 @@ namespace Cloude {
         namespace Type {
             namespace Comparer {
                 struct cldeValueEqual : std::binary_function<SPtrValue, SPtrValue, bool> {
-                    bool operator()(const SPtrValue &lhs, const SPtrValue &rhs) {
+                    bool operator()(const SPtrValue &lhs, const SPtrValue &rhs) const {
                         cldeValueLess lesser;
                         return !lesser(lhs, rhs) && !lesser(rhs, lhs);
                     };

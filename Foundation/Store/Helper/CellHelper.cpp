@@ -8,7 +8,7 @@
 namespace Cloude {
     namespace Foundation {
 
-        SPtrCell Store::CellHelper::CopySptrCell(const SPtrCell &sptrCell) {
+        SPtrCell Store::Helper::CellHelper::CopySptrCell(const SPtrCell &sptrCell) {
 
             Type::SPtrValue sptrValue = Type::Helper::cldeValueHelper::CopySPtrValue(sptrCell->getValue());
             SPtrColumn sptrColumn{new Column{*(sptrCell->getColumn())}};

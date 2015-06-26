@@ -10,7 +10,7 @@
 #include <Foundation/Query/Comparative.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
 #include <Foundation/Query/Helper/CriteriaHelper.h>
-#include <Foundation/Store/EntityStoreHelper.h>
+#include <Foundation/Store/Helper/EntityStoreHelper.h>
 #include "Amalgamation/sqlite3.h"
 #include "SQLiteSourceDriver.h"
 
@@ -288,7 +288,7 @@ namespace Cloude {
                 while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
 
                     Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
-                    Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
+                    Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
 
                     _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
 
@@ -327,7 +327,7 @@ namespace Cloude {
                 while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
 
                     Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
-                    Foundation::Store::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
+                    Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
 
                     _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
 

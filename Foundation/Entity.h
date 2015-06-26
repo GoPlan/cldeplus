@@ -9,14 +9,14 @@
 #include <stdexcept>
 #include <list>
 #include <set>
-#include <Foundation/Store/IDataRecord.h>
+#include "Store/AbstractionEntity.h"
 #include "Cell.h"
 #include "Identity.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        class Entity : public Store::IDataRecord {
+        class Entity : public Store::AbstractionEntity {
 
             SPtrIdentity _identity;
 

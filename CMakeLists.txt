@@ -41,8 +41,6 @@ add_library(foundation STATIC
     Foundation/Exception/cldeEntityException.h
     Foundation/EntitySourceDriver.cpp
     Foundation/EntitySourceDriver.h
-    Foundation/Store/EntityStoreHelper.cpp
-    Foundation/Store/EntityStoreHelper.h
     Foundation/Common/IPrintable.h
     Foundation/Query/Criteria.cpp
     Foundation/Query/Criteria.h
@@ -151,8 +149,8 @@ add_library(foundation STATIC
     Foundation/Query/Helper/CriteriaHelper.cpp
     Foundation/Query/Helper/CriteriaHelper.h
     Foundation/Enum/CommonBufferSize.h
-    Foundation/Store/IDataRecord.h
-    Foundation/Store/IDataRecord.cpp
+    Foundation/Store/AbstractionEntity.h
+    Foundation/Store/AbstractionEntity.cpp
     Foundation/EntityRelationship.cpp
     Foundation/EntityRelationship.h
     Foundation/EntityLink.cpp
@@ -163,22 +161,16 @@ add_library(foundation STATIC
     Foundation/Query/Helper/ProxyHelper.h
     Foundation/Segmentation/Helper/SegmentHelper.cpp
     Foundation/Segmentation/Helper/SegmentHelper.h
-    Foundation/Comparer/EntityProxyEqual.cpp
-    Foundation/Comparer/EntityProxyEqual.h
     Foundation/Exception/cldeSegmentationException.cpp
     Foundation/Exception/cldeSegmentationException.h
     Foundation/Segmentation/Helper/Inner.cpp
     Foundation/Segmentation/Helper/Inner.h
     Foundation/Segmentation/JoinPhrase.cpp
     Foundation/Segmentation/JoinPhrase.h
-    Foundation/Comparer/CellEqual.cpp
-    Foundation/Comparer/CellEqual.h
     Foundation/Segmentation/Helper/Cross.cpp
     Foundation/Segmentation/Helper/Cross.h
     Foundation/Segmentation/Helper/Left.cpp
     Foundation/Segmentation/Helper/Left.h
-    Foundation/Store/CellHelper.cpp
-    Foundation/Store/CellHelper.h
     Foundation/Segmentation/Helper/Right.cpp
     Foundation/Segmentation/Helper/Right.h
     Foundation/Type/Comparer/cldeValueLess.cpp
@@ -187,10 +179,16 @@ add_library(foundation STATIC
     Foundation/Type/Comparer/cldeValueGreater.h
     Foundation/Type/Comparer/cldeValueEqual.cpp
     Foundation/Type/Comparer/cldeValueEqual.h
-    Foundation/Comparer/EntityProxyGreater.cpp
-    Foundation/Comparer/EntityProxyGreater.h
-    Foundation/Comparer/EntityProxyLess.cpp
-    Foundation/Comparer/EntityProxyLess.h)
+    Foundation/Store/Helper/EntityStoreHelper.cpp
+    Foundation/Store/Helper/EntityStoreHelper.h
+    Foundation/Store/Helper/CellHelper.cpp
+    Foundation/Store/Helper/CellHelper.h
+    Foundation/Store/Comparer/DataRecordEqual.cpp
+    Foundation/Store/Comparer/DataRecordEqual.h
+    Foundation/Store/Comparer/DataRecordGreater.cpp
+    Foundation/Store/Comparer/DataRecordGreater.h
+    Foundation/Store/Comparer/DataRecordLess.cpp
+    Foundation/Store/Comparer/DataRecordLess.h)
 
 
 add_library(application STATIC
@@ -229,7 +227,8 @@ add_library(sourcedriver STATIC
 #    SourceDriver/DynamoDb/DynamoDbSourceDriver.h
 #    SourceDriver/DynamoDb/DynamoDbSourceException.cpp
 #    SourceDriver/DynamoDb/DynamoDbSourceException.h
-    SourceDriver/SQLite/SQLiteSourceHelper.cpp SourceDriver/SQLite/SQLiteSourceHelper.h)
+    SourceDriver/SQLite/SQLiteSourceHelper.cpp
+    SourceDriver/SQLite/SQLiteSourceHelper.h)
 
 
 add_library(apptest STATIC

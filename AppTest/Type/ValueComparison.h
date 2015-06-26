@@ -24,8 +24,8 @@ namespace Cloude {
             auto sptrEnquiryId19_01 = Type::cldeValueFactory::CreateInt64(19);
             auto sptrEnquiryId19_02 = Type::cldeValueFactory::CreateInt64(19);
 
-            cldeValueEqual equal{};
             cldeValueGreater greater{};
+            cldeValueEqual equal{};
 
             EXPECT_TRUE(greater(sptrEnquiryId17, sptrEnquiryId15));
             EXPECT_TRUE(equal(sptrEnquiryId19_01, sptrEnquiryId19_02));

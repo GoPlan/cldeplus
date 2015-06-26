@@ -8,11 +8,11 @@ namespace Cloude {
     namespace Foundation {
 
         Identity::Identity(const std::vector<SPtrCell> &fieldVector) {
-            Store::IDataRecord::setMultiCells(fieldVector);
+            Store::AbstractionEntity::setMultiCells(fieldVector);
         }
 
         Identity::Identity(const std::vector<Cell *> &fieldVector) {
-            Store::IDataRecord::setMultiCells(fieldVector);
+            Store::AbstractionEntity::setMultiCells(fieldVector);
         }
     }
 }

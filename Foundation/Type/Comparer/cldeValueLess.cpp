@@ -47,52 +47,52 @@ namespace Cloude {
                 case cldeValueType::Boolean: {
                     auto ptrLhsTmp = reinterpret_cast<bool *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<bool *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::Byte: {
                     auto ptrLhsTmp = reinterpret_cast<char *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<char *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::Int16: {
                     auto ptrLhsTmp = reinterpret_cast<int16_t *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<int16_t *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::Int32: {
                     auto ptrLhsTmp = reinterpret_cast<int32_t *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<int32_t *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::Int64: {
                     auto ptrLhsTmp = reinterpret_cast<int64_t *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<int64_t *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::UInt16: {
                     auto ptrLhsTmp = reinterpret_cast<uint16_t *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<uint16_t *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::UInt32: {
                     auto ptrLhsTmp = reinterpret_cast<uint32_t *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<uint32_t *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::UInt64: {
                     auto ptrLhsTmp = reinterpret_cast<uint64_t *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<uint64_t *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::Double: {
                     auto ptrLhsTmp = reinterpret_cast<double *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<double *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::Float: {
                     auto ptrLhsTmp = reinterpret_cast<float *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<float *>(rhs->RawPointerToValueBuffer());
-                    return ptrLhsTmp < ptrRhsTmp;
+                    return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case cldeValueType::Currency: {
                     std::string type = Type::cldeType::CopyToString(lhs->getDataType());
