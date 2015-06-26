@@ -13,7 +13,7 @@
 namespace Cloude {
     namespace AppTest {
 
-        TEST(Type, case01) {
+        TEST(CreateValue, Int64AndVarChar) {
 
             using namespace Foundation;
             using namespace Foundation::Query;

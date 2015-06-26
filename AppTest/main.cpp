@@ -5,7 +5,8 @@
 
 #include "Store/Test/SQLiteStore.hpp"
 #include "Query/Criteria.hpp"
-#include "Type/Type.hpp"
+#include "Type/CreateValue.hpp"
+#include "Type/ValueComparison.h"
 //#include "Store/Test/MongoDbStore.hpp"
 //#include "Store/Test/MySqlStore.hpp"
 //#include "Store/Test/PostgreStore.hpp"

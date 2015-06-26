@@ -3,7 +3,7 @@
 //
 
 #include <Foundation/Store/CellHelper.h>
-#include <Foundation/Comparer/EntityProxyComparer.h>
+#include <Foundation/Comparer/EntityProxyEqual.h>
 #include "Cross.h"
 
 namespace Cloude {
@@ -12,8 +12,8 @@ namespace Cloude {
         SPtrEntityProxySet Segmentation::Helper::Cross::operator()(const JoinPhrase &lhsPhrase,
                                                                    const JoinPhrase &rhsPhrase) const {
 
-            Comparer::EntityProxyComparer compare{lhsPhrase.getVectorComparingColumns(),
-                                                  rhsPhrase.getVectorComparingColumns()};
+            Comparer::EntityProxyEqual<> equal{lhsPhrase.getVectorComparingColumns(),
+                                             rhsPhrase.getVectorComparingColumns()};
 
             SPtrEntityProxySet setProxies;
             auto lhsIter = lhsPhrase.getSetProxies().cbegin();
@@ -24,7 +24,7 @@ namespace Cloude {
                 SPtrEntityProxyVector vtorSkippedProxies;
                 SPtrEntityProxyVector vtorMatchedProxies;
 
-                while (compare(*lhsIter, *rhsIter).result == 0) {
+                while (equal(*lhsIter, *rhsIter)) {
 
                     auto proxy = std::make_shared<EntityProxy>();
 

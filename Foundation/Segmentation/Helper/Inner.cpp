@@ -3,7 +3,7 @@
 //
 
 #include <Foundation/Store/CellHelper.h>
-#include <Foundation/Comparer/EntityProxyComparer.h>
+#include <Foundation/Comparer/EntityProxyEqual.h>
 #include "Inner.h"
 
 namespace Cloude {
@@ -12,8 +12,8 @@ namespace Cloude {
         SPtrEntityProxySet Segmentation::Helper::Inner::operator()(const JoinPhrase &lhsPhrase,
                                                                    const JoinPhrase &rhsPhrase) const {
 
-            Comparer::EntityProxyComparer compare{lhsPhrase.getVectorComparingColumns(),
-                                                  rhsPhrase.getVectorComparingColumns()};
+            Comparer::EntityProxyEqual<> compare{lhsPhrase.getVectorComparingColumns(),
+                                               rhsPhrase.getVectorComparingColumns()};
 
             SPtrEntityProxySet setProxies;
             auto lhsIter = lhsPhrase.getSetProxies().cbegin();
@@ -24,7 +24,7 @@ namespace Cloude {
                 if (rhsIter == rhsPhrase.getSetProxies().cend())
                     break;
 
-                while (compare(*lhsIter, *rhsIter).result == 0) {
+                while (compare(*lhsIter, *rhsIter)) {
 
                     auto proxy = std::make_shared<EntityProxy>();
 

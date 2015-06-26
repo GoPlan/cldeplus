@@ -181,11 +181,16 @@ add_library(foundation STATIC
     Foundation/Store/CellHelper.h
     Foundation/Segmentation/Helper/Right.cpp
     Foundation/Segmentation/Helper/Right.h
-    Foundation/Comparer/RecordComparisonResult.cpp
-    Foundation/Comparer/RecordComparisonResult.h
-    Foundation/Comparer/EntityProxyComparer.cpp
-    Foundation/Comparer/EntityProxyComparer.h
-    )
+    Foundation/Type/Comparer/cldeValueLess.cpp
+    Foundation/Type/Comparer/cldeValueLess.h
+    Foundation/Type/Comparer/cldeValueGreater.cpp
+    Foundation/Type/Comparer/cldeValueGreater.h
+    Foundation/Type/Comparer/cldeValueEqual.cpp
+    Foundation/Type/Comparer/cldeValueEqual.h
+    Foundation/Comparer/EntityProxyGreater.cpp
+    Foundation/Comparer/EntityProxyGreater.h
+    Foundation/Comparer/EntityProxyLess.cpp
+    Foundation/Comparer/EntityProxyLess.h)
 
 
 add_library(application STATIC
@@ -243,7 +248,7 @@ add_library(apptest STATIC
 #    AppTest/Store/Test/PostgreStore.hpp
     AppTest/Query/Criteria.hpp
     AppTest/Segmentation/Segmentation.hpp
-    AppTest/Type/Type.hpp)
+    AppTest/Type/CreateValue.hpp AppTest/Type/ValueComparison.h)
 
 
 
