@@ -3,7 +3,7 @@
 //
 
 #include <Foundation/Store/Helper/CellHelper.h>
-#include <Foundation/Store/Comparer/DataRecordEqual.h>
+#include <Foundation/Store/Comparer/DataRecordCompare.h>
 #include "Cross.h"
 
 namespace Cloude {
@@ -12,7 +12,7 @@ namespace Cloude {
         SPtrEntityProxySet Segmentation::Helper::Cross::operator()(const JoinPhrase &lhsPhrase,
                                                                    const JoinPhrase &rhsPhrase) const {
 
-            Store::Comparer::DataRecordEqual<> equal{lhsPhrase.getVectorComparingColumns(),
+            Store::Comparer::DataRecordCompare<> equal{lhsPhrase.getVectorComparingColumns(),
                                                      rhsPhrase.getVectorComparingColumns()};
 
             SPtrEntityProxySet setProxies;

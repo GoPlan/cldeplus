@@ -9,7 +9,7 @@ namespace Cloude {
     namespace Foundation {
         namespace Common {
 
-            class IEquatable {
+            class IEquatable : public std::binary_function<IEquatable, IEquatable, bool> {
 
             public:
                 virtual bool Equal(const IEquatable &rhs) const = 0;

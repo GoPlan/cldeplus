@@ -13,6 +13,7 @@
 #include <Application/Mapper/EnquiryMap.h>
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
+#include <Foundation/Store/Comparer/DataRecordCompare.h>
 
 namespace Cloude {
     namespace AppTest {

@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDCOMPARER_H
-#define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDCOMPARER_H
+#ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDCOMPARE_H
+#define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDCOMPARE_H
 
 #include <Foundation/EntityProxy.h>
 #include <Foundation/Exception/cldeSegmentationException.h>
@@ -15,11 +15,11 @@ namespace Cloude {
             namespace Comparer {
 
                 template<class T = Comparer::DataRecordLess>
-                class DataRecordEqual : std::binary_function<Store::SPtrDataRecord, Store::SPtrDataRecord, bool> {
+                class DataRecordCompare : std::binary_function<Store::SPtrDataRecord, Store::SPtrDataRecord, bool> {
                     T _compare;
 
                 public:
-                    DataRecordEqual(const SPtrColumnVector &lhsComparingColumns,
+                    DataRecordCompare(const SPtrColumnVector &lhsComparingColumns,
                                     const SPtrColumnVector &rhsComparingColumns)
                             : _compare{lhsComparingColumns,
                                        rhsComparingColumns} { };
@@ -33,4 +33,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDCOMPARER_H
+#endif //CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDCOMPARE_H

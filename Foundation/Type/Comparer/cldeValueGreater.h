@@ -13,9 +13,10 @@ namespace Cloude {
         namespace Type {
             namespace Comparer {
 
-                class cldeValueGreater : std::binary_function<SPtrValue, SPtrValue, bool> {
+                class cldeValueGreater : public std::binary_function<SPtrValue, SPtrValue, bool> {
 
                 public:
+                    cldeValueGreater() = default;
                     bool operator()(const SPtrValue &lhs, const SPtrValue &rhs) const;
 
                 protected:

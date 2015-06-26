@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
-#include "DataRecordEqual.h"
+#include "DataRecordCompare.h"
 
 
 

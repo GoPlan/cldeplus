@@ -20,7 +20,7 @@ namespace Cloude {
 
                 TEST_F(EnquirySQLiteStore, CreateGetSaveDelete) {
 
-                    const char *email = "goplan@cloud-e.biz";
+                    std::string email{"goplan@cloud-e.biz"};
 
                     auto spEnquiryId = Foundation::Type::cldeValueFactory::CreateInt64(15);
                     auto spEnquiryEmail = Foundation::Type::cldeValueFactory::CreateVarChar(email);
@@ -64,7 +64,7 @@ namespace Cloude {
 
                         auto &sptrEmailField = sptrEntity->getCell("Email");
                         auto &sptrEmailValue = sptrEmailField->getValue();
-                        EXPECT_TRUE(strcmp(email, sptrEmailValue->ToCString()) == 0);
+                        EXPECT_TRUE(strcmp(email.c_str(), sptrEmailValue->ToCString()) == 0);
 
                         _entityStore.Delete(sptrEntity);
                         EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));

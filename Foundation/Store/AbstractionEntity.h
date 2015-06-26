@@ -27,9 +27,7 @@ namespace Cloude {
 
                 virtual const SPtrCell &getCell(const std::string &columnName) const;
                 virtual const SPtrCell &operator[](const std::string &columnName) const;
-
                 virtual bool TryGetCell(const std::string &columnName, SPtrCell &sptrOutCell) const;
-
                 virtual bool hasCell(const std::string &cellName);
                 virtual unsigned long Size();
 
@@ -37,7 +35,6 @@ namespace Cloude {
 
                 SPtrCellVector getCells() const;
                 SPtrCellVector getCells(const SPtrColumnVector &selectedColumns) const;
-
                 SPtrColumnVector getColumns() const;
 
                 // IPrintable

@@ -177,14 +177,14 @@ add_library(foundation STATIC
     Foundation/Type/Comparer/cldeValueLess.h
     Foundation/Type/Comparer/cldeValueGreater.cpp
     Foundation/Type/Comparer/cldeValueGreater.h
-    Foundation/Type/Comparer/cldeValueEqual.cpp
-    Foundation/Type/Comparer/cldeValueEqual.h
+    Foundation/Type/Comparer/cldeValueCompare.cpp
+    Foundation/Type/Comparer/cldeValueCompare.h
     Foundation/Store/Helper/EntityStoreHelper.cpp
     Foundation/Store/Helper/EntityStoreHelper.h
     Foundation/Store/Helper/CellHelper.cpp
     Foundation/Store/Helper/CellHelper.h
-    Foundation/Store/Comparer/DataRecordEqual.cpp
-    Foundation/Store/Comparer/DataRecordEqual.h
+    Foundation/Store/Comparer/DataRecordCompare.cpp
+    Foundation/Store/Comparer/DataRecordCompare.h
     Foundation/Store/Comparer/DataRecordGreater.cpp
     Foundation/Store/Comparer/DataRecordGreater.h
     Foundation/Store/Comparer/DataRecordLess.cpp
