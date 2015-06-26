@@ -24,8 +24,8 @@ namespace Cloude {
                 using namespace Foundation;
                 using namespace Foundation::Query;
 
-                const char *email_01 = "goplan@cloud-e.biz";
-                const char *email_02 = "ducanh.ki@cloud-e.biz";
+                std::string email_01{"goplan@cloud-e.biz"};
+                std::string email_02{"ducanh.ki@cloud-e.biz"};
 
                 auto sptrEnquiryId_01 = Type::cldeValueFactory::CreateInt64(1);
                 auto sptrEnquiryId_02 = Type::cldeValueFactory::CreateInt64(2);
@@ -37,6 +37,9 @@ namespace Cloude {
                 SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
                 auto enquiryStore = std::make_shared<EntityStore>(enquiryMap, enquiryLoader, sqliteSourceDriver);
                 auto enquiryQuery = std::make_shared<EntityQuery>(enquiryStore);
+
+                SPtrColumnVector vtorCmpColumns{enquiryMap.Email};
+                Foundation::Store::Comparer::DataRecordCompare<> compare{vtorCmpColumns, vtorCmpColumns};
 
                 auto &options = sqliteSourceDriver.getOptionArgs();
                 options.ConnectionString = "../ex1.db";
@@ -64,21 +67,15 @@ namespace Cloude {
                     auto proxies = enquiryQuery->ComposeVector(sptrOR__);
 
                     for (auto proxy : proxies) {
-
                         auto sptrEntity = proxy->Summon(enquiryStore);
-
                         ASSERT_TRUE(sptrEntity.get() != 0);
                         std::cout << proxy->CopyToString() << endl;
-                        std::cout << sptrEntity->CopyToString() << endl;
                     }
 
                     auto proxy00 = proxies[0];
                     auto proxy01 = enquiryQuery->ComposeGetFirst(sptrOR__);
-                    auto sptrEntity = proxy00->Summon(enquiryStore);
 
-                    ASSERT_TRUE(sptrEntity.get() != 0);
-                    std::cout << proxy00->CopyToString() << endl;
-                    std::cout << sptrEntity->CopyToString() << endl;
+                    EXPECT_TRUE(compare(*proxy00, *proxy01));
                 }
 
                 sqliteSourceDriver.Disconnect();

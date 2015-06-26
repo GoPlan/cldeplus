@@ -3,7 +3,7 @@
 //
 
 
-#include "Store/Test/SQLiteStore.hpp"
+#include "Store/SQLiteStore.hpp"
 #include "Query/Criteria.hpp"
 #include "Type/CreateValue.hpp"
 #include "Type/ValueComparison.h"

@@ -24,7 +24,7 @@ namespace Cloude {
                 if (rhsIter == rhsPhrase.getSetProxies().cend())
                     break;
 
-                while (compare(*lhsIter, *rhsIter)) {
+                while (compare(**lhsIter, **rhsIter)) {
 
                     auto proxy = std::make_shared<EntityProxy>();
 

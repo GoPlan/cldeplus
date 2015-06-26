@@ -233,9 +233,9 @@ add_library(sourcedriver STATIC
 
 add_library(apptest STATIC
     AppTest/main.cpp
-    AppTest/Store/EnquirySQLiteStore.cpp
-    AppTest/Store/EnquirySQLiteStore.h
-    AppTest/Store/Test/SQLiteStore.hpp
+    AppTest/Store/Preparation/EnquirySQLiteStore.cpp
+    AppTest/Store/Preparation/EnquirySQLiteStore.h
+    AppTest/Store/SQLiteStore.hpp
 #    AppTest/Store/EnquiryMongoDbStore.cpp
 #    AppTest/Store/EnquiryMongoDbStore.h
 #    AppTest/Store/Test/MongoDbStore.hpp
@@ -247,7 +247,8 @@ add_library(apptest STATIC
 #    AppTest/Store/Test/PostgreStore.hpp
     AppTest/Query/Criteria.hpp
     AppTest/Segmentation/Segmentation.hpp
-    AppTest/Type/CreateValue.hpp AppTest/Type/ValueComparison.h)
+    AppTest/Type/CreateValue.hpp
+    AppTest/Type/ValueComparison.h)
 
 
 

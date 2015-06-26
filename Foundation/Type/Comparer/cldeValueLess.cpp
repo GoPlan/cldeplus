@@ -2,6 +2,8 @@
 // Created by LE, Duc Anh on 6/26/15.
 //
 
+#include <Foundation/Type/Implementation/cldeString.h>
+#include <Foundation/Type/Implementation/cldeVarChar.h>
 #include "cldeValueLess.h"
 
 namespace Cloude {
@@ -109,7 +111,28 @@ namespace Cloude {
 
         bool Type::Comparer::cldeValueLess::CompareCharacterBased(const Type::SPtrValue &lhs,
                                                                   const Type::SPtrValue &rhs) const {
-            return false;
+            switch (lhs->getDataType()) {
+                case cldeValueType::String: {
+                    auto ptrLhsTmp = dynamic_cast<const Type::Implementation::cldeString *>(lhs.get());
+                    auto ptrRhsTmp = dynamic_cast<const Type::Implementation::cldeString *>(lhs.get());
+                    return strcmp(ptrLhsTmp->ToCString(), ptrRhsTmp->ToCString()) < 0;
+                }
+                case cldeValueType::VarChar: {
+                    auto ptrLhsTmp = dynamic_cast<const Type::Implementation::cldeVarChar *>(lhs.get());
+                    auto ptrRhsTmp = dynamic_cast<const Type::Implementation::cldeVarChar *>(lhs.get());
+                    return strcmp(ptrLhsTmp->ToCString(), ptrRhsTmp->ToCString()) < 0;
+                }
+                case cldeValueType::Text: {
+                    std::string type = Type::cldeType::CopyToString(lhs->getDataType());
+                    std::string msg{type + " is not supported by the character based comparer"};
+                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                }
+                default: {
+                    std::string type = Type::cldeType::CopyToString(lhs->getDataType());
+                    std::string msg{type + " is not supported by the character based comparer"};
+                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                }
+            }
         }
 
         bool Type::Comparer::cldeValueLess::CompareDateTime(const Type::SPtrValue &lhs,

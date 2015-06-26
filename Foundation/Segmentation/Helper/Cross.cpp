@@ -24,7 +24,7 @@ namespace Cloude {
                 SPtrEntityProxyVector vtorSkippedProxies;
                 SPtrEntityProxyVector vtorMatchedProxies;
 
-                while (equal(*lhsIter, *rhsIter)) {
+                while (equal(**lhsIter, **rhsIter)) {
 
                     auto proxy = std::make_shared<EntityProxy>();
 

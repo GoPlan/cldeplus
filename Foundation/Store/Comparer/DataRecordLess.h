@@ -10,10 +10,12 @@
 
 namespace Cloude {
     namespace Foundation {
-        namespace Store{
+        namespace Store {
             namespace Comparer {
 
-                class DataRecordLess : std::binary_function<Store::SPtrDataRecord, Store::SPtrDataRecord, bool> {
+                class DataRecordLess :
+                        public std::binary_function<Store::AbstractionEntity, Store::AbstractionEntity, bool> {
+
                     const SPtrColumnVector &_lhsCmpColumns;
                     const SPtrColumnVector &_rhsCmpColumns;
                     Type::Comparer::cldeValueLess _less{};
@@ -24,7 +26,7 @@ namespace Cloude {
                             : _lhsCmpColumns(lhsCmpColumns),
                               _rhsCmpColumns(rhsCmpColumns) { };
 
-                    bool operator()(const Store::SPtrDataRecord &lhs, const Store::SPtrDataRecord &rhs) const;
+                    bool operator()(const Store::AbstractionEntity &lhs, const Store::AbstractionEntity &rhs) const;
                 };
             }
         }

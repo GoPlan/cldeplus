@@ -15,16 +15,18 @@ namespace Cloude {
             namespace Comparer {
 
                 template<class T = Comparer::DataRecordLess>
-                class DataRecordCompare : std::binary_function<Store::SPtrDataRecord, Store::SPtrDataRecord, bool> {
+                class DataRecordCompare
+                        : public std::binary_function<Store::AbstractionEntity, Store::AbstractionEntity, bool> {
+
                     T _compare;
 
                 public:
                     DataRecordCompare(const SPtrColumnVector &lhsComparingColumns,
-                                    const SPtrColumnVector &rhsComparingColumns)
+                                      const SPtrColumnVector &rhsComparingColumns)
                             : _compare{lhsComparingColumns,
                                        rhsComparingColumns} { };
 
-                    bool operator()(const Store::SPtrDataRecord &lhs, const Store::SPtrDataRecord &rhs) const {
+                    bool operator()(const Store::AbstractionEntity &lhs, const Store::AbstractionEntity &rhs) const {
                         return !_compare(lhs, rhs) && !_compare(rhs, lhs);
                     };
                 };
