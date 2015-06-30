@@ -9,12 +9,6 @@
 namespace Cloude {
     namespace Foundation {
 
-        Segmentation::Helper::Cross::Cross(const Segmentation::JoinPhrase &lhsJoinPhrase,
-                                           const Segmentation::JoinPhrase &rhsJoinPhrase)
-                : _lhs{lhsJoinPhrase}, _rhs{rhsJoinPhrase}, _transformer{lhsJoinPhrase, rhsJoinPhrase} {
-            //
-        }
-
         SPtrEntityProxySet Segmentation::Helper::Cross::operator()(const SPtrEntityProxySet &lhsSet,
                                                                    const SPtrEntityProxySet &rhsSet) const {
 
@@ -22,8 +16,8 @@ namespace Cloude {
             using DataRecordLess = Store::Comparer::DataRecordLess;
             using DataRecordCompare = Store::Comparer::DataRecordCompare<>;
 
-            DataRecordCompare compare{_lhs.CComparingColumns(), _rhs.CComparingColumns()};
-            DataRecordLess lesser{_lhs.CComparingColumns(), _rhs.CComparingColumns()};
+            DataRecordCompare compare{_lhsComparingColumns, _rhsComparingColumns};
+            DataRecordLess lesser{_lhsComparingColumns, _rhsComparingColumns};
 
             SPtrEntityProxySet setProxies;
             auto lhsCurrent = lhsSet.cbegin();
@@ -34,28 +28,35 @@ namespace Cloude {
             while (lhsCurrent != lhsEnd || rhsCurrent != rhsEnd) {
 
                 if (rhsCurrent == rhsEnd) {
-
+                    SPtrEntityProxy proxy = _sptrTransformer->TransformLeftOnly(*lhsCurrent++);
+                    setProxies.insert(proxy);
+                    continue;
                 }
 
                 if (lhsCurrent == lhsEnd) {
-
+                    SPtrEntityProxy proxy = _sptrTransformer->TransformRightOnly(*rhsCurrent++);
+                    setProxies.insert(proxy);
+                    continue;
                 }
 
                 if (lhsCurrent != lhsEnd && lesser(**lhsCurrent, **rhsCurrent)) {
-
-
+                    SPtrEntityProxy proxy = _sptrTransformer->TransformLeftOnly(*lhsCurrent++);
+                    setProxies.insert(proxy);
+                    continue;
                 }
                 else if (rhsCurrent != rhsEnd && lesser(**rhsCurrent, **lhsCurrent)) {
-
-
+                    SPtrEntityProxy proxy = _sptrTransformer->TransformRightOnly(*rhsCurrent++);
+                    setProxies.insert(proxy);
+                    continue;
                 }
                 else {
 
                     auto rhsTmp = rhsCurrent;
 
                     while (!lesser(**lhsCurrent, **rhsCurrent)) {
-
-
+                        SPtrEntityProxy proxy = _sptrTransformer->Transform(*lhsCurrent, *rhsCurrent);
+                        setProxies.insert(proxy);
+                        ++rhsCurrent;
                     }
 
                     if (compare(**lhsCurrent, **(++lhsCurrent))) rhsCurrent = rhsTmp;

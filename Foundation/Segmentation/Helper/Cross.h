@@ -6,7 +6,6 @@
 #define CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_CROSS_H
 
 #include <Foundation/EntityProxy.h>
-#include <Foundation/Segmentation/JoinPhrase.h>
 #include <Foundation/Transformation/EntityTransformer.h>
 
 namespace Cloude {
@@ -16,12 +15,28 @@ namespace Cloude {
 
                 class Cross {
 
-                    JoinPhrase _lhs;
-                    JoinPhrase _rhs;
-                    Transformation::EntityTransformer _transformer;
+                    SPtrColumnVector _lhsComparingColumns;
+                    SPtrColumnVector _rhsComparingColumns;
+                    Transformation::SPtrEntityTransformer _sptrTransformer;
 
                 public:
-                    Cross(const JoinPhrase &lhsJoinPhrase, const JoinPhrase &rhsJoinPhrase);
+                    Cross() = default;
+                    Cross(const Cross &) = default;
+                    Cross(Cross &&) = default;
+                    Cross &operator=(const Cross &) = default;
+                    Cross &operator=(Cross &&) = default;
+                    ~Cross() = default;
+
+                    // Accessors
+                    const SPtrColumnVector &getCLhsComparingColumns() const { return _lhsComparingColumns; }
+                    const SPtrColumnVector &getCRhsComparingColumns() const { return _rhsComparingColumns; }
+                    const Transformation::SPtrEntityTransformer &getCTransformer() const { return _sptrTransformer; }
+
+                    SPtrColumnVector &getLhsComparingColumns() { return _lhsComparingColumns; }
+                    SPtrColumnVector &getRhsComparingColumns() { return _rhsComparingColumns; }
+                    Transformation::SPtrEntityTransformer &getTransformer() { return _sptrTransformer; }
+
+                    // Locals
                     SPtrEntityProxySet operator()(const SPtrEntityProxySet &lhs, const SPtrEntityProxySet &rhs) const;
                 };
             }
