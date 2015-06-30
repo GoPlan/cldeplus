@@ -7,22 +7,21 @@
 
 #include <Foundation/Column.h>
 #include <Foundation/EntityProxy.h>
+#include <Foundation/Transformation/CellTransformer.h>
 
 namespace Cloude {
     namespace Foundation {
         namespace Segmentation {
 
-            using ColumnNamePair = std::pair<std::string, std::string>;
-            using ColumnNamePairVector = std::vector<ColumnNamePair>;
+            using DisplaySPtrCellTransformMap = std::unordered_map<std::string, Transformation::SPtrCellTransformer>;
 
             class JoinPhrase {
 
-                const SPtrEntityProxySet &_setProxies;
-                ColumnNamePairVector _vectorDisplayColumnPairs;
                 SPtrColumnVector _vectorComparingColumns;
+                DisplaySPtrCellTransformMap _mapDisplayCellTransformMap;
 
             public:
-                explicit JoinPhrase(const SPtrEntityProxySet &setProxies, const SPtrColumnVector &comparingColumns);
+                JoinPhrase() = default;
                 JoinPhrase(const JoinPhrase &) = default;
                 JoinPhrase(JoinPhrase &&) = default;
                 JoinPhrase &operator=(const JoinPhrase &) = default;
@@ -30,12 +29,11 @@ namespace Cloude {
                 ~JoinPhrase() = default;
 
                 // Locals - Accessors
-                const SPtrEntityProxySet &getSetProxies() const { return _setProxies; }
-                const SPtrColumnVector &getVectorComparingColumns() const { return _vectorComparingColumns; }
-                const ColumnNamePairVector &getVectorDisplayColumnPairs() const { return _vectorDisplayColumnPairs; }
+                SPtrColumnVector &ComparingColumns() { return _vectorComparingColumns; }
+                DisplaySPtrCellTransformMap &DisplayColumnsMap() { return _mapDisplayCellTransformMap; }
 
-                // Locals - Mutators
-                void AddDisplayColumnPair(const ColumnNamePair &pairName);
+                const SPtrColumnVector &CComparingColumns() const { return _vectorComparingColumns; }
+                const DisplaySPtrCellTransformMap &CDisplayColumnsMap() const { return _mapDisplayCellTransformMap; }
             };
         }
     }

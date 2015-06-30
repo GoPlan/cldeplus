@@ -12,7 +12,7 @@
 namespace Cloude {
     namespace Foundation {
 
-        class EntityProxy : public Store::AbstractionEntity, public std::enable_shared_from_this<EntityProxy> {
+        class EntityProxy : public Store::AbstractEntity, public std::enable_shared_from_this<EntityProxy> {
 
         public:
             enum class EntityProxySummonState {

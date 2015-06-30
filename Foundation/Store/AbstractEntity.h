@@ -11,14 +11,14 @@ namespace Cloude {
     namespace Foundation {
         namespace Store {
 
-            class AbstractionEntity : public Common::IPrintable {
+            class AbstractEntity : public Common::IPrintable {
 
             public:
-                AbstractionEntity(const AbstractionEntity &) = default;
-                AbstractionEntity(AbstractionEntity &&) = default;
-                AbstractionEntity &operator=(const AbstractionEntity &) = default;
-                AbstractionEntity &operator=(AbstractionEntity &&) = default;
-                virtual ~AbstractionEntity() = default;
+                AbstractEntity(const AbstractEntity &) = default;
+                AbstractEntity(AbstractEntity &&) = default;
+                AbstractEntity &operator=(const AbstractEntity &) = default;
+                AbstractEntity &operator=(AbstractEntity &&) = default;
+                virtual ~AbstractEntity() = default;
 
                 virtual void setCell(const SPtrCell &cell);
                 virtual void setCell(Cell *ptrCell);
@@ -43,12 +43,12 @@ namespace Cloude {
                 const char *ToCString() const override;
 
             protected:
-                AbstractionEntity() = default;
+                AbstractEntity() = default;
                 SPtrCellMap _cellMap;
 
             };
 
-            using SPtrDataRecord = std::shared_ptr<AbstractionEntity>;
+            using SPtrDataRecord = std::shared_ptr<AbstractEntity>;
         }
     }
 }

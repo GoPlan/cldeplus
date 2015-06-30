@@ -7,14 +7,22 @@
 
 #include <Foundation/EntityProxy.h>
 #include <Foundation/Segmentation/JoinPhrase.h>
+#include <Foundation/Transformation/EntityTransformer.h>
 
 namespace Cloude {
     namespace Foundation {
         namespace Segmentation {
             namespace Helper {
 
-                struct Cross : public std::binary_function<JoinPhrase, JoinPhrase, bool> {
-                    SPtrEntityProxySet operator()(const JoinPhrase &lhsPhrase, const JoinPhrase &rhsPhrase) const;
+                class Cross {
+
+                    JoinPhrase _lhs;
+                    JoinPhrase _rhs;
+                    Transformation::EntityTransformer _transformer;
+
+                public:
+                    Cross(const JoinPhrase &lhsJoinPhrase, const JoinPhrase &rhsJoinPhrase);
+                    SPtrEntityProxySet operator()(const SPtrEntityProxySet &lhs, const SPtrEntityProxySet &rhs) const;
                 };
             }
         }

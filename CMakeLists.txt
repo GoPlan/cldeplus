@@ -149,8 +149,8 @@ add_library(foundation STATIC
     Foundation/Query/Helper/CriteriaHelper.cpp
     Foundation/Query/Helper/CriteriaHelper.h
     Foundation/Enum/CommonBufferSize.h
-    Foundation/Store/AbstractionEntity.h
-    Foundation/Store/AbstractionEntity.cpp
+    Foundation/Store/AbstractEntity.h
+    Foundation/Store/AbstractEntity.cpp
     Foundation/EntityRelationship.cpp
     Foundation/EntityRelationship.h
     Foundation/EntityLink.cpp
@@ -188,7 +188,11 @@ add_library(foundation STATIC
     Foundation/Store/Comparer/DataRecordGreater.cpp
     Foundation/Store/Comparer/DataRecordGreater.h
     Foundation/Store/Comparer/DataRecordLess.cpp
-    Foundation/Store/Comparer/DataRecordLess.h)
+    Foundation/Store/Comparer/DataRecordLess.h
+    Foundation/Transformation/EntityTransformer.cpp
+    Foundation/Transformation/EntityTransformer.h
+    Foundation/Transformation/CellTransformer.cpp
+    Foundation/Transformation/CellTransformer.h Foundation/Transformation/TypeConverter.cpp Foundation/Transformation/TypeConverter.h)
 
 
 add_library(application STATIC

@@ -9,48 +9,57 @@
 namespace Cloude {
     namespace Foundation {
 
-        SPtrEntityProxySet Segmentation::Helper::Cross::operator()(const JoinPhrase &lhsPhrase,
-                                                                   const JoinPhrase &rhsPhrase) const {
+        Segmentation::Helper::Cross::Cross(const Segmentation::JoinPhrase &lhsJoinPhrase,
+                                           const Segmentation::JoinPhrase &rhsJoinPhrase)
+                : _lhs{lhsJoinPhrase}, _rhs{rhsJoinPhrase}, _transformer{lhsJoinPhrase, rhsJoinPhrase} {
+            //
+        }
 
-            Store::Comparer::DataRecordCompare<> equal{lhsPhrase.getVectorComparingColumns(),
-                                                     rhsPhrase.getVectorComparingColumns()};
+        SPtrEntityProxySet Segmentation::Helper::Cross::operator()(const SPtrEntityProxySet &lhsSet,
+                                                                   const SPtrEntityProxySet &rhsSet) const {
+
+            using CellHelper = Store::Helper::CellHelper;
+            using DataRecordLess = Store::Comparer::DataRecordLess;
+            using DataRecordCompare = Store::Comparer::DataRecordCompare<>;
+
+            DataRecordCompare compare{_lhs.CComparingColumns(), _rhs.CComparingColumns()};
+            DataRecordLess lesser{_lhs.CComparingColumns(), _rhs.CComparingColumns()};
 
             SPtrEntityProxySet setProxies;
-            auto lhsIter = lhsPhrase.getSetProxies().cbegin();
-            auto rhsIter = rhsPhrase.getSetProxies().cbegin();
+            auto lhsCurrent = lhsSet.cbegin();
+            auto rhsCurrent = rhsSet.cbegin();
+            auto lhsEnd = lhsSet.cend();
+            auto rhsEnd = rhsSet.cend();
 
-            while (lhsIter != lhsPhrase.getSetProxies().cend() || rhsIter != rhsPhrase.getSetProxies().cend()) {
+            while (lhsCurrent != lhsEnd || rhsCurrent != rhsEnd) {
 
-                SPtrEntityProxyVector vtorSkippedProxies;
-                SPtrEntityProxyVector vtorMatchedProxies;
+                if (rhsCurrent == rhsEnd) {
 
-                while (equal(**lhsIter, **rhsIter)) {
-
-                    auto proxy = std::make_shared<EntityProxy>();
-
-                    for (auto &pairColumnNames : lhsPhrase.getVectorDisplayColumnPairs()) {
-
-                        auto sptrCell = Store::Helper::CellHelper::CopySptrCell((*lhsIter)->getCell(pairColumnNames.first));
-                        auto &sptrColumn = sptrCell->getColumn();
-
-                        sptrColumn->setName(pairColumnNames.second);
-                    }
-
-                    for (auto &pairColumnNames : rhsPhrase.getVectorDisplayColumnPairs()) {
-
-                        auto sptrCell =
-                                Store::Helper::CellHelper::CopySptrCell((*lhsIter)->getCell(pairColumnNames.first));
-                        auto &sptrColumn = sptrCell->getColumn();
-
-                        sptrColumn->setName(pairColumnNames.second);
-                    }
-
-                    setProxies.insert(proxy);
-
-                    ++rhsIter;
                 }
 
-                ++lhsIter;
+                if (lhsCurrent == lhsEnd) {
+
+                }
+
+                if (lhsCurrent != lhsEnd && lesser(**lhsCurrent, **rhsCurrent)) {
+
+
+                }
+                else if (rhsCurrent != rhsEnd && lesser(**rhsCurrent, **lhsCurrent)) {
+
+
+                }
+                else {
+
+                    auto rhsTmp = rhsCurrent;
+
+                    while (!lesser(**lhsCurrent, **rhsCurrent)) {
+
+
+                    }
+
+                    if (compare(**lhsCurrent, **(++lhsCurrent))) rhsCurrent = rhsTmp;
+                }
             }
 
             return setProxies;

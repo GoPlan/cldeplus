@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDGREATER_H
 #define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDGREATER_H
 
-#include <Foundation/Store/AbstractionEntity.h>
+#include <Foundation/Store/AbstractEntity.h>
 #include <Foundation/Type/Comparer/cldeValueGreater.h>
 
 namespace Cloude {
@@ -14,7 +14,7 @@ namespace Cloude {
             namespace Comparer {
 
                 class DataRecordGreater
-                        : public std::binary_function<Store::AbstractionEntity, Store::AbstractionEntity, bool> {
+                        : public std::binary_function<Store::AbstractEntity, Store::AbstractEntity, bool> {
 
                     const SPtrColumnVector &_lhsCmpColumns;
                     const SPtrColumnVector &_rhsCmpColumns;
@@ -26,7 +26,7 @@ namespace Cloude {
                             : _lhsCmpColumns(lhsCmpColumns),
                               _rhsCmpColumns(rhsCmpColumns) { };
 
-                    bool operator()(const Store::AbstractionEntity &lhs, const Store::AbstractionEntity &rhs) const;
+                    bool operator()(const Store::AbstractEntity &lhs, const Store::AbstractEntity &rhs) const;
                 };
             }
         }

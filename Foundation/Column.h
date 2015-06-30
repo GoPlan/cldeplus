@@ -21,9 +21,9 @@ namespace Cloude {
             size_t _length;
 
         public:
+            Column() = default;
             Column(std::string name, std::string datasourceName, Type::cldeValueType dataType);
             Column(std::string name, std::string datasourceName, size_t length, Type::cldeValueType dataType);
-            Column() = default;
             Column(const Column &) = default;
             Column(Column &&) = default;
             Column &operator=(const Column &) = default;

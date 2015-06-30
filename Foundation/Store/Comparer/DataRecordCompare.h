@@ -16,7 +16,7 @@ namespace Cloude {
 
                 template<class T = Comparer::DataRecordLess>
                 class DataRecordCompare
-                        : public std::binary_function<Store::AbstractionEntity, Store::AbstractionEntity, bool> {
+                        : public std::binary_function<Store::AbstractEntity, Store::AbstractEntity, bool> {
 
                     T _compare;
 
@@ -26,7 +26,7 @@ namespace Cloude {
                             : _compare{lhsComparingColumns,
                                        rhsComparingColumns} { };
 
-                    bool operator()(const Store::AbstractionEntity &lhs, const Store::AbstractionEntity &rhs) const {
+                    bool operator()(const Store::AbstractEntity &lhs, const Store::AbstractEntity &rhs) const {
                         return !_compare(lhs, rhs) && !_compare(rhs, lhs);
                     };
                 };

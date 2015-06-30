@@ -13,7 +13,6 @@
 #include <Application/Mapper/EnquiryMap.h>
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
-#include "EntityProxyEqual.h"
 #include <Foundation/Segmentation/Segment.h>
 #include <SourceDriver/SQLite/SQLiteSourceDriver.h>
 
@@ -25,8 +24,8 @@ namespace Cloude {
             using namespace Foundation;
             using namespace Foundation::Query;
 
-            const char *email_01 = "goplan@cloud-e.biz";
-            const char *email_02 = "ducanh.ki@cloud-e.biz";
+            std::string email_01{"goplan@cloud-e.biz"};
+            std::string email_02{"ducanh.ki@cloud-e.biz"};
 
             auto sptrEnquiryId_01 = Type::cldeValueFactory::CreateInt64(1);
             auto sptrEnquiryId_02 = Type::cldeValueFactory::CreateInt64(2);
@@ -38,10 +37,6 @@ namespace Cloude {
             SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
             auto enquiryStore = std::make_shared<EntityStore>(enquiryMap, enquiryLoader, sqliteSourceDriver);
             auto enquiryQuery = std::make_shared<EntityQuery>(enquiryStore);
-
-
-
-
 
         }
     }

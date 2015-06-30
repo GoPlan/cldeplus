@@ -6,13 +6,13 @@
 #define CLOUD_E_CPLUS_FOUNDATION_IDENTITY_H
 
 #include <unordered_map>
-#include "Store/AbstractionEntity.h"
+#include "Store/AbstractEntity.h"
 #include "Cell.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        class Identity : public Store::AbstractionEntity {
+        class Identity : public Store::AbstractEntity {
 
         public:
             Identity() = default;

@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDLESS_H
 #define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDLESS_H
 
-#include <Foundation/Store/AbstractionEntity.h>
 #include <Foundation/Type/Comparer/cldeValueLess.h>
+#include <Foundation/Store/AbstractEntity.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -14,7 +14,7 @@ namespace Cloude {
             namespace Comparer {
 
                 class DataRecordLess :
-                        public std::binary_function<Store::AbstractionEntity, Store::AbstractionEntity, bool> {
+                        public std::binary_function<Store::AbstractEntity, Store::AbstractEntity, bool> {
 
                     const SPtrColumnVector &_lhsCmpColumns;
                     const SPtrColumnVector &_rhsCmpColumns;
@@ -26,7 +26,7 @@ namespace Cloude {
                             : _lhsCmpColumns(lhsCmpColumns),
                               _rhsCmpColumns(rhsCmpColumns) { };
 
-                    bool operator()(const Store::AbstractionEntity &lhs, const Store::AbstractionEntity &rhs) const;
+                    bool operator()(const Store::AbstractEntity &lhs, const Store::AbstractEntity &rhs) const;
                 };
             }
         }
