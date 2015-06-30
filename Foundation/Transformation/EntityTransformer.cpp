@@ -7,18 +7,12 @@
 namespace Cloude {
     namespace Foundation {
 
-        Transformation::EntityTransformer::EntityTransformer(const Segmentation::JoinPhrase &lhsPhrase,
-                                                             const Segmentation::JoinPhrase &rhsPhrase)
-                : _lhsPhrase(lhsPhrase), _rhsPhrase(rhsPhrase) {
-            //
-        }
-
         SPtrEntityProxy Transformation::EntityTransformer::Transform(const SPtrEntityProxy &lhsProxy,
                                                                      const SPtrEntityProxy &rhsProxy) const {
 
             SPtrEntityProxy proxy;
 
-            for (auto &pairCellMap : _lhsPhrase.CDisplayColumnsMap()) {
+            for (auto &pairCellMap : _lhsCellTransformerMap) {
 
                 auto &srcColumnName = pairCellMap.first;
                 auto &sptrCellTransfomer = pairCellMap.second;
@@ -27,7 +21,39 @@ namespace Cloude {
                 proxy->setCell(sptrNewCell);
             }
 
-            for (auto &pairCellMap : _rhsPhrase.CDisplayColumnsMap()) {
+            for (auto &pairCellMap : _rhsCellTransformerMap) {
+
+                auto &srcColumnName = pairCellMap.first;
+                auto &sptrCellTransfomer = pairCellMap.second;
+
+                SPtrCell sptrNewCell = sptrCellTransfomer->Transform(rhsProxy->getCell(srcColumnName));
+                proxy->setCell(sptrNewCell);
+            }
+
+            return proxy;
+        }
+
+        SPtrEntityProxy Transformation::EntityTransformer::TransformLeftOnly(const SPtrEntityProxy &lhsProxy) const {
+
+            SPtrEntityProxy proxy;
+
+            for (auto &pairCellMap : _lhsCellTransformerMap) {
+
+                auto &srcColumnName = pairCellMap.first;
+                auto &sptrCellTransfomer = pairCellMap.second;
+
+                SPtrCell sptrNewCell = sptrCellTransfomer->Transform(lhsProxy->getCell(srcColumnName));
+                proxy->setCell(sptrNewCell);
+            }
+
+            return proxy;
+        }
+
+        SPtrEntityProxy Transformation::EntityTransformer::TransformRightOnly(const SPtrEntityProxy &rhsProxy) const {
+
+            SPtrEntityProxy proxy;
+
+            for (auto &pairCellMap : _rhsCellTransformerMap) {
 
                 auto &srcColumnName = pairCellMap.first;
                 auto &sptrCellTransfomer = pairCellMap.second;

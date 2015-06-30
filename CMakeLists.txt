@@ -155,18 +155,12 @@ add_library(foundation STATIC
     Foundation/EntityRelationship.h
     Foundation/EntityLink.cpp
     Foundation/EntityLink.h
-    Foundation/Segmentation/Segment.cpp
-    Foundation/Segmentation/Segment.h
     Foundation/Query/Helper/ProxyHelper.cpp
     Foundation/Query/Helper/ProxyHelper.h
-    Foundation/Segmentation/Helper/SegmentHelper.cpp
-    Foundation/Segmentation/Helper/SegmentHelper.h
     Foundation/Exception/cldeSegmentationException.cpp
     Foundation/Exception/cldeSegmentationException.h
     Foundation/Segmentation/Helper/Inner.cpp
     Foundation/Segmentation/Helper/Inner.h
-    Foundation/Segmentation/JoinPhrase.cpp
-    Foundation/Segmentation/JoinPhrase.h
     Foundation/Segmentation/Helper/Cross.cpp
     Foundation/Segmentation/Helper/Cross.h
     Foundation/Segmentation/Helper/Left.cpp
@@ -192,7 +186,9 @@ add_library(foundation STATIC
     Foundation/Transformation/EntityTransformer.cpp
     Foundation/Transformation/EntityTransformer.h
     Foundation/Transformation/CellTransformer.cpp
-    Foundation/Transformation/CellTransformer.h Foundation/Transformation/TypeConverter.cpp Foundation/Transformation/TypeConverter.h)
+    Foundation/Transformation/CellTransformer.h
+    Foundation/Transformation/TypeConverter.cpp
+    Foundation/Transformation/TypeConverter.h)
 
 
 add_library(application STATIC

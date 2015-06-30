@@ -38,6 +38,7 @@ namespace Cloude {
             };
 
             using SPtrCellTransformer = std::shared_ptr<CellTransformer>;
+            using SPtrCellTransformerMap = std::unordered_map<std::string, Transformation::SPtrCellTransformer>;
         }
     }
 }

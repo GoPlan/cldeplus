@@ -13,7 +13,6 @@
 #include <Application/Mapper/EnquiryMap.h>
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
-#include <Foundation/Segmentation/Segment.h>
 #include <SourceDriver/SQLite/SQLiteSourceDriver.h>
 
 namespace Cloude {

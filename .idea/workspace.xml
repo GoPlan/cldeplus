@@ -14,16 +14,16 @@
       <config projectName="cloud_e_cplus" targetName="architecture" />
       <config projectName="cloud_e_cplus" targetName="Framework" />
       <config projectName="cloud_e_cplus" targetName="infrastrucutre" />
+      <config projectName="cloud_e_plus" targetName="cloud_e_plus_example" />
       <config projectName="cloud_e_plus" targetName="sourcedriver" />
       <config projectName="cloud_e_cplus" targetName="infrastructure" />
-      <config projectName="cloud_e_plus" targetName="cloud_e_plus_example" />
+      <config projectName="cloud_e_cplus" targetName="SourceDriver" />
       <config projectName="cloud_e_cplus" targetName="Foundation" />
       <config projectName="cloud_e_cplus" targetName="cloude_e_cplus_example" />
       <config projectName="cloud_e_cplus" targetName="Archite" />
-      <config projectName="cloud_e_cplus" targetName="cloud_e_cplus_test" />
       <config projectName="cloud_e_plus" targetName="application" />
       <config projectName="cloud_e_cplus" targetName="foundation" />
-      <config projectName="cloud_e_cplus" targetName="SourceDriver" />
+      <config projectName="cloud_e_cplus" targetName="cloud_e_cplus_test" />
       <config projectName="cloud_e_plus" targetName="cloud_e_plus_test" />
       <config projectName="cloud_e_cplus" targetName="cloud_e_cplus_example" />
       <config projectName="cloud_e_cplus" targetName="cloud_e_cplus_debug" />
@@ -39,30 +39,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Transformation/CellTransformer.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Transformation/CellTransformer.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Transformation/TypeConverter.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Transformation/TypeConverter.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Store/AbstractionEntity.cpp" afterPath="$PROJECT_DIR$/Foundation/Store/AbstractEntity.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Foundation/Store/AbstractionEntity.h" afterPath="$PROJECT_DIR$/Foundation/Store/AbstractEntity.h" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Foundation/Segmentation/Helper/SegmentHelper.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Foundation/Segmentation/Helper/SegmentHelper.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Foundation/Segmentation/Segment.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Foundation/Segmentation/Segment.h" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Column.h" afterPath="$PROJECT_DIR$/Foundation/Column.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Transformation/CellTransformer.h" afterPath="$PROJECT_DIR$/Foundation/Transformation/CellTransformer.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.cpp" afterPath="$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.h" afterPath="$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordCompare.h" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordCompare.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordGreater.cpp" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordGreater.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordGreater.h" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordGreater.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordLess.cpp" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordLess.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordLess.h" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordLess.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Entity.h" afterPath="$PROJECT_DIR$/Foundation/Entity.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/EntityProxy.h" afterPath="$PROJECT_DIR$/Foundation/EntityProxy.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Identity.cpp" afterPath="$PROJECT_DIR$/Foundation/Identity.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Identity.h" afterPath="$PROJECT_DIR$/Foundation/Identity.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.cpp" afterPath="$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.h" afterPath="$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.cpp" afterPath="$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.cpp" afterPath="$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.h" afterPath="$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.h" afterPath="$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" afterPath="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -89,7 +79,64 @@
     <favorites_list name="cloud-e-plus" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Cross.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="74" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
+              <folding>
+                <element signature="e#166#201#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cross.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="47" column="80" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
+              <folding>
+                <element signature="e#45#92#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntityTransformer.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="109" selection-start-line="27" selection-start-column="109" selection-end-line="27" selection-end-column="109" />
+              <folding>
+                <element signature="e#180#215#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntityTransformer.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.0875514">
+              <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TypeConverter.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Foundation/Transformation/TypeConverter.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -110,7 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Foundation/Comparer/DataRecordLess.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Comparer/DataRecordLess.h" />
         <option value="$PROJECT_DIR$/Foundation/Comparer/EntityProxyGreater.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Comparer/EntityProxyGreater.h" />
@@ -139,7 +185,6 @@
         <option value="$PROJECT_DIR$/Foundation/Type/Comparer/cldeValueGreater.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Type/Comparer/cldeValueLess.cpp" />
         <option value="$PROJECT_DIR$/AppTest/Query/Criteria.hpp" />
-        <option value="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" />
         <option value="$PROJECT_DIR$/Foundation/Store/Helper/EntityTransformer.h" />
         <option value="$PROJECT_DIR$/Foundation/Store/AbstractionEntity.h" />
         <option value="$PROJECT_DIR$/Foundation/Store/AbstractEntity.h" />
@@ -148,19 +193,21 @@
         <option value="$PROJECT_DIR$/Foundation/Identity.h" />
         <option value="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordLess.h" />
         <option value="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordGreater.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Store/Comparer/DataRecordCompare.h" />
-        <option value="$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.h" />
-        <option value="$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Column.h" />
         <option value="$PROJECT_DIR$/Foundation/Transformation/CellTransformer.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Transformation/TypeConverter.h" />
         <option value="$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.h" />
-        <option value="$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Transformation/CellTransformer.h" />
+        <option value="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.h" />
+        <option value="$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.h" />
+        <option value="$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.cpp" />
+        <option value="$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.cpp" />
+        <option value="$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.h" />
+        <option value="$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.cpp" />
       </list>
     </option>
   </component>
@@ -255,60 +302,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Foundation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foundation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Transformation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foundation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foundation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Segmentation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -517,7 +510,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.55731225" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47304237" sideWeight="0.5059289" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3254282" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="877" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28754812" sideWeight="0.4387352" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28754812" sideWeight="0.4387352" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27471116" sideWeight="0.5612648" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5104031" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27471116" sideWeight="0.56532663" order="2" side_tool="true" content_ui="tabs" />
@@ -706,13 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/EntityLink.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -738,6 +724,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -771,26 +758,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/SegmentHelper.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Right.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/SegmentHelper.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -806,38 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Segment.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -858,80 +797,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Cell.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16415869">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Segment.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="53" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="53" />
-          <folding>
-            <element signature="e#166#201#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/JoinPhrase.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="43" />
-          <folding>
-            <element signature="e#162#192#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Transformation/CellTransformer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          <folding>
-            <element signature="e#176#206#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Transformation/CellTransformer.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Transformation/TypeConverter.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
           <folding />
         </state>
       </provider>
@@ -944,26 +813,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Column.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Cell.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Transformation/CellTransformer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+          <folding>
+            <element signature="e#176#206#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#122#146#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="158" column="41" selection-start-line="158" selection-start-column="41" selection-end-line="158" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Inner.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="98" selection-start-line="28" selection-start-column="98" selection-end-line="28" selection-end-column="98" />
+          <caret line="27" column="109" selection-start-line="27" selection-start-column="109" selection-end-line="27" selection-end-column="109" />
+          <folding>
+            <element signature="e#180#215#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Transformation/TypeConverter.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="74" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
+          <folding>
+            <element signature="e#166#201#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Segmentation/Helper/Cross.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="80" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
+          <folding>
+            <element signature="e#45#92#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Transformation/EntityTransformer.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Column.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="1.0875514">
+          <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
           <folding />
         </state>
       </provider>

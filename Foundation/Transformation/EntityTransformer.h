@@ -5,7 +5,8 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_TRANSFORMATION_ENTITYTRANSFORMER_H
 #define CLOUD_E_PLUS_FOUNDATION_TRANSFORMATION_ENTITYTRANSFORMER_H
 
-#include <Foundation/Segmentation/JoinPhrase.h>
+#include <Foundation/EntityProxy.h>
+#include "CellTransformer.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -13,11 +14,11 @@ namespace Cloude {
 
             class EntityTransformer {
 
-                const Segmentation::JoinPhrase &_lhsPhrase;
-                const Segmentation::JoinPhrase &_rhsPhrase;
+                SPtrCellTransformerMap _lhsCellTransformerMap;
+                SPtrCellTransformerMap _rhsCellTransformerMap;
 
             public:
-                EntityTransformer(const Segmentation::JoinPhrase &lhsPhrase, const Segmentation::JoinPhrase &rhsPhrase);
+                EntityTransformer() = default;
                 EntityTransformer(const EntityTransformer &) = default;
                 EntityTransformer(EntityTransformer &&) = default;
                 EntityTransformer &operator=(const EntityTransformer &) = default;
@@ -28,6 +29,8 @@ namespace Cloude {
                 virtual SPtrEntityProxy TransformLeftOnly(const SPtrEntityProxy &lhsProxy) const;
                 virtual SPtrEntityProxy TransformRightOnly(const SPtrEntityProxy &rhsProxy) const;
             };
+
+            using SPtrEntityTransformer = std::shared_ptr<EntityTransformer>;
         }
     }
 }
