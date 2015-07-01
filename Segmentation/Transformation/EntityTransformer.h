@@ -14,7 +14,7 @@ namespace Cloude {
 
             class EntityTransformer {
 
-                SPtrCellTransformerMap _mapCellTransformers;
+                CellTransformerMap _mapCellTransformers;
 
             public:
                 EntityTransformer() = default;
@@ -25,7 +25,7 @@ namespace Cloude {
                 virtual ~EntityTransformer() = default;
 
                 // Accessors
-                virtual SPtrCellTransformerMap &CellTransformerMap() { return _mapCellTransformers; };
+                virtual CellTransformerMap &CellTransformerMap() { return _mapCellTransformers; };
 
                 // Locals
                 virtual void Transform(const Foundation::SPtrEntityProxy &srcProxy,

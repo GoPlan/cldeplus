@@ -12,16 +12,16 @@ namespace Cloude {
                 const Foundation::SPtrEntityProxy &srcProxy,
                 Foundation::SPtrEntityProxy &dstProxy) const {
 
-            if(!srcProxy)
+            if (!srcProxy)
                 throw std::invalid_argument{"srcProxy is invalid or a nullptr"};
 
-            if(!dstProxy)
+            if (!dstProxy)
                 throw std::invalid_argument{"dstProxy is invalid or a nullptr"};
 
             for (auto &pairCellMap : _mapCellTransformers) {
                 auto &srcColumnName = pairCellMap.first;
-                auto &sptrCellTransfomer = pairCellMap.second;
-                Foundation::SPtrCell sptrNewCell = sptrCellTransfomer->Transform(srcProxy->getCell(srcColumnName));
+                auto &cellTransformer = pairCellMap.second;
+                Foundation::SPtrCell sptrNewCell = cellTransformer.Transform(srcProxy->getCell(srcColumnName));
                 dstProxy->setCell(sptrNewCell);
             }
         }

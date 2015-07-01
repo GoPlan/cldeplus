@@ -22,6 +22,7 @@ namespace Cloude {
 
         public:
             Column() = default;
+            Column(std::string name, Type::cldeValueType dataType);
             Column(std::string name, std::string datasourceName, Type::cldeValueType dataType);
             Column(std::string name, std::string datasourceName, size_t length, Type::cldeValueType dataType);
             Column(const Column &) = default;

@@ -20,6 +20,8 @@ namespace Cloude {
 
             public:
                 CellTransformer() = default;
+                CellTransformer(const Foundation::SPtrColumn &targetColumn);
+                CellTransformer(const Foundation::SPtrColumn &targetColumn, const SPtrTypeConverter &converter);
                 CellTransformer(const CellTransformer &) = default;
                 CellTransformer(CellTransformer &&) = default;
                 CellTransformer &operator=(const CellTransformer &) = default;
@@ -44,6 +46,7 @@ namespace Cloude {
 
             using SPtrCellTransformer = std::shared_ptr<CellTransformer>;
             using SPtrCellTransformerMap = std::unordered_map<std::string, Transformation::SPtrCellTransformer>;
+            using CellTransformerMap = std::unordered_map<std::string, Transformation::CellTransformer>;
         }
     }
 }

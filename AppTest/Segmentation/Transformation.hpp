@@ -13,6 +13,7 @@
 #include <AppTest/Application/ProductMap.h>
 #include <AppTest/Application/OrderMap.h>
 #include <AppTest/Application/CustomerMap.h>
+#include <Foundation/Type/Comparer/cldeValueComparer.h>
 #include <Segmentation/Transformation/Transformation.h>
 
 namespace Cloude {
@@ -34,22 +35,32 @@ namespace Cloude {
 
                 auto sptrOrderIdCell = std::make_shared<Foundation::Cell>(orderMap.Id);
                 auto sptrCustmIdCell = std::make_shared<Foundation::Cell>(orderMap.CustId);
-                auto sptrOrderNameCell = std::make_shared<Foundation::Cell>(orderMap.Name);
+                auto sptrOrderNameCell = std::make_shared<Foundation::Cell>(orderMap.Name, sptrOrderName);
 
-                Foundation::SPtrIdentity sptrOrderIdent = std::make_shared<Foundation::Identity>();
-                sptrOrderIdent->setCell(sptrOrderIdCell);
+                // Prepare source proxy
+                Foundation::SPtrEntityProxy sptrOrderProxy = std::make_shared<Foundation::EntityProxy>();
+                sptrOrderProxy->setCell(sptrCustmIdCell);
+                sptrOrderProxy->setCell(sptrOrderNameCell);
 
-                EXPECT_TRUE(sptrOrderIdent.get() != 0);
+                EXPECT_TRUE(sptrOrderProxy.get() != 0);
 
-                Foundation::SPtrEntity sptrOrder = std::make_shared<Foundation::Entity>(sptrOrderIdent);
-                sptrOrder->setCell(sptrCustmIdCell);
-                sptrOrder->setCell(sptrOrderNameCell);
+                // Prepare target proxy
+                Foundation::SPtrColumn orderNewColumn = std::make_shared<Foundation::Column>("NewName", Foundation::Type::cldeValueType::VarChar);
+                Transformation::SPtrEntityTransformer orderTransformer = std::make_shared<Transformation::EntityTransformer>();
+                orderTransformer->CellTransformerMap()[orderMap.Name->getName()] = Transformation::CellTransformer{orderNewColumn};
 
-                EXPECT_TRUE(sptrOrder.get() != 0);
+                Foundation::SPtrEntityProxy sptrNewProxy = std::make_shared<Foundation::EntityProxy>();
+                orderTransformer->Transform(sptrOrderProxy, sptrNewProxy);
 
-                Transformation::SPtrEntityTransformer orderTransformer{};
-                Transformation::SPtrCellTransformerMap orderTransformMap = orderTransformer->CellTransformerMap();
+                Foundation::SPtrCell sptrNewProxyNameCell = sptrNewProxy->getCell("NewName");
+                Foundation::Type::Comparer::cldeValueCompare compare{};
+                Foundation::Type::Comparer::cldeValueLess less{};
+                Foundation::Type::Comparer::cldeValueGreater greater{};
 
+                EXPECT_TRUE(sptrNewProxy.get() != 0);
+                EXPECT_TRUE(!less(sptrOrderName, sptrNewProxyNameCell->getValue()));
+                EXPECT_TRUE(!greater(sptrOrderName, sptrNewProxyNameCell->getValue()));
+                EXPECT_TRUE(compare(sptrOrderName, sptrNewProxyNameCell->getValue()));
             }
         }
     }
