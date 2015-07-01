@@ -5627,7 +5627,7 @@ struct sqlite3_index_info {
 #define SQLITE_INDEX_CONSTRAINT_MATCH 64
 
 /*
-** CAPI3REF: Register A Virtual Table Implementation
+** CAPI3REF: Register A Virtual Table Type
 ** METHOD: sqlite3
 **
 ** ^These routines are used to register a new [virtual table module] name.

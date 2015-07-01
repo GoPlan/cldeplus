@@ -16,11 +16,14 @@ namespace Cloude {
                     static ComparativeType _type;
 
                 public:
-                    LesserOrEqual(const SPtrColumn &column, const Type::SPtrCldeValue &value)
+                    LesserOrEqual(const SPtrColumn &column, const Data::SPtrValue &value)
                             : CriteriaLeaf(column, value) { };
+
+                    LesserOrEqual(const LesserOrEqual &) = default;
+                    LesserOrEqual(LesserOrEqual &&) = default;
+                    LesserOrEqual &operator=(const LesserOrEqual &) = default;
+                    LesserOrEqual &operator=(LesserOrEqual &&) = default;
                     virtual ~LesserOrEqual() = default;
-                    LesserOrEqual(const LesserOrEqual &rhs) = default;
-                    LesserOrEqual &operator=(const LesserOrEqual &rhs) = default;
 
                     // Criteria
                     const ComparativeType &getComparativeType() const override { return _type; };

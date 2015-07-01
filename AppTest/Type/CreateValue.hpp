@@ -8,7 +8,7 @@
 #include "gtest/gtest.h"
 #include <iostream>
 #include <Cloude.h>
-#include <Foundation/Type/Helper/cldeValueHelper.h>
+#include <Foundation/Data/Helper/ValueHelper.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -21,11 +21,11 @@ namespace Cloude {
 
                 std::string email{"goplan@cloud-e.biz"};
 
-                auto sptrEnquiryId = Foundation::Type::cldeValueFactory::CreateInt64(15);
-                auto sptrEmail = Foundation::Type::cldeValueFactory::CreateVarChar(email);
+                auto sptrEnquiryId = Foundation::Data::ValueFactory::CreateInt64(15);
+                auto sptrEmail = Foundation::Data::ValueFactory::CreateVarChar(email);
 
-                auto sptrCopiedEnquiryId = Foundation::Type::Helper::cldeValueHelper::CopySPtrValue(sptrEnquiryId);
-                auto sptrCopiedEmail = Foundation::Type::Helper::cldeValueHelper::CopySPtrValue(sptrEmail);
+                auto sptrCopiedEnquiryId = Foundation::Data::Helper::ValueHelper::CopySPtrValue(sptrEnquiryId);
+                auto sptrCopiedEmail = Foundation::Data::Helper::ValueHelper::CopySPtrValue(sptrEmail);
 
                 EXPECT_TRUE(strcmp(sptrCopiedEmail->ToCString(), sptrEmail->ToCString()) == 0);
                 EXPECT_TRUE(sptrCopiedEmail.get() != sptrEmail.get());

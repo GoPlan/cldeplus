@@ -8,6 +8,12 @@
 namespace Cloude {
     namespace Segmentation {
 
+        void Transformation::EntityTransformer::AddCellTransformer(
+                const std::string &columnName,
+                const Transformation::CellTransformer &cellTransformer) {
+            _mapCellTransformers.insert(std::make_pair(columnName, cellTransformer));
+        }
+
         void Transformation::EntityTransformer::Transform(
                 const Foundation::SPtrEntityProxy &srcProxy,
                 Foundation::SPtrEntityProxy &dstProxy) const {

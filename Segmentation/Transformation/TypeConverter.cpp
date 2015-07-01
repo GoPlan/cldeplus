@@ -7,53 +7,53 @@
 namespace Cloude {
     namespace Segmentation {
 
-        Foundation::Type::SPtrValue Transformation::TypeConverter::Convert(const Foundation::SPtrColumn &column,
-                                                                           const Foundation::Type::SPtrValue &value) {
+        Foundation::Data::SPtrValue Transformation::TypeConverter::Convert(const Foundation::SPtrColumn &column,
+                                                                           const Foundation::Data::SPtrValue &value) {
 
             if (column->getDataType() == value->getDataType()) {
                 return value;
             }
 
             switch (value->getDataType()) {
-                case Foundation::Type::cldeType::cldeValueType::Boolean:
+                case Foundation::Data::ValueType::Boolean:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Byte:
+                case Foundation::Data::ValueType::Byte:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Int16:
+                case Foundation::Data::ValueType::Int16:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Int32:
+                case Foundation::Data::ValueType::Int32:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Int64:
+                case Foundation::Data::ValueType::Int64:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::UInt16:
+                case Foundation::Data::ValueType::UInt16:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::UInt32:
+                case Foundation::Data::ValueType::UInt32:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::UInt64:
+                case Foundation::Data::ValueType::UInt64:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Double:
+                case Foundation::Data::ValueType::Double:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Float:
+                case Foundation::Data::ValueType::Float:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::String:
+                case Foundation::Data::ValueType::String:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::VarChar:
+                case Foundation::Data::ValueType::VarChar:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Text:
+                case Foundation::Data::ValueType::Text:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Currency:
+                case Foundation::Data::ValueType::Currency:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Date:
+                case Foundation::Data::ValueType::Date:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Time:
+                case Foundation::Data::ValueType::Time:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::DateTime:
+                case Foundation::Data::ValueType::DateTime:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::TimeStamp:
+                case Foundation::Data::ValueType::TimeStamp:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Point:
+                case Foundation::Data::ValueType::Point:
                     break;
-                case Foundation::Type::cldeType::cldeValueType::Matrix:
+                case Foundation::Data::ValueType::Matrix:
                     break;
             }
 

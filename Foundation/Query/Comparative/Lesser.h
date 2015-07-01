@@ -13,14 +13,16 @@ namespace Cloude {
             namespace Comparative {
 
                 class Lesser : public CriteriaLeaf {
+
                     static ComparativeType _type;
 
                 public:
-                    Lesser(const SPtrColumn &column, const Type::SPtrCldeValue &value)
-                            : CriteriaLeaf(column, value) { };
+                    Lesser(const SPtrColumn &column, const Data::SPtrValue &value) : CriteriaLeaf(column, value) { };
+                    Lesser(const Lesser &) = default;
+                    Lesser(Lesser &&) = default;
+                    Lesser &operator=(const Lesser &) = default;
+                    Lesser &operator=(Lesser &&) = default;
                     virtual ~Lesser() = default;
-                    Lesser(const Lesser &rhs) = default;
-                    Lesser &operator=(const Lesser &rhs) = default;
 
                     // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };

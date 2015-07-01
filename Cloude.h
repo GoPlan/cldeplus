@@ -17,7 +17,7 @@
 #include "Foundation/EntityQuery.h"
 #include "Foundation/EntitySourceDriver.h"
 
-#include "Foundation/Type/cldeType.h"
+#include "Foundation/Data/TypeIncludes.h"
 #include "Foundation/Query/Query.h"
 
 #endif //CLOUD_E_CPLUS_CLOUDE_H

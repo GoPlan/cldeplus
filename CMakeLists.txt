@@ -12,7 +12,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 add_library(foundation STATIC
     Cloude.h
-    Foundation/Type/cldeValueType.h
+    Foundation/Data/TypeEnums.h
     Foundation/Column.cpp
     Foundation/Column.h
     Foundation/Cell.cpp
@@ -72,62 +72,62 @@ add_library(foundation STATIC
     Foundation/Query/Comparative/IsNotNull.h
     Foundation/Query/ComparativeType.cpp
     Foundation/Query/ComparativeType.h
-    Foundation/Type/cldeValue.cpp
-    Foundation/Type/cldeValue.h
-    Foundation/Type/cldeValueType.cpp
-    Foundation/Type/cldeNumericValue.cpp
-    Foundation/Type/cldeNumericValue.h
-    Foundation/Type/cldeCharacterValue.cpp
-    Foundation/Type/cldeCharacterValue.h
-    Foundation/Type/cldeValueFactory.cpp
-    Foundation/Type/cldeValueFactory.h
-    Foundation/Type/cldeType.h
-    Foundation/Type/Helper/cldeValueHelper.cpp
-    Foundation/Type/Helper/cldeValueHelper.h
-    Foundation/Type/Implementation/cldeInt32.cpp
-    Foundation/Type/Implementation/cldeInt32.h
-    Foundation/Type/Implementation/cldeInt64.cpp
-    Foundation/Type/Implementation/cldeInt64.h
-    Foundation/Type/Implementation/cldeVarChar.cpp
-    Foundation/Type/Implementation/cldeVarChar.h
-    Foundation/Type/Implementation/cldeDouble.cpp
-    Foundation/Type/Implementation/cldeDouble.h
-    Foundation/Type/Implementation/cldeText.cpp
-    Foundation/Type/Implementation/cldeText.h
-    Foundation/Type/Implementation/cldeInt16.cpp
-    Foundation/Type/Implementation/cldeInt16.h
-    Foundation/Type/Implementation/cldeBoolean.cpp
-    Foundation/Type/Implementation/cldeBoolean.h
-    Foundation/Type/Implementation/cldeDate.cpp
-    Foundation/Type/Implementation/cldeDate.h
-    Foundation/Type/Implementation/cldeDateTime.cpp
-    Foundation/Type/Implementation/cldeDateTime.h
-    Foundation/Type/Implementation/cldeTime.cpp
-    Foundation/Type/Implementation/cldeTime.h
-    Foundation/Type/Implementation/cldeUInt16.cpp
-    Foundation/Type/Implementation/cldeUInt16.h
-    Foundation/Type/Implementation/cldeUInt32.cpp
-    Foundation/Type/Implementation/cldeUInt32.h
-    Foundation/Type/Implementation/cldeUInt64.cpp
-    Foundation/Type/Implementation/cldeUInt64.h
-    Foundation/Type/Implementation/cldeByte.cpp
-    Foundation/Type/Implementation/cldeByte.h
-    Foundation/Type/Implementation/cldeTimeStamp.cpp
-    Foundation/Type/Implementation/cldeTimeStamp.h
-    Foundation/Type/Implementation/cldeCurrency.cpp
-    Foundation/Type/Implementation/cldeCurrency.h
-    Foundation/Type/Implementation/cldeFloat.cpp
-    Foundation/Type/Implementation/cldeFloat.h
-    Foundation/Type/Implementation/cldePoint.cpp
-    Foundation/Type/Implementation/cldePoint.h
-    Foundation/Type/Implementation/cldeMatrix.cpp
-    Foundation/Type/Implementation/cldeMatrix.h
-    Foundation/Type/Implementation/cldeString.cpp
-    Foundation/Type/Implementation/cldeString.h
-    Foundation/Type/Implementation/cldeBlob.cpp
-    Foundation/Type/Implementation/cldeBlob.h
-    Foundation/Type/Comparer/cldeValueComparer.cpp
-    Foundation/Type/Comparer/cldeValueComparer.h
+    Foundation/Data/Value.cpp
+    Foundation/Data/Value.h
+    Foundation/Data/TypeEnums.cpp
+    Foundation/Data/NumericValue.cpp
+    Foundation/Data/NumericValue.h
+    Foundation/Data/CharacterValue.cpp
+    Foundation/Data/CharacterValue.h
+    Foundation/Data/ValueFactory.cpp
+    Foundation/Data/ValueFactory.h
+    Foundation/Data/TypeIncludes.h
+    Foundation/Data/Helper/ValueHelper.cpp
+    Foundation/Data/Helper/ValueHelper.h
+    Foundation/Data/Type/Int32.cpp
+    Foundation/Data/Type/Int32.h
+    Foundation/Data/Type/Int64.cpp
+    Foundation/Data/Type/Int64.h
+    Foundation/Data/Type/VarChar.cpp
+    Foundation/Data/Type/VarChar.h
+    Foundation/Data/Type/Double.cpp
+    Foundation/Data/Type/Double.h
+    Foundation/Data/Type/Text.cpp
+    Foundation/Data/Type/Text.h
+    Foundation/Data/Type/Int16.cpp
+    Foundation/Data/Type/Int16.h
+    Foundation/Data/Type/Boolean.cpp
+    Foundation/Data/Type/Boolean.h
+    Foundation/Data/Type/Date.cpp
+    Foundation/Data/Type/Date.h
+    Foundation/Data/Type/DateTime.cpp
+    Foundation/Data/Type/DateTime.h
+    Foundation/Data/Type/Time.cpp
+    Foundation/Data/Type/Time.h
+    Foundation/Data/Type/UInt16.cpp
+    Foundation/Data/Type/UInt16.h
+    Foundation/Data/Type/UInt32.cpp
+    Foundation/Data/Type/UInt32.h
+    Foundation/Data/Type/UInt64.cpp
+    Foundation/Data/Type/UInt64.h
+    Foundation/Data/Type/Byte.cpp
+    Foundation/Data/Type/Byte.h
+    Foundation/Data/Type/TimeStamp.cpp
+    Foundation/Data/Type/TimeStamp.h
+    Foundation/Data/Type/Currency.cpp
+    Foundation/Data/Type/Currency.h
+    Foundation/Data/Type/Float.cpp
+    Foundation/Data/Type/Float.h
+    Foundation/Data/Type/Point.cpp
+    Foundation/Data/Type/Point.h
+    Foundation/Data/Type/Matrix.cpp
+    Foundation/Data/Type/Matrix.h
+    Foundation/Data/Type/String.cpp
+    Foundation/Data/Type/String.h
+    Foundation/Data/Type/Blob.cpp
+    Foundation/Data/Type/Blob.h
+    Foundation/Data/Comparer/Comparer.cpp
+    Foundation/Data/Comparer/Comparer.h
     Foundation/Exception/cldeNonSupportedFunctionException.cpp
     Foundation/Exception/cldeNonSupportedFunctionException.h
     Foundation/Exception/cldeException.cpp
@@ -159,12 +159,12 @@ add_library(foundation STATIC
     Foundation/Query/Helper/ProxyHelper.h
     Foundation/Exception/cldeSegmentationException.cpp
     Foundation/Exception/cldeSegmentationException.h
-    Foundation/Type/Comparer/cldeValueLess.cpp
-    Foundation/Type/Comparer/cldeValueLess.h
-    Foundation/Type/Comparer/cldeValueGreater.cpp
-    Foundation/Type/Comparer/cldeValueGreater.h
-    Foundation/Type/Comparer/cldeValueCompare.cpp
-    Foundation/Type/Comparer/cldeValueCompare.h
+    Foundation/Data/Comparer/Less.cpp
+    Foundation/Data/Comparer/Less.h
+    Foundation/Data/Comparer/Greater.cpp
+    Foundation/Data/Comparer/Greater.h
+    Foundation/Data/Comparer/Compare.cpp
+    Foundation/Data/Comparer/Compare.h
     Foundation/Store/Helper/EntityStoreHelper.cpp
     Foundation/Store/Helper/EntityStoreHelper.h
     Foundation/Store/Helper/CellHelper.cpp
@@ -175,7 +175,7 @@ add_library(foundation STATIC
     Foundation/Store/Comparer/DataRecordGreater.h
     Foundation/Store/Comparer/DataRecordLess.cpp
     Foundation/Store/Comparer/DataRecordLess.h
-    )
+    Foundation/Data/Helper/TypeHelper.cpp Foundation/Data/Helper/TypeHelper.h)
 
 
 add_library(segmentation STATIC

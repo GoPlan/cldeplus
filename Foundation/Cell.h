@@ -8,7 +8,7 @@
 #include <string>
 #include <memory>
 #include <unordered_map>
-#include "Type/cldeValue.h"
+#include "Data/Value.h"
 #include "Column.h"
 
 
@@ -18,11 +18,11 @@ namespace Cloude {
         class Cell : public Common::IPrintable {
 
             SPtrColumn _column;
-            Type::SPtrValue _value;
+            Data::SPtrValue _value;
 
         public:
             explicit Cell(const SPtrColumn &column);
-            explicit Cell(const SPtrColumn &column, const Type::SPtrValue &value);
+            explicit Cell(const SPtrColumn &column, const Data::SPtrValue &value);
             Cell(const Cell &) = default;
             Cell(Cell &&) = default;
             Cell &operator=(const Cell &) = default;
@@ -38,9 +38,9 @@ namespace Cloude {
             bool isNull() const { return _value.get() == nullptr; };
 
             const SPtrColumn &getColumn() const { return _column; }
-            const Type::SPtrValue &getValue() const { return _value; }
+            const Data::SPtrValue &getValue() const { return _value; }
 
-            void setValue(const Type::SPtrValue &value);
+            void setValue(const Data::SPtrValue &value);
         };
 
         using SPtrCell = std::shared_ptr<Cell>;

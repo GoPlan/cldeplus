@@ -13,14 +13,17 @@ namespace Cloude {
             namespace Comparative {
 
                 class GreaterOrEqual : public CriteriaLeaf {
+
                     static ComparativeType _type;
 
                 public:
-                    GreaterOrEqual(const SPtrColumn &column, const Type::SPtrCldeValue &value)
+                    GreaterOrEqual(const SPtrColumn &column, const Data::SPtrValue &value)
                             : CriteriaLeaf(column, value) { };
+                    GreaterOrEqual(const GreaterOrEqual &) = default;
+                    GreaterOrEqual(GreaterOrEqual &&) = default;
+                    GreaterOrEqual &operator=(const GreaterOrEqual &) = default;
+                    GreaterOrEqual &operator=(GreaterOrEqual &&) = default;
                     virtual ~GreaterOrEqual() = default;
-                    GreaterOrEqual(const GreaterOrEqual &rhs) = default;
-                    GreaterOrEqual &operator=(const GreaterOrEqual &rhs) = default;
 
                     // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };

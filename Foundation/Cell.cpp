@@ -3,6 +3,7 @@
 //
 
 #include <stdexcept>
+#include <Foundation/Data/Helper/TypeHelper.h>
 #include "Cell.h"
 
 namespace Cloude {
@@ -12,12 +13,13 @@ namespace Cloude {
             //
         }
 
-        Cell::Cell(const SPtrColumn &column, const Type::SPtrValue &value) : Cell{column} {
+        Cell::Cell(const SPtrColumn &column, const Data::SPtrValue &value) : Cell{column} {
             setValue(value);
         }
 
         const std::string Cell::CopyToString() const {
-            std::string result{_value->ToString() + "(" + Type::cldeType::CopyToString(_value->getDataType()) + ")"};
+            std::string result{_value->ToString() +
+                               "(" + Data::Helper::TypeHelper::CopyToString(_value->getDataType()) + ")"};
             return result;
         }
 
@@ -29,12 +31,12 @@ namespace Cloude {
             return _value->ToCString();
         }
 
-        void Cell::setValue(const Type::SPtrValue &value) {
+        void Cell::setValue(const Data::SPtrValue &value) {
 
             if (value->getDataType() != _column->getDataType()) {
-                std::string msg{"Value has type " + Type::cldeType::CopyToString(value->getDataType()) + " " +
+                std::string msg{"Value has type " + Data::Helper::TypeHelper::CopyToString(value->getDataType()) + " " +
                                 "that is different with column " + _column->ToString() +
-                                "(" + Type::cldeType::CopyToString(_column->getDataType()) + ")"};
+                                "(" + Data::Helper::TypeHelper::CopyToString(_column->getDataType()) + ")"};
 
                 throw std::invalid_argument{msg};
             }

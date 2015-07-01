@@ -13,14 +13,16 @@ namespace Cloude {
             namespace Comparative {
 
                 class Like : public CriteriaLeaf {
+
                     static ComparativeType _type;
 
                 public:
-                    Like(const SPtrColumn &column, const Type::SPtrCldeValue &value)
-                            : CriteriaLeaf(column, value) { };
+                    Like(const SPtrColumn &column, const Data::SPtrValue &value) : CriteriaLeaf(column, value) { };
+                    Like(const Like &) = default;
+                    Like(Like &&) = default;
+                    Like &operator=(const Like &) = default;
+                    Like &operator=(Like &&) = default;
                     ~Like() = default;
-                    Like(const Like &rhs) = default;
-                    Like &operator=(const Like &rhs) = default;
 
                     // Criteria
                     const ComparativeType &getComparativeType() const override { return _type; };

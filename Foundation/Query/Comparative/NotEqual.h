@@ -13,14 +13,16 @@ namespace Cloude {
             namespace Comparative {
 
                 class NotEqual : public CriteriaLeaf {
+
                     static ComparativeType _type;
 
                 public:
-                    NotEqual(const SPtrColumn &column, const Type::SPtrCldeValue &value)
-                            : CriteriaLeaf(column, value) { };
+                    NotEqual(const SPtrColumn &column, const Data::SPtrValue &value) : CriteriaLeaf(column, value) { };
+                    NotEqual(const NotEqual &) = default;
+                    NotEqual(NotEqual &&) = default;
+                    NotEqual &operator=(const NotEqual &) = default;
+                    NotEqual &operator=(NotEqual &&) = default;
                     virtual ~NotEqual() = default;
-                    NotEqual(const NotEqual &rhs) = default;
-                    NotEqual &operator=(const NotEqual &rhs) = default;
 
                     // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };

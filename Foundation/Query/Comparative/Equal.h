@@ -13,14 +13,16 @@ namespace Cloude {
             namespace Comparative {
 
                 class Equal : public Query::CriteriaLeaf {
+
                     static ComparativeType _type;
 
                 public:
-                    Equal(const SPtrColumn &column, const Type::SPtrCldeValue &value)
-                            : CriteriaLeaf(column, value) { };
+                    Equal(const SPtrColumn &column, const Data::SPtrValue &value) : CriteriaLeaf(column, value) { };
+                    Equal(const Equal &) = default;
+                    Equal(Equal &&) = default;
+                    Equal &operator=(const Equal &) = default;
+                    Equal &operator=(Equal &&) = default;
                     ~Equal() = default;
-                    Equal(const Equal &rhs) = default;
-                    Equal &operator=(const Equal &rhs) = default;
 
                     // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };

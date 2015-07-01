@@ -18,7 +18,7 @@ namespace Cloude {
                 throw Exception::cldeNonSupportedFunctionException(msg);
             }
 
-            const Type::SPtrCldeValue &CriteriaComposite::getValue() const {
+            const Data::SPtrValue &CriteriaComposite::getValue() const {
                 const char *msg = "Composite comparative does not support getValue() method.";
                 throw Exception::cldeNonSupportedFunctionException(msg);
             }

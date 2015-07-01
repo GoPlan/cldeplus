@@ -10,10 +10,10 @@ namespace Cloude {
 
             std::string CustomerMap::TableName{"Customer"};
 
-            Foundation::SPtrColumn CustomerMap::Id = std::make_shared<Foundation::Column>("Id", "id", Foundation::Type::cldeValueType::Int64);
-            Foundation::SPtrColumn CustomerMap::FirstName = std::make_shared<Foundation::Column>("FirstName", "firstName", Foundation::Type::cldeValueType::VarChar);
-            Foundation::SPtrColumn CustomerMap::LastName = std::make_shared<Foundation::Column>("LastName", "lastName", Foundation::Type::cldeValueType::VarChar);
-            Foundation::SPtrColumn CustomerMap::Email = std::make_shared<Foundation::Column>("Email", "email", Foundation::Type::cldeValueType::VarChar);
+            Foundation::SPtrColumn CustomerMap::Id = std::make_shared<Foundation::Column>("Id", "id", Foundation::Data::ValueType::Int64);
+            Foundation::SPtrColumn CustomerMap::FirstName = std::make_shared<Foundation::Column>("FirstName", "firstName", Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn CustomerMap::LastName = std::make_shared<Foundation::Column>("LastName", "lastName", Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn CustomerMap::Email = std::make_shared<Foundation::Column>("Email", "email", Foundation::Data::ValueType::VarChar);
 
             const std::string &CustomerMap::TableNameCore() const { return TableName; }
 

@@ -13,7 +13,7 @@
 #include <AppTest/Application/ProductMap.h>
 #include <AppTest/Application/OrderMap.h>
 #include <AppTest/Application/CustomerMap.h>
-#include <Foundation/Type/Comparer/cldeValueComparer.h>
+#include <Foundation/Data/Comparer/Comparer.h>
 #include <Segmentation/Transformation/Transformation.h>
 
 namespace Cloude {
@@ -28,10 +28,10 @@ namespace Cloude {
                 Application::ProductMap productMap{};
                 Application::CustomerMap customerMap{};
 
-                auto sptrOrderId = Foundation::Type::cldeValueFactory::CreateInt64(1);
-                auto sptrCustmId = Foundation::Type::cldeValueFactory::CreateInt64(2);
-                auto sptrOrderName = Foundation::Type::cldeValueFactory::CreateVarChar(std::string{"My Order"});
-                auto sptrTotal = Foundation::Type::cldeValueFactory::CreateDouble(15.0);
+                auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(1);
+                auto sptrCustmId = Foundation::Data::ValueFactory::CreateInt64(2);
+                auto sptrOrderName = Foundation::Data::ValueFactory::CreateVarChar(std::string{"My Order"});
+                auto sptrTotal = Foundation::Data::ValueFactory::CreateDouble(15.0);
 
                 auto sptrOrderIdCell = std::make_shared<Foundation::Cell>(orderMap.Id);
                 auto sptrCustmIdCell = std::make_shared<Foundation::Cell>(orderMap.CustId);
@@ -47,12 +47,11 @@ namespace Cloude {
                 EXPECT_TRUE(sptrOrderProxy.get() != 0);
 
                 // Prepare target proxy
-                Foundation::SPtrColumn orderNewNameColumn = std::make_shared<Foundation::Column>("NewName", Foundation::Type::cldeValueType::VarChar);
-                Foundation::SPtrColumn orderNewTotalColumn = std::make_shared<Foundation::Column>("NewTotal", Foundation::Type::cldeValueType::Double);
+                Foundation::SPtrColumn orderNewNameColumn = std::make_shared<Foundation::Column>("NewName", Foundation::Data::ValueType::VarChar);
+                Foundation::SPtrColumn orderNewTotalColumn = std::make_shared<Foundation::Column>("NewTotal", Foundation::Data::ValueType::Double);
                 Transformation::SPtrEntityTransformer orderTransformer = std::make_shared<Transformation::EntityTransformer>();
-                Transformation::CellTransformerMap& transformerMap = orderTransformer->CellTransformerMap();
-                transformerMap[orderMap.Name->getName()] = Transformation::CellTransformer{orderNewNameColumn};
-                transformerMap[orderMap.Total->getName()] = Transformation::CellTransformer{orderNewTotalColumn};
+                orderTransformer->AddCellTransformer(orderMap.Name->getName(),Transformation::CellTransformer{orderNewNameColumn});
+                orderTransformer->AddCellTransformer(orderMap.Total->getName(),Transformation::CellTransformer{orderNewTotalColumn});
 
                 Foundation::SPtrEntityProxy sptrNewProxy = std::make_shared<Foundation::EntityProxy>();
                 orderTransformer->Transform(sptrOrderProxy, sptrNewProxy);
@@ -62,25 +61,25 @@ namespace Cloude {
                 // Assert Name(VarChar) cell transformation
                 {
                     Foundation::SPtrCell sptrNewProxyNameCell = sptrNewProxy->getCell("NewName");
-                    Foundation::Type::Comparer::cldeValueCompare compare{};
-                    Foundation::Type::Comparer::cldeValueLess less{};
-                    Foundation::Type::Comparer::cldeValueGreater greater{};
+                    Foundation::Data::Comparer::Compare eq{};
+                    Foundation::Data::Comparer::Less lt{};
+                    Foundation::Data::Comparer::Greater gt{};
 
-                    EXPECT_TRUE(!less(sptrOrderName, sptrNewProxyNameCell->getValue()));
-                    EXPECT_TRUE(!greater(sptrOrderName, sptrNewProxyNameCell->getValue()));
-                    EXPECT_TRUE(compare(sptrOrderName, sptrNewProxyNameCell->getValue()));
+                    EXPECT_TRUE(!lt(sptrOrderName, sptrNewProxyNameCell->getValue()));
+                    EXPECT_TRUE(!gt(sptrOrderName, sptrNewProxyNameCell->getValue()));
+                    EXPECT_TRUE(eq(sptrOrderName, sptrNewProxyNameCell->getValue()));
                 }
 
                 // Assert Cost(VarChar) cell transformation
                 {
                     Foundation::SPtrCell sptrNewProxyTotalCell = sptrNewProxy->getCell("NewTotal");
-                    Foundation::Type::Comparer::cldeValueCompare compare{};
-                    Foundation::Type::Comparer::cldeValueLess less{};
-                    Foundation::Type::Comparer::cldeValueGreater greater{};
+                    Foundation::Data::Comparer::Compare eq{};
+                    Foundation::Data::Comparer::Less lt{};
+                    Foundation::Data::Comparer::Greater gt{};
 
-                    EXPECT_TRUE(!less(sptrTotal, sptrNewProxyTotalCell->getValue()));
-                    EXPECT_TRUE(!greater(sptrTotal, sptrNewProxyTotalCell->getValue()));
-                    EXPECT_TRUE(compare(sptrTotal, sptrNewProxyTotalCell->getValue()));
+                    EXPECT_TRUE(!lt(sptrTotal, sptrNewProxyTotalCell->getValue()));
+                    EXPECT_TRUE(!gt(sptrTotal, sptrNewProxyTotalCell->getValue()));
+                    EXPECT_TRUE(eq(sptrTotal, sptrNewProxyTotalCell->getValue()));
                 }
             }
         }

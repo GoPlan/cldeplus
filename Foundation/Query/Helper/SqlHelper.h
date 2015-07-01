@@ -16,8 +16,8 @@ namespace Cloude {
         class Column;
         class EntityMap;
 
-        namespace Type {
-            class cldeValue;
+        namespace Data {
+            class Value;
         }
 
         namespace Query {

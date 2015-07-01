@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 #include <Foundation/Common/IPrintable.h>
-#include "Type/cldeValueType.h"
+#include "Data/TypeEnums.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -17,14 +17,14 @@ namespace Cloude {
 
             std::string _name;
             std::string _datasourceName;
-            Foundation::Type::cldeValueType _dataType;
+            Data::ValueType _dataType;
             size_t _length;
 
         public:
             Column() = default;
-            Column(std::string name, Type::cldeValueType dataType);
-            Column(std::string name, std::string datasourceName, Type::cldeValueType dataType);
-            Column(std::string name, std::string datasourceName, size_t length, Type::cldeValueType dataType);
+            Column(std::string name, Data::ValueType dataType);
+            Column(std::string name, std::string datasourceName, Data::ValueType dataType);
+            Column(std::string name, std::string datasourceName, size_t length, Data::ValueType dataType);
             Column(const Column &) = default;
             Column(Column &&) = default;
             Column &operator=(const Column &) = default;
@@ -39,13 +39,13 @@ namespace Cloude {
             // Locals - Mutators
             void setDatasourceName(const std::string &datasourceName) { _datasourceName = datasourceName; }
             void setName(const std::string &name) { _name = name; }
-            void setDataType(const Type::cldeValueType &dataType) { _dataType = dataType; }
+            void setDataType(const Data::ValueType &dataType) { _dataType = dataType; }
             void setLength(size_t length) { _length = length; }
 
             // Locals - Accessors
             const std::string &getDatasourceName() const { return _datasourceName; }
             const std::string &getName() const { return _name; }
-            const Foundation::Type::cldeValueType &getDataType() const { return _dataType; }
+            const Foundation::Data::ValueType &getDataType() const { return _dataType; }
             size_t getLength() const { return _length; }
         };
 

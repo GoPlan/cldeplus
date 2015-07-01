@@ -8,7 +8,7 @@
 #include <memory>
 #include <iterator>
 #include <Foundation/Column.h>
-#include <Foundation/Type/cldeValue.h>
+#include <Foundation/Data/Value.h>
 #include <Foundation/Query/ComparativeType.h>
 
 namespace Cloude {
@@ -28,7 +28,7 @@ namespace Cloude {
                 virtual const bool isComposite() const = 0;
                 virtual const SPtrColumn &getColumn() const = 0;
                 virtual const ComparativeType &getComparativeType() const = 0;
-                virtual const Type::SPtrCldeValue &getValue() const = 0;
+                virtual const Data::SPtrValue &getValue() const = 0;
             };
 
             using SPtrCriteria = std::shared_ptr<Criteria>;

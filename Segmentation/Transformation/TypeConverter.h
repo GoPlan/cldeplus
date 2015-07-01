@@ -6,7 +6,7 @@
 #define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_TYPECONVERTER_H
 
 #include <memory>
-#include <Foundation/Type/cldeValue.h>
+#include <Foundation/Data/Value.h>
 #include <Foundation/Column.h>
 #include <unordered_map>
 
@@ -15,8 +15,8 @@ namespace Cloude {
         namespace Transformation {
 
             struct TypeConverter {
-                virtual Foundation::Type::SPtrValue Convert(const Foundation::SPtrColumn &column,
-                                                            const Foundation::Type::SPtrValue &value);
+                virtual Foundation::Data::SPtrValue Convert(const Foundation::SPtrColumn &column,
+                                                            const Foundation::Data::SPtrValue &value);
             };
 
             using SPtrTypeConverter = std::shared_ptr<TypeConverter>;

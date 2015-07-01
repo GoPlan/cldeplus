@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#include <Foundation/Type/Helper/cldeValueHelper.h>
+#include <Foundation/Data/Helper/ValueHelper.h>
 #include "CellHelper.h"
 
 namespace Cloude {
@@ -10,7 +10,7 @@ namespace Cloude {
 
         SPtrCell Store::Helper::CellHelper::CopySptrCell(const SPtrCell &sptrCell) {
 
-            Type::SPtrValue sptrValue = Type::Helper::cldeValueHelper::CopySPtrValue(sptrCell->getValue());
+            Data::SPtrValue sptrValue = Data::Helper::ValueHelper::CopySPtrValue(sptrCell->getValue());
             SPtrColumn sptrColumn{new Column{*(sptrCell->getColumn())}};
 
             SPtrCell sptrNewCell{new Cell{sptrColumn}};

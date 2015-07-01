@@ -10,10 +10,10 @@ namespace Cloude {
 
             std::string OrderMap::TableName{"Order"};
 
-            Foundation::SPtrColumn OrderMap::Id = std::make_shared<Foundation::Column>("Id", "id", Foundation::Type::cldeValueType::Int64);
-            Foundation::SPtrColumn OrderMap::Name = std::make_shared<Foundation::Column>("Name", "name", Foundation::Type::cldeValueType::VarChar);
-            Foundation::SPtrColumn OrderMap::CustId = std::make_shared<Foundation::Column>("CustId", "custId", Foundation::Type::cldeValueType::Int64);
-            Foundation::SPtrColumn OrderMap::Total = std::make_shared<Foundation::Column>("Total", "total", Foundation::Type::cldeValueType::Double);
+            Foundation::SPtrColumn OrderMap::Id = std::make_shared<Foundation::Column>("Id", "id", Foundation::Data::ValueType::Int64);
+            Foundation::SPtrColumn OrderMap::Name = std::make_shared<Foundation::Column>("Name", "name", Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn OrderMap::CustId = std::make_shared<Foundation::Column>("CustId", "custId", Foundation::Data::ValueType::Int64);
+            Foundation::SPtrColumn OrderMap::Total = std::make_shared<Foundation::Column>("Total", "total", Foundation::Data::ValueType::Double);
 
             const std::string &OrderMap::TableNameCore() const { return TableName; }
 

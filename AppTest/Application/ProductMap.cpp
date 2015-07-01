@@ -10,8 +10,8 @@ namespace Cloude {
 
             std::string ProductMap::TableName{"Product"};
 
-            Foundation::SPtrColumn ProductMap::Id = std::make_shared<Foundation::Column>("Id", "id", Foundation::Type::cldeValueType::Int64);
-            Foundation::SPtrColumn ProductMap::Name = std::make_shared<Foundation::Column>("Name", "name", Foundation::Type::cldeValueType::VarChar);
+            Foundation::SPtrColumn ProductMap::Id = std::make_shared<Foundation::Column>("Id", "id", Foundation::Data::ValueType::Int64);
+            Foundation::SPtrColumn ProductMap::Name = std::make_shared<Foundation::Column>("Name", "name", Foundation::Data::ValueType::VarChar);
 
             const std::string &ProductMap::TableNameCore() const { return TableName; }
 

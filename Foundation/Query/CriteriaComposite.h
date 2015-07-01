@@ -20,15 +20,17 @@ namespace Cloude {
                 CriteriaComposite(const SPtrCriteria &lhs, const SPtrCriteria &rhs)
                         : _sptrLhs(lhs), _sptrRhs(rhs) { };
 
+                CriteriaComposite(const CriteriaComposite &) = default;
+                CriteriaComposite(CriteriaComposite &&) = default;
+                CriteriaComposite &operator=(const CriteriaComposite &) = default;
+                CriteriaComposite &operator=(CriteriaComposite &&) = default;
                 virtual ~CriteriaComposite() = default;
-                CriteriaComposite(const CriteriaComposite &rhs) = default;
-                CriteriaComposite &operator=(const CriteriaComposite &rhs) = default;
 
                 // Criteria
                 virtual const bool isComposite() const override { return true; };
                 virtual const ComparativeType &getComparativeType() const override;
                 virtual const SPtrColumn &getColumn() const override;
-                virtual const Type::SPtrCldeValue &getValue() const override;
+                virtual const Data::SPtrValue &getValue() const override;
 
                 // Locals
                 const SPtrCriteria &getRhs() const { return _sptrRhs; }

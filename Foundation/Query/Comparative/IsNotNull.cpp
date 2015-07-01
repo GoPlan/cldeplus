@@ -20,8 +20,8 @@ namespace Cloude {
                 const bool IsNotNull::isComposite() const {
                     return false;
                 }
-                const Type::SPtrCldeValue &IsNotNull::getValue() const {
-                    const char *msg = "IsNotNull comparator does not support getValue() method.";
+                const Data::SPtrValue &IsNotNull::getValue() const {
+                    std::string msg{"IsNotNull comparator does not support getValue() method."};
                     throw Exception::cldeNonSupportedFunctionException(msg);
                 }
             }

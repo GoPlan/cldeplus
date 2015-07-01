@@ -4,7 +4,7 @@
 
 #include <cstdlib>
 #include <stdexcept>
-#include <Foundation/Type/cldeValueFactory.h>
+#include <Foundation/Data/ValueFactory.h>
 #include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include <Foundation/Query/CriteriaComposite.h>
 #include <Foundation/Query/Comparative.h>
@@ -51,9 +51,9 @@ namespace Cloude {
                 const std::string &query;
             };
 
-            using cldeSqlHelper = Foundation::Query::Helper::SqlHelper;
-            using cldeValueFactory = Foundation::Type::cldeValueFactory;
-            using cldeValueType = Foundation::Type::cldeValueType;
+            using SqlHelper = Foundation::Query::Helper::SqlHelper;
+            using ValueFactory = Foundation::Data::ValueFactory;
+            using ValueType = Foundation::Data::ValueType ;
             using UPtrCommand = std::unique_ptr<Command>;
 
             class SQLiteSourceDriver::SQLiteApiImpl {
@@ -109,7 +109,7 @@ namespace Cloude {
                                       auto const ptrValueBuffer = field->getValue()->RawPointerToValueBuffer();
 
                                       switch (column->getDataType()) {
-                                          case cldeValueType::Int64: {
+                                          case ValueType::Int64: {
                                               auto tmp = reinterpret_cast<const sqlite3_int64 *>(ptrValueBuffer);
                                               sqlite3_bind_int64(sptrCommand->_ptrStmt,
                                                                  index++,
@@ -117,7 +117,7 @@ namespace Cloude {
                                               break;
                                           };
 
-                                          case cldeValueType::VarChar: {
+                                          case ValueType::VarChar: {
                                               auto tmp = static_cast<const char *>(ptrValueBuffer);
                                               sqlite3_bind_text(sptrCommand->_ptrStmt,
                                                                 index++,
@@ -153,7 +153,7 @@ namespace Cloude {
                                       const auto ptrValueBuffer = sptrCriteria->getValue()->RawPointerToValueBuffer();
 
                                       switch (column->getDataType()) {
-                                          case cldeValueType::Int64: {
+                                          case ValueType::Int64: {
                                               auto tmp = reinterpret_cast<const sqlite3_int64 *>(ptrValueBuffer);
                                               sqlite3_bind_int64(uptrCommand->_ptrStmt,
                                                                  index++,
@@ -161,7 +161,7 @@ namespace Cloude {
                                               break;
                                           };
 
-                                          case cldeValueType::VarChar: {
+                                          case ValueType::VarChar: {
                                               auto tmp = static_cast<const char *>( ptrValueBuffer);
                                               sqlite3_bind_text(uptrCommand->_ptrStmt,
                                                                 index++,
@@ -197,16 +197,16 @@ namespace Cloude {
                                  auto &sptrField = entity->getCell(column->getName());
 
                                  switch (column->getDataType()) {
-                                     case Cloude::Foundation::Type::cldeValueType::Int64: {
+                                     case Cloude::Foundation::Data::ValueType::Int64: {
                                          auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
-                                         sptrField->setValue(cldeValueFactory::CreateInt64(value));
+                                         sptrField->setValue(ValueFactory::CreateInt64(value));
                                          break;
                                      };
 
-                                     case Cloude::Foundation::Type::cldeValueType::VarChar: {
+                                     case Cloude::Foundation::Data::ValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
-                                         sptrField->setValue(cldeValueFactory::CreateVarChar(cstr));
+                                         sptrField->setValue(ValueFactory::CreateVarChar(cstr));
                                          break;
                                      };
 
@@ -237,16 +237,16 @@ namespace Cloude {
                                  auto &sptrField = proxy->getCell(column->getName());
 
                                  switch (column->getDataType()) {
-                                     case Cloude::Foundation::Type::cldeValueType::Int64: {
+                                     case Cloude::Foundation::Data::ValueType::Int64: {
                                          auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
-                                         sptrField->setValue(cldeValueFactory::CreateInt64(value));
+                                         sptrField->setValue(ValueFactory::CreateInt64(value));
                                          break;
                                      };
 
-                                     case Cloude::Foundation::Type::cldeValueType::VarChar: {
+                                     case Cloude::Foundation::Data::ValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
-                                         sptrField->setValue(cldeValueFactory::CreateVarChar(cstr));
+                                         sptrField->setValue(ValueFactory::CreateVarChar(cstr));
                                          break;
                                      };
 
@@ -273,7 +273,7 @@ namespace Cloude {
                             return std::string{"?"};
                         };
 
-                auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
+                auto tuplQuery = SqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
                                                                           columnsForProjection,
                                                                           sptrCriteria,
                                                                           fptrConditionProcessor);
@@ -313,7 +313,7 @@ namespace Cloude {
                             return std::string{"?"};
                         };
 
-                auto tuplQuery = cldeSqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
+                auto tuplQuery = SqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
                                                                           columnsForProjection,
                                                                           sptrCriteria,
                                                                           fptrConditionProcessor);
@@ -374,21 +374,21 @@ void Cloude::Drivers::SQLite::SQLiteSourceDriver::Init() {
     auto &columnsForGet = getEntityMap().getColumnsForGet();
     auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
 
-    _getStatement = cldeSqlHelper::CreateGetPreparedQuery(sourceName,
+    _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName,
                                                           columnsForGet,
                                                           columnsForKey,
                                                           fptrConditionProcessor);
 
-    _insertStatement = cldeSqlHelper::CreateInsertPreparedQuery(sourceName,
+    _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName,
                                                                 columnsForKey,
                                                                 fptrValueProcessor);
 
-    _updateStatement = cldeSqlHelper::CreateUpdatePreparedQuery(sourceName,
+    _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName,
                                                                 columnsForUpdate,
                                                                 columnsForKey,
                                                                 fptrConditionProcessor);
 
-    _deleteStatement = cldeSqlHelper::CreateDeletePreparedQuery(sourceName,
+    _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName,
                                                                 columnsForKey,
                                                                 fptrConditionProcessor);
 }

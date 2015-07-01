@@ -13,14 +13,16 @@ namespace Cloude {
             namespace Comparative {
 
                 class Greater : public Query::CriteriaLeaf {
+
                     static ComparativeType _type;
 
                 public:
-                    Greater(const SPtrColumn &column, const Type::SPtrCldeValue &value)
-                            : CriteriaLeaf(column, value) { };
+                    Greater(const SPtrColumn &column, const Data::SPtrValue &value) : CriteriaLeaf(column, value) { };
+                    Greater(const Greater &) = default;
+                    Greater(Greater &&) = default;
+                    Greater &operator=(const Greater &) = default;
+                    Greater &operator=(Greater &&) = default;
                     ~Greater() = default;
-                    Greater(const Greater &rhs) = default;
-                    Greater &operator=(const Greater &rhs) = default;
 
                     // Criteria
                     const ComparativeType &getComparativeType() const override { return _type; }

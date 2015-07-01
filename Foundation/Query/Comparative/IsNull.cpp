@@ -21,7 +21,7 @@ namespace Cloude {
                     return false;
                 }
 
-                const Type::SPtrCldeValue &IsNull::getValue() const {
+                const Data::SPtrValue &IsNull::getValue() const {
                     const char *msg = "IsNull comparator does not support getValue() method.";
                     throw Exception::cldeNonSupportedFunctionException(msg);
                 }

@@ -14,20 +14,23 @@ namespace Cloude {
             namespace Comparative {
 
                 class IsNotNull : public Criteria {
+
                     const SPtrColumn &_column;
                     static ComparativeType _type;
 
                 public:
                     IsNotNull(const SPtrColumn &column) : _column(column) { };
+                    IsNotNull(const IsNotNull &) = default;
+                    IsNotNull(IsNotNull &&) = default;
+                    IsNotNull &operator=(const IsNotNull &) = default;
+                    IsNotNull &operator=(IsNotNull &&) = default;
                     virtual ~IsNotNull() = default;
-                    IsNotNull(const IsNotNull &rhs) = default;
-                    IsNotNull &operator=(const IsNotNull &rhs) = default;
 
                     // CriteriaLeaf
                     const SPtrColumn &getColumn() const override;
                     const bool isComposite() const override;
                     const ComparativeType &getComparativeType() const override;
-                    const Type::SPtrCldeValue &getValue() const override;
+                    const Data::SPtrValue &getValue() const override;
                 };
             }
         }
