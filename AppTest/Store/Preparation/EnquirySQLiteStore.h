@@ -8,8 +8,8 @@
 #include "gtest/gtest.h"
 #include <Cloude.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
-#include <Application/Mapper/EnquiryLoader.h>
-#include <Application/Mapper/EnquiryMap.h>
+#include <AppTest/Application/EnquiryLoader.h>
+#include <AppTest/Application/EnquiryMap.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -23,8 +23,8 @@ namespace Cloude {
                     EnquirySQLiteStore &operator=(const EnquirySQLiteStore &srcEnquirySQLiteStore) = default;
 
                 protected:
-                    using EnquiryMap = Application::Mapper::EnquiryMap;
-                    using EnquiryLoader = Application::Mapper::EnquiryLoader;
+                    using EnquiryMap = Application::EnquiryMap;
+                    using EnquiryLoader = Application::EnquiryLoader;
                     using SQLiteSourceDriver = SourceDriver::SQLite::SQLiteSourceDriver;
                     using EntityStore = Foundation::EntityStore;
 

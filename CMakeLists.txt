@@ -3,7 +3,7 @@ project(cloud_e_plus)
 
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_plus_SOURCE_DIR}/local/build/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_plus_SOURCE_DIR}/.local/build/bin")
 set(SOURCE_FILES main.cpp)
 
 
@@ -177,6 +177,7 @@ add_library(foundation STATIC
     Foundation/Store/Comparer/DataRecordLess.h
     )
 
+
 add_library(segmentation STATIC
     Segmentation/Inner.cpp
     Segmentation/Inner.h
@@ -210,17 +211,6 @@ add_library(segmentation STATIC
     Segmentation/Transformation/Implementation/UInt64Converter.h
     )
 
-add_library(application STATIC
-    Application/Mapper/StockGroupMap.cpp
-    Application/Mapper/StockGroupMap.h
-    Application/Mapper/StockGroupLoader.cpp
-    Application/Mapper/StockGroupLoader.h
-    Application/Mapper/EnquiryMap.cpp
-    Application/Mapper/EnquiryMap.h
-    Application/Mapper/EnquiryLoader.cpp
-    Application/Mapper/EnquiryLoader.h
-    )
-
 
 add_library(Drivers STATIC
     Drivers/SQLite/SQLiteSourceDriver.cpp
@@ -247,7 +237,20 @@ add_library(Drivers STATIC
 #    Drivers/DynamoDb/DynamoDbSourceException.cpp
 #    Drivers/DynamoDb/DynamoDbSourceException.h
     Drivers/SQLite/SQLiteSourceHelper.cpp
-    Drivers/SQLite/SQLiteSourceHelper.h)
+    Drivers/SQLite/SQLiteSourceHelper.h
+    )
+
+
+add_library(application STATIC
+    AppTest/Application/StockGroupMap.cpp
+    AppTest/Application/StockGroupMap.h
+    AppTest/Application/StockGroupLoader.cpp
+    AppTest/Application/StockGroupLoader.h
+    AppTest/Application/EnquiryMap.cpp
+    AppTest/Application/EnquiryMap.h
+    AppTest/Application/EnquiryLoader.cpp
+    AppTest/Application/EnquiryLoader.h
+    )
 
 
 add_library(apptest STATIC
@@ -267,8 +270,8 @@ add_library(apptest STATIC
     AppTest/Query/Criteria.hpp
     AppTest/Segmentation/Segmentation.hpp
     AppTest/Type/CreateValue.hpp
-    AppTest/Type/ValueComparison.h)
-
+    AppTest/Type/ValueComparison.h
+    )
 
 
 add_library(.examples STATIC
@@ -278,7 +281,6 @@ add_library(.examples STATIC
     .examples/mongodb_c_example.cpp
     .examples/mongodb_c_example.h
     )
-
 
 
 # Libs

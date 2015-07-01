@@ -5,13 +5,13 @@
 #ifndef CLOUD_E_CPLUS_APPTEST_QUERY_PREDICATE_H
 #define CLOUD_E_CPLUS_APPTEST_QUERY_PREDICATE_H
 
-#include "gtest/gtest.h"
 #include <memory>
 #include <iostream>
 #include <functional>
+#include "gtest/gtest.h"
 #include <Cloude.h>
-#include <Application/Mapper/EnquiryMap.h>
-#include <Application/Mapper/EnquiryLoader.h>
+#include <AppTest/Application/EnquiryMap.h>
+#include <AppTest/Application/EnquiryLoader.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
 #include <Foundation/Store/Comparer/DataRecordCompare.h>
 
@@ -32,8 +32,8 @@ namespace Cloude {
                 auto sptrEmail_01 = Type::cldeValueFactory::CreateVarChar(email_01);
                 auto sptrEmail_02 = Type::cldeValueFactory::CreateVarChar(email_02);
 
-                Application::Mapper::EnquiryMap enquiryMap;
-                Application::Mapper::EnquiryLoader enquiryLoader;
+                AppTest::Application::EnquiryMap enquiryMap;
+                AppTest::Application::EnquiryLoader enquiryLoader;
                 SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
                 auto enquiryStore = std::make_shared<EntityStore>(enquiryMap, enquiryLoader, sqliteSourceDriver);
                 auto enquiryQuery = std::make_shared<EntityQuery>(enquiryStore);
