@@ -159,14 +159,6 @@ add_library(foundation STATIC
     Foundation/Query/Helper/ProxyHelper.h
     Foundation/Exception/cldeSegmentationException.cpp
     Foundation/Exception/cldeSegmentationException.h
-    Foundation/Segmentation/Helper/Inner.cpp
-    Foundation/Segmentation/Helper/Inner.h
-    Foundation/Segmentation/Helper/Cross.cpp
-    Foundation/Segmentation/Helper/Cross.h
-    Foundation/Segmentation/Helper/Left.cpp
-    Foundation/Segmentation/Helper/Left.h
-    Foundation/Segmentation/Helper/Right.cpp
-    Foundation/Segmentation/Helper/Right.h
     Foundation/Type/Comparer/cldeValueLess.cpp
     Foundation/Type/Comparer/cldeValueLess.h
     Foundation/Type/Comparer/cldeValueGreater.cpp
@@ -183,13 +175,40 @@ add_library(foundation STATIC
     Foundation/Store/Comparer/DataRecordGreater.h
     Foundation/Store/Comparer/DataRecordLess.cpp
     Foundation/Store/Comparer/DataRecordLess.h
-    Foundation/Transformation/EntityTransformer.cpp
-    Foundation/Transformation/EntityTransformer.h
-    Foundation/Transformation/CellTransformer.cpp
-    Foundation/Transformation/CellTransformer.h
-    Foundation/Transformation/TypeConverter.cpp
-    Foundation/Transformation/TypeConverter.h)
+    )
 
+add_library(segmentation STATIC
+    Segmentation/Inner.cpp
+    Segmentation/Inner.h
+    Segmentation/Cross.cpp
+    Segmentation/Cross.h
+    Segmentation/Left.cpp
+    Segmentation/Left.h
+    Segmentation/Right.cpp
+    Segmentation/Right.h
+    Segmentation/Transformation/EntityTransformer.cpp
+    Segmentation/Transformation/EntityTransformer.h
+    Segmentation/Transformation/CellTransformer.cpp
+    Segmentation/Transformation/CellTransformer.h
+    Segmentation/Transformation/TypeConverter.cpp
+    Segmentation/Transformation/TypeConverter.h
+    Segmentation/Transformation/Implementation/DoubleConverter.cpp
+    Segmentation/Transformation/Implementation/DoubleConverter.h
+    Segmentation/Transformation/Implementation/Int64Converter.cpp
+    Segmentation/Transformation/Implementation/Int64Converter.h
+    Segmentation/Transformation/Implementation/Int32Converter.cpp
+    Segmentation/Transformation/Implementation/Int32Converter.h
+    Segmentation/Transformation/Implementation/FloatConverter.cpp
+    Segmentation/Transformation/Implementation/FloatConverter.h
+    Segmentation/Transformation/Implementation/Int16Converter.cpp
+    Segmentation/Transformation/Implementation/Int16Converter.h
+    Segmentation/Transformation/Implementation/UInt16Converter.cpp
+    Segmentation/Transformation/Implementation/UInt16Converter.h
+    Segmentation/Transformation/Implementation/UInt32Converter.cpp
+    Segmentation/Transformation/Implementation/UInt32Converter.h
+    Segmentation/Transformation/Implementation/UInt64Converter.cpp
+    Segmentation/Transformation/Implementation/UInt64Converter.h
+    )
 
 add_library(application STATIC
     Application/Mapper/StockGroupMap.cpp
@@ -203,32 +222,32 @@ add_library(application STATIC
     )
 
 
-add_library(sourcedriver STATIC
-    SourceDriver/SQLite/SQLiteSourceDriver.cpp
-    SourceDriver/SQLite/SQLiteSourceDriver.h
-    SourceDriver/SQLite/SQLiteSourceException.cpp
-    SourceDriver/SQLite/SQLiteSourceException.h
-    SourceDriver/SQLite/Amalgamation/sqlite3.h
-    SourceDriver/SQLite/Amalgamation/sqlite3ext.h
-    SourceDriver/SQLite/Amalgamation/sqlite3.c
-#    SourceDriver/MongoDb/MongoDbSourceDriver.cpp
-#    SourceDriver/MongoDb/MongoDbSourceDriver.h
-#    SourceDriver/MongoDb/MongoDbSourceException.cpp
-#    SourceDriver/MongoDb/MongoDbSourceException.h
-#    SourceDriver/Postgres/PostgreSourceDriver.cpp
-#    SourceDriver/Postgres/PostgreSourceDriver.h
-#    SourceDriver/Postgres/PostgreSourceException.cpp
-#    SourceDriver/Postgres/PostgreSourceException.h
-#    SourceDriver/MySql/MySqlSourceDriver.h
-#    SourceDriver/MySql/MySqlSourceDriver.cpp
-#    SourceDriver/MySql/MySqlSourceException.cpp
-#    SourceDriver/MySql/MySqlSourceException.h
-#    SourceDriver/DynamoDb/DynamoDbSourceDriver.cpp
-#    SourceDriver/DynamoDb/DynamoDbSourceDriver.h
-#    SourceDriver/DynamoDb/DynamoDbSourceException.cpp
-#    SourceDriver/DynamoDb/DynamoDbSourceException.h
-    SourceDriver/SQLite/SQLiteSourceHelper.cpp
-    SourceDriver/SQLite/SQLiteSourceHelper.h)
+add_library(Drivers STATIC
+    Drivers/SQLite/SQLiteSourceDriver.cpp
+    Drivers/SQLite/SQLiteSourceDriver.h
+    Drivers/SQLite/SQLiteSourceException.cpp
+    Drivers/SQLite/SQLiteSourceException.h
+    Drivers/SQLite/Amalgamation/sqlite3.h
+    Drivers/SQLite/Amalgamation/sqlite3ext.h
+    Drivers/SQLite/Amalgamation/sqlite3.c
+#    Drivers/MongoDb/MongoDbSourceDriver.cpp
+#    Drivers/MongoDb/MongoDbSourceDriver.h
+#    Drivers/MongoDb/MongoDbSourceException.cpp
+#    Drivers/MongoDb/MongoDbSourceException.h
+#    Drivers/Postgres/PostgreSourceDriver.cpp
+#    Drivers/Postgres/PostgreSourceDriver.h
+#    Drivers/Postgres/PostgreSourceException.cpp
+#    Drivers/Postgres/PostgreSourceException.h
+#    Drivers/MySql/MySqlSourceDriver.h
+#    Drivers/MySql/MySqlSourceDriver.cpp
+#    Drivers/MySql/MySqlSourceException.cpp
+#    Drivers/MySql/MySqlSourceException.h
+#    Drivers/DynamoDb/DynamoDbSourceDriver.cpp
+#    Drivers/DynamoDb/DynamoDbSourceDriver.h
+#    Drivers/DynamoDb/DynamoDbSourceException.cpp
+#    Drivers/DynamoDb/DynamoDbSourceException.h
+    Drivers/SQLite/SQLiteSourceHelper.cpp
+    Drivers/SQLite/SQLiteSourceHelper.h)
 
 
 add_library(apptest STATIC
@@ -305,7 +324,7 @@ target_link_libraries(cloud_e_plus_example examples mysqlclient mongoc-1.0 bson-
 
 # Debug Target
 add_executable(cloud_e_plus_debug ${SOURCE_FILES})
-target_link_libraries(cloud_e_plus_debug foundation sourcedriver application mysqlclient pq mongoc-1.0)
+target_link_libraries(cloud_e_plus_debug foundation Drivers application mysqlclient pq mongoc-1.0)
 
 
 # AppTest Target (with Google Testing Foundation)
@@ -314,6 +333,7 @@ set(APPTEST_SOURCE_FILE ${CMAKE_SOURCE_DIR}/AppTest/main.cpp)
 include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 add_executable(cloud_e_plus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_plus_test foundation)
-target_link_libraries(cloud_e_plus_test sourcedriver mysqlclient pq mongoc-1.0 bson-1.0)
+target_link_libraries(cloud_e_plus_test foundation segmentation)
+target_link_libraries(cloud_e_plus_test Drivers)
+#target_link_libraries(cloud_e_plus_test mysqlclient pq mongoc-1.0 bson-1.0)
 target_link_libraries(cloud_e_plus_test application apptest gtest)

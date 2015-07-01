@@ -7,7 +7,7 @@
 
 #include "gtest/gtest.h"
 #include <Cloude.h>
-#include <SourceDriver/SQLite/SQLiteSourceDriver.h>
+#include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include <Application/Mapper/EnquiryLoader.h>
 #include <Application/Mapper/EnquiryMap.h>
 

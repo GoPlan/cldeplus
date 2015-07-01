@@ -7,19 +7,20 @@
 #include "Cross.h"
 
 namespace Cloude {
-    namespace Foundation {
+    namespace Segmentation {
 
-        SPtrEntityProxySet Segmentation::Helper::Cross::operator()(const SPtrEntityProxySet &lhsSet,
-                                                                   const SPtrEntityProxySet &rhsSet) const {
+        Foundation::SPtrEntityProxySet Cross::operator()(
+                const Foundation::SPtrEntityProxySet &lhsSet,
+                const Foundation::SPtrEntityProxySet &rhsSet) const {
 
-            using CellHelper = Store::Helper::CellHelper;
-            using DataRecordLess = Store::Comparer::DataRecordLess;
-            using DataRecordCompare = Store::Comparer::DataRecordCompare<>;
+            using CellHelper = Foundation::Store::Helper::CellHelper;
+            using DataRecordLess = Foundation::Store::Comparer::DataRecordLess;
+            using DataRecordCompare = Foundation::Store::Comparer::DataRecordCompare<>;
 
             DataRecordCompare compare{_lhsComparingColumns, _rhsComparingColumns};
             DataRecordLess lesser{_lhsComparingColumns, _rhsComparingColumns};
 
-            SPtrEntityProxySet setProxies;
+            Foundation::SPtrEntityProxySet setProxies;
             auto lhsCurrent = lhsSet.cbegin();
             auto rhsCurrent = rhsSet.cbegin();
             auto lhsEnd = lhsSet.cend();
@@ -28,24 +29,24 @@ namespace Cloude {
             while (lhsCurrent != lhsEnd || rhsCurrent != rhsEnd) {
 
                 if (rhsCurrent == rhsEnd) {
-                    SPtrEntityProxy proxy = _sptrTransformer->TransformLeftOnly(*lhsCurrent++);
+                    Foundation::SPtrEntityProxy proxy = _sptrTransformer->TransformLeftOnly(*lhsCurrent++);
                     setProxies.insert(proxy);
                     continue;
                 }
 
                 if (lhsCurrent == lhsEnd) {
-                    SPtrEntityProxy proxy = _sptrTransformer->TransformRightOnly(*rhsCurrent++);
+                    Foundation::SPtrEntityProxy proxy = _sptrTransformer->TransformRightOnly(*rhsCurrent++);
                     setProxies.insert(proxy);
                     continue;
                 }
 
                 if (lhsCurrent != lhsEnd && lesser(**lhsCurrent, **rhsCurrent)) {
-                    SPtrEntityProxy proxy = _sptrTransformer->TransformLeftOnly(*lhsCurrent++);
+                    Foundation::SPtrEntityProxy proxy = _sptrTransformer->TransformLeftOnly(*lhsCurrent++);
                     setProxies.insert(proxy);
                     continue;
                 }
                 else if (rhsCurrent != rhsEnd && lesser(**rhsCurrent, **lhsCurrent)) {
-                    SPtrEntityProxy proxy = _sptrTransformer->TransformRightOnly(*rhsCurrent++);
+                    Foundation::SPtrEntityProxy proxy = _sptrTransformer->TransformRightOnly(*rhsCurrent++);
                     setProxies.insert(proxy);
                     continue;
                 }
@@ -54,7 +55,7 @@ namespace Cloude {
                     auto rhsTmp = rhsCurrent;
 
                     while (!lesser(**lhsCurrent, **rhsCurrent)) {
-                        SPtrEntityProxy proxy = _sptrTransformer->Transform(*lhsCurrent, *rhsCurrent);
+                        Foundation::SPtrEntityProxy proxy = _sptrTransformer->Transform(*lhsCurrent, *rhsCurrent);
                         setProxies.insert(proxy);
                         ++rhsCurrent;
                     }
