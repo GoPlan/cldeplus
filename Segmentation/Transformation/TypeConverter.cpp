@@ -14,7 +14,7 @@ namespace Cloude {
                 return value;
             }
 
-            switch (column->getDataType()) {
+            switch (value->getDataType()) {
                 case Foundation::Type::cldeType::cldeValueType::Boolean:
                     break;
                 case Foundation::Type::cldeType::cldeValueType::Byte:

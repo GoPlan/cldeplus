@@ -282,7 +282,7 @@ add_library(examples STATIC
 
 
 # Libs
-set(LOCAL_DIR ${CMAKE_SOURCE_DIR}/local)
+set(LOCAL_DIR ${CMAKE_SOURCE_DIR}/.local)
 set(LIBS_DIR ${LOCAL_DIR}/libs)
 
 
