@@ -271,12 +271,12 @@ add_library(apptest STATIC
 
 
 
-add_library(examples STATIC
-    Examples/main.cpp
-    Examples/mysql_c_example.h
-    Examples/mysql_c_example.cpp
-    Examples/mongodb_c_example.cpp
-    Examples/mongodb_c_example.h
+add_library(.examples STATIC
+    .examples/main.cpp
+    .examples/mysql_c_example.h
+    .examples/mysql_c_example.cpp
+    .examples/mongodb_c_example.cpp
+    .examples/mongodb_c_example.h
     )
 
 
@@ -315,11 +315,11 @@ set(BOOST_DIR ${LIBS_DIR}/boost_1_58_0)
 include_directories(${BOOST_DIR})
 
 
-# Examples Target
-set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/Examples)
+# .examples Target
+set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/.examples)
 set(EXAMPLES_SOURCE_FILE ${EXAMPLES_DIR}/main.cpp)
 add_executable(cloud_e_plus_example ${EXAMPLES_SOURCE_FILE})
-target_link_libraries(cloud_e_plus_example examples mysqlclient mongoc-1.0 bson-1.0)
+target_link_libraries(cloud_e_plus_example .examples mysqlclient mongoc-1.0 bson-1.0)
 
 
 # Debug Target
