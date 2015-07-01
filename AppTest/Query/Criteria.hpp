@@ -34,7 +34,7 @@ namespace Cloude {
 
                 AppTest::Application::EnquiryMap enquiryMap;
                 AppTest::Application::EnquiryLoader enquiryLoader;
-                SourceDriver::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
+                Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
                 auto enquiryStore = std::make_shared<EntityStore>(enquiryMap, enquiryLoader, sqliteSourceDriver);
                 auto enquiryQuery = std::make_shared<EntityQuery>(enquiryStore);
 

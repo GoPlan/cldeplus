@@ -14,8 +14,7 @@ namespace Cloude {
 
             class EntityTransformer {
 
-                SPtrCellTransformerMap _lhsCellTransformerMap;
-                SPtrCellTransformerMap _rhsCellTransformerMap;
+                SPtrCellTransformerMap _mapCellTransformers;
 
             public:
                 EntityTransformer() = default;
@@ -26,19 +25,11 @@ namespace Cloude {
                 virtual ~EntityTransformer() = default;
 
                 // Accessors
-                virtual SPtrCellTransformerMap &LhsCellTransformerMap() { return _lhsCellTransformerMap; };
-                virtual SPtrCellTransformerMap &RhsCellTransformerMap() { return _rhsCellTransformerMap; };
+                virtual SPtrCellTransformerMap &CellTransformerMap() { return _mapCellTransformers; };
 
                 // Locals
-                virtual Foundation::SPtrEntityProxy
-                        Transform(const Foundation::SPtrEntityProxy &lhsProxy,
-                                  const Foundation::SPtrEntityProxy &rhsProxy) const;
-
-                virtual Foundation::SPtrEntityProxy
-                        TransformLeftOnly(const Foundation::SPtrEntityProxy &lhsProxy) const;
-
-                virtual Foundation::SPtrEntityProxy
-                        TransformRightOnly(const Foundation::SPtrEntityProxy &rhsProxy) const;
+                virtual void Transform(const Foundation::SPtrEntityProxy &srcProxy,
+                                       Foundation::SPtrEntityProxy &dstProxy) const;
             };
 
             using SPtrEntityTransformer = std::shared_ptr<EntityTransformer>;

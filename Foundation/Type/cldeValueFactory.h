@@ -22,9 +22,14 @@ namespace Cloude {
                 cldeValueFactory &operator=(cldeValueFactory &&) = delete;
                 ~cldeValueFactory() = delete;
 
+                static SPtrCldeValue CreateFloat(float value);
                 static SPtrCldeValue CreateDouble(double value);
+                static SPtrCldeValue CreateInt16(int16_t value);
                 static SPtrCldeValue CreateInt32(int32_t value);
                 static SPtrCldeValue CreateInt64(int64_t value);
+                static SPtrCldeValue CreateUInt16(uint16_t value);
+                static SPtrCldeValue CreateUInt32(uint32_t value);
+                static SPtrCldeValue CreateUInt64(uint64_t value);
                 static SPtrCldeValue CreateString(const char *value);
                 static SPtrCldeValue CreateVarChar(const char *value);
                 static SPtrCldeValue CreateVarChar(const std::string &value);

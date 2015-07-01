@@ -11,7 +11,7 @@
 #include "SQLiteSourceException.h"
 
 namespace Cloude {
-    namespace SourceDriver {
+    namespace Drivers {
         namespace SQLite {
 
             class SQLiteSourceDriver : public Foundation::EntitySourceDriver {

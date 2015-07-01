@@ -9,9 +9,11 @@
 #include "Amalgamation/sqlite3.h"
 
 namespace Cloude {
-    namespace SourceDriver {
+    namespace Drivers {
         namespace SQLite {
+
             class SQLiteSourceHelper {
+
             public:
                 static std::string CopyToString(int resultCode);
 

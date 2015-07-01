@@ -4,6 +4,7 @@
 
 namespace Cloude {
     namespace Segmentation {
+        //
     }
 }
 

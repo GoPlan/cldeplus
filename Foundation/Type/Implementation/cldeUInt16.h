@@ -5,22 +5,42 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEUINT16_H
 #define CLOUD_E_PLUS_FOUNDATION_TYPE_IMPLEMENTATION_CLDEUINT16_H
 
-#include <Foundation/Type/cldeValue.h>
+#include "../cldeNumericValue.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Type {
             namespace Implementation {
 
-                class cldeUInt16 : public cldeValue {
+                class cldeUInt16 : public cldeNumericValue {
+                    uint16_t _value;
+                    mutable std::string _string;
 
                 public:
-                    cldeUInt16() = default;
-                    cldeUInt16(const cldeUInt16 &) = default;
+                    explicit cldeUInt16(uint16_t value);
+                    cldeUInt16(const cldeUInt16 &rhs) = default;
                     cldeUInt16(cldeUInt16 &&) = default;
                     cldeUInt16 &operator=(const cldeUInt16 &) = default;
                     cldeUInt16 &operator=(cldeUInt16 &&) = default;
                     ~cldeUInt16() = default;
+
+                    // cldeValue
+                    virtual void *RawPointerToValueBuffer() override;
+
+                    // IEquatable
+                    virtual bool Equal(const Common::IEquatable &rhs) const override;
+
+                    // IPrintable
+                    virtual const std::string CopyToString() const override;
+                    virtual const std::string &ToString() const override;
+                    virtual const char *ToCString() const override;
+
+                    // IComputable
+                    virtual cldeValue &operator+(const cldeValue &rhs) override;
+                    virtual cldeValue &operator-(const cldeValue &rhs) override;
+                    virtual cldeValue &operator*(const cldeValue &rhs) override;
+                    virtual cldeValue &operator/(const cldeValue &rhs) override;
+                    virtual cldeValue &operator%(const cldeValue &rhs) override;
                 };
             }
         }

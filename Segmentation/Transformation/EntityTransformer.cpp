@@ -2,62 +2,28 @@
 // Created by LE, Duc Anh on 6/30/15.
 //
 
+#include <stdexcept>
 #include "EntityTransformer.h"
 
 namespace Cloude {
     namespace Segmentation {
 
-        Foundation::SPtrEntityProxy Transformation::EntityTransformer::Transform(
-                const Foundation::SPtrEntityProxy &lhsProxy,
-                const Foundation::SPtrEntityProxy &rhsProxy) const {
+        void Transformation::EntityTransformer::Transform(
+                const Foundation::SPtrEntityProxy &srcProxy,
+                Foundation::SPtrEntityProxy &dstProxy) const {
 
-            Foundation::SPtrEntityProxy proxy;
+            if(!srcProxy)
+                throw std::invalid_argument{"srcProxy is invalid or a nullptr"};
 
-            for (auto &pairCellMap : _lhsCellTransformerMap) {
+            if(!dstProxy)
+                throw std::invalid_argument{"dstProxy is invalid or a nullptr"};
+
+            for (auto &pairCellMap : _mapCellTransformers) {
                 auto &srcColumnName = pairCellMap.first;
                 auto &sptrCellTransfomer = pairCellMap.second;
-                Foundation::SPtrCell sptrNewCell = sptrCellTransfomer->Transform(lhsProxy->getCell(srcColumnName));
-                proxy->setCell(sptrNewCell);
+                Foundation::SPtrCell sptrNewCell = sptrCellTransfomer->Transform(srcProxy->getCell(srcColumnName));
+                dstProxy->setCell(sptrNewCell);
             }
-
-            for (auto &pairCellMap : _rhsCellTransformerMap) {
-                auto &srcColumnName = pairCellMap.first;
-                auto &sptrCellTransfomer = pairCellMap.second;
-                Foundation::SPtrCell sptrNewCell = sptrCellTransfomer->Transform(rhsProxy->getCell(srcColumnName));
-                proxy->setCell(sptrNewCell);
-            }
-
-            return proxy;
-        }
-
-        Foundation::SPtrEntityProxy Transformation::EntityTransformer::TransformLeftOnly(
-                const Foundation::SPtrEntityProxy &lhsProxy) const {
-
-            Foundation::SPtrEntityProxy proxy;
-
-            for (auto &pairCellMap : _lhsCellTransformerMap) {
-                auto &srcColumnName = pairCellMap.first;
-                auto &sptrCellTransfomer = pairCellMap.second;
-                Foundation::SPtrCell sptrNewCell = sptrCellTransfomer->Transform(lhsProxy->getCell(srcColumnName));
-                proxy->setCell(sptrNewCell);
-            }
-
-            return proxy;
-        }
-
-        Foundation::SPtrEntityProxy Transformation::EntityTransformer::TransformRightOnly(
-                const Foundation::SPtrEntityProxy &rhsProxy) const {
-
-            Foundation::SPtrEntityProxy proxy;
-
-            for (auto &pairCellMap : _rhsCellTransformerMap) {
-                auto &srcColumnName = pairCellMap.first;
-                auto &sptrCellTransfomer = pairCellMap.second;
-                Foundation::SPtrCell sptrNewCell = sptrCellTransfomer->Transform(rhsProxy->getCell(srcColumnName));
-                proxy->setCell(sptrNewCell);
-            }
-
-            return proxy;
         }
     }
 }

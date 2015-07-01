@@ -5,7 +5,7 @@
 #include "SQLiteSourceHelper.h"
 
 
-std::string Cloude::SourceDriver::SQLite::SQLiteSourceHelper::CopyToString(int resultCode) {
+std::string Cloude::Drivers::SQLite::SQLiteSourceHelper::CopyToString(int resultCode) {
 
     std::string code = std::to_string(resultCode);
     std::string msg{"[RESULTCODE:" + code + "] "};

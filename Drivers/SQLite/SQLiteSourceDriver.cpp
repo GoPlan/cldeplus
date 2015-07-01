@@ -14,13 +14,14 @@
 #include "Amalgamation/sqlite3.h"
 #include "SQLiteSourceDriver.h"
 
-using namespace Cloude::SourceDriver::SQLite;
+using namespace Cloude::Drivers::SQLite;
 
 namespace Cloude {
-    namespace SourceDriver {
+    namespace Drivers {
         namespace SQLite {
 
             class Command {
+
             public:
                 Command(const std::string &query) : query(query) { };
                 Command(const Command &) = default;
@@ -288,7 +289,8 @@ namespace Cloude {
                 while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
 
                     Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
-                    Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
+                    Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection,
+                                                                                            sptrProxy);
 
                     _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
 
@@ -327,7 +329,8 @@ namespace Cloude {
                 while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
 
                     Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
-                    Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
+                    Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection,
+                                                                                            sptrProxy);
 
                     _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
 
@@ -344,17 +347,17 @@ namespace Cloude {
     }
 }
 
-Cloude::SourceDriver::SQLite::SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::EntityMap &entityMap)
+Cloude::Drivers::SQLite::SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::EntityMap &entityMap)
         : EntitySourceDriver(entityMap),
           _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
     Init();
 }
 
-Cloude::SourceDriver::SQLite::SQLiteSourceDriver::~SQLiteSourceDriver() {
+Cloude::Drivers::SQLite::SQLiteSourceDriver::~SQLiteSourceDriver() {
     Disconnect();
 }
 
-void Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Init() {
+void Cloude::Drivers::SQLite::SQLiteSourceDriver::Init() {
 
     auto fptrValueProcessor = [](const Foundation::SPtrColumn &column, const int &index)
             -> std::string {
@@ -390,7 +393,7 @@ void Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Init() {
                                                                 fptrConditionProcessor);
 }
 
-void Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Connect() {
+void Cloude::Drivers::SQLite::SQLiteSourceDriver::Connect() {
 
     if (!_sqliteApiImpl) {
         _sqliteApiImpl = std::make_shared<SQLiteApiImpl>(_optionArgs.ConnectionString);
@@ -399,11 +402,11 @@ void Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Connect() {
     _sqliteApiImpl->Connect();
 }
 
-void Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Disconnect() {
+void Cloude::Drivers::SQLite::SQLiteSourceDriver::Disconnect() {
     _sqliteApiImpl.reset();
 }
 
-int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Load(Foundation::SPtrEntity &entity) const {
+int Cloude::Drivers::SQLite::SQLiteSourceDriver::Load(Foundation::SPtrEntity &entity) const {
 
     auto &columnsForGet = getEntityMap().getColumnsForGet();
     auto &columnsForKey = getEntityMap().getColumnsForKey();
@@ -424,7 +427,7 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Load(Foundation::SPtrEntit
     }
 }
 
-int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
+int Cloude::Drivers::SQLite::SQLiteSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
 
     auto &columnsForKey = getEntityMap().getColumnsForKey();
     auto uptrCommand = _sqliteApiImpl->createCommand(_insertStatement);
@@ -440,7 +443,7 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Insert(Foundation::SPtrEnt
     return 1;
 }
 
-int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Save(Foundation::SPtrEntity &entity) const {
+int Cloude::Drivers::SQLite::SQLiteSourceDriver::Save(Foundation::SPtrEntity &entity) const {
 
     auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
     auto &columnsForKey = getEntityMap().getColumnsForKey();
@@ -464,7 +467,7 @@ int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Save(Foundation::SPtrEntit
     return 1;
 }
 
-int Cloude::SourceDriver::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEntity &entity) const {
+int Cloude::Drivers::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEntity &entity) const {
 
     auto &columnsForKey = getEntityMap().getColumnsForKey();
     auto uptrCommand = _sqliteApiImpl->createCommand(_deleteStatement);

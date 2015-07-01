@@ -6,7 +6,9 @@
 #include "Store/SQLiteStore.hpp"
 #include "Query/Criteria.hpp"
 #include "Type/CreateValue.hpp"
-#include "Type/ValueComparison.h"
+#include "Type/ValueComparison.hpp"
+#include "Segmentation/Transformation.hpp"
+
 //#include "Store/Test/MongoDbStore.hpp"
 //#include "Store/Test/MySqlStore.hpp"
 //#include "Store/Test/PostgreStore.hpp"

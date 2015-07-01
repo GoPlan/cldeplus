@@ -10,7 +10,10 @@
 namespace Cloude {
     namespace Foundation {
         namespace Segmentation {
+            namespace Join{
 
+
+            }
         }
     }
 }

@@ -8,8 +8,9 @@
 #include <Foundation/Exception/cldeException.h>
 
 namespace Cloude {
-    namespace SourceDriver {
+    namespace Drivers {
         namespace SQLite {
+
             class SQLiteSourceException : public Foundation::Exception::cldeException {
                 int _resultCode;
 

@@ -179,14 +179,14 @@ add_library(foundation STATIC
 
 
 add_library(segmentation STATIC
-    Segmentation/Inner.cpp
-    Segmentation/Inner.h
-    Segmentation/Cross.cpp
-    Segmentation/Cross.h
-    Segmentation/Left.cpp
-    Segmentation/Left.h
-    Segmentation/Right.cpp
-    Segmentation/Right.h
+    Segmentation/Join/Inner.cpp
+    Segmentation/Join/Inner.h
+    Segmentation/Join/Cross.cpp
+    Segmentation/Join/Cross.h
+    Segmentation/Join/Left.cpp
+    Segmentation/Join/Left.h
+    Segmentation/Join/Right.cpp
+    Segmentation/Join/Right.h
     Segmentation/Transformation/EntityTransformer.cpp
     Segmentation/Transformation/EntityTransformer.h
     Segmentation/Transformation/CellTransformer.cpp
@@ -209,7 +209,10 @@ add_library(segmentation STATIC
     Segmentation/Transformation/Implementation/UInt32Converter.h
     Segmentation/Transformation/Implementation/UInt64Converter.cpp
     Segmentation/Transformation/Implementation/UInt64Converter.h
-    )
+    Segmentation/Exception/SegmentationException.cpp
+    Segmentation/Exception/SegmentationException.h
+    Segmentation/Exception/TransformationException.cpp
+    Segmentation/Exception/TransformationException.h Segmentation/Transformation/Transformation.h)
 
 
 add_library(Drivers STATIC
@@ -250,7 +253,7 @@ add_library(application STATIC
     AppTest/Application/EnquiryMap.h
     AppTest/Application/EnquiryLoader.cpp
     AppTest/Application/EnquiryLoader.h
-    )
+    AppTest/Application/OrderMap.cpp AppTest/Application/OrderMap.h AppTest/Application/CustomerMap.cpp AppTest/Application/CustomerMap.h AppTest/Application/ProductMap.cpp AppTest/Application/ProductMap.h)
 
 
 add_library(apptest STATIC
@@ -270,8 +273,8 @@ add_library(apptest STATIC
     AppTest/Query/Criteria.hpp
     AppTest/Segmentation/Segmentation.hpp
     AppTest/Type/CreateValue.hpp
-    AppTest/Type/ValueComparison.h
-    )
+    AppTest/Type/ValueComparison.hpp
+    AppTest/Segmentation/Transformation.hpp)
 
 
 add_library(.examples STATIC

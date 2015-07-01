@@ -15,7 +15,9 @@ namespace Cloude {
     namespace AppTest {
         namespace Store {
             namespace Preparation {
+
                 class EnquirySQLiteStore : public ::testing::Test {
+
                 public:
                     EnquirySQLiteStore();
                     ~EnquirySQLiteStore() = default;
@@ -25,7 +27,7 @@ namespace Cloude {
                 protected:
                     using EnquiryMap = Application::EnquiryMap;
                     using EnquiryLoader = Application::EnquiryLoader;
-                    using SQLiteSourceDriver = SourceDriver::SQLite::SQLiteSourceDriver;
+                    using SQLiteSourceDriver = Drivers::SQLite::SQLiteSourceDriver;
                     using EntityStore = Foundation::EntityStore;
 
                     void SetUp() override;
