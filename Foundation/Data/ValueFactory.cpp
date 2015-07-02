@@ -14,6 +14,8 @@
 #include <Foundation/Data/Type/UInt64.h>
 #include <Foundation/Data/Type/String.h>
 #include <Foundation/Data/Type/VarChar.h>
+#include <Foundation/Data/Type/Byte.h>
+#include <Foundation/Data/Type/Boolean.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -76,6 +78,16 @@ namespace Cloude {
 
             SPtrValue ValueFactory::CreateVarChar(unsigned long length) {
                 auto spValue = std::make_shared<Type::VarChar>(length);
+                return spValue;
+            }
+
+            SPtrValue ValueFactory::CreateByte(char value) {
+                auto spValue = std::make_shared<Type::Byte>(value);
+                return spValue;
+            }
+
+            SPtrValue ValueFactory::CreateBoolean(bool value) {
+                auto spValue = std::make_shared<Type::Boolean>(value);
                 return spValue;
             }
         }

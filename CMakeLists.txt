@@ -193,26 +193,31 @@ add_library(segmentation STATIC
     Segmentation/Transformation/CellTransformer.h
     Segmentation/Transformation/TypeConverter.cpp
     Segmentation/Transformation/TypeConverter.h
-    Segmentation/Transformation/Implementation/DoubleConverter.cpp
-    Segmentation/Transformation/Implementation/DoubleConverter.h
-    Segmentation/Transformation/Implementation/Int64Converter.cpp
-    Segmentation/Transformation/Implementation/Int64Converter.h
-    Segmentation/Transformation/Implementation/Int32Converter.cpp
-    Segmentation/Transformation/Implementation/Int32Converter.h
-    Segmentation/Transformation/Implementation/FloatConverter.cpp
-    Segmentation/Transformation/Implementation/FloatConverter.h
-    Segmentation/Transformation/Implementation/Int16Converter.cpp
-    Segmentation/Transformation/Implementation/Int16Converter.h
-    Segmentation/Transformation/Implementation/UInt16Converter.cpp
-    Segmentation/Transformation/Implementation/UInt16Converter.h
-    Segmentation/Transformation/Implementation/UInt32Converter.cpp
-    Segmentation/Transformation/Implementation/UInt32Converter.h
-    Segmentation/Transformation/Implementation/UInt64Converter.cpp
-    Segmentation/Transformation/Implementation/UInt64Converter.h
+    Segmentation/Transformation/Converter/DoubleConverter.cpp
+    Segmentation/Transformation/Converter/DoubleConverter.h
+    Segmentation/Transformation/Converter/Int64Converter.cpp
+    Segmentation/Transformation/Converter/Int64Converter.h
+    Segmentation/Transformation/Converter/Int32Converter.cpp
+    Segmentation/Transformation/Converter/Int32Converter.h
+    Segmentation/Transformation/Converter/FloatConverter.cpp
+    Segmentation/Transformation/Converter/FloatConverter.h
+    Segmentation/Transformation/Converter/Int16Converter.cpp
+    Segmentation/Transformation/Converter/Int16Converter.h
+    Segmentation/Transformation/Converter/UInt16Converter.cpp
+    Segmentation/Transformation/Converter/UInt16Converter.h
+    Segmentation/Transformation/Converter/UInt32Converter.cpp
+    Segmentation/Transformation/Converter/UInt32Converter.h
+    Segmentation/Transformation/Converter/UInt64Converter.cpp
+    Segmentation/Transformation/Converter/UInt64Converter.h
     Segmentation/Exception/SegmentationException.cpp
     Segmentation/Exception/SegmentationException.h
     Segmentation/Exception/TransformationException.cpp
-    Segmentation/Exception/TransformationException.h Segmentation/Transformation/Transformation.h)
+    Segmentation/Exception/TransformationException.h
+    Segmentation/Segmentation.h
+    Segmentation/Transformation/Converter/BooleanConverter.cpp
+    Segmentation/Transformation/Converter/BooleanConverter.h
+    Segmentation/Transformation/Converter/ByteConverter.cpp
+    Segmentation/Transformation/Converter/ByteConverter.h Segmentation/Transformation/Converter/StringConverter.cpp Segmentation/Transformation/Converter/StringConverter.h Segmentation/Transformation/Converter/VarCharConverter.cpp Segmentation/Transformation/Converter/VarCharConverter.h Segmentation/Transformation/TypeConverterFactory.cpp Segmentation/Transformation/TypeConverterFactory.h)
 
 
 add_library(Drivers STATIC

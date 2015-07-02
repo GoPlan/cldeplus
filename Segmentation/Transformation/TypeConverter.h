@@ -16,7 +16,7 @@ namespace Cloude {
 
             struct TypeConverter {
                 virtual Foundation::Data::SPtrValue Convert(const Foundation::SPtrColumn &column,
-                                                            const Foundation::Data::SPtrValue &value);
+                                                            const Foundation::Data::SPtrValue &value) const;
             };
 
             using SPtrTypeConverter = std::shared_ptr<TypeConverter>;

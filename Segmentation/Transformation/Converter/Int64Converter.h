@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 7/1/15.
 //
 
-#ifndef CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_IMPLEMENTATION_INT64CONVERTER_H
-#define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_IMPLEMENTATION_INT64CONVERTER_H
+#ifndef CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CONVERTER_INT64CONVERTER_H
+#define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CONVERTER_INT64CONVERTER_H
 
 #include <Segmentation/Transformation/TypeConverter.h>
 
 namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
-            namespace Implementation {
+            namespace Converter {
 
                 class Int64Converter : public TypeConverter {
 
@@ -21,6 +21,11 @@ namespace Cloude {
                     Int64Converter &operator=(const Int64Converter &) = default;
                     Int64Converter &operator=(Int64Converter &&) = default;
                     virtual ~Int64Converter() = default;
+
+                    // TypeConverter
+                    virtual Foundation::Data::SPtrValue
+                            Convert(const Foundation::SPtrColumn &column,
+                                    const Foundation::Data::SPtrValue &value) const override;
                 };
             }
         }
@@ -28,4 +33,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_IMPLEMENTATION_INT64CONVERTER_H
+#endif //CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CONVERTER_INT64CONVERTER_H

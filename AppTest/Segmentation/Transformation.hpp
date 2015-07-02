@@ -14,7 +14,7 @@
 #include <AppTest/Application/OrderMap.h>
 #include <AppTest/Application/CustomerMap.h>
 #include <Foundation/Data/Comparer/Comparer.h>
-#include <Segmentation/Transformation/Transformation.h>
+#include <Segmentation/Segmentation.h>
 
 namespace Cloude {
     namespace AppTest {

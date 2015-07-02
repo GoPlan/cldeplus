@@ -14,7 +14,7 @@ namespace Cloude {
             class SegmentationException : public Foundation::Exception::cldeException {
 
             public:
-                SegmentationException() = default;
+                SegmentationException(const std::string &message) : cldeException{message} { };
                 SegmentationException(const SegmentationException &) = default;
                 SegmentationException(SegmentationException &&) = default;
                 SegmentationException &operator=(const SegmentationException &) = default;

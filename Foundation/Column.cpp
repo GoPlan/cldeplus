@@ -38,9 +38,11 @@ namespace Cloude {
                                "[" + std::to_string(_length) + "]" + ")"};
             return result;
         }
+
         const std::string &Column::ToString() const {
             return _name;
         }
+
         const char *Column::ToCString() const {
             return _name.c_str();
         }
