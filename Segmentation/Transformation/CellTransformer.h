@@ -13,6 +13,12 @@ namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
 
+            /// CellTransformer:
+            /// Convert (copy) a cell into new cell with possibilities of transforming cell name and data type
+            ///
+            /// Note:
+            /// New cell will use provided column iff a shared pointer of column is provided.
+            /// A converter must be provided if different data type is used or Transformation exception will be thrown.
             class CellTransformer {
 
                 Foundation::SPtrColumn _sptrTargetColumn;

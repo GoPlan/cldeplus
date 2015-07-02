@@ -3,7 +3,8 @@
 //
 
 #include <Foundation/Store/Helper/CellHelper.h>
-#include <Foundation/Store/Comparer/DataRecordCompare.h>
+#include <Foundation/Store/Comparer/Compare.h>
+#include <Foundation/Store/Comparer/Less.h>
 #include "Cross.h"
 
 namespace Cloude {
@@ -15,8 +16,8 @@ namespace Cloude {
                     const Foundation::SPtrEntityProxySet &rhsSet) const {
 
                 using CellHelper = Foundation::Store::Helper::CellHelper;
-                using DataRecordLess = Foundation::Store::Comparer::DataRecordLess;
-                using DataRecordCompare = Foundation::Store::Comparer::DataRecordCompare<>;
+                using DataRecordLess = Foundation::Store::Comparer::Less;
+                using DataRecordCompare = Foundation::Store::Comparer::Compare<>;
 
                 DataRecordCompare compare{_lhsComparingColumns, _rhsComparingColumns};
                 DataRecordLess lesser{_lhsComparingColumns, _rhsComparingColumns};
@@ -61,8 +62,7 @@ namespace Cloude {
 
                         while (!lesser(**lhsCurrent, **rhsCurrent)) {
 
-                            Foundation::SPtrEntityProxy proxy{};
-
+                            Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
                             _sptrLhsTransformer->Transform(*lhsCurrent, proxy);
                             _sptrLhsTransformer->Transform(*rhsCurrent, proxy);
 

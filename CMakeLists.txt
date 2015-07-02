@@ -169,12 +169,12 @@ add_library(foundation STATIC
     Foundation/Store/Helper/EntityStoreHelper.h
     Foundation/Store/Helper/CellHelper.cpp
     Foundation/Store/Helper/CellHelper.h
-    Foundation/Store/Comparer/DataRecordCompare.cpp
-    Foundation/Store/Comparer/DataRecordCompare.h
-    Foundation/Store/Comparer/DataRecordGreater.cpp
-    Foundation/Store/Comparer/DataRecordGreater.h
-    Foundation/Store/Comparer/DataRecordLess.cpp
-    Foundation/Store/Comparer/DataRecordLess.h
+    Foundation/Store/Comparer/Compare.cpp
+    Foundation/Store/Comparer/Compare.h
+    Foundation/Store/Comparer/Greater.cpp
+    Foundation/Store/Comparer/Greater.h
+    Foundation/Store/Comparer/Less.cpp
+    Foundation/Store/Comparer/Less.h
     Foundation/Data/Helper/TypeHelper.cpp Foundation/Data/Helper/TypeHelper.h)
 
 

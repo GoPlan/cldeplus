@@ -12,6 +12,10 @@ namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
 
+            /// EntityTransformer:
+            /// Transform an entity into new entity based on a map of transformers.
+            /// Only cell with names provided in the map are copied into the new entity.
+            ///
             class EntityTransformer {
 
                 Transformation::CellTransformerMap _mapCellTransformers;

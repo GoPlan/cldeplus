@@ -24,8 +24,8 @@ namespace Cloude {
 
                     // TypeConverter
                     virtual Foundation::Data::SPtrValue
-                            Convert(Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value)
-                            const override;
+                            Convert(Foundation::Data::ValueType dataType,
+                                    const Foundation::Data::SPtrValue &value) const override;
                 };
             }
         }

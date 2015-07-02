@@ -13,7 +13,7 @@
 #include <AppTest/Application/EnquiryMap.h>
 #include <AppTest/Application/EnquiryLoader.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
-#include <Foundation/Store/Comparer/DataRecordCompare.h>
+#include <Foundation/Store/Comparer/Compare.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -39,7 +39,7 @@ namespace Cloude {
                 auto enquiryQuery = std::make_shared<EntityQuery>(enquiryStore);
 
                 SPtrColumnVector vtorCmpColumns{enquiryMap.Email};
-                Foundation::Store::Comparer::DataRecordCompare<> compare{vtorCmpColumns, vtorCmpColumns};
+                Foundation::Store::Comparer::Compare<> compare{vtorCmpColumns, vtorCmpColumns};
 
                 auto &options = sqliteSourceDriver.getOptionArgs();
                 options.ConnectionString = "../ex1.db";

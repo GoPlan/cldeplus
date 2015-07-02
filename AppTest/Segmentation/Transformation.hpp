@@ -20,9 +20,9 @@ namespace Cloude {
     namespace AppTest {
         namespace Segmentation {
 
-            TEST(Transformation, case01) {
+            using namespace Cloude::Segmentation;
 
-                using namespace Cloude::Segmentation;
+            TEST(Transformation, case01) {
 
                 Application::OrderMap orderMap{};
                 Application::ProductMap productMap{};
@@ -44,8 +44,6 @@ namespace Cloude {
                 sptrOrderProxy->setCell(sptrOrderNameCell);
                 sptrOrderProxy->setCell(sptrTotalCell);
 
-                EXPECT_TRUE(sptrOrderProxy.get() != 0);
-
                 // Double (Type) Converter
                 auto sptrDoubleConverter = TypeConverterFactory::CreateDoubleConverter();
                 auto sptrInt64Total = sptrDoubleConverter->Convert(Foundation::Data::ValueType::Int64, sptrTotal);
@@ -53,6 +51,7 @@ namespace Cloude {
                 // Entity Transformer
                 Foundation::SPtrColumn orderNewNameColumn = std::make_shared<Foundation::Column>("NewName", Foundation::Data::ValueType::VarChar);
                 Foundation::SPtrColumn orderNewTotalColumn = std::make_shared<Foundation::Column>("NewTotal", Foundation::Data::ValueType::Int64);
+
                 Transformation::SPtrEntityTransformer orderTransformer = std::make_shared<Transformation::EntityTransformer>();
                 orderTransformer->AddCellTransformer(orderMap.Name->getName(),Transformation::CellTransformer{orderNewNameColumn});
                 orderTransformer->AddCellTransformer(orderMap.Total->getName(),Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
@@ -63,7 +62,7 @@ namespace Cloude {
 
                 EXPECT_TRUE(sptrNewProxy.get() != 0);
 
-                // Assert Cost(VarChar) cell transformation
+                // Assert Cost(Double) cell transformation
                 {
                     Foundation::SPtrCell sptrNewProxyTotalCell = sptrNewProxy->getCell("NewTotal");
                     Foundation::Data::Comparer::Compare compare{};
@@ -73,6 +72,7 @@ namespace Cloude {
                     EXPECT_TRUE(!lesser(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
                     EXPECT_TRUE(!greater(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
                     EXPECT_TRUE(compare(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
+                    EXPECT_TRUE(strcmp(sptrNewProxyTotalCell->getColumn()->ToCString(), "NewTotal") == 0);
                 }
 
                 // Assert Name(VarChar) cell transformation
@@ -85,6 +85,7 @@ namespace Cloude {
                     EXPECT_TRUE(!lesser(sptrOrderName, sptrNewProxyNameCell->getValue()));
                     EXPECT_TRUE(!greater(sptrOrderName, sptrNewProxyNameCell->getValue()));
                     EXPECT_TRUE(compare(sptrOrderName, sptrNewProxyNameCell->getValue()));
+                    EXPECT_TRUE(strcmp(sptrNewProxyNameCell->getColumn()->ToCString(), "NewName") == 0);
                 }
             }
         }

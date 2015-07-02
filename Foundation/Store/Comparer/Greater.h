@@ -2,27 +2,26 @@
 // Created by LE, Duc Anh on 6/26/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDLESS_H
-#define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDLESS_H
+#ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_GREATER_H
+#define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_GREATER_H
 
-#include <Foundation/Data/Comparer/Less.h>
 #include <Foundation/Store/AbstractEntity.h>
+#include <Foundation/Data/Comparer/Greater.h>
 
 namespace Cloude {
     namespace Foundation {
         namespace Store {
             namespace Comparer {
 
-                class DataRecordLess :
-                        public std::binary_function<Store::AbstractEntity, Store::AbstractEntity, bool> {
+                class Greater : public std::binary_function<Store::AbstractEntity, Store::AbstractEntity, bool> {
 
                     const SPtrColumnVector &_lhsCmpColumns;
                     const SPtrColumnVector &_rhsCmpColumns;
-                    Data::Comparer::Less _less{};
+                    Data::Comparer::Greater _greater{};
 
                 public:
-                    DataRecordLess(const SPtrColumnVector &lhsCmpColumns,
-                                   const SPtrColumnVector &rhsCmpColumns)
+                    Greater(const SPtrColumnVector &lhsCmpColumns,
+                            const SPtrColumnVector &rhsCmpColumns)
                             : _lhsCmpColumns(lhsCmpColumns),
                               _rhsCmpColumns(rhsCmpColumns) { };
 
@@ -33,4 +32,5 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDLESS_H
+
+#endif //CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_GREATER_H

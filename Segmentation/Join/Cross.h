@@ -43,7 +43,6 @@ namespace Cloude {
                 Foundation::SPtrEntityProxySet operator()(const Foundation::SPtrEntityProxySet &lhs,
                                                           const Foundation::SPtrEntityProxySet &rhs) const;
             };
-
         }
     }
 }

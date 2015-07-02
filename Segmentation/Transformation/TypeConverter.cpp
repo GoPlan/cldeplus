@@ -9,7 +9,8 @@
 namespace Cloude {
     namespace Segmentation {
 
-        Foundation::Data::SPtrValue Transformation::TypeConverter::Convert(Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
+        Foundation::Data::SPtrValue Transformation::TypeConverter::Convert(
+                Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
             if (dataType == value->getDataType()) {
                 return value;

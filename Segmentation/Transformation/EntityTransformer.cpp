@@ -19,10 +19,10 @@ namespace Cloude {
                 Foundation::SPtrEntityProxy &dstProxy) const {
 
             if (!srcProxy)
-                throw std::invalid_argument{"srcProxy is invalid or a nullptr"};
+                throw std::invalid_argument{"srcProxy is either invalid or a nullptr"};
 
             if (!dstProxy)
-                throw std::invalid_argument{"dstProxy is invalid or a nullptr"};
+                throw std::invalid_argument{"dstProxy is either invalid or a nullptr"};
 
             for (auto &pairCellMap : _mapCellTransformers) {
                 auto &srcColumnName = pairCellMap.first;

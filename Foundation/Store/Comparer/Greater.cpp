@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 6/26/15.
 //
 
-#include "DataRecordLess.h"
+#include "Greater.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Store {
-            bool Comparer::DataRecordLess::operator()(const Store::AbstractEntity &lhs,
-                                                      const Store::AbstractEntity &rhs) const {
+            bool Comparer::Greater::operator()(const Store::AbstractEntity &lhs,
+                                                         const Store::AbstractEntity &rhs) const {
 
                 if (_lhsCmpColumns.size() != _rhsCmpColumns.size()) {
                     return false;
@@ -29,7 +29,7 @@ namespace Cloude {
                     auto &lhsValue = lhsCell->getValue();
                     auto &rhsValue = rhsCell->getValue();
 
-                    if (_less(lhsValue, rhsValue))
+                    if (_greater(lhsValue, rhsValue))
                         return true;
                 }
 

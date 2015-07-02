@@ -2,27 +2,26 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDCOMPARE_H
-#define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDCOMPARE_H
+#ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
+#define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
 
 #include <Foundation/EntityProxy.h>
 #include <Foundation/Exception/cldeSegmentationException.h>
-#include "DataRecordLess.h"
+#include "Less.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Store {
             namespace Comparer {
 
-                template<class T = Comparer::DataRecordLess>
-                class DataRecordCompare
-                        : public std::binary_function<Store::AbstractEntity, Store::AbstractEntity, bool> {
+                template<class T = Comparer::Less>
+                class Compare : public std::binary_function<Store::AbstractEntity, Store::AbstractEntity, bool> {
 
                     T _compare;
 
                 public:
-                    DataRecordCompare(const SPtrColumnVector &lhsComparingColumns,
-                                      const SPtrColumnVector &rhsComparingColumns)
+                    Compare(const SPtrColumnVector &lhsComparingColumns,
+                            const SPtrColumnVector &rhsComparingColumns)
                             : _compare{lhsComparingColumns,
                                        rhsComparingColumns} { };
 
@@ -35,4 +34,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_DATARECORDCOMPARE_H
+#endif //CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
