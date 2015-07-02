@@ -46,40 +46,45 @@ namespace Cloude {
 
                 EXPECT_TRUE(sptrOrderProxy.get() != 0);
 
-                // Prepare target proxy
+                // Double (Type) Converter
+                auto sptrDoubleConverter = TypeConverterFactory::CreateDoubleConverter();
+                auto sptrInt64Total = sptrDoubleConverter->Convert(Foundation::Data::ValueType::Int64, sptrTotal);
+
+                // Entity Transformer
                 Foundation::SPtrColumn orderNewNameColumn = std::make_shared<Foundation::Column>("NewName", Foundation::Data::ValueType::VarChar);
-                Foundation::SPtrColumn orderNewTotalColumn = std::make_shared<Foundation::Column>("NewTotal", Foundation::Data::ValueType::Double);
+                Foundation::SPtrColumn orderNewTotalColumn = std::make_shared<Foundation::Column>("NewTotal", Foundation::Data::ValueType::Int64);
                 Transformation::SPtrEntityTransformer orderTransformer = std::make_shared<Transformation::EntityTransformer>();
                 orderTransformer->AddCellTransformer(orderMap.Name->getName(),Transformation::CellTransformer{orderNewNameColumn});
-                orderTransformer->AddCellTransformer(orderMap.Total->getName(),Transformation::CellTransformer{orderNewTotalColumn});
+                orderTransformer->AddCellTransformer(orderMap.Total->getName(),Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
 
+                // Transforming Order into a new entity
                 Foundation::SPtrEntityProxy sptrNewProxy = std::make_shared<Foundation::EntityProxy>();
                 orderTransformer->Transform(sptrOrderProxy, sptrNewProxy);
 
                 EXPECT_TRUE(sptrNewProxy.get() != 0);
 
-                // Assert Name(VarChar) cell transformation
-                {
-                    Foundation::SPtrCell sptrNewProxyNameCell = sptrNewProxy->getCell("NewName");
-                    Foundation::Data::Comparer::Compare eq{};
-                    Foundation::Data::Comparer::Less lt{};
-                    Foundation::Data::Comparer::Greater gt{};
-
-                    EXPECT_TRUE(!lt(sptrOrderName, sptrNewProxyNameCell->getValue()));
-                    EXPECT_TRUE(!gt(sptrOrderName, sptrNewProxyNameCell->getValue()));
-                    EXPECT_TRUE(eq(sptrOrderName, sptrNewProxyNameCell->getValue()));
-                }
-
                 // Assert Cost(VarChar) cell transformation
                 {
                     Foundation::SPtrCell sptrNewProxyTotalCell = sptrNewProxy->getCell("NewTotal");
-                    Foundation::Data::Comparer::Compare eq{};
-                    Foundation::Data::Comparer::Less lt{};
-                    Foundation::Data::Comparer::Greater gt{};
+                    Foundation::Data::Comparer::Compare compare{};
+                    Foundation::Data::Comparer::Less lesser{};
+                    Foundation::Data::Comparer::Greater greater{};
 
-                    EXPECT_TRUE(!lt(sptrTotal, sptrNewProxyTotalCell->getValue()));
-                    EXPECT_TRUE(!gt(sptrTotal, sptrNewProxyTotalCell->getValue()));
-                    EXPECT_TRUE(eq(sptrTotal, sptrNewProxyTotalCell->getValue()));
+                    EXPECT_TRUE(!lesser(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
+                    EXPECT_TRUE(!greater(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
+                    EXPECT_TRUE(compare(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
+                }
+
+                // Assert Name(VarChar) cell transformation
+                {
+                    Foundation::SPtrCell sptrNewProxyNameCell = sptrNewProxy->getCell("NewName");
+                    Foundation::Data::Comparer::Compare compare{};
+                    Foundation::Data::Comparer::Less lesser{};
+                    Foundation::Data::Comparer::Greater greater{};
+
+                    EXPECT_TRUE(!lesser(sptrOrderName, sptrNewProxyNameCell->getValue()));
+                    EXPECT_TRUE(!greater(sptrOrderName, sptrNewProxyNameCell->getValue()));
+                    EXPECT_TRUE(compare(sptrOrderName, sptrNewProxyNameCell->getValue()));
                 }
             }
         }

@@ -27,10 +27,10 @@ namespace Cloude {
                 std::string email_01{"goplan@cloud-e.biz"};
                 std::string email_02{"ducanh.ki@cloud-e.biz"};
 
-                auto sptrEnquiryId_01 = Data::cldeValueFactory::CreateInt64(1);
-                auto sptrEnquiryId_02 = Data::cldeValueFactory::CreateInt64(2);
-                auto sptrEmail_01 = Data::cldeValueFactory::CreateVarChar(email_01);
-                auto sptrEmail_02 = Data::cldeValueFactory::CreateVarChar(email_02);
+                auto sptrEnquiryId_01 = Data::ValueFactory::CreateInt64(1);
+                auto sptrEnquiryId_02 = Data::ValueFactory::CreateInt64(2);
+                auto sptrEmail_01 = Data::ValueFactory::CreateVarChar(email_01);
+                auto sptrEmail_02 = Data::ValueFactory::CreateVarChar(email_02);
 
                 Application::EnquiryMap enquiryMap{};
                 Application::EnquiryLoader enquiryLoader{};

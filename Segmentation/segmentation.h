@@ -23,4 +23,6 @@
 #include "Transformation/Converter/UInt32Converter.h"
 #include "Transformation/Converter/UInt64Converter.h"
 
+#include "TypeConverterFactory.h"
+
 #endif //CLOUD_E_PLUS_SEGMENTATION_SEGMENTATION_H

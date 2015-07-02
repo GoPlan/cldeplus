@@ -55,7 +55,7 @@ namespace Cloude {
                             result = "Int32";
                             break;
                         case ValueType::Int64:
-                            result = "Boolean";
+                            result = "Int64";
                             break;
                         case ValueType::UInt16:
                             result = "UInt16";

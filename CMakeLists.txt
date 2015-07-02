@@ -217,7 +217,13 @@ add_library(segmentation STATIC
     Segmentation/Transformation/Converter/BooleanConverter.cpp
     Segmentation/Transformation/Converter/BooleanConverter.h
     Segmentation/Transformation/Converter/ByteConverter.cpp
-    Segmentation/Transformation/Converter/ByteConverter.h Segmentation/Transformation/Converter/StringConverter.cpp Segmentation/Transformation/Converter/StringConverter.h Segmentation/Transformation/Converter/VarCharConverter.cpp Segmentation/Transformation/Converter/VarCharConverter.h Segmentation/Transformation/TypeConverterFactory.cpp Segmentation/Transformation/TypeConverterFactory.h)
+    Segmentation/Transformation/Converter/ByteConverter.h
+    Segmentation/Transformation/Converter/StringConverter.cpp
+    Segmentation/Transformation/Converter/StringConverter.h
+    Segmentation/Transformation/Converter/VarCharConverter.cpp
+    Segmentation/Transformation/Converter/VarCharConverter.h
+    Segmentation/TypeConverterFactory.cpp
+    Segmentation/TypeConverterFactory.h)
 
 
 add_library(Drivers STATIC
@@ -258,7 +264,12 @@ add_library(application STATIC
     AppTest/Application/EnquiryMap.h
     AppTest/Application/EnquiryLoader.cpp
     AppTest/Application/EnquiryLoader.h
-    AppTest/Application/OrderMap.cpp AppTest/Application/OrderMap.h AppTest/Application/CustomerMap.cpp AppTest/Application/CustomerMap.h AppTest/Application/ProductMap.cpp AppTest/Application/ProductMap.h)
+    AppTest/Application/OrderMap.cpp
+    AppTest/Application/OrderMap.h
+    AppTest/Application/CustomerMap.cpp
+    AppTest/Application/CustomerMap.h
+    AppTest/Application/ProductMap.cpp
+    AppTest/Application/ProductMap.h)
 
 
 add_library(apptest STATIC

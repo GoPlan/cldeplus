@@ -11,8 +11,7 @@ namespace Cloude {
     namespace Segmentation {
 
         Foundation::Data::SPtrValue Transformation::Converter::FloatConverter::Convert(
-                const Foundation::SPtrColumn &column,
-                const Foundation::Data::SPtrValue &value) const {
+                Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
             if (value->getDataType() != Foundation::Data::ValueType::Float) {
                 std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
@@ -22,7 +21,7 @@ namespace Cloude {
 
             float *tmp = reinterpret_cast<float *>(value->RawPointerToValueBuffer());
 
-            switch (column->getDataType()) {
+            switch (dataType) {
                 case Foundation::Data::ValueType::Int16:
                     return Foundation::Data::ValueFactory::CreateInt16((int16_t) *tmp);
                 case Foundation::Data::ValueType::Int32:
@@ -42,7 +41,7 @@ namespace Cloude {
                 case Foundation::Data::ValueType::Byte:
                     return Foundation::Data::ValueFactory::CreateByte((char) *tmp);
                 default: {
-                    std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(column->getDataType())};
+                    std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
                     std::string msg{"This converter can not convert float into " + type};
                     throw Segmentation::Exception::TransformationException{msg};
                 }

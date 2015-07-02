@@ -5,12 +5,14 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CONVERTER_BYTECONVERTER_H
 #define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CONVERTER_BYTECONVERTER_H
 
+#include <Segmentation/Transformation/TypeConverter.h>
+
 namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
             namespace Converter {
 
-                class ByteConverter {
+                class ByteConverter : public TypeConverter {
 
                 public:
                     ByteConverter() = default;
@@ -19,6 +21,12 @@ namespace Cloude {
                     ByteConverter &operator=(const ByteConverter &) = default;
                     ByteConverter &operator=(ByteConverter &&) = default;
                     virtual ~ByteConverter() = default;
+
+                    // TypeConverter
+
+                    virtual Foundation::Data::SPtrValue
+                            Convert(Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value)
+                            const override;
                 };
             }
         }

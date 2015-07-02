@@ -11,8 +11,7 @@ namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
             Foundation::Data::SPtrValue Converter::Int64Converter::Convert(
-                    const Cloude::Foundation::SPtrColumn &column,
-                    const Cloude::Foundation::Data::SPtrValue &value) const {
+                    Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
                 if (value->getDataType() != Foundation::Data::ValueType::Int64) {
                     std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
@@ -22,7 +21,7 @@ namespace Cloude {
 
                 int64_t *tmp = reinterpret_cast<int64_t *>(value->RawPointerToValueBuffer());
 
-                switch (column->getDataType()) {
+                switch (dataType) {
                     case Foundation::Data::ValueType::Int16:
                         return Foundation::Data::ValueFactory::CreateInt16((int16_t) *tmp);
                     case Foundation::Data::ValueType::Int32:
@@ -42,7 +41,7 @@ namespace Cloude {
                     case Foundation::Data::ValueType::Byte:
                         return Foundation::Data::ValueFactory::CreateByte((char) *tmp);
                     default: {
-                        std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(column->getDataType())};
+                        std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
                         std::string msg{"This converter can not convert Int64 into " + type};
                         throw Segmentation::Exception::TransformationException{msg};
                     }

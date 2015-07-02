@@ -14,10 +14,23 @@ namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
 
-            struct TypeConverter {
-                virtual Foundation::Data::SPtrValue Convert(const Foundation::SPtrColumn &column,
+            class TypeConverter {
+
+            public:
+                TypeConverter(const TypeConverter &) = default;
+                TypeConverter(TypeConverter &&) = default;
+                TypeConverter &operator=(const TypeConverter &) = default;
+                TypeConverter &operator=(TypeConverter &&) = default;
+                ~TypeConverter() = default;
+
+                // Locals
+                virtual Foundation::Data::SPtrValue Convert(Foundation::Data::ValueType dataType,
                                                             const Foundation::Data::SPtrValue &value) const;
+
+            protected:
+                TypeConverter() = default;
             };
+
 
             using SPtrTypeConverter = std::shared_ptr<TypeConverter>;
         }

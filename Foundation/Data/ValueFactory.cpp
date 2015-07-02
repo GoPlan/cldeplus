@@ -22,73 +22,59 @@ namespace Cloude {
         namespace Data {
 
             SPtrValue ValueFactory::CreateFloat(float value) {
-                auto spValue = std::make_shared<Type::Float>(value);
-                return spValue;
+                return std::make_shared<Type::Float>(value);
             }
 
             SPtrValue ValueFactory::CreateDouble(double value) {
-                auto spValue = std::make_shared<Type::Double>(value);
-                return spValue;
+                return std::make_shared<Type::Double>(value);
             }
 
             SPtrValue ValueFactory::CreateInt16(int16_t value) {
-                auto spValue = std::make_shared<Type::Int16>(value);
-                return spValue;
+                return std::make_shared<Type::Int16>(value);
             }
 
             SPtrValue ValueFactory::CreateInt32(int32_t value) {
-                auto spValue = std::make_shared<Type::Int32>(value);
-                return spValue;
+                return std::make_shared<Type::Int32>(value);
             }
 
             SPtrValue ValueFactory::CreateInt64(int64_t value) {
-                auto spValue = std::make_shared<Type::Int64>(value);
-                return spValue;
+                return std::make_shared<Type::Int64>(value);
             }
 
             SPtrValue ValueFactory::CreateUInt16(uint16_t value) {
-                auto spValue = std::make_shared<Type::UInt16>(value);
-                return spValue;
+                return std::make_shared<Type::UInt16>(value);
             }
 
             SPtrValue ValueFactory::CreateUInt32(uint32_t value) {
-                auto spValue = std::make_shared<Type::UInt32>(value);
-                return spValue;
+                return std::make_shared<Type::UInt32>(value);
             }
 
             SPtrValue ValueFactory::CreateUInt64(uint64_t value) {
-                auto spValue = std::make_shared<Type::UInt64>(value);
-                return spValue;
+                return std::make_shared<Type::UInt64>(value);
             }
 
             SPtrValue ValueFactory::CreateString(const char *value) {
-                auto spValue = std::make_shared<Type::String>(value);
-                return spValue;
+                return std::make_shared<Type::String>(value);
             }
 
             SPtrValue ValueFactory::CreateVarChar(const char *value) {
-                auto spValue = std::make_shared<Type::VarChar>(value);
-                return spValue;
+                return std::make_shared<Type::VarChar>(value);
             }
 
             SPtrValue ValueFactory::CreateVarChar(const std::string &value) {
-                auto spValue = std::make_shared<Type::VarChar>(value.c_str());
-                return spValue;
+                return std::make_shared<Type::VarChar>(value.c_str());
             }
 
             SPtrValue ValueFactory::CreateVarChar(unsigned long length) {
-                auto spValue = std::make_shared<Type::VarChar>(length);
-                return spValue;
+                return std::make_shared<Type::VarChar>(length);
             }
 
             SPtrValue ValueFactory::CreateByte(char value) {
-                auto spValue = std::make_shared<Type::Byte>(value);
-                return spValue;
+                return std::make_shared<Type::Byte>(value);
             }
 
             SPtrValue ValueFactory::CreateBoolean(bool value) {
-                auto spValue = std::make_shared<Type::Boolean>(value);
-                return spValue;
+                return std::make_shared<Type::Boolean>(value);
             }
         }
     }

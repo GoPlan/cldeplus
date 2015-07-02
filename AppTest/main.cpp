@@ -7,6 +7,7 @@
 #include "Query/Criteria.hpp"
 #include "Type/CreateValue.hpp"
 #include "Type/ValueComparison.hpp"
+#include "Segmentation/Segmentation.hpp"
 #include "Segmentation/Transformation.hpp"
 
 //#include "Store/Test/MongoDbStore.hpp"

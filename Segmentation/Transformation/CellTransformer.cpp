@@ -26,7 +26,8 @@ namespace Cloude {
                 Foundation::SPtrCell dstSPtrCell = std::make_shared<Foundation::Cell>(_sptrTargetColumn);
 
                 if (_sptrTypeConverter) {
-                    dstSPtrCell->setValue(_sptrTypeConverter->Convert(_sptrTargetColumn, srcSPtrCell->getValue()));
+                    dstSPtrCell->setValue(_sptrTypeConverter->Convert(_sptrTargetColumn->getDataType(),
+                                                                      srcSPtrCell->getValue()));
                 } else {
                     dstSPtrCell->setValue(srcSPtrCell->getValue());
                 }

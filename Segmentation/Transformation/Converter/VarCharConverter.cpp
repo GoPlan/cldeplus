@@ -10,10 +10,8 @@ namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
             Foundation::Data::SPtrValue Converter::VarCharConverter::Convert(
-                    const Cloude::Foundation::SPtrColumn &column,
-                    const Cloude::Foundation::Data::SPtrValue &value) const {
-
-                std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(column->getDataType())};
+                    Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
+                std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
                 std::string msg{"This converter can not convert VarCharConverter into " + type};
                 throw Segmentation::Exception::TransformationException{msg};
             }

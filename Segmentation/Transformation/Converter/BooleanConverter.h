@@ -5,12 +5,14 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CONVERTER_BOOLEANCONVERTER_H
 #define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CONVERTER_BOOLEANCONVERTER_H
 
+#include <Segmentation/Transformation/TypeConverter.h>
+
 namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
             namespace Converter {
 
-                class BooleanConverter {
+                class BooleanConverter : public TypeConverter {
 
                 public:
                     BooleanConverter() = default;
@@ -19,6 +21,11 @@ namespace Cloude {
                     BooleanConverter &operator=(const BooleanConverter &) = default;
                     BooleanConverter &operator=(BooleanConverter &&) = default;
                     virtual ~BooleanConverter() = default;
+
+                    // TypeConverter
+                    virtual Foundation::Data::SPtrValue
+                            Convert(Foundation::Data::ValueType dataType,
+                                    const Foundation::Data::SPtrValue &value) const override;
                 };
             }
         }
