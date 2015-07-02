@@ -6,51 +6,54 @@
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 
 #include <unordered_map>
+#include "Identity.h"
+#include "Entity.h"
+#include "EntityMap.h"
+#include "EntityLoader.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        class EntityMap;
-        class EntityLoader;
+        using SPtrIdentityMap = std::unordered_map<SPtrIdentity, SPtrEntity>;
+
         class EntitySourceDriver;
-        class Entity;
-        class Identity;
 
         class EntityStore {
+
+            const EntityMap &_entityMap;
+            const EntityLoader &_entityLoader;
+            const EntitySourceDriver &_entitySourceDriver;
+            SPtrIdentityMap _identityMap;
 
         public:
             EntityStore(const EntityMap &entityMap,
                         const EntityLoader &entityLoader,
                         const EntitySourceDriver &entitySourceDriver);
+
+            EntityStore(const EntityStore &) = default;
+            EntityStore(EntityStore &&) = default;
+            EntityStore &operator=(const EntityStore &) = default;
+            EntityStore &operator=(EntityStore &&) = default;
             ~EntityStore() = default;
-            EntityStore(const EntityStore &srcEntityStore) = default;
-            EntityStore &operator=(const EntityStore &srcEntityStore) = default;
 
-            bool HasIdentityInMap(const std::shared_ptr<Identity> &identity) const;
+            bool HasIdentityInMap(const SPtrIdentity &identity) const;
 
-            std::shared_ptr<Entity> Create();
-            std::shared_ptr<Entity> Create(const std::shared_ptr<Identity> &identity);
-            std::shared_ptr<Entity> Get(const std::shared_ptr<Identity> &identity);
+            SPtrEntity Create();
+            SPtrEntity Create(const SPtrIdentity &identity);
+            SPtrEntity Get(const SPtrIdentity &identity);
 
-            void Insert(std::shared_ptr<Entity> &entity);
-            void Save(std::shared_ptr<Entity> &entity);
-            void Delete(std::shared_ptr<Entity> &entity);
+            void Insert(SPtrEntity &entity);
+            void Save(SPtrEntity &entity);
+            void Delete(SPtrEntity &entity);
 
             void Clear();
             unsigned long Size() const;
 
             const EntityMap &getEntityMap() const { return _entityMap; }
             const EntitySourceDriver &getEntitySourceDriver() const { return _entitySourceDriver; }
-
-        protected:
-            const EntityMap &_entityMap;
-            const EntityLoader &_entityLoader;
-            const EntitySourceDriver &_entitySourceDriver;
-
-        private:
-            std::unordered_map<std::shared_ptr<Identity>, std::shared_ptr<Entity>> _identityMap;
-
         };
+
+        using SPtrEntityStore = std::shared_ptr<EntityStore>;
     }
 }
 

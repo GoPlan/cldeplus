@@ -2,15 +2,10 @@
 // Created by LE, Duc-Anh on 5/23/15.
 //
 
-#include <memory>
 #include <string>
-#include "Exception/cldeEntityStoreRoutineException.h"
-#include "EntityLoader.h"
 #include "EntitySourceDriver.h"
-#include "EntityMap.h"
-#include "Entity.h"
-#include "Helper/SqlGenerator.h"
-#include "Helper/EntityStoreHelper.h"
+#include "Query/Helper/SqlHelper.h"
+#include "Store/Helper/EntityStoreHelper.h"
 
 using namespace std;
 
@@ -26,11 +21,11 @@ namespace Cloude {
             //
         }
 
-        bool EntityStore::HasIdentityInMap(const shared_ptr<Identity> &identity) const {
+        bool EntityStore::HasIdentityInMap(const SPtrIdentity &identity) const {
             return !(_identityMap.find(identity) == _identityMap.end());
         }
 
-        shared_ptr<Entity> EntityStore::Create() {
+        SPtrEntity EntityStore::Create() {
 
             auto identity = _entityLoader.NextPrimaryKey();
             auto entity = Create(identity);
@@ -38,25 +33,25 @@ namespace Cloude {
             return entity;
         }
 
-        shared_ptr<Entity> EntityStore::Create(const shared_ptr<Identity> &identity) {
+        SPtrEntity EntityStore::Create(const SPtrIdentity &identity) {
 
             if (!identity) {
-                const char *msg = "Identity is a nullptr or invalid";
-                throw Foundation::Exception::cldeEntityStoreRoutineException(msg);
+                std::string msg{"Identity is either a nullptr or invalid"};
+                throw std::invalid_argument(msg);
             }
 
             auto &columnsForGet = _entityMap.getColumnsForGet();
 
-            std::shared_ptr<Entity> entity(new Entity(identity));
+            SPtrEntity entity(new Entity(identity));
 
-            Foundation::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
+            Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, entity, false);
 
             Insert(entity);
 
             return entity;
         }
 
-        shared_ptr<Entity> EntityStore::Get(const shared_ptr<Identity> &identity) {
+        SPtrEntity EntityStore::Get(const SPtrIdentity &identity) {
 
             auto search = _identityMap.find(identity);
 
@@ -66,22 +61,22 @@ namespace Cloude {
 
             auto &columnsForGet = _entityMap.getColumnsForGet();
 
-            std::shared_ptr<Entity> entity(new Entity(identity));
+            SPtrEntity sptrEntity(new Entity(identity));
 
-            Foundation::Helper::GenerateFieldsFromColumns(entity, columnsForGet);
+            Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, sptrEntity, false);
 
-            if (!_entitySourceDriver.Load(entity)) {
-                return std::shared_ptr<Entity>(nullptr);
+            if (!_entitySourceDriver.Load(sptrEntity)) {
+                return SPtrEntity(nullptr);
             }
 
             // Entity makes a copy of std::shared_ptr<Identity>,
             // Therefore, Identity must be taken from Entity
-            _identityMap.insert(make_pair(entity->getIdentity(), entity));
+            _identityMap.insert(make_pair(sptrEntity->getIdentity(), sptrEntity));
 
-            return entity;
+            return sptrEntity;
         }
 
-        void EntityStore::Insert(std::shared_ptr<Entity> &entity) {
+        void EntityStore::Insert(SPtrEntity &entity) {
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
@@ -90,11 +85,11 @@ namespace Cloude {
             }
         }
 
-        void EntityStore::Save(std::shared_ptr<Entity> &entity) {
+        void EntityStore::Save(SPtrEntity &entity) {
             _entitySourceDriver.Save(entity);
         }
 
-        void EntityStore::Delete(std::shared_ptr<Entity> &entity) {
+        void EntityStore::Delete(SPtrEntity &entity) {
             if (_entitySourceDriver.Delete(entity)) {
                 auto identity = entity->getIdentity();
                 _identityMap.erase(identity);

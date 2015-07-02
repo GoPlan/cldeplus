@@ -5,6 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_H
 
+#include "ComparativeType.h"
 #include "Comparative/And.h"
 #include "Comparative/Or.h"
 #include "Comparative/Equal.h"

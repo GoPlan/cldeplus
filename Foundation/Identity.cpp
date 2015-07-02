@@ -1,40 +1,18 @@
 //
-// Created by GoPlan on 14/05/2015.
+// Created by LE, Duc Anh on 14/05/2015.
 //
 
 #include "Identity.h"
-#include "Field.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        void Identity::setField(std::shared_ptr<Field> &field) {
-            _fieldsMap[field->getColumn()->getName()] = field;
+        Identity::Identity(const std::vector<SPtrCell> &fieldVector) {
+            Store::AbstractEntity::setMultiCells(fieldVector);
         }
 
-        void Identity::setField(Field *ptrField) {
-            std::shared_ptr<Field> spField(ptrField);
-            _fieldsMap[ptrField->getColumn()->getName()] = spField;
-        }
-
-        void Identity::setMultiFields(const std::initializer_list<Field *> &ptrFieldList) {
-            for (auto ptrField : ptrFieldList) {
-                setField(ptrField);
-            }
-        }
-
-        void Identity::setMultiFields(const std::initializer_list<std::shared_ptr<Field>> &spFieldList) {
-            for (auto spField : spFieldList) {
-                setField(const_cast<std::shared_ptr<Field> &>(spField));
-            }
-        }
-
-        Identity::Identity(const std::initializer_list<Field *> ptrFieldList) {
-            setMultiFields(ptrFieldList);
-        }
-
-        Identity::Identity(const std::initializer_list<std::shared_ptr<Field>>& fieldsList) {
-            setMultiFields(fieldsList);
+        Identity::Identity(const std::vector<Cell *> &fieldVector) {
+            Store::AbstractEntity::setMultiCells(fieldVector);
         }
     }
 }

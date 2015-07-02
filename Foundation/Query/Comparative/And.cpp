@@ -8,13 +8,7 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
-
-                Enumeration::ComparativeType And::_type = Enumeration::ComparativeType::And;
-                
-                const Column &And::getColumn() const {
-                    const char *msg = "AND compartive does not support getColumn()";
-                    throw Exception::cldeNonSupportedFunctionException(msg);
-                }
+                ComparativeType And::_type = ComparativeType::And;
             }
         }
     }

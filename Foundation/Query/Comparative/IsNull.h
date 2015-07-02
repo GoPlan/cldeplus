@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_ISNULL_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_ISNULL_H
 
-#include "../PredicateLeaf.h"
+#include "../CriteriaLeaf.h"
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 
 namespace Cloude {
@@ -13,23 +13,22 @@ namespace Cloude {
         namespace Query {
             namespace Comparative {
 
-                class IsNull : public Predicate {
+                class IsNull : public Criteria {
+
+                    const SPtrColumn &_column;
+                    static ComparativeType _type;
 
                 public:
-                    IsNull(const Column &column) : _column(column) { };
+                    IsNull(const SPtrColumn &column) : _column(column) { };
                     virtual ~IsNull() = default;
                     IsNull(const IsNull &rhs) = default;
                     IsNull &operator=(const IsNull &rhs) = default;
 
-                    // PredicateLeaf
-                    const Column &getColumn() const override;
+                    // CriteriaLeaf
+                    const SPtrColumn &getColumn() const override;
                     const bool isComposite() const override;
-                    const Enumeration::ComparativeType &getType() const override;
-                    const Type::cldeValue &getValue() const override;
-
-                private:
-                    const Column &_column;
-                    static Enumeration::ComparativeType _type;
+                    const ComparativeType &getComparativeType() const override;
+                    const Data::SPtrValue &getValue() const override;
                 };
             }
         }

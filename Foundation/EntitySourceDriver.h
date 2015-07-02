@@ -5,39 +5,43 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYSOURCEDRIVER_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYSOURCEDRIVER_H
 
-#include <memory>
-#include <vector>
 #include "EntityMap.h"
 #include "EntityProxy.h"
 #include "Entity.h"
-#include "Query/Predicate.h"
+#include "Query/Criteria.h"
 
 namespace Cloude {
     namespace Foundation {
 
         class EntitySourceDriver {
 
-        public:
-            using UPtrProxy = std::unique_ptr<EntityProxy>;
-            using UPtrProxyVector = std::unique_ptr<std::vector<UPtrProxy>>;
-            using UPtrPredicate = std::unique_ptr<Query::Predicate>;
-
-        public:
-            explicit EntitySourceDriver(const EntityMap &entityMap) : _entityMap(entityMap) { };
-            virtual ~EntitySourceDriver() = default;
-            EntitySourceDriver(const EntitySourceDriver &rhs) = delete;
-            EntitySourceDriver &operator=(const EntitySourceDriver &rhs) = delete;
-
-            virtual int Load(std::shared_ptr<Entity> &entity) const = 0;
-            virtual int Insert(std::shared_ptr<Entity> &entity) const = 0;
-            virtual int Save(std::shared_ptr<Entity> &entity) const = 0;
-            virtual int Delete(std::shared_ptr<Entity> &entity) const = 0;
-            virtual UPtrProxyVector Select(const UPtrPredicate &predicate) const = 0;
-
-        protected:
             const EntityMap &_entityMap;
 
+        public:
+            explicit EntitySourceDriver(const EntityMap &entityMap);
+            EntitySourceDriver(const EntitySourceDriver &) = delete;
+            EntitySourceDriver(EntitySourceDriver &&) = delete;
+            EntitySourceDriver &operator=(const EntitySourceDriver &) = delete;
+            EntitySourceDriver &operator=(EntitySourceDriver &&) = delete;
+            virtual ~EntitySourceDriver() = default;
+
+            virtual int Load(SPtrEntity &entity) const = 0;
+            virtual int Insert(SPtrEntity &entity) const = 0;
+            virtual int Save(SPtrEntity &entity) const = 0;
+            virtual int Delete(SPtrEntity &entity) const = 0;
+
+            virtual SPtrEntityProxyVector SelectVector(
+                    const Foundation::Query::SPtrCriteria &sptrCriteria,
+                    const Foundation::SPtrColumnVector &columnsForProjection) const = 0;
+
+            virtual SPtrEntityProxySet SelectSet(
+                    const Foundation::Query::SPtrCriteria &sptrCriteria,
+                    const Foundation::SPtrColumnVector &columnsForProjection) const = 0;
+
+            const EntityMap &getEntityMap() const { return _entityMap; }
         };
+
+        using SPtrEntitySourceDriver = std::shared_ptr<EntitySourceDriver>;
     }
 }
 

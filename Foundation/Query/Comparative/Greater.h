@@ -5,27 +5,27 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_GREATER_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_GREATER_H
 
-
-#include "../PredicateLeaf.h"
+#include "../CriteriaLeaf.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
 
-                class Greater : public Query::PredicateLeaf {
+                class Greater : public Query::CriteriaLeaf {
+
+                    static ComparativeType _type;
 
                 public:
-                    Greater(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
+                    Greater(const SPtrColumn &column, const Data::SPtrValue &value) : CriteriaLeaf(column, value) { };
+                    Greater(const Greater &) = default;
+                    Greater(Greater &&) = default;
+                    Greater &operator=(const Greater &) = default;
+                    Greater &operator=(Greater &&) = default;
                     ~Greater() = default;
-                    Greater(const Greater &rhs) = default;
-                    Greater &operator=(const Greater &rhs) = default;
 
-                    // Predicate
-                    const Enumeration::ComparativeType &getType() const override { return _type; }
-
-                private:
-                    static Enumeration::ComparativeType _type;
+                    // Criteria
+                    const ComparativeType &getComparativeType() const override { return _type; }
                 };
             }
         }

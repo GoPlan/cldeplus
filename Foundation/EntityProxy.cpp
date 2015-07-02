@@ -2,19 +2,20 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
+#include <Foundation/Exception/cldeEntityException.h>
+#include <Foundation/Query/Helper/ProxyHelper.h>
 #include "EntityProxy.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        EntityProxy::EntityProxy(EntityStore &entityStore, std::shared_ptr<Identity> &identity)
-                : _entityStore(entityStore), _identity(identity) {
-            //
+        SPtrEntity EntityProxy::Summon(SPtrEntityStore &entityStore) {
+            auto shared = shared_from_this();
+            return Query::Helper::ProxyHelper::Summon(shared, entityStore);
         }
 
-        std::shared_ptr<Entity> EntityProxy::Summon() {
-            auto entity = _entityStore.Get(_identity);
-            return entity;
+        bool EntityProxy::isIdentifiableInStore(SPtrEntityStore &entityStore) {
+            return Query::Helper::ProxyHelper::isIdentifiableInStore(shared_from_this(), entityStore);
         }
     }
 }

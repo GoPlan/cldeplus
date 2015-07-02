@@ -9,10 +9,11 @@ namespace Cloude {
     namespace Foundation {
         namespace Common {
 
-            class IEquatable {
+            class IEquatable : public std::binary_function<IEquatable, IEquatable, bool> {
 
             public:
-                virtual bool Equal(const IEquatable &rhs) = 0;
+                virtual bool Equal(const IEquatable &rhs) const = 0;
+//                virtual bool operator==(const IEquatable &rhs, const IEquatable &lhs) = 0;
             };
         }
     }

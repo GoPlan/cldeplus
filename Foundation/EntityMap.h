@@ -1,5 +1,5 @@
 //
-// Created by GoPlan on 14/05/2015.
+// Created by LE, Duc Anh on 14/05/2015.
 //
 
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
@@ -11,34 +11,42 @@
 #include <unordered_map>
 
 #include "Column.h"
+#include "EntityLink.h"
 
 namespace Cloude {
     namespace Foundation {
 
+        using LinkMap = std::unordered_map<std::string, EntityLink>;
+
         class EntityMap {
 
+            LinkMap _linkMap;
+
         public:
-            EntityMap() = default;
-            EntityMap(const EntityMap &srcEntityMap) = default;
-            EntityMap &operator=(const EntityMap &srcEntityMap) = default;
+            EntityMap(const EntityMap &) = delete;
+            EntityMap(EntityMap &&) = delete;
+            EntityMap &operator=(const EntityMap &) = delete;
+            EntityMap &operator=(EntityMap &&) = delete;
             virtual ~EntityMap() = default;
 
-            const std::string& TableName() const {
-                return TableNameCore();
-            }
+            const std::string &getTableName() const { return TableNameCore(); }
 
-            const std::vector<std::shared_ptr<Column>> &getColumnsForKey() const { return _columnsForKey; }
-            const std::vector<std::shared_ptr<Column>> &getColumnsForGet() const { return _columnsForGet; }
-            const std::vector<std::shared_ptr<Column>> &getColumnsForUpdate() const { return _columnsForUpdate; }
-            const std::vector<std::shared_ptr<Column>> &getColumnsForSelect() const { return _columnsForSelect; }
+            const SPtrColumnVector &getColumnsForKey() const { return _columnsForKey; }
+            const SPtrColumnVector &getColumnsForGet() const { return _columnsForGet; }
+            const SPtrColumnVector &getColumnsForUpdate() const { return _columnsForUpdate; }
+            const SPtrColumnVector &getColumnsForSelect() const { return _columnsForSelect; }
+
+            const LinkMap &getLinkMap() const { return _linkMap; }
 
         protected:
-            std::vector<std::shared_ptr<Column>> _columnsForKey;
-            std::vector<std::shared_ptr<Column>> _columnsForGet;
-            std::vector<std::shared_ptr<Column>> _columnsForUpdate;
-            std::vector<std::shared_ptr<Column>> _columnsForSelect;
+            EntityMap() = default;
 
-            virtual const std::string& TableNameCore() const = 0;
+            SPtrColumnVector _columnsForKey;
+            SPtrColumnVector _columnsForGet;
+            SPtrColumnVector _columnsForUpdate;
+            SPtrColumnVector _columnsForSelect;
+
+            virtual const std::string &TableNameCore() const = 0;
         };
     }
 }

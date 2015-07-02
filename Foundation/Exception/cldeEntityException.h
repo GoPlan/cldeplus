@@ -16,9 +16,11 @@ namespace Cloude {
             public:
                 cldeEntityException(const char *message) : cldeException(message) { };
                 cldeEntityException(const std::string &message) : cldeException(message) { };
+                cldeEntityException(const cldeEntityException &) = default;
+                cldeEntityException(cldeEntityException &&) = default;
+                cldeEntityException &operator=(const cldeEntityException &) = default;
+                cldeEntityException &operator=(cldeEntityException &&) = default;
                 ~cldeEntityException() = default;
-                cldeEntityException(const cldeEntityException &rhs) = default;
-                cldeEntityException &operator=(const cldeEntityException &rhs) = default;
             };
         }
     }

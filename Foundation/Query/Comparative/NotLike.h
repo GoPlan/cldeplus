@@ -5,27 +5,27 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_NOTLIKE_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_NOTLIKE_H
 
-#include "../PredicateLeaf.h"
+#include "../CriteriaLeaf.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
 
-                class NotLike : public PredicateLeaf {
+                class NotLike : public CriteriaLeaf {
+
+                    static ComparativeType _type;
 
                 public:
-                    NotLike(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
+                    NotLike(const SPtrColumn &column, const Data::SPtrValue &value) : CriteriaLeaf(column, value) { };
+                    NotLike(const NotLike &) = default;
+                    NotLike(NotLike &&) = default;
+                    NotLike &operator=(const NotLike &) = default;
+                    NotLike &operator=(NotLike &) = default;
                     ~NotLike() = default;
-                    NotLike(const NotLike &rhs) = default;
-                    NotLike &operator=(const NotLike &rhs) = default;
 
-                    // Predicate
-                    const Enumeration::ComparativeType &getType() const override;
-
-                private:
-                    static Enumeration::ComparativeType _type;
-
+                    // Criteria
+                    const ComparativeType &getComparativeType() const override { return _type; };
                 };
             }
         }

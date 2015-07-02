@@ -5,26 +5,27 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_EQUAL_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_EQUAL_H
 
-#include "../PredicateLeaf.h"
+#include "../CriteriaLeaf.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
 
-                class Equal : public Query::PredicateLeaf {
-                
+                class Equal : public Query::CriteriaLeaf {
+
+                    static ComparativeType _type;
+
                 public:
-                    Equal(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
-                    virtual ~Equal() = default;
-                    Equal(const Equal &rhs) = default;
-                    Equal &operator=(const Equal &rhs) = default;
+                    Equal(const SPtrColumn &column, const Data::SPtrValue &value) : CriteriaLeaf(column, value) { };
+                    Equal(const Equal &) = default;
+                    Equal(Equal &&) = default;
+                    Equal &operator=(const Equal &) = default;
+                    Equal &operator=(Equal &&) = default;
+                    ~Equal() = default;
 
-                    // PredicateLeaf
-                    const Enumeration::ComparativeType &getType() const override { return _type; };
-
-                private:
-                    static Enumeration::ComparativeType _type;
+                    // CriteriaLeaf
+                    const ComparativeType &getComparativeType() const override { return _type; };
                 };
             }
         }

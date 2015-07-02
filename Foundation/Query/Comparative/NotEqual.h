@@ -5,26 +5,27 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_NOTEQUAL_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_NOTEQUAL_H
 
-#include "../PredicateLeaf.h"
+#include "../CriteriaLeaf.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
 
-                class NotEqual : public PredicateLeaf {
+                class NotEqual : public CriteriaLeaf {
+
+                    static ComparativeType _type;
 
                 public:
-                    NotEqual(const Column &column, const Type::cldeValue &value) : PredicateLeaf(column, value) { };
+                    NotEqual(const SPtrColumn &column, const Data::SPtrValue &value) : CriteriaLeaf(column, value) { };
+                    NotEqual(const NotEqual &) = default;
+                    NotEqual(NotEqual &&) = default;
+                    NotEqual &operator=(const NotEqual &) = default;
+                    NotEqual &operator=(NotEqual &&) = default;
                     virtual ~NotEqual() = default;
-                    NotEqual(const NotEqual &rhs) = default;
-                    NotEqual &operator=(const NotEqual &rhs) = default;
 
-                    // PredicateLeaf
-                    const Enumeration::ComparativeType &getType() const override { return _type; };
-
-                private:
-                    static Enumeration::ComparativeType _type;
+                    // CriteriaLeaf
+                    const ComparativeType &getComparativeType() const override { return _type; };
                 };
             }
         }

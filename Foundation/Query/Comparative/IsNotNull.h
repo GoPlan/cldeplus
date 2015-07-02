@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_ISNOTNULL_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_ISNOTNULL_H
 
-#include "../Predicate.h"
+#include "../Criteria.h"
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 
 namespace Cloude {
@@ -13,23 +13,24 @@ namespace Cloude {
         namespace Query {
             namespace Comparative {
 
-                class IsNotNull : public Predicate {
+                class IsNotNull : public Criteria {
+
+                    const SPtrColumn &_column;
+                    static ComparativeType _type;
 
                 public:
-                    IsNotNull(const Column &column) : _column(column) { };
+                    IsNotNull(const SPtrColumn &column) : _column(column) { };
+                    IsNotNull(const IsNotNull &) = default;
+                    IsNotNull(IsNotNull &&) = default;
+                    IsNotNull &operator=(const IsNotNull &) = default;
+                    IsNotNull &operator=(IsNotNull &&) = default;
                     virtual ~IsNotNull() = default;
-                    IsNotNull(const IsNotNull &rhs) = default;
-                    IsNotNull &operator=(const IsNotNull &rhs) = default;
 
-                    // PredicateLeaf
-                    const Column &getColumn() const override;
+                    // CriteriaLeaf
+                    const SPtrColumn &getColumn() const override;
                     const bool isComposite() const override;
-                    const Enumeration::ComparativeType &getType() const override;
-                    const Type::cldeValue &getValue() const override;
-
-                private:
-                    const Column &_column;
-                    static Enumeration::ComparativeType _type;
+                    const ComparativeType &getComparativeType() const override;
+                    const Data::SPtrValue &getValue() const override;
                 };
             }
         }

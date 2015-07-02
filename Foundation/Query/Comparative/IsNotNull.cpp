@@ -9,19 +9,19 @@ namespace Cloude {
         namespace Query {
             namespace Comparative {
 
-                Enumeration::ComparativeType IsNotNull::_type = Enumeration::ComparativeType::IsNotNull;
+                ComparativeType IsNotNull::_type = ComparativeType::IsNotNull;
 
-                const Enumeration::ComparativeType &IsNotNull::getType() const {
+                const ComparativeType &IsNotNull::getComparativeType() const {
                     return _type;
                 }
-                const Column &IsNotNull::getColumn() const {
+                const SPtrColumn &IsNotNull::getColumn() const {
                     return _column;
                 }
                 const bool IsNotNull::isComposite() const {
                     return false;
                 }
-                const Type::cldeValue &IsNotNull::getValue() const {
-                    const char *msg = "IsNotNull comparator does not support getValue() method.";
+                const Data::SPtrValue &IsNotNull::getValue() const {
+                    std::string msg{"IsNotNull comparator does not support getValue() method."};
                     throw Exception::cldeNonSupportedFunctionException(msg);
                 }
             }

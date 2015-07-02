@@ -9,32 +9,36 @@
 #include <vector>
 #include "EntityProxy.h"
 #include "EntityStore.h"
-#include "Query/Predicate.h"
+#include "Query/Criteria.h"
 
 namespace Cloude {
     namespace Foundation {
 
         class EntityQuery {
-        
-        public:
-            using spProxy = std::shared_ptr<EntityProxy>;
-            using spProxyVector = std::shared_ptr<std::vector<spProxy>>;
+
+            SPtrEntityStore _entityStore;
 
         public:
-            explicit EntityQuery(const EntityStore &entityStore);
-            virtual ~EntityQuery() = default;
-            EntityQuery(const EntityQuery &srcEntityQuery) = default;
-            EntityQuery &operator=(const EntityQuery &srcEntityQuery) = default;
+            explicit EntityQuery(const SPtrEntityStore &entityStore);
+            EntityQuery(const EntityQuery &) = default;
+            EntityQuery(EntityQuery &&) = default;
+            EntityQuery &operator=(const EntityQuery &) = default;
+            EntityQuery &operator=(EntityQuery &&) = default;
+            ~EntityQuery() = default;
 
-            spProxyVector Compose(const std::shared_ptr<Query::Predicate> &predicate);
-            spProxy ComposeGetFirst(const std::shared_ptr<Query::Predicate> &predicate);
+            // Locals
+            virtual SPtrEntityProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);
 
-        private:
-            const EntityMap &_entityMap;
-            const EntityStore &_entityStore;
-            const EntitySourceDriver &_entitySourceDriver;
+            virtual SPtrEntityProxyVector ComposeVector(const Query::SPtrCriteria &sptrCriteria);
+            virtual SPtrEntityProxyVector ComposeVector(const Query::SPtrCriteria &sptrCriteria,
+                                                        const SPtrColumnVector &columnsForProjection);
 
+            virtual SPtrEntityProxySet ComposeSet(const Query::SPtrCriteria &sptrCriteria);
+            virtual SPtrEntityProxySet ComposeSet(const Query::SPtrCriteria &sptrCriteria,
+                                                  const SPtrColumnVector &columnsForProjection);
         };
+
+        using SPtrEntityQuery = std::shared_ptr<EntityQuery>;
     }
 }
 
