@@ -44,9 +44,9 @@ namespace Cloude {
                 sptrOrderProxy->setCell(sptrOrderNameCell);
                 sptrOrderProxy->setCell(sptrTotalCell);
 
-                // Double (Type) Converter
-                auto sptrDoubleConverter = TypeConverterFactory::CreateDoubleConverter();
-                auto sptrInt64Total = sptrDoubleConverter->Convert(Foundation::Data::ValueType::Int64, sptrTotal);
+                // Double (Type) Caster
+                auto sptrDoubleConverter = CasterFactory::CreateDoubleConverter();
+                auto sptrInt64Total = sptrDoubleConverter->Cast(Foundation::Data::ValueType::Int64, sptrTotal);
 
                 // Entity Transformer
                 Foundation::SPtrColumn orderNewNameColumn = std::make_shared<Foundation::Column>("NewName", Foundation::Data::ValueType::VarChar);

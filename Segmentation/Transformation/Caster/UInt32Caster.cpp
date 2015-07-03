@@ -5,18 +5,18 @@
 #include <Foundation/Data/Helper/TypeHelper.h>
 #include <Segmentation/Exception/TransformationException.h>
 #include <Foundation/Data/ValueFactory.h>
-#include "UInt32Converter.h"
+#include "UInt32Caster.h"
 
 namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
 
-            Foundation::Data::SPtrValue Converter::UInt32Converter::Convert(
+            Foundation::Data::SPtrValue Caster::UInt32Caster::Cast(
                     Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
                 if (value->getDataType() != Foundation::Data::ValueType::UInt32) {
                     std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
-                    std::string msg{type + " is not supported by UInt32Converter"};
+                    std::string msg{type + " is not supported by UInt32Caster"};
                     throw Segmentation::Exception::TransformationException{msg};
                 }
 

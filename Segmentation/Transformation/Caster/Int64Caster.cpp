@@ -5,28 +5,27 @@
 #include <Foundation/Data/Helper/TypeHelper.h>
 #include <Segmentation/Exception/TransformationException.h>
 #include <Foundation/Data/ValueFactory.h>
-#include "Int32Converter.h"
+#include "Int64Caster.h"
 
 namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
-
-            Foundation::Data::SPtrValue Converter::Int32Converter::Convert(
+            Foundation::Data::SPtrValue Caster::Int64Caster::Cast(
                     Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
-                if (value->getDataType() != Foundation::Data::ValueType::Int32) {
+                if (value->getDataType() != Foundation::Data::ValueType::Int64) {
                     std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
-                    std::string msg{type + " is not supported by Int32Converter"};
+                    std::string msg{type + " is not supported by Int64Caster"};
                     throw Segmentation::Exception::TransformationException{msg};
                 }
 
-                int32_t *tmp = reinterpret_cast<int32_t *>(value->RawPointerToValueBuffer());
+                int64_t *tmp = reinterpret_cast<int64_t *>(value->RawPointerToValueBuffer());
 
                 switch (dataType) {
                     case Foundation::Data::ValueType::Int16:
                         return Foundation::Data::ValueFactory::CreateInt16((int16_t) *tmp);
-                    case Foundation::Data::ValueType::Int64:
-                        return Foundation::Data::ValueFactory::CreateInt64((int64_t) *tmp);
+                    case Foundation::Data::ValueType::Int32:
+                        return Foundation::Data::ValueFactory::CreateInt32((int32_t) *tmp);
                     case Foundation::Data::ValueType::UInt16:
                         return Foundation::Data::ValueFactory::CreateUInt16((uint16_t) *tmp);
                     case Foundation::Data::ValueType::UInt32:
@@ -43,7 +42,7 @@ namespace Cloude {
                         return Foundation::Data::ValueFactory::CreateByte((char) *tmp);
                     default: {
                         std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
-                        std::string msg{"This converter can not convert Int32 into " + type};
+                        std::string msg{"This converter can not convert Int64 into " + type};
                         throw Segmentation::Exception::TransformationException{msg};
                     }
                 }

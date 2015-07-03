@@ -2,25 +2,26 @@
 // Created by LE, Duc Anh on 7/2/15.
 //
 
-#include <Foundation/Data/Helper/TypeHelper.h>
 #include <Segmentation/Exception/TransformationException.h>
+#include <Foundation/Data/Helper/TypeHelper.h>
 #include <Foundation/Data/ValueFactory.h>
-#include "BooleanConverter.h"
+#include "ByteCaster.h"
 
 namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
-            namespace Converter {
-                Foundation::Data::SPtrValue BooleanConverter::Convert(
+            namespace Caster {
+
+                Foundation::Data::SPtrValue Caster::ByteCaster::Cast(
                         Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
-                    if (value->getDataType() != Foundation::Data::ValueType::Boolean) {
+                    if (value->getDataType() != Foundation::Data::ValueType::Byte) {
                         std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
-                        std::string msg{type + " is not supported by BooleanConverter"};
+                        std::string msg{type + " is not supported by ByteCaster"};
                         throw Segmentation::Exception::TransformationException{msg};
                     }
 
-                    bool *tmp = reinterpret_cast<bool *>(value->RawPointerToValueBuffer());
+                    char *tmp = reinterpret_cast<char *>(value->RawPointerToValueBuffer());
 
                     switch (dataType) {
                         case Foundation::Data::ValueType::Int16:
@@ -39,12 +40,12 @@ namespace Cloude {
                             return Foundation::Data::ValueFactory::CreateByte((float) *tmp);
                         case Foundation::Data::ValueType::Double:
                             return Foundation::Data::ValueFactory::CreateFloat((double) *tmp);
-                        case Foundation::Data::ValueType::Byte:
-                            return Foundation::Data::ValueFactory::CreateBoolean((char) *tmp);
+                        case Foundation::Data::ValueType::Boolean:
+                            return Foundation::Data::ValueFactory::CreateBoolean((bool) *tmp);
 
                         default: {
                             std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
-                            std::string msg{"This converter can not convert Boolean into " + type};
+                            std::string msg{"This converter can not convert byte into " + type};
                             throw Segmentation::Exception::TransformationException{msg};
                         }
                     }
@@ -53,4 +54,5 @@ namespace Cloude {
         }
     }
 }
+
 

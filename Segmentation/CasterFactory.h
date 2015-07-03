@@ -2,23 +2,23 @@
 // Created by LE, Duc Anh on 7/2/15.
 //
 
-#ifndef CLOUD_E_PLUS_SEGMENTATION_TYPECONVERTERFACTORY_H
-#define CLOUD_E_PLUS_SEGMENTATION_TYPECONVERTERFACTORY_H
+#ifndef CLOUD_E_PLUS_SEGMENTATION_CASTERFACTORY_H
+#define CLOUD_E_PLUS_SEGMENTATION_CASTERFACTORY_H
 
-#include "Transformation/TypeConverter.h"
+#include "Transformation/TypeCaster.h"
 
 namespace Cloude {
     namespace Segmentation {
 
-        class TypeConverterFactory {
+        class CasterFactory {
 
         public:
-            TypeConverterFactory() = delete;
-            TypeConverterFactory(const TypeConverterFactory &) = delete;
-            TypeConverterFactory(TypeConverterFactory &&) = delete;
-            TypeConverterFactory &operator=(const TypeConverterFactory &) = delete;
-            TypeConverterFactory &operator=(TypeConverterFactory &&) = delete;
-            virtual ~TypeConverterFactory() = delete;
+            CasterFactory() = delete;
+            CasterFactory(const CasterFactory &) = delete;
+            CasterFactory(CasterFactory &&) = delete;
+            CasterFactory &operator=(const CasterFactory &) = delete;
+            CasterFactory &operator=(CasterFactory &&) = delete;
+            virtual ~CasterFactory() = delete;
 
             static Transformation::SPtrTypeConverter CreateByteConverter();
             static Transformation::SPtrTypeConverter CreateBooleanConverter();
@@ -37,4 +37,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_TYPECONVERTERFACTORY_H
+#endif //CLOUD_E_PLUS_SEGMENTATION_CASTERFACTORY_H

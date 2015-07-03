@@ -5,21 +5,21 @@
 #include <Segmentation/Exception/TransformationException.h>
 #include <Foundation/Data/Helper/TypeHelper.h>
 #include <Foundation/Data/ValueFactory.h>
-#include "FloatConverter.h"
+#include "DoubleCaster.h"
 
 namespace Cloude {
     namespace Segmentation {
 
-        Foundation::Data::SPtrValue Transformation::Converter::FloatConverter::Convert(
+        Foundation::Data::SPtrValue Transformation::Caster::DoubleCaster::Cast(
                 Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
-            if (value->getDataType() != Foundation::Data::ValueType::Float) {
+            if (value->getDataType() != Foundation::Data::ValueType::Double) {
                 std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
-                std::string msg{type + " is not supported by FloatConverter"};
+                std::string msg{type + " is not supported by DoubleCaster"};
                 throw Segmentation::Exception::TransformationException{msg};
             }
 
-            float *tmp = reinterpret_cast<float *>(value->RawPointerToValueBuffer());
+            double *tmp = reinterpret_cast<double *>(value->RawPointerToValueBuffer());
 
             switch (dataType) {
                 case Foundation::Data::ValueType::Int16:
@@ -34,18 +34,19 @@ namespace Cloude {
                     return Foundation::Data::ValueFactory::CreateUInt32((uint32_t) *tmp);
                 case Foundation::Data::ValueType::UInt64:
                     return Foundation::Data::ValueFactory::CreateUInt64((uint64_t) *tmp);
-                case Foundation::Data::ValueType::Double:
-                    return Foundation::Data::ValueFactory::CreateFloat((double) *tmp);
+                case Foundation::Data::ValueType::Float:
+                    return Foundation::Data::ValueFactory::CreateFloat((float) *tmp);
                 case Foundation::Data::ValueType::Boolean:
                     return Foundation::Data::ValueFactory::CreateBoolean((bool) *tmp);
                 case Foundation::Data::ValueType::Byte:
                     return Foundation::Data::ValueFactory::CreateByte((char) *tmp);
                 default: {
                     std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
-                    std::string msg{"This converter can not convert float into " + type};
+                    std::string msg{"This converter can not convert double into " + type};
                     throw Segmentation::Exception::TransformationException{msg};
                 }
             }
         }
     }
 }
+

@@ -191,39 +191,39 @@ add_library(segmentation STATIC
     Segmentation/Transformation/EntityTransformer.h
     Segmentation/Transformation/CellTransformer.cpp
     Segmentation/Transformation/CellTransformer.h
-    Segmentation/Transformation/TypeConverter.cpp
-    Segmentation/Transformation/TypeConverter.h
-    Segmentation/Transformation/Converter/DoubleConverter.cpp
-    Segmentation/Transformation/Converter/DoubleConverter.h
-    Segmentation/Transformation/Converter/Int64Converter.cpp
-    Segmentation/Transformation/Converter/Int64Converter.h
-    Segmentation/Transformation/Converter/Int32Converter.cpp
-    Segmentation/Transformation/Converter/Int32Converter.h
-    Segmentation/Transformation/Converter/FloatConverter.cpp
-    Segmentation/Transformation/Converter/FloatConverter.h
-    Segmentation/Transformation/Converter/Int16Converter.cpp
-    Segmentation/Transformation/Converter/Int16Converter.h
-    Segmentation/Transformation/Converter/UInt16Converter.cpp
-    Segmentation/Transformation/Converter/UInt16Converter.h
-    Segmentation/Transformation/Converter/UInt32Converter.cpp
-    Segmentation/Transformation/Converter/UInt32Converter.h
-    Segmentation/Transformation/Converter/UInt64Converter.cpp
-    Segmentation/Transformation/Converter/UInt64Converter.h
+    Segmentation/Transformation/TypeCaster.cpp
+    Segmentation/Transformation/TypeCaster.h
+    Segmentation/Transformation/Caster/DoubleCaster.cpp
+    Segmentation/Transformation/Caster/DoubleCaster.h
+    Segmentation/Transformation/Caster/Int64Caster.cpp
+    Segmentation/Transformation/Caster/Int64Caster.h
+    Segmentation/Transformation/Caster/Int32Caster.cpp
+    Segmentation/Transformation/Caster/Int32Caster.h
+    Segmentation/Transformation/Caster/FloatCaster.cpp
+    Segmentation/Transformation/Caster/FloatCaster.h
+    Segmentation/Transformation/Caster/Int16Caster.cpp
+    Segmentation/Transformation/Caster/Int16Caster.h
+    Segmentation/Transformation/Caster/UInt16Caster.cpp
+    Segmentation/Transformation/Caster/UInt16Caster.h
+    Segmentation/Transformation/Caster/UInt32Caster.cpp
+    Segmentation/Transformation/Caster/UInt32Caster.h
+    Segmentation/Transformation/Caster/UInt64Caster.cpp
+    Segmentation/Transformation/Caster/UInt64Caster.h
     Segmentation/Exception/SegmentationException.cpp
     Segmentation/Exception/SegmentationException.h
     Segmentation/Exception/TransformationException.cpp
     Segmentation/Exception/TransformationException.h
     Segmentation/Segmentation.h
-    Segmentation/Transformation/Converter/BooleanConverter.cpp
-    Segmentation/Transformation/Converter/BooleanConverter.h
-    Segmentation/Transformation/Converter/ByteConverter.cpp
-    Segmentation/Transformation/Converter/ByteConverter.h
-    Segmentation/Transformation/Converter/StringConverter.cpp
-    Segmentation/Transformation/Converter/StringConverter.h
-    Segmentation/Transformation/Converter/VarCharConverter.cpp
-    Segmentation/Transformation/Converter/VarCharConverter.h
-    Segmentation/TypeConverterFactory.cpp
-    Segmentation/TypeConverterFactory.h)
+    Segmentation/Transformation/Caster/BooleanCaster.cpp
+    Segmentation/Transformation/Caster/BooleanCaster.h
+    Segmentation/Transformation/Caster/ByteCaster.cpp
+    Segmentation/Transformation/Caster/ByteCaster.h
+    Segmentation/Transformation/Caster/StringCaster.cpp
+    Segmentation/Transformation/Caster/StringCaster.h
+    Segmentation/Transformation/Caster/VarCharCaster.cpp
+    Segmentation/Transformation/Caster/VarCharCaster.h
+    Segmentation/CasterFactory.cpp
+    Segmentation/CasterFactory.h)
 
 
 add_library(Drivers STATIC

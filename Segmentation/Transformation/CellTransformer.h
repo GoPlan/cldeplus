@@ -7,14 +7,14 @@
 
 #include <Foundation/Column.h>
 #include <Foundation/Cell.h>
-#include "TypeConverter.h"
+#include "TypeCaster.h"
 
 namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
 
             /// CellTransformer:
-            /// Convert (copy) a cell into new cell with possibilities of transforming cell name and data type
+            /// Cast (copy) a cell into new cell with possibilities of transforming cell name and data type
             ///
             /// Note:
             /// New cell will use provided column iff a shared pointer of column is provided.
