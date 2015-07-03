@@ -20,18 +20,18 @@ namespace Cloude {
             CasterFactory &operator=(CasterFactory &&) = delete;
             virtual ~CasterFactory() = delete;
 
-            static Transformation::SPtrTypeConverter CreateByteConverter();
-            static Transformation::SPtrTypeConverter CreateBooleanConverter();
-            static Transformation::SPtrTypeConverter CreateDoubleConverter();
-            static Transformation::SPtrTypeConverter CreateFloatConverter();
-            static Transformation::SPtrTypeConverter CreateInt16Converter();
-            static Transformation::SPtrTypeConverter CreateInt32Converter();
-            static Transformation::SPtrTypeConverter CreateInt64Converter();
-            static Transformation::SPtrTypeConverter CreateUInt16Converter();
-            static Transformation::SPtrTypeConverter CreateUInt32Converter();
-            static Transformation::SPtrTypeConverter CreateUInt64Converter();
-            static Transformation::SPtrTypeConverter CreateStringConverter();
-            static Transformation::SPtrTypeConverter CreateVarCharConverter();
+            static Transformation::SPtrCaster CreateByteConverter();
+            static Transformation::SPtrCaster CreateBooleanConverter();
+            static Transformation::SPtrCaster CreateDoubleConverter();
+            static Transformation::SPtrCaster CreateFloatConverter();
+            static Transformation::SPtrCaster CreateInt16Converter();
+            static Transformation::SPtrCaster CreateInt32Converter();
+            static Transformation::SPtrCaster CreateInt64Converter();
+            static Transformation::SPtrCaster CreateUInt16Converter();
+            static Transformation::SPtrCaster CreateUInt32Converter();
+            static Transformation::SPtrCaster CreateUInt64Converter();
+            static Transformation::SPtrCaster CreateStringConverter();
+            static Transformation::SPtrCaster CreateVarCharConverter();
         };
     }
 }

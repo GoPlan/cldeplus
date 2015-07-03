@@ -19,40 +19,40 @@
 namespace Cloude {
     namespace Segmentation {
 
-        Transformation::SPtrTypeConverter CasterFactory::CreateByteConverter() {
+        Transformation::SPtrCaster CasterFactory::CreateByteConverter() {
             return std::make_shared<Transformation::Caster::ByteCaster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateBooleanConverter() {
+        Transformation::SPtrCaster CasterFactory::CreateBooleanConverter() {
             return std::make_shared<Transformation::Caster::BooleanCaster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateDoubleConverter() {
+        Transformation::SPtrCaster CasterFactory::CreateDoubleConverter() {
             return std::make_shared<Transformation::Caster::DoubleCaster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateFloatConverter() {
+        Transformation::SPtrCaster CasterFactory::CreateFloatConverter() {
             return std::make_shared<Transformation::Caster::FloatCaster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateInt16Converter() {
+        Transformation::SPtrCaster CasterFactory::CreateInt16Converter() {
             return std::make_shared<Transformation::Caster::Int16Caster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateInt32Converter() {
+        Transformation::SPtrCaster CasterFactory::CreateInt32Converter() {
             return std::make_shared<Transformation::Caster::Int32Caster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateInt64Converter() {
+        Transformation::SPtrCaster CasterFactory::CreateInt64Converter() {
             return std::make_shared<Transformation::Caster::Int64Caster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateUInt16Converter() {
+        Transformation::SPtrCaster CasterFactory::CreateUInt16Converter() {
             return std::make_shared<Transformation::Caster::UInt16Caster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateUInt32Converter() {
+        Transformation::SPtrCaster CasterFactory::CreateUInt32Converter() {
             return std::make_shared<Transformation::Caster::UInt32Caster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateUInt64Converter() {
+        Transformation::SPtrCaster CasterFactory::CreateUInt64Converter() {
             return std::make_shared<Transformation::Caster::UInt64Caster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateStringConverter() {
+        Transformation::SPtrCaster CasterFactory::CreateStringConverter() {
             return std::make_shared<Transformation::Caster::StringCaster>();
         }
-        Transformation::SPtrTypeConverter CasterFactory::CreateVarCharConverter() {
+        Transformation::SPtrCaster CasterFactory::CreateVarCharConverter() {
             return std::make_shared<Transformation::Caster::VarCharCaster>();
         }
     }

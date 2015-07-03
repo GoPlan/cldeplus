@@ -22,12 +22,12 @@ namespace Cloude {
             class CellTransformer {
 
                 Foundation::SPtrColumn _sptrTargetColumn;
-                SPtrTypeConverter _sptrTypeConverter;
+                SPtrCaster _sptrTypeConverter;
 
             public:
                 CellTransformer() = default;
                 CellTransformer(const Foundation::SPtrColumn &targetColumn);
-                CellTransformer(const Foundation::SPtrColumn &targetColumn, const SPtrTypeConverter &converter);
+                CellTransformer(const Foundation::SPtrColumn &targetColumn, const SPtrCaster &converter);
                 CellTransformer(const CellTransformer &) = default;
                 CellTransformer(CellTransformer &&) = default;
                 CellTransformer &operator=(const CellTransformer &) = default;
@@ -36,13 +36,13 @@ namespace Cloude {
 
                 // Accessor
                 const Foundation::SPtrColumn &TargetColumn() const { return _sptrTargetColumn; }
-                const SPtrTypeConverter &TypeConverter() const { return _sptrTypeConverter; }
+                const SPtrCaster &TypeConverter() const { return _sptrTypeConverter; }
 
                 // Mutator
                 void setTargetColumn(const Foundation::SPtrColumn &sptrTargetColumn) {
                     _sptrTargetColumn = sptrTargetColumn;
                 }
-                void setTypeConverter(const SPtrTypeConverter &sptrTypeConverter) {
+                void setTypeConverter(const SPtrCaster &sptrTypeConverter) {
                     _sptrTypeConverter = sptrTypeConverter;
                 }
 

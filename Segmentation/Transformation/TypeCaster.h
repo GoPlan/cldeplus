@@ -32,7 +32,7 @@ namespace Cloude {
             };
 
 
-            using SPtrTypeConverter = std::shared_ptr<TypeCaster>;
+            using SPtrCaster = std::shared_ptr<TypeCaster>;
         }
     }
 }

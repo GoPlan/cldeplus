@@ -269,7 +269,7 @@ add_library(application STATIC
     AppTest/Application/CustomerMap.cpp
     AppTest/Application/CustomerMap.h
     AppTest/Application/ProductMap.cpp
-    AppTest/Application/ProductMap.h)
+    AppTest/Application/ProductMap.h AppTest/Application/OrderItemsMap.cpp AppTest/Application/OrderItemsMap.h)
 
 
 add_library(apptest STATIC

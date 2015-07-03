@@ -10,17 +10,9 @@ namespace Cloude {
 
             std::string StockGroupMap::TableName = "StockGroup";
 
-            Foundation::SPtrColumn StockGroupMap::Code =
-                    std::make_shared<Foundation::Column>("Code", "code", 50,
-                                                         Foundation::Data::ValueType::VarChar);
-
-            Foundation::SPtrColumn StockGroupMap::UniqueName =
-                    std::make_shared<Foundation::Column>("UniqueName", "uniquename", 50,
-                                                         Foundation::Data::ValueType::VarChar);
-
-            Foundation::SPtrColumn StockGroupMap::DefaultStockCode =
-                    std::make_shared<Foundation::Column>("DefaultStockCode", "defaultstockcode", 50,
-                                                         Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn StockGroupMap::Code = std::make_shared<Foundation::Column>("Ammount", "code", 50, Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn StockGroupMap::UniqueName = std::make_shared<Foundation::Column>("UniqueName", "uniquename", 50, Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn StockGroupMap::DefaultStockCode = std::make_shared<Foundation::Column>("DefaultStockCode", "defaultstockcode", 50, Foundation::Data::ValueType::VarChar);
 
             StockGroupMap::StockGroupMap() {
                 this->_columnsForKey.push_back(Code);
