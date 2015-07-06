@@ -43,17 +43,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/Compare.h" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/Compare.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Query/Criteria.hpp" afterPath="$PROJECT_DIR$/AppTest/Query/Criteria.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segmentation/Join/Cross.cpp" afterPath="$PROJECT_DIR$/Segmentation/Join/Cross.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segmentation/Join/Cross.h" afterPath="$PROJECT_DIR$/Segmentation/Join/Cross.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.cpp" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.h" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segmentation/Join/Inner.h" afterPath="$PROJECT_DIR$/Segmentation/Join/Inner.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segmentation/Join/Left.cpp" afterPath="$PROJECT_DIR$/Segmentation/Join/Left.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segmentation/Join/Left.h" afterPath="$PROJECT_DIR$/Segmentation/Join/Left.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/Less.cpp" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/Less.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/Less.h" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/Less.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segmentation/Join/Right.cpp" afterPath="$PROJECT_DIR$/Segmentation/Join/Right.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segmentation/Join/Right.h" afterPath="$PROJECT_DIR$/Segmentation/Join/Right.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" afterPath="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" />
@@ -82,12 +75,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Right.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Segmentation/Join/Right.h">
+      <file leaf-file-name="Segmentation.hpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5568513">
-              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-              <folding />
+            <state vertical-scroll-proportion="-0.9493844">
+              <caret line="32" column="53" selection-start-line="32" selection-start-column="53" selection-end-line="32" selection-end-column="53" />
+              <folding>
+                <element signature="e#138#162#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -157,13 +152,13 @@
         <option value="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.cpp" />
         <option value="$PROJECT_DIR$/AppTest/Query/Criteria.hpp" />
         <option value="$PROJECT_DIR$/Foundation/Store/Comparer/Less.cpp" />
-        <option value="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" />
         <option value="$PROJECT_DIR$/Segmentation/Join/Left.cpp" />
-        <option value="$PROJECT_DIR$/Segmentation/Join/Cross.h" />
         <option value="$PROJECT_DIR$/Segmentation/Join/Inner.h" />
         <option value="$PROJECT_DIR$/Segmentation/Join/Left.h" />
-        <option value="$PROJECT_DIR$/Segmentation/Join/Right.cpp" />
+        <option value="$PROJECT_DIR$/Segmentation/Join/Cross.h" />
         <option value="$PROJECT_DIR$/Segmentation/Join/Right.h" />
+        <option value="$PROJECT_DIR$/Segmentation/Join/Right.cpp" />
+        <option value="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" />
       </list>
     </option>
   </component>
@@ -244,6 +239,66 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Segmentation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Foundation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Segmentation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -428,7 +483,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1600" y="23" width="1600" height="877" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.342556" sideWeight="0.53080875" order="10" side_tool="false" content_ui="tabs" x="1600" y="69" width="1024" height="720" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32765958" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="-1196" y="162" width="873" height="506" />
@@ -438,7 +493,7 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3254282" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="877" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27086008" sideWeight="0.42222223" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3610013" sideWeight="0.50289017" order="4" side_tool="false" content_ui="tabs" x="0" y="23" width="1600" height="823" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.51119894" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="1791" y="55" width="1024" height="745" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51119894" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="1791" y="55" width="1024" height="745" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27471116" sideWeight="0.5612648" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5104031" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24518614" sideWeight="0.5777778" order="2" side_tool="true" content_ui="tabs" />
@@ -479,12 +534,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp</url>
-          <line>107</line>
+          <line>110</line>
           <option name="timeStamp" value="457" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Segmentation/Join/Left.cpp</url>
-          <line>103</line>
+          <line>39</line>
           <option name="timeStamp" value="459" />
         </line-breakpoint>
       </breakpoints>
@@ -848,26 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding>
-            <element signature="e#138#162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Join/Left.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="103" column="47" selection-start-line="103" selection-start-column="47" selection-end-line="103" selection-end-column="47" />
-          <folding>
-            <marker date="1436167740000" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Less.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -876,43 +911,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Join/Cross.h">
+    <entry file="file://$PROJECT_DIR$/Segmentation/Join/Inner.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="47" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.4514364">
+          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Join/Inner.h">
+    <entry file="file://$PROJECT_DIR$/Segmentation/Join/Cross.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.7127223">
+          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Segmentation/Join/Left.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="100" selection-start-line="36" selection-start-column="100" selection-end-line="36" selection-end-column="100" />
+        <state vertical-scroll-proportion="0.73324215">
+          <caret line="42" column="54" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="54" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Segmentation/Join/Left.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3119015">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#45#92#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Segmentation/Join/Right.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="61" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
-          <folding />
+        <state vertical-scroll-proportion="0.32831737">
+          <caret line="16" column="87" selection-start-line="16" selection-start-column="87" selection-end-line="16" selection-end-column="87" />
+          <folding>
+            <element signature="e#45#92#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Segmentation/Join/Right.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5568513">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.4254446">
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9493844">
+          <caret line="32" column="53" selection-start-line="32" selection-start-column="53" selection-end-line="32" selection-end-column="53" />
+          <folding>
+            <element signature="e#138#162#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

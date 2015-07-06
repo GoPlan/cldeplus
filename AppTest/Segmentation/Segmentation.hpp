@@ -20,6 +20,7 @@
 #include <AppTest/Application/PreOrderLoader.h>
 #include <Segmentation/Join/Left.h>
 #include <Segmentation/Join/Cross.h>
+#include <Segmentation/Join/Right.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -73,6 +74,8 @@ namespace Cloude {
                 Cloude::Segmentation::Transformation::CellTransformer preorderCustIdCell{};
                 Cloude::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
 
+
+                std::cout << "CROSS JOIN result" << std::endl;
                 Cloude::Segmentation::Join::Cross joinCross{};
                 joinCross.LhsComparingColumns().push_back(mapCustomer.Id);
                 joinCross.RhsComparingColumns().push_back(mapPreOrder.CustId);
@@ -80,33 +83,47 @@ namespace Cloude {
                 joinCross.RhsTransformer()->AddCellTransformer("Id", preorderIdCell);
                 joinCross.RhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
 
-                Foundation::SPtrEntityProxyVector rsJoinCross = joinCross.JoinVector(rsCustomer, rsPreOrder);
-
-                std::cout << "CROSS JOIN result" << std::endl;
+                Foundation::SPtrEntityProxyVector rsJoinCross = joinCross.Join(rsCustomer, rsPreOrder);
                 for(auto proxy : rsJoinCross){
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 
-                Cloude::Segmentation::Join::Left joinLeft{};
-                joinLeft.LhsComparingColumns().push_back(mapPreOrder.CustId);
-                joinLeft.RhsComparingColumns().push_back(mapCustomer.Id);
 
-                joinLeft.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
-                joinLeft.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
-                joinLeft.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
-
+                std::cout << "SORT PreOrder by CustId" << std::endl;
                 Foundation::Store::Comparer::Less cmp{};
                 cmp.LhsCmpColumns().push_back(mapPreOrder.CustId);
                 cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
 
-                std::cout << "SORT PreOrder by CustId" << std::endl;
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
                 for(auto proxy : rsPreOrder){
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 
-                Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.JoinVector(rsPreOrder, rsCustomer);
+
+                std::cout << "PreOrder LEFT JOIN Customer" << std::endl;
+                Cloude::Segmentation::Join::Left joinLeft{};
+                joinLeft.LhsComparingColumns().push_back(mapPreOrder.CustId);
+                joinLeft.RhsComparingColumns().push_back(mapCustomer.Id);
+                joinLeft.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
+                joinLeft.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                joinLeft.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+
+                Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
                 for(auto proxy : rsJoinLeft){
+                    std::cout << proxy->CopyToString() << std::endl;
+                }
+
+
+                std::cout << "PreOrder RIGHT JOIN Customer" << std::endl;
+                Cloude::Segmentation::Join::Right joinRight{};
+                joinRight.LhsComparingColumns().push_back(mapPreOrder.CustId);
+                joinRight.RhsComparingColumns().push_back(mapCustomer.Id);
+                joinRight.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
+                joinRight.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                joinRight.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+
+                Foundation::SPtrEntityProxyVector rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
+                for(auto proxy : rsJoinRight){
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 

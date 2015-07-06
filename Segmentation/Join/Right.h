@@ -29,17 +29,15 @@ namespace Cloude {
                 const Segmentation::Transformation::SPtrEntityTransformer &getLhsCTransformer() const { return left.getRhsCTransformer(); }
                 const Segmentation::Transformation::SPtrEntityTransformer &getRhsCTransformer() const { return left.getLhsCTransformer(); }
 
+                // Mutators
                 Foundation::SPtrColumnVector &LhsComparingColumns() { return left.RhsComparingColumns(); }
                 Foundation::SPtrColumnVector &RhsComparingColumns() { return left.LhsComparingColumns(); }
                 Segmentation::Transformation::SPtrEntityTransformer &LhsTransformer() { return left.RhsTransformer(); }
                 Segmentation::Transformation::SPtrEntityTransformer &RhsTransformer() { return left.LhsTransformer(); }
 
                 // Locals
-                Foundation::SPtrEntityProxySet JoinSet(const Foundation::SPtrEntityProxySet &lhsSet,
-                                                       const Foundation::SPtrEntityProxySet &rhsSet) const;
-
-                Foundation::SPtrEntityProxyVector JoinVector(const Foundation::SPtrEntityProxyVector &lhsVector,
-                                                             const Foundation::SPtrEntityProxyVector &rhsVector) const;
+                Foundation::SPtrEntityProxyVector Join(const Foundation::SPtrEntityProxyVector &lhsVector,
+                                                       const Foundation::SPtrEntityProxyVector &rhsVector) const;
             };
         }
     }
