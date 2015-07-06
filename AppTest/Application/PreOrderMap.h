@@ -11,7 +11,7 @@ namespace Cloude {
     namespace AppTest {
         namespace Application {
 
-            class OrderMap : public Foundation::EntityMap {
+            class PreOrderMap : public Foundation::EntityMap {
 
             public:
                 static std::string TableName;
@@ -21,12 +21,12 @@ namespace Cloude {
                 static Foundation::SPtrColumn Total;
 
             public:
-                OrderMap();
-                OrderMap(const OrderMap &) = default;
-                OrderMap(OrderMap &&) = default;
-                OrderMap &operator=(const OrderMap &) = default;
-                OrderMap &operator=(OrderMap &&) = default;
-                virtual ~OrderMap() = default;
+                PreOrderMap();
+                PreOrderMap(const PreOrderMap &) = default;
+                PreOrderMap(PreOrderMap &&) = default;
+                PreOrderMap &operator=(const PreOrderMap &) = default;
+                PreOrderMap &operator=(PreOrderMap &&) = default;
+                virtual ~PreOrderMap() = default;
 
             protected:
                 virtual const std::string &TableNameCore() const override;

@@ -20,7 +20,7 @@ namespace Cloude {
                 Transformation::SPtrEntityTransformer _sptrRhsTransformer;
 
             public:
-                Cross() = default;
+                Cross();
                 Cross(const Cross &) = default;
                 Cross(Cross &&) = default;
                 Cross &operator=(const Cross &) = default;
@@ -33,11 +33,11 @@ namespace Cloude {
                 const Segmentation::Transformation::SPtrEntityTransformer &getLhsCTransformer() const { return _sptrLhsTransformer; }
                 const Segmentation::Transformation::SPtrEntityTransformer &getRhsCTransformer() const { return _sptrRhsTransformer; }
 
-                Foundation::SPtrColumnVector &getLhsComparingColumns() { return _lhsComparingColumns; }
-                Foundation::SPtrColumnVector &getRhsComparingColumns() { return _rhsComparingColumns; }
+                Foundation::SPtrColumnVector &LhsComparingColumns() { return _lhsComparingColumns; }
+                Foundation::SPtrColumnVector &RhsComparingColumns() { return _rhsComparingColumns; }
 
-                Segmentation::Transformation::SPtrEntityTransformer &getLhsTransformer() { return _sptrLhsTransformer; }
-                Segmentation::Transformation::SPtrEntityTransformer &getRhsTransformer() { return _sptrRhsTransformer; }
+                Segmentation::Transformation::SPtrEntityTransformer &LhsTransformer() { return _sptrLhsTransformer; }
+                Segmentation::Transformation::SPtrEntityTransformer &RhsTransformer() { return _sptrRhsTransformer; }
 
                 // Locals
                 Foundation::SPtrEntityProxySet operator()(const Foundation::SPtrEntityProxySet &lhs,

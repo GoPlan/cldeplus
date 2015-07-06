@@ -22,7 +22,7 @@ namespace Cloude {
                 _columnsForGet.push_back(FirstName);
                 _columnsForGet.push_back(LastName);
                 _columnsForGet.push_back(Email);
-                _columnsForSelect.push_back(FirstName);
+                _columnsForSelect.push_back(Id);
                 _columnsForSelect.push_back(Email);
                 _columnsForUpdate.push_back(FirstName);
                 _columnsForUpdate.push_back(LastName);

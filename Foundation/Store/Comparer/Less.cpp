@@ -7,8 +7,9 @@
 namespace Cloude {
     namespace Foundation {
         namespace Store {
+
             bool Comparer::Less::operator()(const Store::AbstractEntity &lhs,
-                                                      const Store::AbstractEntity &rhs) const {
+                                            const Store::AbstractEntity &rhs) const {
 
                 if (_lhsCmpColumns.size() != _rhsCmpColumns.size()) {
                     return false;

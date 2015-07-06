@@ -32,7 +32,7 @@ namespace Cloude {
                 // Locals
                 void Connect();
                 void Disconnect();
-                Options &getOptionArgs() { return _optionArgs; }
+                Options &OptionArgs() { return _optionArgs; }
 
                 // EntitySourceDriver
                 int Load(Foundation::SPtrEntity &entity) const override;

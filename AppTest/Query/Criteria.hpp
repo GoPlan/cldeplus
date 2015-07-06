@@ -41,7 +41,7 @@ namespace Cloude {
                 SPtrColumnVector vtorCmpColumns{enquiryMap.Email};
                 Foundation::Store::Comparer::Compare<> compare{vtorCmpColumns, vtorCmpColumns};
 
-                auto &options = sqliteSourceDriver.getOptionArgs();
+                auto &options = sqliteSourceDriver.OptionArgs();
                 options.ConnectionString = "../ex1.db";
                 sqliteSourceDriver.Connect();
 

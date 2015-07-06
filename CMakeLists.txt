@@ -175,8 +175,13 @@ add_library(foundation STATIC
     Foundation/Store/Comparer/Greater.h
     Foundation/Store/Comparer/Less.cpp
     Foundation/Store/Comparer/Less.h
-    Foundation/Data/Helper/TypeHelper.cpp Foundation/Data/Helper/TypeHelper.h)
+    Foundation/Data/Helper/TypeHelper.cpp
+    Foundation/Data/Helper/TypeHelper.h)
 
+add_library(relation STATIC
+
+
+Relation/RelationMap.cpp Relation/RelationMap.h Relation/RelationFetcher.cpp Relation/RelationFetcher.h)
 
 add_library(segmentation STATIC
     Segmentation/Join/Inner.cpp
@@ -264,12 +269,14 @@ add_library(application STATIC
     AppTest/Application/EnquiryMap.h
     AppTest/Application/EnquiryLoader.cpp
     AppTest/Application/EnquiryLoader.h
-    AppTest/Application/OrderMap.cpp
-    AppTest/Application/OrderMap.h
+    AppTest/Application/PreOrderMap.cpp
+    AppTest/Application/PreOrderMap.h
     AppTest/Application/CustomerMap.cpp
     AppTest/Application/CustomerMap.h
     AppTest/Application/ProductMap.cpp
-    AppTest/Application/ProductMap.h AppTest/Application/OrderItemsMap.cpp AppTest/Application/OrderItemsMap.h)
+    AppTest/Application/ProductMap.h
+    AppTest/Application/OrderItemsMap.cpp
+    AppTest/Application/OrderItemsMap.h AppTest/Application/CustomerLoader.cpp AppTest/Application/CustomerLoader.h AppTest/Application/PreOrderLoader.cpp AppTest/Application/PreOrderLoader.h)
 
 
 add_library(apptest STATIC

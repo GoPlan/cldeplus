@@ -17,7 +17,7 @@ namespace Cloude {
             /// Cast (copy) a cell into new cell with possibilities of transforming cell name and data type
             ///
             /// Note:
-            /// New cell will use provided column iff a shared pointer of column is provided.
+            /// New cell will use provided column if a shared pointer of column is provided.
             /// A converter must be provided if different data type is used or Transformation exception will be thrown.
             class CellTransformer {
 
@@ -39,12 +39,8 @@ namespace Cloude {
                 const SPtrCaster &TypeConverter() const { return _sptrTypeConverter; }
 
                 // Mutator
-                void setTargetColumn(const Foundation::SPtrColumn &sptrTargetColumn) {
-                    _sptrTargetColumn = sptrTargetColumn;
-                }
-                void setTypeConverter(const SPtrCaster &sptrTypeConverter) {
-                    _sptrTypeConverter = sptrTypeConverter;
-                }
+                void setTargetColumn(const Foundation::SPtrColumn &sptrTargetColumn) { _sptrTargetColumn = sptrTargetColumn; }
+                void setTypeConverter(const SPtrCaster &sptrTypeConverter) { _sptrTypeConverter = sptrTypeConverter; }
 
                 // Locals
                 virtual Foundation::SPtrCell Transform(const Foundation::SPtrCell &srcSPtrCell) const;

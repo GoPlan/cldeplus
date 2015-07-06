@@ -17,6 +17,7 @@ namespace Cloude {
                 static std::string TableName;
                 static Foundation::SPtrColumn Id;
                 static Foundation::SPtrColumn Name;
+                static Foundation::SPtrColumn Code;
                 static Foundation::SPtrColumn Price;
 
             public:
