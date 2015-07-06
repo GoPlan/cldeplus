@@ -13,19 +13,28 @@ namespace Cloude {
         namespace Store {
             namespace Comparer {
 
-                class Greater : public std::binary_function<Store::AbstractEntity, Store::AbstractEntity, bool> {
+                class Greater : public std::binary_function<Store::SPtrDataRecord, Store::SPtrDataRecord, bool> {
 
-                    const SPtrColumnVector &_lhsCmpColumns;
-                    const SPtrColumnVector &_rhsCmpColumns;
+                    SPtrColumnVector _lhsCmpColumns;
+                    SPtrColumnVector _rhsCmpColumns;
                     Data::Comparer::Greater _greater{};
 
                 public:
-                    Greater(const SPtrColumnVector &lhsCmpColumns,
-                            const SPtrColumnVector &rhsCmpColumns)
-                            : _lhsCmpColumns(lhsCmpColumns),
-                              _rhsCmpColumns(rhsCmpColumns) { };
+                    Greater(const SPtrColumnVector &lhsCmpColumns, const SPtrColumnVector &rhsCmpColumns)
+                            : _lhsCmpColumns(lhsCmpColumns), _rhsCmpColumns(rhsCmpColumns) { };
 
-                    bool operator()(const Store::AbstractEntity &lhs, const Store::AbstractEntity &rhs) const;
+                    Greater() = default;
+                    Greater(const Greater &) = default;
+                    Greater(Greater &&) = default;
+                    Greater &operator=(const Greater &) = default;
+                    Greater &operator=(Greater &&) = default;
+                    ~Greater() = default;
+
+                    // Acessors
+                    SPtrColumnVector &LhsCmpColumns() { return _lhsCmpColumns; }
+                    SPtrColumnVector &RhsCmpColumns() { return _rhsCmpColumns; }
+
+                    bool operator()(const Store::SPtrDataRecord &lhs, const Store::SPtrDataRecord &rhs) const;
                 };
             }
         }

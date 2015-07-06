@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_CROSS_H
-#define CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_CROSS_H
+#ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_CROSS_H
+#define CLOUD_E_PLUS_SEGMENTATION_JOIN_CROSS_H
 
 #include <Foundation/EntityProxy.h>
 #include <Segmentation/Transformation/EntityTransformer.h>
@@ -40,12 +40,15 @@ namespace Cloude {
                 Segmentation::Transformation::SPtrEntityTransformer &RhsTransformer() { return _sptrRhsTransformer; }
 
                 // Locals
-                Foundation::SPtrEntityProxySet operator()(const Foundation::SPtrEntityProxySet &lhs,
-                                                          const Foundation::SPtrEntityProxySet &rhs) const;
+                Foundation::SPtrEntityProxySet JoinSet(const Foundation::SPtrEntityProxySet &lhsSet,
+                                                       const Foundation::SPtrEntityProxySet &rhsSet) const;
+
+                Foundation::SPtrEntityProxyVector JoinVector(const Foundation::SPtrEntityProxyVector &lhsVector,
+                                                             const Foundation::SPtrEntityProxyVector &rhsVector) const;
             };
         }
     }
 }
 
 
-#endif //CLOUD_E_PLUS_FOUNDATION_SEGMENTATION_HELPER_CROSS_H
+#endif //CLOUD_E_PLUS_SEGMENTATION_JOIN_CROSS_H

@@ -7,8 +7,8 @@
 namespace Cloude {
     namespace Foundation {
         namespace Store {
-            bool Comparer::Greater::operator()(const Store::AbstractEntity &lhs,
-                                                         const Store::AbstractEntity &rhs) const {
+            bool Comparer::Greater::operator()(const Store::SPtrDataRecord &lhs,
+                                               const Store::SPtrDataRecord &rhs) const {
 
                 if (_lhsCmpColumns.size() != _rhsCmpColumns.size()) {
                     return false;
@@ -18,8 +18,8 @@ namespace Cloude {
 
                 for (auto column : _lhsCmpColumns) {
 
-                    auto &lhsCell = lhs.getCell(column->getName());
-                    auto &rhsCell = rhs.getCell((*rhsColumnIter)->getName());
+                    auto &lhsCell = lhs->getCell(column->getName());
+                    auto &rhsCell = rhs->getCell((*rhsColumnIter)->getName());
 
                     ++rhsColumnIter;
 

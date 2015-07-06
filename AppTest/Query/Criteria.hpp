@@ -75,7 +75,7 @@ namespace Cloude {
                     auto proxy00 = proxies[0];
                     auto proxy01 = enquiryQuery->ComposeGetFirst(sptrOR__);
 
-                    EXPECT_TRUE(compare(*proxy00, *proxy01));
+                    EXPECT_TRUE(compare(proxy00, proxy01));
                 }
 
                 sqliteSourceDriver.Disconnect();

@@ -14,9 +14,8 @@ namespace Cloude {
                 _sptrRhsTransformer = std::make_shared<Segmentation::Transformation::EntityTransformer>();
             }
 
-            Foundation::SPtrEntityProxySet Cross::operator()(
-                    const Foundation::SPtrEntityProxySet &lhsSet,
-                    const Foundation::SPtrEntityProxySet &rhsSet) const {
+            Foundation::SPtrEntityProxySet Cross::JoinSet(const Foundation::SPtrEntityProxySet &lhsSet,
+                                                          const Foundation::SPtrEntityProxySet &rhsSet) const {
 
                 Foundation::SPtrEntityProxySet setProxies;
 
@@ -44,6 +43,38 @@ namespace Cloude {
                 }
 
                 return setProxies;
+            }
+
+            Foundation::SPtrEntityProxyVector Cross::JoinVector(
+                    const Foundation::SPtrEntityProxyVector &lhsVector,
+                    const Foundation::SPtrEntityProxyVector &rhsVector) const {
+
+                Foundation::SPtrEntityProxyVector vectorProxies;
+
+                auto lhsCurrent = lhsVector.begin();
+                auto rhsCurrent = rhsVector.begin();
+
+                auto lhsEnd = lhsVector.end();
+                auto rhsEnd = rhsVector.end();
+
+                while (lhsCurrent != lhsEnd) {
+
+                    while (rhsCurrent != rhsEnd) {
+
+                        Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
+                        _sptrLhsTransformer->Transform(*lhsCurrent, proxy);
+                        _sptrRhsTransformer->Transform(*rhsCurrent, proxy);
+
+                        vectorProxies.push_back(proxy);
+
+                        ++rhsCurrent;
+                    }
+
+                    rhsCurrent = rhsVector.begin();
+                    ++lhsCurrent;
+                }
+
+                return vectorProxies;
             }
         }
     }

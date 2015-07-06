@@ -49,7 +49,7 @@ namespace Cloude {
                 // Select Customer set
                 Foundation::Data::SPtrValue sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
                 Foundation::Query::SPtrCriteria sptrCustomerIdGt00(new Foundation::Query::Comparative::Greater(mapCustomer.Id, sptrCustomerId));
-                Foundation::SPtrEntityProxySet rsCustomer = queryCustomer.ComposeSet(sptrCustomerIdGt00);
+                Foundation::SPtrEntityProxyVector rsCustomer = queryCustomer.ComposeVector(sptrCustomerIdGt00);
 
                 for(auto proxy : rsCustomer){
                     std::cout << proxy->CopyToString() << std::endl;
@@ -58,7 +58,7 @@ namespace Cloude {
                 // Select Order set
                 Foundation::Data::SPtrValue sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(0);
                 Foundation::Query::SPtrCriteria sptrOrderIdGt00(new Foundation::Query::Comparative::Greater(mapPreOrder.Id, sptrOrderId));
-                Foundation::SPtrEntityProxySet rsPreOrder = queryOrder.ComposeSet(sptrOrderIdGt00);
+                Foundation::SPtrEntityProxyVector rsPreOrder = queryOrder.ComposeVector(sptrOrderIdGt00);
 
                 for(auto proxy : rsPreOrder){
                     std::cout << proxy->CopyToString() << std::endl;
@@ -80,7 +80,7 @@ namespace Cloude {
                 joinCross.RhsTransformer()->AddCellTransformer("Id", preorderIdCell);
                 joinCross.RhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
 
-                Foundation::SPtrEntityProxySet rsJoinCross = joinCross(rsCustomer, rsPreOrder);
+                Foundation::SPtrEntityProxyVector rsJoinCross = joinCross.JoinVector(rsCustomer, rsPreOrder);
 
                 std::cout << "CROSS JOIN result" << std::endl;
                 for(auto proxy : rsJoinCross){
@@ -88,15 +88,24 @@ namespace Cloude {
                 }
 
                 Cloude::Segmentation::Join::Left joinLeft{};
-                joinLeft.LhsComparingColumns().push_back(mapCustomer.Id);
-                joinLeft.RhsComparingColumns().push_back(mapPreOrder.CustId);
-                joinLeft.LhsTransformer()->AddCellTransformer("Id", customerIdCell);
-                joinLeft.RhsTransformer()->AddCellTransformer("Id", preorderIdCell);
-                joinLeft.RhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                joinLeft.LhsComparingColumns().push_back(mapPreOrder.CustId);
+                joinLeft.RhsComparingColumns().push_back(mapCustomer.Id);
 
-                Foundation::SPtrEntityProxySet rsJoinLeft = joinLeft(rsCustomer, rsPreOrder);
+                joinLeft.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
+                joinLeft.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                joinLeft.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
 
-                std::cout << "LEFT JOIN result" << std::endl;
+                Foundation::Store::Comparer::Less cmp{};
+                cmp.LhsCmpColumns().push_back(mapPreOrder.CustId);
+                cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
+
+                std::cout << "SORT PreOrder by CustId" << std::endl;
+                std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
+                for(auto proxy : rsPreOrder){
+                    std::cout << proxy->CopyToString() << std::endl;
+                }
+
+                Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.JoinVector(rsPreOrder, rsCustomer);
                 for(auto proxy : rsJoinLeft){
                     std::cout << proxy->CopyToString() << std::endl;
                 }
