@@ -21,6 +21,7 @@
 #include <Segmentation/Join/Left.h>
 #include <Segmentation/Join/Cross.h>
 #include <Segmentation/Join/Right.h>
+#include <Segmentation/Join/Inner.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -52,24 +53,27 @@ namespace Cloude {
                 Foundation::Query::SPtrCriteria sptrCustomerIdGt00(new Foundation::Query::Comparative::Greater(mapCustomer.Id, sptrCustomerId));
                 Foundation::SPtrEntityProxyVector rsCustomer = queryCustomer.ComposeVector(sptrCustomerIdGt00);
 
-                for(auto proxy : rsCustomer){
+                for (auto proxy : rsCustomer) {
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 
                 // Select Order set
                 Foundation::Data::SPtrValue sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(0);
-                Foundation::Query::SPtrCriteria sptrOrderIdGt00(new Foundation::Query::Comparative::Greater(mapPreOrder.Id, sptrOrderId));
+                Foundation::Query::SPtrCriteria
+                        sptrOrderIdGt00(new Foundation::Query::Comparative::Greater(mapPreOrder.Id, sptrOrderId));
                 Foundation::SPtrEntityProxyVector rsPreOrder = queryOrder.ComposeVector(sptrOrderIdGt00);
 
-                for(auto proxy : rsPreOrder){
+                for (auto proxy : rsPreOrder) {
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 
                 Foundation::SPtrColumn newCustomerIdColumn = std::make_shared<Foundation::Column>("customerId", Foundation::Data::ValueType::Int64);
+                Foundation::SPtrColumn newCustomerEmailColumn = std::make_shared<Foundation::Column>("email", Foundation::Data::ValueType::VarChar);
                 Foundation::SPtrColumn newPreOrderIdColumn = std::make_shared<Foundation::Column>("preorderId", Foundation::Data::ValueType::Int64);
                 Foundation::SPtrColumn newPreOrderTotalColumn = std::make_shared<Foundation::Column>("preorderTotal", Foundation::Data::ValueType::Double);
 
                 Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
+                Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
                 Cloude::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
                 Cloude::Segmentation::Transformation::CellTransformer preorderCustIdCell{};
                 Cloude::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
@@ -80,11 +84,12 @@ namespace Cloude {
                 joinCross.LhsComparingColumns().push_back(mapCustomer.Id);
                 joinCross.RhsComparingColumns().push_back(mapPreOrder.CustId);
                 joinCross.LhsTransformer()->AddCellTransformer("Id", customerIdCell);
+                joinCross.LhsTransformer()->AddCellTransformer("Email", customerEmailCell);
                 joinCross.RhsTransformer()->AddCellTransformer("Id", preorderIdCell);
                 joinCross.RhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
 
                 Foundation::SPtrEntityProxyVector rsJoinCross = joinCross.Join(rsCustomer, rsPreOrder);
-                for(auto proxy : rsJoinCross){
+                for (auto proxy : rsJoinCross) {
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 
@@ -95,7 +100,7 @@ namespace Cloude {
                 cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
 
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
-                for(auto proxy : rsPreOrder){
+                for (auto proxy : rsPreOrder) {
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 
@@ -107,9 +112,10 @@ namespace Cloude {
                 joinLeft.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
                 joinLeft.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
                 joinLeft.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+                joinLeft.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
                 Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
-                for(auto proxy : rsJoinLeft){
+                for (auto proxy : rsJoinLeft) {
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 
@@ -121,12 +127,30 @@ namespace Cloude {
                 joinRight.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
                 joinRight.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
                 joinRight.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+                joinRight.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
                 Foundation::SPtrEntityProxyVector rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
-                for(auto proxy : rsJoinRight){
+                for (auto proxy : rsJoinRight) {
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 
+
+                std::cout << "PreOrder INNER JOIN Customer" << std::endl;
+                Cloude::Segmentation::Join::Inner joinInner{};
+                joinInner.LhsComparingColumns().push_back(mapPreOrder.CustId);
+                joinInner.RhsComparingColumns().push_back(mapCustomer.Id);
+                joinInner.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
+                joinInner.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                joinInner.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+                joinInner.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
+
+                Foundation::SPtrEntityProxyVector rsJoinInner = joinInner.Join(rsPreOrder, rsCustomer);
+                for (auto proxy : rsJoinInner) {
+                    std::cout << proxy->CopyToString() << std::endl;
+                }
+
+
+                // Disconnect
                 driverCustomer.Disconnect();
                 driverOrder.Disconnect();
             }
