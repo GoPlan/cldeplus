@@ -18,11 +18,11 @@
 #include <AppTest/Application/CustomerLoader.h>
 #include <AppTest/Application/PreOrderMap.h>
 #include <AppTest/Application/PreOrderLoader.h>
-#include <Segmentation/Join/TCross.h>
-#include <Segmentation/Join/TFull.h>
-#include <Segmentation/Join/TRight.h>
-#include <Segmentation/Join/TLeft.h>
-#include <Segmentation/Join/TInner.h>
+#include <Segmentation/Join/TCross.hpp>
+#include <Segmentation/Join/TFull.hpp>
+#include <Segmentation/Join/TRight.hpp>
+#include <Segmentation/Join/TLeft.hpp>
+#include <Segmentation/Join/TInner.hpp>
 
 namespace Cloude {
     namespace AppTest {

@@ -43,20 +43,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Segmentation/Join/TCross.h" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Segmentation/Join/Cross.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Segmentation/Join/Cross.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Segmentation/Join/Full.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Segmentation/Join/Inner.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Segmentation/Join/Left.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Segmentation/Join/Right.cpp" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/Join/Full.h" afterPath="$PROJECT_DIR$/Segmentation/Join/TFull.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/Join/Inner.h" afterPath="$PROJECT_DIR$/Segmentation/Join/TInner.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/Join/Left.h" afterPath="$PROJECT_DIR$/Segmentation/Join/TLeft.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/Join/Right.h" afterPath="$PROJECT_DIR$/Segmentation/Join/TRight.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/segmentation.h" afterPath="$PROJECT_DIR$/Segmentation/Segmentation.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/Join/TCross.h" afterPath="$PROJECT_DIR$/Segmentation/Join/TCross.hpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/Join/TFull.h" afterPath="$PROJECT_DIR$/Segmentation/Join/TFull.hpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/Join/TInner.h" afterPath="$PROJECT_DIR$/Segmentation/Join/TInner.hpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/Join/TLeft.h" afterPath="$PROJECT_DIR$/Segmentation/Join/TLeft.hpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Segmentation/Join/TRight.h" afterPath="$PROJECT_DIR$/Segmentation/Join/TRight.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segmentation/Transformation/EntityTransformer.h" afterPath="$PROJECT_DIR$/Segmentation/Transformation/EntityTransformer.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" afterPath="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -84,76 +76,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="188" column="29" selection-start-line="188" selection-start-column="29" selection-end-line="188" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TCross.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Segmentation/Join/TCross.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-              <folding>
-                <element signature="e#330#384#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Segmentation.hpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Segmentation.hpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.15321477">
               <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
               <folding>
                 <element signature="e#138#162#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TInner.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Segmentation/Join/TInner.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="100" column="35" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TRight.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Segmentation/Join/TRight.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="63" selection-start-line="40" selection-start-column="63" selection-end-line="40" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TLeft.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Segmentation/Join/TLeft.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="70" selection-start-line="75" selection-start-column="70" selection-end-line="75" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TFull.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Segmentation/Join/TFull.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73324215">
-              <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -176,7 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Drivers/SQLite/SQLiteSourceDriver.cpp" />
         <option value="$PROJECT_DIR$/AppTest/Application/CustomerMap.cpp" />
         <option value="$PROJECT_DIR$/AppTest/Application/PreOrderMap.cpp" />
         <option value="$PROJECT_DIR$/Segmentation/Transformation/CellTransformer.h" />
@@ -224,8 +153,9 @@
         <option value="$PROJECT_DIR$/Segmentation/Join/TRight.h" />
         <option value="$PROJECT_DIR$/Segmentation/Join/Inner.h" />
         <option value="$PROJECT_DIR$/Segmentation/Join/TLeft.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Segmentation/Join/TInner.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Segmentation/Join/TInner.hpp" />
         <option value="$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp" />
       </list>
     </option>
@@ -940,43 +870,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="188" column="29" selection-start-line="188" selection-start-column="29" selection-end-line="188" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TCross.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-          <folding>
-            <element signature="e#330#384#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TInner.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="100" column="35" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-          <folding>
-            <element signature="e#138#162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TRight.h">
+    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TRight.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="63" selection-start-line="40" selection-start-column="63" selection-end-line="40" selection-end-column="63" />
@@ -984,19 +878,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TLeft.h">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="70" selection-start-line="75" selection-start-column="70" selection-end-line="75" selection-end-column="70" />
+          <caret line="280" column="4" selection-start-line="280" selection-start-column="4" selection-end-line="280" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TFull.h">
+    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TFull.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73324215">
-          <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="47" selection-start-line="7" selection-start-column="0" selection-end-line="9" selection-end-column="47" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TCross.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
+          <folding>
+            <element signature="e#140#175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TInner.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Segmentation/Join/TLeft.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15321477">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding>
+            <element signature="e#138#162#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

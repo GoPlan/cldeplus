@@ -5,6 +5,9 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_INNER_H
 #define CLOUD_E_PLUS_SEGMENTATION_JOIN_INNER_H
 
+#include <Foundation/Store/Comparer/Compare.h>
+#include <Foundation/Store/Comparer/Greater.h>
+#include <Foundation/Store/Helper/CellHelper.h>
 #include <Foundation/EntityProxy.h>
 #include <Segmentation/Transformation/EntityTransformer.h>
 

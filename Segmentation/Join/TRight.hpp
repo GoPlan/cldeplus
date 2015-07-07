@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_RIGHT_H
 #define CLOUD_E_PLUS_SEGMENTATION_JOIN_RIGHT_H
 
-#include "TLeft.h"
+#include "TLeft.hpp"
 
 namespace Cloude {
     namespace Segmentation {

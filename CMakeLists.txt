@@ -184,11 +184,11 @@ add_library(relation STATIC
 Relation/RelationMap.cpp Relation/RelationMap.h Relation/RelationFetcher.cpp Relation/RelationFetcher.h)
 
 add_library(segmentation STATIC
-    Segmentation/Join/TInner.h
-    Segmentation/Join/TCross.h
-    Segmentation/Join/TLeft.h
-    Segmentation/Join/TRight.h
-    Segmentation/Join/TFull.h
+    Segmentation/Join/TInner.hpp
+    Segmentation/Join/TCross.hpp
+    Segmentation/Join/TLeft.hpp
+    Segmentation/Join/TRight.hpp
+    Segmentation/Join/TFull.hpp
     Segmentation/Transformation/EntityTransformer.cpp
     Segmentation/Transformation/EntityTransformer.h
     Segmentation/Transformation/CellTransformer.cpp
@@ -274,7 +274,11 @@ add_library(application STATIC
     AppTest/Application/ProductMap.cpp
     AppTest/Application/ProductMap.h
     AppTest/Application/OrderItemsMap.cpp
-    AppTest/Application/OrderItemsMap.h AppTest/Application/CustomerLoader.cpp AppTest/Application/CustomerLoader.h AppTest/Application/PreOrderLoader.cpp AppTest/Application/PreOrderLoader.h)
+    AppTest/Application/OrderItemsMap.h
+    AppTest/Application/CustomerLoader.cpp
+    AppTest/Application/CustomerLoader.h
+    AppTest/Application/PreOrderLoader.cpp
+    AppTest/Application/PreOrderLoader.h)
 
 
 add_library(apptest STATIC
