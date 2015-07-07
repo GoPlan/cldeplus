@@ -10,19 +10,19 @@
 #include <iostream>
 #include <functional>
 #include <Cloude.h>
-#include <AppTest/Application/EnquiryMap.h>
-#include <AppTest/Application/EnquiryLoader.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
+#include <AppTest/Application/EnquiryMap.h>
+#include <AppTest/Application/EnquiryLoader.h>
 #include <AppTest/Application/CustomerMap.h>
 #include <AppTest/Application/CustomerLoader.h>
 #include <AppTest/Application/PreOrderMap.h>
 #include <AppTest/Application/PreOrderLoader.h>
-#include <Segmentation/Join/Left.h>
-#include <Segmentation/Join/Cross.h>
-#include <Segmentation/Join/Right.h>
-#include <Segmentation/Join/Inner.h>
-#include <Segmentation/Join/Full.h>
+#include <Segmentation/Join/TCross.h>
+#include <Segmentation/Join/TFull.h>
+#include <Segmentation/Join/TRight.h>
+#include <Segmentation/Join/TLeft.h>
+#include <Segmentation/Join/TInner.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -51,7 +51,8 @@ namespace Cloude {
 
                 // Select Customer set
                 Foundation::Data::SPtrValue sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
-                Foundation::Query::SPtrCriteria sptrCustomerIdGt00(new Foundation::Query::Comparative::Greater(mapCustomer.Id, sptrCustomerId));
+                Foundation::Query::SPtrCriteria
+                        sptrCustomerIdGt00(new Foundation::Query::Comparative::Greater(mapCustomer.Id, sptrCustomerId));
                 Foundation::SPtrEntityProxyVector rsCustomer = queryCustomer.ComposeVector(sptrCustomerIdGt00);
 
                 for (auto proxy : rsCustomer) {
@@ -80,10 +81,9 @@ namespace Cloude {
                 Cloude::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
 
 
+                std::cout << std::endl;
                 std::cout << "CROSS JOIN result" << std::endl;
                 Cloude::Segmentation::Join::Cross joinCross{};
-                joinCross.LhsComparingColumns().push_back(mapCustomer.Id);
-                joinCross.RhsComparingColumns().push_back(mapPreOrder.CustId);
                 joinCross.LhsTransformer()->AddCellTransformer("Id", customerIdCell);
                 joinCross.LhsTransformer()->AddCellTransformer("Email", customerEmailCell);
                 joinCross.RhsTransformer()->AddCellTransformer("Id", preorderIdCell);
@@ -95,6 +95,7 @@ namespace Cloude {
                 }
 
 
+                std::cout << std::endl;
                 std::cout << "SORT PreOrder by CustId" << std::endl;
                 Foundation::Store::Comparer::Less cmp{};
                 cmp.LhsCmpColumns().push_back(mapPreOrder.CustId);
@@ -106,6 +107,7 @@ namespace Cloude {
                 }
 
 
+                std::cout << std::endl;
                 std::cout << "PreOrder LEFT JOIN Customer" << std::endl;
                 Cloude::Segmentation::Join::Left joinLeft{};
                 joinLeft.LhsComparingColumns().push_back(mapPreOrder.CustId);
@@ -121,6 +123,7 @@ namespace Cloude {
                 }
 
 
+                std::cout << std::endl;
                 std::cout << "PreOrder RIGHT JOIN Customer" << std::endl;
                 Cloude::Segmentation::Join::Right joinRight{};
                 joinRight.LhsComparingColumns().push_back(mapPreOrder.CustId);
@@ -136,6 +139,7 @@ namespace Cloude {
                 }
 
 
+                std::cout << std::endl;
                 std::cout << "PreOrder INNER JOIN Customer" << std::endl;
                 Cloude::Segmentation::Join::Inner joinInner{};
                 joinInner.LhsComparingColumns().push_back(mapPreOrder.CustId);
@@ -151,6 +155,7 @@ namespace Cloude {
                 }
 
 
+                std::cout << std::endl;
                 std::cout << "PreOrder FULL JOIN Customer" << std::endl;
                 Cloude::Segmentation::Join::Full joinFull{};
                 joinFull.LhsComparingColumns().push_back(mapPreOrder.CustId);

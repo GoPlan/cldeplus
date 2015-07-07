@@ -5,23 +5,24 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_RIGHT_H
 #define CLOUD_E_PLUS_SEGMENTATION_JOIN_RIGHT_H
 
-#include "Left.h"
+#include "TLeft.h"
 
 namespace Cloude {
     namespace Segmentation {
         namespace Join {
 
-            class Right {
+            template<class TContainer = Foundation::SPtrEntityProxyVector>
+            class TRight {
 
-                Left left{};
+                TLeft<TContainer> left{};
 
             public:
-                Right() = default;
-                Right(const Right &) = default;
-                Right(Right &&) = default;
-                Right &operator=(const Right &) = default;
-                Right &operator=(Right &&) = default;
-                ~Right() = default;
+                TRight() = default;
+                TRight(const TRight &) = default;
+                TRight(TRight &&) = default;
+                TRight &operator=(const TRight &) = default;
+                TRight &operator=(TRight &&) = default;
+                ~TRight() = default;
 
                 // Accessors
                 const Foundation::SPtrColumnVector &getCLhsComparingColumns() const { return left.getCRhsComparingColumns(); }
@@ -36,9 +37,12 @@ namespace Cloude {
                 Segmentation::Transformation::SPtrEntityTransformer &RhsTransformer() { return left.LhsTransformer(); }
 
                 // Locals
-                Foundation::SPtrEntityProxyVector Join(const Foundation::SPtrEntityProxyVector &lhsVector,
-                                                       const Foundation::SPtrEntityProxyVector &rhsVector) const;
+                TContainer Join(const TContainer &lhsContainer, const TContainer &rhsContainer) const {
+                    return left.Join(rhsContainer, lhsContainer);
+                }
             };
+
+            using Right = TRight<>;
         }
     }
 }

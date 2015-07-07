@@ -184,14 +184,11 @@ add_library(relation STATIC
 Relation/RelationMap.cpp Relation/RelationMap.h Relation/RelationFetcher.cpp Relation/RelationFetcher.h)
 
 add_library(segmentation STATIC
-    Segmentation/Join/Inner.cpp
-    Segmentation/Join/Inner.h
-    Segmentation/Join/Cross.cpp
-    Segmentation/Join/Cross.h
-    Segmentation/Join/Left.cpp
-    Segmentation/Join/Left.h
-    Segmentation/Join/Right.cpp
-    Segmentation/Join/Right.h
+    Segmentation/Join/TInner.h
+    Segmentation/Join/TCross.h
+    Segmentation/Join/TLeft.h
+    Segmentation/Join/TRight.h
+    Segmentation/Join/TFull.h
     Segmentation/Transformation/EntityTransformer.cpp
     Segmentation/Transformation/EntityTransformer.h
     Segmentation/Transformation/CellTransformer.cpp
@@ -214,11 +211,6 @@ add_library(segmentation STATIC
     Segmentation/Transformation/Caster/UInt32Caster.h
     Segmentation/Transformation/Caster/UInt64Caster.cpp
     Segmentation/Transformation/Caster/UInt64Caster.h
-    Segmentation/Exception/SegmentationException.cpp
-    Segmentation/Exception/SegmentationException.h
-    Segmentation/Exception/TransformationException.cpp
-    Segmentation/Exception/TransformationException.h
-    Segmentation/Segmentation.h
     Segmentation/Transformation/Caster/BooleanCaster.cpp
     Segmentation/Transformation/Caster/BooleanCaster.h
     Segmentation/Transformation/Caster/ByteCaster.cpp
@@ -228,7 +220,13 @@ add_library(segmentation STATIC
     Segmentation/Transformation/Caster/VarCharCaster.cpp
     Segmentation/Transformation/Caster/VarCharCaster.h
     Segmentation/CasterFactory.cpp
-    Segmentation/CasterFactory.h Segmentation/Join/Full.cpp Segmentation/Join/Full.h)
+    Segmentation/CasterFactory.h
+    Segmentation/Exception/SegmentationException.cpp
+    Segmentation/Exception/SegmentationException.h
+    Segmentation/Exception/TransformationException.cpp
+    Segmentation/Exception/TransformationException.h
+    Segmentation/Segmentation.h
+    )
 
 
 add_library(Drivers STATIC

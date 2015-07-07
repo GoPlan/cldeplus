@@ -26,18 +26,16 @@ namespace Cloude {
                 EntityTransformer(EntityTransformer &&) = default;
                 EntityTransformer &operator=(const EntityTransformer &) = default;
                 EntityTransformer &operator=(EntityTransformer &&) = default;
-                virtual ~EntityTransformer() = default;
+                ~EntityTransformer() = default;
 
                 // Accessors
-                virtual Transformation::CellTransformerMap &CellTransformerMap() { return _mapCellTransformers; };
+                Transformation::CellTransformerMap &CellTransformerMap() { return _mapCellTransformers; };
 
                 // Mutators
-                virtual void AddCellTransformer(const std::string &columnName,
-                                                const CellTransformer &cellTransformer);
-
+                void AddCellTransformer(const std::string &columnName, const CellTransformer &cellTransformer);
+                
                 // Locals
-                virtual void Transform(const Foundation::SPtrEntityProxy &srcProxy,
-                                       Foundation::SPtrEntityProxy &dstProxy) const;
+                void Transform(const Foundation::SPtrEntityProxy &srcProxy, Foundation::SPtrEntityProxy &dstProxy) const;
             };
 
             using SPtrEntityTransformer = std::shared_ptr<EntityTransformer>;
