@@ -228,7 +228,7 @@ add_library(segmentation STATIC
     Segmentation/Transformation/Caster/VarCharCaster.cpp
     Segmentation/Transformation/Caster/VarCharCaster.h
     Segmentation/CasterFactory.cpp
-    Segmentation/CasterFactory.h)
+    Segmentation/CasterFactory.h Segmentation/Join/Full.cpp Segmentation/Join/Full.h)
 
 
 add_library(Drivers STATIC

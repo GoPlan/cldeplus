@@ -12,7 +12,6 @@ namespace Cloude {
 
         class CasterFactory {
 
-        public:
             CasterFactory() = delete;
             CasterFactory(const CasterFactory &) = delete;
             CasterFactory(CasterFactory &&) = delete;
@@ -20,6 +19,7 @@ namespace Cloude {
             CasterFactory &operator=(CasterFactory &&) = delete;
             virtual ~CasterFactory() = delete;
 
+        public:
             static Transformation::SPtrCaster CreateByteConverter();
             static Transformation::SPtrCaster CreateBooleanConverter();
             static Transformation::SPtrCaster CreateDoubleConverter();

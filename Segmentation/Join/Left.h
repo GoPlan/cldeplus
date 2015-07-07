@@ -14,8 +14,8 @@ namespace Cloude {
 
             class Left {
 
-                Foundation::SPtrColumnVector _lhsComparingColumns;
-                Foundation::SPtrColumnVector _rhsComparingColumns;
+                Foundation::SPtrColumnVector _lhsComparingColumns{};
+                Foundation::SPtrColumnVector _rhsComparingColumns{};
                 Transformation::SPtrEntityTransformer _sptrLhsTransformer;
                 Transformation::SPtrEntityTransformer _sptrRhsTransformer;
 

@@ -10,6 +10,8 @@ namespace Cloude {
     namespace Drivers {
         namespace SQLite {
 
+            const std::string SQLiteSourceException::_name{"SQLiteSourceException"};
+
             SQLiteSourceException::SQLiteSourceException(int resultCode)
                     : cldeException{SQLiteSourceHelper::CopyToString(resultCode)},
                       _resultCode{resultCode} {

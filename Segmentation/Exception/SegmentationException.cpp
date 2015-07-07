@@ -4,6 +4,17 @@
 
 #include "SegmentationException.h"
 
+namespace Cloude {
+    namespace Segmentation {
+        namespace Exception {
 
+            const std::string SegmentationException::_name{"SegmentationException"};
+
+            const std::string &SegmentationException::Name() const noexcept {
+                return _name;
+            }
+        }
+    }
+}
 
 

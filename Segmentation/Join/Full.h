@@ -1,18 +1,17 @@
 //
-// Created by LE, Duc Anh on 6/23/15.
+// Created by LE, Duc Anh on 7/7/15.
 //
 
-#ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_INNER_H
-#define CLOUD_E_PLUS_SEGMENTATION_JOIN_INNER_H
+#ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_FULL_H
+#define CLOUD_E_PLUS_SEGMENTATION_JOIN_FULL_H
 
-#include <Foundation/EntityProxy.h>
 #include <Segmentation/Transformation/EntityTransformer.h>
 
 namespace Cloude {
     namespace Segmentation {
         namespace Join {
 
-            class Inner {
+            class Full {
 
                 Foundation::SPtrColumnVector _lhsComparingColumns{};
                 Foundation::SPtrColumnVector _rhsComparingColumns{};
@@ -20,12 +19,12 @@ namespace Cloude {
                 Transformation::SPtrEntityTransformer _sptrRhsTransformer;
 
             public:
-                Inner();
-                Inner(const Inner &) = default;
-                Inner(Inner &&) = default;
-                Inner &operator=(const Inner &) = default;
-                Inner &operator=(Inner &&) = default;
-                ~Inner() = default;
+                Full();
+                Full(const Full &) = default;
+                Full(Full &&) = default;
+                Full &operator=(const Full &) = default;
+                Full &operator=(Full &&) = default;
+                virtual ~Full() = default;
 
                 // Accessors
                 const Foundation::SPtrColumnVector &getCLhsComparingColumns() const { return _lhsComparingColumns; }
@@ -42,11 +41,10 @@ namespace Cloude {
                 // Locals
                 Foundation::SPtrEntityProxyVector Join(const Foundation::SPtrEntityProxyVector &lhsVector,
                                                        const Foundation::SPtrEntityProxyVector &rhsVector) const;
-
             };
         }
     }
 }
 
 
-#endif //CLOUD_E_PLUS_SEGMENTATION_JOIN_INNER_H
+#endif //CLOUD_E_PLUS_SEGMENTATION_JOIN_FULL_H

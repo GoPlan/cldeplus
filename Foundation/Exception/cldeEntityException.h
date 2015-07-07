@@ -13,6 +13,8 @@ namespace Cloude {
 
             class cldeEntityException : public cldeException {
 
+            static const std::string _name;
+
             public:
                 cldeEntityException(const char *message) : cldeException(message) { };
                 cldeEntityException(const std::string &message) : cldeException(message) { };
@@ -21,6 +23,9 @@ namespace Cloude {
                 cldeEntityException &operator=(const cldeEntityException &) = default;
                 cldeEntityException &operator=(cldeEntityException &&) = default;
                 ~cldeEntityException() = default;
+
+                // cldeException
+                virtual const std::string &Name() const noexcept override;
             };
         }
     }

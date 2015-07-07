@@ -22,6 +22,7 @@
 #include <Segmentation/Join/Cross.h>
 #include <Segmentation/Join/Right.h>
 #include <Segmentation/Join/Inner.h>
+#include <Segmentation/Join/Full.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -146,6 +147,21 @@ namespace Cloude {
 
                 Foundation::SPtrEntityProxyVector rsJoinInner = joinInner.Join(rsPreOrder, rsCustomer);
                 for (auto proxy : rsJoinInner) {
+                    std::cout << proxy->CopyToString() << std::endl;
+                }
+
+
+                std::cout << "PreOrder FULL JOIN Customer" << std::endl;
+                Cloude::Segmentation::Join::Full joinFull{};
+                joinFull.LhsComparingColumns().push_back(mapPreOrder.CustId);
+                joinFull.RhsComparingColumns().push_back(mapCustomer.Id);
+                joinFull.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
+                joinFull.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                joinFull.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+                joinFull.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
+
+                Foundation::SPtrEntityProxyVector rsJoinFull = joinFull.Join(rsPreOrder, rsCustomer);
+                for (auto proxy : rsJoinFull) {
                     std::cout << proxy->CopyToString() << std::endl;
                 }
 

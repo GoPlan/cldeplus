@@ -13,6 +13,7 @@ namespace Cloude {
         namespace Exception {
 
             class cldeException : public std::exception {
+
                 std::string _message;
 
             public:
@@ -24,7 +25,11 @@ namespace Cloude {
                 cldeException &operator=(cldeException &&) = default;
                 virtual ~cldeException() = default;
 
-                virtual const char *what() const noexcept override { return _message.c_str(); };
+                // Exception
+                virtual const char *what() const noexcept override { return ("[" + Name() + "] " + _message).c_str(); };
+
+                // Locals
+                virtual const std::string &Name() const noexcept = 0;
             };
         }
     }
