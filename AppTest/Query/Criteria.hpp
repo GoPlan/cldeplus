@@ -9,11 +9,9 @@
 #include <iostream>
 #include <functional>
 #include "gtest/gtest.h"
-#include <Cloude.h>
+#include <Foundation/Foundation.h>
 #include <AppTest/Application/EnquiryMap.h>
 #include <AppTest/Application/EnquiryLoader.h>
-#include <Foundation/Query/Helper/SqlHelper.h>
-#include <Foundation/Store/Comparer/Compare.h>
 
 namespace Cloude {
     namespace AppTest {

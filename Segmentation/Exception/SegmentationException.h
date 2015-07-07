@@ -24,7 +24,6 @@ namespace Cloude {
                 virtual ~SegmentationException() = default;
 
                 // cldeException
-
                 virtual const std::string &Name() const noexcept override;
             };
         }

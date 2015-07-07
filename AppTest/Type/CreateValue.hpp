@@ -7,8 +7,7 @@
 
 #include "gtest/gtest.h"
 #include <iostream>
-#include <Cloude.h>
-#include <Foundation/Data/Helper/ValueHelper.h>
+#include <Foundation/Foundation.h>
 
 namespace Cloude {
     namespace AppTest {

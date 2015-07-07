@@ -9,12 +9,12 @@
 #include <memory>
 #include <iostream>
 #include <functional>
-#include <Cloude.h>
+#include <Foundation/Foundation.h>
+#include <Foundation/Data/Comparer/Comparer.h>
+#include <Segmentation/Segmentation.h>
 #include <AppTest/Application/ProductMap.h>
 #include <AppTest/Application/PreOrderMap.h>
 #include <AppTest/Application/CustomerMap.h>
-#include <Foundation/Data/Comparer/Comparer.h>
-#include <Segmentation/Segmentation.h>
 
 namespace Cloude {
     namespace AppTest {

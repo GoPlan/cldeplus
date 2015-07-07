@@ -9,20 +9,16 @@
 #include <memory>
 #include <iostream>
 #include <functional>
-#include <Cloude.h>
+#include <Foundation/Foundation.h>
+#include <Segmentation/Segmentation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
-#include <Foundation/Query/Helper/SqlHelper.h>
 #include <AppTest/Application/EnquiryMap.h>
 #include <AppTest/Application/EnquiryLoader.h>
 #include <AppTest/Application/CustomerMap.h>
 #include <AppTest/Application/CustomerLoader.h>
 #include <AppTest/Application/PreOrderMap.h>
 #include <AppTest/Application/PreOrderLoader.h>
-#include <Segmentation/Join/TCross.hpp>
-#include <Segmentation/Join/TFull.hpp>
-#include <Segmentation/Join/TRight.hpp>
-#include <Segmentation/Join/TLeft.hpp>
-#include <Segmentation/Join/TInner.hpp>
+
 
 namespace Cloude {
     namespace AppTest {

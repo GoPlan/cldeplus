@@ -11,7 +11,6 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 
 add_library(foundation STATIC
-    Cloude.h
     Foundation/Data/TypeEnums.h
     Foundation/Column.cpp
     Foundation/Column.h
@@ -81,7 +80,7 @@ add_library(foundation STATIC
     Foundation/Data/CharacterValue.h
     Foundation/Data/ValueFactory.cpp
     Foundation/Data/ValueFactory.h
-    Foundation/Data/TypeIncludes.h
+    Foundation/Data/Data.h
     Foundation/Data/Helper/ValueHelper.cpp
     Foundation/Data/Helper/ValueHelper.h
     Foundation/Data/Type/Int32.cpp
@@ -157,8 +156,6 @@ add_library(foundation STATIC
     Foundation/EntityLink.h
     Foundation/Query/Helper/ProxyHelper.cpp
     Foundation/Query/Helper/ProxyHelper.h
-    Foundation/Exception/cldeSegmentationException.cpp
-    Foundation/Exception/cldeSegmentationException.h
     Foundation/Data/Comparer/Less.cpp
     Foundation/Data/Comparer/Less.h
     Foundation/Data/Comparer/Greater.cpp
@@ -176,12 +173,15 @@ add_library(foundation STATIC
     Foundation/Store/Comparer/Less.cpp
     Foundation/Store/Comparer/Less.h
     Foundation/Data/Helper/TypeHelper.cpp
-    Foundation/Data/Helper/TypeHelper.h)
+    Foundation/Data/Helper/TypeHelper.h
+    Foundation/Foundation.h
+    Foundation/Store/Comparer/Comparer.h)
 
 add_library(relation STATIC
-
-
-Relation/RelationMap.cpp Relation/RelationMap.h Relation/RelationFetcher.cpp Relation/RelationFetcher.h)
+    Relation/RelationMap.cpp
+    Relation/RelationMap.h
+    Relation/RelationFetcher.cpp
+    Relation/RelationFetcher.h Relation/Relation.h)
 
 add_library(segmentation STATIC
     Segmentation/Join/TInner.hpp

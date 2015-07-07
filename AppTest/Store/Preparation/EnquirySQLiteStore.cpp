@@ -5,7 +5,6 @@
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include "EnquirySQLiteStore.h"
 
-
 namespace Cloude {
     namespace AppTest {
         namespace Store {
