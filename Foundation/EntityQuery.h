@@ -27,8 +27,7 @@ namespace Cloude {
             ~EntityQuery() = default;
 
             // Locals
-            virtual SPtrEntityProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);
-
+            virtual SPtrEntityProxy SelectFirst(const Query::SPtrCriteria &sptrCriteria);
             virtual SPtrEntityProxyVector Select(const Query::SPtrCriteria &sptrCriteria);
             virtual SPtrEntityProxyVector Select(const Query::SPtrCriteria &sptrCriteria,
                                                  const SPtrColumnVector &columnsForProjection);

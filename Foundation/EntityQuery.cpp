@@ -13,7 +13,7 @@ namespace Cloude {
             //
         }
 
-        SPtrEntityProxy EntityQuery::ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria) {
+        SPtrEntityProxy EntityQuery::SelectFirst(const Query::SPtrCriteria &sptrCriteria) {
             return Select(sptrCriteria).front();
         }
 

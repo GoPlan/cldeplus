@@ -144,10 +144,6 @@ add_library(foundation STATIC
     Foundation/Enum/CommonBufferSize.h
     Foundation/Store/AbstractEntity.h
     Foundation/Store/AbstractEntity.cpp
-    Foundation/EntityRelationship.cpp
-    Foundation/EntityRelationship.h
-    Foundation/EntityLink.cpp
-    Foundation/EntityLink.h
     Foundation/Query/Helper/ProxyHelper.cpp
     Foundation/Query/Helper/ProxyHelper.h
     Foundation/Data/Comparer/Less.cpp
@@ -178,7 +174,7 @@ add_library(relation STATIC
     Relation/RelationMap.cpp
     Relation/RelationMap.h
     Relation/RelationFetcher.cpp
-    Relation/RelationFetcher.h Relation/Relation.h)
+    Relation/RelationFetcher.h Relation/Relation.h Relation/Link.cpp Relation/Link.h Relation/LinkToOne.cpp Relation/LinkToOne.h Relation/LinkToMany.cpp Relation/LinkToMany.h)
 
 add_library(segmentation STATIC
     Segmentation/Join/TInner.hpp
