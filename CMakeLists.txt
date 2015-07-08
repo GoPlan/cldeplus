@@ -273,7 +273,7 @@ add_library(application STATIC
     AppTest/Application/CustomerLoader.cpp
     AppTest/Application/CustomerLoader.h
     AppTest/Application/PreOrderLoader.cpp
-    AppTest/Application/PreOrderLoader.h)
+    AppTest/Application/PreOrderLoader.h AppTest/Entity/Customer.cpp AppTest/Entity/Customer.h AppTest/Entity/PreOrder.cpp AppTest/Entity/PreOrder.h)
 
 add_library(apptest STATIC
     AppTest/main.cpp

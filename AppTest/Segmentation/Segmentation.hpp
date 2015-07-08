@@ -48,7 +48,7 @@ namespace Cloude {
                 // Select Customer set
                 Foundation::Data::SPtrValue sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
                 Foundation::Query::SPtrCriteria sptrCustomerIdGt00(new Foundation::Query::Comparative::Greater(mapCustomer.Id, sptrCustomerId));
-                Foundation::SPtrEntityProxyVector rsCustomer = queryCustomer.ComposeVector(sptrCustomerIdGt00);
+                Foundation::SPtrEntityProxyVector rsCustomer = queryCustomer.Select(sptrCustomerIdGt00);
 
                 for (auto proxy : rsCustomer) {
                     std::cout << proxy->ToString() << std::endl;
@@ -57,7 +57,7 @@ namespace Cloude {
                 // Select Order set
                 Foundation::Data::SPtrValue sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(0);
                 Foundation::Query::SPtrCriteria sptrOrderIdGt00(new Foundation::Query::Comparative::Greater(mapPreOrder.Id, sptrOrderId));
-                Foundation::SPtrEntityProxyVector rsPreOrder = queryOrder.ComposeVector(sptrOrderIdGt00);
+                Foundation::SPtrEntityProxyVector rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
 
                 for (auto proxy : rsPreOrder) {
                     std::cout << proxy->ToString() << std::endl;

@@ -62,7 +62,7 @@ namespace Cloude {
                 std::cout << compound.first << std::endl;
 
                 {
-                    auto proxies = enquiryQuery->ComposeVector(sptrOR__);
+                    auto proxies = enquiryQuery->Select(sptrOR__);
 
                     for (auto proxy : proxies) {
                         auto sptrEntity = proxy->Summon(enquiryStore);

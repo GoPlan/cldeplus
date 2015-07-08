@@ -29,13 +29,9 @@ namespace Cloude {
             // Locals
             virtual SPtrEntityProxy ComposeGetFirst(const Query::SPtrCriteria &sptrCriteria);
 
-            virtual SPtrEntityProxyVector ComposeVector(const Query::SPtrCriteria &sptrCriteria);
-            virtual SPtrEntityProxyVector ComposeVector(const Query::SPtrCriteria &sptrCriteria,
-                                                        const SPtrColumnVector &columnsForProjection);
-
-            virtual SPtrEntityProxySet ComposeSet(const Query::SPtrCriteria &sptrCriteria);
-            virtual SPtrEntityProxySet ComposeSet(const Query::SPtrCriteria &sptrCriteria,
-                                                  const SPtrColumnVector &columnsForProjection);
+            virtual SPtrEntityProxyVector Select(const Query::SPtrCriteria &sptrCriteria);
+            virtual SPtrEntityProxyVector Select(const Query::SPtrCriteria &sptrCriteria,
+                                                 const SPtrColumnVector &columnsForProjection);
         };
 
         using SPtrEntityQuery = std::shared_ptr<EntityQuery>;
