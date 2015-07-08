@@ -116,12 +116,12 @@ namespace Cloude {
                 case ValueType::String: {
                     auto ptrLhsTmp = dynamic_cast<const Data::Type::String *>(lhs.get());
                     auto ptrRhsTmp = dynamic_cast<const Data::Type::String *>(lhs.get());
-                    return strcmp(ptrLhsTmp->ToCString(), ptrRhsTmp->ToCString()) < 0;
+                    return strcmp(ptrLhsTmp->ToString().c_str(), ptrRhsTmp->ToString().c_str()) < 0;
                 }
                 case ValueType::VarChar: {
                     auto ptrLhsTmp = dynamic_cast<const Data::Type::VarChar *>(lhs.get());
                     auto ptrRhsTmp = dynamic_cast<const Data::Type::VarChar *>(lhs.get());
-                    return strcmp(ptrLhsTmp->ToCString(), ptrRhsTmp->ToCString()) < 0;
+                    return strcmp(ptrLhsTmp->ToString().c_str(), ptrRhsTmp->ToString().c_str()) < 0;
                 }
                 case ValueType::Text: {
                     std::string type = Data::Helper::TypeHelper::CopyToString(lhs->getDataType());

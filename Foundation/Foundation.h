@@ -28,6 +28,7 @@
 // Store
 #include "Foundation/Store/AbstractEntity.h"
 #include "Foundation/Store/Comparer/Comparer.h"
+#include "Foundation/Store/Extra/EntityOutputFormatter.h"
 
 // Query
 #include "Foundation/Query/Query.h"

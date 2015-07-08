@@ -52,9 +52,9 @@ namespace Cloude {
                     using DataRecordGreater = Foundation::Store::Comparer::Greater;
                     using DataRecordCompare = Foundation::Store::Comparer::Compare<>;
 
-                    DataRecordCompare compare{_lhsComparingColumns, _lhsComparingColumns};
-                    DataRecordLess lesser{_lhsComparingColumns, _rhsComparingColumns};
-                    DataRecordGreater greater{_lhsComparingColumns, _rhsComparingColumns};
+                    DataRecordCompare EQ{_lhsComparingColumns, _lhsComparingColumns};
+                    DataRecordLess LT{_lhsComparingColumns, _rhsComparingColumns};
+                    DataRecordGreater GT{_lhsComparingColumns, _rhsComparingColumns};
 
                     TContainer proxiesContainer;
                     auto lhsCurrent = lhsContainer.cbegin();
@@ -81,14 +81,14 @@ namespace Cloude {
                             continue;
                         }
 
-                        if (lhsCurrent != lhsEnd && lesser(*lhsCurrent, *rhsCurrent)) {
+                        if (lhsCurrent != lhsEnd && LT(*lhsCurrent, *rhsCurrent)) {
                             Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
                             _sptrLhsTransformer->Transform(*lhsCurrent, proxy);
                             proxiesContainer.insert(proxiesContainer.cend(), proxy);
                             ++lhsCurrent;
                             continue;
                         }
-                        else if (rhsCurrent != rhsEnd && greater(*lhsCurrent, *rhsCurrent)) {
+                        else if (rhsCurrent != rhsEnd && GT(*lhsCurrent, *rhsCurrent)) {
                             Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
                             _sptrRhsTransformer->Transform(*rhsCurrent, proxy);
                             proxiesContainer.insert(proxiesContainer.cend(), proxy);
@@ -100,7 +100,7 @@ namespace Cloude {
                             auto rhsTmp = rhsCurrent;
                             auto lhsTmp = lhsCurrent;
 
-                            while (rhsCurrent != rhsEnd && !lesser(*lhsCurrent, *rhsCurrent)) {
+                            while (rhsCurrent != rhsEnd && !LT(*lhsCurrent, *rhsCurrent)) {
                                 Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
                                 _sptrLhsTransformer->Transform(*lhsCurrent, proxy);
                                 _sptrRhsTransformer->Transform(*rhsCurrent, proxy);
@@ -110,7 +110,7 @@ namespace Cloude {
 
                             ++lhsCurrent;
 
-                            if (lhsCurrent != lhsEnd && compare(*lhsTmp, *(lhsCurrent)))
+                            if (lhsCurrent != lhsEnd && EQ(*lhsTmp, *(lhsCurrent)))
                                 rhsCurrent = rhsTmp;
                         }
                     }

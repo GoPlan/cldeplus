@@ -67,7 +67,7 @@ namespace Cloude {
                     for (auto proxy : proxies) {
                         auto sptrEntity = proxy->Summon(enquiryStore);
                         ASSERT_TRUE(sptrEntity.get() != 0);
-                        std::cout << proxy->CopyToString() << endl;
+                        std::cout << proxy->ToString() << endl;
                     }
 
                     auto proxy00 = proxies[0];

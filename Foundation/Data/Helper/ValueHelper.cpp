@@ -84,7 +84,7 @@ namespace Cloude {
                 }
                 case ValueType::VarChar: {
                     auto &value = static_cast<Data::Type::VarChar &>(*sptrValue);
-                    auto sptrNewValue = std::make_shared<Data::Type::VarChar>(value.ToCString());
+                    auto sptrNewValue = std::make_shared<Data::Type::VarChar>(value.ToString());
                     return sptrNewValue;
                 }
                 case ValueType::Text: {

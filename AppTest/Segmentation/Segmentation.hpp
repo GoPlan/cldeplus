@@ -47,49 +47,37 @@ namespace Cloude {
 
                 // Select Customer set
                 Foundation::Data::SPtrValue sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
-                Foundation::Query::SPtrCriteria
-                        sptrCustomerIdGt00(new Foundation::Query::Comparative::Greater(mapCustomer.Id, sptrCustomerId));
+                Foundation::Query::SPtrCriteria sptrCustomerIdGt00(new Foundation::Query::Comparative::Greater(mapCustomer.Id, sptrCustomerId));
                 Foundation::SPtrEntityProxyVector rsCustomer = queryCustomer.ComposeVector(sptrCustomerIdGt00);
 
                 for (auto proxy : rsCustomer) {
-                    std::cout << proxy->CopyToString() << std::endl;
+                    std::cout << proxy->ToString() << std::endl;
                 }
 
                 // Select Order set
                 Foundation::Data::SPtrValue sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(0);
-                Foundation::Query::SPtrCriteria
-                        sptrOrderIdGt00(new Foundation::Query::Comparative::Greater(mapPreOrder.Id, sptrOrderId));
+                Foundation::Query::SPtrCriteria sptrOrderIdGt00(new Foundation::Query::Comparative::Greater(mapPreOrder.Id, sptrOrderId));
                 Foundation::SPtrEntityProxyVector rsPreOrder = queryOrder.ComposeVector(sptrOrderIdGt00);
 
                 for (auto proxy : rsPreOrder) {
-                    std::cout << proxy->CopyToString() << std::endl;
+                    std::cout << proxy->ToString() << std::endl;
                 }
 
                 Foundation::SPtrColumn newCustomerIdColumn = std::make_shared<Foundation::Column>("customerId", Foundation::Data::ValueType::Int64);
-                Foundation::SPtrColumn newCustomerEmailColumn = std::make_shared<Foundation::Column>("email", Foundation::Data::ValueType::VarChar);
+                Foundation::SPtrColumn newCustomerEmailColumn = std::make_shared<Foundation::Column>("customerEmail", Foundation::Data::ValueType::VarChar);
                 Foundation::SPtrColumn newPreOrderIdColumn = std::make_shared<Foundation::Column>("preorderId", Foundation::Data::ValueType::Int64);
                 Foundation::SPtrColumn newPreOrderTotalColumn = std::make_shared<Foundation::Column>("preorderTotal", Foundation::Data::ValueType::Double);
 
                 Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
                 Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
                 Cloude::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
-                Cloude::Segmentation::Transformation::CellTransformer preorderCustIdCell{};
                 Cloude::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
 
-
-                std::cout << std::endl;
-                std::cout << "CROSS JOIN result" << std::endl;
-                Cloude::Segmentation::Join::Cross joinCross{};
-                joinCross.LhsTransformer()->AddCellTransformer("Id", customerIdCell);
-                joinCross.LhsTransformer()->AddCellTransformer("Email", customerEmailCell);
-                joinCross.RhsTransformer()->AddCellTransformer("Id", preorderIdCell);
-                joinCross.RhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
-
-                Foundation::SPtrEntityProxyVector rsJoinCross = joinCross.Join(rsCustomer, rsPreOrder);
-                for (auto proxy : rsJoinCross) {
-                    std::cout << proxy->CopyToString() << std::endl;
-                }
-
+                Cloude::Foundation::Store::Extra::EntityOutputFormatter formatter{};
+                formatter.DisplayColumns().push_back(newPreOrderIdColumn);
+                formatter.DisplayColumns().push_back(newPreOrderTotalColumn);
+                formatter.DisplayColumns().push_back(newCustomerIdColumn);
+                formatter.DisplayColumns().push_back(newCustomerEmailColumn);
 
                 std::cout << std::endl;
                 std::cout << "SORT PreOrder by CustId" << std::endl;
@@ -99,7 +87,22 @@ namespace Cloude {
 
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
                 for (auto proxy : rsPreOrder) {
-                    std::cout << proxy->CopyToString() << std::endl;
+                    std::cout << proxy->ToString() << std::endl;
+                }
+
+
+                std::cout << std::endl;
+                std::cout << "PreOrder CROSS JOIN Customer" << std::endl;
+                Cloude::Segmentation::Join::Cross joinCross{};
+                joinCross.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
+                joinCross.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                joinCross.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+                joinCross.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
+
+                Foundation::SPtrEntityProxyVector rsJoinCross = joinCross.Join(rsPreOrder, rsCustomer);
+                std::cout << formatter.ToString() << std::endl;
+                for (auto &proxy : rsJoinCross) {
+                    std::cout << proxy->ToString(formatter) << std::endl;
                 }
 
 
@@ -114,8 +117,9 @@ namespace Cloude {
                 joinLeft.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
                 Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
+                std::cout << formatter.ToString() << std::endl;
                 for (auto proxy : rsJoinLeft) {
-                    std::cout << proxy->CopyToString() << std::endl;
+                    std::cout << proxy->ToString(formatter) << std::endl;
                 }
 
 
@@ -130,8 +134,9 @@ namespace Cloude {
                 joinRight.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
                 Foundation::SPtrEntityProxyVector rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
+                std::cout << formatter.ToString() << std::endl;
                 for (auto proxy : rsJoinRight) {
-                    std::cout << proxy->CopyToString() << std::endl;
+                    std::cout << proxy->ToString(formatter) << std::endl;
                 }
 
 
@@ -146,8 +151,9 @@ namespace Cloude {
                 joinInner.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
                 Foundation::SPtrEntityProxyVector rsJoinInner = joinInner.Join(rsPreOrder, rsCustomer);
+                std::cout << formatter.ToString() << std::endl;
                 for (auto proxy : rsJoinInner) {
-                    std::cout << proxy->CopyToString() << std::endl;
+                    std::cout << proxy->ToString(formatter) << std::endl;
                 }
 
 
@@ -162,8 +168,9 @@ namespace Cloude {
                 joinFull.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
                 Foundation::SPtrEntityProxyVector rsJoinFull = joinFull.Join(rsPreOrder, rsCustomer);
+                std::cout << formatter.ToString() << std::endl;
                 for (auto proxy : rsJoinFull) {
-                    std::cout << proxy->CopyToString() << std::endl;
+                    std::cout << proxy->ToString(formatter) << std::endl;
                 }
 
 

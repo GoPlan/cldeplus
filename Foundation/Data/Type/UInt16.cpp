@@ -27,27 +27,8 @@ namespace Cloude {
                     }
                 }
 
-                const std::string UInt16::CopyToString() const {
+                std::string UInt16::ToString() const {
                     return std::to_string(_value);
-                }
-
-
-                const std::string &UInt16::ToString() const {
-
-                    if (_string.empty()) {
-                        _string.assign(std::to_string(_value));
-                    }
-
-                    return _string;
-                }
-
-                const char *UInt16::ToCString() const {
-
-                    if (_string.empty()) {
-                        _string.assign(std::to_string(_value));
-                    }
-
-                    return _string.c_str();
                 }
 
                 Value &UInt16::operator+(const Value &rhs) {

@@ -13,7 +13,6 @@ namespace Cloude {
 
             public:
                 virtual bool Equal(const IEquatable &rhs) const = 0;
-//                virtual bool operator==(const IEquatable &rhs, const IEquatable &lhs) = 0;
             };
         }
     }

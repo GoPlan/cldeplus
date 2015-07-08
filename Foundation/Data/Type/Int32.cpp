@@ -27,17 +27,8 @@ namespace Cloude {
                     }
                 }
 
-                const std::string Int32::CopyToString() const {
+                std::string Int32::ToString() const {
                     return std::to_string(_value);
-                }
-
-                const std::string &Int32::ToString() const {
-                    _string.assign(std::to_string(_value));
-                    return _string;
-                }
-
-                const char *Int32::ToCString() const {
-                    return ToString().c_str();
                 }
 
                 Value &Int32::operator+(const Value &rhs) {

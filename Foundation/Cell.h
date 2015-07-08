@@ -30,9 +30,7 @@ namespace Cloude {
             ~Cell() = default;
 
             // IPrintable
-            const std::string CopyToString() const override;
-            const std::string &ToString() const override;
-            const char *ToCString() const override;
+            std::string ToString() const override;
 
             // Locals
             bool isNull() const { return _value.get() == nullptr; };

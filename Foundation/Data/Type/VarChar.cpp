@@ -82,17 +82,8 @@ namespace Cloude {
                     return false;
                 }
 
-                const std::string VarChar::CopyToString() const {
+                std::string VarChar::ToString() const {
                     return std::string(_value);
-                }
-
-                const std::string &VarChar::ToString() const {
-                    std::string msg{"VarChar does not support ToString. Use CopyToString(), ToCString() instead."};
-                    throw Exception::cldeNonSupportedFunctionException{msg};
-                }
-
-                const char *VarChar::ToCString() const {
-                    return _value;
                 }
 
                 void *VarChar::RawPointerToValueBuffer() {

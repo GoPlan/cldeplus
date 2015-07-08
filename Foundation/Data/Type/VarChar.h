@@ -14,6 +14,7 @@ namespace Cloude {
             namespace Type {
 
                 class VarChar : public CharacterValue {
+
                     char *_value;
 
                     void init();
@@ -36,9 +37,7 @@ namespace Cloude {
                     virtual bool Equal(const Common::IEquatable &rhs) const override;
 
                     // IPrintable
-                    virtual const std::string CopyToString() const override;
-                    virtual const std::string &ToString() const override;
-                    virtual const char *ToCString() const override;
+                    virtual std::string ToString() const override;
                 };
             }
         }

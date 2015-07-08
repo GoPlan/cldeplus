@@ -15,7 +15,6 @@ namespace Cloude {
                 class UInt32 : public NumericValue {
 
                     uint32_t _value;
-                    mutable std::string _string;
 
                 public:
                     explicit UInt32(int value);
@@ -32,9 +31,7 @@ namespace Cloude {
                     virtual bool Equal(const Common::IEquatable &rhs) const override;
 
                     // IPrintable
-                    virtual const std::string CopyToString() const override;
-                    virtual const std::string &ToString() const override;
-                    virtual const char *ToCString() const override;
+                    virtual std::string ToString() const override;
 
                     // IComputable
                     virtual Value &operator+(const Value &rhs) override;

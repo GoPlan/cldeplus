@@ -1,14 +1,11 @@
 cmake_minimum_required(VERSION 3.2)
 project(cloud_e_plus)
 
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_plus_SOURCE_DIR}/.local/build/bin")
 set(SOURCE_FILES main.cpp)
 
-
 include_directories(${CMAKE_SOURCE_DIR})
-
 
 add_library(foundation STATIC
     Foundation/Data/TypeEnums.h
@@ -40,7 +37,6 @@ add_library(foundation STATIC
     Foundation/Exception/cldeEntityException.h
     Foundation/EntitySourceDriver.cpp
     Foundation/EntitySourceDriver.h
-    Foundation/Common/IPrintable.h
     Foundation/Query/Criteria.cpp
     Foundation/Query/Criteria.h
     Foundation/Query/Helper/SqlHelper.cpp
@@ -133,9 +129,7 @@ add_library(foundation STATIC
     Foundation/Exception/cldeException.h
     Foundation/Common/IEquatable.h
     Foundation/Common/IComputable.h
-    Foundation/Common/ICompoundAssignable.h
-    Foundation/Common/IParsable.h
-    Foundation/Common/IFormattable.h
+    Foundation/Common/IPrintable.h
     Foundation/Query/Contract/IPredicateFormatter.h
     Foundation/Query/Comparative.h
     Foundation/Query/CriteriaLeaf.cpp
@@ -175,7 +169,10 @@ add_library(foundation STATIC
     Foundation/Data/Helper/TypeHelper.cpp
     Foundation/Data/Helper/TypeHelper.h
     Foundation/Foundation.h
-    Foundation/Store/Comparer/Comparer.h)
+    Foundation/Store/Comparer/Comparer.h
+    Foundation/Common/IFormatter.h
+    Foundation/Store/Extra/EntityOutputFormatter.cpp
+    Foundation/Store/Extra/EntityOutputFormatter.h)
 
 add_library(relation STATIC
     Relation/RelationMap.cpp
@@ -228,7 +225,6 @@ add_library(segmentation STATIC
     Segmentation/Segmentation.h
     )
 
-
 add_library(Drivers STATIC
     Drivers/SQLite/SQLiteSourceDriver.cpp
     Drivers/SQLite/SQLiteSourceDriver.h
@@ -257,7 +253,6 @@ add_library(Drivers STATIC
     Drivers/SQLite/SQLiteSourceHelper.h
     )
 
-
 add_library(application STATIC
     AppTest/Application/StockGroupMap.cpp
     AppTest/Application/StockGroupMap.h
@@ -280,7 +275,6 @@ add_library(application STATIC
     AppTest/Application/PreOrderLoader.cpp
     AppTest/Application/PreOrderLoader.h)
 
-
 add_library(apptest STATIC
     AppTest/main.cpp
     AppTest/Store/Preparation/EnquirySQLiteStore.cpp
@@ -301,8 +295,7 @@ add_library(apptest STATIC
     AppTest/Type/ValueComparison.hpp
     AppTest/Segmentation/Transformation.hpp)
 
-
-add_library(.examples STATIC
+add_library(examples STATIC
     .examples/main.cpp
     .examples/mysql_c_example.h
     .examples/mysql_c_example.cpp
@@ -310,17 +303,14 @@ add_library(.examples STATIC
     .examples/mongodb_c_example.h
     )
 
-
 # Libs
 set(LOCAL_DIR ${CMAKE_SOURCE_DIR}/.local)
 set(LIBS_DIR ${LOCAL_DIR}/libs)
-
 
 # /opt/local
 set(OPT_LOCAL "/opt/local")
 set(OPT_LOCAL_INCLUDE "${OPT_LOCAL}/include")
 set(OPT_LOCAL_LIB "${OPT_LOCAL}/lib")
-
 
 # PostgreSql94
 include_directories(${OPT_LOCAL_INCLUDE}/postgresql94)
@@ -345,19 +335,17 @@ set(BOOST_DIR ${LIBS_DIR}/boost_1_58_0)
 include_directories(${BOOST_DIR})
 
 
-# .examples Target
+# TARGET: examples
 set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/.examples)
 set(EXAMPLES_SOURCE_FILE ${EXAMPLES_DIR}/main.cpp)
 add_executable(cloud_e_plus_example ${EXAMPLES_SOURCE_FILE})
-target_link_libraries(cloud_e_plus_example .examples mysqlclient mongoc-1.0 bson-1.0)
+target_link_libraries(cloud_e_plus_example examples mysqlclient mongoc-1.0 bson-1.0)
 
-
-# Debug Target
+# TARGET: debug
 add_executable(cloud_e_plus_debug ${SOURCE_FILES})
 target_link_libraries(cloud_e_plus_debug foundation Drivers application mysqlclient pq mongoc-1.0)
 
-
-# AppTest Target (with Google Testing Foundation)
+# TARGET: apptest
 set(GTEST_LIB_DIR ${LIBS_DIR}/gtest-1.7.0)
 set(APPTEST_SOURCE_FILE ${CMAKE_SOURCE_DIR}/AppTest/main.cpp)
 include_directories(${GTEST_LIB_DIR}/include)

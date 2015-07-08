@@ -28,17 +28,8 @@ namespace Cloude {
                     }
                 }
 
-                const std::string Byte::CopyToString() const {
+                std::string Byte::ToString() const {
                     return std::to_string(_value);
-                }
-
-                const std::string &Byte::ToString() const {
-                    _string.assign(std::to_string(_value));
-                    return _string;
-                }
-
-                const char *Byte::ToCString() const {
-                    return ToString().c_str();
                 }
 
                 Value &Byte::operator+(const Value &rhs) {

@@ -64,7 +64,7 @@ namespace Cloude {
 
                     auto &sptrEmailField = sptrEntity->getCell("Email");
                     auto &sptrEmailValue = sptrEmailField->getValue();
-                    EXPECT_TRUE(strcmp(email.c_str(), sptrEmailValue->ToCString()) == 0);
+                    EXPECT_TRUE(strcmp(email.c_str(), sptrEmailValue->ToString().c_str()) == 0);
 
                     _entityStore.Delete(sptrEntity);
                     EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
