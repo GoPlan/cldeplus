@@ -21,15 +21,30 @@ namespace Cloude {
             SPtrIdentity _identity;
 
         public:
-            explicit Entity(const SPtrIdentity &identity);
+            explicit Entity(const SPtrIdentity &identity) : _identity(identity) {
+
+                if (!identity) {
+                    std::string msg{"Identity can not be nullptr or undefined"};
+                    throw std::invalid_argument{msg};
+                }
+
+                for (auto fieldPair : _identity->getCellsMap()) {
+                    auto field = fieldPair.second;
+                    setCell(field);
+                }
+            };
+
             Entity(const Entity &) = default;
             Entity(Entity &&) = default;
             Entity &operator=(const Entity &) = default;
             Entity &operator=(Entity &&) = default;
-            ~Entity() = default;
+            virtual ~Entity() = default;
 
             // Locals
             const SPtrIdentity &getIdentity() { return _identity; }
+
+            template<class TEntity>
+            TEntity NamedEntity(std::function<TEntity(const Entity &)> converter) { return converter(*this); };
         };
 
         using SPtrEntity = std::shared_ptr<Entity>;

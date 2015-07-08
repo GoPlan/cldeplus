@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_LINKTOONE_H
-#define CLOUD_E_PLUS_LINKTOONE_H
+#ifndef CLOUD_E_PLUS_RELATION_LINKTOONE_H
+#define CLOUD_E_PLUS_RELATION_LINKTOONE_H
 
 #include <Foundation/EntityProxy.h>
 #include "Link.h"
@@ -30,4 +30,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_LINKTOONE_H
+#endif //CLOUD_E_PLUS_RELATION_LINKTOONE_H

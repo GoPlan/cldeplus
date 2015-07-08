@@ -10,44 +10,44 @@
 /// IsSummonable() should be check prior to this function call.
 
 Cloude::Foundation::SPtrEntity Cloude::Foundation::Query::Helper::ProxyHelper::Summon(
-        SPtrEntityProxy &entityProxy,
-        SPtrEntityStore &entityStore) {
+        SPtrEntityProxy &proxy,
+        SPtrEntityStore &store) {
 
-    if (!isIdentifiableInStore(entityProxy, entityStore)) {
+    if (!isIdentifiableInStore(proxy, store)) {
         std::string msg{"Proxy is not summonable. See if selected columns are sufficient for Identity."};
         throw Exception::cldeEntityException{msg};
     }
 
     Foundation::SPtrIdentity sptrIdentity{new Foundation::Identity{}};
 
-    std::for_each(entityStore->getEntityMap().getColumnsForKey().begin(),
-                  entityStore->getEntityMap().getColumnsForKey().cend(),
-                  [&sptrIdentity, &entityProxy](const Foundation::SPtrColumn &sptrColumn) {
-                      auto &cell = entityProxy->getCell(sptrColumn->getName());
+    std::for_each(store->getEntityMap().getColumnsForKey().begin(),
+                  store->getEntityMap().getColumnsForKey().cend(),
+                  [&sptrIdentity, &proxy](const Foundation::SPtrColumn &sptrColumn) {
+                      auto &cell = proxy->getCell(sptrColumn->getName());
                       sptrIdentity->setCell(cell);
                   });
 
-    auto entity = entityStore->Get(sptrIdentity);
+    auto entity = store->Get(sptrIdentity);
 
     return entity;
 }
 
-bool Cloude::Foundation::Query::Helper::ProxyHelper::isIdentifiableInStore(const SPtrEntityProxy &entityProxy,
-                                                                           const SPtrEntityStore &entityStore) {
+bool Cloude::Foundation::Query::Helper::ProxyHelper::isIdentifiableInStore(const SPtrEntityProxy &proxy,
+                                                                           const SPtrEntityStore &store) {
 
-    switch (entityProxy->getSummonState()) {
+    switch (proxy->getSummonState()) {
         case EntityProxy::EntityProxySummonState::Undefined: {
 
-            auto &columnsForKey = entityStore->getEntityMap().getColumnsForKey();
+            auto &columnsForKey = store->getEntityMap().getColumnsForKey();
 
             for (auto &column : columnsForKey) {
-                if (entityProxy->getCell(column->getName())->isNull())
-                    entityProxy->setSummonState(EntityProxy::EntityProxySummonState::No);
+                if (proxy->getCell(column->getName())->isNull())
+                    proxy->setSummonState(EntityProxy::EntityProxySummonState::No);
             }
 
-            entityProxy->setSummonState(EntityProxy::EntityProxySummonState::Yes);
+            proxy->setSummonState(EntityProxy::EntityProxySummonState::Yes);
 
-            return isIdentifiableInStore(entityProxy, entityStore);
+            return isIdentifiableInStore(proxy, store);
         };
         case EntityProxy::EntityProxySummonState::Yes:
             return true;

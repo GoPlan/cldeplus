@@ -168,13 +168,22 @@ add_library(foundation STATIC
     Foundation/Store/Comparer/Comparer.h
     Foundation/Common/IFormatter.h
     Foundation/Store/Extra/EntityOutputFormatter.cpp
-    Foundation/Store/Extra/EntityOutputFormatter.h)
+    Foundation/Store/Extra/EntityOutputFormatter.h
+    )
 
 add_library(relation STATIC
     Relation/RelationMap.cpp
     Relation/RelationMap.h
     Relation/RelationFetcher.cpp
-    Relation/RelationFetcher.h Relation/Relation.h Relation/Link.cpp Relation/Link.h Relation/LinkToOne.cpp Relation/LinkToOne.h Relation/LinkToMany.cpp Relation/LinkToMany.h)
+    Relation/RelationFetcher.h
+    Relation/Relation.h
+    Relation/Link.cpp
+    Relation/Link.h
+    Relation/LinkToOne.cpp
+    Relation/LinkToOne.h
+    Relation/LinkToMany.cpp
+    Relation/LinkToMany.h
+    )
 
 add_library(segmentation STATIC
     Segmentation/Join/TInner.hpp
@@ -269,7 +278,7 @@ add_library(application STATIC
     AppTest/Application/CustomerLoader.cpp
     AppTest/Application/CustomerLoader.h
     AppTest/Application/PreOrderLoader.cpp
-    AppTest/Application/PreOrderLoader.h AppTest/Entity/Customer.cpp AppTest/Entity/Customer.h AppTest/Entity/PreOrder.cpp AppTest/Entity/PreOrder.h)
+    AppTest/Application/PreOrderLoader.h AppTest/Entity/Customer.cpp AppTest/Entity/Customer.h AppTest/Entity/PreOrder.cpp AppTest/Entity/PreOrder.h AppTest/Entity/Enquiry.cpp AppTest/Entity/Enquiry.h)
 
 add_library(apptest STATIC
     AppTest/main.cpp
@@ -289,7 +298,7 @@ add_library(apptest STATIC
     AppTest/Segmentation/Segmentation.hpp
     AppTest/Type/CreateValue.hpp
     AppTest/Type/ValueComparison.hpp
-    AppTest/Segmentation/Transformation.hpp)
+    AppTest/Segmentation/Transformation.hpp AppTest/Relation/NamedEntity.hpp)
 
 add_library(examples STATIC
     .examples/main.cpp

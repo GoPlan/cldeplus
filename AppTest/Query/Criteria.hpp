@@ -47,7 +47,6 @@ namespace Cloude {
                 SPtrCriteria sptrIdEq02(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_02));
                 SPtrCriteria sptrEmail01(new Comparative::Like(enquiryMap.Email, sptrEmail_01));
                 SPtrCriteria sptrEmail02(new Comparative::Like(enquiryMap.Email, sptrEmail_02));
-
                 SPtrCriteria sptrOR01(new Comparative::Or(sptrIdEq01, sptrEmail01));
                 SPtrCriteria sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
                 SPtrCriteria sptrOR__(new Comparative::Or(sptrOR01, sptrOR02));
@@ -67,7 +66,7 @@ namespace Cloude {
                     for (auto proxy : proxies) {
                         auto sptrEntity = proxy->Summon(enquiryStore);
                         ASSERT_TRUE(sptrEntity.get() != 0);
-                        std::cout << proxy->ToString() << endl;
+                        std::cout << proxy->ToString() << std::endl;
                     }
 
                     auto proxy00 = proxies[0];

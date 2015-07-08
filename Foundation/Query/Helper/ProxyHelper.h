@@ -19,11 +19,8 @@ namespace Cloude {
                 class ProxyHelper {
 
                 public:
-                    static SPtrEntity Summon(SPtrEntityProxy &entityProxy,
-                                             SPtrEntityStore &entityStore);
-
-                    static bool isIdentifiableInStore(const SPtrEntityProxy &entityProxy,
-                                                      const SPtrEntityStore &entityStore);
+                    static SPtrEntity Summon(SPtrEntityProxy &proxy, SPtrEntityStore &store);
+                    static bool isIdentifiableInStore(const SPtrEntityProxy &proxy, const SPtrEntityStore &store);
 
                 public:
                     ProxyHelper() = delete;
