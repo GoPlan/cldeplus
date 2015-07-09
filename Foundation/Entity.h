@@ -38,7 +38,7 @@ namespace Cloude {
             Entity(Entity &&) = default;
             Entity &operator=(const Entity &) = default;
             Entity &operator=(Entity &&) = default;
-            virtual ~Entity() = default;
+            ~Entity() = default;
 
             // Locals
             const SPtrIdentity &getIdentity() { return _identity; }
@@ -51,6 +51,8 @@ namespace Cloude {
         using SPtrEntityVector = std::vector<SPtrEntity>;
         using SPtrEntityList = std::list<SPtrEntity>;
         using SPtrEntitySet = std::set<SPtrEntity>;
+
+        SPtrEntity CreateEntitySharedPtr(const SPtrIdentity &identity);
     }
 }
 

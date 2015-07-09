@@ -26,7 +26,7 @@ namespace Cloude {
                 ProductMap(ProductMap &&) = default;
                 ProductMap &operator=(const ProductMap &) = default;
                 ProductMap &operator=(ProductMap &&) = default;
-                virtual ~ProductMap() = default;
+                ~ProductMap() = default;
 
             protected:
                 virtual const std::string &TableNameCore() const override;

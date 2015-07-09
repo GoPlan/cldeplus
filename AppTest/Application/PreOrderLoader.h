@@ -19,7 +19,7 @@ namespace Cloude {
                 PreOrderLoader(PreOrderLoader &&) = default;
                 PreOrderLoader &operator=(const PreOrderLoader &) = default;
                 PreOrderLoader &operator=(PreOrderLoader &&) = default;
-                virtual ~PreOrderLoader() = default;
+                ~PreOrderLoader() = default;
 
                 virtual Foundation::SPtrIdentity NextPrimaryKey() const override;
             };

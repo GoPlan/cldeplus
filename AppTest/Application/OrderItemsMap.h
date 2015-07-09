@@ -28,7 +28,7 @@ namespace Cloude {
                 OrderItemsMap(OrderItemsMap &&) = default;
                 OrderItemsMap &operator=(const OrderItemsMap &) = default;
                 OrderItemsMap &operator=(OrderItemsMap &&) = default;
-                virtual ~OrderItemsMap() = default;
+                ~OrderItemsMap() = default;
 
             protected:
                 virtual const std::string &TableNameCore() const override;
