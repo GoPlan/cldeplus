@@ -10,11 +10,11 @@
 #include <Relation/Relation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include <AppTest/Application/CustomerMap.h>
-#include <AppTest/Application/CustomerLoader.h>
 #include <AppTest/Application/PreOrderMap.h>
-#include <AppTest/Application/PreOrderLoader.h>
 #include <AppTest/Entity/Customer.h>
 #include <AppTest/Entity/PreOrder.h>
+#include <Relation/NamedEntityLoader.h>
+#include <Relation/NamedEntityStore.h>
 
 
 namespace Cloude {
@@ -25,21 +25,21 @@ namespace Cloude {
 
                 Application::CustomerMap mapCustomer{};
                 Application::PreOrderMap mapPreOrder{};
-                Application::CustomerLoader loaderCustomer{};
-                Application::PreOrderLoader loaderPreOrder{};
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
                 Drivers::SQLite::SQLiteSourceDriver driverPreOrder{mapPreOrder};
                 driverCustomer.OptionArgs().ConnectionString = "../ex1.db";
                 driverPreOrder.OptionArgs().ConnectionString = "../ex1.db";
 
-                auto sptrCustomerStore = Foundation::CreateStoreSharedPtr(mapCustomer, loaderCustomer, driverCustomer);
-                auto sptrPreOrderStore = Foundation::CreateStoreSharedPtr(mapPreOrder, loaderPreOrder, driverPreOrder);
-                auto sptrCustomerQuery = Foundation::CreateQuerySharedPtr(sptrCustomerStore);
-                auto sptrPreOrderQuery = Foundation::CreateQuerySharedPtr(sptrPreOrderStore);
+                auto sptrCustomerQuery = Foundation::CreateQuerySharedPtr(mapCustomer, driverCustomer);
+                auto sptrPreOrderQuery = Foundation::CreateQuerySharedPtr(mapPreOrder, driverPreOrder);
 
-                auto fptrCustomerCreator =
-                        [&mapPreOrder, &sptrPreOrderQuery](const Foundation::Entity &entity) -> Entity::Customer {
+                auto sptrCustomerStore = Relation::CreateNamedStoreSharedPtr<Entity::Customer>(mapCustomer, driverCustomer);
+                auto sptrPreOrderStore = Relation::CreateNamedStoreSharedPtr<Entity::PreOrder>(mapPreOrder, driverPreOrder);
+
+                sptrCustomerStore->EntityLoader().fptrNamedEntityCreator =
+                        [&mapPreOrder, &sptrPreOrderQuery](
+                                const Foundation::Entity &entity) -> Entity::Customer {
 
                             using namespace Foundation::Data;
                             using namespace Foundation::Query;
@@ -51,13 +51,15 @@ namespace Cloude {
                             customer.setEmail(entity.getCell("Email")->ToString());
 
                             // LinkToMany to PreOrder
-                            SPtrCriteria criteria{new Comparative::Equal{mapPreOrder.CustId, ValueFactory::CreateInt64(customer.getId())}};
+                            SPtrCriteria criteria
+                                    {new Comparative::Equal{mapPreOrder.CustId,
+                                                            ValueFactory::CreateInt64(customer.getId())}};
                             customer.setSptrPreOrders(Relation::CreateLinkToMany(sptrPreOrderQuery, criteria));
 
                             return customer;
                         };
 
-                auto fptrPreOrderCreator =
+                sptrPreOrderStore->EntityLoader().fptrNamedEntityCreator =
                         [&mapCustomer, &sptrCustomerQuery](const Foundation::Entity &entity) -> Entity::PreOrder {
 
                             using namespace Foundation::Data;
@@ -69,7 +71,8 @@ namespace Cloude {
                             preOrder.setName(entity.getCell("Name")->ToString());
 
                             // LinkToOne to Customer
-                            SPtrCriteria criteria{new Comparative::Equal{mapCustomer.Id, ValueFactory::CreateInt64(preOrder.getCustomerId())}};
+                            SPtrCriteria criteria{new Comparative::Equal{mapCustomer.Id, ValueFactory::CreateInt64(
+                                    preOrder.getCustomerId())}};
                             preOrder.setSptrCustomer(Relation::CreateLinkToOne(sptrCustomerQuery, criteria));
 
                             return preOrder;
@@ -88,14 +91,14 @@ namespace Cloude {
                 }
 
                 auto sptrPreOrderProxy = sptrPreOrderQuery->SelectFirst(sptrPreOrderIdGt00);
-                auto sptrPreOrderEntity = sptrPreOrderProxy->Summon(sptrPreOrderStore);
-                auto preOrder = sptrPreOrderEntity->NamedEntity<Entity::PreOrder>(fptrPreOrderCreator);
+                auto sptrPreOrderEntity = sptrPreOrderStore->Summon(sptrPreOrderProxy);
+                auto preOrder = sptrPreOrderStore->NamedEntity(sptrPreOrderEntity);
 
                 {
                     std::cout << "Referencing Customer from PreOrder" << std::endl;
 
                     auto sptrCustomerProxy = preOrder.sptrCustomer()->Call();
-                    auto sptrCustomerEntity = sptrCustomerProxy->Summon(sptrCustomerStore);
+                    auto sptrCustomerEntity = sptrCustomerStore->Summon(sptrCustomerProxy);
 
                     EXPECT_TRUE(sptrCustomerProxy.get());
                     EXPECT_TRUE(sptrCustomerEntity.get());
@@ -114,13 +117,13 @@ namespace Cloude {
                 }
 
                 auto sptrCustomerProxy = sptrCustomerQuery->SelectFirst(sptrCustomerIdGt00);
-                auto sptrCustomerEntity = sptrCustomerProxy->Summon(sptrCustomerStore);
-                auto customer = sptrCustomerEntity->NamedEntity<Entity::Customer>(fptrCustomerCreator);
+                auto sptrCustomerEntity = sptrCustomerStore->Summon(sptrCustomerProxy);
+                auto customer = sptrCustomerStore->NamedEntity(sptrCustomerEntity);
 
                 {
                     std::cout << "Referencing PreOrder from Customer" << std::endl;
                     auto sptrPreOrdersVector = customer.sptrPreOrders()->Call();
-                    for(auto &order : sptrPreOrdersVector){
+                    for (auto &order : sptrPreOrdersVector) {
                         std::cout << order->ToString() << std::endl;
                     }
                 }

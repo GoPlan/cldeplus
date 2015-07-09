@@ -1,0 +1,79 @@
+//
+// Created by LE, Duc Anh on 7/9/15.
+//
+
+#ifndef CLOUD_E_PLUS_RELATION_NAMEDENTITYSTORE_H
+#define CLOUD_E_PLUS_RELATION_NAMEDENTITYSTORE_H
+
+#include <Foundation/EntityStore.h>
+#include <Relation/Exception/NamedEntityStoreException.h>
+#include <Foundation/Query/Helper/ProxyHelper.h>
+#include "NamedEntityLoader.h"
+
+namespace Cloude {
+    namespace Relation {
+
+        template<class TEntity>
+        class NamedEntityStore : public Foundation::EntityStore,
+                                 public std::enable_shared_from_this<NamedEntityStore<TEntity>> {
+
+            NamedEntityLoader<TEntity> _entityLoader;
+
+        public:
+            NamedEntityStore(const Foundation::EntityMap &entityMap,
+                             const Foundation::EntitySourceDriver &entitySourceDriver)
+                    : Foundation::EntityStore{entityMap, entitySourceDriver} { };
+
+            NamedEntityStore(const NamedEntityStore &) = default;
+            NamedEntityStore(NamedEntityStore &&) = default;
+            NamedEntityStore &operator=(const NamedEntityStore &) = default;
+            NamedEntityStore &operator=(NamedEntityStore &&) = default;
+            ~NamedEntityStore() = default;
+
+            // Mutators
+            NamedEntityLoader<TEntity> &EntityLoader() { return _entityLoader; };
+
+            // Locals
+            Foundation::SPtrEntity Create() {
+
+                if (!_entityLoader.fptrIdentityCreator) {
+                    std::string msg{"Identity creator is not defined"};
+                    throw Exception::NamedEntityStoreException{msg};
+                }
+
+                auto identity = (Foundation::SPtrIdentity) _entityLoader.fptrIdentityCreator();
+                auto entity = Foundation::EntityStore::Create(identity);
+
+                return entity;
+            };
+
+            Foundation::SPtrEntity Summon(const Foundation::SPtrEntityProxy &proxy) {
+                auto sptrNamedStore = std::enable_shared_from_this<NamedEntityStore<TEntity>>::shared_from_this();
+                auto sptrEntityStore = std::dynamic_pointer_cast<Foundation::EntityStore>(sptrNamedStore);
+                return Foundation::Query::Helper::ProxyHelper::Summon(proxy, sptrEntityStore);
+            };
+
+            TEntity NamedEntity(const Foundation::SPtrEntity &entity) {
+
+                if (!_entityLoader.fptrNamedEntityCreator) {
+                    std::string msg{"NamedEntity creator is not defined"};
+                    throw Exception::NamedEntityStoreException{msg};
+                }
+
+                return _entityLoader.fptrNamedEntityCreator(*entity);
+            };
+        };
+
+        template<class TEntity>
+        using SPtrNamedStore = std::shared_ptr<NamedEntityStore<TEntity>>;
+
+        template<class TEntity>
+        SPtrNamedStore<TEntity> CreateNamedStoreSharedPtr(const Foundation::EntityMap &entityMap,
+                                                          const Foundation::EntitySourceDriver &entitySourceDriver) {
+            return std::make_shared<NamedEntityStore<TEntity>>(entityMap, entitySourceDriver);
+        }
+    }
+}
+
+
+#endif //CLOUD_E_PLUS_RELATION_NAMEDENTITYSTORE_H

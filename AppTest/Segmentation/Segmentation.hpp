@@ -13,11 +13,8 @@
 #include <Segmentation/Segmentation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include <AppTest/Application/EnquiryMap.h>
-#include <AppTest/Application/EnquiryLoader.h>
 #include <AppTest/Application/CustomerMap.h>
-#include <AppTest/Application/CustomerLoader.h>
 #include <AppTest/Application/PreOrderMap.h>
-#include <AppTest/Application/PreOrderLoader.h>
 
 
 namespace Cloude {
@@ -27,22 +24,21 @@ namespace Cloude {
             TEST(Segmentation, case01) {
 
                 Application::CustomerMap mapCustomer;
-                Application::CustomerLoader loaderCustomer;
                 Application::PreOrderMap mapPreOrder;
-                Application::PreOrderLoader loadPreOrder;
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
                 Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
 
-                Foundation::SPtrEntityStore sptrCustomerStore = std::make_shared<Foundation::EntityStore>(mapCustomer, loaderCustomer, driverCustomer);
-                Foundation::SPtrEntityStore sptrOrderStore = std::make_shared<Foundation::EntityStore>(mapPreOrder, loadPreOrder, driverOrder);
+                Foundation::SPtrEntityStore sptrCustomerStore = std::make_shared<Foundation::EntityStore>(mapCustomer, driverCustomer);
+                Foundation::SPtrEntityStore sptrOrderStore = std::make_shared<Foundation::EntityStore>(mapPreOrder, driverOrder);
 
-                Foundation::EntityQuery queryCustomer{sptrCustomerStore};
-                Foundation::EntityQuery queryOrder{sptrOrderStore};
+                Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
+                Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "../ex1.db";
-                driverCustomer.Connect();
                 driverOrder.OptionArgs().ConnectionString = "../ex1.db";
+
+                driverCustomer.Connect();
                 driverOrder.Connect();
 
                 // Select Customer set

@@ -10,7 +10,7 @@
 /// IsSummonable() should be check prior to this function call.
 
 Cloude::Foundation::SPtrEntity Cloude::Foundation::Query::Helper::ProxyHelper::Summon(
-        SPtrEntityProxy &proxy,
+        const SPtrEntityProxy &proxy,
         SPtrEntityStore &store) {
 
     if (!IsIdentifiableInStore(proxy, store)) {
@@ -18,7 +18,7 @@ Cloude::Foundation::SPtrEntity Cloude::Foundation::Query::Helper::ProxyHelper::S
         throw Exception::cldeEntityException{msg};
     }
 
-    Foundation::SPtrIdentity sptrIdentity{new Foundation::Identity{}};
+    Foundation::SPtrIdentity sptrIdentity = std::make_shared<Foundation::Identity>();
 
     std::for_each(store->getEntityMap().getColumnsForKey().begin(),
                   store->getEntityMap().getColumnsForKey().cend(),

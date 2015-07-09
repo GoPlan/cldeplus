@@ -5,9 +5,10 @@
 #ifndef CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY_HPP
 #define CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY_HPP
 
-#include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include "gtest/gtest.h"
-#include "../Entity/Enquiry.h"
+#include <Foundation/Foundation.h>
+#include <Drivers/SQLite/SQLiteSourceDriver.h>
+#include <AppTest/Entity/Enquiry.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -21,13 +22,11 @@ namespace Cloude {
                 auto sptrEnquiryId_04 = Data::ValueFactory::CreateInt64(4);
 
                 AppTest::Application::EnquiryMap enquiryMap;
-                AppTest::Application::EnquiryLoader enquiryLoader;
-
                 Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
                 sqliteSourceDriver.OptionArgs().ConnectionString = "../ex1.db";
 
-                auto sptrEnquiryStore = std::make_shared<EntityStore>(enquiryMap, enquiryLoader, sqliteSourceDriver);
-                auto sptrEnquiryQuery = std::make_shared<EntityQuery>(sptrEnquiryStore);
+                auto sptrEnquiryStore = std::make_shared<EntityStore>(enquiryMap, sqliteSourceDriver);
+                auto sptrEnquiryQuery = std::make_shared<EntityQuery>(enquiryMap, sqliteSourceDriver);
 
                 sqliteSourceDriver.Connect();
 

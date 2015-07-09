@@ -19,8 +19,6 @@ add_library(foundation STATIC
     Foundation/Entity.h
     Foundation/EntityMap.cpp
     Foundation/EntityMap.h
-    Foundation/EntityLoader.cpp
-    Foundation/EntityLoader.h
     Foundation/EntityStore.cpp
     Foundation/EntityStore.h
     Foundation/EntityProxy.cpp
@@ -173,6 +171,8 @@ add_library(foundation STATIC
     )
 
 add_library(relation STATIC
+    Relation/NamedEntityLoader.cpp
+    Relation/NamedEntityLoader.h
     Relation/Relation.h
     Relation/RelationMap.cpp
     Relation/RelationMap.h
@@ -182,7 +182,8 @@ add_library(relation STATIC
     Relation/LinkToOne.h
     Relation/LinkToMany.cpp
     Relation/LinkToMany.h
-    )
+    Relation/NamedEntityStore.cpp
+    Relation/NamedEntityStore.h Relation/Exception/NamedEntityStoreException.cpp Relation/Exception/NamedEntityStoreException.h)
 
 add_library(segmentation STATIC
     Segmentation/Join/TInner.hpp
@@ -260,12 +261,8 @@ add_library(Drivers STATIC
 add_library(application STATIC
     AppTest/Application/StockGroupMap.cpp
     AppTest/Application/StockGroupMap.h
-    AppTest/Application/StockGroupLoader.cpp
-    AppTest/Application/StockGroupLoader.h
     AppTest/Application/EnquiryMap.cpp
     AppTest/Application/EnquiryMap.h
-    AppTest/Application/EnquiryLoader.cpp
-    AppTest/Application/EnquiryLoader.h
     AppTest/Application/PreOrderMap.cpp
     AppTest/Application/PreOrderMap.h
     AppTest/Application/CustomerMap.cpp
@@ -274,10 +271,6 @@ add_library(application STATIC
     AppTest/Application/ProductMap.h
     AppTest/Application/OrderItemsMap.cpp
     AppTest/Application/OrderItemsMap.h
-    AppTest/Application/CustomerLoader.cpp
-    AppTest/Application/CustomerLoader.h
-    AppTest/Application/PreOrderLoader.cpp
-    AppTest/Application/PreOrderLoader.h
     AppTest/Entity/Customer.cpp
     AppTest/Entity/Customer.h
     AppTest/Entity/PreOrder.cpp

@@ -8,7 +8,6 @@
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
-#include <AppTest/Application/EnquiryLoader.h>
 #include <AppTest/Application/EnquiryMap.h>
 
 namespace Cloude {
@@ -20,13 +19,12 @@ namespace Cloude {
 
                 public:
                     EnquirySQLiteStore();
-                    ~EnquirySQLiteStore() = default;
                     EnquirySQLiteStore(const EnquirySQLiteStore &srcEnquirySQLiteStore) = default;
                     EnquirySQLiteStore &operator=(const EnquirySQLiteStore &srcEnquirySQLiteStore) = default;
+                    ~EnquirySQLiteStore() = default;
 
                 protected:
                     using EnquiryMap = Application::EnquiryMap;
-                    using EnquiryLoader = Application::EnquiryLoader;
                     using SQLiteSourceDriver = Drivers::SQLite::SQLiteSourceDriver;
                     using EntityStore = Foundation::EntityStore;
 
@@ -34,7 +32,6 @@ namespace Cloude {
                     void TearDown() override;
 
                     EnquiryMap _enquiryMap;
-                    EnquiryLoader _enquiryLoader;
                     SQLiteSourceDriver _sqliteSourceDriver;
                     EntityStore _entityStore;
                 };
