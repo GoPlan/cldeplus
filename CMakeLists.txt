@@ -183,7 +183,9 @@ add_library(relation STATIC
     Relation/LinkToMany.cpp
     Relation/LinkToMany.h
     Relation/NamedEntityStore.cpp
-    Relation/NamedEntityStore.h Relation/Exception/NamedEntityStoreException.cpp Relation/Exception/NamedEntityStoreException.h)
+    Relation/NamedEntityStore.h
+    Relation/Exception/NamedEntityStoreException.cpp
+    Relation/Exception/NamedEntityStoreException.h)
 
 add_library(segmentation STATIC
     Segmentation/Join/TInner.hpp

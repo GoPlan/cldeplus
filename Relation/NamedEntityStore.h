@@ -28,7 +28,7 @@ namespace Cloude {
             NamedEntityStore(NamedEntityStore &&) = default;
             NamedEntityStore &operator=(const NamedEntityStore &) = default;
             NamedEntityStore &operator=(NamedEntityStore &&) = default;
-            ~NamedEntityStore() = default;
+            virtual ~NamedEntityStore() = default;
 
             // Mutators
             NamedEntityLoader<TEntity> &EntityLoader() { return _entityLoader; };
@@ -68,8 +68,8 @@ namespace Cloude {
         using SPtrNamedStore = std::shared_ptr<NamedEntityStore<TEntity>>;
 
         template<class TEntity>
-        SPtrNamedStore<TEntity> CreateNamedStoreSharedPtr(const Foundation::EntityMap &entityMap,
-                                                          const Foundation::EntitySourceDriver &entitySourceDriver) {
+        SPtrNamedStore<TEntity> CreateNamedStore(const Foundation::EntityMap &entityMap,
+                                                 const Foundation::EntitySourceDriver &entitySourceDriver) {
             return std::make_shared<NamedEntityStore<TEntity>>(entityMap, entitySourceDriver);
         }
     }

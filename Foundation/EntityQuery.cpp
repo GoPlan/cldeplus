@@ -36,7 +36,7 @@ namespace Cloude {
             return _entitySourceDriver.Select(sptrCriteria, columnsForProjection);
         }
 
-        SPtrEntityQuery CreateQuerySharedPtr(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver) {
+        SPtrEntityQuery CreateEntityQuery(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver) {
             return std::make_shared<EntityQuery>(entityMap, entitySourceDriver);
         }
     }

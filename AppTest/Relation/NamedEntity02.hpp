@@ -28,14 +28,19 @@ namespace Cloude {
                 driverCustomer.OptionArgs().ConnectionString = "../ex1.db";
                 driverPreOrder.OptionArgs().ConnectionString = "../ex1.db";
 
-                auto sptrCustomerQuery = Foundation::CreateQuerySharedPtr(mapCustomer, driverCustomer);
-                auto sptrPreOrderQuery = Foundation::CreateQuerySharedPtr(mapPreOrder, driverPreOrder);
+                Relation::RelationMap linkCustomerToPreOrder{};
+                Relation::RelationMap linkPreOrderToCustomer{};
+                linkCustomerToPreOrder.AddLink(mapCustomer.Id, mapPreOrder.CustId);
+                linkPreOrderToCustomer.AddLink(mapPreOrder.CustId, mapCustomer.Id);
 
-                auto sptrCustomerStore = Relation::CreateNamedStoreSharedPtr<Entity::Customer>(mapCustomer, driverCustomer);
-                auto sptrPreOrderStore = Relation::CreateNamedStoreSharedPtr<Entity::PreOrder>(mapPreOrder, driverPreOrder);
+                auto sptrCustomerQuery = Foundation::CreateEntityQuery(mapCustomer, driverCustomer);
+                auto sptrPreOrderQuery = Foundation::CreateEntityQuery(mapPreOrder, driverPreOrder);
+                auto sptrCustomerStore = Relation::CreateNamedStore<Entity::Customer>(mapCustomer, driverCustomer);
+                auto sptrPreOrderStore = Relation::CreateNamedStore<Entity::PreOrder>(mapPreOrder, driverPreOrder);
 
                 sptrCustomerStore->EntityLoader().fptrNamedEntityCreator =
-                        [&mapPreOrder, &sptrPreOrderQuery](const Foundation::Entity &entity) -> Entity::Customer {
+                        [&mapPreOrder, &sptrPreOrderQuery, &linkCustomerToPreOrder]
+                                (const Foundation::Entity &entity) -> Entity::Customer {
 
                             using namespace Foundation::Data;
                             using namespace Foundation::Query;
@@ -47,14 +52,15 @@ namespace Cloude {
                             customer.setEmail(entity.getCell("Email")->ToString());
 
                             // LinkToMany to PreOrder
-                            SPtrCriteria criteria{new Comparative::Equal{mapPreOrder.CustId, ValueFactory::CreateInt64(customer.getId())}};
+                            SPtrCriteria criteria = linkCustomerToPreOrder.Generate(entity);
                             customer.setSptrPreOrders(Relation::CreateLinkToMany(sptrPreOrderQuery, criteria));
 
                             return customer;
                         };
 
                 sptrPreOrderStore->EntityLoader().fptrNamedEntityCreator =
-                        [&mapCustomer, &sptrCustomerQuery](const Foundation::Entity &entity) -> Entity::PreOrder {
+                        [&mapCustomer, &sptrCustomerQuery, &linkPreOrderToCustomer]
+                                (const Foundation::Entity &entity) -> Entity::PreOrder {
 
                             using namespace Foundation::Data;
                             using namespace Foundation::Query;
@@ -65,7 +71,7 @@ namespace Cloude {
                             preOrder.setName(entity.getCell("Name")->ToString());
 
                             // LinkToOne to Customer
-                            SPtrCriteria criteria{new Comparative::Equal{mapCustomer.Id, ValueFactory::CreateInt64(preOrder.getCustomerId())}};
+                            SPtrCriteria criteria = linkPreOrderToCustomer.Generate(entity);
                             preOrder.setSptrCustomer(Relation::CreateLinkToOne(sptrCustomerQuery, criteria));
 
                             return preOrder;
@@ -120,6 +126,7 @@ namespace Cloude {
                         std::cout << order->ToString() << std::endl;
                     }
                 }
+
 
                 driverCustomer.Disconnect();
                 driverPreOrder.Disconnect();

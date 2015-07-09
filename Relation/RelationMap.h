@@ -5,14 +5,18 @@
 #ifndef CLOUD_E_PLUS_RELATION_RELATIONMAP_H
 #define CLOUD_E_PLUS_RELATION_RELATIONMAP_H
 
-#include <unordered_map>
+#include <Foundation/Query/Query.h>
+#include <Foundation/Entity.h>
 
 namespace Cloude {
     namespace Relation {
 
-        using ColumnNamesMap = std::unordered_map<std::string, std::string>;
+        using LinkColumn = std::pair<std::string, Foundation::SPtrColumn>;
+        using LinkColumnsMap = std::vector<LinkColumn>;
 
         class RelationMap {
+
+            LinkColumnsMap _columnsMap;
 
         public:
             RelationMap() = default;
@@ -21,6 +25,11 @@ namespace Cloude {
             RelationMap &operator=(const RelationMap &) = default;
             RelationMap &operator=(RelationMap &&) = default;
             virtual ~RelationMap() = default;
+
+            // Locals
+            void AddLink(const std::string& srcColumnName, const Foundation::SPtrColumn& dstColumn);
+            void AddLink(const Foundation::SPtrColumn& srcColumn, const Foundation::SPtrColumn& dstColumn);
+            Foundation::Query::SPtrCriteria Generate(const Foundation::Entity &entity) const;
         };
     }
 }

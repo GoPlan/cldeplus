@@ -10,5 +10,6 @@
 #include "LinkToOne.h"
 #include "NamedEntityLoader.h"
 #include "NamedEntityStore.h"
+#include "RelationMap.h"
 
 #endif //CLOUD_E_PLUS_RELATION_H
