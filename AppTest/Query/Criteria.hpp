@@ -9,11 +9,9 @@
 #include <iostream>
 #include <functional>
 #include "gtest/gtest.h"
-#include <Cloude.h>
+#include <Foundation/Foundation.h>
 #include <AppTest/Application/EnquiryMap.h>
 #include <AppTest/Application/EnquiryLoader.h>
-#include <Foundation/Query/Helper/SqlHelper.h>
-#include <Foundation/Store/Comparer/DataRecordCompare.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -39,9 +37,9 @@ namespace Cloude {
                 auto enquiryQuery = std::make_shared<EntityQuery>(enquiryStore);
 
                 SPtrColumnVector vtorCmpColumns{enquiryMap.Email};
-                Foundation::Store::Comparer::DataRecordCompare<> compare{vtorCmpColumns, vtorCmpColumns};
+                Foundation::Store::Comparer::Compare<> compare{vtorCmpColumns, vtorCmpColumns};
 
-                auto &options = sqliteSourceDriver.getOptionArgs();
+                auto &options = sqliteSourceDriver.OptionArgs();
                 options.ConnectionString = "../ex1.db";
                 sqliteSourceDriver.Connect();
 
@@ -49,7 +47,6 @@ namespace Cloude {
                 SPtrCriteria sptrIdEq02(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_02));
                 SPtrCriteria sptrEmail01(new Comparative::Like(enquiryMap.Email, sptrEmail_01));
                 SPtrCriteria sptrEmail02(new Comparative::Like(enquiryMap.Email, sptrEmail_02));
-
                 SPtrCriteria sptrOR01(new Comparative::Or(sptrIdEq01, sptrEmail01));
                 SPtrCriteria sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
                 SPtrCriteria sptrOR__(new Comparative::Or(sptrOR01, sptrOR02));
@@ -64,18 +61,18 @@ namespace Cloude {
                 std::cout << compound.first << std::endl;
 
                 {
-                    auto proxies = enquiryQuery->ComposeVector(sptrOR__);
+                    auto proxies = enquiryQuery->Select(sptrOR__);
 
                     for (auto proxy : proxies) {
                         auto sptrEntity = proxy->Summon(enquiryStore);
                         ASSERT_TRUE(sptrEntity.get() != 0);
-                        std::cout << proxy->CopyToString() << endl;
+                        std::cout << proxy->ToString() << std::endl;
                     }
 
                     auto proxy00 = proxies[0];
-                    auto proxy01 = enquiryQuery->ComposeGetFirst(sptrOR__);
+                    auto proxy01 = enquiryQuery->SelectFirst(sptrOR__);
 
-                    EXPECT_TRUE(compare(*proxy00, *proxy01));
+                    EXPECT_TRUE(compare(proxy00, proxy01));
                 }
 
                 sqliteSourceDriver.Disconnect();

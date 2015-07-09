@@ -28,19 +28,18 @@ namespace Cloude {
                 virtual const SPtrCell &getCell(const std::string &columnName) const;
                 virtual const SPtrCell &operator[](const std::string &columnName) const;
                 virtual bool TryGetCell(const std::string &columnName, SPtrCell &sptrOutCell) const;
-                virtual bool hasCell(const std::string &cellName);
-                virtual unsigned long Size();
+                virtual bool hasCell(const std::string &cellName) const;
+                virtual unsigned long Size() const;
 
-                const SPtrCellMap &getCellsMap() { return _cellMap; };
+                const SPtrCellMap &getCellsMap() const{ return _cellMap; };
 
                 SPtrCellVector getCells() const;
                 SPtrCellVector getCells(const SPtrColumnVector &selectedColumns) const;
                 SPtrColumnVector getColumns() const;
 
                 // IPrintable
-                const std::string CopyToString() const override;
-                const std::string &ToString() const override;
-                const char *ToCString() const override;
+                virtual std::string ToString() const override;
+                virtual std::string ToString(const Foundation::Common::IFormatter &formatter) const override;
 
             protected:
                 AbstractEntity() = default;

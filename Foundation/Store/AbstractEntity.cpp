@@ -60,13 +60,13 @@ namespace Cloude {
             return true;
         }
 
-        bool Store::AbstractEntity::hasCell(const std::string &cellName) {
+        bool Store::AbstractEntity::hasCell(const std::string &cellName) const {
             auto search = _cellMap.find(cellName);
             auto result = !(search == _cellMap.end());
             return result;
         }
 
-        unsigned long Store::AbstractEntity::Size() {
+        unsigned long Store::AbstractEntity::Size() const {
             return _cellMap.size();
         }
 
@@ -108,17 +108,7 @@ namespace Cloude {
             return columnVector;
         }
 
-        const std::string &Store::AbstractEntity::ToString() const {
-            std::string msg{"ToString is not supported, use CopyToString intead"};
-            throw Exception::cldeNonSupportedFunctionException{msg};
-        }
-
-        const char *Store::AbstractEntity::ToCString() const {
-            std::string msg{"ToCString is not supported, use CopyToString intead"};
-            throw Exception::cldeNonSupportedFunctionException{msg};
-        }
-
-        const std::string Store::AbstractEntity::CopyToString() const {
+        std::string Store::AbstractEntity::ToString() const {
 
             std::string result;
 
@@ -133,11 +123,15 @@ namespace Cloude {
                               if (field->isNull()) {
                                   result += "null";
                               } else {
-                                  result += field->getValue()->CopyToString();
+                                  result += field->getValue()->ToString();
                               }
                           });
 
             return result;
+        }
+
+        std::string Store::AbstractEntity::ToString(const Foundation::Common::IFormatter &formatter) const {
+            return formatter.Format(*this);
         }
     }
 }

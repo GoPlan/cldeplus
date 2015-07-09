@@ -11,7 +11,7 @@ namespace Cloude {
     namespace Foundation {
 
         bool Data::Comparer::Greater::operator()(const Data::SPtrValue &lhs,
-                                                          const Data::SPtrValue &rhs) const {
+                                                 const Data::SPtrValue &rhs) const {
 
             if (lhs->getDataType() != rhs->getDataType() || lhs->getCategory() != rhs->getCategory()) {
                 std::string lhsType = Data::Helper::TypeHelper::CopyToString(lhs->getDataType());
@@ -48,7 +48,7 @@ namespace Cloude {
                 const Data::SPtrValue &lhs, const Data::SPtrValue &rhs) const {
 
             switch (lhs->getDataType()) {
-                case ValueType ::Boolean: {
+                case ValueType::Boolean: {
                     auto ptrLhsTmp = reinterpret_cast<bool *>(lhs->RawPointerToValueBuffer());
                     auto ptrRhsTmp = reinterpret_cast<bool *>(rhs->RawPointerToValueBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
@@ -115,15 +115,21 @@ namespace Cloude {
                 const Data::SPtrValue &lhs, const Data::SPtrValue &rhs) const {
 
             switch (lhs->getDataType()) {
-                case ValueType ::String: {
-                    auto ptrLhsTmp = dynamic_cast<const Data::Type::String *>(lhs.get());
-                    auto ptrRhsTmp = dynamic_cast<const Data::Type::String *>(lhs.get());
-                    return strcmp(ptrLhsTmp->ToCString(), ptrRhsTmp->ToCString()) > 0;
+                case ValueType::String: {
+
+                    auto ptrLhsTmp = dynamic_cast<Data::Type::String *>(lhs.get());
+                    auto ptrRhsTmp = dynamic_cast<Data::Type::String *>(lhs.get());
+
+                    return strcmp(((const std::string *) ptrLhsTmp->RawPointerToValueBuffer())->c_str(),
+                                  ((const std::string *) ptrRhsTmp->RawPointerToValueBuffer())->c_str()) > 0;
                 }
                 case ValueType::VarChar: {
-                    auto ptrLhsTmp = dynamic_cast<const Data::Type::VarChar *>(lhs.get());
-                    auto ptrRhsTmp = dynamic_cast<const Data::Type::VarChar *>(lhs.get());
-                    return strcmp(ptrLhsTmp->ToCString(), ptrRhsTmp->ToCString()) > 0;
+
+                    auto ptrLhsTmp = dynamic_cast<Data::Type::VarChar *>(lhs.get());
+                    auto ptrRhsTmp = dynamic_cast<Data::Type::VarChar *>(lhs.get());
+
+                    return strcmp((const char *) ptrLhsTmp->RawPointerToValueBuffer(),
+                                  (const char *) ptrRhsTmp->RawPointerToValueBuffer()) > 0;
                 }
                 case ValueType::Text: {
                     std::string type = Data::Helper::TypeHelper::CopyToString(lhs->getDataType());

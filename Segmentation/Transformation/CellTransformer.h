@@ -7,21 +7,27 @@
 
 #include <Foundation/Column.h>
 #include <Foundation/Cell.h>
-#include "TypeConverter.h"
+#include "TypeCaster.h"
 
 namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
 
+            /// CellTransformer:
+            /// Cast (copy) a cell into new cell with possibilities of transforming cell name and data type
+            ///
+            /// Note:
+            /// New cell will use provided column if a shared pointer of column is provided.
+            /// A converter must be provided if different data type is used or Transformation exception will be thrown.
             class CellTransformer {
 
                 Foundation::SPtrColumn _sptrTargetColumn;
-                SPtrTypeConverter _sptrTypeConverter;
+                SPtrCaster _sptrTypeConverter;
 
             public:
                 CellTransformer() = default;
                 CellTransformer(const Foundation::SPtrColumn &targetColumn);
-                CellTransformer(const Foundation::SPtrColumn &targetColumn, const SPtrTypeConverter &converter);
+                CellTransformer(const Foundation::SPtrColumn &targetColumn, const SPtrCaster &converter);
                 CellTransformer(const CellTransformer &) = default;
                 CellTransformer(CellTransformer &&) = default;
                 CellTransformer &operator=(const CellTransformer &) = default;
@@ -30,15 +36,11 @@ namespace Cloude {
 
                 // Accessor
                 const Foundation::SPtrColumn &TargetColumn() const { return _sptrTargetColumn; }
-                const SPtrTypeConverter &TypeConverter() const { return _sptrTypeConverter; }
+                const SPtrCaster &TypeConverter() const { return _sptrTypeConverter; }
 
                 // Mutator
-                void setTargetColumn(const Foundation::SPtrColumn &sptrTargetColumn) {
-                    _sptrTargetColumn = sptrTargetColumn;
-                }
-                void setTypeConverter(const SPtrTypeConverter &sptrTypeConverter) {
-                    _sptrTypeConverter = sptrTypeConverter;
-                }
+                void setTargetColumn(const Foundation::SPtrColumn &sptrTargetColumn) { _sptrTargetColumn = sptrTargetColumn; }
+                void setTypeConverter(const SPtrCaster &sptrTypeConverter) { _sptrTypeConverter = sptrTypeConverter; }
 
                 // Locals
                 virtual Foundation::SPtrCell Transform(const Foundation::SPtrCell &srcSPtrCell) const;

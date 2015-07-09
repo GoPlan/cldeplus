@@ -22,8 +22,7 @@ namespace Cloude {
                     virtual ~CellHelper() = delete;
 
                 public:
-                    static SPtrCell CopySptrCell(const SPtrCell &sptrCell);
-
+                    static SPtrCell CopySPtrCell(const SPtrCell &sptrCell);
                 };
             }
         }

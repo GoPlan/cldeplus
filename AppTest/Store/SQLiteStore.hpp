@@ -8,8 +8,6 @@
 #include "gtest/gtest.h"
 #include "Preparation/EnquirySQLiteStore.h"
 
-using namespace std;
-
 namespace Cloude {
     namespace AppTest {
         namespace Store {
@@ -25,7 +23,7 @@ namespace Cloude {
                 auto spEnquiryId = Foundation::Data::ValueFactory::CreateInt64(15);
                 auto spEnquiryEmail = Foundation::Data::ValueFactory::CreateVarChar(email);
 
-                auto spEnquiryIdField = make_shared<Field>(_enquiryMap.EnquiryId);
+                auto spEnquiryIdField = std::make_shared<Field>(_enquiryMap.EnquiryId);
                 spEnquiryIdField->setValue(spEnquiryId);
 
                 auto initFieldList{spEnquiryIdField};
@@ -64,7 +62,7 @@ namespace Cloude {
 
                     auto &sptrEmailField = sptrEntity->getCell("Email");
                     auto &sptrEmailValue = sptrEmailField->getValue();
-                    EXPECT_TRUE(strcmp(email.c_str(), sptrEmailValue->ToCString()) == 0);
+                    EXPECT_TRUE(strcmp(email.c_str(), sptrEmailValue->ToString().c_str()) == 0);
 
                     _entityStore.Delete(sptrEntity);
                     EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));

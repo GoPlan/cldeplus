@@ -17,18 +17,10 @@ namespace Cloude {
             setValue(value);
         }
 
-        const std::string Cell::CopyToString() const {
+        std::string Cell::ToString() const {
             std::string result{_value->ToString() +
                                "(" + Data::Helper::TypeHelper::CopyToString(_value->getDataType()) + ")"};
             return result;
-        }
-
-        const std::string &Cell::ToString() const {
-            return _value->ToString();
-        }
-
-        const char *Cell::ToCString() const {
-            return _value->ToCString();
         }
 
         void Cell::setValue(const Data::SPtrValue &value) {

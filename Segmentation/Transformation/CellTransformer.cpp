@@ -2,6 +2,7 @@
 // Created by LE, Duc Anh on 6/30/15.
 //
 
+#include "../Exception/TransformationException.h"
 #include "CellTransformer.h"
 
 namespace Cloude {
@@ -14,27 +15,34 @@ namespace Cloude {
         }
 
         Transformation::CellTransformer::CellTransformer(const Foundation::SPtrColumn &targetColumn,
-                                                         const Transformation::SPtrTypeConverter &converter)
+                                                         const Transformation::SPtrCaster &converter)
                 : _sptrTargetColumn{targetColumn}, _sptrTypeConverter{converter} {
             //
         }
 
         Foundation::SPtrCell Transformation::CellTransformer::Transform(const Foundation::SPtrCell &srcSPtrCell) const {
 
-            if (_sptrTargetColumn) {
+            if (_sptrTargetColumn && _sptrTargetColumn->getDataType() != srcSPtrCell->getColumn()->getDataType()) {
 
-                Foundation::SPtrCell dstSPtrCell = std::make_shared<Foundation::Cell>(_sptrTargetColumn);
-
-                if (_sptrTypeConverter) {
-                    dstSPtrCell->setValue(_sptrTypeConverter->Convert(_sptrTargetColumn->getDataType(),
-                                                                      srcSPtrCell->getValue()));
-                } else {
-                    dstSPtrCell->setValue(srcSPtrCell->getValue());
+                if (!_sptrTypeConverter) {
+                    std::string msg{"Cell can not be transformed if source and destination types are different" \
+                    "but converter is not provided"};
+                    throw Exception::TransformationException{msg};
                 }
 
+                Foundation::SPtrCell dstSPtrCell = std::make_shared<Foundation::Cell>(_sptrTargetColumn);
+                dstSPtrCell->setValue(_sptrTypeConverter->Cast(_sptrTargetColumn->getDataType(),
+                                                               srcSPtrCell->getValue()));
                 return dstSPtrCell;
 
-            } else {
+            } else if (_sptrTargetColumn) {
+
+                Foundation::SPtrCell dstSPtrCell = std::make_shared<Foundation::Cell>(_sptrTargetColumn);
+                dstSPtrCell->setValue(srcSPtrCell->getValue());
+                return dstSPtrCell;
+
+            }
+            else {
 
                 return srcSPtrCell;
 

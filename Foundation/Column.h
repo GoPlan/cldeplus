@@ -32,9 +32,7 @@ namespace Cloude {
             ~Column() = default;
 
             // IPrintable
-            const std::string CopyToString() const override;
-            const std::string &ToString() const override;
-            const char *ToCString() const override;
+            std::string ToString() const override;
 
             // Locals - Mutators
             void setDatasourceName(const std::string &datasourceName) { _datasourceName = datasourceName; }

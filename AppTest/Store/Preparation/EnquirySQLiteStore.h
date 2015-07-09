@@ -6,7 +6,7 @@
 #define CLOUD_E_CPLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
 
 #include "gtest/gtest.h"
-#include <Cloude.h>
+#include <Foundation/Foundation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include <AppTest/Application/EnquiryLoader.h>
 #include <AppTest/Application/EnquiryMap.h>

@@ -29,17 +29,8 @@ namespace Cloude {
                     }
                 }
 
-                const std::string Boolean::CopyToString() const {
+                std::string Boolean::ToString() const {
                     return std::to_string(_value);
-                }
-
-                const std::string &Boolean::ToString() const {
-                    _string.assign(std::to_string(_value));
-                    return _string;
-                }
-
-                const char *Boolean::ToCString() const {
-                    return ToString().c_str();
                 }
 
                 Value &Boolean::operator+(const Value &rhs) {

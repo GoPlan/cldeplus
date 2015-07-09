@@ -13,6 +13,8 @@ namespace Cloude {
 
             class SegmentationException : public Foundation::Exception::cldeException {
 
+            static const std::string _name;
+
             public:
                 SegmentationException(const std::string &message) : cldeException{message} { };
                 SegmentationException(const SegmentationException &) = default;
@@ -20,6 +22,9 @@ namespace Cloude {
                 SegmentationException &operator=(const SegmentationException &) = default;
                 SegmentationException &operator=(SegmentationException &&) = default;
                 virtual ~SegmentationException() = default;
+
+                // cldeException
+                virtual const std::string &Name() const noexcept override;
             };
         }
     }

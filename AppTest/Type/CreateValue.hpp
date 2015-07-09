@@ -7,8 +7,7 @@
 
 #include "gtest/gtest.h"
 #include <iostream>
-#include <Cloude.h>
-#include <Foundation/Data/Helper/ValueHelper.h>
+#include <Foundation/Foundation.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -27,7 +26,7 @@ namespace Cloude {
                 auto sptrCopiedEnquiryId = Foundation::Data::Helper::ValueHelper::CopySPtrValue(sptrEnquiryId);
                 auto sptrCopiedEmail = Foundation::Data::Helper::ValueHelper::CopySPtrValue(sptrEmail);
 
-                EXPECT_TRUE(strcmp(sptrCopiedEmail->ToCString(), sptrEmail->ToCString()) == 0);
+                EXPECT_TRUE(strcmp(sptrCopiedEmail->ToString().c_str(), sptrEmail->ToString().c_str()) == 0);
                 EXPECT_TRUE(sptrCopiedEmail.get() != sptrEmail.get());
             }
         }

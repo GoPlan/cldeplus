@@ -13,12 +13,17 @@ namespace Cloude {
 
             class cldeNonSupportedDataTypeException : public cldeException {
 
+                static const std::string _name;
+
             public:
                 cldeNonSupportedDataTypeException(const char *message) : cldeException(message) { };
                 cldeNonSupportedDataTypeException(const std::string &message) : cldeException(message) { };
                 ~cldeNonSupportedDataTypeException() = default;
                 cldeNonSupportedDataTypeException(const cldeNonSupportedDataTypeException &rhs) = default;
                 cldeNonSupportedDataTypeException &operator=(const cldeNonSupportedDataTypeException &rhs) = default;
+
+                // cldeException
+                virtual const std::string &Name() const noexcept override;
             };
         }
     }

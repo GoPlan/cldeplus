@@ -9,22 +9,22 @@
 #include <memory>
 #include <iostream>
 #include <functional>
-#include <Cloude.h>
-#include <AppTest/Application/ProductMap.h>
-#include <AppTest/Application/OrderMap.h>
-#include <AppTest/Application/CustomerMap.h>
+#include <Foundation/Foundation.h>
 #include <Foundation/Data/Comparer/Comparer.h>
 #include <Segmentation/Segmentation.h>
+#include <AppTest/Application/ProductMap.h>
+#include <AppTest/Application/PreOrderMap.h>
+#include <AppTest/Application/CustomerMap.h>
 
 namespace Cloude {
     namespace AppTest {
         namespace Segmentation {
 
+            using namespace Cloude::Segmentation;
+
             TEST(Transformation, case01) {
 
-                using namespace Cloude::Segmentation;
-
-                Application::OrderMap orderMap{};
+                Application::PreOrderMap orderMap{};
                 Application::ProductMap productMap{};
                 Application::CustomerMap customerMap{};
 
@@ -44,15 +44,14 @@ namespace Cloude {
                 sptrOrderProxy->setCell(sptrOrderNameCell);
                 sptrOrderProxy->setCell(sptrTotalCell);
 
-                EXPECT_TRUE(sptrOrderProxy.get() != 0);
-
-                // Double (Type) Converter
-                auto sptrDoubleConverter = TypeConverterFactory::CreateDoubleConverter();
-                auto sptrInt64Total = sptrDoubleConverter->Convert(Foundation::Data::ValueType::Int64, sptrTotal);
+                // Double (Type) Caster
+                auto sptrDoubleConverter = CasterFactory::CreateDoubleConverter();
+                auto sptrInt64Total = sptrDoubleConverter->Cast(Foundation::Data::ValueType::Int64, sptrTotal);
 
                 // Entity Transformer
                 Foundation::SPtrColumn orderNewNameColumn = std::make_shared<Foundation::Column>("NewName", Foundation::Data::ValueType::VarChar);
                 Foundation::SPtrColumn orderNewTotalColumn = std::make_shared<Foundation::Column>("NewTotal", Foundation::Data::ValueType::Int64);
+
                 Transformation::SPtrEntityTransformer orderTransformer = std::make_shared<Transformation::EntityTransformer>();
                 orderTransformer->AddCellTransformer(orderMap.Name->getName(),Transformation::CellTransformer{orderNewNameColumn});
                 orderTransformer->AddCellTransformer(orderMap.Total->getName(),Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
@@ -63,7 +62,7 @@ namespace Cloude {
 
                 EXPECT_TRUE(sptrNewProxy.get() != 0);
 
-                // Assert Cost(VarChar) cell transformation
+                // Assert Cost(Double) cell transformation
                 {
                     Foundation::SPtrCell sptrNewProxyTotalCell = sptrNewProxy->getCell("NewTotal");
                     Foundation::Data::Comparer::Compare compare{};
@@ -73,6 +72,7 @@ namespace Cloude {
                     EXPECT_TRUE(!lesser(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
                     EXPECT_TRUE(!greater(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
                     EXPECT_TRUE(compare(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
+                    EXPECT_TRUE(strcmp(sptrNewProxyTotalCell->getColumn()->ToCString(), "NewTotal") == 0);
                 }
 
                 // Assert Name(VarChar) cell transformation
@@ -85,6 +85,7 @@ namespace Cloude {
                     EXPECT_TRUE(!lesser(sptrOrderName, sptrNewProxyNameCell->getValue()));
                     EXPECT_TRUE(!greater(sptrOrderName, sptrNewProxyNameCell->getValue()));
                     EXPECT_TRUE(compare(sptrOrderName, sptrNewProxyNameCell->getValue()));
+                    EXPECT_TRUE(strcmp(sptrNewProxyNameCell->getColumn()->ToCString(), "NewName") == 0);
                 }
             }
         }

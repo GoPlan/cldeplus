@@ -19,9 +19,11 @@ namespace Cloude {
                 public:
                     Or(const SPtrCriteria &lhs, const SPtrCriteria &rhs)
                             : CriteriaComposite(lhs, rhs) { }
-                    ~Or() = default;
                     Or(const Or &rhs) = default;
-                    Or &operator=(const Or &rhs) = default;
+                    Or(Or &&) = default;
+                    Or &operator=(const Or &) = default;
+                    Or &operator=(Or &&) = default;
+                    ~Or() = default;
 
                     // Locals
                     const ComparativeType &getComparativeType() const override { return _type; };

@@ -22,7 +22,7 @@ namespace Cloude {
                     Lesser(Lesser &&) = default;
                     Lesser &operator=(const Lesser &) = default;
                     Lesser &operator=(Lesser &&) = default;
-                    virtual ~Lesser() = default;
+                    ~Lesser() = default;
 
                     // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };

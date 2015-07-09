@@ -11,7 +11,9 @@
 namespace Cloude {
     namespace AppTest{
         namespace Application {
+
             class EnquiryLoader : public Foundation::EntityLoader {
+
             public:
                 EnquiryLoader() = default;
                 virtual ~EnquiryLoader() = default;

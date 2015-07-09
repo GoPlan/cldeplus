@@ -53,7 +53,7 @@ namespace Cloude {
 
             using SqlHelper = Foundation::Query::Helper::SqlHelper;
             using ValueFactory = Foundation::Data::ValueFactory;
-            using ValueType = Foundation::Data::ValueType ;
+            using ValueType = Foundation::Data::ValueType;
             using UPtrCommand = std::unique_ptr<Command>;
 
             class SQLiteSourceDriver::SQLiteApiImpl {
@@ -201,15 +201,18 @@ namespace Cloude {
                                          auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
                                          sptrField->setValue(ValueFactory::CreateInt64(value));
                                          break;
-                                     };
-
+                                     }
                                      case Cloude::Foundation::Data::ValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
                                          sptrField->setValue(ValueFactory::CreateVarChar(cstr));
                                          break;
-                                     };
-
+                                     }
+                                     case Foundation::Data::ValueType::Double: {
+                                         auto value = sqlite3_column_double(uptrCommand->_ptrStmt, index++);
+                                         sptrField->setValue(ValueFactory::CreateDouble(value));
+                                         break;
+                                     }
                                      default:
                                          ++index;
                                          std::string msg{"This type is not yet supported"};
@@ -241,15 +244,18 @@ namespace Cloude {
                                          auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
                                          sptrField->setValue(ValueFactory::CreateInt64(value));
                                          break;
-                                     };
-
+                                     }
                                      case Cloude::Foundation::Data::ValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
                                          sptrField->setValue(ValueFactory::CreateVarChar(cstr));
                                          break;
-                                     };
-
+                                     }
+                                     case Foundation::Data::ValueType::Double: {
+                                         auto value = sqlite3_column_double(uptrCommand->_ptrStmt, index++);
+                                         sptrField->setValue(ValueFactory::CreateDouble(value));
+                                         break;
+                                     }
                                      default:
                                          ++index;
                                          std::string msg{"This type is not yet supported"};
@@ -264,7 +270,7 @@ namespace Cloude {
                 sqlite3 *_ptrSqlite3 = nullptr;
             };
 
-            Foundation::SPtrEntityProxyVector SQLiteSourceDriver::SelectVector(
+            Foundation::SPtrEntityProxyVector SQLiteSourceDriver::Select(
                     const Foundation::Query::SPtrCriteria &sptrCriteria,
                     const Foundation::SPtrColumnVector &columnsForProjection) const {
 
@@ -274,9 +280,9 @@ namespace Cloude {
                         };
 
                 auto tuplQuery = SqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
-                                                                          columnsForProjection,
-                                                                          sptrCriteria,
-                                                                          fptrConditionProcessor);
+                                                                      columnsForProjection,
+                                                                      sptrCriteria,
+                                                                      fptrConditionProcessor);
 
                 auto uptrCommand = _sqliteApiImpl->createCommand(tuplQuery.first);
 
@@ -304,45 +310,6 @@ namespace Cloude {
                 return proxies;
             }
 
-            Foundation::SPtrEntityProxySet SQLiteSourceDriver::SelectSet(
-                    const Foundation::Query::SPtrCriteria &sptrCriteria,
-                    const Foundation::SPtrColumnVector &columnsForProjection) const {
-
-                auto fptrConditionProcessor =
-                        [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
-                            return std::string{"?"};
-                        };
-
-                auto tuplQuery = SqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
-                                                                          columnsForProjection,
-                                                                          sptrCriteria,
-                                                                          fptrConditionProcessor);
-
-                auto uptrCommand = _sqliteApiImpl->createCommand(tuplQuery.first);
-
-                _sqliteApiImpl->initializeParamBindBuffers(tuplQuery.second, uptrCommand);
-
-                Foundation::SPtrEntityProxySet proxies;
-
-                int resultCode;
-
-                while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
-
-                    Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
-                    Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection,
-                                                                                            sptrProxy);
-
-                    _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
-
-                    proxies.insert(sptrProxy);
-                }
-
-                if (resultCode != SQLITE_DONE) {
-                    throw SQLiteSourceException{resultCode};
-                }
-
-                return proxies;
-            }
         }
     }
 }
@@ -375,22 +342,22 @@ void Cloude::Drivers::SQLite::SQLiteSourceDriver::Init() {
     auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
 
     _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName,
-                                                          columnsForGet,
-                                                          columnsForKey,
-                                                          fptrConditionProcessor);
+                                                      columnsForGet,
+                                                      columnsForKey,
+                                                      fptrConditionProcessor);
 
     _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName,
-                                                                columnsForKey,
-                                                                fptrValueProcessor);
+                                                            columnsForKey,
+                                                            fptrValueProcessor);
 
     _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName,
-                                                                columnsForUpdate,
-                                                                columnsForKey,
-                                                                fptrConditionProcessor);
+                                                            columnsForUpdate,
+                                                            columnsForKey,
+                                                            fptrConditionProcessor);
 
     _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName,
-                                                                columnsForKey,
-                                                                fptrConditionProcessor);
+                                                            columnsForKey,
+                                                            fptrConditionProcessor);
 }
 
 void Cloude::Drivers::SQLite::SQLiteSourceDriver::Connect() {

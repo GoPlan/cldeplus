@@ -23,17 +23,8 @@ namespace Cloude {
                     return &_value;
                 }
 
-                const std::string Double::CopyToString() const {
+                std::string Double::ToString() const {
                     return std::to_string(_value);
-                }
-
-                const std::string &Double::ToString() const {
-                    _string.assign(std::to_string(_value));
-                    return _string;
-                }
-
-                const char *Double::ToCString() const {
-                    return ToString().c_str();
                 }
 
                 Value &Double::operator+(const Value &rhs) {

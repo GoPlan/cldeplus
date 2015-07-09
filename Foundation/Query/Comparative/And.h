@@ -18,9 +18,11 @@ namespace Cloude {
                 public:
                     And(const SPtrCriteria &lhs, const SPtrCriteria &rhs)
                             : CriteriaComposite(lhs, rhs) { }
+                    And(const And &) = default;
+                    And(And &&) = default;
+                    And &operator=(const And &) = default;
+                    And &operator=(And &&) = default;
                     ~And() = default;
-                    And(const And &rhs) = default;
-                    And &operator=(const And &rhs) = default;
 
                     // Criteria
                     const ComparativeType &getComparativeType() const override { return _type; };

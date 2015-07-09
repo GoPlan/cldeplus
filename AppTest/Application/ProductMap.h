@@ -17,6 +17,8 @@ namespace Cloude {
                 static std::string TableName;
                 static Foundation::SPtrColumn Id;
                 static Foundation::SPtrColumn Name;
+                static Foundation::SPtrColumn Code;
+                static Foundation::SPtrColumn Price;
 
             public:
                 ProductMap();
@@ -24,7 +26,7 @@ namespace Cloude {
                 ProductMap(ProductMap &&) = default;
                 ProductMap &operator=(const ProductMap &) = default;
                 ProductMap &operator=(ProductMap &&) = default;
-                virtual ~ProductMap() = default;
+                ~ProductMap() = default;
 
             protected:
                 virtual const std::string &TableNameCore() const override;

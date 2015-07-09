@@ -12,7 +12,9 @@ namespace Cloude {
         namespace SQLite {
 
             class SQLiteSourceException : public Foundation::Exception::cldeException {
+
                 int _resultCode;
+                static const std::string _name;
 
             public:
                 explicit SQLiteSourceException(int resultCode);
@@ -22,6 +24,9 @@ namespace Cloude {
                 SQLiteSourceException &operator=(const SQLiteSourceException &) = default;
                 SQLiteSourceException &operator=(SQLiteSourceException &&) = default;
                 ~SQLiteSourceException() = default;
+
+                // cldeException
+                virtual const std::string &Name() const noexcept override { return _name; };
             };
         }
     }

@@ -9,18 +9,12 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-
 #include "Column.h"
-#include "EntityLink.h"
 
 namespace Cloude {
     namespace Foundation {
 
-        using LinkMap = std::unordered_map<std::string, EntityLink>;
-
         class EntityMap {
-
-            LinkMap _linkMap;
 
         public:
             EntityMap(const EntityMap &) = delete;
@@ -35,8 +29,6 @@ namespace Cloude {
             const SPtrColumnVector &getColumnsForGet() const { return _columnsForGet; }
             const SPtrColumnVector &getColumnsForUpdate() const { return _columnsForUpdate; }
             const SPtrColumnVector &getColumnsForSelect() const { return _columnsForSelect; }
-
-            const LinkMap &getLinkMap() const { return _linkMap; }
 
         protected:
             EntityMap() = default;

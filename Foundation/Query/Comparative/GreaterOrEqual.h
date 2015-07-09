@@ -23,7 +23,7 @@ namespace Cloude {
                     GreaterOrEqual(GreaterOrEqual &&) = default;
                     GreaterOrEqual &operator=(const GreaterOrEqual &) = default;
                     GreaterOrEqual &operator=(GreaterOrEqual &&) = default;
-                    virtual ~GreaterOrEqual() = default;
+                    ~GreaterOrEqual() = default;
 
                     // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };

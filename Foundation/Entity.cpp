@@ -8,18 +8,8 @@ using namespace std;
 
 namespace Cloude {
     namespace Foundation {
-
-        Entity::Entity(const SPtrIdentity &identity) : _identity(identity) {
-
-            if (!identity) {
-                std::string msg{"Identity can not be nullptr or undefined"};
-                throw std::invalid_argument{msg};
-            }
-
-            for (auto fieldPair : _identity->getCellsMap()) {
-                auto field = fieldPair.second;
-                setCell(field);
-            }
+        SPtrEntity CreateEntitySharedPtr(const SPtrIdentity &identity) {
+            return std::make_shared<Entity>(identity);
         }
     }
 }

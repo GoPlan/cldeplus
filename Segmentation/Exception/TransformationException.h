@@ -13,6 +13,8 @@ namespace Cloude {
 
             class TransformationException : public Foundation::Exception::cldeException {
 
+            static const std::string _name;
+
             public:
                 TransformationException(const std::string &message) : cldeException{message} { };
                 TransformationException(const TransformationException &) = default;
@@ -20,6 +22,9 @@ namespace Cloude {
                 TransformationException &operator=(const TransformationException &) = default;
                 TransformationException &operator=(TransformationException &&) = default;
                 virtual ~TransformationException() = default;
+
+                // cldeException
+                virtual const std::string &Name() const noexcept override;
             };
         }
     }

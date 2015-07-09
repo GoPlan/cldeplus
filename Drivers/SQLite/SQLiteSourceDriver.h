@@ -32,7 +32,7 @@ namespace Cloude {
                 // Locals
                 void Connect();
                 void Disconnect();
-                Options &getOptionArgs() { return _optionArgs; }
+                Options &OptionArgs() { return _optionArgs; }
 
                 // EntitySourceDriver
                 int Load(Foundation::SPtrEntity &entity) const override;
@@ -40,11 +40,7 @@ namespace Cloude {
                 int Save(Foundation::SPtrEntity &entity) const override;
                 int Delete(Foundation::SPtrEntity &entity) const override;
 
-                Foundation::SPtrEntityProxySet SelectSet(
-                        const Foundation::Query::SPtrCriteria &sptrCriteria,
-                        const Foundation::SPtrColumnVector &columnsForProjection) const override;
-
-                Foundation::SPtrEntityProxyVector SelectVector(
+                Foundation::SPtrEntityProxyVector Select(
                         const Foundation::Query::SPtrCriteria &sptrCriteria,
                         const Foundation::SPtrColumnVector &columnsForProjection) const override;
 

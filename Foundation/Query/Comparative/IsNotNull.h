@@ -24,7 +24,7 @@ namespace Cloude {
                     IsNotNull(IsNotNull &&) = default;
                     IsNotNull &operator=(const IsNotNull &) = default;
                     IsNotNull &operator=(IsNotNull &&) = default;
-                    virtual ~IsNotNull() = default;
+                    ~IsNotNull() = default;
 
                     // CriteriaLeaf
                     const SPtrColumn &getColumn() const override;

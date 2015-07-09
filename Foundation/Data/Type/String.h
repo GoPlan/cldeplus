@@ -16,7 +16,7 @@ namespace Cloude {
 
                 class String : public CharacterValue {
 
-                    mutable std::string _value;
+                    std::string _value;
 
                 public:
                     String(const std::string &string);
@@ -33,9 +33,7 @@ namespace Cloude {
                     virtual bool Equal(const Common::IEquatable &rhs) const override;
 
                     // IPrintable
-                    virtual const std::string CopyToString() const;
-                    virtual const std::string &ToString() const;
-                    virtual const char *ToCString() const override;
+                    virtual std::string ToString() const;
                 };
             }
         }

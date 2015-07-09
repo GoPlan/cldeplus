@@ -12,7 +12,8 @@
 namespace Cloude {
     namespace Foundation {
 
-        class EntityProxy : public Store::AbstractEntity, public std::enable_shared_from_this<EntityProxy> {
+        class EntityProxy : public Store::AbstractEntity,
+                            public std::enable_shared_from_this<EntityProxy> {
 
         public:
             enum class EntityProxySummonState {
@@ -34,8 +35,7 @@ namespace Cloude {
 
             // Locals
             SPtrEntity Summon(SPtrEntityStore &entityStore);
-            bool isIdentifiableInStore(SPtrEntityStore &entityStore);
-
+            bool IsIdentifiableInStore(SPtrEntityStore &entityStore);
             const EntityProxySummonState &getSummonState() const { return _summonState; }
             void setSummonState(const EntityProxySummonState &summonState) { _summonState = summonState; }
         };

@@ -23,7 +23,7 @@ namespace Cloude {
                     LesserOrEqual(LesserOrEqual &&) = default;
                     LesserOrEqual &operator=(const LesserOrEqual &) = default;
                     LesserOrEqual &operator=(LesserOrEqual &&) = default;
-                    virtual ~LesserOrEqual() = default;
+                    ~LesserOrEqual() = default;
 
                     // Criteria
                     const ComparativeType &getComparativeType() const override { return _type; };

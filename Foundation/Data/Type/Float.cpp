@@ -22,26 +22,8 @@ namespace Cloude {
                     return &_value;
                 }
 
-                const std::string Float::CopyToString() const {
+                std::string Float::ToString() const {
                     return std::to_string(_value);
-                }
-
-                const std::string &Float::ToString() const {
-
-                    if (_string.empty()) {
-                        _string.assign(std::to_string(_value));
-                    }
-
-                    return _string;
-                }
-
-                const char *Float::ToCString() const {
-
-                    if (_string.empty()) {
-                        _string.assign(std::to_string(_value));
-                    }
-
-                    return _string.c_str();
                 }
 
                 Value &Float::operator+(const Value &rhs) {

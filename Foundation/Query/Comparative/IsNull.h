@@ -20,9 +20,11 @@ namespace Cloude {
 
                 public:
                     IsNull(const SPtrColumn &column) : _column(column) { };
-                    virtual ~IsNull() = default;
-                    IsNull(const IsNull &rhs) = default;
-                    IsNull &operator=(const IsNull &rhs) = default;
+                    IsNull(const IsNull &) = default;
+                    IsNull(IsNull &&) = default;
+                    IsNull &operator=(const IsNull &) = default;
+                    IsNull &operator=(IsNull &&) = default;
+                    ~IsNull() = default;
 
                     // CriteriaLeaf
                     const SPtrColumn &getColumn() const override;

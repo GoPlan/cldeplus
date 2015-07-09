@@ -24,21 +24,11 @@ namespace Cloude {
                 }
 
                 void *String::RawPointerToValueBuffer() {
-                    std::string msg{"String type does not support non-const RawPointerToValueBuffer." \
-                                                        "Use VarChar instead."};
-                    throw Exception::cldeNonSupportedFunctionException{msg};
+                    return &_value;
                 }
 
-                const std::string String::CopyToString() const {
+                std::string String::ToString() const {
                     return _value;
-                }
-
-                const std::string &String::ToString() const {
-                    return _value;
-                }
-
-                const char *String::ToCString() const {
-                    return _value.c_str();
                 }
             }
         }

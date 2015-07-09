@@ -3976,7 +3976,7 @@ SQLITE_API int SQLITE_STDCALL sqlite3_data_count(sqlite3_stmt *pStmt);
 ** <tr><td>  NULL    <td>  FLOAT    <td> Result is 0.0
 ** <tr><td>  NULL    <td>   TEXT    <td> Result is a NULL pointer
 ** <tr><td>  NULL    <td>   BLOB    <td> Result is a NULL pointer
-** <tr><td> INTEGER  <td>  FLOAT    <td> Convert from integer to float
+** <tr><td> INTEGER  <td>  FLOAT    <td> Cast from integer to float
 ** <tr><td> INTEGER  <td>   TEXT    <td> ASCII rendering of the integer
 ** <tr><td> INTEGER  <td>   BLOB    <td> Same as INTEGER->TEXT
 ** <tr><td>  FLOAT   <td> INTEGER   <td> [CAST] to INTEGER
