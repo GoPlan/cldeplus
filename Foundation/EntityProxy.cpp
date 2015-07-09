@@ -14,8 +14,8 @@ namespace Cloude {
             return Query::Helper::ProxyHelper::Summon(shared, entityStore);
         }
 
-        bool EntityProxy::isIdentifiableInStore(SPtrEntityStore &entityStore) {
-            return Query::Helper::ProxyHelper::isIdentifiableInStore(shared_from_this(), entityStore);
+        bool EntityProxy::IsIdentifiableInStore(SPtrEntityStore &entityStore) {
+            return Query::Helper::ProxyHelper::IsIdentifiableInStore(shared_from_this(), entityStore);
         }
     }
 }

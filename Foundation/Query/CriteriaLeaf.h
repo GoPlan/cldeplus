@@ -13,8 +13,8 @@ namespace Cloude {
 
             class CriteriaLeaf : public Criteria {
 
-                const SPtrColumn &_column;
-                const Data::SPtrValue &_value;
+                const SPtrColumn _column;
+                const Data::SPtrValue _value;
 
             public:
                 CriteriaLeaf(const SPtrColumn &column, const Data::SPtrValue &value)

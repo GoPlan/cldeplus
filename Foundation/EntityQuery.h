@@ -34,6 +34,8 @@ namespace Cloude {
         };
 
         using SPtrEntityQuery = std::shared_ptr<EntityQuery>;
+
+        SPtrEntityQuery CreateQuerySharedPtr(const SPtrEntityStore &store);
     }
 }
 

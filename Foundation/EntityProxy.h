@@ -35,7 +35,7 @@ namespace Cloude {
 
             // Locals
             SPtrEntity Summon(SPtrEntityStore &entityStore);
-            bool isIdentifiableInStore(SPtrEntityStore &entityStore);
+            bool IsIdentifiableInStore(SPtrEntityStore &entityStore);
             const EntityProxySummonState &getSummonState() const { return _summonState; }
             void setSummonState(const EntityProxySummonState &summonState) { _summonState = summonState; }
         };

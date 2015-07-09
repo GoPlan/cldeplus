@@ -33,9 +33,12 @@ namespace Cloude {
 
         SPtrEntityProxyVector EntityQuery::Select(const Query::SPtrCriteria &sptrCriteria,
                                                   const SPtrColumnVector &columnsForProjection) {
-            return _entityStore->getEntitySourceDriver().SelectVector(sptrCriteria, columnsForProjection);
+            return _entityStore->getEntitySourceDriver().Select(sptrCriteria, columnsForProjection);
         }
 
+        SPtrEntityQuery CreateQuerySharedPtr(const SPtrEntityStore &store) {
+            return std::make_shared<EntityQuery>(store);
+        }
     }
 }
 

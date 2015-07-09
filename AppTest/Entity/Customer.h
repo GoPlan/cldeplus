@@ -19,7 +19,7 @@ namespace Cloude {
                 std::string lastName;
                 std::string email;
 
-                Relation::LinkToMany _preOrders;
+                Relation::SPtrLinkToMany _sptrPreOrders;
 
             public:
                 Customer() = default;
@@ -34,12 +34,14 @@ namespace Cloude {
                 const std::string &getFirstName() const { return firstName; }
                 const std::string &getLastName() const { return lastName; }
                 const std::string &getEmail() const { return email; }
+                const Relation::SPtrLinkToMany &sptrPreOrders() const { return _sptrPreOrders; }
 
                 // Mutators
                 void setId(int64_t Id) { Customer::id = Id; }
                 void setFirstName(const std::string &firstName) { Customer::firstName = firstName; }
                 void setLastName(const std::string &lastName) { Customer::lastName = lastName; }
                 void setEmail(const std::string &email) { Customer::email = email; }
+                void setSptrPreOrders(const Relation::SPtrLinkToMany &sptrPreOrders) { _sptrPreOrders = sptrPreOrders; }
             };
         }
     }

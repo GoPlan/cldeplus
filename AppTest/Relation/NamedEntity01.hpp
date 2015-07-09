@@ -31,7 +31,7 @@ namespace Cloude {
 
                 sqliteSourceDriver.Connect();
 
-                SPtrCriteria sptrIdEq01(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_04));
+                SPtrCriteria sptrIdEq01{new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_04)};
                 SPtrEntityProxy sptrProxy = sptrEnquiryQuery->SelectFirst(sptrIdEq01);
                 SPtrEntity sptrEntity = sptrProxy->Summon(sptrEnquiryStore);
 
@@ -39,7 +39,6 @@ namespace Cloude {
                 EXPECT_TRUE(sptrEntity.get());
 
                 std::cout << sptrEntity->ToString() << std::endl;
-
 
                 auto converter = [](const Foundation::Entity &entity) -> Entity::Enquiry {
 
@@ -57,7 +56,7 @@ namespace Cloude {
                 };
 
                 auto enquiry = sptrEntity->NamedEntity<Entity::Enquiry>(converter);
-                
+
                 std::cout << enquiry.getId() << std::endl;
                 std::cout << enquiry.getEmail() << std::endl;
                 std::cout << enquiry.getSubject() << std::endl;

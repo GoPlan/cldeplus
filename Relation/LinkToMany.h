@@ -14,7 +14,8 @@ namespace Cloude {
         class LinkToMany : public Link {
 
         public:
-            LinkToMany(const Foundation::SPtrEntityQuery &entityQuery, const Foundation::Query::SPtrCriteria &criteria)
+            LinkToMany(const Foundation::SPtrEntityQuery &entityQuery,
+                       const Foundation::Query::SPtrCriteria &criteria)
                     : Link{entityQuery, criteria} { }
 
             LinkToMany(const LinkToMany &) = default;
@@ -26,6 +27,8 @@ namespace Cloude {
             // Locals
             Foundation::SPtrEntityProxyVector Call();
         };
+
+        using SPtrLinkToMany = std::shared_ptr<LinkToMany>;
     }
 }
 

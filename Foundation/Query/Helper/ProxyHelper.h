@@ -20,7 +20,7 @@ namespace Cloude {
 
                 public:
                     static SPtrEntity Summon(SPtrEntityProxy &proxy, SPtrEntityStore &store);
-                    static bool isIdentifiableInStore(const SPtrEntityProxy &proxy, const SPtrEntityStore &store);
+                    static bool IsIdentifiableInStore(const SPtrEntityProxy &proxy, const SPtrEntityStore &store);
 
                 public:
                     ProxyHelper() = delete;

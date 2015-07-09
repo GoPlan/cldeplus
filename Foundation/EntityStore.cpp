@@ -103,6 +103,12 @@ namespace Cloude {
         unsigned long EntityStore::Size() const {
             return _identityMap.size();
         }
+
+        SPtrEntityStore CreateStoreSharedPtr(const EntityMap &entityMap,
+                                             const EntityLoader &entityLoader,
+                                             const EntitySourceDriver &entitySourceDriver) {
+            return std::make_shared<EntityStore>(entityMap, entityLoader, entitySourceDriver);
+        }
     }
 }
 

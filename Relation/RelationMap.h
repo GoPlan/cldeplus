@@ -5,10 +5,16 @@
 #ifndef CLOUD_E_PLUS_RELATION_RELATIONMAP_H
 #define CLOUD_E_PLUS_RELATION_RELATIONMAP_H
 
+#include <unordered_map>
+
 namespace Cloude {
     namespace Relation {
 
+        using ColumnNamesMap = std::unordered_map<std::string, std::string>;
+
         class RelationMap {
+
+            ColumnNamesMap _columnNamesMap;
 
         public:
             RelationMap() = default;

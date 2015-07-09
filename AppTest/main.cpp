@@ -8,7 +8,7 @@
 #include "Type/CreateValue.hpp"
 #include "Type/ValueComparison.hpp"
 #include "Segmentation/Segmentation.hpp"
-#include "Relation/NamedEntity.hpp"
+#include "Relation/Relation.hpp"
 
 //#include "Segmentation/Transformation.hpp"
 //#include "Store/Test/MongoDbStore.hpp"

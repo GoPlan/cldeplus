@@ -24,6 +24,7 @@
 #include "Foundation/Data/Comparer/Comparer.h"
 #include "Foundation/Data/Helper/TypeHelper.h"
 #include "Foundation/Data/Helper/ValueHelper.h"
+#include "Foundation/Data/ValueToPrimatives.hpp"
 
 // Store
 #include "Foundation/Store/AbstractEntity.h"

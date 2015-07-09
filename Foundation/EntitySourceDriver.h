@@ -5,9 +5,9 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYSOURCEDRIVER_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYSOURCEDRIVER_H
 
+#include "Entity.h"
 #include "EntityMap.h"
 #include "EntityProxy.h"
-#include "Entity.h"
 #include "Query/Criteria.h"
 
 namespace Cloude {
@@ -30,11 +30,7 @@ namespace Cloude {
             virtual int Save(SPtrEntity &entity) const = 0;
             virtual int Delete(SPtrEntity &entity) const = 0;
 
-            virtual SPtrEntityProxyVector SelectVector(
-                    const Foundation::Query::SPtrCriteria &sptrCriteria,
-                    const Foundation::SPtrColumnVector &columnsForProjection) const = 0;
-
-            virtual SPtrEntityProxySet SelectSet(
+            virtual SPtrEntityProxyVector Select(
                     const Foundation::Query::SPtrCriteria &sptrCriteria,
                     const Foundation::SPtrColumnVector &columnsForProjection) const = 0;
 

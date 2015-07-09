@@ -22,7 +22,7 @@ namespace Cloude {
                     NotEqual(NotEqual &&) = default;
                     NotEqual &operator=(const NotEqual &) = default;
                     NotEqual &operator=(NotEqual &&) = default;
-                    virtual ~NotEqual() = default;
+                    ~NotEqual() = default;
 
                     // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };

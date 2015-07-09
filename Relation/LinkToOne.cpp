@@ -10,6 +10,11 @@ namespace Cloude {
         Foundation::SPtrEntityProxy LinkToOne::Call() {
             return _sptrEntityQuery->SelectFirst(_sptrCriteria);
         }
+
+        SPtrLinkToOne CreateLinkToOne(const Foundation::SPtrEntityQuery &entityQuery,
+                                      const Foundation::Query::SPtrCriteria &criteria) {
+            return std::make_shared<LinkToOne>(entityQuery, criteria);
+        }
     }
 }
 

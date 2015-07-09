@@ -13,7 +13,7 @@ Cloude::Foundation::SPtrEntity Cloude::Foundation::Query::Helper::ProxyHelper::S
         SPtrEntityProxy &proxy,
         SPtrEntityStore &store) {
 
-    if (!isIdentifiableInStore(proxy, store)) {
+    if (!IsIdentifiableInStore(proxy, store)) {
         std::string msg{"Proxy is not summonable. See if selected columns are sufficient for Identity."};
         throw Exception::cldeEntityException{msg};
     }
@@ -32,7 +32,7 @@ Cloude::Foundation::SPtrEntity Cloude::Foundation::Query::Helper::ProxyHelper::S
     return entity;
 }
 
-bool Cloude::Foundation::Query::Helper::ProxyHelper::isIdentifiableInStore(const SPtrEntityProxy &proxy,
+bool Cloude::Foundation::Query::Helper::ProxyHelper::IsIdentifiableInStore(const SPtrEntityProxy &proxy,
                                                                            const SPtrEntityStore &store) {
 
     switch (proxy->getSummonState()) {
@@ -47,7 +47,7 @@ bool Cloude::Foundation::Query::Helper::ProxyHelper::isIdentifiableInStore(const
 
             proxy->setSummonState(EntityProxy::EntityProxySummonState::Yes);
 
-            return isIdentifiableInStore(proxy, store);
+            return IsIdentifiableInStore(proxy, store);
         };
         case EntityProxy::EntityProxySummonState::Yes:
             return true;

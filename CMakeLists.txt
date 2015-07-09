@@ -169,6 +169,7 @@ add_library(foundation STATIC
     Foundation/Common/IFormatter.h
     Foundation/Store/Extra/EntityOutputFormatter.cpp
     Foundation/Store/Extra/EntityOutputFormatter.h
+    Foundation/Data/ValueToPrimatives.hpp
     )
 
 add_library(relation STATIC
@@ -298,7 +299,7 @@ add_library(apptest STATIC
     AppTest/Segmentation/Segmentation.hpp
     AppTest/Type/CreateValue.hpp
     AppTest/Type/ValueComparison.hpp
-    AppTest/Segmentation/Transformation.hpp AppTest/Relation/NamedEntity.hpp)
+    AppTest/Segmentation/Transformation.hpp AppTest/Relation/NamedEntity01.hpp AppTest/Relation/NamedEntity02.hpp AppTest/Relation/Relation.hpp)
 
 add_library(examples STATIC
     .examples/main.cpp

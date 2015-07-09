@@ -14,7 +14,8 @@ namespace Cloude {
         class LinkToOne : public Link {
 
         public:
-            LinkToOne(const Foundation::SPtrEntityQuery &entityQuery, const Foundation::Query::SPtrCriteria &criteria)
+            LinkToOne(const Foundation::SPtrEntityQuery &entityQuery,
+                      const Foundation::Query::SPtrCriteria &criteria)
                     : Link{entityQuery, criteria} { }
 
             LinkToOne(const LinkToOne &) = default;
@@ -26,6 +27,11 @@ namespace Cloude {
             // Locals
             Foundation::SPtrEntityProxy Call();
         };
+
+        using SPtrLinkToOne = std::shared_ptr<LinkToOne>;
+
+        SPtrLinkToOne CreateLinkToOne(const Foundation::SPtrEntityQuery &entityQuery,
+                                      const Foundation::Query::SPtrCriteria &criteria);
     }
 }
 
