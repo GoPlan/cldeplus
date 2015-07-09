@@ -13,9 +13,6 @@
 #include <AppTest/Application/PreOrderMap.h>
 #include <AppTest/Entity/Customer.h>
 #include <AppTest/Entity/PreOrder.h>
-#include <Relation/NamedEntityLoader.h>
-#include <Relation/NamedEntityStore.h>
-
 
 namespace Cloude {
     namespace AppTest {
@@ -38,8 +35,7 @@ namespace Cloude {
                 auto sptrPreOrderStore = Relation::CreateNamedStoreSharedPtr<Entity::PreOrder>(mapPreOrder, driverPreOrder);
 
                 sptrCustomerStore->EntityLoader().fptrNamedEntityCreator =
-                        [&mapPreOrder, &sptrPreOrderQuery](
-                                const Foundation::Entity &entity) -> Entity::Customer {
+                        [&mapPreOrder, &sptrPreOrderQuery](const Foundation::Entity &entity) -> Entity::Customer {
 
                             using namespace Foundation::Data;
                             using namespace Foundation::Query;
@@ -51,9 +47,7 @@ namespace Cloude {
                             customer.setEmail(entity.getCell("Email")->ToString());
 
                             // LinkToMany to PreOrder
-                            SPtrCriteria criteria
-                                    {new Comparative::Equal{mapPreOrder.CustId,
-                                                            ValueFactory::CreateInt64(customer.getId())}};
+                            SPtrCriteria criteria{new Comparative::Equal{mapPreOrder.CustId, ValueFactory::CreateInt64(customer.getId())}};
                             customer.setSptrPreOrders(Relation::CreateLinkToMany(sptrPreOrderQuery, criteria));
 
                             return customer;
@@ -71,8 +65,7 @@ namespace Cloude {
                             preOrder.setName(entity.getCell("Name")->ToString());
 
                             // LinkToOne to Customer
-                            SPtrCriteria criteria{new Comparative::Equal{mapCustomer.Id, ValueFactory::CreateInt64(
-                                    preOrder.getCustomerId())}};
+                            SPtrCriteria criteria{new Comparative::Equal{mapCustomer.Id, ValueFactory::CreateInt64(preOrder.getCustomerId())}};
                             preOrder.setSptrCustomer(Relation::CreateLinkToOne(sptrCustomerQuery, criteria));
 
                             return preOrder;

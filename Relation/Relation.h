@@ -8,5 +8,7 @@
 #include "Link.h"
 #include "LinkToMany.h"
 #include "LinkToOne.h"
+#include "NamedEntityLoader.h"
+#include "NamedEntityStore.h"
 
 #endif //CLOUD_E_PLUS_RELATION_H
