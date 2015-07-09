@@ -10,6 +10,11 @@ namespace Cloude {
         Foundation::SPtrEntityProxyVector LinkToMany::Call() {
             return _sptrEntityQuery->Select(_sptrCriteria);
         }
+
+        SPtrLinkToMany CreateLinkToMany(const Foundation::SPtrEntityQuery &entityQuery,
+                                        const Foundation::Query::SPtrCriteria &criteria) {
+            return std::make_shared<LinkToMany>(entityQuery, criteria);
+        }
     }
 }
 

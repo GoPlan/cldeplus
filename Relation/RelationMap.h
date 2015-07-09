@@ -14,8 +14,6 @@ namespace Cloude {
 
         class RelationMap {
 
-            ColumnNamesMap _columnNamesMap;
-
         public:
             RelationMap() = default;
             RelationMap(const RelationMap &) = default;

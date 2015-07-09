@@ -173,11 +173,9 @@ add_library(foundation STATIC
     )
 
 add_library(relation STATIC
+    Relation/Relation.h
     Relation/RelationMap.cpp
     Relation/RelationMap.h
-    Relation/RelationFetcher.cpp
-    Relation/RelationFetcher.h
-    Relation/Relation.h
     Relation/Link.cpp
     Relation/Link.h
     Relation/LinkToOne.cpp
@@ -279,7 +277,13 @@ add_library(application STATIC
     AppTest/Application/CustomerLoader.cpp
     AppTest/Application/CustomerLoader.h
     AppTest/Application/PreOrderLoader.cpp
-    AppTest/Application/PreOrderLoader.h AppTest/Entity/Customer.cpp AppTest/Entity/Customer.h AppTest/Entity/PreOrder.cpp AppTest/Entity/PreOrder.h AppTest/Entity/Enquiry.cpp AppTest/Entity/Enquiry.h)
+    AppTest/Application/PreOrderLoader.h
+    AppTest/Entity/Customer.cpp
+    AppTest/Entity/Customer.h
+    AppTest/Entity/PreOrder.cpp
+    AppTest/Entity/PreOrder.h
+    AppTest/Entity/Enquiry.cpp
+    AppTest/Entity/Enquiry.h)
 
 add_library(apptest STATIC
     AppTest/main.cpp
@@ -299,7 +303,10 @@ add_library(apptest STATIC
     AppTest/Segmentation/Segmentation.hpp
     AppTest/Type/CreateValue.hpp
     AppTest/Type/ValueComparison.hpp
-    AppTest/Segmentation/Transformation.hpp AppTest/Relation/NamedEntity01.hpp AppTest/Relation/NamedEntity02.hpp AppTest/Relation/Relation.hpp)
+    AppTest/Segmentation/Transformation.hpp
+    AppTest/Relation/NamedEntity01.hpp
+    AppTest/Relation/NamedEntity02.hpp
+    AppTest/Relation/Relation.hpp)
 
 add_library(examples STATIC
     .examples/main.cpp
@@ -357,7 +364,7 @@ set(APPTEST_SOURCE_FILE ${CMAKE_SOURCE_DIR}/AppTest/main.cpp)
 include_directories(${GTEST_LIB_DIR}/include)
 LINK_DIRECTORIES(${GTEST_LIB_DIR}/lib)
 add_executable(cloud_e_plus_test ${APPTEST_SOURCE_FILE})
-target_link_libraries(cloud_e_plus_test foundation segmentation)
+target_link_libraries(cloud_e_plus_test foundation segmentation relation)
 target_link_libraries(cloud_e_plus_test Drivers)
 #target_link_libraries(cloud_e_plus_test mysqlclient pq mongoc-1.0 bson-1.0)
 target_link_libraries(cloud_e_plus_test application apptest gtest)

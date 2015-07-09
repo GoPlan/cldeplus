@@ -14,10 +14,10 @@ namespace Cloude {
 
             class PreOrder {
 
-                int64_t id;
-                int64_t customerId;
-                std::string name;
-                double total;
+                int64_t _id;
+                int64_t _custId;
+                std::string _name;
+                double _total;
 
                 Relation::SPtrLinkToOne _sptrCustomer;
 
@@ -30,17 +30,17 @@ namespace Cloude {
                 ~PreOrder() = default;
 
                 // Accessors
-                int64_t getId() const { return id; }
-                int64_t getCustomerId() const { return customerId; }
-                const std::string &getName() const { return name; }
-                double getTotal() const { return total; }
+                int64_t getId() const { return _id; }
+                int64_t getCustomerId() const { return _custId; }
+                double getTotal() const { return _total; }
+                const std::string &getName() const { return _name; }
                 const Relation::SPtrLinkToOne &sptrCustomer() const { return _sptrCustomer; }
 
                 // Mutators
-                void setId(int64_t id) { PreOrder::id = id; }
-                void setCustomerId(int64_t customerId) { PreOrder::customerId = customerId; }
-                void setName(const std::string &name) { PreOrder::name = name; }
-                void setTotal(double total) { PreOrder::total = total; }
+                void setId(int64_t id) { _id = id; }
+                void setCustomerId(int64_t customerId) { _custId = customerId; }
+                void setName(const std::string &name) { _name = name; }
+                void setTotal(double total) { _total = total; }
                 void setSptrCustomer(const Relation::SPtrLinkToOne &sptrCustomer) { _sptrCustomer = sptrCustomer; }
             };
         }

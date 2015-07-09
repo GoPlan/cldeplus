@@ -29,6 +29,9 @@ namespace Cloude {
         };
 
         using SPtrLinkToMany = std::shared_ptr<LinkToMany>;
+
+        SPtrLinkToMany CreateLinkToMany(const Foundation::SPtrEntityQuery &entityQuery,
+                                        const Foundation::Query::SPtrCriteria &criteria);
     }
 }
 

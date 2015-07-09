@@ -63,7 +63,7 @@ namespace Cloude {
                     std::cout << proxy->ToString() << std::endl;
                 }
 
-                Foundation::SPtrColumn newCustomerIdColumn = std::make_shared<Foundation::Column>("customerId", Foundation::Data::ValueType::Int64);
+                Foundation::SPtrColumn newCustomerIdColumn = std::make_shared<Foundation::Column>("_custId", Foundation::Data::ValueType::Int64);
                 Foundation::SPtrColumn newCustomerEmailColumn = std::make_shared<Foundation::Column>("customerEmail", Foundation::Data::ValueType::VarChar);
                 Foundation::SPtrColumn newPreOrderIdColumn = std::make_shared<Foundation::Column>("preorderId", Foundation::Data::ValueType::Int64);
                 Foundation::SPtrColumn newPreOrderTotalColumn = std::make_shared<Foundation::Column>("preorderTotal", Foundation::Data::ValueType::Double);

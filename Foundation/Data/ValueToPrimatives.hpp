@@ -15,7 +15,7 @@ namespace Cloude {
         namespace Data {
 
             template<typename T>
-            T ToNumeric(const SPtrValue &value) {
+            T NumericToPrimative(const SPtrValue &value) {
 
                 if (!value->isNumeric() || value->getCategory() != ValueCategory::Numeric) {
                     std::string msg{"Value is not numeric"};
