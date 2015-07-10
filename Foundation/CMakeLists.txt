@@ -164,4 +164,4 @@ add_library(foundation STATIC
     Store/Extra/EntityOutputFormatter.cpp
     Store/Extra/EntityOutputFormatter.h
     Foundation.h
-)
+Query/Comparative.cpp)

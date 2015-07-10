@@ -80,13 +80,13 @@ namespace Cloude {
                 driverCustomer.Connect();
                 driverPreOrder.Connect();
 
+
                 // PreOrder referencing Customer (LinkToOne)
                 Foundation::Query::SPtrCriteria sptrPreOrderIdGt00;
                 {
                     using namespace Foundation::Query;
                     using namespace Foundation::Data;
-                    sptrPreOrderIdGt00.reset(new Comparative::GreaterOrEqual{mapPreOrder.Id,
-                                                                             ValueFactory::CreateInt64(0)});
+                    sptrPreOrderIdGt00 = CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
                 }
 
                 auto sptrPreOrderProxy = sptrPreOrderQuery->SelectFirst(sptrPreOrderIdGt00);
@@ -111,8 +111,7 @@ namespace Cloude {
                 {
                     using namespace Foundation::Query;
                     using namespace Foundation::Data;
-                    sptrCustomerIdGt00.reset(new Comparative::GreaterOrEqual{mapPreOrder.Id,
-                                                                             ValueFactory::CreateInt64(0)});
+                    sptrCustomerIdGt00 = CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
                 }
 
                 auto sptrCustomerProxy = sptrCustomerQuery->SelectFirst(sptrCustomerIdGt00);

@@ -24,13 +24,13 @@ namespace Cloude {
 
                 auto &srcCell = entity.getCell(link.first);
                 auto &dstColumn = link.second;
-                auto current = Foundation::Query::Comparative::CreateCriteriaEqual(dstColumn, srcCell->getValue());
+                auto current = Foundation::Query::CreateEQ(dstColumn, srcCell->getValue());
 
                 if (!criteria) {
                     criteria = current;
                 } else {
                     auto tmp = criteria;
-                    criteria = Foundation::Query::Comparative::CreateCriteriaAnd(tmp, current);
+                    criteria = Foundation::Query::CreateAND(tmp, current);
                 }
             }
 

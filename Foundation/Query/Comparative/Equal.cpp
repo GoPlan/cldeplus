@@ -11,9 +11,6 @@ namespace Cloude {
 
                 ComparativeType Equal::_type = ComparativeType::Equal;
 
-                SPtrCriteria CreateCriteriaEqual(const SPtrColumn &column, const Data::SPtrValue &value) {
-                    return std::make_shared<Equal>(column, value);
-                }
             }
         }
     }

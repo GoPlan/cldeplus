@@ -8,6 +8,7 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 ComparativeType Greater::_type = ComparativeType::Greater;
             }
         }

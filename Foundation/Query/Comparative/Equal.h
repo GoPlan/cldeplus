@@ -27,8 +27,6 @@ namespace Cloude {
                     // CriteriaLeaf
                     const ComparativeType &getComparativeType() const override { return _type; };
                 };
-
-                SPtrCriteria CreateCriteriaEqual(const SPtrColumn& column, const Data::SPtrValue& value);
             }
         }
     }
