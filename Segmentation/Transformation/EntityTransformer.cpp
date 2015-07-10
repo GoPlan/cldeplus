@@ -3,6 +3,7 @@
 //
 
 #include <stdexcept>
+#include <Segmentation/Exception/TransformationException.h>
 #include "EntityTransformer.h"
 
 namespace Cloude {
@@ -18,11 +19,17 @@ namespace Cloude {
                 const Foundation::SPtrEntityProxy &srcProxy,
                 Foundation::SPtrEntityProxy &dstProxy) const {
 
-            if (!srcProxy)
-                throw std::invalid_argument{"srcProxy is either invalid or a nullptr"};
+            if (!srcProxy) {
+                std::string msg{"srcProxy is either invalid or a nullptr"};
+                throw Exception::TransformationException{msg};
+            }
 
-            if (!dstProxy)
-                throw std::invalid_argument{"dstProxy is either invalid or a nullptr"};
+
+            if (!dstProxy) {
+                std::string msg{"dstProxy is either invalid or a nullptr"};
+                throw Exception::TransformationException{msg};
+            }
+
 
             for (auto &pairCellMap : _mapCellTransformers) {
                 auto &srcColumnName = pairCellMap.first;

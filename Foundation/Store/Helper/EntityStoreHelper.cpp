@@ -3,26 +3,37 @@
 //
 
 #include <memory>
-#include <stdexcept>
+#include <Foundation/Exception/cldeEntityStoreRoutineException.h>
 #include "EntityStoreHelper.h"
 
-void Cloude::Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(
-        const Cloude::Foundation::SPtrColumnVector &columnVector,
-        const Cloude::Foundation::Store::SPtrDataRecord &dataRecord,
-        bool checkIfFieldExists) {
+namespace Cloude {
+    namespace Foundation {
+        namespace Store {
+            namespace Helper {
 
-    if (!dataRecord) {
-        std::string msg{"DataRecord can not be nullptr or undefined"};
-        throw std::invalid_argument{msg};
-    }
+                void EntityStoreHelper::GenerateFieldsFromColumns(
+                        const Cloude::Foundation::SPtrColumnVector &columnVector,
+                        const Cloude::Foundation::Store::SPtrDataRecord &dataRecord,
+                        bool checkIfFieldExists) {
 
-    for (auto column : columnVector) {
+                    if (!dataRecord) {
+                        std::string msg{"DataRecord can not be nullptr or undefined"};
+                        throw Foundation::Exception::cldeEntityStoreRoutineException{msg};
+                    }
 
-        if (checkIfFieldExists && dataRecord->hasCell(column->getName())) {
-            continue;
+                    for (auto column : columnVector) {
+
+                        if (checkIfFieldExists && dataRecord->hasCell(column->getName())) {
+                            continue;
+                        }
+
+                        auto field = std::make_shared<Cell>(const_cast<SPtrColumn &>(column));
+                        dataRecord->setCell(field);
+                    }
+                }
+            }
         }
-
-        auto field = std::make_shared<Cell>(const_cast<SPtrColumn &>(column));
-        dataRecord->setCell(field);
     }
 }
+
+

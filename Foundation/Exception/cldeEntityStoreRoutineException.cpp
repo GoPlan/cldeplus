@@ -5,14 +5,15 @@
 #include "../EntityStore.h"
 #include "cldeEntityStoreRoutineException.h"
 
-using namespace std;
-using namespace Cloude::Foundation;
-
-using namespace std;
-
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
+
+            std::string cldeEntityStoreRoutineException::_name{"cldeEntityStoreRoutineException"};
+
+            const std::string &cldeEntityStoreRoutineException::Name() const noexcept {
+                return _name;
+            }
         }
     }
 }

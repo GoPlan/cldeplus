@@ -13,13 +13,19 @@ namespace Cloude {
 
             class cldeDataSourceRoutineException : public cldeException {
 
+                static std::string _name;
+
             public:
                 cldeDataSourceRoutineException(const char *message) : cldeException(message) { };
                 cldeDataSourceRoutineException(const std::string &message) : cldeException(message) { };
+                cldeDataSourceRoutineException(const cldeDataSourceRoutineException &) = default;
+                cldeDataSourceRoutineException(cldeDataSourceRoutineException &&) = default;
+                cldeDataSourceRoutineException &operator=(const cldeDataSourceRoutineException &) = default;
+                cldeDataSourceRoutineException &operator=(cldeDataSourceRoutineException &&) = default;
                 ~cldeDataSourceRoutineException() = default;
-                cldeDataSourceRoutineException(const cldeDataSourceRoutineException &rhs) = default;
-                cldeDataSourceRoutineException &operator=(const cldeDataSourceRoutineException &rhs) = default;
 
+                // cldeException
+                virtual const std::string &Name() const noexcept override;
             };
         }
     }

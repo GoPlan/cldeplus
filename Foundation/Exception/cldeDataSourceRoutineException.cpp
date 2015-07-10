@@ -3,3 +3,17 @@
 //
 
 #include "cldeDataSourceRoutineException.h"
+
+namespace Cloude {
+    namespace Foundation {
+        namespace Exception {
+
+            std::string cldeDataSourceRoutineException::_name{"cldeDataSourceRoutineException"};
+
+            const std::string &cldeDataSourceRoutineException::Name() const noexcept {
+                return _name;
+            }
+        }
+    }
+}
+

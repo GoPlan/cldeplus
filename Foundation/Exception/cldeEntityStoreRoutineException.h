@@ -13,12 +13,19 @@ namespace Cloude {
 
             class cldeEntityStoreRoutineException : public cldeException {
 
+                static std::string _name;
+
             public:
                 cldeEntityStoreRoutineException(const char *message) : cldeException(message) { };
                 cldeEntityStoreRoutineException(const std::string &message) : cldeException(message) { };
+                cldeEntityStoreRoutineException(const cldeEntityStoreRoutineException &) = default;
+                cldeEntityStoreRoutineException(cldeEntityStoreRoutineException &&) = default;
+                cldeEntityStoreRoutineException &operator=(const cldeEntityStoreRoutineException &) = default;
+                cldeEntityStoreRoutineException &operator=(cldeEntityStoreRoutineException &&) = default;
                 ~cldeEntityStoreRoutineException() = default;
-                cldeEntityStoreRoutineException(const cldeEntityStoreRoutineException &rhs) = default;
-                cldeEntityStoreRoutineException &operator=(const cldeEntityStoreRoutineException &rhs) = default;
+
+                // cldeException
+                virtual const std::string &Name() const noexcept override;
             };
         }
     }

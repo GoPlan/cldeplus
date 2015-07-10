@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <list>
 #include <set>
+#include <Foundation/Exception/cldeEntityException.h>
 #include "Store/AbstractEntity.h"
 #include "Cell.h"
 #include "Identity.h"
@@ -22,10 +23,9 @@ namespace Cloude {
 
         public:
             explicit Entity(const SPtrIdentity &identity) : _identity(identity) {
-
                 if (!identity) {
                     std::string msg{"Identity can not be nullptr or undefined"};
-                    throw std::invalid_argument{msg};
+                    throw Exception::cldeEntityException{msg};
                 }
 
                 for (auto fieldPair : _identity->getCellsMap()) {

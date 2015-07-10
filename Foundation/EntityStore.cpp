@@ -3,6 +3,7 @@
 //
 
 #include <string>
+#include <Foundation/Exception/cldeEntityStoreRoutineException.h>
 #include "EntitySourceDriver.h"
 #include "Query/Helper/SqlHelper.h"
 #include "Store/Helper/EntityStoreHelper.h"
@@ -23,7 +24,7 @@ namespace Cloude {
 
             if (!identity) {
                 std::string msg{"Identity is either a nullptr or invalid"};
-                throw std::invalid_argument(msg);
+                throw Exception::cldeEntityStoreRoutineException{msg};
             }
 
             auto &columnsForGet = _entityMap.getColumnsForGet();
@@ -63,6 +64,7 @@ namespace Cloude {
         }
 
         void EntityStore::Insert(SPtrEntity &entity) {
+            
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
