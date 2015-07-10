@@ -64,7 +64,7 @@ namespace Cloude {
         }
 
         void EntityStore::Insert(SPtrEntity &entity) {
-            
+
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
