@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 project(cloud_e_plus)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(GTEST_LIB_DIR ".local/gtest-1.7.0")
 include_directories(${GTEST_LIB_DIR}/include)
 
