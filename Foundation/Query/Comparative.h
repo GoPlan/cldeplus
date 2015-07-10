@@ -22,18 +22,23 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
-            SPtrCriteria CreateAND(const SPtrCriteria &lhs, const SPtrCriteria &rhs);
-            SPtrCriteria CreateOR(const SPtrCriteria &lhs, const SPtrCriteria &rhs);
-            SPtrCriteria CreateEQ(const SPtrColumn &column, const Data::SPtrValue &value);
-            SPtrCriteria CreateNEQ(const SPtrColumn &column, const Data::SPtrValue &value);
-            SPtrCriteria CreateGT(const SPtrColumn &column, const Data::SPtrValue &value);
-            SPtrCriteria CreateGTE(const SPtrColumn &column, const Data::SPtrValue &value);
-            SPtrCriteria CreateLT(const SPtrColumn &column, const Data::SPtrValue &value);
-            SPtrCriteria CreateLTE(const SPtrColumn &column, const Data::SPtrValue &value);
-            SPtrCriteria CreateLike(const SPtrColumn &column, const Data::SPtrValue &value);
-            SPtrCriteria CreateNotLike(const SPtrColumn &column, const Data::SPtrValue &value);
-            SPtrCriteria CreateIsNull(const SPtrColumn& column);
-            SPtrCriteria CreateIsNotNull(const SPtrColumn& column);
+
+            class ComparativeFactory {
+
+            public:
+                static SPtrCriteria CreateAND(const SPtrCriteria &lhs, const SPtrCriteria &rhs);
+                static SPtrCriteria CreateOR(const SPtrCriteria &lhs, const SPtrCriteria &rhs);
+                static SPtrCriteria CreateEQ(const SPtrColumn &column, const Data::SPtrValue &value);
+                static SPtrCriteria CreateNEQ(const SPtrColumn &column, const Data::SPtrValue &value);
+                static SPtrCriteria CreateGT(const SPtrColumn &column, const Data::SPtrValue &value);
+                static SPtrCriteria CreateGTE(const SPtrColumn &column, const Data::SPtrValue &value);
+                static SPtrCriteria CreateLT(const SPtrColumn &column, const Data::SPtrValue &value);
+                static SPtrCriteria CreateLTE(const SPtrColumn &column, const Data::SPtrValue &value);
+                static SPtrCriteria CreateLike(const SPtrColumn &column, const Data::SPtrValue &value);
+                static SPtrCriteria CreateNotLike(const SPtrColumn &column, const Data::SPtrValue &value);
+                static SPtrCriteria CreateIsNull(const SPtrColumn &column);
+                static SPtrCriteria CreateIsNotNull(const SPtrColumn &column);
+            };
         }
     }
 }

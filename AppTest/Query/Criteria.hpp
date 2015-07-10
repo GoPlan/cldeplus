@@ -29,7 +29,7 @@ namespace Cloude {
                 auto sptrEmail_01 = Data::ValueFactory::CreateVarChar(email_01);
                 auto sptrEmail_02 = Data::ValueFactory::CreateVarChar(email_02);
 
-                AppTest::Application::EnquiryMap enquiryMap;
+                AppTest::Application::EnquiryMap enquiryMap{};
                 Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
                 auto enquiryStore = std::make_shared<EntityStore>(enquiryMap, sqliteSourceDriver);
                 auto enquiryQuery = std::make_shared<EntityQuery>(enquiryMap, sqliteSourceDriver);
@@ -60,7 +60,6 @@ namespace Cloude {
 
                 {
                     auto proxies = enquiryQuery->Select(sptrOR__);
-
                     for (auto proxy : proxies) {
                         auto sptrEntity = proxy->Summon(enquiryStore);
                         ASSERT_TRUE(sptrEntity.get() != 0);
@@ -69,7 +68,6 @@ namespace Cloude {
 
                     auto proxy00 = proxies[0];
                     auto proxy01 = enquiryQuery->SelectFirst(sptrOR__);
-
                     EXPECT_TRUE(compare(proxy00, proxy01));
                 }
 

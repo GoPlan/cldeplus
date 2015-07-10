@@ -25,16 +25,19 @@ namespace Cloude {
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
                 Drivers::SQLite::SQLiteSourceDriver driverPreOrder{mapPreOrder};
+
                 driverCustomer.OptionArgs().ConnectionString = "../ex1.db";
                 driverPreOrder.OptionArgs().ConnectionString = "../ex1.db";
 
                 Relation::RelationMap linkCustomerToPreOrder{};
                 Relation::RelationMap linkPreOrderToCustomer{};
+
                 linkCustomerToPreOrder.AddLink(mapCustomer.Id, mapPreOrder.CustId);
                 linkPreOrderToCustomer.AddLink(mapPreOrder.CustId, mapCustomer.Id);
 
                 auto sptrCustomerQuery = Foundation::CreateEntityQuery(mapCustomer, driverCustomer);
                 auto sptrPreOrderQuery = Foundation::CreateEntityQuery(mapPreOrder, driverPreOrder);
+
                 auto sptrCustomerStore = Relation::CreateNamedStore<Entity::Customer>(mapCustomer, driverCustomer);
                 auto sptrPreOrderStore = Relation::CreateNamedStore<Entity::PreOrder>(mapPreOrder, driverPreOrder);
 
@@ -86,7 +89,7 @@ namespace Cloude {
                 {
                     using namespace Foundation::Query;
                     using namespace Foundation::Data;
-                    sptrPreOrderIdGt00 = CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
+                    sptrPreOrderIdGt00 = ComparativeFactory::CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
                 }
 
                 auto sptrPreOrderProxy = sptrPreOrderQuery->SelectFirst(sptrPreOrderIdGt00);
@@ -111,7 +114,7 @@ namespace Cloude {
                 {
                     using namespace Foundation::Query;
                     using namespace Foundation::Data;
-                    sptrCustomerIdGt00 = CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
+                    sptrCustomerIdGt00 = ComparativeFactory::CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
                 }
 
                 auto sptrCustomerProxy = sptrCustomerQuery->SelectFirst(sptrCustomerIdGt00);

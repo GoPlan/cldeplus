@@ -49,7 +49,7 @@ namespace Cloude {
 
         using SPtrEntityStore = std::shared_ptr<EntityStore>;
 
-        SPtrEntityStore CreateStoreSharedPtr(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
+        SPtrEntityStore CreateEntityStore(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
     }
 }
 

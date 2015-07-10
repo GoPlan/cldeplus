@@ -18,19 +18,21 @@ namespace Cloude {
 
         Foundation::Query::SPtrCriteria RelationMap::Generate(const Foundation::Entity &entity) const {
 
+            using CmpFactory = Foundation::Query::ComparativeFactory;
+
             Foundation::Query::SPtrCriteria criteria;
 
             for (auto &link : _columnsMap) {
 
                 auto &srcCell = entity.getCell(link.first);
                 auto &dstColumn = link.second;
-                auto current = Foundation::Query::CreateEQ(dstColumn, srcCell->getValue());
+                auto current = CmpFactory::CreateEQ(dstColumn, srcCell->getValue());
 
                 if (!criteria) {
                     criteria = current;
                 } else {
                     auto tmp = criteria;
-                    criteria = Foundation::Query::CreateAND(tmp, current);
+                    criteria = CmpFactory::CreateAND(tmp, current);
                 }
             }
 

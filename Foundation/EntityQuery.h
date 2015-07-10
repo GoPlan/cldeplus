@@ -22,10 +22,10 @@ namespace Cloude {
 
         public:
             explicit EntityQuery(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
-            EntityQuery(const EntityQuery &) = default;
-            EntityQuery(EntityQuery &&) = default;
-            EntityQuery &operator=(const EntityQuery &) = default;
-            EntityQuery &operator=(EntityQuery &&) = default;
+            EntityQuery(const EntityQuery &) = delete;
+            EntityQuery(EntityQuery &&) = delete;
+            EntityQuery &operator=(const EntityQuery &) = delete;
+            EntityQuery &operator=(EntityQuery &&) = delete;
             ~EntityQuery() = default;
 
             // Locals

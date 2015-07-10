@@ -21,16 +21,16 @@ namespace Cloude {
 
                 auto sptrEnquiryId_04 = Data::ValueFactory::CreateInt64(4);
 
-                AppTest::Application::EnquiryMap enquiryMap;
+                AppTest::Application::EnquiryMap enquiryMap{};
                 Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
                 sqliteSourceDriver.OptionArgs().ConnectionString = "../ex1.db";
 
-                auto sptrEnquiryStore = std::make_shared<EntityStore>(enquiryMap, sqliteSourceDriver);
-                auto sptrEnquiryQuery = std::make_shared<EntityQuery>(enquiryMap, sqliteSourceDriver);
+                auto sptrEnquiryStore = Foundation::CreateEntityStore(enquiryMap, sqliteSourceDriver);
+                auto sptrEnquiryQuery = Foundation::CreateEntityQuery(enquiryMap, sqliteSourceDriver);
 
                 sqliteSourceDriver.Connect();
 
-                SPtrCriteria sptrIdEq01{new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_04)};
+                SPtrCriteria sptrIdEq01 = ComparativeFactory::CreateEQ(enquiryMap.EnquiryId, sptrEnquiryId_04);
                 SPtrEntityProxy sptrProxy = sptrEnquiryQuery->SelectFirst(sptrIdEq01);
                 SPtrEntity sptrEntity = sptrProxy->Summon(sptrEnquiryStore);
 

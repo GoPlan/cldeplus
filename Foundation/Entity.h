@@ -52,7 +52,7 @@ namespace Cloude {
         using SPtrEntityList = std::list<SPtrEntity>;
         using SPtrEntitySet = std::set<SPtrEntity>;
 
-        SPtrEntity CreateEntitySharedPtr(const SPtrIdentity &identity);
+        SPtrEntity CreateEntity(const SPtrIdentity &identity);
     }
 }
 
