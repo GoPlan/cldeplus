@@ -13,7 +13,7 @@ namespace Cloude {
 
             class cldeEntityException : public cldeException {
 
-            static const std::string _name;
+                static const std::string _name;
 
             public:
                 cldeEntityException(const char *message) : cldeException(message) { };

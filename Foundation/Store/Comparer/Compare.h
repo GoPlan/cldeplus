@@ -23,6 +23,10 @@ namespace Cloude {
                             : _compare{lhsComparingColumns, rhsComparingColumns} { };
 
                     Compare() = default;
+                    Compare(const Compare &) = default;
+                    Compare(Compare &&) = default;
+                    Compare &operator=(const Compare &) = default;
+                    Compare &operator=(Compare &&) = default;
                     ~Compare() = default;
 
                     // Acessors

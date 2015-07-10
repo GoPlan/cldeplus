@@ -15,6 +15,7 @@ namespace Cloude {
             namespace Helper{
 
                 class EntityStoreHelper {
+
                     EntityStoreHelper() = delete;
                     EntityStoreHelper(const EntityStoreHelper &) = delete;
                     EntityStoreHelper(EntityStoreHelper &&) = delete;

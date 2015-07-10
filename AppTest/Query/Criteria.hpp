@@ -11,7 +11,6 @@
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <AppTest/Application/EnquiryMap.h>
-#include <AppTest/Application/EnquiryLoader.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -31,10 +30,9 @@ namespace Cloude {
                 auto sptrEmail_02 = Data::ValueFactory::CreateVarChar(email_02);
 
                 AppTest::Application::EnquiryMap enquiryMap;
-                AppTest::Application::EnquiryLoader enquiryLoader;
                 Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
-                auto enquiryStore = std::make_shared<EntityStore>(enquiryMap, enquiryLoader, sqliteSourceDriver);
-                auto enquiryQuery = std::make_shared<EntityQuery>(enquiryStore);
+                auto enquiryStore = std::make_shared<EntityStore>(enquiryMap, sqliteSourceDriver);
+                auto enquiryQuery = std::make_shared<EntityQuery>(enquiryMap, sqliteSourceDriver);
 
                 SPtrColumnVector vtorCmpColumns{enquiryMap.Email};
                 Foundation::Store::Comparer::Compare<> compare{vtorCmpColumns, vtorCmpColumns};

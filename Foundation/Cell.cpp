@@ -4,6 +4,7 @@
 
 #include <stdexcept>
 #include <Foundation/Data/Helper/TypeHelper.h>
+#include <Foundation/Exception/cldeEntityException.h>
 #include "Cell.h"
 
 namespace Cloude {
@@ -29,8 +30,7 @@ namespace Cloude {
                 std::string msg{"Value has type " + Data::Helper::TypeHelper::CopyToString(value->getDataType()) + " " +
                                 "that is different with column " + _column->ToString() +
                                 "(" + Data::Helper::TypeHelper::CopyToString(_column->getDataType()) + ")"};
-
-                throw std::invalid_argument{msg};
+                throw Exception::cldeEntityException{msg};
             }
 
             _value = value;

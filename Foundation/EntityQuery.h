@@ -10,16 +10,18 @@
 #include "EntityProxy.h"
 #include "EntityStore.h"
 #include "Query/Criteria.h"
+#include "EntitySourceDriver.h"
 
 namespace Cloude {
     namespace Foundation {
 
         class EntityQuery {
 
-            SPtrEntityStore _entityStore;
+            const EntityMap &_entityMap;
+            const EntitySourceDriver &_entitySourceDriver;
 
         public:
-            explicit EntityQuery(const SPtrEntityStore &entityStore);
+            explicit EntityQuery(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
             EntityQuery(const EntityQuery &) = default;
             EntityQuery(EntityQuery &&) = default;
             EntityQuery &operator=(const EntityQuery &) = default;
@@ -35,7 +37,7 @@ namespace Cloude {
 
         using SPtrEntityQuery = std::shared_ptr<EntityQuery>;
 
-        SPtrEntityQuery CreateQuerySharedPtr(const SPtrEntityStore &store);
+        SPtrEntityQuery CreateEntityQuery(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
     }
 }
 

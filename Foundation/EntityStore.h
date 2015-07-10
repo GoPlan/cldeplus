@@ -9,7 +9,6 @@
 #include "Identity.h"
 #include "Entity.h"
 #include "EntityMap.h"
-#include "EntityLoader.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -21,24 +20,19 @@ namespace Cloude {
         class EntityStore {
 
             const EntityMap &_entityMap;
-            const EntityLoader &_entityLoader;
             const EntitySourceDriver &_entitySourceDriver;
             SPtrIdentityMap _identityMap;
 
         public:
-            EntityStore(const EntityMap &entityMap,
-                        const EntityLoader &entityLoader,
-                        const EntitySourceDriver &entitySourceDriver);
-
+            EntityStore(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
             EntityStore(const EntityStore &) = default;
             EntityStore(EntityStore &&) = default;
             EntityStore &operator=(const EntityStore &) = default;
             EntityStore &operator=(EntityStore &&) = default;
-            ~EntityStore() = default;
+            virtual ~EntityStore() = default;
 
             bool HasIdentityInMap(const SPtrIdentity &identity) const;
 
-            SPtrEntity Create();
             SPtrEntity Create(const SPtrIdentity &identity);
             SPtrEntity Get(const SPtrIdentity &identity);
 
@@ -55,9 +49,7 @@ namespace Cloude {
 
         using SPtrEntityStore = std::shared_ptr<EntityStore>;
 
-        SPtrEntityStore CreateStoreSharedPtr(const EntityMap &entityMap,
-                                             const EntityLoader &entityLoader,
-                                             const EntitySourceDriver &entitySourceDriver);
+        SPtrEntityStore CreateStoreSharedPtr(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
     }
 }
 

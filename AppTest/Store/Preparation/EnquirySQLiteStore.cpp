@@ -11,17 +11,13 @@ namespace Cloude {
             namespace Preparation {
 
                 EnquirySQLiteStore::EnquirySQLiteStore() : _sqliteSourceDriver(_enquiryMap),
-                                                           _entityStore(_enquiryMap,
-                                                                        _enquiryLoader,
-                                                                        _sqliteSourceDriver) {
+                                                           _entityStore(_enquiryMap, _sqliteSourceDriver) {
                     //
                 }
 
                 void EnquirySQLiteStore::SetUp() {
-
                     auto &options = _sqliteSourceDriver.OptionArgs();
                     options.ConnectionString = "../ex1.db";
-
                     _sqliteSourceDriver.Connect();
                 }
 

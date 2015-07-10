@@ -6,6 +6,7 @@
 #define CLOUD_E_PLUS_APPTEST_APPLICATION_ORDER_H
 
 #include <Foundation/EntityMap.h>
+#include <Relation/RelationMap.h>
 
 namespace Cloude {
     namespace AppTest {

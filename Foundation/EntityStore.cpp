@@ -3,21 +3,16 @@
 //
 
 #include <string>
+#include <Foundation/Exception/cldeEntityStoreRoutineException.h>
 #include "EntitySourceDriver.h"
 #include "Query/Helper/SqlHelper.h"
 #include "Store/Helper/EntityStoreHelper.h"
 
-using namespace std;
-
 namespace Cloude {
     namespace Foundation {
 
-        EntityStore::EntityStore(const EntityMap &entityMap,
-                                 const EntityLoader &entityLoader,
-                                 const EntitySourceDriver &entitySourceDriver)
-                : _entityMap(entityMap),
-                  _entityLoader(entityLoader),
-                  _entitySourceDriver(entitySourceDriver) {
+        EntityStore::EntityStore(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver)
+                : _entityMap(entityMap), _entitySourceDriver(entitySourceDriver) {
             //
         }
 
@@ -25,17 +20,11 @@ namespace Cloude {
             return !(_identityMap.find(identity) == _identityMap.end());
         }
 
-        SPtrEntity EntityStore::Create() {
-            auto identity = _entityLoader.NextPrimaryKey();
-            auto entity = Create(identity);
-            return entity;
-        }
-
         SPtrEntity EntityStore::Create(const SPtrIdentity &identity) {
 
             if (!identity) {
                 std::string msg{"Identity is either a nullptr or invalid"};
-                throw std::invalid_argument(msg);
+                throw Exception::cldeEntityStoreRoutineException{msg};
             }
 
             auto &columnsForGet = _entityMap.getColumnsForGet();
@@ -75,6 +64,7 @@ namespace Cloude {
         }
 
         void EntityStore::Insert(SPtrEntity &entity) {
+
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
@@ -102,10 +92,8 @@ namespace Cloude {
             return _identityMap.size();
         }
 
-        SPtrEntityStore CreateStoreSharedPtr(const EntityMap &entityMap,
-                                             const EntityLoader &entityLoader,
-                                             const EntitySourceDriver &entitySourceDriver) {
-            return std::make_shared<EntityStore>(entityMap, entityLoader, entitySourceDriver);
+        SPtrEntityStore CreateStoreSharedPtr(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver) {
+            return std::make_shared<EntityStore>(entityMap, entitySourceDriver);
         }
     }
 }

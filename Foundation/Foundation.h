@@ -14,7 +14,6 @@
 #include "Foundation/Entity.h"
 #include "Foundation/EntityProxy.h"
 #include "Foundation/EntityMap.h"
-#include "Foundation/EntityLoader.h"
 #include "Foundation/EntityStore.h"
 #include "Foundation/EntityQuery.h"
 #include "Foundation/EntitySourceDriver.h"
