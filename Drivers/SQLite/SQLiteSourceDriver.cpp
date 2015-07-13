@@ -381,8 +381,7 @@ namespace Cloude {
 }
 
 Cloude::Drivers::SQLite::SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::EntityMap &entityMap)
-        : EntitySourceDriver(entityMap),
-          _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
+        : EntitySourceDriver(entityMap), _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
     Init();
 }
 

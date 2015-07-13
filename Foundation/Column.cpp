@@ -39,5 +39,12 @@ namespace Cloude {
             return result;
         }
 
+        SPtrColumn CreateColumn(const std::string &name, Data::ValueType dataType) {
+            return std::make_shared<Column>(name, dataType);
+        }
+
+        SPtrColumn CreateColumn(const std::string &name, const std::string &datasourceName, Data::ValueType dataType) {
+            return std::make_shared<Column>(name, datasourceName, dataType);
+        }
     }
 }

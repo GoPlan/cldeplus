@@ -49,6 +49,9 @@ namespace Cloude {
 
         using SPtrColumn = std::shared_ptr<Column>;
         using SPtrColumnVector = std::vector<SPtrColumn>;
+
+        SPtrColumn CreateColumn(const std::string& name, Data::ValueType dataType);
+        SPtrColumn CreateColumn(const std::string& name, const std::string& datasourceName, Data::ValueType dataType);
     }
 }
 
