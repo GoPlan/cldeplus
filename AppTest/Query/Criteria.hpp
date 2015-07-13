@@ -16,7 +16,7 @@ namespace Cloude {
     namespace AppTest {
         namespace Query {
 
-            TEST(Predicate, case01) {
+            TEST(Query, case01) {
 
                 using namespace Foundation;
                 using namespace Foundation::Query;
@@ -55,8 +55,6 @@ namespace Cloude {
 
                 auto compound = Helper::SqlHelper::CreateSelectPreparedQuery
                         (enquiryMap.getTableName(), enquiryMap.getColumnsForSelect(), sptrOR__, fptrCondition);
-
-                std::cout << compound.first << std::endl;
 
                 {
                     auto proxies = enquiryQuery->Select(sptrOR__);
