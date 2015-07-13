@@ -142,7 +142,7 @@ namespace Cloude {
                                               break;
                                           }
 
-                                          default:{
+                                          default: {
                                               ++index;
                                               std::string msg{"This type is not yet supported"};
                                               throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
@@ -202,7 +202,7 @@ namespace Cloude {
                                               break;
                                           }
 
-                                          default:{
+                                          default: {
                                               ++index;
                                               std::string msg{"This type is not yet supported"};
                                               throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
@@ -376,129 +376,125 @@ namespace Cloude {
                 return proxies;
             }
 
+            SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::EntityMap &entityMap)
+                    : EntitySourceDriver(entityMap), _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
+                Init();
+            }
+
+            SQLiteSourceDriver::~SQLiteSourceDriver() {
+                Disconnect();
+            }
+
+            void SQLiteSourceDriver::Init() {
+
+                auto fptrValueProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
+                    return std::string("?");
+                };
+
+                auto fptrProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
+                    return std::string(column->getDatasourceName() + " = " + "?");
+                };
+
+                auto &sourceName = getEntityMap().getTableName();
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto &columnsForGet = getEntityMap().getColumnsForGet();
+                auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
+
+                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName, columnsForGet, columnsForKey, fptrProcessor);
+                _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName, columnsForKey, fptrValueProcessor);
+                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName, columnsForUpdate, columnsForKey, fptrProcessor);
+                _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName, columnsForKey, fptrProcessor);
+            }
+
+            void SQLiteSourceDriver::Connect() {
+
+                if (!_sqliteApiImpl) {
+                    _sqliteApiImpl = std::make_shared<SQLiteApiImpl>(_optionArgs.ConnectionString);
+                }
+
+                _sqliteApiImpl->Connect();
+            }
+
+            void SQLiteSourceDriver::Disconnect() {
+                _sqliteApiImpl.reset();
+            }
+
+            int SQLiteSourceDriver::Load(Foundation::SPtrEntity &entity) const {
+
+                auto &columnsForGet = getEntityMap().getColumnsForGet();
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto uptrCommand = _sqliteApiImpl->createCommand(_getStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
+
+                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+                switch (resultCode) {
+                    case SQLITE_DONE:
+                        return 0;
+                    case SQLITE_ROW:
+                        _sqliteApiImpl->bindResultToFields(entity, columnsForGet, uptrCommand);
+                        return 1;
+                    default:
+                        throw SQLiteSourceException(resultCode);
+                }
+            }
+
+            int SQLiteSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
+
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto uptrCommand = _sqliteApiImpl->createCommand(_insertStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
+
+                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+                if (resultCode != SQLITE_DONE) {
+                    throw SQLiteSourceException(resultCode);
+                }
+
+                return 1;
+            }
+
+            int SQLiteSourceDriver::Save(Foundation::SPtrEntity &entity) const {
+
+                auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto size = columnsForUpdate.size() + columnsForKey.size();
+
+                Foundation::SPtrColumnVector columnsList;
+                columnsList.reserve(size);
+                columnsList.insert(columnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
+                columnsList.insert(columnsList.end(), columnsForKey.begin(), columnsForKey.end());
+
+                auto uptrCommand = _sqliteApiImpl->createCommand(_updateStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsList, uptrCommand, entity);
+
+                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+                if (resultCode != SQLITE_DONE) {
+                    throw SQLiteSourceException(resultCode);
+                }
+
+                return 1;
+            }
+
+            int SQLiteSourceDriver::Delete(Foundation::SPtrEntity &entity) const {
+
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto uptrCommand = _sqliteApiImpl->createCommand(_deleteStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
+
+                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+                if (resultCode != SQLITE_DONE) {
+                    throw SQLiteSourceException(resultCode);
+                }
+
+                return 1;
+            }
         }
     }
 }
-
-Cloude::Drivers::SQLite::SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::EntityMap &entityMap)
-        : EntitySourceDriver(entityMap), _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
-    Init();
-}
-
-Cloude::Drivers::SQLite::SQLiteSourceDriver::~SQLiteSourceDriver() {
-    Disconnect();
-}
-
-void Cloude::Drivers::SQLite::SQLiteSourceDriver::Init() {
-
-    auto fptrValueProcessor = [](const Foundation::SPtrColumn &column, const int &index)
-            -> std::string {
-        return std::string("?");
-    };
-
-    auto fptrProcessor = [](const Foundation::SPtrColumn &column, const int &index)
-            -> std::string {
-        return std::string(column->getDatasourceName() + " = " + "?");
-    };
-
-    auto &sourceName = getEntityMap().getTableName();
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto &columnsForGet = getEntityMap().getColumnsForGet();
-    auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
-
-    _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName, columnsForGet, columnsForKey, fptrProcessor);
-    _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName, columnsForKey, fptrValueProcessor);
-    _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName, columnsForUpdate, columnsForKey, fptrProcessor);
-    _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName, columnsForKey, fptrProcessor);
-}
-
-void Cloude::Drivers::SQLite::SQLiteSourceDriver::Connect() {
-
-    if (!_sqliteApiImpl) {
-        _sqliteApiImpl = std::make_shared<SQLiteApiImpl>(_optionArgs.ConnectionString);
-    }
-
-    _sqliteApiImpl->Connect();
-}
-
-void Cloude::Drivers::SQLite::SQLiteSourceDriver::Disconnect() {
-    _sqliteApiImpl.reset();
-}
-
-int Cloude::Drivers::SQLite::SQLiteSourceDriver::Load(Foundation::SPtrEntity &entity) const {
-
-    auto &columnsForGet = getEntityMap().getColumnsForGet();
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto uptrCommand = _sqliteApiImpl->createCommand(_getStatement);
-
-    _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
-
-    int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
-
-    switch (resultCode) {
-        case SQLITE_DONE:
-            return 0;
-        case SQLITE_ROW:
-            _sqliteApiImpl->bindResultToFields(entity, columnsForGet, uptrCommand);
-            return 1;
-        default:
-            throw SQLiteSourceException(resultCode);
-    }
-}
-
-int Cloude::Drivers::SQLite::SQLiteSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
-
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto uptrCommand = _sqliteApiImpl->createCommand(_insertStatement);
-
-    _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
-
-    int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
-
-    if (resultCode != SQLITE_DONE) {
-        throw SQLiteSourceException(resultCode);
-    }
-
-    return 1;
-}
-
-int Cloude::Drivers::SQLite::SQLiteSourceDriver::Save(Foundation::SPtrEntity &entity) const {
-
-    auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto size = columnsForUpdate.size() + columnsForKey.size();
-
-    Foundation::SPtrColumnVector columnsList;
-    columnsList.reserve(size);
-    columnsList.insert(columnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
-    columnsList.insert(columnsList.end(), columnsForKey.begin(), columnsForKey.end());
-
-    auto uptrCommand = _sqliteApiImpl->createCommand(_updateStatement);
-
-    _sqliteApiImpl->initializeParamBindBuffers(columnsList, uptrCommand, entity);
-
-    int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
-
-    if (resultCode != SQLITE_DONE) {
-        throw SQLiteSourceException(resultCode);
-    }
-
-    return 1;
-}
-
-int Cloude::Drivers::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEntity &entity) const {
-
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto uptrCommand = _sqliteApiImpl->createCommand(_deleteStatement);
-
-    _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
-
-    int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
-
-    if (resultCode != SQLITE_DONE) {
-        throw SQLiteSourceException(resultCode);
-    }
-
-    return 1;
-}
-
