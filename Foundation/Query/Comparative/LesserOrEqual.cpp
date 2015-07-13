@@ -8,7 +8,9 @@ namespace Cloude {
     namespace Foundation {
         namespace Query {
             namespace Comparative {
+
                 ComparativeType LesserOrEqual::_type = ComparativeType::LesserOrEqual;
+
             }
         }
     }

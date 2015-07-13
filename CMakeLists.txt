@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 project(cloud_e_plus)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cloud_e_plus_SOURCE_DIR}/.local/build/bin")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # INCLUDE directories
 include_directories(${CMAKE_SOURCE_DIR})
@@ -19,12 +18,12 @@ LINK_DIRECTORIES(/opt/local/lib/postgresql94)
 LINK_DIRECTORIES(AppTest/.local/gtest-1.7.0/lib)
 
 # TARGET-LIBRARIES (Sub-directories)
-add_subdirectory(Foundation)
 add_subdirectory(Booting)
-add_subdirectory(Drivers/SQLite)
+add_subdirectory(Foundation)
 add_subdirectory(Relation)
 add_subdirectory(Segmentation)
 add_subdirectory(AppTest)
+add_subdirectory(Drivers/SQLite)
 add_subdirectory(.examples)
 
 # TARGET-EXECUTABLE: debug
@@ -36,3 +35,7 @@ target_link_libraries(cloud_e_plus_test foundation segmentation relation booting
 target_link_libraries(cloud_e_plus_test application apptest gtest)
 target_link_libraries(cloud_e_plus_test cldesqlitedriver)
 #target_link_libraries(cloud_e_plus_test mysqlclient pq mongoc-1.0 bson-1.0)
+
+# TEST
+#enable_testing()
+#add_test(cloud_e_plus_test cloud_e_plus_test)

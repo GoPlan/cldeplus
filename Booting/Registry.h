@@ -5,10 +5,16 @@
 #ifndef CLOUD_E_PLUS_BOOTING_REGISTRY_H
 #define CLOUD_E_PLUS_BOOTING_REGISTRY_H
 
+#include <Foundation/EntityMap.h>
+#include <Foundation/EntityStore.h>
+
 namespace Cloude {
     namespace Booting {
 
         class Registry {
+
+            Foundation::SPtrEntityStore _entityStore;
+
         public:
             Registry() = default;
             Registry(const Registry &) = default;
@@ -16,6 +22,8 @@ namespace Cloude {
             Registry &operator=(const Registry &) = default;
             Registry &operator=(Registry &&) = default;
             virtual ~Registry() = default;
+
+
         };
     }
 }

@@ -14,9 +14,11 @@ namespace Cloude {
                 const ComparativeType &IsNull::getComparativeType() const {
                     return _type;
                 }
+
                 const SPtrColumn &IsNull::getColumn() const {
                     return _column;
                 }
+
                 const bool IsNull::isComposite() const {
                     return false;
                 }

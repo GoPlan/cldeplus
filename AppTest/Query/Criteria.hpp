@@ -16,7 +16,7 @@ namespace Cloude {
     namespace AppTest {
         namespace Query {
 
-            TEST(Predicate, case01) {
+            TEST(Query, case01) {
 
                 using namespace Foundation;
                 using namespace Foundation::Query;
@@ -29,7 +29,7 @@ namespace Cloude {
                 auto sptrEmail_01 = Data::ValueFactory::CreateVarChar(email_01);
                 auto sptrEmail_02 = Data::ValueFactory::CreateVarChar(email_02);
 
-                AppTest::Application::EnquiryMap enquiryMap;
+                AppTest::Application::EnquiryMap enquiryMap{};
                 Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
                 auto enquiryStore = std::make_shared<EntityStore>(enquiryMap, sqliteSourceDriver);
                 auto enquiryQuery = std::make_shared<EntityQuery>(enquiryMap, sqliteSourceDriver);
@@ -38,7 +38,7 @@ namespace Cloude {
                 Foundation::Store::Comparer::Compare<> compare{vtorCmpColumns, vtorCmpColumns};
 
                 auto &options = sqliteSourceDriver.OptionArgs();
-                options.ConnectionString = "../ex1.db";
+                options.ConnectionString = "example01.db";
                 sqliteSourceDriver.Connect();
 
                 SPtrCriteria sptrIdEq01(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_01));
@@ -56,11 +56,8 @@ namespace Cloude {
                 auto compound = Helper::SqlHelper::CreateSelectPreparedQuery
                         (enquiryMap.getTableName(), enquiryMap.getColumnsForSelect(), sptrOR__, fptrCondition);
 
-                std::cout << compound.first << std::endl;
-
                 {
                     auto proxies = enquiryQuery->Select(sptrOR__);
-
                     for (auto proxy : proxies) {
                         auto sptrEntity = proxy->Summon(enquiryStore);
                         ASSERT_TRUE(sptrEntity.get() != 0);
@@ -69,7 +66,6 @@ namespace Cloude {
 
                     auto proxy00 = proxies[0];
                     auto proxy01 = enquiryQuery->SelectFirst(sptrOR__);
-
                     EXPECT_TRUE(compare(proxy00, proxy01));
                 }
 

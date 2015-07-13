@@ -29,7 +29,7 @@ namespace Cloude {
 
             auto &columnsForGet = _entityMap.getColumnsForGet();
 
-            SPtrEntity entity = Foundation::CreateEntitySharedPtr(identity);
+            SPtrEntity entity = Foundation::CreateEntity(identity);
 
             Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, entity, false);
 
@@ -48,7 +48,7 @@ namespace Cloude {
 
             auto &columnsForGet = _entityMap.getColumnsForGet();
 
-            SPtrEntity sptrEntity = Foundation::CreateEntitySharedPtr(identity);
+            SPtrEntity sptrEntity = Foundation::CreateEntity(identity);
 
             Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, sptrEntity, false);
 
@@ -92,7 +92,7 @@ namespace Cloude {
             return _identityMap.size();
         }
 
-        SPtrEntityStore CreateStoreSharedPtr(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver) {
+        SPtrEntityStore CreateEntityStore(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver) {
             return std::make_shared<EntityStore>(entityMap, entitySourceDriver);
         }
     }

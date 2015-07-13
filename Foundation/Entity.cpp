@@ -8,7 +8,7 @@ using namespace std;
 
 namespace Cloude {
     namespace Foundation {
-        SPtrEntity CreateEntitySharedPtr(const SPtrIdentity &identity) {
+        SPtrEntity CreateEntity(const SPtrIdentity &identity) {
             return std::make_shared<Entity>(identity);
         }
     }

@@ -58,6 +58,9 @@ namespace Cloude {
 
             class SQLiteSourceDriver::SQLiteApiImpl {
 
+                std::string &connectionString;
+                sqlite3 *_ptrSqlite3 = nullptr;
+
             public:
                 SQLiteApiImpl(std::string &connectionString) : connectionString(connectionString) {
                     //
@@ -94,8 +97,7 @@ namespace Cloude {
 
                     int index = 1;
 
-                    std::for_each(columnsList.cbegin(),
-                                  columnsList.cend(),
+                    std::for_each(columnsList.cbegin(), columnsList.cend(),
                                   [&sptrCommand, &entity, &index](const Foundation::SPtrColumn &column) {
 
                                       auto &field = entity->getCell(column->getName());
@@ -109,26 +111,42 @@ namespace Cloude {
                                       auto const ptrValueBuffer = field->getValue()->RawPointerToValueBuffer();
 
                                       switch (column->getDataType()) {
+
+                                          case ValueType::Int32: {
+                                              auto tmp = reinterpret_cast<const int32_t *>(ptrValueBuffer);
+                                              sqlite3_bind_int(sptrCommand->_ptrStmt, index++, *tmp);
+                                              break;
+                                          }
+
                                           case ValueType::Int64: {
                                               auto tmp = reinterpret_cast<const sqlite3_int64 *>(ptrValueBuffer);
-                                              sqlite3_bind_int64(sptrCommand->_ptrStmt,
-                                                                 index++,
-                                                                 *tmp);
+                                              sqlite3_bind_int64(sptrCommand->_ptrStmt, index++, *tmp);
                                               break;
-                                          };
+                                          }
+
+                                          case ValueType::Double: {
+                                              auto tmp = reinterpret_cast<const double *>(ptrValueBuffer);
+                                              sqlite3_bind_double(sptrCommand->_ptrStmt, index++, *tmp);
+                                              break;
+                                          }
 
                                           case ValueType::VarChar: {
                                               auto tmp = static_cast<const char *>(ptrValueBuffer);
-                                              sqlite3_bind_text(sptrCommand->_ptrStmt,
-                                                                index++,
-                                                                tmp,
-                                                                -1,
-                                                                SQLITE_STATIC);
+                                              sqlite3_bind_text(sptrCommand->_ptrStmt, index++, tmp, -1, SQLITE_STATIC);
                                               break;
-                                          };
+                                          }
 
-                                          default:
+                                          case ValueType::Text: {
+                                              auto tmp = static_cast<const char *>(ptrValueBuffer);
+                                              sqlite3_bind_text(sptrCommand->_ptrStmt, index++, tmp, -1, SQLITE_STATIC);
                                               break;
+                                          }
+
+                                          default: {
+                                              ++index;
+                                              std::string msg{"This type is not yet supported"};
+                                              throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
+                                          }
                                       }
                                   });
                     return 1;
@@ -153,28 +171,43 @@ namespace Cloude {
                                       const auto ptrValueBuffer = sptrCriteria->getValue()->RawPointerToValueBuffer();
 
                                       switch (column->getDataType()) {
+
+                                          case ValueType::Int32: {
+                                              auto tmp = reinterpret_cast<const int32_t *>(ptrValueBuffer);
+                                              sqlite3_bind_int(uptrCommand->_ptrStmt, index++, *tmp);
+                                              break;
+                                          }
+
                                           case ValueType::Int64: {
                                               auto tmp = reinterpret_cast<const sqlite3_int64 *>(ptrValueBuffer);
-                                              sqlite3_bind_int64(uptrCommand->_ptrStmt,
-                                                                 index++,
-                                                                 *tmp);
+                                              sqlite3_bind_int64(uptrCommand->_ptrStmt, index++, *tmp);
                                               break;
-                                          };
+                                          }
+
+                                          case ValueType::Double: {
+                                              auto tmp = reinterpret_cast<const double *>(ptrValueBuffer);
+                                              sqlite3_bind_double(uptrCommand->_ptrStmt, index++, *tmp);
+                                              break;
+                                          }
 
                                           case ValueType::VarChar: {
                                               auto tmp = static_cast<const char *>( ptrValueBuffer);
-                                              sqlite3_bind_text(uptrCommand->_ptrStmt,
-                                                                index++,
-                                                                tmp,
-                                                                -1,
-                                                                SQLITE_STATIC);
+                                              sqlite3_bind_text(uptrCommand->_ptrStmt, index++, tmp, -1, SQLITE_STATIC);
                                               break;
-                                          };
+                                          }
 
-                                          default:
+                                          case ValueType::Text: {
+                                              auto tmp = static_cast<const char *>( ptrValueBuffer);
+                                              sqlite3_bind_text(uptrCommand->_ptrStmt, index++, tmp, -1, SQLITE_STATIC);
                                               break;
+                                          }
+
+                                          default: {
+                                              ++index;
+                                              std::string msg{"This type is not yet supported"};
+                                              throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
+                                          }
                                       }
-
                                   });
 
                     return 1;
@@ -197,26 +230,44 @@ namespace Cloude {
                                  auto &sptrField = entity->getCell(column->getName());
 
                                  switch (column->getDataType()) {
+
+                                     case Cloude::Foundation::Data::ValueType::Int32: {
+                                         auto value = sqlite3_column_int(uptrCommand->_ptrStmt, index++);
+                                         sptrField->setValue(ValueFactory::CreateInt32(value));
+                                         break;
+                                     }
+
                                      case Cloude::Foundation::Data::ValueType::Int64: {
                                          auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
                                          sptrField->setValue(ValueFactory::CreateInt64(value));
                                          break;
                                      }
+
                                      case Cloude::Foundation::Data::ValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
                                          sptrField->setValue(ValueFactory::CreateVarChar(cstr));
                                          break;
                                      }
+
+                                     case Cloude::Foundation::Data::ValueType::Text: {
+                                         auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
+                                         auto cstr = reinterpret_cast<const char *>(value);
+                                         sptrField->setValue(ValueFactory::CreateVarChar(cstr));
+                                         break;
+                                     }
+
                                      case Foundation::Data::ValueType::Double: {
                                          auto value = sqlite3_column_double(uptrCommand->_ptrStmt, index++);
                                          sptrField->setValue(ValueFactory::CreateDouble(value));
                                          break;
                                      }
-                                     default:
+
+                                     default: {
                                          ++index;
                                          std::string msg{"This type is not yet supported"};
                                          throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
+                                     }
                                  }
                              });
 
@@ -240,34 +291,49 @@ namespace Cloude {
                                  auto &sptrField = proxy->getCell(column->getName());
 
                                  switch (column->getDataType()) {
+
+                                     case Cloude::Foundation::Data::ValueType::Int32: {
+                                         auto value = sqlite3_column_int(uptrCommand->_ptrStmt, index++);
+                                         sptrField->setValue(ValueFactory::CreateInt32(value));
+                                         break;
+                                     }
+
                                      case Cloude::Foundation::Data::ValueType::Int64: {
                                          auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
                                          sptrField->setValue(ValueFactory::CreateInt64(value));
                                          break;
                                      }
+
+                                     case Foundation::Data::ValueType::Double: {
+                                         auto value = sqlite3_column_double(uptrCommand->_ptrStmt, index++);
+                                         sptrField->setValue(ValueFactory::CreateDouble(value));
+                                         break;
+                                     }
+
                                      case Cloude::Foundation::Data::ValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
                                          sptrField->setValue(ValueFactory::CreateVarChar(cstr));
                                          break;
                                      }
-                                     case Foundation::Data::ValueType::Double: {
-                                         auto value = sqlite3_column_double(uptrCommand->_ptrStmt, index++);
-                                         sptrField->setValue(ValueFactory::CreateDouble(value));
+
+                                     case Cloude::Foundation::Data::ValueType::Text: {
+                                         auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
+                                         auto cstr = reinterpret_cast<const char *>(value);
+                                         sptrField->setValue(ValueFactory::CreateVarChar(cstr));
                                          break;
                                      }
-                                     default:
+
+                                     default: {
                                          ++index;
                                          std::string msg{"This type is not yet supported"};
                                          throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
+                                     }
                                  }
                              });
 
                     return 1;
                 }
-
-                std::string &connectionString;
-                sqlite3 *_ptrSqlite3 = nullptr;
             };
 
             Foundation::SPtrEntityProxyVector SQLiteSourceDriver::Select(
@@ -310,143 +376,125 @@ namespace Cloude {
                 return proxies;
             }
 
+            SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::EntityMap &entityMap)
+                    : EntitySourceDriver(entityMap), _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
+                Init();
+            }
+
+            SQLiteSourceDriver::~SQLiteSourceDriver() {
+                Disconnect();
+            }
+
+            void SQLiteSourceDriver::Init() {
+
+                auto fptrValueProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
+                    return std::string("?");
+                };
+
+                auto fptrProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
+                    return std::string(column->getDatasourceName() + " = " + "?");
+                };
+
+                auto &sourceName = getEntityMap().getTableName();
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto &columnsForGet = getEntityMap().getColumnsForGet();
+                auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
+
+                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName, columnsForGet, columnsForKey, fptrProcessor);
+                _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName, columnsForKey, fptrValueProcessor);
+                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName, columnsForUpdate, columnsForKey, fptrProcessor);
+                _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName, columnsForKey, fptrProcessor);
+            }
+
+            void SQLiteSourceDriver::Connect() {
+
+                if (!_sqliteApiImpl) {
+                    _sqliteApiImpl = std::make_shared<SQLiteApiImpl>(_optionArgs.ConnectionString);
+                }
+
+                _sqliteApiImpl->Connect();
+            }
+
+            void SQLiteSourceDriver::Disconnect() {
+                _sqliteApiImpl.reset();
+            }
+
+            int SQLiteSourceDriver::Load(Foundation::SPtrEntity &entity) const {
+
+                auto &columnsForGet = getEntityMap().getColumnsForGet();
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto uptrCommand = _sqliteApiImpl->createCommand(_getStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
+
+                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+                switch (resultCode) {
+                    case SQLITE_DONE:
+                        return 0;
+                    case SQLITE_ROW:
+                        _sqliteApiImpl->bindResultToFields(entity, columnsForGet, uptrCommand);
+                        return 1;
+                    default:
+                        throw SQLiteSourceException(resultCode);
+                }
+            }
+
+            int SQLiteSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
+
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto uptrCommand = _sqliteApiImpl->createCommand(_insertStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
+
+                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+                if (resultCode != SQLITE_DONE) {
+                    throw SQLiteSourceException(resultCode);
+                }
+
+                return 1;
+            }
+
+            int SQLiteSourceDriver::Save(Foundation::SPtrEntity &entity) const {
+
+                auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto size = columnsForUpdate.size() + columnsForKey.size();
+
+                Foundation::SPtrColumnVector columnsList;
+                columnsList.reserve(size);
+                columnsList.insert(columnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
+                columnsList.insert(columnsList.end(), columnsForKey.begin(), columnsForKey.end());
+
+                auto uptrCommand = _sqliteApiImpl->createCommand(_updateStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsList, uptrCommand, entity);
+
+                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+                if (resultCode != SQLITE_DONE) {
+                    throw SQLiteSourceException(resultCode);
+                }
+
+                return 1;
+            }
+
+            int SQLiteSourceDriver::Delete(Foundation::SPtrEntity &entity) const {
+
+                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto uptrCommand = _sqliteApiImpl->createCommand(_deleteStatement);
+
+                _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
+
+                int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
+
+                if (resultCode != SQLITE_DONE) {
+                    throw SQLiteSourceException(resultCode);
+                }
+
+                return 1;
+            }
         }
     }
 }
-
-Cloude::Drivers::SQLite::SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::EntityMap &entityMap)
-        : EntitySourceDriver(entityMap),
-          _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
-    Init();
-}
-
-Cloude::Drivers::SQLite::SQLiteSourceDriver::~SQLiteSourceDriver() {
-    Disconnect();
-}
-
-void Cloude::Drivers::SQLite::SQLiteSourceDriver::Init() {
-
-    auto fptrValueProcessor = [](const Foundation::SPtrColumn &column, const int &index)
-            -> std::string {
-        return std::string("?");
-    };
-
-    auto fptrConditionProcessor = [](const Foundation::SPtrColumn &column, const int &index)
-            -> std::string {
-        return std::string(column->getDatasourceName() + " = " + "?");
-    };
-
-    auto &sourceName = getEntityMap().getTableName();
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto &columnsForGet = getEntityMap().getColumnsForGet();
-    auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
-
-    _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName,
-                                                      columnsForGet,
-                                                      columnsForKey,
-                                                      fptrConditionProcessor);
-
-    _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName,
-                                                            columnsForKey,
-                                                            fptrValueProcessor);
-
-    _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName,
-                                                            columnsForUpdate,
-                                                            columnsForKey,
-                                                            fptrConditionProcessor);
-
-    _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName,
-                                                            columnsForKey,
-                                                            fptrConditionProcessor);
-}
-
-void Cloude::Drivers::SQLite::SQLiteSourceDriver::Connect() {
-
-    if (!_sqliteApiImpl) {
-        _sqliteApiImpl = std::make_shared<SQLiteApiImpl>(_optionArgs.ConnectionString);
-    }
-
-    _sqliteApiImpl->Connect();
-}
-
-void Cloude::Drivers::SQLite::SQLiteSourceDriver::Disconnect() {
-    _sqliteApiImpl.reset();
-}
-
-int Cloude::Drivers::SQLite::SQLiteSourceDriver::Load(Foundation::SPtrEntity &entity) const {
-
-    auto &columnsForGet = getEntityMap().getColumnsForGet();
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto uptrCommand = _sqliteApiImpl->createCommand(_getStatement);
-
-    _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
-
-    int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
-
-    switch (resultCode) {
-        case SQLITE_DONE:
-            return 0;
-        case SQLITE_ROW:
-            _sqliteApiImpl->bindResultToFields(entity, columnsForGet, uptrCommand);
-            return 1;
-        default:
-            throw SQLiteSourceException(resultCode);
-    }
-}
-
-int Cloude::Drivers::SQLite::SQLiteSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
-
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto uptrCommand = _sqliteApiImpl->createCommand(_insertStatement);
-
-    _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
-
-    int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
-
-    if (resultCode != SQLITE_DONE) {
-        throw SQLiteSourceException(resultCode);
-    }
-
-    return 1;
-}
-
-int Cloude::Drivers::SQLite::SQLiteSourceDriver::Save(Foundation::SPtrEntity &entity) const {
-
-    auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto size = columnsForUpdate.size() + columnsForKey.size();
-
-    Foundation::SPtrColumnVector columnsList;
-    columnsList.reserve(size);
-    columnsList.insert(columnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
-    columnsList.insert(columnsList.end(), columnsForKey.begin(), columnsForKey.end());
-
-    auto uptrCommand = _sqliteApiImpl->createCommand(_updateStatement);
-
-    _sqliteApiImpl->initializeParamBindBuffers(columnsList, uptrCommand, entity);
-
-    int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
-
-    if (resultCode != SQLITE_DONE) {
-        throw SQLiteSourceException(resultCode);
-    }
-
-    return 1;
-}
-
-int Cloude::Drivers::SQLite::SQLiteSourceDriver::Delete(Foundation::SPtrEntity &entity) const {
-
-    auto &columnsForKey = getEntityMap().getColumnsForKey();
-    auto uptrCommand = _sqliteApiImpl->createCommand(_deleteStatement);
-
-    _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
-
-    int resultCode = sqlite3_step(uptrCommand->_ptrStmt);
-
-    if (resultCode != SQLITE_DONE) {
-        throw SQLiteSourceException(resultCode);
-    }
-
-    return 1;
-}
-

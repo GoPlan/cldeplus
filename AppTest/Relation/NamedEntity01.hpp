@@ -21,23 +21,21 @@ namespace Cloude {
 
                 auto sptrEnquiryId_04 = Data::ValueFactory::CreateInt64(4);
 
-                AppTest::Application::EnquiryMap enquiryMap;
+                AppTest::Application::EnquiryMap enquiryMap{};
                 Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
-                sqliteSourceDriver.OptionArgs().ConnectionString = "../ex1.db";
+                sqliteSourceDriver.OptionArgs().ConnectionString = "example01.db";
 
-                auto sptrEnquiryStore = std::make_shared<EntityStore>(enquiryMap, sqliteSourceDriver);
-                auto sptrEnquiryQuery = std::make_shared<EntityQuery>(enquiryMap, sqliteSourceDriver);
+                auto sptrEnquiryStore = Foundation::CreateEntityStore(enquiryMap, sqliteSourceDriver);
+                auto sptrEnquiryQuery = Foundation::CreateEntityQuery(enquiryMap, sqliteSourceDriver);
 
                 sqliteSourceDriver.Connect();
 
-                SPtrCriteria sptrIdEq01{new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_04)};
+                SPtrCriteria sptrIdEq01 = ComparativeFactory::CreateEQ(enquiryMap.EnquiryId, sptrEnquiryId_04);
                 SPtrEntityProxy sptrProxy = sptrEnquiryQuery->SelectFirst(sptrIdEq01);
                 SPtrEntity sptrEntity = sptrProxy->Summon(sptrEnquiryStore);
 
                 EXPECT_TRUE(sptrProxy.get());
                 EXPECT_TRUE(sptrEntity.get());
-
-                std::cout << sptrEntity->ToString() << std::endl;
 
                 auto converter = [](const Foundation::Entity &entity) -> Entity::Enquiry {
 
@@ -56,12 +54,11 @@ namespace Cloude {
 
                 auto enquiry = sptrEntity->NamedEntity<Entity::Enquiry>(converter);
 
-                std::cout << enquiry.getId() << std::endl;
-                std::cout << enquiry.getEmail() << std::endl;
-                std::cout << enquiry.getSubject() << std::endl;
+                EXPECT_TRUE(enquiry.getId() > 0);
+                EXPECT_TRUE(enquiry.getEmail().length() > 0);
+                EXPECT_TRUE(enquiry.getSubject().length() > 0);
 
                 sqliteSourceDriver.Disconnect();
-
             }
         }
     }

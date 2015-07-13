@@ -27,8 +27,6 @@ namespace Cloude {
                     // Criteria
                     const ComparativeType &getComparativeType() const override { return _type; };
                 };
-
-                SPtrCriteria CreateCriteriaAnd(const SPtrCriteria& lhs, const SPtrCriteria& rhs);
             }
         }
     }

@@ -21,7 +21,9 @@ namespace Cloude {
     namespace AppTest {
         namespace Segmentation {
 
-            TEST(Segmentation, case01) {
+            TEST(Segmentation, LEFT_INNER_JOIN_01) {
+
+                using CmpFactory = Foundation::Query::ComparativeFactory;
 
                 Application::CustomerMap mapCustomer;
                 Application::PreOrderMap mapPreOrder;
@@ -29,40 +31,32 @@ namespace Cloude {
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
                 Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
 
-                Foundation::SPtrEntityStore sptrCustomerStore = std::make_shared<Foundation::EntityStore>(mapCustomer, driverCustomer);
-                Foundation::SPtrEntityStore sptrOrderStore = std::make_shared<Foundation::EntityStore>(mapPreOrder, driverOrder);
+                auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, driverCustomer);
+                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverOrder);
 
                 Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
                 Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
 
-                driverCustomer.OptionArgs().ConnectionString = "../ex1.db";
-                driverOrder.OptionArgs().ConnectionString = "../ex1.db";
+                driverCustomer.OptionArgs().ConnectionString = "example01.db";
+                driverOrder.OptionArgs().ConnectionString = "example01.db";
 
                 driverCustomer.Connect();
                 driverOrder.Connect();
 
                 // Select Customer set
-                Foundation::Data::SPtrValue sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
-                Foundation::Query::SPtrCriteria sptrCustomerIdGt00(new Foundation::Query::Comparative::Greater(mapCustomer.Id, sptrCustomerId));
-                Foundation::SPtrEntityProxyVector rsCustomer = queryCustomer.Select(sptrCustomerIdGt00);
-
-                for (auto proxy : rsCustomer) {
-                    std::cout << proxy->ToString() << std::endl;
-                }
+                auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
+                auto sptrCustomerIdGt00 = CmpFactory::CreateGTE(mapCustomer.Id, sptrCustomerId);
+                auto rsCustomer = queryCustomer.Select(sptrCustomerIdGt00);
 
                 // Select Order set
-                Foundation::Data::SPtrValue sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(0);
-                Foundation::Query::SPtrCriteria sptrOrderIdGt00(new Foundation::Query::Comparative::Greater(mapPreOrder.Id, sptrOrderId));
-                Foundation::SPtrEntityProxyVector rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
+                auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(10);
+                auto sptrOrderIdGt00 = CmpFactory::CreateLTE(mapPreOrder.Id, sptrOrderId);
+                auto rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
 
-                for (auto proxy : rsPreOrder) {
-                    std::cout << proxy->ToString() << std::endl;
-                }
-
-                Foundation::SPtrColumn newCustomerIdColumn = std::make_shared<Foundation::Column>("_custId", Foundation::Data::ValueType::Int64);
-                Foundation::SPtrColumn newCustomerEmailColumn = std::make_shared<Foundation::Column>("customerEmail", Foundation::Data::ValueType::VarChar);
-                Foundation::SPtrColumn newPreOrderIdColumn = std::make_shared<Foundation::Column>("preorderId", Foundation::Data::ValueType::Int64);
-                Foundation::SPtrColumn newPreOrderTotalColumn = std::make_shared<Foundation::Column>("preorderTotal", Foundation::Data::ValueType::Double);
+                auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
+                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
+                auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
+                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
 
                 Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
                 Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
@@ -75,69 +69,14 @@ namespace Cloude {
                 formatter.DisplayColumns().push_back(newCustomerIdColumn);
                 formatter.DisplayColumns().push_back(newCustomerEmailColumn);
 
-                std::cout << std::endl;
-                std::cout << "SORT PreOrder by CustId" << std::endl;
+                // SORT PreOrder
                 Foundation::Store::Comparer::Less cmp{};
                 cmp.LhsCmpColumns().push_back(mapPreOrder.CustId);
                 cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
-
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
-                for (auto proxy : rsPreOrder) {
-                    std::cout << proxy->ToString() << std::endl;
-                }
 
 
-                std::cout << std::endl;
-                std::cout << "PreOrder CROSS JOIN Customer" << std::endl;
-                Cloude::Segmentation::Join::Cross joinCross{};
-                joinCross.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
-                joinCross.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
-                joinCross.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
-                joinCross.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
-
-                Foundation::SPtrEntityProxyVector rsJoinCross = joinCross.Join(rsPreOrder, rsCustomer);
-                std::cout << formatter.ToString() << std::endl;
-                for (auto &proxy : rsJoinCross) {
-                    std::cout << proxy->ToString(formatter) << std::endl;
-                }
-
-
-                std::cout << std::endl;
-                std::cout << "PreOrder LEFT JOIN Customer" << std::endl;
-                Cloude::Segmentation::Join::Left joinLeft{};
-                joinLeft.LhsComparingColumns().push_back(mapPreOrder.CustId);
-                joinLeft.RhsComparingColumns().push_back(mapCustomer.Id);
-                joinLeft.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
-                joinLeft.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
-                joinLeft.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
-                joinLeft.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
-
-                Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
-                std::cout << formatter.ToString() << std::endl;
-                for (auto proxy : rsJoinLeft) {
-                    std::cout << proxy->ToString(formatter) << std::endl;
-                }
-
-
-                std::cout << std::endl;
-                std::cout << "PreOrder RIGHT JOIN Customer" << std::endl;
-                Cloude::Segmentation::Join::Right joinRight{};
-                joinRight.LhsComparingColumns().push_back(mapPreOrder.CustId);
-                joinRight.RhsComparingColumns().push_back(mapCustomer.Id);
-                joinRight.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
-                joinRight.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
-                joinRight.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
-                joinRight.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
-
-                Foundation::SPtrEntityProxyVector rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
-                std::cout << formatter.ToString() << std::endl;
-                for (auto proxy : rsJoinRight) {
-                    std::cout << proxy->ToString(formatter) << std::endl;
-                }
-
-
-                std::cout << std::endl;
-                std::cout << "PreOrder INNER JOIN Customer" << std::endl;
+                // INNER JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Inner joinInner{};
                 joinInner.LhsComparingColumns().push_back(mapPreOrder.CustId);
                 joinInner.RhsComparingColumns().push_back(mapCustomer.Id);
@@ -147,28 +86,168 @@ namespace Cloude {
                 joinInner.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
                 Foundation::SPtrEntityProxyVector rsJoinInner = joinInner.Join(rsPreOrder, rsCustomer);
-                std::cout << formatter.ToString() << std::endl;
-                for (auto proxy : rsJoinInner) {
-                    std::cout << proxy->ToString(formatter) << std::endl;
+                EXPECT_TRUE(rsJoinInner.size() == 10);
+                for (auto &item : rsJoinInner) {
+                    std::cout << item->ToString() << std::endl;
                 }
 
 
-                std::cout << std::endl;
-                std::cout << "PreOrder FULL JOIN Customer" << std::endl;
-                Cloude::Segmentation::Join::Full joinFull{};
-                joinFull.LhsComparingColumns().push_back(mapPreOrder.CustId);
-                joinFull.RhsComparingColumns().push_back(mapCustomer.Id);
-                joinFull.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
-                joinFull.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
-                joinFull.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
-                joinFull.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
+                // LEFT JOIN - PREORDER <> CUSTOMER
+                Cloude::Segmentation::Join::Left joinLeft{};
+                joinLeft.LhsComparingColumns().push_back(mapPreOrder.CustId);
+                joinLeft.RhsComparingColumns().push_back(mapCustomer.Id);
+                joinLeft.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
+                joinLeft.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                joinLeft.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+                joinLeft.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
-                Foundation::SPtrEntityProxyVector rsJoinFull = joinFull.Join(rsPreOrder, rsCustomer);
-                std::cout << formatter.ToString() << std::endl;
-                for (auto proxy : rsJoinFull) {
-                    std::cout << proxy->ToString(formatter) << std::endl;
+                Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
+                EXPECT_TRUE(rsJoinLeft.size() == rsPreOrder.size());
+                for (auto &item : rsJoinLeft) {
+                    std::cout << item->ToString() << std::endl;
                 }
 
+                // Disconnect
+                driverCustomer.Disconnect();
+                driverOrder.Disconnect();
+            }
+
+            TEST(Segmentation, RIGHT_JOIN_01) {
+
+                using CmpFactory = Foundation::Query::ComparativeFactory;
+
+                Application::CustomerMap mapCustomer;
+                Application::PreOrderMap mapPreOrder;
+
+                Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
+                Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
+
+                auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, driverCustomer);
+                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverOrder);
+
+                Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
+                Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
+
+                driverCustomer.OptionArgs().ConnectionString = "example01.db";
+                driverOrder.OptionArgs().ConnectionString = "example01.db";
+
+                driverCustomer.Connect();
+                driverOrder.Connect();
+
+                // Select Customer set
+                auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(20);
+                auto sptrCustomerIdGt00 = CmpFactory::CreateLT(mapCustomer.Id, sptrCustomerId);
+                auto rsCustomer = queryCustomer.Select(sptrCustomerIdGt00);
+
+                // Select Order set
+                auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(0);
+                auto sptrOrderIdGt00 = CmpFactory::CreateGTE(mapPreOrder.Id, sptrOrderId);
+                auto rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
+
+                auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
+                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
+                auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
+                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
+
+                Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
+                Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
+                Cloude::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
+                Cloude::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
+
+                Cloude::Foundation::Store::Extra::EntityOutputFormatter formatter{};
+                formatter.DisplayColumns().push_back(newPreOrderIdColumn);
+                formatter.DisplayColumns().push_back(newPreOrderTotalColumn);
+                formatter.DisplayColumns().push_back(newCustomerIdColumn);
+                formatter.DisplayColumns().push_back(newCustomerEmailColumn);
+
+                // SORT PreOrder
+                Foundation::Store::Comparer::Less cmp{};
+                cmp.LhsCmpColumns().push_back(mapPreOrder.CustId);
+                cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
+                std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
+
+
+                // RIGHT JOIN - PREORDER <> CUSTOMER
+                Cloude::Segmentation::Join::Right joinRight{};
+                joinRight.LhsComparingColumns().push_back(mapPreOrder.CustId);
+                joinRight.RhsComparingColumns().push_back(mapCustomer.Id);
+                joinRight.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
+                joinRight.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                joinRight.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+                joinRight.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
+
+                Foundation::SPtrEntityProxyVector rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
+                EXPECT_TRUE(rsJoinRight.size() == 24);
+
+
+                // Disconnect
+                driverCustomer.Disconnect();
+                driverOrder.Disconnect();
+            }
+
+            TEST(Segmentation, CROSS_JOIN) {
+
+                using CmpFactory = Foundation::Query::ComparativeFactory;
+
+                Application::CustomerMap mapCustomer;
+                Application::PreOrderMap mapPreOrder;
+
+                Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
+                Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
+
+                auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, driverCustomer);
+                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverOrder);
+
+                Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
+                Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
+
+                driverCustomer.OptionArgs().ConnectionString = "example01.db";
+                driverOrder.OptionArgs().ConnectionString = "example01.db";
+
+                driverCustomer.Connect();
+                driverOrder.Connect();
+
+                // Select Customer set
+                auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
+                auto sptrCustomerIdGt00 = CmpFactory::CreateGTE(mapCustomer.Id, sptrCustomerId);
+                auto rsCustomer = queryCustomer.Select(sptrCustomerIdGt00);
+
+                // Select Order set
+                auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(10);
+                auto sptrOrderIdGt00 = CmpFactory::CreateLTE(mapPreOrder.Id, sptrOrderId);
+                auto rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
+
+                auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
+                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
+                auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
+                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
+
+                Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
+                Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
+                Cloude::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
+                Cloude::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
+
+                Cloude::Foundation::Store::Extra::EntityOutputFormatter formatter{};
+                formatter.DisplayColumns().push_back(newPreOrderIdColumn);
+                formatter.DisplayColumns().push_back(newPreOrderTotalColumn);
+                formatter.DisplayColumns().push_back(newCustomerIdColumn);
+                formatter.DisplayColumns().push_back(newCustomerEmailColumn);
+
+                // SORT PreOrder
+                Foundation::Store::Comparer::Less cmp{};
+                cmp.LhsCmpColumns().push_back(mapPreOrder.CustId);
+                cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
+                std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
+
+                // CROSSJOIN - PREORDER <> CUSTOMER
+                Cloude::Segmentation::Join::Cross crossJoin{};
+                crossJoin.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
+                crossJoin.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
+                crossJoin.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
+                crossJoin.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
+
+                Foundation::SPtrEntityProxyVector rsCrossJoin = crossJoin.Join(rsPreOrder, rsCustomer);
+                EXPECT_TRUE(rsCrossJoin.size() == rsPreOrder.size() * rsCustomer.size());
 
                 // Disconnect
                 driverCustomer.Disconnect();

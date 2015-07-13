@@ -25,16 +25,19 @@ namespace Cloude {
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
                 Drivers::SQLite::SQLiteSourceDriver driverPreOrder{mapPreOrder};
-                driverCustomer.OptionArgs().ConnectionString = "../ex1.db";
-                driverPreOrder.OptionArgs().ConnectionString = "../ex1.db";
+
+                driverCustomer.OptionArgs().ConnectionString = "example01.db";
+                driverPreOrder.OptionArgs().ConnectionString = "example01.db";
 
                 Relation::RelationMap linkCustomerToPreOrder{};
                 Relation::RelationMap linkPreOrderToCustomer{};
+
                 linkCustomerToPreOrder.AddLink(mapCustomer.Id, mapPreOrder.CustId);
                 linkPreOrderToCustomer.AddLink(mapPreOrder.CustId, mapCustomer.Id);
 
                 auto sptrCustomerQuery = Foundation::CreateEntityQuery(mapCustomer, driverCustomer);
                 auto sptrPreOrderQuery = Foundation::CreateEntityQuery(mapPreOrder, driverPreOrder);
+
                 auto sptrCustomerStore = Relation::CreateNamedStore<Entity::Customer>(mapCustomer, driverCustomer);
                 auto sptrPreOrderStore = Relation::CreateNamedStore<Entity::PreOrder>(mapPreOrder, driverPreOrder);
 
@@ -80,13 +83,13 @@ namespace Cloude {
                 driverCustomer.Connect();
                 driverPreOrder.Connect();
 
+
                 // PreOrder referencing Customer (LinkToOne)
                 Foundation::Query::SPtrCriteria sptrPreOrderIdGt00;
                 {
                     using namespace Foundation::Query;
                     using namespace Foundation::Data;
-                    sptrPreOrderIdGt00.reset(new Comparative::GreaterOrEqual{mapPreOrder.Id,
-                                                                             ValueFactory::CreateInt64(0)});
+                    sptrPreOrderIdGt00 = ComparativeFactory::CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
                 }
 
                 auto sptrPreOrderProxy = sptrPreOrderQuery->SelectFirst(sptrPreOrderIdGt00);
@@ -94,15 +97,12 @@ namespace Cloude {
                 auto preOrder = sptrPreOrderStore->NamedEntity(sptrPreOrderEntity);
 
                 {
-                    std::cout << "Referencing Customer from PreOrder" << std::endl;
-
                     auto sptrCustomerProxy = preOrder.sptrCustomer()->Call();
                     auto sptrCustomerEntity = sptrCustomerStore->Summon(sptrCustomerProxy);
 
                     EXPECT_TRUE(sptrCustomerProxy.get());
                     EXPECT_TRUE(sptrCustomerEntity.get());
-
-                    std::cout << sptrCustomerEntity->ToString() << std::endl;
+                    EXPECT_TRUE(sptrCustomerEntity->ToString().length() > 0);
                 }
 
 
@@ -111,8 +111,7 @@ namespace Cloude {
                 {
                     using namespace Foundation::Query;
                     using namespace Foundation::Data;
-                    sptrCustomerIdGt00.reset(new Comparative::GreaterOrEqual{mapPreOrder.Id,
-                                                                             ValueFactory::CreateInt64(0)});
+                    sptrCustomerIdGt00 = ComparativeFactory::CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
                 }
 
                 auto sptrCustomerProxy = sptrCustomerQuery->SelectFirst(sptrCustomerIdGt00);
@@ -120,10 +119,9 @@ namespace Cloude {
                 auto customer = sptrCustomerStore->NamedEntity(sptrCustomerEntity);
 
                 {
-                    std::cout << "Referencing PreOrder from Customer" << std::endl;
                     auto sptrPreOrdersVector = customer.sptrPreOrders()->Call();
                     for (auto &order : sptrPreOrdersVector) {
-                        std::cout << order->ToString() << std::endl;
+                        EXPECT_TRUE(order->ToString().length() > 0);
                     }
                 }
 
