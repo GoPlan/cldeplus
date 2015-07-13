@@ -35,8 +35,8 @@ namespace Cloude {
                 Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
                 Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
 
-                driverCustomer.OptionArgs().ConnectionString = "../ex1.db";
-                driverOrder.OptionArgs().ConnectionString = "../ex1.db";
+                driverCustomer.OptionArgs().ConnectionString = "example01.db";
+                driverOrder.OptionArgs().ConnectionString = "example01.db";
 
                 driverCustomer.Connect();
                 driverOrder.Connect();
@@ -84,21 +84,6 @@ namespace Cloude {
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
                 for (auto proxy : rsPreOrder) {
                     std::cout << proxy->ToString() << std::endl;
-                }
-
-
-                std::cout << std::endl;
-                std::cout << "PreOrder CROSS JOIN Customer" << std::endl;
-                Cloude::Segmentation::Join::Cross joinCross{};
-                joinCross.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
-                joinCross.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
-                joinCross.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
-                joinCross.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
-
-                Foundation::SPtrEntityProxyVector rsJoinCross = joinCross.Join(rsPreOrder, rsCustomer);
-                std::cout << formatter.ToString() << std::endl;
-                for (auto &proxy : rsJoinCross) {
-                    std::cout << proxy->ToString(formatter) << std::endl;
                 }
 
 

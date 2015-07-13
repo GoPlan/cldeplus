@@ -38,7 +38,7 @@ namespace Cloude {
                 Foundation::Store::Comparer::Compare<> compare{vtorCmpColumns, vtorCmpColumns};
 
                 auto &options = sqliteSourceDriver.OptionArgs();
-                options.ConnectionString = "../ex1.db";
+                options.ConnectionString = "example01.db";
                 sqliteSourceDriver.Connect();
 
                 SPtrCriteria sptrIdEq01(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_01));
