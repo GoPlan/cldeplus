@@ -39,6 +39,8 @@ namespace Cloude {
             };
 
             using SPtrEntityTransformer = std::shared_ptr<EntityTransformer>;
+
+            SPtrEntityTransformer CreateEntityTransformer();
         }
     }
 }

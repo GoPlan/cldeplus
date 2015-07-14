@@ -17,6 +17,10 @@ namespace Cloude {
         bool EntityProxy::IsIdentifiableInStore(SPtrEntityStore &entityStore) {
             return Query::Helper::ProxyHelper::IsIdentifiableInStore(shared_from_this(), entityStore);
         }
+
+        SPtrEntityProxy CreateEntityProxy() {
+            return std::make_shared<Foundation::EntityProxy>();
+        }
     }
 }
 

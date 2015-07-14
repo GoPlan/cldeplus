@@ -43,6 +43,8 @@ namespace Cloude {
         using SPtrEntityProxy = std::shared_ptr<EntityProxy>;
         using SPtrEntityProxyVector = std::vector<SPtrEntityProxy>;
         using SPtrEntityProxySet = std::set<SPtrEntityProxy>;
+
+        SPtrEntityProxy CreateEntityProxy();
     }
 }
 

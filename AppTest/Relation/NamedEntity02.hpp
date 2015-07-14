@@ -37,7 +37,6 @@ namespace Cloude {
 
                 auto sptrCustomerQuery = Foundation::CreateEntityQuery(mapCustomer, driverCustomer);
                 auto sptrPreOrderQuery = Foundation::CreateEntityQuery(mapPreOrder, driverPreOrder);
-
                 auto sptrCustomerStore = Relation::CreateNamedStore<Entity::Customer>(mapCustomer, driverCustomer);
                 auto sptrPreOrderStore = Relation::CreateNamedStore<Entity::PreOrder>(mapPreOrder, driverPreOrder);
 
@@ -83,7 +82,6 @@ namespace Cloude {
                 driverCustomer.Connect();
                 driverPreOrder.Connect();
 
-
                 // PreOrder referencing Customer (LinkToOne)
                 Foundation::Query::SPtrCriteria sptrPreOrderIdGt00;
                 {
@@ -104,7 +102,6 @@ namespace Cloude {
                     EXPECT_TRUE(sptrCustomerEntity.get());
                     EXPECT_TRUE(sptrCustomerEntity->ToString().length() > 0);
                 }
-
 
                 // Customer referencing PreOrder (LinkToMany)
                 Foundation::Query::SPtrCriteria sptrCustomerIdGt00;

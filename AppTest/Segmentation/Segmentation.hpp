@@ -38,9 +38,8 @@ namespace Cloude {
                 Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
-                driverOrder.OptionArgs().ConnectionString = "example01.db";
-
                 driverCustomer.Connect();
+                driverOrder.OptionArgs().ConnectionString = "example01.db";
                 driverOrder.Connect();
 
                 // Select Customer set
@@ -54,11 +53,9 @@ namespace Cloude {
                 auto rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
 
                 auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
-                auto newCustomerEmailColumn =
-                        Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
+                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
                 auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
-                auto newPreOrderTotalColumn =
-                        Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
+                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
 
                 Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
                 Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
@@ -77,7 +74,6 @@ namespace Cloude {
                 cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
-
                 // INNER JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Inner joinInner{};
                 joinInner.LhsComparingColumns().push_back(mapPreOrder.CustId);
@@ -87,12 +83,11 @@ namespace Cloude {
                 joinInner.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
                 joinInner.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
-                Foundation::SPtrEntityProxyVector rsJoinInner = joinInner.Join(rsPreOrder, rsCustomer);
+                auto rsJoinInner = joinInner.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsJoinInner.size() == 10);
                 for (auto &item : rsJoinInner) {
                     EXPECT_TRUE(item->ToString().length() > 0);
                 }
-
 
                 // LEFT JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Left joinLeft{};
@@ -103,7 +98,7 @@ namespace Cloude {
                 joinLeft.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
                 joinLeft.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
-                Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
+                auto rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsJoinLeft.size() == rsPreOrder.size());
                 for (auto &item : rsJoinLeft) {
                     EXPECT_TRUE(item->ToString().length() > 0);
@@ -168,7 +163,6 @@ namespace Cloude {
                 cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
-
                 // RIGHT JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Right joinRight{};
                 joinRight.LhsComparingColumns().push_back(mapPreOrder.CustId);
@@ -178,9 +172,8 @@ namespace Cloude {
                 joinRight.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
                 joinRight.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
-                Foundation::SPtrEntityProxyVector rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
+                auto rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsJoinRight.size() == 24);
-
 
                 // Disconnect
                 driverCustomer.Disconnect();
@@ -204,9 +197,8 @@ namespace Cloude {
                 Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
-                driverOrder.OptionArgs().ConnectionString = "example01.db";
-
                 driverCustomer.Connect();
+                driverOrder.OptionArgs().ConnectionString = "example01.db";
                 driverOrder.Connect();
 
                 // Select Customer set
@@ -248,7 +240,7 @@ namespace Cloude {
                 crossJoin.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
                 crossJoin.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
-                Foundation::SPtrEntityProxyVector rsCrossJoin = crossJoin.Join(rsPreOrder, rsCustomer);
+                auto rsCrossJoin = crossJoin.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsCrossJoin.size() == rsPreOrder.size() * rsCustomer.size());
 
                 // Disconnect

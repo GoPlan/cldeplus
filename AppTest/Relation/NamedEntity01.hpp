@@ -30,9 +30,9 @@ namespace Cloude {
 
                 sqliteSourceDriver.Connect();
 
-                SPtrCriteria sptrIdEq01 = ComparativeFactory::CreateEQ(enquiryMap.EnquiryId, sptrEnquiryId_04);
-                SPtrEntityProxy sptrProxy = sptrEnquiryQuery->SelectFirst(sptrIdEq01);
-                SPtrEntity sptrEntity = sptrProxy->Summon(sptrEnquiryStore);
+                auto sptrIdEq01 = ComparativeFactory::CreateEQ(enquiryMap.EnquiryId, sptrEnquiryId_04);
+                auto sptrProxy = sptrEnquiryQuery->SelectFirst(sptrIdEq01);
+                auto sptrEntity = sptrProxy->Summon(sptrEnquiryStore);
 
                 EXPECT_TRUE(sptrProxy.get());
                 EXPECT_TRUE(sptrEntity.get());

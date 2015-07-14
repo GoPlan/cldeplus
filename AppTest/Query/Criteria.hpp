@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/11/15.
 //
 
-#ifndef CLOUD_E_CPLUS_APPTEST_QUERY_PREDICATE_H
-#define CLOUD_E_CPLUS_APPTEST_QUERY_PREDICATE_H
+#ifndef CLOUD_E_PLUS_APPTEST_QUERY_PREDICATE_H
+#define CLOUD_E_PLUS_APPTEST_QUERY_PREDICATE_H
 
 #include <memory>
 #include <iostream>
@@ -11,6 +11,7 @@
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <AppTest/Application/EnquiryMap.h>
+#include <Drivers/SQLite/SQLiteSourceDriver.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -31,23 +32,24 @@ namespace Cloude {
 
                 AppTest::Application::EnquiryMap enquiryMap{};
                 Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
-                auto enquiryStore = std::make_shared<EntityStore>(enquiryMap, sqliteSourceDriver);
-                auto enquiryQuery = std::make_shared<EntityQuery>(enquiryMap, sqliteSourceDriver);
+                sqliteSourceDriver.OptionArgs().ConnectionString = "example01.db";
+                sqliteSourceDriver.Connect();
+
+                auto enquiryStore = Foundation::CreateEntityStore(enquiryMap, sqliteSourceDriver);
+                auto enquiryQuery = Foundation::CreateEntityQuery(enquiryMap, sqliteSourceDriver);
 
                 SPtrColumnVector vtorCmpColumns{enquiryMap.Email};
                 Foundation::Store::Comparer::Compare<> compare{vtorCmpColumns, vtorCmpColumns};
 
-                auto &options = sqliteSourceDriver.OptionArgs();
-                options.ConnectionString = "example01.db";
-                sqliteSourceDriver.Connect();
+                using CmpFactory = Foundation::Query::ComparativeFactory;
 
-                SPtrCriteria sptrIdEq01(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_01));
-                SPtrCriteria sptrIdEq02(new Comparative::Equal(enquiryMap.EnquiryId, sptrEnquiryId_02));
-                SPtrCriteria sptrEmail01(new Comparative::Like(enquiryMap.Email, sptrEmail_01));
-                SPtrCriteria sptrEmail02(new Comparative::Like(enquiryMap.Email, sptrEmail_02));
-                SPtrCriteria sptrOR01(new Comparative::Or(sptrIdEq01, sptrEmail01));
-                SPtrCriteria sptrOR02(new Comparative::Or(sptrIdEq02, sptrEmail02));
-                SPtrCriteria sptrOR__(new Comparative::Or(sptrOR01, sptrOR02));
+                auto sptrIdEq_01 = CmpFactory::CreateEQ(enquiryMap.EnquiryId, sptrEnquiryId_01);
+                auto sptrIdEq_02 = CmpFactory::CreateEQ(enquiryMap.EnquiryId, sptrEnquiryId_02);
+                auto sptrEmail01 = CmpFactory::CreateLike(enquiryMap.Email, sptrEmail_01);
+                auto sptrEmail02 = CmpFactory::CreateLike(enquiryMap.Email, sptrEmail_02);
+                auto sptrOR01 = CmpFactory::CreateOR(sptrIdEq_01, sptrEmail01);
+                auto sptrOR02 = CmpFactory::CreateOR(sptrIdEq_02, sptrEmail02);
+                auto sptrOR__ = CmpFactory::CreateOR(sptrOR01, sptrOR02);
 
                 auto fptrCondition = [](const SPtrColumn &column, const int &index) -> std::string {
                     return std::string{"?"};
@@ -79,4 +81,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_APPTEST_QUERY_PREDICATE_H
+#endif //CLOUD_E_PLUS_APPTEST_QUERY_PREDICATE_H
