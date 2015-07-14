@@ -54,9 +54,11 @@ namespace Cloude {
                 auto rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
 
                 auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
-                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
+                auto newCustomerEmailColumn =
+                        Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
                 auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
-                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
+                auto newPreOrderTotalColumn =
+                        Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
 
                 Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
                 Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
@@ -88,7 +90,7 @@ namespace Cloude {
                 Foundation::SPtrEntityProxyVector rsJoinInner = joinInner.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsJoinInner.size() == 10);
                 for (auto &item : rsJoinInner) {
-                    std::cout << item->ToString() << std::endl;
+                    EXPECT_TRUE(item->ToString().length() > 0);
                 }
 
 
@@ -104,7 +106,7 @@ namespace Cloude {
                 Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsJoinLeft.size() == rsPreOrder.size());
                 for (auto &item : rsJoinLeft) {
-                    std::cout << item->ToString() << std::endl;
+                    EXPECT_TRUE(item->ToString().length() > 0);
                 }
 
                 // Disconnect

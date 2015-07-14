@@ -5,20 +5,16 @@
 #include "MySqlSourceException.h"
 
 namespace Cloude {
-    namespace SourceDriver {
+    namespace Drivers {
         namespace MySql {
 
-            MySqlSourceException::MySqlSourceException(const std::string &sstrMessage) : _message(
-                    sstrMessage) {
+            MySqlSourceException::MySqlSourceException(const std::string &message)
+                    : cldeException{message} {
                 //
             }
 
-            MySqlSourceException::MySqlSourceException(const char *cstrMessage) : _message(cstrMessage) {
-                //
-            }
-
-            const char *MySqlSourceException::what() const noexcept {
-                return _message.c_str();
+            const std::string &Drivers::MySql::MySqlSourceException::Name() const noexcept {
+                return _name;
             }
         }
     }

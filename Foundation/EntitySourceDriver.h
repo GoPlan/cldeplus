@@ -14,7 +14,7 @@ namespace Cloude {
     namespace Foundation {
 
         class EntitySourceDriver {
-
+        
             const EntityMap &_entityMap;
 
         public:

@@ -58,20 +58,21 @@ namespace Cloude {
 
                 {
                     auto proxies = enquiryQuery->Select(sptrOR__);
-                    for (auto proxy : proxies) {
-                        auto sptrEntity = proxy->Summon(enquiryStore);
-                        ASSERT_TRUE(sptrEntity.get() != 0);
-                        std::cout << proxy->ToString() << std::endl;
-                    }
-
                     auto proxy00 = proxies[0];
                     auto proxy01 = enquiryQuery->SelectFirst(sptrOR__);
+
                     EXPECT_TRUE(compare(proxy00, proxy01));
+
+                    for (auto proxy : proxies) {
+
+                        auto sptrEntity = proxy->Summon(enquiryStore);
+
+                        EXPECT_TRUE(sptrEntity.get() != 0);
+                        EXPECT_TRUE(sptrEntity->ToString().length() > 0);
+                    }
                 }
 
                 sqliteSourceDriver.Disconnect();
-
-                std::cout << "Finished!" << std::endl;
             }
         }
     }
