@@ -32,7 +32,6 @@ namespace Cloude {
             virtual ~EntityStore() = default;
 
             bool HasIdentityInMap(const SPtrIdentity &identity) const;
-
             SPtrEntity Create(const SPtrIdentity &identity);
             SPtrEntity Get(const SPtrIdentity &identity);
 

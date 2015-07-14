@@ -8,6 +8,8 @@ namespace Cloude {
     namespace Drivers {
         namespace MySql {
 
+            std::string MySqlSourceException::_name{"MySqlSourceException"};
+
             MySqlSourceException::MySqlSourceException(const std::string &message)
                     : cldeException{message} {
                 //

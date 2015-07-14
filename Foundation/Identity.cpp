@@ -14,5 +14,17 @@ namespace Cloude {
         Identity::Identity(const std::vector<Cell *> &fieldVector) {
             Store::AbstractEntity::setMultiCells(fieldVector);
         }
+
+        SPtrIdentity CreateIdentity() {
+            return std::make_shared<Identity>();
+        }
+
+        SPtrIdentity CreateIdentity(const std::vector<SPtrCell> &cells) {
+            return std::make_shared<Identity>(cells);
+        }
+
+        SPtrIdentity CreateIdentity(const std::vector<Cell *> &cells) {
+            return std::make_shared<Identity>(cells);
+        }
     }
 }

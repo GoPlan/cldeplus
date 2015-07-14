@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/8/15.
 //
 
-#ifndef CLOUD_E_CPLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
-#define CLOUD_E_CPLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
+#ifndef CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
+#define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
 
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
@@ -19,8 +19,10 @@ namespace Cloude {
 
                 public:
                     EnquirySQLiteStore();
-                    EnquirySQLiteStore(const EnquirySQLiteStore &srcEnquirySQLiteStore) = default;
-                    EnquirySQLiteStore &operator=(const EnquirySQLiteStore &srcEnquirySQLiteStore) = default;
+                    EnquirySQLiteStore(const EnquirySQLiteStore &) = default;
+                    EnquirySQLiteStore(EnquirySQLiteStore &&) = default;
+                    EnquirySQLiteStore &operator=(const EnquirySQLiteStore &) = default;
+                    EnquirySQLiteStore &operator=(EnquirySQLiteStore &&) = default;
                     ~EnquirySQLiteStore() = default;
 
                 protected:
@@ -32,8 +34,8 @@ namespace Cloude {
                     void TearDown() override;
 
                     EnquiryMap _enquiryMap;
-                    SQLiteSourceDriver _sqliteSourceDriver;
                     EntityStore _entityStore;
+                    SQLiteSourceDriver _sqliteSourceDriver;
                 };
             }
         }
@@ -41,4 +43,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
+#endif //CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H

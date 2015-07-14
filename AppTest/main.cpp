@@ -3,16 +3,16 @@
 //
 
 
-#include "Store/SQLiteStore.hpp"
 #include "Query/Criteria.hpp"
 #include "Type/CreateValue.hpp"
 #include "Type/ValueComparison.hpp"
 #include "Segmentation/Segmentation.hpp"
 #include "Relation/Relation.hpp"
+#include "Store/SQLiteStore.hpp"
+#include "Store/MySqlStore.hpp"
 
 //#include "Segmentation/Transformation.hpp"
 //#include "Store/Test/MongoDbStore.hpp"
-//#include "Store/Test/MySqlStore.hpp"
 //#include "Store/Test/PostgreStore.hpp"
 
 int main(int argc, char** argv) {

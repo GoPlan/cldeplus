@@ -126,9 +126,8 @@ namespace Cloude {
                 Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
-                driverOrder.OptionArgs().ConnectionString = "example01.db";
-
                 driverCustomer.Connect();
+                driverOrder.OptionArgs().ConnectionString = "example01.db";
                 driverOrder.Connect();
 
                 // Select Customer set

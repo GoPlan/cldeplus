@@ -33,10 +33,10 @@ namespace Cloude {
                 auto sptrOrderName = Foundation::Data::ValueFactory::CreateVarChar(std::string{"My Order"});
                 auto sptrTotal = Foundation::Data::ValueFactory::CreateDouble(15.0);
 
-                auto sptrOrderIdCell = std::make_shared<Foundation::Cell>(orderMap.Id);
-                auto sptrCustmIdCell = std::make_shared<Foundation::Cell>(orderMap.CustId);
-                auto sptrOrderNameCell = std::make_shared<Foundation::Cell>(orderMap.Name, sptrOrderName);
-                auto sptrTotalCell = std::make_shared<Foundation::Cell>(orderMap.Total, sptrTotal);
+                auto sptrOrderIdCell = Foundation::CreateCell(orderMap.Id);
+                auto sptrCustmIdCell = Foundation::CreateCell(orderMap.CustId);
+                auto sptrOrderNameCell = Foundation::CreateCell(orderMap.Name, sptrOrderName);
+                auto sptrTotalCell = Foundation::CreateCell(orderMap.Total, sptrTotal);
 
                 // Prepare source proxy
                 auto sptrOrderProxy = Foundation::CreateEntityProxy();

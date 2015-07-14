@@ -34,16 +34,17 @@ namespace Cloude {
 
             // Locals
             bool isNull() const { return _value.get() == nullptr; };
-
             const SPtrColumn &getColumn() const { return _column; }
             const Data::SPtrValue &getValue() const { return _value; }
-
             void setValue(const Data::SPtrValue &value);
         };
 
         using SPtrCell = std::shared_ptr<Cell>;
         using SPtrCellMap = std::unordered_map<std::string, SPtrCell>;
         using SPtrCellVector = std::vector<SPtrCell>;
+
+        SPtrCell CreateCell(const SPtrColumn& column);
+        SPtrCell CreateCell(const SPtrColumn& column, const Data::SPtrValue& value);
     }
 }
 

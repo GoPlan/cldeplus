@@ -35,5 +35,13 @@ namespace Cloude {
 
             _value = value;
         }
+
+        SPtrCell CreateCell(const SPtrColumn &column) {
+            return std::make_shared<Cell>(column);
+        }
+
+        SPtrCell CreateCell(const SPtrColumn& column, const Data::SPtrValue& value){
+            return std::make_shared<Cell>(column, value);
+        }
     }
 }

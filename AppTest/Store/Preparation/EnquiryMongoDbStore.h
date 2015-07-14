@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/6/15.
 //
 
-#ifndef CLOUD_E_CPLUS_APPTEST_STORE_ENQUIRYMONGODBSTORE_H
-#define CLOUD_E_CPLUS_APPTEST_STORE_ENQUIRYMONGODBSTORE_H
+#ifndef CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYMONGODBSTORE_H
+#define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYMONGODBSTORE_H
 
 #include "gtest/gtest.h"
 #include <Cloude.h>
@@ -18,9 +18,11 @@ namespace Cloude {
             class EnquiryMongoDbStore : public ::testing::Test {
             public:
                 EnquiryMongoDbStore();
-                 ~EnquiryMongoDbStore() = default;
-                EnquiryMongoDbStore(const EnquiryMongoDbStore &srcEnquiryStore) = default;
-                EnquiryMongoDbStore &operator=(const EnquiryMongoDbStore &srcEnquiryStore) = default;
+                EnquiryMongoDbStore(const EnquiryMongoDbStore &) = default;
+                EnquiryMongoDbStore(EnquiryMongoDbStore &&) = default;
+                EnquiryMongoDbStore &operator=(const EnquiryMongoDbStore &) = default;
+                EnquiryMongoDbStore &operator=(EnquiryMongoDbStore &&) = default;
+                ~EnquiryMongoDbStore() = default;
 
             protected:
                 using EnquiryMap = Application::Mapper::EnquiryMap;
@@ -41,4 +43,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_APPTEST_STORE_ENQUIRYMONGODBSTORE_H
+#endif //CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYMONGODBSTORE_H
