@@ -14,7 +14,7 @@ namespace Cloude {
     namespace AppTest {
         namespace Store {
 
-            TEST(Relation, NamedEntity01) {
+            TEST(Relation, ConvertEntityToNamedEntity) {
 
                 using namespace Foundation;
                 using namespace Foundation::Query;

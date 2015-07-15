@@ -29,18 +29,23 @@ namespace Cloude {
                 Application::PreOrderMap mapPreOrder;
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
-                Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
+                Drivers::MySql::MySqlSourceDriver driverPreOrder{mapPreOrder};
 
                 auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, driverCustomer);
-                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverOrder);
+                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverPreOrder);
 
                 Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
-                Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
+                Foundation::EntityQuery queryOrder{mapPreOrder, driverPreOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
                 driverCustomer.Connect();
-                driverOrder.OptionArgs().ConnectionString = "example01.db";
-                driverOrder.Connect();
+
+                driverPreOrder.OptionArgs().Host = "dell-3020";
+                driverPreOrder.OptionArgs().User = "cloud-e";
+                driverPreOrder.OptionArgs().Pass = "cloud-e";
+                driverPreOrder.OptionArgs().Base = "cloud-e";
+                driverPreOrder.OptionArgs().Port = 3306;
+                driverPreOrder.Connect();
 
                 // Select Customer set
                 auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
@@ -106,7 +111,7 @@ namespace Cloude {
 
                 // Disconnect
                 driverCustomer.Disconnect();
-                driverOrder.Disconnect();
+                driverPreOrder.Disconnect();
             }
 
             TEST(Segmentation, RIGHT_JOIN_01) {
@@ -117,23 +122,28 @@ namespace Cloude {
                 Application::PreOrderMap mapPreOrder;
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
-                Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
+                Drivers::MySql::MySqlSourceDriver driverPreOrder{mapPreOrder};
 
                 auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, driverCustomer);
-                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverOrder);
+                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverPreOrder);
 
                 Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
-                Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
+                Foundation::EntityQuery queryOrder{mapPreOrder, driverPreOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
                 driverCustomer.Connect();
-                driverOrder.OptionArgs().ConnectionString = "example01.db";
-                driverOrder.Connect();
+
+                driverPreOrder.OptionArgs().Host = "dell-3020";
+                driverPreOrder.OptionArgs().User = "cloud-e";
+                driverPreOrder.OptionArgs().Pass = "cloud-e";
+                driverPreOrder.OptionArgs().Base = "cloud-e";
+                driverPreOrder.OptionArgs().Port = 3306;
+                driverPreOrder.Connect();
 
                 // Select Customer set
                 auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(20);
-                auto sptrCustomerIdGt00 = CmpFactory::CreateLT(mapCustomer.Id, sptrCustomerId);
-                auto rsCustomer = queryCustomer.Select(sptrCustomerIdGt00);
+                auto sptrCustomerIdLTE20 = CmpFactory::CreateLTE(mapCustomer.Id, sptrCustomerId);
+                auto rsCustomer = queryCustomer.Select(sptrCustomerIdLTE20);
 
                 // Select Order set
                 auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(0);
@@ -172,11 +182,11 @@ namespace Cloude {
                 joinRight.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
                 auto rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
-                EXPECT_TRUE(rsJoinRight.size() == 24);
-
+                EXPECT_TRUE(rsJoinRight.size() >= 20);
+                
                 // Disconnect
                 driverCustomer.Disconnect();
-                driverOrder.Disconnect();
+                driverPreOrder.Disconnect();
             }
 
             TEST(Segmentation, CROSS_JOIN) {
@@ -187,18 +197,23 @@ namespace Cloude {
                 Application::PreOrderMap mapPreOrder;
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
-                Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
+                Drivers::MySql::MySqlSourceDriver driverPreOrder{mapPreOrder};
 
                 auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, driverCustomer);
-                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverOrder);
+                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverPreOrder);
 
                 Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
-                Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
+                Foundation::EntityQuery queryOrder{mapPreOrder, driverPreOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
                 driverCustomer.Connect();
-                driverOrder.OptionArgs().ConnectionString = "example01.db";
-                driverOrder.Connect();
+
+                driverPreOrder.OptionArgs().Host = "dell-3020";
+                driverPreOrder.OptionArgs().User = "cloud-e";
+                driverPreOrder.OptionArgs().Pass = "cloud-e";
+                driverPreOrder.OptionArgs().Base = "cloud-e";
+                driverPreOrder.OptionArgs().Port = 3306;
+                driverPreOrder.Connect();
 
                 // Select Customer set
                 auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
@@ -244,7 +259,7 @@ namespace Cloude {
 
                 // Disconnect
                 driverCustomer.Disconnect();
-                driverOrder.Disconnect();
+                driverPreOrder.Disconnect();
             }
         }
     }

@@ -13,21 +13,26 @@
 #include <AppTest/Application/PreOrderMap.h>
 #include <AppTest/Entity/Customer.h>
 #include <AppTest/Entity/PreOrder.h>
+#include <Drivers/MySql/MySqlSourceDriver.h>
 
 namespace Cloude {
     namespace AppTest {
         namespace Store {
 
-            TEST(Relation, NamedEntity02) {
+            TEST(Relation, NamedEntityReferencingSQLiteAndMySql) {
 
                 Application::CustomerMap mapCustomer{};
                 Application::PreOrderMap mapPreOrder{};
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
-                Drivers::SQLite::SQLiteSourceDriver driverPreOrder{mapPreOrder};
+                Drivers::MySql::MySqlSourceDriver driverPreOrder{mapPreOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
-                driverPreOrder.OptionArgs().ConnectionString = "example01.db";
+                driverPreOrder.OptionArgs().Host = "dell-3020";
+                driverPreOrder.OptionArgs().User = "cloud-e";
+                driverPreOrder.OptionArgs().Pass = "cloud-e";
+                driverPreOrder.OptionArgs().Base = "cloud-e";
+                driverPreOrder.OptionArgs().Port = 3306;
 
                 Relation::RelationMap linkCustomerToPreOrder{};
                 Relation::RelationMap linkPreOrderToCustomer{};
@@ -121,7 +126,6 @@ namespace Cloude {
                         EXPECT_TRUE(order->ToString().length() > 0);
                     }
                 }
-
 
                 driverCustomer.Disconnect();
                 driverPreOrder.Disconnect();
