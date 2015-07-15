@@ -5,6 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_TEXT_H
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_TEXT_H
 
+#include <cstdlib>
 #include <Foundation/Data/CharacterValue.h>
 
 namespace Cloude {
@@ -14,15 +15,21 @@ namespace Cloude {
 
                 class Text : public CharacterValue {
 
-                    char *buffer;
+                    char *_buffer = nullptr;
 
                 public:
-                    Text() = default;
+                    Text();
                     Text(const Text &) = default;
                     Text(Text &&) = default;
                     Text &operator=(const Text &) = default;
                     Text &operator=(Text &&) = default;
-                    ~Text() = default;
+                    ~Text();
+
+                    // Value
+                    virtual void *RawPointerToValueBuffer() override;
+
+                    // IPrintable
+                    virtual std::string ToString() const override;
                 };
             }
         }

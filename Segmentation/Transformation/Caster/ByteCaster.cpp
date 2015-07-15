@@ -16,7 +16,8 @@ namespace Cloude {
                         Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
                     if (value->getDataType() != Foundation::Data::ValueType::Byte) {
-                        std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
+                        std::string type{
+                                Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
                         std::string msg{type + " is not supported by ByteCaster"};
                         throw Segmentation::Exception::TransformationException{msg};
                     }
@@ -44,7 +45,7 @@ namespace Cloude {
                             return Foundation::Data::ValueFactory::CreateBoolean((bool) *tmp);
 
                         default: {
-                            std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
+                            std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
                             std::string msg{"This converter can not convert byte into " + type};
                             throw Segmentation::Exception::TransformationException{msg};
                         }

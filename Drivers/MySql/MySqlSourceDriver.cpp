@@ -6,25 +6,20 @@
 #include <mysql.h>
 #include <Foundation/Query/Helper/SqlHelper.h>
 #include <Foundation/Data/ValueFactory.h>
+#include <Foundation/Data/Helper/TypeHelper.h>
+#include <Foundation/Data/Helper/ValueHelper.h>
 #include "MySqlSourceDriver.h"
 
 namespace Cloude {
     namespace Drivers {
         namespace MySql {
 
-            using Cell = Foundation::Cell;
-            using Column = Foundation::Column;
-            using Entity = Foundation::Entity;
-            using ColumnsList = std::vector<std::shared_ptr<Column>>;
+            // COMMAND
+            struct Command {
 
-            class Command {
+                Command() = default;
 
-            public:
-                Command() {
-                    //
-                };
-
-                virtual ~Command() {
+                ~Command() {
 
                     if (PtrResultLength != nullptr) {
                         free(PtrResultLength);
@@ -60,11 +55,13 @@ namespace Cloude {
                 my_bool *PtrResultError = nullptr;
             };
 
-            class MySqlSourceDriver::MySqlApiImpl {
-            public:
+            using SPtrCommand = std::shared_ptr<Command>;
+
+            // MYSQLAPIIMPL
+            struct MySqlSourceDriver::MySqlApiImpl {
+            
                 MYSQL *PtrMySql = nullptr;
 
-            public:
                 MySqlApiImpl() {
                     mysql_library_init;
                     PtrMySql = mysql_init(PtrMySql);
@@ -105,9 +102,9 @@ namespace Cloude {
                     }
                 }
 
-                void initializeParamsBindBuffers(const ColumnsList &columnsList,
-                                                 std::shared_ptr<Entity> &entity,
-                                                 std::shared_ptr<Command> &command) {
+                void initParamBinds(const Foundation::SPtrColumnVector &columnsList,
+                                    const Foundation::SPtrEntity &entity,
+                                    SPtrCommand &command) {
 
                     auto columnsListSize = columnsList.size();
 
@@ -117,10 +114,10 @@ namespace Cloude {
                     int index = 0;
 
                     std::for_each(columnsList.cbegin(), columnsList.cend(),
-                                  [&](const std::shared_ptr<Column> &column) -> void {
+                                  [&](const Foundation::SPtrColumn &column) -> void {
 
-                                      auto &field = entity->operator[](column->getName());
-                                      auto &value = field->getValue();
+                                      auto &cell = entity->operator[](column->getName());
+                                      auto &value = cell->getValue();
 
                                       command->PtrParamsBind[index].is_null = 0;
                                       command->PtrParamsBind[index].error = 0;
@@ -137,15 +134,15 @@ namespace Cloude {
                                       command->PtrParamsBind[index].length = static_cast<unsigned long *>(ptrLength);
                                       command->PtrParamsBind[index].buffer = ptrBuffer;
 
-                                      setupBindBufferTypeAndLength(field, &command->PtrParamsBind[index]);
+                                      setupBindTypeAndLength(cell, &command->PtrParamsBind[index]);
 
                                       ++index;
                                   });
                 }
 
-                void initializeResultBindBuffers(const ColumnsList &columnsList,
-                                                 std::shared_ptr<Entity> &entity,
-                                                 std::shared_ptr<Command> &command) {
+                void initResultBinds(const Foundation::SPtrColumnVector &columnsList,
+                                     const Foundation::SPtrEntity &entity,
+                                     SPtrCommand &command) {
 
                     using ValueFactory = Foundation::Data::ValueFactory;
 
@@ -159,24 +156,52 @@ namespace Cloude {
                     int index = 0;
 
                     std::for_each(columnsList.cbegin(), columnsList.cend(),
-                                  [&](const std::shared_ptr<Column> &column) -> void {
+                                  [&](const Foundation::SPtrColumn &column) -> void {
 
-                                      auto &field = entity->operator[](column->getName());
+                                      auto &cell = entity->operator[](column->getName());
+                                      auto &dataType = column->getDataType();
+                                      auto length = column->getLength();
 
-                                      switch (column->getDataType()) {
+                                      switch (dataType) {
+                                          case Foundation::Data::ValueType::Int16:
+                                              cell->setValue(ValueFactory::CreateInt64(0));
+                                              break;
+                                          case Foundation::Data::ValueType::Int32:
+                                              cell->setValue(ValueFactory::CreateInt32(0));
+                                              break;
                                           case Foundation::Data::ValueType::Int64:
-                                              field->setValue(ValueFactory::CreateInt64(0));
+                                              cell->setValue(ValueFactory::CreateInt64(0));
+                                              break;
+                                          case Foundation::Data::ValueType::UInt16:
+                                              cell->setValue(ValueFactory::CreateUInt16(0));
+                                              break;
+                                          case Foundation::Data::ValueType::UInt32:
+                                              cell->setValue(ValueFactory::CreateUInt32(0));
+                                              break;
+                                          case Foundation::Data::ValueType::UInt64:
+                                              cell->setValue(ValueFactory::CreateUInt64(0));
+                                              break;
+                                          case Foundation::Data::ValueType::Float:
+                                              cell->setValue(ValueFactory::CreateFloat(0));
+                                              break;
+                                          case Foundation::Data::ValueType::Double:
+                                              cell->setValue(ValueFactory::CreateDouble(0));
                                               break;
                                           case Foundation::Data::ValueType::VarChar:
-                                              field->setValue(ValueFactory::CreateVarChar(column->getLength()));
+                                              cell->setValue(ValueFactory::CreateVarChar(column->getLength()));
+                                              break;
+                                          case Foundation::Data::ValueType::Text:
+                                              cell->setValue(ValueFactory::CreateText(""));
                                               break;
                                           default: {
-                                              std::string msg{"MySqlSourceDriver does not support this type"};
+                                              using TypeHelper = Foundation::Data::Helper::TypeHelper;
+                                              std::string typeName{TypeHelper::CopyValueTypeToString(dataType)};
+                                              std::string msg{"MySqlSourceDriver does not support " + typeName+ " yet"};
                                               throw MySqlSourceException{msg};
                                           }
                                       }
 
-                                      auto &value = field->getValue();
+                                      auto &value = cell->getValue();
                                       auto ptrValue = value->RawPointerToValueBuffer();
 
                                       command->PtrResultBind[index].is_null = &command->PtrResultIsNull[index];
@@ -184,15 +209,18 @@ namespace Cloude {
                                       command->PtrResultBind[index].length = &command->PtrResultLength[index];
                                       command->PtrResultBind[index].buffer = ptrValue;
 
-                                      setupBindBufferTypeAndLength(field, &command->PtrResultBind[index]);
+                                      setupBindTypeAndLength(cell, &command->PtrResultBind[index]);
 
                                       ++index;
                                   });
                 }
 
-                void setupBindBufferTypeAndLength(const std::shared_ptr<Cell> &field, MYSQL_BIND *ptrBind) {
+                void setupBindTypeAndLength(const Foundation::SPtrCell &cell,
+                                            MYSQL_BIND *ptrBind) {
 
-                    switch (field->getColumn()->getDataType()) {
+                    auto &dataType = cell->getColumn()->getDataType();
+
+                    switch (dataType) {
                         case Foundation::Data::ValueType::Int32: {
                             ptrBind->buffer_type = MYSQL_TYPE_LONG;
                             ptrBind->buffer_length = sizeof(int32_t);
@@ -210,25 +238,25 @@ namespace Cloude {
                         }
                         case Foundation::Data::ValueType::VarChar: {
                             ptrBind->buffer_type = MYSQL_TYPE_STRING;
-                            ptrBind->buffer_length = field->getColumn()->getLength();
+                            ptrBind->buffer_length = cell->getColumn()->getLength();
                             break;
                         }
                         default: {
-                            std::string msg{"MySqlSourceDriver does not support this type yet"};
+                            using TypeHelper = Foundation::Data::Helper::TypeHelper;
+                            std::string typeName{TypeHelper::CopyValueTypeToString(dataType)};
+                            std::string msg{"MySqlSourceDriver does not support " + typeName+ " yet"};
                             throw MySqlSourceException{msg};
                         }
                     }
                 }
             }; // END - MySqlApiImpl
 
+
+            // MYSQLSOURCEDRIVER
             MySqlSourceDriver::MySqlSourceDriver(const Foundation::EntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _mySqlApiImpl(new MySqlApiImpl()) {
                 Init();
-            }
-
-            MySqlSourceDriver::~MySqlSourceDriver() {
-
             }
 
             void MySqlSourceDriver::Init() {
@@ -276,12 +304,12 @@ namespace Cloude {
                 //
             }
 
-            int MySqlSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
+            int MySqlSourceDriver::Load(Foundation::SPtrEntity &entity) const {
 
                 auto command = _mySqlApiImpl->createCommand(_getStatement);
 
-                _mySqlApiImpl->initializeParamsBindBuffers(getEntityMap().getColumnsForKey(), entity, command);
-                _mySqlApiImpl->initializeResultBindBuffers(getEntityMap().getColumnsForGet(), entity, command);
+                _mySqlApiImpl->initParamBinds(getEntityMap().getColumnsForKey(), entity, command);
+                _mySqlApiImpl->initResultBinds(getEntityMap().getColumnsForGet(), entity, command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -307,9 +335,6 @@ namespace Cloude {
                     case MYSQL_NO_DATA:
                         return 0;
                     case MYSQL_DATA_TRUNCATED:
-                        // TODO: To research MYSQL_DATA_TRUNCATED condition
-                        _mySqlApiImpl->assertSqlError();
-                        _mySqlApiImpl->assertStmtError(command->PtrStmt);
                         throw MySqlSourceException("fetch error: MYSQL_DATA_TRUNCATED");
                     default:
                         throw MySqlSourceException("fetch error: unknown return status code");
@@ -318,11 +343,11 @@ namespace Cloude {
                 return 0;
             }
 
-            int MySqlSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {
+            int MySqlSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
 
                 std::shared_ptr<Command> command = _mySqlApiImpl->createCommand(_insertStatement);
 
-                _mySqlApiImpl->initializeParamsBindBuffers(getEntityMap().getColumnsForKey(), entity, command);
+                _mySqlApiImpl->initParamBinds(getEntityMap().getColumnsForKey(), entity, command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -335,17 +360,18 @@ namespace Cloude {
                 return 1;
             }
 
-            int MySqlSourceDriver::Save(std::shared_ptr<Entity> &entity) const {
+            int MySqlSourceDriver::Save(Foundation::SPtrEntity &entity) const {
 
                 auto command = _mySqlApiImpl->createCommand(_updateStatement);
                 auto &columnsForKey = getEntityMap().getColumnsForKey();
                 auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
 
-                ColumnsList joinedColumnsList;
+                Foundation::SPtrColumnVector joinedColumnsList;
+                joinedColumnsList.reserve(columnsForUpdate.size() + columnsForKey.size());
                 joinedColumnsList.insert(joinedColumnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
                 joinedColumnsList.insert(joinedColumnsList.end(), columnsForKey.begin(), columnsForKey.end());
 
-                _mySqlApiImpl->initializeParamsBindBuffers(joinedColumnsList, entity, command);
+                _mySqlApiImpl->initParamBinds(joinedColumnsList, entity, command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -358,11 +384,11 @@ namespace Cloude {
                 return 1;
             }
 
-            int MySqlSourceDriver::Delete(std::shared_ptr<Entity> &entity) const {
+            int MySqlSourceDriver::Delete(Foundation::SPtrEntity &entity) const {
 
                 auto command = _mySqlApiImpl->createCommand(_deleteStatement);
 
-                _mySqlApiImpl->initializeParamsBindBuffers(getEntityMap().getColumnsForKey(), entity, command);
+                _mySqlApiImpl->initParamBinds(getEntityMap().getColumnsForKey(), entity, command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -378,6 +404,8 @@ namespace Cloude {
             Foundation::SPtrEntityProxyVector MySqlSourceDriver::Select(
                     const Foundation::Query::SPtrCriteria &sptrCriteria,
                     const Foundation::SPtrColumnVector &columnsForProjection) const {
+
+
                 Foundation::SPtrEntityProxyVector proxies{};
                 return proxies;
             }

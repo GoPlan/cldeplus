@@ -34,6 +34,10 @@ namespace Cloude {
                 ValueType getDataType() const { return _dataType; }
                 size_t getLength() const { return _length; }
 
+                // IEquatable
+                virtual bool Equal(const Common::IEquatable &rhs) const;
+
+
             protected:
                 ValueType _dataType;
                 size_t _length;

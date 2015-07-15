@@ -9,7 +9,7 @@ namespace Cloude {
         namespace Data {
             namespace Helper {
 
-                std::string TypeHelper::CopyToString(const ValueCategory &category) {
+                std::string TypeHelper::CopyCategoryToString(const ValueCategory &category) {
 
                     std::string result;
 
@@ -37,7 +37,7 @@ namespace Cloude {
                     return result;
                 }
 
-                std::string TypeHelper::CopyToString(const ValueType &type) {
+                std::string TypeHelper::CopyValueTypeToString(const ValueType &type) {
 
                     std::string result;
 

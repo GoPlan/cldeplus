@@ -35,18 +35,18 @@ namespace Cloude {
                 MySqlSourceDriver(MySqlSourceDriver &&) = default;
                 MySqlSourceDriver &operator=(const MySqlSourceDriver &) = default;
                 MySqlSourceDriver &operator=(MySqlSourceDriver &&) = default;
-                ~MySqlSourceDriver();
+                ~MySqlSourceDriver() = default;
 
                 // Locals
                 void Connect();
                 void Disconnect();
-                Options &getOptionArgs() { return _optionArgs; }
+                Options &OptionArgs() { return _optionArgs; }
 
                 // EntitySourceDriver
-                int Load(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
+                int Load(Foundation::SPtrEntity &entity) const override;
+                int Insert(Foundation::SPtrEntity &entity) const override;
+                int Save(Foundation::SPtrEntity &entity) const override;
+                int Delete(Foundation::SPtrEntity &entity) const override;
                 Foundation::SPtrEntityProxyVector Select(
                         const Foundation::Query::SPtrCriteria &sptrCriteria,
                         const Foundation::SPtrColumnVector &columnsForProjection) const override;

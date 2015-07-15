@@ -14,8 +14,8 @@ namespace Cloude {
                                                  const Data::SPtrValue &rhs) const {
 
             if (lhs->getDataType() != rhs->getDataType() || lhs->getCategory() != rhs->getCategory()) {
-                std::string lhsType = Data::Helper::TypeHelper::CopyToString(lhs->getDataType());
-                std::string rhsType = Data::Helper::TypeHelper::CopyToString(rhs->getDataType());
+                std::string lhsType = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                std::string rhsType = Data::Helper::TypeHelper::CopyValueTypeToString(rhs->getDataType());
                 std::string msg{lhsType + " has different type/category with " + rhsType};
                 throw Exception::cldeNonSupportedDataTypeException{msg};
             }
@@ -99,12 +99,12 @@ namespace Cloude {
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::Currency: {
-                    std::string type = Data::Helper::TypeHelper::CopyToString(lhs->getDataType());
+                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                     std::string msg{type + " is not supported by the numeric comparer"};
                     throw Exception::cldeNonSupportedDataTypeException{msg};
                 }
                 default: {
-                    std::string type = Data::Helper::TypeHelper::CopyToString(lhs->getDataType());
+                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                     std::string msg{type + " is not supported by the numeric comparer"};
                     throw Exception::cldeNonSupportedDataTypeException{msg};
                 }
@@ -132,12 +132,12 @@ namespace Cloude {
                                   (const char *) ptrRhsTmp->RawPointerToValueBuffer()) > 0;
                 }
                 case ValueType::Text: {
-                    std::string type = Data::Helper::TypeHelper::CopyToString(lhs->getDataType());
+                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                     std::string msg{type + " is not supported by the character based comparer"};
                     throw Exception::cldeNonSupportedDataTypeException{msg};
                 }
                 default: {
-                    std::string type = Data::Helper::TypeHelper::CopyToString(lhs->getDataType());
+                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                     std::string msg{type + " is not supported by the character based comparer"};
                     throw Exception::cldeNonSupportedDataTypeException{msg};
                 }

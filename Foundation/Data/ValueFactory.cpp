@@ -16,6 +16,7 @@
 #include <Foundation/Data/Type/VarChar.h>
 #include <Foundation/Data/Type/Byte.h>
 #include <Foundation/Data/Type/Boolean.h>
+#include <Foundation/Data/Type/Text.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -63,6 +64,10 @@ namespace Cloude {
 
             SPtrValue ValueFactory::CreateVarChar(const std::string &value) {
                 return std::make_shared<Type::VarChar>(value.c_str());
+            }
+
+            SPtrValue ValueFactory::CreateText(const std::string &value) {
+                return std::make_shared<Type::Text>();
             }
 
             SPtrValue ValueFactory::CreateVarChar(unsigned long length) {

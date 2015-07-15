@@ -22,36 +22,45 @@ namespace Cloude {
                     auto sptrIdValue = Foundation::Data::ValueFactory::CreateInt64(0);
                     auto sptrIdCell = Foundation::CreateCell(_mapPreOrder.Id, sptrIdValue);
 
+                    auto sptrNameValue = Foundation::Data::ValueFactory::CreateVarChar("ORDER-0");
+                    auto sptrCustIdValue = Foundation::Data::ValueFactory::CreateInt64(0);
+
                     auto cells{sptrIdCell};
                     auto spIdentity = Foundation::CreateIdentity(cells);
 
-//                    // CREATE
-//                    {
-//                        auto spEntity = _entityStore.Create(spIdentity);
-//
-//                        EXPECT_TRUE(spEntity.get() != 0);
-//                        EXPECT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
-//                    }
+                    // DELETE - Check if Entity is nullptr
+                    {
+                        auto sptrPreOrder = _storePreOrder.Get(spIdentity);
+                        _storePreOrder.Delete(sptrPreOrder);
+                        EXPECT_TRUE(sptrPreOrder.get() == 0);
+                        EXPECT_TRUE(!_storePreOrder.HasIdentityInMap(spIdentity));
+                    }
 
-//                    // SAVE
-//                    {
-//                        auto spEntity = _entityStore.Get(spIdentity);
-//                        auto &spCodeFieldAlt = spEntity->getField("Code");
-//                        auto &spNameFieldAlt = spEntity->operator[](StockGroupMap::UniqueName->getName());
-//                        auto &spCodeValueAlt = spCodeFieldAlt->getValue();
-//
-//                        EXPECT_TRUE(strcmp(spCodeValueAlt->ToCString(), code) == 0);
-//
-//                        spNameFieldAlt->setValue(spNameValue);
-//                        _entityStore.Save(spEntity);
-//                    }
+                    // CREATE
+                    {
+                        auto sptrPreOrder = _storePreOrder.Create(spIdentity);
+                        EXPECT_TRUE(sptrPreOrder.get() != 0);
+                        EXPECT_TRUE(_storePreOrder.HasIdentityInMap(spIdentity));
+                    }
 
-//                    // CLEAR
-//                    {
-//                        _entityStore.Clear();
-//                        ASSERT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
-//                        ASSERT_TRUE(_entityStore.Size() == 0);
-//                    }
+                    // SAVE
+                    {
+                        auto sptrEntity = _storePreOrder.Get(spIdentity);
+                        auto &sptrNameCell = sptrEntity->getCell("Code");
+                        auto &sptrNameValue = sptrNameCell->getValue();
+
+                        EXPECT_TRUE(sptrNameValue->ToString().length() > 0);
+
+                        sptrNameCell->setValue(sptrNameValue);
+                        _storePreOrder.Save(sptrEntity);
+                    }
+
+                    // CLEAR
+                    {
+                        _storePreOrder.Clear();
+                        EXPECT_TRUE(!_storePreOrder.HasIdentityInMap(spIdentity));
+                        EXPECT_TRUE(_storePreOrder.Size() == 0);
+                    }
 
 //                    // GET - Check for saved field
 //                    {
@@ -70,20 +79,6 @@ namespace Cloude {
 //                        EXPECT_TRUE(strncmp(name, spNameValueAlt->ToCString(), spNameValueAlt->getLength()) == 0);
 //
 //                        _entityStore.Delete(spEntity);
-//                    }
-
-//                    // CLEAR
-//                    {
-//                        _entityStore.Clear();
-//                        EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
-//                        EXPECT_TRUE(_entityStore.Size() == 0);
-//                    }
-
-//                    // DELETE - Check if Entity is nullptr
-//                    {
-//                        auto spEntity = _entityStore.Get(spIdentity);
-//                        EXPECT_TRUE(spEntity.get() == 0);
-//                        EXPECT_TRUE(!_entityStore.HasIdentityInMap(spIdentity));
 //                    }
                 }
             }

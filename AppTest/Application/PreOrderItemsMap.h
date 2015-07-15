@@ -21,6 +21,7 @@ namespace Cloude {
                 static Foundation::SPtrColumn Qty;
                 static Foundation::SPtrColumn Price;
                 static Foundation::SPtrColumn Amount;
+                static Foundation::SPtrColumn Comment;
 
             public:
                 PreOrderItemsMap();
