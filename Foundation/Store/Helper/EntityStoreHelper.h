@@ -13,7 +13,7 @@
 namespace Cloude {
     namespace Foundation {
         namespace Store {
-            namespace Helper{
+            namespace Helper {
 
                 class EntityStoreHelper {
 
@@ -28,6 +28,8 @@ namespace Cloude {
                     static void GenerateFieldsFromColumns(const SPtrColumnVector &columnVector,
                                                           const Store::SPtrDataRecord &dataRecord,
                                                           bool checkIfFieldExists = true);
+
+                    static SPtrEntityProxy CopySPtrProxy(const SPtrEntityProxy &proxy);
                 };
             }
         }

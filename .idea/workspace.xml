@@ -47,17 +47,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/AbstractEntity.cpp" afterPath="$PROJECT_DIR$/Foundation/Store/AbstractEntity.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/AbstractEntity.h" afterPath="$PROJECT_DIR$/Foundation/Store/AbstractEntity.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/EntityProxy.h" afterPath="$PROJECT_DIR$/Foundation/EntityProxy.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Helper/EntityStoreHelper.cpp" afterPath="$PROJECT_DIR$/Foundation/Store/Helper/EntityStoreHelper.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Helper/EntityStoreHelper.h" afterPath="$PROJECT_DIR$/Foundation/Store/Helper/EntityStoreHelper.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp" afterPath="$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Store/MySqlStore.hpp" afterPath="$PROJECT_DIR$/AppTest/Store/MySqlStore.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Application/PreOrderItemsMap.cpp" afterPath="$PROJECT_DIR$/AppTest/Application/PreOrderItemsMap.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Application/PreOrderMap.cpp" afterPath="$PROJECT_DIR$/AppTest/Application/PreOrderMap.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Store/Preparation/PreOrderMySqlStore.h" afterPath="$PROJECT_DIR$/AppTest/Store/Preparation/PreOrderMySqlStore.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/SQLite/SQLiteSourceDriver.cpp" afterPath="$PROJECT_DIR$/Drivers/SQLite/SQLiteSourceDriver.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Type/Text.cpp" afterPath="$PROJECT_DIR$/Foundation/Data/Type/Text.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Type/Text.h" afterPath="$PROJECT_DIR$/Foundation/Data/Type/Text.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/ValueFactory.cpp" afterPath="$PROJECT_DIR$/Foundation/Data/ValueFactory.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/ValueFactory.h" afterPath="$PROJECT_DIR$/Foundation/Data/ValueFactory.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cloud-e-plus.iws" />
@@ -84,11 +80,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EntityProxy.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Foundation/EntityProxy.h">
+      <file leaf-file-name="Segmentation.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.2349138">
+            <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Transformation.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Transformation.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MySqlStore.hpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AppTest/Store/MySqlStore.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="2.359781">
+              <caret line="117" column="90" selection-start-line="117" selection-start-column="90" selection-end-line="117" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -112,10 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Foundation/EntityStore.h" />
-        <option value="$PROJECT_DIR$/Drivers/MySql/MySqlSourceException.cpp" />
-        <option value="$PROJECT_DIR$/AppTest/Store/SQLiteStore.hpp" />
-        <option value="$PROJECT_DIR$/AppTest/Store/Preparation/EnquiryMySqlStore.cpp" />
         <option value="$PROJECT_DIR$/AppTest/Store/Preparation/EnquiryMongoDbStore.h" />
         <option value="$PROJECT_DIR$/AppTest/Application/OrderItemsMap.h" />
         <option value="$PROJECT_DIR$/AppTest/Store/Preparation/EnquiryMySqlStore.h" />
@@ -160,9 +172,13 @@
         <option value="$PROJECT_DIR$/Foundation/Data/ValueFactory.cpp" />
         <option value="$PROJECT_DIR$/AppTest/main.cpp" />
         <option value="$PROJECT_DIR$/AppTest/Application/PreOrderMap.cpp" />
-        <option value="$PROJECT_DIR$/AppTest/Store/MySqlStore.hpp" />
-        <option value="$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp" />
+        <option value="$PROJECT_DIR$/Foundation/EntityProxy.h" />
+        <option value="$PROJECT_DIR$/Foundation/Store/AbstractEntity.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Store/Helper/EntityStoreHelper.h" />
+        <option value="$PROJECT_DIR$/Foundation/Store/Helper/EntityStoreHelper.cpp" />
+        <option value="$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp" />
+        <option value="$PROJECT_DIR$/Foundation/Store/AbstractEntity.h" />
+        <option value="$PROJECT_DIR$/AppTest/Store/MySqlStore.hpp" />
       </list>
     </option>
   </component>
@@ -396,7 +412,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
+              <option name="myItemId" value="Segmentation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -597,14 +613,14 @@
     <frame x="-1600" y="23" width="1600" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46640316" sideWeight="0.53080875" order="10" side_tool="false" content_ui="tabs" x="1600" y="69" width="1024" height="720" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41501975" sideWeight="0.53080875" order="10" side_tool="false" content_ui="tabs" x="1600" y="69" width="1024" height="720" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32765958" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="-1102" y="144" width="873" height="430" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31620553" sideWeight="0.49802372" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18292683" sideWeight="0.5059289" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32279316" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="877" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24005134" sideWeight="0.42222223" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3610013" sideWeight="0.50289017" order="4" side_tool="false" content_ui="tabs" x="0" y="23" width="1600" height="823" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35177866" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="1791" y="55" width="1024" height="745" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35177866" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="1791" y="55" width="1024" height="745" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27471116" sideWeight="0.5612648" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5104031" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24518614" sideWeight="0.5777778" order="2" side_tool="true" content_ui="tabs" />
@@ -616,26 +632,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3992095" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32765958" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="-1196" y="162" width="873" height="506" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.55599475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3254282" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="877" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3610013" sideWeight="0.50289017" order="4" side_tool="false" content_ui="tabs" x="0" y="23" width="1600" height="823" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27471116" sideWeight="0.5612648" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5104031" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24518614" sideWeight="0.5777778" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4756258" sideWeight="0.53080875" order="10" side_tool="false" content_ui="tabs" x="1600" y="69" width="1024" height="720" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31620553" sideWeight="0.49802372" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47304237" sideWeight="0.5059289" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25288832" sideWeight="0.42222223" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3992095" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.50988144" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="1791" y="55" width="1024" height="745" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -666,76 +662,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp</url>
-          <line>496</line>
-          <option name="timeStamp" value="492" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp</url>
-          <line>152</line>
+          <line>153</line>
           <option name="timeStamp" value="493" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/AppTest/Store/MySqlStore.hpp</url>
-          <line>113</line>
-          <option name="timeStamp" value="494" />
+          <url>file://$PROJECT_DIR$/Foundation/Store/AbstractEntity.cpp</url>
+          <line>14</line>
+          <option name="timeStamp" value="495" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp</url>
+          <line>161</line>
+          <option name="timeStamp" value="498" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp</url>
+          <line>502</line>
+          <option name="timeStamp" value="503" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="495" />
+      <option name="time" value="505" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Foundation/Data/Comparer/Less.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="131" column="86" selection-start-line="131" selection-start-column="65" selection-end-line="131" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Data/Comparer/Greater.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28180575">
-          <caret line="17" column="85" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Transformation/Caster/Int32Caster.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7250342">
-          <caret line="44" column="100" selection-start-line="44" selection-start-column="79" selection-end-line="44" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Transformation/Caster/UInt16Caster.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="100" selection-start-line="44" selection-start-column="100" selection-end-line="44" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Transformation/Caster/Int16Caster.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="100" selection-start-line="44" selection-start-column="100" selection-end-line="44" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Segmentation/Transformation/Caster/UInt32Caster.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="82" selection-start-line="16" selection-start-column="82" selection-end-line="16" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Segmentation/Transformation/Caster/UInt64Caster.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -906,14 +859,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityQuery.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="45" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Query/Helper/SqlHelper.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1012,28 +957,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/SQLite/SQLiteSourceDriver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="458" column="66" selection-start-line="458" selection-start-column="66" selection-end-line="458" selection-end-column="66" />
-          <folding>
-            <element signature="e#2467#2915#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AppTest/Application/PreOrderMap.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppTest/Store/MySqlStore.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="108" column="63" selection-start-line="108" selection-start-column="62" selection-end-line="108" selection-end-column="63" />
           <folding />
         </state>
       </provider>
@@ -1046,7 +973,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Store/Helper/EntityStoreHelper.cpp">
+    <entry file="file://$PROJECT_DIR$/Foundation/EntityProxy.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1054,17 +981,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp">
+    <entry file="file://$PROJECT_DIR$/Foundation/Cell.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="505" column="86" selection-start-line="505" selection-start-column="86" selection-end-line="505" selection-end-column="86" />
-          <folding>
-            <element signature="e#43#60#0" expanded="true" />
-          </folding>
+          <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Store/AbstractEntity.cpp">
+    <entry file="file://$PROJECT_DIR$/Foundation/EntityQuery.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/vector">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33242133">
+          <caret line="1576" column="25" selection-start-line="1576" selection-start-column="25" selection-end-line="1576" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/EntityQuery.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34336525">
+          <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Store/Helper/CellHelper.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1075,20 +1024,64 @@
     <entry file="file://$PROJECT_DIR$/Foundation/Store/Helper/EntityStoreHelper.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="85" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="85" />
+          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4870041">
+          <caret line="529" column="95" selection-start-line="529" selection-start-column="82" selection-end-line="529" selection-end-column="95" />
+          <folding>
+            <element signature="e#43#60#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Store/AbstractEntity.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+          <caret line="33" column="71" selection-start-line="33" selection-start-column="71" selection-end-line="33" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityProxy.cpp">
+    <entry file="file://$PROJECT_DIR$/Foundation/Store/Helper/EntityStoreHelper.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="86" selection-start-line="35" selection-start-column="71" selection-end-line="35" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/EntityProxy.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.076607384">
+          <caret line="14" column="56" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Store/AbstractEntity.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5376197">
+          <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/SQLite/SQLiteSourceDriver.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.035567716">
+          <caret line="458" column="66" selection-start-line="458" selection-start-column="66" selection-end-line="458" selection-end-column="66" />
+          <folding>
+            <element signature="e#2467#2915#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Transformation.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1096,10 +1089,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/EntityProxy.h">
+    <entry file="file://$PROJECT_DIR$/AppTest/Segmentation/Segmentation.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2349138">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppTest/Store/MySqlStore.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.359781">
+          <caret line="117" column="90" selection-start-line="117" selection-start-column="90" selection-end-line="117" selection-end-column="90" />
           <folding />
         </state>
       </provider>

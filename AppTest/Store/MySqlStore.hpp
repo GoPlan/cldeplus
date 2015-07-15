@@ -98,6 +98,8 @@ namespace Cloude {
 
                 TEST_F(PreOrderMySqlStore, Select) {
 
+                    Foundation::Data::Comparer::Compare compare{};
+
                     using ValueFactory = Foundation::Data::ValueFactory;
                     using CmpFactory = Foundation::Query::ComparativeFactory;
 
@@ -107,17 +109,17 @@ namespace Cloude {
 
                     // Criterias
                     auto gteLowId = CmpFactory::CreateGTE(_mapPreOrder.Id, sptrIdLo);
-                    auto lteHiId = CmpFactory::CreateLTE(_mapPreOrder.Id, sptrIdHi);
-                    auto criteria = CmpFactory::CreateAND(gteLowId, lteHiId);
+                    auto lteHiiId = CmpFactory::CreateLTE(_mapPreOrder.Id, sptrIdHi);
+                    auto criteria = CmpFactory::CreateAND(gteLowId, lteHiiId);
 
                     // Execute
                     auto rsPreOrder = _queryPreOrder.Select(criteria);
+                    auto &sptrFistPreOrder = *rsPreOrder.cbegin();
+                    auto &sptrLastPreOrder = *(rsPreOrder.cbegin() + rsPreOrder.size() - 1);
 
                     EXPECT_TRUE(rsPreOrder.size() > 0);
-
-                    for (auto &preOrder:rsPreOrder) {
-                        std::cout << preOrder->ToString() << std::endl;
-                    }
+                    EXPECT_TRUE(compare(sptrFistPreOrder->getCell("Id")->getValue(), sptrIdLo));
+                    EXPECT_TRUE(compare(sptrLastPreOrder->getCell("Id")->getValue(), sptrIdHi));
                 }
             }
         }

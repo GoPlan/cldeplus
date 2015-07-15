@@ -14,9 +14,9 @@ namespace Cloude {
             class AbstractEntity : public Common::IPrintable {
 
             public:
-                AbstractEntity(const AbstractEntity &) = default;
+                AbstractEntity(const AbstractEntity &);
                 AbstractEntity(AbstractEntity &&) = default;
-                AbstractEntity &operator=(const AbstractEntity &) = default;
+                AbstractEntity &operator=(const AbstractEntity &);
                 AbstractEntity &operator=(AbstractEntity &&) = default;
                 virtual ~AbstractEntity() = default;
 

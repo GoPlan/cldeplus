@@ -22,9 +22,6 @@ namespace Cloude {
                 No
             };
 
-        private:
-            EntityProxySummonState _summonState{EntityProxySummonState::Undefined};
-
         public:
             EntityProxy() = default;
             EntityProxy(const EntityProxy &) = default;
@@ -38,6 +35,10 @@ namespace Cloude {
             bool IsIdentifiableInStore(SPtrEntityStore &entityStore);
             const EntityProxySummonState &getSummonState() const { return _summonState; }
             void setSummonState(const EntityProxySummonState &summonState) { _summonState = summonState; }
+
+        private:
+            EntityProxySummonState _summonState{EntityProxySummonState::Undefined};
+            
         };
 
         using SPtrEntityProxy = std::shared_ptr<EntityProxy>;

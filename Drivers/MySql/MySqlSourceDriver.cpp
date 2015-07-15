@@ -10,6 +10,7 @@
 #include <Foundation/Data/Helper/TypeHelper.h>
 #include <Foundation/Data/Helper/ValueHelper.h>
 #include <Foundation/Store/Helper/EntityStoreHelper.h>
+#include <Foundation/Enum/CommonBufferSize.h>
 #include "MySqlSourceDriver.h"
 
 namespace Cloude {
@@ -521,11 +522,12 @@ namespace Cloude {
                 }
 
                 Foundation::SPtrEntityProxyVector proxies{};
+                proxies.reserve(Foundation::CommonBufferSize::SIXTYFOUR);
 
                 int rowStatus = MYSQL_NO_DATA;
 
                 while (!(rowStatus = mysql_stmt_fetch(command->PtrStmt))) {
-                    auto newProxy = sptrProxy;
+                    auto newProxy = Foundation::Store::Helper::EntityStoreHelper::CopySPtrProxy(sptrProxy);
                     proxies.push_back(newProxy);
                 }
 
@@ -537,6 +539,8 @@ namespace Cloude {
                         throw MySqlSourceException("fetch error: MYSQL_DATA_TRUNCATED");
                     }
                 }
+
+                proxies.shrink_to_fit();
 
                 return proxies;
             }

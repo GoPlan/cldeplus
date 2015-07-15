@@ -5,6 +5,7 @@
 #include <memory>
 #include <Foundation/Exception/cldeEntityStoreRoutineException.h>
 #include "EntityStoreHelper.h"
+#include "CellHelper.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -30,6 +31,18 @@ namespace Cloude {
                         auto field = std::make_shared<Cell>(const_cast<SPtrColumn &>(column));
                         dataRecord->setCell(field);
                     }
+                }
+
+                SPtrEntityProxy EntityStoreHelper::CopySPtrProxy(const SPtrEntityProxy &proxy) {
+
+                    SPtrEntityProxy newProxy = Foundation::CreateEntityProxy();
+
+                    for(auto &srcCellPair : proxy->getCellsMap()){
+                        auto newCell = Foundation::Store::Helper::CellHelper::CopySPtrCell(srcCellPair.second);
+                        newProxy->setCell(newCell);
+                    }
+
+                    return newProxy;
                 }
             }
         }
