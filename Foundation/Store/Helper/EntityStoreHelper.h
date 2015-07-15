@@ -8,6 +8,7 @@
 #include <memory>
 #include <vector>
 #include <Foundation/Entity.h>
+#include <Foundation/EntityProxy.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -27,7 +28,6 @@ namespace Cloude {
                     static void GenerateFieldsFromColumns(const SPtrColumnVector &columnVector,
                                                           const Store::SPtrDataRecord &dataRecord,
                                                           bool checkIfFieldExists = true);
-
                 };
             }
         }

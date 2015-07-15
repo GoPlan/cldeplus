@@ -66,12 +66,16 @@ namespace Cloude {
                 return std::make_shared<Type::VarChar>(value.c_str());
             }
 
-            SPtrValue ValueFactory::CreateText(const std::string &value) {
-                return std::make_shared<Type::Text>();
-            }
-
             SPtrValue ValueFactory::CreateVarChar(unsigned long length) {
                 return std::make_shared<Type::VarChar>(length);
+            }
+
+            SPtrValue ValueFactory::CreateText(const std::string &value) {
+                return std::make_shared<Type::Text>(value.length());
+            }
+
+            SPtrValue ValueFactory::CreateText(unsigned long length) {
+                return std::make_shared<Type::Text>(length);
             }
 
             SPtrValue ValueFactory::CreateByte(char value) {

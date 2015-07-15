@@ -9,12 +9,12 @@ namespace Cloude {
         namespace Data {
             namespace Type {
 
-                Text::Text() : CharacterValue{Data::ValueType::Text, 0} {
-                    //
+                Text::Text(unsigned long length) : CharacterValue{Data::ValueType::Text, length} {
+                    _buffer = (char *) calloc(_length, sizeof(char));
                 }
 
                 Text::~Text() {
-                    if(_buffer!= nullptr) free(_buffer);
+                    if (_buffer != nullptr) free(_buffer);
                 }
 
                 void *Text::RawPointerToValueBuffer() {

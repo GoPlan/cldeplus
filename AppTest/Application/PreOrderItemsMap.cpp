@@ -29,7 +29,6 @@ namespace Cloude {
                 _columnsForGet.push_back(Qty);
                 _columnsForGet.push_back(Price);
                 _columnsForGet.push_back(Amount);
-                _columnsForSelect.push_back(Id);
                 _columnsForSelect.push_back(OrderId);
                 _columnsForSelect.push_back(ItemId);
                 _columnsForUpdate.push_back(OrderId);

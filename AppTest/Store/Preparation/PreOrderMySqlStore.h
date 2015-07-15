@@ -25,11 +25,14 @@ namespace Cloude {
                 using PreOrderItemsMap = AppTest::Application::PreOrderItemsMap;
                 using MySqlSourceDriver = Drivers::MySql::MySqlSourceDriver;
                 using EntityStore = Foundation::EntityStore;
+                using EntityQuery = Foundation::EntityQuery;
 
                 PreOrderMySqlStore() : _driverPreOrder{_mapPreOrder},
                                        _driverPreOrderItems{_mapPreOrderItems},
                                        _storePreOrder{_mapPreOrder, _driverPreOrder},
-                                       _storePreOrderItems{_mapPreOrderItems, _driverPreOrderItems}{
+                                       _storePreOrderItems{_mapPreOrderItems, _driverPreOrderItems},
+                                       _queryPreOrder{_mapPreOrder, _driverPreOrder},
+                                       _queryPreOrderItems{_mapPreOrderItems, _driverPreOrderItems} {
                     //
                 };
 
@@ -42,6 +45,8 @@ namespace Cloude {
                 MySqlSourceDriver _driverPreOrderItems;
                 EntityStore _storePreOrder;
                 EntityStore _storePreOrderItems;
+                EntityQuery _queryPreOrder;
+                EntityQuery _queryPreOrderItems;
             };
         }
     }

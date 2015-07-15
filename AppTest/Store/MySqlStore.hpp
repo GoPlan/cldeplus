@@ -19,67 +19,105 @@ namespace Cloude {
 
                 TEST_F(PreOrderMySqlStore, CreateGetSaveDelete) {
 
+                    Foundation::Data::Comparer::Compare compare{};
+
                     auto sptrIdValue = Foundation::Data::ValueFactory::CreateInt64(0);
                     auto sptrIdCell = Foundation::CreateCell(_mapPreOrder.Id, sptrIdValue);
-
                     auto sptrNameValue = Foundation::Data::ValueFactory::CreateVarChar("ORDER-0");
-                    auto sptrCustIdValue = Foundation::Data::ValueFactory::CreateInt64(0);
-
+                    auto sptrCustIdValue = Foundation::Data::ValueFactory::CreateInt64(15);
+                    auto sptrTotalValue = Foundation::Data::ValueFactory::CreateDouble(35);
                     auto cells{sptrIdCell};
-                    auto spIdentity = Foundation::CreateIdentity(cells);
+                    auto sptrIdentity = Foundation::CreateIdentity(cells);
 
                     // DELETE - Check if Entity is nullptr
                     {
-                        auto sptrPreOrder = _storePreOrder.Get(spIdentity);
+                        auto sptrPreOrder = _storePreOrder.Get(sptrIdentity);
+
+                        EXPECT_TRUE(sptrPreOrder.get() != 0);
+                        EXPECT_TRUE(_storePreOrder.HasIdentityInMap(sptrIdentity));
+
                         _storePreOrder.Delete(sptrPreOrder);
-                        EXPECT_TRUE(sptrPreOrder.get() == 0);
-                        EXPECT_TRUE(!_storePreOrder.HasIdentityInMap(spIdentity));
+                        _storePreOrder.Clear();
+
+                        EXPECT_TRUE(!_storePreOrder.HasIdentityInMap(sptrIdentity));
+                        EXPECT_TRUE(_storePreOrder.Size() == 0);
                     }
 
                     // CREATE
                     {
-                        auto sptrPreOrder = _storePreOrder.Create(spIdentity);
+                        auto sptrPreOrder = _storePreOrder.Create(sptrIdentity);
+
                         EXPECT_TRUE(sptrPreOrder.get() != 0);
-                        EXPECT_TRUE(_storePreOrder.HasIdentityInMap(spIdentity));
+                        EXPECT_TRUE(_storePreOrder.HasIdentityInMap(sptrIdentity));
                     }
 
                     // SAVE
                     {
-                        auto sptrEntity = _storePreOrder.Get(spIdentity);
-                        auto &sptrNameCell = sptrEntity->getCell("Code");
-                        auto &sptrNameValue = sptrNameCell->getValue();
+                        auto sptrEntity = _storePreOrder.Get(sptrIdentity);
+                        auto &sptrIdCell = sptrEntity->getCell("Id");
+                        auto &sptrNameCell = sptrEntity->getCell("Name");
+                        auto &sptrCustIdCell = sptrEntity->getCell("CustId");
+                        auto &sptrTotalCell = sptrEntity->getCell("Total");
 
-                        EXPECT_TRUE(sptrNameValue->ToString().length() > 0);
+                        auto &sptrIdCellValue = sptrIdCell->getValue();
+
+                        EXPECT_TRUE(sptrIdCellValue.get() != 0);
+
+                        if (sptrIdCellValue) {
+                            EXPECT_TRUE(compare(sptrIdCellValue, sptrIdValue));
+                        }
 
                         sptrNameCell->setValue(sptrNameValue);
+                        sptrCustIdCell->setValue(sptrCustIdValue);
+                        sptrTotalCell->setValue(sptrTotalValue);
+
                         _storePreOrder.Save(sptrEntity);
-                    }
-
-                    // CLEAR
-                    {
                         _storePreOrder.Clear();
-                        EXPECT_TRUE(!_storePreOrder.HasIdentityInMap(spIdentity));
-                        EXPECT_TRUE(_storePreOrder.Size() == 0);
                     }
 
-//                    // GET - Check for saved field
-//                    {
-//                        auto spEntity = _entityStore.Get(spIdentity);
-//
-//                        EXPECT_TRUE(spEntity.get() != 0);
-//                        EXPECT_TRUE(_entityStore.Size() > 0);
-//                        EXPECT_TRUE(_entityStore.HasIdentityInMap(spIdentity));
-//
-//                        auto &spCodeFieldAlt = spEntity->operator[](StockGroupMap::Code->getName());
-//                        auto &spNameFieldAlt = spEntity->operator[](StockGroupMap::UniqueName->getName());
-//                        auto &spCodeValueAlt = spCodeFieldAlt->getValue();
-//                        auto &spNameValueAlt = spNameFieldAlt->getValue();
-//
-//                        EXPECT_TRUE(strncmp(code, spCodeValueAlt->ToCString(), spCodeValueAlt->getLength()) == 0);
-//                        EXPECT_TRUE(strncmp(name, spNameValueAlt->ToCString(), spNameValueAlt->getLength()) == 0);
-//
-//                        _entityStore.Delete(spEntity);
-//                    }
+                    // GET - Check for saved field
+                    {
+                        auto sptrEntity = _storePreOrder.Get(sptrIdentity);
+
+                        EXPECT_TRUE(sptrEntity.get() != 0);
+                        EXPECT_TRUE(_storePreOrder.Size() > 0);
+                        EXPECT_TRUE(_storePreOrder.HasIdentityInMap(sptrIdentity));
+
+                        if (sptrEntity) {
+
+                            auto &sptrNameCell = sptrEntity->getCell("Name");
+                            auto &sptrCustIdCell = sptrEntity->getCell("CustId");
+                            auto &sptrTotalCell = sptrEntity->getCell("Total");
+
+                            EXPECT_TRUE(compare(sptrNameCell->getValue(), sptrNameValue));
+                            EXPECT_TRUE(compare(sptrCustIdCell->getValue(), sptrCustIdValue));
+                            EXPECT_TRUE(compare(sptrTotalCell->getValue(), sptrTotalValue));
+                        }
+                    }
+                }
+
+                TEST_F(PreOrderMySqlStore, Select) {
+
+                    using ValueFactory = Foundation::Data::ValueFactory;
+                    using CmpFactory = Foundation::Query::ComparativeFactory;
+
+                    // Values
+                    auto sptrIdLo = ValueFactory::CreateInt64(2);
+                    auto sptrIdHi = ValueFactory::CreateInt64(15);
+
+                    // Criterias
+                    auto gteLowId = CmpFactory::CreateGTE(_mapPreOrder.Id, sptrIdLo);
+                    auto lteHiId = CmpFactory::CreateLTE(_mapPreOrder.Id, sptrIdHi);
+                    auto criteria = CmpFactory::CreateAND(gteLowId, lteHiId);
+
+                    // Execute
+                    auto rsPreOrder = _queryPreOrder.Select(criteria);
+
+                    EXPECT_TRUE(rsPreOrder.size() > 0);
+
+                    for (auto &preOrder:rsPreOrder) {
+                        std::cout << preOrder->ToString() << std::endl;
+                    }
                 }
             }
         }

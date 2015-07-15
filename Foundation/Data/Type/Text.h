@@ -18,7 +18,7 @@ namespace Cloude {
                     char *_buffer = nullptr;
 
                 public:
-                    Text();
+                    explicit Text(unsigned long length);
                     Text(const Text &) = default;
                     Text(Text &&) = default;
                     Text &operator=(const Text &) = default;

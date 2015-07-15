@@ -22,7 +22,6 @@ namespace Cloude {
                 _columnsForGet.push_back(Name);
                 _columnsForGet.push_back(CustId);
                 _columnsForGet.push_back(Total);
-                _columnsForSelect.push_back(Id);
                 _columnsForSelect.push_back(Name);
                 _columnsForSelect.push_back(CustId);
                 _columnsForSelect.push_back(Total);

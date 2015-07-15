@@ -35,6 +35,7 @@ namespace Cloude {
                 static SPtrValue CreateVarChar(const std::string &value);
                 static SPtrValue CreateVarChar(unsigned long length);
                 static SPtrValue CreateText(const std::string& value);
+                static SPtrValue CreateText(unsigned long length);
                 static SPtrValue CreateByte(char value);
                 static SPtrValue CreateBoolean(bool value);
             };
