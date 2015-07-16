@@ -5,6 +5,7 @@
 #include <Foundation/Data/Type/String.h>
 #include <Foundation/Data/Type/VarChar.h>
 #include <Foundation/Data/Helper/TypeHelper.h>
+#include <Foundation/Exception/cldeNotImplementedException.h>
 #include "Less.h"
 
 namespace Cloude {
@@ -134,12 +135,12 @@ namespace Cloude {
 
         bool Data::Comparer::Less::CompareDateTime(const Data::SPtrValue &lhs,
                                                    const Data::SPtrValue &rhs) const {
-            return false;
+            throw Exception::cldeNotImplementedException{"CompareDateTime"};
         }
 
         bool Data::Comparer::Less::CompareMathematic(const Data::SPtrValue &lhs,
                                                      const Data::SPtrValue &rhs) const {
-            return false;
+            throw Exception::cldeNotImplementedException{"CompareMathematic"};
         }
     }
 }

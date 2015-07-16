@@ -89,8 +89,6 @@ namespace Cloude {
                             EXPECT_TRUE(compare(sptrSubmittedHourCell->getValue(), sptrSubmittedHour));
                             EXPECT_TRUE(compare(sptrSubjectCell->getValue(), sptrSubject));
                             EXPECT_TRUE(compare(sptrUpdatedDateCell->getValue(), sptrUpdatedDate));
-
-                            std::cout << sptrEnquiry->ToString() << std::endl;
                         }
                     }
                 }
