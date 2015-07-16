@@ -22,6 +22,7 @@ namespace Cloude {
                     Time(int hour, int minute, int second, int millisecond = 0,
                          bool hasOffSet = false, int offset = 0);
 
+                    Time();
                     Time(const Time &) = default;
                     Time(Time &&) = default;
                     Time &operator=(const Time &) = default;

@@ -24,6 +24,7 @@ namespace Cloude {
                              int hour, int minute, int second, int millisecond = 0,
                              bool hasOffSet = false, int offset = 0);
 
+                    DateTime();
                     DateTime(const DateTime &) = default;
                     DateTime(DateTime &&) = default;
                     DateTime &operator=(const DateTime &) = default;

@@ -16,6 +16,7 @@ namespace Cloude {
             ValueCategory NumericValue::_category = ValueCategory::Numeric;
 
             const ValueCategory &NumericValue::getCategory() const { return _category; }
+
             bool NumericValue::isNumeric() const { return true; }
         }
     }

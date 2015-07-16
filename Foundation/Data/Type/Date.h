@@ -19,6 +19,8 @@ namespace Cloude {
 
                 public:
                     Date(int year, int month, int day);
+
+                    Date();
                     Date(const Date &) = default;
                     Date(Date &&) = default;
                     Date &operator=(const Date &) = default;

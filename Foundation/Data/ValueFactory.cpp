@@ -85,8 +85,16 @@ namespace Cloude {
                 return std::make_shared<Type::Boolean>(value);
             }
 
+            SPtrValue ValueFactory::CreateDate() {
+                return std::make_shared<Type::Date>();
+            }
+
             SPtrValue ValueFactory::CreateDate(int year, int month, int day) {
                 return std::make_shared<Type::Date>(year, month, day);
+            }
+
+            SPtrValue ValueFactory::CreateTime() {
+                return std::make_shared<Type::Time>();
             }
 
             SPtrValue ValueFactory::CreateTime(int hour, int minute, int second) {
@@ -100,6 +108,10 @@ namespace Cloude {
             SPtrValue ValueFactory::CreateTime(int hour, int minute, int second, int millisecond,
                                                bool hasOffSet, int offset) {
                 return std::make_shared<Type::Time>(hour, minute, second, millisecond, hasOffSet, offset);
+            }
+
+            SPtrValue ValueFactory::CreateDateTime() {
+                return std::make_shared<Type::DateTime>();
             }
 
             SPtrValue ValueFactory::CreateDateTime(int year, int month, int day) {
