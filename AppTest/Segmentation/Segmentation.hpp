@@ -183,7 +183,7 @@ namespace Cloude {
 
                 auto rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsJoinRight.size() >= 20);
-                
+
                 // Disconnect
                 driverCustomer.Disconnect();
                 driverPreOrder.Disconnect();

@@ -8,7 +8,6 @@
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <Drivers/MySql/MySqlSourceDriver.h>
-#include <AppTest/Application/EnquiryMap.h>
 #include <AppTest/Application/PreOrderMap.h>
 #include <AppTest/Application/PreOrderItemsMap.h>
 

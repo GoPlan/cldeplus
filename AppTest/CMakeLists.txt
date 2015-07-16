@@ -25,8 +25,8 @@ add_library(application STATIC
 Entity/PreOrderItems.cpp Entity/PreOrderItems.h)
 
 add_library(apptest STATIC
-    Store/Preparation/EnquirySQLiteStore.cpp
-    Store/Preparation/EnquirySQLiteStore.h
+    Store/Preparation/ProductSQLiteStore.cpp
+    Store/Preparation/ProductSQLiteStore.h
     Store/Preparation/PreOrderMySqlStore.cpp
     Store/Preparation/PreOrderMySqlStore.h
 #   Store/EnquiryMongoDbStore.cpp
@@ -42,7 +42,6 @@ add_library(apptest STATIC
 #   Relation/Relation.hpp
 #   Relation/NamedEntity01.hpp
 #   Relation/NamedEntity02.hpp
-#   Query/Criteria.hpp
 #   Type/CreateValue.hpp
 #   Type/ValueComparison.hpp
 )

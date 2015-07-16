@@ -8,34 +8,34 @@
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
-#include <AppTest/Application/EnquiryMap.h>
+#include <AppTest/Application/ProductMap.h>
 
 namespace Cloude {
     namespace AppTest {
         namespace Store {
             namespace Preparation {
 
-                class EnquirySQLiteStore : public ::testing::Test {
+                class ProductSQLiteStore : public ::testing::Test {
 
                 public:
-                    EnquirySQLiteStore();
-                    EnquirySQLiteStore(const EnquirySQLiteStore &) = default;
-                    EnquirySQLiteStore(EnquirySQLiteStore &&) = default;
-                    EnquirySQLiteStore &operator=(const EnquirySQLiteStore &) = default;
-                    EnquirySQLiteStore &operator=(EnquirySQLiteStore &&) = default;
-                    ~EnquirySQLiteStore() = default;
+                    ProductSQLiteStore();
+                    ProductSQLiteStore(const ProductSQLiteStore &) = default;
+                    ProductSQLiteStore(ProductSQLiteStore &&) = default;
+                    ProductSQLiteStore &operator=(const ProductSQLiteStore &) = default;
+                    ProductSQLiteStore &operator=(ProductSQLiteStore &&) = default;
+                    ~ProductSQLiteStore() = default;
 
                 protected:
-                    using EnquiryMap = Application::EnquiryMap;
+                    using ProductMap = Application::ProductMap;
                     using SQLiteSourceDriver = Drivers::SQLite::SQLiteSourceDriver;
                     using EntityStore = Foundation::EntityStore;
 
                     void SetUp() override;
                     void TearDown() override;
 
-                    EnquiryMap _enquiryMap;
-                    EntityStore _entityStore;
-                    SQLiteSourceDriver _sqliteSourceDriver;
+                    ProductMap _mapProduct;
+                    SQLiteSourceDriver _driverSQLite;
+                    EntityStore _storeProduct;
                 };
             }
         }

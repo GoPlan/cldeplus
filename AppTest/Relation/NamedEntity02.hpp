@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 7/9/15.
 //
 
-#ifndef CLOUD_E_PLUS_NAMEDENTITY02_HPP
-#define CLOUD_E_PLUS_NAMEDENTITY02_HPP
+#ifndef CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY02_HPP
+#define CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY02_HPP
 
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
@@ -134,4 +134,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_NAMEDENTITY02_HPP
+#endif //CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY02_HPP

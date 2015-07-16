@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/5/15.
 //
 
-#ifndef CLOUD_E_CPLUS_ENQUIRYMAP_H
-#define CLOUD_E_CPLUS_ENQUIRYMAP_H
+#ifndef CLOUD_E_PLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
+#define CLOUD_E_PLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
 
 #include <memory>
 #include <Foundation/EntityMap.h>
@@ -17,10 +17,11 @@ namespace Cloude {
 
             public:
                 static std::string TableName;
-                static Foundation::SPtrColumn EnquiryId;
-                static Foundation::SPtrColumn ObjectId;
-                static Foundation::SPtrColumn Email;
+                static Foundation::SPtrColumn Id;
+                static Foundation::SPtrColumn CustId;
+                static Foundation::SPtrColumn SubmittedDate;
                 static Foundation::SPtrColumn Subject;
+                static Foundation::SPtrColumn Content;
 
             public:
                 EnquiryMap();
@@ -38,4 +39,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_ENQUIRYMAP_H
+#endif //CLOUD_E_PLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
