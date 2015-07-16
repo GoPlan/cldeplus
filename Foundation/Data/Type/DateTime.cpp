@@ -2,6 +2,7 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
+#include <Foundation/Data/Helper/TimeBasedHelper.h>
 #include "DateTime.h"
 
 namespace Cloude {
@@ -13,7 +14,7 @@ namespace Cloude {
                     return &_dateTime;
                 }
                 std::string DateTime::ToString() const {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to DateTime type");
+                    return Data::Helper::TimeBasedHelper::DateTimeToISO8601String(_dateTime);
                 }
                 Value &DateTime::operator+(const Value &rhs) {
                     throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to DateTime type");

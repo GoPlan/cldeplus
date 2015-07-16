@@ -24,6 +24,7 @@ namespace Cloude {
                     int8_t minute;
                     int8_t second;
                     int8_t offset;
+                    int16_t milliSecs;
                 };
                 using TSDateTime = struct {
                     TSDate date;
@@ -49,7 +50,6 @@ namespace Cloude {
         }
     }
 }
-
 
 
 #endif //CLOUD_E_PLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H

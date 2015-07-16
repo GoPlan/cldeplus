@@ -2,6 +2,7 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
+#include <Foundation/Data/Helper/TimeBasedHelper.h>
 #include "Date.h"
 
 namespace Cloude {
@@ -9,11 +10,11 @@ namespace Cloude {
         namespace Data {
             namespace Type {
 
-                std::string Date::ToString() const {
-                    return std::string{};
-                }
                 void *Date::RawPointerToValueBuffer() {
                     return &_date;
+                }
+                std::string Date::ToString() const {
+                    return Data::Helper::TimeBasedHelper::DateToISO8601String(_date);
                 }
                 Value &Date::operator+(const Value &rhs) {
                     throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to DateTime type");

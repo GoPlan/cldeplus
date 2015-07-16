@@ -2,6 +2,7 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
+#include <Foundation/Data/Helper/TimeBasedHelper.h>
 #include "Time.h"
 
 namespace Cloude {
@@ -13,7 +14,7 @@ namespace Cloude {
                     return &_time;
                 }
                 std::string Time::ToString() const {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Time type");
+                    return Data::Helper::TimeBasedHelper::TimeToISO8601String(_time);
                 }
                 Value &Time::operator+(const Value &rhs) {
                     throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Time type");

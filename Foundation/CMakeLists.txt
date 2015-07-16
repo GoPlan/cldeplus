@@ -163,4 +163,4 @@ add_library(foundation STATIC
     Store/Extra/EntityOutputFormatter.cpp
     Store/Extra/EntityOutputFormatter.h
     Foundation.h
-Data/TimeBasedValue.cpp Data/TimeBasedValue.h)
+Data/TimeBasedValue.cpp Data/TimeBasedValue.h Data/Helper/TimeBasedHelper.cpp Data/Helper/TimeBasedHelper.h)
