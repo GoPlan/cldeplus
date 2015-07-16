@@ -13,6 +13,7 @@ namespace Cloude {
         namespace Data {
 
             class NumericValue : public Value {
+
                 static ValueCategory _category;
 
             public:

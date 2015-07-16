@@ -3,6 +3,7 @@
 //
 
 #include <memory>
+#include <Foundation/Data/Type/Blob.h>
 #include <Foundation/Data/Type/Boolean.h>
 #include <Foundation/Data/Type/Byte.h>
 #include <Foundation/Data/Type/Int16.h>
@@ -13,17 +14,18 @@
 #include <Foundation/Data/Type/UInt64.h>
 #include <Foundation/Data/Type/Matrix.h>
 #include <Foundation/Data/Type/Point.h>
-#include <Foundation/Data/Type/TimeStamp.h>
-#include <Foundation/Data/Type/Time.h>
-#include <Foundation/Data/Type/Date.h>
 #include <Foundation/Data/Type/Currency.h>
 #include <Foundation/Data/Type/DateTime.h>
+#include <Foundation/Data/Type/Date.h>
+#include <Foundation/Data/Type/Time.h>
 #include <Foundation/Data/Type/Float.h>
 #include <Foundation/Data/Type/Double.h>
 #include <Foundation/Data/Type/String.h>
 #include <Foundation/Data/Type/VarChar.h>
 #include <Foundation/Data/Type/Text.h>
+#include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
 #include "ValueHelper.h"
+#include "TypeHelper.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -31,7 +33,11 @@ namespace Cloude {
         Data::SPtrValue Data::Helper::ValueHelper::CopySPtrValue(const Data::SPtrValue &sptrValue) {
 
             switch (sptrValue->getDataType()) {
-                case ValueType ::Boolean: {
+                case ValueType::Blob: {
+                    // TODO: implement CopySPtrValue for Blob
+                    return std::dynamic_pointer_cast<Data::Type::Blob>(sptrValue);
+                }
+                case ValueType::Boolean: {
                     auto &value = static_cast<Data::Type::Boolean &>(*sptrValue);
                     auto sptrNewValue = std::make_shared<Data::Type::Boolean>(value);
                     return sptrNewValue;
@@ -107,10 +113,6 @@ namespace Cloude {
                     // TODO: implement CopySPtrValue for DateTime
                     return std::dynamic_pointer_cast<Data::Type::DateTime>(sptrValue);
                 }
-                case ValueType::TimeStamp: {
-                    // TODO: implement CopySPtrValue for TimeStamp
-                    return std::dynamic_pointer_cast<Data::Type::TimeStamp>(sptrValue);
-                }
                 case ValueType::Point: {
                     // TODO: implement CopySPtrValue for Point
                     return std::dynamic_pointer_cast<Data::Type::Point>(sptrValue);
@@ -118,6 +120,12 @@ namespace Cloude {
                 case ValueType::Matrix: {
                     // TODO: implement CopySPtrValue for Matrix
                     return std::dynamic_pointer_cast<Data::Type::Matrix>(sptrValue);
+                }
+                default: {
+                    using TypeHelper = Foundation::Data::Helper::TypeHelper;
+                    std::string type{TypeHelper::CopyValueTypeToString(sptrValue->getDataType())};
+                    std::string msg{"CopySPtrValue does not support " + type + " yet"};
+                    throw Exception::cldeNonSupportedDataTypeException{msg};
                 }
             }
         }

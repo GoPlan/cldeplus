@@ -2,8 +2,8 @@
 // Created by LE, Duc-Anh on 5/21/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE_H
-#define CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE_H
+#ifndef CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_H
+#define CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_H
 
 #include <gtest/gtest.h>
 #include <Foundation/Foundation.h>
@@ -95,7 +95,6 @@ namespace Cloude {
                         }
                     }
                 }
-
                 TEST_F(PreOrderMySqlStore, Select) {
 
                     Foundation::Data::Comparer::Compare compare{};
@@ -126,4 +125,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE_H
+#endif //CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_H

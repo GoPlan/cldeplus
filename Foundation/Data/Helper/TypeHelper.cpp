@@ -14,9 +14,6 @@ namespace Cloude {
                     std::string result;
 
                     switch (category) {
-                        case ValueCategory::Undefined:
-                            result = "Undefined";
-                            break;
                         case ValueCategory::Numeric:
                             result = "Numeric";
                             break;
@@ -26,11 +23,11 @@ namespace Cloude {
                         case ValueCategory::UserDefined:
                             result = "UserDefined";
                             break;
-                        case ValueCategory::DateTime:
-                            result = "DateTime";
-                            break;
                         case ValueCategory::Mathematic:
                             result = "Mathematic";
+                            break;
+                        case ValueCategory::DateTime:
+                            result = "DateTime";
                             break;
                     }
 
@@ -42,6 +39,9 @@ namespace Cloude {
                     std::string result;
 
                     switch (type) {
+                        case ValueType::Blob:
+                            result = "Blob";
+                            break;
                         case ValueType::Boolean:
                             result = "Boolean";
                             break;
@@ -92,9 +92,6 @@ namespace Cloude {
                             break;
                         case ValueType::DateTime:
                             result = "DateTime";
-                            break;
-                        case ValueType::TimeStamp:
-                            result = "TimeStamp";
                             break;
                         case ValueType::Point:
                             result = "Point";

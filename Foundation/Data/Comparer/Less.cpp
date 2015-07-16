@@ -20,10 +20,6 @@ namespace Cloude {
             }
 
             switch (lhs->getCategory()) {
-                case Data::ValueCategory::Undefined: {
-                    std::string msg{"Undefined category is not supported by the comparer"};
-                    throw Exception::cldeNonSupportedDataTypeException{msg};
-                }
                 case Data::ValueCategory::Numeric: {
                     return CompareNumeric(lhs, rhs);
                 }

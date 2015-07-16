@@ -14,13 +14,10 @@ namespace Cloude {
                     //
                 }
 
-                bool String::Equal(const Common::IEquatable &rhs) const {
-                    try {
-                        auto cast = dynamic_cast<const String &>(rhs);
-                        return ((cast._value.compare(this->_value)) == 0);
-                    } catch (std::bad_cast &ex) {
-                        return false;
-                    }
+
+                String::String(unsigned long length)
+                        : CharacterValue{ValueType::String, length} {
+                    _value.reserve(length);
                 }
 
                 void *String::RawPointerToValueBuffer() {

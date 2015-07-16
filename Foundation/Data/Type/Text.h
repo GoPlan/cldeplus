@@ -15,9 +15,10 @@ namespace Cloude {
 
                 class Text : public CharacterValue {
 
-                    char *_buffer = nullptr;
+                    std::string _value;
 
                 public:
+                    explicit Text(const std::string& text);
                     explicit Text(unsigned long length);
                     Text(const Text &) = default;
                     Text(Text &&) = default;

@@ -9,20 +9,26 @@ namespace Cloude {
         namespace Data {
             namespace Type {
 
+                Text::Text(const std::string &text) : CharacterValue{Data::ValueType::Text, text.length()},
+                                                      _value{text} {
+                    //
+                }
+
                 Text::Text(unsigned long length) : CharacterValue{Data::ValueType::Text, length} {
-                    _buffer = (char *) calloc(_length, sizeof(char));
+                    _value.reserve(length);
                 }
 
                 Text::~Text() {
-                    if (_buffer != nullptr) free(_buffer);
+                    _value.clear();
+                    _value.shrink_to_fit();
                 }
 
                 void *Text::RawPointerToValueBuffer() {
-                    return _buffer;
+                    return &_value;
                 }
 
                 std::string Text::ToString() const {
-                    return std::string{_buffer};
+                    return _value;
                 }
             }
         }

@@ -19,15 +19,6 @@ namespace Cloude {
                     return &this->_value;
                 }
 
-                bool UInt64::Equal(const Common::IEquatable &rhs) const {
-                    try {
-                        auto cast = dynamic_cast<const UInt64 &>(rhs);
-                        return (cast._value == this->_value);
-                    } catch (std::bad_cast &ex) {
-                        return false;
-                    }
-                }
-
                 std::string UInt64::ToString() const {
                     return std::to_string(_value);
                 }

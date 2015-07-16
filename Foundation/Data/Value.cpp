@@ -15,10 +15,6 @@ namespace Cloude {
                 //
             }
 
-            bool Value::Equal(const Common::IEquatable &rhs) const {
-                std::string msg{"IEquatable::Equal() function is not yet supported"};
-                throw Exception::cldeNonSupportedFunctionException{msg};
-            }
         }
     }
 }

@@ -27,9 +27,6 @@ namespace Cloude {
                     // Value
                     virtual void *RawPointerToValueBuffer() override;
 
-                    // IEquatable
-                    virtual bool Equal(const Common::IEquatable &rhs) const override;
-
                     // IPrintable
                     virtual std::string ToString() const override;
 

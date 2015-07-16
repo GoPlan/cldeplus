@@ -5,14 +5,17 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_DATETIME_H
 #define CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_DATETIME_H
 
-#include <Foundation/Data/Value.h>
+#include <Foundation/Data/TimeBasedValue.h>
+#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 
 namespace Cloude {
     namespace Foundation {
         namespace Data {
             namespace Type {
 
-                class DateTime : public Value {
+                class DateTime : public TimeBasedValue {
+
+                    TimeBasedValue::TSDateTime _dateTime;
 
                 public:
                     DateTime() = default;
@@ -21,6 +24,20 @@ namespace Cloude {
                     DateTime &operator=(const DateTime &) = default;
                     DateTime &operator=(DateTime &&) = default;
                     ~DateTime() = default;
+
+                    // Value
+                    virtual void *RawPointerToValueBuffer();
+
+                    // IPrintable
+                    virtual std::string ToString() const;
+
+                    // IComputable
+                    virtual Value &operator+(const Value &rhs);
+                    virtual Value &operator-(const Value &rhs);
+                    virtual Value &operator*(const Value &rhs);
+                    virtual Value &operator/(const Value &rhs);
+                    virtual Value &operator%(const Value &rhs);
+
                 };
             }
         }

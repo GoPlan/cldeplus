@@ -15,7 +15,6 @@ namespace Cloude {
         namespace Data {
 
             class Value : public Common::IPrintable,
-                          public Common::IEquatable,
                           public Common::IComputable<Value> {
 
             public:
@@ -33,9 +32,6 @@ namespace Cloude {
                 void *RawPointerToValueLength() { return &_length; }
                 ValueType getDataType() const { return _dataType; }
                 size_t getLength() const { return _length; }
-
-                // IEquatable
-                virtual bool Equal(const Common::IEquatable &rhs) const;
 
 
             protected:

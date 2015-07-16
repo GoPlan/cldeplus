@@ -78,10 +78,6 @@ namespace Cloude {
                     }
                 }
 
-                bool VarChar::Equal(const Common::IEquatable &rhs) const {
-                    return false;
-                }
-
                 std::string VarChar::ToString() const {
                     return std::string(_value);
                 }

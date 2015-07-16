@@ -22,27 +22,19 @@ add_library(application STATIC
     Entity/PreOrder.h
     Entity/Enquiry.cpp
     Entity/Enquiry.h
-Entity/PreOrderItems.cpp Entity/PreOrderItems.h)
+    Entity/PreOrderItems.cpp
+    Entity/PreOrderItems.h Store/MySqlStore01.hpp)
 
 add_library(apptest STATIC
     Store/Preparation/ProductSQLiteStore.cpp
     Store/Preparation/ProductSQLiteStore.h
     Store/Preparation/PreOrderMySqlStore.cpp
     Store/Preparation/PreOrderMySqlStore.h
+    Store/Preparation/EnquiryMySqlStore.cpp
+    Store/Preparation/EnquiryMySqlStore.h
 #   Store/EnquiryMongoDbStore.cpp
 #   Store/EnquiryMongoDbStore.h
 #   Store/StockGroupPostgreStore.cpp
 #   Store/StockGroupPostgreStore.h
-#   Store/MongoDbStore.hpp
-#   Store/MySqlStore.hpp
-#   Store/PostgreStore.hpp
-#   Store/SQLiteStore.hpp
-#   Segmentation/Transformation.hpp
-#   Segmentation/Segmentation.hpp
-#   Relation/Relation.hpp
-#   Relation/NamedEntity01.hpp
-#   Relation/NamedEntity02.hpp
-#   Type/CreateValue.hpp
-#   Type/ValueComparison.hpp
 )
 
