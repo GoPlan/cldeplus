@@ -13,14 +13,20 @@ namespace Cloude {
 
                 MySqlDate::MySqlDate(unsigned year, unsigned month, unsigned day)
                         : TimeBasedValue{Foundation::Data::ValueType::Date, sizeof(MYSQL_TIME)} {
+
                     _date.year = year;
                     _date.month = month;
                     _date.day = day;
+                    _date.time_type = MYSQL_TIMESTAMP_DATE;
                 }
 
                 MySqlDate::MySqlDate()
                         : TimeBasedValue{Foundation::Data::ValueType::Date, sizeof(MYSQL_TIME)} {
-                    //
+
+                    _date.year = 0;
+                    _date.month = 0;
+                    _date.day = 0;
+                    _date.time_type = MYSQL_TIMESTAMP_DATE;
                 }
 
                 void *MySqlDate::RawPointerToValueBuffer() {

@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#ifndef CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLTIME_H
-#define CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLTIME_H
+#ifndef CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLDATETIME_H
+#define CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLDATETIME_H
 
 #include <Drivers/MySql/MySqlSourceException.h>
 #include <Foundation/Data/TimeBasedValue.h>
@@ -14,20 +14,22 @@ namespace Cloude {
         namespace MySql {
             namespace Data {
 
-                class MySqlTime : public Foundation::Data::TimeBasedValue {
+                class MySqlDateTime : public Foundation::Data::TimeBasedValue {
 
-                    MYSQL_TIME _time;
+                    MYSQL_TIME _dateTime;
 
                 public:
-                    MySqlTime(unsigned int hour, unsigned int minute, unsigned int second,
-                              unsigned long millisecond = 0);
+                    MySqlDateTime(unsigned int year, unsigned int month, unsigned int day);
+                    MySqlDateTime(unsigned int year, unsigned int month, unsigned int day,
+                                  unsigned int hour, unsigned int minute, unsigned int second,
+                                  unsigned long milliseconds = 0);
 
-                    MySqlTime();
-                    MySqlTime(const MySqlTime &) = default;
-                    MySqlTime(MySqlTime &&) = default;
-                    MySqlTime &operator=(const MySqlTime &) = default;
-                    MySqlTime &operator=(MySqlTime &&) = default;
-                    ~MySqlTime() = default;
+                    MySqlDateTime();
+                    MySqlDateTime(const MySqlDateTime &) = default;
+                    MySqlDateTime(MySqlDateTime &&) = default;
+                    MySqlDateTime &operator=(const MySqlDateTime &) = default;
+                    MySqlDateTime &operator=(MySqlDateTime &&) = default;
+                    virtual ~MySqlDateTime() = default;
 
                     // Value
                     virtual void *RawPointerToValueBuffer() override;
@@ -43,10 +45,10 @@ namespace Cloude {
                     virtual Foundation::Data::Value &operator%(const Foundation::Data::Value &rhs) override;
                 };
 
-                using SPtrMySqlTime = std::shared_ptr<MySqlTime>;
+                using SPtrMySqlDateTime = std::shared_ptr<MySqlDateTime>;
             }
         }
     }
 }
 
-#endif //CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLTIME_H
+#endif //CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLDATETIME_H

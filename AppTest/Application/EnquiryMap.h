@@ -20,8 +20,10 @@ namespace Cloude {
                 static Foundation::SPtrColumn Id;
                 static Foundation::SPtrColumn CustId;
                 static Foundation::SPtrColumn SubmittedDate;
+                static Foundation::SPtrColumn SubmittedHour;
                 static Foundation::SPtrColumn Subject;
                 static Foundation::SPtrColumn Content;
+                static Foundation::SPtrColumn UpdatedDate;
 
             public:
                 EnquiryMap();

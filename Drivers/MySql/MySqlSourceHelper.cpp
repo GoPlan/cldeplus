@@ -98,9 +98,31 @@ namespace Cloude {
                 return std::make_shared<Data::MySqlTime>();
             }
 
-            Data::SPtrMySqlTime MySqlSourceHelper::CreateTime(unsigned int hour, unsigned int minute,
-                                                              unsigned int second, unsigned long millisecond) {
+            Data::SPtrMySqlTime MySqlSourceHelper::CreateTime(unsigned int hour,
+                                                              unsigned int minute,
+                                                              unsigned int second,
+                                                              unsigned long millisecond) {
                 return std::make_shared<Data::MySqlTime>(hour, minute, second, millisecond);
+            }
+
+            Data::SPtrMySqlDateTime MySqlSourceHelper::CreateDateTime() {
+                return std::make_shared<Data::MySqlDateTime>();
+            }
+
+            Data::SPtrMySqlDateTime MySqlSourceHelper::CreateDateTime(unsigned int year,
+                                                                      unsigned int month,
+                                                                      unsigned int day) {
+                return std::make_shared<Data::MySqlDateTime>(year, month, day);
+            }
+
+            Data::SPtrMySqlDateTime MySqlSourceHelper::CreateDateTime(unsigned int year,
+                                                                      unsigned int month,
+                                                                      unsigned int day,
+                                                                      unsigned int hour,
+                                                                      unsigned int minute,
+                                                                      unsigned int second,
+                                                                      unsigned long millisecond) {
+                return std::make_shared<Data::MySqlDateTime>(year, month, day, hour, minute, second, millisecond);
             }
         }
     }

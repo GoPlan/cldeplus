@@ -9,6 +9,7 @@
 #include <Foundation/Data/TimeBasedValue.h>
 #include <Drivers/MySql/Data/MySqlDate.h>
 #include <Drivers/MySql/Data/MySqlTime.h>
+#include <Drivers/MySql/Data/MySqlDateTime.h>
 
 namespace Cloude {
     namespace Drivers {
@@ -25,9 +26,20 @@ namespace Cloude {
 
                 static Data::SPtrMySqlDate CreateDate();
                 static Data::SPtrMySqlDate CreateDate(unsigned int year, unsigned int month, unsigned int day);
+
                 static Data::SPtrMySqlTime CreateTime();
-                static Data::SPtrMySqlTime CreateTime(unsigned int hour, unsigned int minute, unsigned int second,
+                static Data::SPtrMySqlTime CreateTime(unsigned int hour,
+                                                      unsigned int minute,
+                                                      unsigned int second,
                                                       unsigned long millisecond = 0);
+
+                static Data::SPtrMySqlDateTime CreateDateTime();
+                static Data::SPtrMySqlDateTime CreateDateTime(unsigned int year, unsigned int month, unsigned int day);
+                static Data::SPtrMySqlDateTime CreateDateTime(unsigned int year, unsigned int month, unsigned int day,
+                                                              unsigned int hour,
+                                                              unsigned int minute,
+                                                              unsigned int second,
+                                                              unsigned long millisecond = 0);
             };
         }
     }

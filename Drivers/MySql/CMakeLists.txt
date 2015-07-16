@@ -8,4 +8,4 @@ add_library(cldemysqldriver STATIC
     MySqlSourceDriver.cpp
     MySqlSourceException.h
     MySqlSourceException.cpp
-MySqlSourceHelper.cpp MySqlSourceHelper.h Data/MySqlDate.cpp Data/MySqlDate.h Data/MySqlTime.cpp Data/MySqlTime.h)
+MySqlSourceHelper.cpp MySqlSourceHelper.h Data/MySqlDate.cpp Data/MySqlDate.h Data/MySqlTime.cpp Data/MySqlTime.h Data/MySqlDateTime.cpp Data/MySqlDateTime.h)

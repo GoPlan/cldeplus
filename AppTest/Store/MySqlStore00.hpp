@@ -17,7 +17,7 @@ namespace Cloude {
                 using Cell = Cloude::Foundation::Cell;
                 using Identity = Cloude::Foundation::Identity;
 
-                TEST_F(PreOrderMySqlStore, CreateGetSaveDelete) {
+                TEST_F(PreOrderMySqlStore, CreateGetSaveDelete00) {
 
                     Foundation::Data::Comparer::Compare compare{};
 
@@ -46,7 +46,6 @@ namespace Cloude {
                     // CREATE
                     {
                         auto sptrPreOrder = _storePreOrder.Create(sptrIdentity);
-
                         EXPECT_TRUE(sptrPreOrder.get() != 0);
                         EXPECT_TRUE(_storePreOrder.HasIdentityInMap(sptrIdentity));
                     }
@@ -60,7 +59,6 @@ namespace Cloude {
                         auto &sptrTotalCell = sptrEntity->getCell("Total");
 
                         auto &sptrIdCellValue = sptrIdCell->getValue();
-
                         EXPECT_TRUE(sptrIdCellValue.get() != 0);
 
                         if (sptrIdCellValue) {
@@ -95,6 +93,7 @@ namespace Cloude {
                         }
                     }
                 }
+
                 TEST_F(PreOrderMySqlStore, Select) {
 
                     Foundation::Data::Comparer::Compare compare{};

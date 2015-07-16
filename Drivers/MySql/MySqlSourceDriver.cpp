@@ -137,13 +137,13 @@ namespace Cloude {
                                           return;
                                       }
 
-                                      setupBindTypeAndLength(cell->getColumn(), &command->PtrParamsBind[index]);
-
                                       auto ptrLength = value->RawPointerToValueLength();
                                       auto ptrBuffer = value->RawPointerToValueBuffer();
 
                                       command->PtrParamsBind[index].length = static_cast<unsigned long *>(ptrLength);
                                       command->PtrParamsBind[index].buffer = ptrBuffer;
+
+                                      setupBindTypeAndLength(cell->getColumn(), &command->PtrParamsBind[index]);
 
                                       ++index;
                                   });
@@ -165,19 +165,19 @@ namespace Cloude {
                                       command->PtrParamsBind[index].is_null = 0;
                                       command->PtrParamsBind[index].error = 0;
 
-                                      if (!sptrCriteria) {
+                                      if (!value) {
                                           command->PtrParamsBind[index].buffer_type = MYSQL_TYPE_NULL;
                                           ++index;
                                           return;
                                       }
-
-                                      setupBindTypeAndLength(sptrCriteria->getColumn(), &command->PtrParamsBind[index]);
 
                                       auto ptrLength = value->RawPointerToValueLength();
                                       auto ptrBuffer = value->RawPointerToValueBuffer();
 
                                       command->PtrParamsBind[index].length = static_cast<unsigned long *>(ptrLength);
                                       command->PtrParamsBind[index].buffer = ptrBuffer;
+
+                                      setupBindTypeAndLength(sptrCriteria->getColumn(), &command->PtrParamsBind[index]);
 
                                       ++index;
                                   });
@@ -238,10 +238,10 @@ namespace Cloude {
                                               cell->setValue(MySqlSourceHelper::CreateDate());
                                               break;
                                           case Foundation::Data::ValueType::Time:
-                                              cell->setValue(CldeValueFactory::CreateTime());
+                                              cell->setValue(MySqlSourceHelper::CreateTime());
                                               break;
                                           case Foundation::Data::ValueType::DateTime:
-                                              cell->setValue(CldeValueFactory::CreateDate());
+                                              cell->setValue(MySqlSourceHelper::CreateDateTime());
                                               break;
                                           default: {
                                               using TypeHelper = Foundation::Data::Helper::TypeHelper;
@@ -322,17 +322,17 @@ namespace Cloude {
                         }
                         case Foundation::Data::ValueType::DateTime: {
                             ptrBind->buffer_type = MYSQL_TYPE_DATETIME;
-                            ptrBind->buffer_length = sptrColumn->getLength();
+                            ptrBind->buffer_length = sizeof(MYSQL_TIME);
                             break;
                         }
                         case Foundation::Data::ValueType::Date: {
                             ptrBind->buffer_type = MYSQL_TYPE_DATE;
-                            ptrBind->buffer_length = sptrColumn->getLength();
+                            ptrBind->buffer_length = sizeof(MYSQL_TIME);
                             break;
                         }
                         case Foundation::Data::ValueType::Time: {
                             ptrBind->buffer_type = MYSQL_TYPE_TIME;
-                            ptrBind->buffer_length = sptrColumn->getLength();
+                            ptrBind->buffer_length = sizeof(MYSQL_TIME);
                             break;
                         }
 //                        case Foundation::Data::ValueType::Text: {
@@ -377,10 +377,14 @@ namespace Cloude {
                 auto &columnsForGet = getEntityMap().getColumnsForGet();
                 auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
 
-                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName, columnsForGet, columnsForKey, fptrSelectParamProcessor);
-                _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName, columnsForKey, fptrInsertParamProcessor);
-                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName, columnsForUpdate, columnsForKey, fptrSelectParamProcessor);
-                _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName, columnsForKey, fptrSelectParamProcessor);
+                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName, columnsForGet, columnsForKey,
+                                                                  fptrSelectParamProcessor);
+                _insertStatement =
+                        SqlHelper::CreateInsertPreparedQuery(sourceName, columnsForKey, fptrInsertParamProcessor);
+                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName, columnsForUpdate, columnsForKey,
+                                                                        fptrSelectParamProcessor);
+                _deleteStatement =
+                        SqlHelper::CreateDeletePreparedQuery(sourceName, columnsForKey, fptrSelectParamProcessor);
             }
 
             void MySqlSourceDriver::Connect() {
