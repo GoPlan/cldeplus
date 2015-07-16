@@ -8,4 +8,4 @@ add_library(cldemysqldriver STATIC
     MySqlSourceDriver.cpp
     MySqlSourceException.h
     MySqlSourceException.cpp
-)
+MySqlSourceHelper.cpp MySqlSourceHelper.h)

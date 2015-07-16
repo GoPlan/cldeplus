@@ -16,9 +16,12 @@ namespace Cloude {
                 class Time : public TimeBasedValue {
 
                     TimeBasedValue::TSTime _time;
+                    bool _hasOffSet;
 
                 public:
-                    Time() = default;
+                    Time(int hour, int minute, int second, int millisecond = 0,
+                         bool hasOffSet = false, int offset = 0);
+
                     Time(const Time &) = default;
                     Time(Time &&) = default;
                     Time &operator=(const Time &) = default;

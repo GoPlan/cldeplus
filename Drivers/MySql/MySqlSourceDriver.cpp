@@ -12,6 +12,7 @@
 #include <Foundation/Store/Helper/EntityStoreHelper.h>
 #include <Foundation/Enum/CommonBufferSize.h>
 #include "MySqlSourceDriver.h"
+#include "MySqlSourceHelper.h"
 
 namespace Cloude {
     namespace Drivers {
@@ -233,6 +234,8 @@ namespace Cloude {
                                           case Foundation::Data::ValueType::VarChar:
                                               cell->setValue(ValueFactory::CreateVarChar(column->getLength()));
                                               break;
+
+
                                           default: {
                                               using TypeHelper = Foundation::Data::Helper::TypeHelper;
                                               std::string typeName{TypeHelper::CopyValueTypeToString(dataType)};

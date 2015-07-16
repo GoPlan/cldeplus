@@ -15,16 +15,16 @@ namespace Cloude {
 
             public:
                 using TSDate = struct {
-                    int16_t year;
-                    int8_t month;
-                    int8_t day;
+                    int year{0};
+                    int month{0};
+                    int day{0};
                 };
                 using TSTime = struct {
-                    int8_t hour;
-                    int8_t minute;
-                    int8_t second;
-                    int8_t offset;
-                    int16_t milliSecs;
+                    int hour{0};
+                    int minute{0};
+                    int second{0};
+                    int offset{0};
+                    int milliSecs{0};
                 };
                 using TSDateTime = struct {
                     TSDate date;
@@ -32,7 +32,7 @@ namespace Cloude {
                 };
 
             public:
-                TimeBasedValue() = default;
+                TimeBasedValue(ValueType dataType, size_t length);
                 TimeBasedValue(const TimeBasedValue &) = default;
                 TimeBasedValue(TimeBasedValue &&) = default;
                 TimeBasedValue &operator=(const TimeBasedValue &) = default;

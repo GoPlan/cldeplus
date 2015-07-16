@@ -18,7 +18,7 @@ namespace Cloude {
                     TimeBasedValue::TSDate _date;
 
                 public:
-                    Date() = default;
+                    Date(int year, int month, int day);
                     Date(const Date &) = default;
                     Date(Date &&) = default;
                     Date &operator=(const Date &) = default;

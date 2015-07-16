@@ -16,9 +16,14 @@ namespace Cloude {
                 class DateTime : public TimeBasedValue {
 
                     TimeBasedValue::TSDateTime _dateTime;
+                    bool _hasOffSet;
 
                 public:
-                    DateTime() = default;
+                    DateTime(int year, int month, int day);
+                    DateTime(int year, int month, int day,
+                             int hour, int minute, int second, int millisecond = 0,
+                             bool hasOffSet = false, int offset = 0);
+
                     DateTime(const DateTime &) = default;
                     DateTime(DateTime &&) = default;
                     DateTime &operator=(const DateTime &) = default;

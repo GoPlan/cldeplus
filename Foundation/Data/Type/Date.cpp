@@ -3,6 +3,7 @@
 //
 
 #include <Foundation/Data/Helper/TimeBasedHelper.h>
+#include <Foundation/Data/TimeBasedValue.h>
 #include "Date.h"
 
 namespace Cloude {
@@ -10,6 +11,12 @@ namespace Cloude {
         namespace Data {
             namespace Type {
 
+                Date::Date(int year, int month, int day)
+                        : TimeBasedValue{ValueType::Date, sizeof(TimeBasedValue::TSDate)} {
+                    _date.year = year;
+                    _date.month = month;
+                    _date.day = day;
+                }
                 void *Date::RawPointerToValueBuffer() {
                     return &_date;
                 }
