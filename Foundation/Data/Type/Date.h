@@ -39,6 +39,11 @@ namespace Cloude {
                     virtual Value &operator*(const Value &rhs) override;
                     virtual Value &operator/(const Value &rhs) override;
                     virtual Value &operator%(const Value &rhs) override;
+
+                    // IComparable
+                    virtual bool LessThan(const Common::IComparable &target) const override;
+                    virtual bool GreaterThan(const Common::IComparable &target) const override;
+                    virtual bool EquivalentTo(const Common::IComparable &target) const override;
                 };
             }
         }

@@ -8,7 +8,7 @@
 #include <gtest/gtest.h>
 #include <Foundation/Foundation.h>
 #include <AppTest/Store/Preparation/EnquiryMySqlStore.h>
-#include <Drivers/MySql/MySqlSourceHelper.h>
+#include <Drivers/MySql/Helper/MySqlSourceHelper.h>
 
 namespace Cloude {
     namespace AppTest {
@@ -16,17 +16,62 @@ namespace Cloude {
             namespace Test {
 
                 using EnquiryMySqlStore = Preparation::EnquiryMySqlStore;
+                using MySqlDriverHelper = Drivers::MySql::Helper::MySqlSourceHelper;
+
+                TEST_F(EnquiryMySqlStore, Comparable) {
+
+                    Foundation::Data::Comparer::Less LT{};
+                    Foundation::Data::Comparer::Greater GT{};
+                    Foundation::Data::Comparer::Compare EQ{};
+
+                    // Date
+                    {
+                        auto sptrDateLo = MySqlDriverHelper::CreateDate(2015, 7, 15);
+                        auto sptrDateHi = MySqlDriverHelper::CreateDate(2015, 7, 16);
+                        auto sptrDateLoAlt = MySqlDriverHelper::CreateDate(2015, 7, 15);
+
+                        EXPECT_TRUE(LT(sptrDateLo, sptrDateHi));
+                        EXPECT_TRUE(GT(sptrDateHi, sptrDateLo));
+                        EXPECT_TRUE(EQ(sptrDateLo, sptrDateLoAlt));
+                        EXPECT_TRUE(!EQ(sptrDateLo, sptrDateHi));
+                    }
+
+                    // Time
+                    {
+                        auto sptrTimeLo = MySqlDriverHelper::CreateTime(22, 12, 35);
+                        auto sptrTimeHi = MySqlDriverHelper::CreateTime(23, 7, 16);
+                        auto sptrTimeLoAlt = MySqlDriverHelper::CreateTime(22, 12, 35);
+
+                        EXPECT_TRUE(LT(sptrTimeLo, sptrTimeHi));
+                        EXPECT_TRUE(GT(sptrTimeHi, sptrTimeLo));
+                        EXPECT_TRUE(EQ(sptrTimeLo, sptrTimeLoAlt));
+                        EXPECT_TRUE(!EQ(sptrTimeLo, sptrTimeHi));
+                    }
+
+                    // Date & Time
+                    {
+                        auto sptrDateTimeLo = MySqlDriverHelper::CreateDateTime(2015, 7, 15, 22, 12, 35);
+                        auto sptrDateTimeHi = MySqlDriverHelper::CreateDateTime(2015, 7, 18, 23, 7, 16);
+                        auto sptrDateTimeAlt = MySqlDriverHelper::CreateDateTime(2015, 7, 15, 22, 12, 35);
+
+                        EXPECT_TRUE(LT(sptrDateTimeLo, sptrDateTimeHi));
+                        EXPECT_TRUE(GT(sptrDateTimeHi, sptrDateTimeLo));
+                        EXPECT_TRUE(EQ(sptrDateTimeLo, sptrDateTimeAlt));
+                        EXPECT_TRUE(!EQ(sptrDateTimeLo, sptrDateTimeHi));
+                    }
+                }
 
                 TEST_F(EnquiryMySqlStore, CreateSaveDelete01) {
+
 
                     Foundation::Data::Comparer::Compare compare{};
 
                     auto sptrId = Foundation::Data::ValueFactory::CreateInt64(0);
                     auto sptrCustId = Foundation::Data::ValueFactory::CreateInt64(0);
                     auto sptrSubject = Foundation::Data::ValueFactory::CreateVarChar("Enquiry 00");
-                    auto sptrSubmittedDate = Drivers::MySql::MySqlSourceHelper::CreateDate(2015, 7, 15);
-                    auto sptrSubmittedHour = Drivers::MySql::MySqlSourceHelper::CreateTime(22, 53, 18, 43256);
-                    auto sptrUpdatedDate = Drivers::MySql::MySqlSourceHelper::CreateDateTime(2015, 7, 15, 22, 15, 13);
+                    auto sptrSubmittedDate = MySqlDriverHelper::CreateDate(2015, 7, 15);
+                    auto sptrSubmittedHour = MySqlDriverHelper::CreateTime(22, 53, 18, 43256);
+                    auto sptrUpdatedDate = MySqlDriverHelper::CreateDateTime(2015, 7, 15, 22, 15, 13);
 
                     auto sptrIdCell = Foundation::CreateCell(_mapEnquiry.Id, sptrId);
                     auto sptrCells = {sptrIdCell};

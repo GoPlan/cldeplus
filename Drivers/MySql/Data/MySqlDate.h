@@ -40,6 +40,11 @@ namespace Cloude {
                     Foundation::Data::Value &operator*(const Foundation::Data::Value &rhs) override;
                     Foundation::Data::Value &operator/(const Foundation::Data::Value &rhs) override;
                     Foundation::Data::Value &operator%(const Foundation::Data::Value &rhs) override;
+
+
+                    virtual bool LessThan(const Foundation::Common::IComparable &target) const override;
+                    virtual bool GreaterThan(const Foundation::Common::IComparable &target) const override;
+                    virtual bool EquivalentTo(const Foundation::Common::IComparable &target) const override;
                 };
 
                 using SPtrMySqlDate = std::shared_ptr<MySqlDate>;

@@ -20,7 +20,8 @@ namespace Cloude {
                     Compare() = default;
                     bool operator()(const SPtrValue &lhs, const SPtrValue &rhs) const {
                         Less lesser;
-                        return !lesser(lhs, rhs) && !lesser(rhs, lhs);
+                        Greater greater;
+                        return !lesser(lhs, rhs) && !greater(lhs, rhs);
                     }
                 };
             }

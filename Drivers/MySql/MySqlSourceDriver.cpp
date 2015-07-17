@@ -12,7 +12,7 @@
 #include <Foundation/Store/Helper/EntityStoreHelper.h>
 #include <Foundation/Enum/CommonBufferSize.h>
 #include "MySqlSourceDriver.h"
-#include "MySqlSourceHelper.h"
+#include "Helper/MySqlSourceHelper.h"
 
 namespace Cloude {
     namespace Drivers {
@@ -235,13 +235,13 @@ namespace Cloude {
                                               cell->setValue(CldeValueFactory::CreateVarChar(column->getLength()));
                                               break;
                                           case Foundation::Data::ValueType::Date:
-                                              cell->setValue(MySqlSourceHelper::CreateDate());
+                                              cell->setValue(Helper::MySqlSourceHelper::CreateDate());
                                               break;
                                           case Foundation::Data::ValueType::Time:
-                                              cell->setValue(MySqlSourceHelper::CreateTime());
+                                              cell->setValue(Helper::MySqlSourceHelper::CreateTime());
                                               break;
                                           case Foundation::Data::ValueType::DateTime:
-                                              cell->setValue(MySqlSourceHelper::CreateDateTime());
+                                              cell->setValue(Helper::MySqlSourceHelper::CreateDateTime());
                                               break;
                                           default: {
                                               using TypeHelper = Foundation::Data::Helper::TypeHelper;
@@ -377,14 +377,23 @@ namespace Cloude {
                 auto &columnsForGet = getEntityMap().getColumnsForGet();
                 auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
 
-                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName, columnsForGet, columnsForKey,
+                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName,
+                                                                  columnsForGet,
+                                                                  columnsForKey,
                                                                   fptrSelectParamProcessor);
-                _insertStatement =
-                        SqlHelper::CreateInsertPreparedQuery(sourceName, columnsForKey, fptrInsertParamProcessor);
-                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName, columnsForUpdate, columnsForKey,
+
+                _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName,
+                                                                        columnsForKey,
+                                                                        fptrInsertParamProcessor);
+
+                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName,
+                                                                        columnsForUpdate,
+                                                                        columnsForKey,
                                                                         fptrSelectParamProcessor);
-                _deleteStatement =
-                        SqlHelper::CreateDeletePreparedQuery(sourceName, columnsForKey, fptrSelectParamProcessor);
+
+                _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName,
+                                                                        columnsForKey,
+                                                                        fptrSelectParamProcessor);
             }
 
             void MySqlSourceDriver::Connect() {

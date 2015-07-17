@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#include <Drivers/MySql/MySqlSourceHelper.h>
+#include <Drivers/MySql/Helper/MySqlSourceHelper.h>
 #include "MySqlDateTime.h"
 
 namespace Cloude {
@@ -25,10 +25,14 @@ namespace Cloude {
                     _dateTime.time_type = MYSQL_TIMESTAMP_DATETIME;
                 }
 
-                MySqlDateTime::MySqlDateTime(unsigned int year, unsigned int month, unsigned int day,
-                                             unsigned int hour, unsigned int minute, unsigned int second,
-                                             unsigned long milliseconds) :
-                        TimeBasedValue{Foundation::Data::ValueType::DateTime, sizeof(MYSQL_TIME)} {
+                MySqlDateTime::MySqlDateTime(unsigned int year,
+                                             unsigned int month,
+                                             unsigned int day,
+                                             unsigned int hour,
+                                             unsigned int minute,
+                                             unsigned int second,
+                                             unsigned long milliseconds)
+                        : TimeBasedValue{Foundation::Data::ValueType::DateTime, sizeof(MYSQL_TIME)} {
 
                     _dateTime.year = year;
                     _dateTime.month = month;
@@ -60,7 +64,7 @@ namespace Cloude {
                 }
 
                 std::string MySqlDateTime::ToString() const {
-                    return MySqlSourceHelper::DateTimeToISO8601String(_dateTime);
+                    return Helper::MySqlSourceHelper::DateTimeToISO8601String(_dateTime);
                 }
 
                 Foundation::Data::Value &MySqlDateTime::operator+(const Foundation::Data::Value &rhs) {
@@ -86,6 +90,20 @@ namespace Cloude {
                 Foundation::Data::Value &MySqlDateTime::operator%(const Foundation::Data::Value &rhs) {
                     std::string msg{"Does not support operator% yet"};
                     throw MySqlSourceException{msg};
+                }
+
+                bool MySqlDateTime::LessThan(const Foundation::Common::IComparable &target) const {
+                    auto &targetTs = dynamic_cast<const MySqlDateTime &>(target);
+                    return Helper::MySqlSourceHelper::Less(_dateTime, targetTs._dateTime);
+                }
+
+                bool MySqlDateTime::GreaterThan(const Foundation::Common::IComparable &target) const {
+                    auto &targetTs = dynamic_cast<const MySqlDateTime &>(target);
+                    return Helper::MySqlSourceHelper::Greater(_dateTime, targetTs._dateTime);
+                }
+
+                bool MySqlDateTime::EquivalentTo(const Foundation::Common::IComparable &target) const {
+                    return !LessThan(target) && !GreaterThan(target);
                 }
             }
         }

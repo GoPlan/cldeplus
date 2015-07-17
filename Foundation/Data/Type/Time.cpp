@@ -3,7 +3,7 @@
 //
 
 #include <Foundation/Data/Helper/TimeBasedHelper.h>
-#include <Foundation/Data/TimeBasedValue.h>
+#include <Foundation/Exception/cldeNotImplementedException.h>
 #include "Time.h"
 
 namespace Cloude {
@@ -52,6 +52,21 @@ namespace Cloude {
 
                 Value &Time::operator%(const Value &rhs) {
                     throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Time type");
+                }
+
+                bool Time::LessThan(const Common::IComparable &target) const {
+                    std::string msg{"LessThan"};
+                    throw Exception::cldeNotImplementedException{msg};
+                }
+
+                bool Time::GreaterThan(const Common::IComparable &target) const {
+                    std::string msg{"GreaterThan"};
+                    throw Exception::cldeNotImplementedException{msg};
+                }
+
+                bool Time::EquivalentTo(const Common::IComparable &target) const {
+                    std::string msg{"EquivalentTo"};
+                    throw Exception::cldeNotImplementedException{msg};
                 }
             }
         }

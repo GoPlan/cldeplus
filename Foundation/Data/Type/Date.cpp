@@ -3,7 +3,7 @@
 //
 
 #include <Foundation/Data/Helper/TimeBasedHelper.h>
-#include <Foundation/Data/TimeBasedValue.h>
+#include <Foundation/Exception/cldeNotImplementedException.h>
 #include "Date.h"
 
 namespace Cloude {
@@ -49,6 +49,21 @@ namespace Cloude {
 
                 Value &Date::operator%(const Value &rhs) {
                     throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to DateTime type");
+                }
+
+                bool Date::LessThan(const Common::IComparable &target) const {
+                    std::string msg{"LessThan"};
+                    throw Exception::cldeNotImplementedException{msg};
+                }
+
+                bool Date::GreaterThan(const Common::IComparable &target) const {
+                    std::string msg{"GreaterThan"};
+                    throw Exception::cldeNotImplementedException{msg};
+                }
+
+                bool Date::EquivalentTo(const Common::IComparable &target) const {
+                    std::string msg{"EquivalentTo"};
+                    throw Exception::cldeNotImplementedException{msg};
                 }
             }
         }

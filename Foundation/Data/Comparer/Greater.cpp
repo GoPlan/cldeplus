@@ -6,6 +6,7 @@
 #include <Foundation/Data/Type/VarChar.h>
 #include <Foundation/Data/Helper/TypeHelper.h>
 #include <Foundation/Exception/cldeNotImplementedException.h>
+#include <Foundation/Common/IComparable.h>
 #include "Greater.h"
 
 namespace Cloude {
@@ -143,7 +144,26 @@ namespace Cloude {
 
         bool Data::Comparer::Greater::CompareDateTime(
                 const Data::SPtrValue &lhs, const Data::SPtrValue &rhs) const {
-            throw Exception::cldeNotImplementedException{"CompareDateTime"};
+
+            auto &lhsComparable = dynamic_cast<const Common::IComparable &>(*lhs);
+            auto &rhsComparable = dynamic_cast<const Common::IComparable &>(*rhs);
+
+            switch (lhs->getDataType()) {
+                case ValueType::Date: {
+                    return lhsComparable.GreaterThan(rhsComparable);
+                }
+                case ValueType::Time: {
+                    return lhsComparable.GreaterThan(rhsComparable);
+                }
+                case ValueType::DateTime: {
+                    return lhsComparable.GreaterThan(rhsComparable);
+                }
+                default: {
+                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    std::string msg{type + " is not supported by the date&time based comparer"};
+                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                }
+            }
         }
 
         bool Data::Comparer::Greater::CompareMathematic(

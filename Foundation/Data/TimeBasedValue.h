@@ -5,13 +5,15 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H
 #define CLOUD_E_PLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H
 
+#include <Foundation/Common/IComparable.h>
 #include "Value.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Data {
 
-            class TimeBasedValue : public Value {
+            class TimeBasedValue : public Value,
+                                   public Common::IComparable {
 
             public:
                 using TSDate = struct {

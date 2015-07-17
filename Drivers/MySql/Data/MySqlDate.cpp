@@ -3,7 +3,7 @@
 //
 
 
-#include <Drivers/MySql/MySqlSourceHelper.h>
+#include <Drivers/MySql/Helper/MySqlSourceHelper.h>
 #include "MySqlDate.h"
 
 namespace Cloude {
@@ -17,6 +17,11 @@ namespace Cloude {
                     _date.year = year;
                     _date.month = month;
                     _date.day = day;
+                    _date.hour = 0;
+                    _date.minute = 0;
+                    _date.second = 0;
+                    _date.second_part = 0;
+                    _date.neg = false;
                     _date.time_type = MYSQL_TIMESTAMP_DATE;
                 }
 
@@ -26,6 +31,11 @@ namespace Cloude {
                     _date.year = 0;
                     _date.month = 0;
                     _date.day = 0;
+                    _date.hour = 0;
+                    _date.minute = 0;
+                    _date.second = 0;
+                    _date.second_part = 0;
+                    _date.neg = false;
                     _date.time_type = MYSQL_TIMESTAMP_DATE;
                 }
 
@@ -34,7 +44,7 @@ namespace Cloude {
                 }
 
                 std::string MySqlDate::ToString() const {
-                    return MySqlSourceHelper::DateToISO8601String(_date);
+                    return Helper::MySqlSourceHelper::DateToISO8601String(_date);
                 }
 
                 Foundation::Data::Value &MySqlDate::operator+(const Foundation::Data::Value &rhs) {
@@ -60,6 +70,20 @@ namespace Cloude {
                 Foundation::Data::Value &MySqlDate::operator%(const Foundation::Data::Value &rhs) {
                     std::string msg{"Does not support operator% yet"};
                     throw MySqlSourceException{msg};
+                }
+
+                bool MySqlDate::LessThan(const Foundation::Common::IComparable &target) const {
+                    auto &targetTs = dynamic_cast<const MySqlDate &>(target);
+                    return Helper::MySqlSourceHelper::Less(_date, targetTs._date);
+                }
+
+                bool MySqlDate::GreaterThan(const Foundation::Common::IComparable &target) const {
+                    auto &targetTs = dynamic_cast<const MySqlDate &>(target);
+                    return Helper::MySqlSourceHelper::Greater(_date, targetTs._date);
+                }
+
+                bool MySqlDate::EquivalentTo(const Foundation::Common::IComparable &target) const {
+                    return !LessThan(target) && !GreaterThan(target);
                 }
             }
         }

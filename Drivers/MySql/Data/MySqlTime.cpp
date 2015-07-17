@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#include <Drivers/MySql/MySqlSourceHelper.h>
+#include <Drivers/MySql/Helper/MySqlSourceHelper.h>
 #include "MySqlTime.h"
 
 namespace Cloude {
@@ -45,7 +45,7 @@ namespace Cloude {
                 }
 
                 std::string MySqlTime::ToString() const {
-                    return MySqlSourceHelper::TimeToISO8601String(_time);
+                    return Helper::MySqlSourceHelper::TimeToISO8601String(_time);
                 }
 
                 Foundation::Data::Value &MySqlTime::operator+(const Foundation::Data::Value &rhs) {
@@ -71,6 +71,20 @@ namespace Cloude {
                 Foundation::Data::Value &MySqlTime::operator%(const Foundation::Data::Value &rhs) {
                     std::string msg{"Does not support operator% yet"};
                     throw MySqlSourceException{msg};
+                }
+
+                bool MySqlTime::LessThan(const Foundation::Common::IComparable &target) const {
+                    auto &targetTs = dynamic_cast<const MySqlTime &>(target);
+                    return Helper::MySqlSourceHelper::Less(_time, targetTs._time);
+                }
+
+                bool MySqlTime::GreaterThan(const Foundation::Common::IComparable &target) const {
+                    auto &targetTs = dynamic_cast<const MySqlTime &>(target);
+                    return Helper::MySqlSourceHelper::Greater(_time, targetTs._time);
+                }
+
+                bool MySqlTime::EquivalentTo(const Foundation::Common::IComparable &target) const {
+                    return !LessThan(target) && !GreaterThan(target);
                 }
             }
         }

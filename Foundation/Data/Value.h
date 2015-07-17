@@ -6,7 +6,6 @@
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUE_H
 
 #include <Foundation/Common/IPrintable.h>
-#include <Foundation/Common/IEquatable.h>
 #include <Foundation/Common/IComputable.h>
 #include "TypeEnums.h"
 
