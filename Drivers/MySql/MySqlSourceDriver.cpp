@@ -234,9 +234,6 @@ namespace Cloude {
                                           case Foundation::Data::ValueType::VarChar:
                                               cell->setValue(CldeValueFactory::CreateVarChar(column->getLength()));
                                               break;
-                                          case Foundation::Data::ValueType::Text:
-                                              cell->setValue(CldeValueFactory::CreateText(column->getLength()));
-                                              break;
                                           case Foundation::Data::ValueType::Date:
                                               cell->setValue(Helper::MySqlSourceHelper::CreateDate());
                                               break;
@@ -320,11 +317,6 @@ namespace Cloude {
                         }
                         case Foundation::Data::ValueType::VarChar: {
                             ptrBind->buffer_type = MYSQL_TYPE_STRING;
-                            ptrBind->buffer_length = sptrColumn->getLength();
-                            break;
-                        }
-                        case Foundation::Data::ValueType::Text: {
-                            ptrBind->buffer_type = MYSQL_TYPE_MEDIUM_BLOB;
                             ptrBind->buffer_length = sptrColumn->getLength();
                             break;
                         }
