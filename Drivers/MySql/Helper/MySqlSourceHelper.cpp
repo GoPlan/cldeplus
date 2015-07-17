@@ -157,7 +157,6 @@ namespace Cloude {
                                                                           unsigned long millisecond) {
                     return std::make_shared<Data::MySqlDateTime>(year, month, day, hour, minute, second, millisecond);
                 }
-
             }
         }
     }
