@@ -57,8 +57,10 @@ namespace Cloude {
                         auto &sptrSubmittedHourCell = sptrEnquiry->getCell("SubmittedHour");
                         auto &sptrCustIdCell = sptrEnquiry->getCell("CustId");
                         auto &sptrSubjectCell = sptrEnquiry->getCell("Subject");
-//                        auto &sptrContentCell = sptrEnquiry->getCell("Content");
+                        auto &sptrContentCell = sptrEnquiry->getCell("Content");
                         auto &sptrUpdatedDateCell = sptrEnquiry->getCell("UpdatedDate");
+
+                        std::cout << sptrEnquiry->ToString() << std::endl;
 
                         sptrCustIdCell->setValue(sptrCustId);
                         sptrSubmittedDateCell->setValue(sptrSubmittedDate);
@@ -89,7 +91,6 @@ namespace Cloude {
                             EXPECT_TRUE(compare(sptrCustIdCell->getValue(), sptrCustId));
                             EXPECT_TRUE(compare(sptrSubmittedDateCell->getValue(), sptrSubmittedDate));
                             EXPECT_TRUE(compare(sptrSubmittedHourCell->getValue(), sptrSubmittedHour));
-                            EXPECT_TRUE(compare(sptrSubjectCell->getValue(), sptrSubject));
                             EXPECT_TRUE(compare(sptrUpdatedDateCell->getValue(), sptrUpdatedDate));
                         }
                     }

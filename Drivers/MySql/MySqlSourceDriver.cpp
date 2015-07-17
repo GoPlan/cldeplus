@@ -62,6 +62,7 @@ namespace Cloude {
                 my_bool *PtrResultIsNull = nullptr;
                 my_bool *PtrResultIsUnsigned = nullptr;
                 my_bool *PtrResultError = nullptr;
+                std::vector<int> LargeCellIndices;
             };
 
             using SPtrCommand = std::shared_ptr<Command>;
@@ -202,63 +203,90 @@ namespace Cloude {
                     std::for_each(columnsList.cbegin(), columnsList.cend(),
                                   [&](const Foundation::SPtrColumn &column) -> void {
 
-                                      auto &cell = record->getCell(column->getName());
+                                      auto &sptrCell = record->getCell(column->getName());
                                       auto &dataType = column->getDataType();
-                                      auto length = column->getLength();
+                                      auto ptrBind = &command->PtrResultBind[index];
+
+                                      setupBindTypeAndLength(sptrCell->getColumn(), ptrBind);
+
+                                      ptrBind->length = &command->PtrResultLength[index];
+                                      ptrBind->is_null = &command->PtrResultIsNull[index];
+                                      ptrBind->error = &command->PtrResultError[index];
 
                                       switch (dataType) {
-                                          case Foundation::Data::ValueType::Int16:
-                                              cell->setValue(CldeValueFactory::CreateInt64(0));
+                                          case Foundation::Data::ValueType::Int16: {
+                                              sptrCell->setValue(CldeValueFactory::CreateInt16(0));
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::Int32:
-                                              cell->setValue(CldeValueFactory::CreateInt32(0));
+                                          }
+                                          case Foundation::Data::ValueType::Int32: {
+                                              sptrCell->setValue(CldeValueFactory::CreateInt32(0));
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::Int64:
-                                              cell->setValue(CldeValueFactory::CreateInt64(0));
+                                          }
+                                          case Foundation::Data::ValueType::Int64: {
+                                              sptrCell->setValue(CldeValueFactory::CreateInt64(0));
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::UInt16:
-                                              cell->setValue(CldeValueFactory::CreateUInt16(0));
+                                          }
+                                          case Foundation::Data::ValueType::UInt16: {
+                                              sptrCell->setValue(CldeValueFactory::CreateUInt16(0));
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::UInt32:
-                                              cell->setValue(CldeValueFactory::CreateUInt32(0));
+                                          }
+                                          case Foundation::Data::ValueType::UInt32: {
+                                              sptrCell->setValue(CldeValueFactory::CreateUInt32(0));
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::UInt64:
-                                              cell->setValue(CldeValueFactory::CreateUInt64(0));
+                                          }
+                                          case Foundation::Data::ValueType::UInt64: {
+                                              sptrCell->setValue(CldeValueFactory::CreateUInt64(0));
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::Float:
-                                              cell->setValue(CldeValueFactory::CreateFloat(0));
+                                          }
+                                          case Foundation::Data::ValueType::Double: {
+                                              sptrCell->setValue(CldeValueFactory::CreateDouble(0));
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::Double:
-                                              cell->setValue(CldeValueFactory::CreateDouble(0));
+                                          }
+                                          case Foundation::Data::ValueType::Float: {
+                                              sptrCell->setValue(CldeValueFactory::CreateFloat(0));
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::VarChar:
-                                              cell->setValue(CldeValueFactory::CreateVarChar(column->getLength()));
+                                          }
+                                          case Foundation::Data::ValueType::VarChar: {
+                                              sptrCell->setValue(CldeValueFactory::CreateVarChar(column->getLength()));
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::Date:
-                                              cell->setValue(Helper::MySqlSourceHelper::CreateDate());
+                                          }
+                                          case Foundation::Data::ValueType::Text: {
+                                              ptrBind->buffer = 0;
+                                              ptrBind->buffer_length = 0;
+                                              command->LargeCellIndices.push_back(index);
                                               break;
-                                          case Foundation::Data::ValueType::Time:
-                                              cell->setValue(Helper::MySqlSourceHelper::CreateTime());
+                                          }
+                                          case Foundation::Data::ValueType::DateTime: {
+                                              sptrCell->setValue(CldeValueFactory::CreateDateTime());
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
-                                          case Foundation::Data::ValueType::DateTime:
-                                              cell->setValue(Helper::MySqlSourceHelper::CreateDateTime());
+                                          }
+                                          case Foundation::Data::ValueType::Date: {
+                                              sptrCell->setValue(CldeValueFactory::CreateDate());
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
+                                          }
+                                          case Foundation::Data::ValueType::Time: {
+                                              sptrCell->setValue(CldeValueFactory::CreateTime());
+                                              ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
+                                              break;
+                                          }
                                           default: {
                                               using TypeHelper = Foundation::Data::Helper::TypeHelper;
                                               std::string typeName{TypeHelper::CopyValueTypeToString(dataType)};
-                                              std::string msg{"MySqlSourceDriver does not support " + typeName};
+                                              std::string msg{"MySql driver does not support " + typeName + " yet"};
                                               throw MySqlSourceException{msg};
                                           }
                                       }
-
-                                      auto ptrValue = cell->getValue()->PointerToBuffer();
-
-                                      command->PtrResultBind[index].is_null = &command->PtrResultIsNull[index];
-                                      command->PtrResultBind[index].error = &command->PtrResultError[index];
-                                      command->PtrResultBind[index].length = &command->PtrResultLength[index];
-                                      command->PtrResultBind[index].buffer = ptrValue;
-
-                                      setupBindTypeAndLength(cell->getColumn(), &command->PtrResultBind[index]);
 
                                       ++index;
                                   });
@@ -317,6 +345,11 @@ namespace Cloude {
                         }
                         case Foundation::Data::ValueType::VarChar: {
                             ptrBind->buffer_type = MYSQL_TYPE_STRING;
+                            ptrBind->buffer_length = sptrColumn->getLength();
+                            break;
+                        }
+                        case Foundation::Data::ValueType::Text: {
+                            ptrBind->buffer_type = MYSQL_TYPE_MEDIUM_BLOB;
                             ptrBind->buffer_length = sptrColumn->getLength();
                             break;
                         }
@@ -415,7 +448,7 @@ namespace Cloude {
 
             int MySqlSourceDriver::Load(Foundation::SPtrEntity &entity) const {
 
-                auto command = _mySqlApiImpl->createCommand(_getStatement);
+                SPtrCommand command = _mySqlApiImpl->createCommand(_getStatement);
 
                 _mySqlApiImpl->initParamBinds(getEntityMap().getColumnsForKey(), entity, command);
                 _mySqlApiImpl->initResultBinds(getEntityMap().getColumnsForGet(), entity, command);
@@ -434,22 +467,37 @@ namespace Cloude {
 
                 auto rowStatus = mysql_stmt_fetch(command->PtrStmt);
 
-                switch (rowStatus) {
-                    case 0:
-                        return 1;
-                    case 1:
-                        _mySqlApiImpl->assertSqlError();
-                        _mySqlApiImpl->assertStmtError(command->PtrStmt);
-                        break;
-                    case MYSQL_NO_DATA:
-                        return 0;
-                    case MYSQL_DATA_TRUNCATED:
-                        throw MySqlSourceException("fetch error: MYSQL_DATA_TRUNCATED");
-                    default:
-                        throw MySqlSourceException("fetch error: unknown return status code");
+                // Fetch cells
+                if (!rowStatus || rowStatus == MYSQL_DATA_TRUNCATED) {
+
+                    for (auto &index : command->LargeCellIndices) {
+
+                        auto ptrLength = command->PtrResultBind[index].length;
+                        auto &isNull = command->PtrResultIsNull[index];
+                        auto &isError = command->PtrResultError[index];
+
+                        if (isError) {
+                            _mySqlApiImpl->assertStmtError(command->PtrStmt);
+                        }
+
+                        auto &sptrColumn = getEntityMap().getColumnsForGet().at(index);
+                        auto &sptrCell = entity->getCell(sptrColumn->getName());
+                        auto value = Foundation::Data::ValueFactory::CreateText(*ptrLength);
+                        sptrCell->setValue(value);
+
+                        command->PtrResultBind[index].buffer = value->PointerToBuffer();
+                        command->PtrResultBind[index].buffer_length = *ptrLength;
+
+                        mysql_stmt_fetch_column(command->PtrStmt, &command->PtrResultBind[index], index, 0);
+                    }
                 }
 
-                return 0;
+                if (rowStatus != MYSQL_NO_DATA && rowStatus != MYSQL_DATA_TRUNCATED) {
+                    _mySqlApiImpl->assertSqlError();
+                    _mySqlApiImpl->assertStmtError(command->PtrStmt);
+                }
+
+                return 1;
             }
 
             int MySqlSourceDriver::Insert(Foundation::SPtrEntity &entity) const {

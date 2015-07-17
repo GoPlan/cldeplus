@@ -70,7 +70,7 @@ namespace Cloude {
             }
 
             SPtrValue ValueFactory::CreateText(const std::string &value) {
-                return std::make_shared<Type::Text>(value.length());
+                return std::make_shared<Type::Text>(value);
             }
 
             SPtrValue ValueFactory::CreateText(unsigned long length) {
