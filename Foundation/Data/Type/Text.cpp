@@ -9,7 +9,7 @@ namespace Cloude {
         namespace Data {
             namespace Type {
 
-                Text::Text(const std::string &text) : CharacterValue{Data::ValueType::Text, text.length()},
+                Text::Text(const std::string &text) : CharacterValue{Data::ValueType::Text, text.length() + 1},
                                                       _value{text} {
                     //
                 }
@@ -23,8 +23,12 @@ namespace Cloude {
                     _value.shrink_to_fit();
                 }
 
-                void *Text::RawPointerToValueBuffer() {
+                void *Text::PointerToBuffer() {
                     return &_value;
+                }
+
+                size_t Text::getActualSize() {
+                    return _value.length() + 1;
                 }
 
                 std::string Text::ToString() const {

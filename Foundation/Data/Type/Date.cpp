@@ -23,7 +23,7 @@ namespace Cloude {
                     _date.day = day;
                 }
 
-                void *Date::RawPointerToValueBuffer() {
+                void *Date::PointerToBuffer() {
                     return &_date;
                 }
 

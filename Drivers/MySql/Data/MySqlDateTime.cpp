@@ -59,7 +59,7 @@ namespace Cloude {
                     _dateTime.time_type = MYSQL_TIMESTAMP_DATETIME;
                 }
 
-                void *MySqlDateTime::RawPointerToValueBuffer() {
+                void *MySqlDateTime::PointerToBuffer() {
                     return &_dateTime;
                 }
 

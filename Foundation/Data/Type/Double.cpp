@@ -15,7 +15,7 @@ namespace Cloude {
                     //
                 }
 
-                void *Double::RawPointerToValueBuffer() {
+                void *Double::PointerToBuffer() {
                     return &_value;
                 }
 

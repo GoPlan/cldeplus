@@ -31,7 +31,7 @@ namespace Cloude {
 
             SPtrEntity entity = Foundation::CreateEntity(identity);
 
-            Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, entity, false);
+            Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForGet, entity, false);
 
             Insert(entity);
 
@@ -55,7 +55,7 @@ namespace Cloude {
 
             SPtrEntity sptrEntity = Foundation::CreateEntity(identity);
 
-            Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, sptrEntity, false);
+            Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForGet, sptrEntity, false);
 
             if (!_entitySourceDriver.Load(sptrEntity)) {
                 return SPtrEntity(nullptr);

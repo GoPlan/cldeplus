@@ -16,7 +16,7 @@ namespace Cloude {
                 static ValueCategory _category;
 
             public:
-                CharacterValue(ValueType dataType, size_t length);
+                CharacterValue(ValueType dataType, size_t size);
                 CharacterValue(const CharacterValue &) = default;
                 CharacterValue(CharacterValue &&) = default;
                 CharacterValue &operator=(const CharacterValue &) = default;

@@ -20,7 +20,7 @@ namespace Cloude {
                     throw Segmentation::Exception::TransformationException{msg};
                 }
 
-                uint64_t *tmp = reinterpret_cast<uint64_t *>(value->RawPointerToValueBuffer());
+                uint64_t *tmp = reinterpret_cast<uint64_t *>(value->PointerToBuffer());
 
                 switch (dataType) {
                     case Foundation::Data::ValueType::Int16:

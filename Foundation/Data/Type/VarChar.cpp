@@ -35,7 +35,7 @@ namespace Cloude {
                 VarChar::VarChar(VarChar &&varchar)
                         : CharacterValue(ValueType::VarChar, sizeof(char) * (strlen(varchar._value) + 1)),
                           _value{varchar._value} {
-                    varchar._length = 0;
+                    varchar._reservedSize = 0;
                     varchar._value = nullptr;
                 }
 
@@ -45,13 +45,13 @@ namespace Cloude {
                         return *this;
 
                     if (_value != nullptr && _value != NULL) {
-                        memset(_value, 0x0, _length);
+                        memset(_value, 0x0, _reservedSize);
                         free(_value);
                         _value = nullptr;
                     }
 
                     _dataType = varchar._dataType;
-                    _length = varchar._length;
+                    _reservedSize = varchar._reservedSize;
                     _value = strdup(varchar._value);
 
                     return *this;
@@ -60,13 +60,13 @@ namespace Cloude {
                 VarChar &VarChar::operator=(VarChar &&varchar) {
 
                     if (_value != nullptr && _value != NULL) {
-                        memset(_value, 0x0, _length);
+                        memset(_value, 0x0, _reservedSize);
                         free(_value);
                         _value = nullptr;
                     }
 
                     _dataType = std::move(varchar._dataType);
-                    _length = std::move(varchar._length);
+                    _reservedSize = std::move(varchar._reservedSize);
                     _value = std::move(varchar._value);
 
                     return *this;
@@ -82,12 +82,16 @@ namespace Cloude {
                     return std::string(_value);
                 }
 
-                void *VarChar::RawPointerToValueBuffer() {
+                void *VarChar::PointerToBuffer() {
                     return _value;
                 }
 
+                size_t VarChar::getActualSize() {
+                    return strlen(_value) + 1;
+                }
+
                 void VarChar::init() {
-                    _value = (char *) calloc(_length, sizeof(char));
+                    _value = (char *) calloc(_reservedSize, sizeof(char));
                 }
 
                 void VarChar::init(const char *value) {

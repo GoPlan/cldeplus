@@ -8,8 +8,8 @@ namespace Cloude {
     namespace Foundation {
         namespace Data {
 
-            CharacterValue::CharacterValue(ValueType dataType, size_t length)
-                    : Value(dataType, length) {
+            CharacterValue::CharacterValue(ValueType dataType, size_t size)
+                    : Value(dataType, size) {
                 //
             }
 

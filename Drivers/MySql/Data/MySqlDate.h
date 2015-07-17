@@ -29,7 +29,7 @@ namespace Cloude {
                     ~MySqlDate() = default;
 
                     // Value
-                    void *RawPointerToValueBuffer() override;
+                    void *PointerToBuffer() override;
 
                     // IPrintable
                     std::string ToString() const override;

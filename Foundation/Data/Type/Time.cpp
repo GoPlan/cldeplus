@@ -26,7 +26,7 @@ namespace Cloude {
                     _hasOffSet = hasOffSet;
                 }
 
-                void *Time::RawPointerToValueBuffer() {
+                void *Time::PointerToBuffer() {
                     return &_time;
                 }
 

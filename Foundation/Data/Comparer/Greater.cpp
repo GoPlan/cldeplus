@@ -47,53 +47,53 @@ namespace Cloude {
 
             switch (lhs->getDataType()) {
                 case ValueType::Boolean: {
-                    auto ptrLhsTmp = reinterpret_cast<bool *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<bool *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<bool *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<bool *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::Byte: {
-                    auto ptrLhsTmp = reinterpret_cast<char *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<char *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<char *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<char *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::Int16: {
-                    auto ptrLhsTmp = reinterpret_cast<int16_t *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<int16_t *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<int16_t *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<int16_t *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::Int32: {
-                    auto ptrLhsTmp = reinterpret_cast<int32_t *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<int32_t *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<int32_t *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<int32_t *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::Int64: {
-                    auto ptrLhsTmp = reinterpret_cast<int64_t *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<int64_t *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<int64_t *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<int64_t *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::UInt16: {
-                    auto ptrLhsTmp = reinterpret_cast<uint16_t *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<uint16_t *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<uint16_t *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<uint16_t *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::UInt32: {
-                    auto ptrLhsTmp = reinterpret_cast<uint32_t *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<uint32_t *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<uint32_t *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<uint32_t *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::UInt64: {
-                    auto ptrLhsTmp = reinterpret_cast<uint64_t *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<uint64_t *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<uint64_t *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<uint64_t *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::Double: {
-                    auto ptrLhsTmp = reinterpret_cast<double *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<double *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<double *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<double *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::Float: {
-                    auto ptrLhsTmp = reinterpret_cast<float *>(lhs->RawPointerToValueBuffer());
-                    auto ptrRhsTmp = reinterpret_cast<float *>(rhs->RawPointerToValueBuffer());
+                    auto ptrLhsTmp = reinterpret_cast<float *>(lhs->PointerToBuffer());
+                    auto ptrRhsTmp = reinterpret_cast<float *>(rhs->PointerToBuffer());
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::Currency: {
@@ -118,16 +118,16 @@ namespace Cloude {
                     auto ptrLhsTmp = dynamic_cast<Data::Type::String *>(lhs.get());
                     auto ptrRhsTmp = dynamic_cast<Data::Type::String *>(lhs.get());
 
-                    return strcmp(((const std::string *) ptrLhsTmp->RawPointerToValueBuffer())->c_str(),
-                                  ((const std::string *) ptrRhsTmp->RawPointerToValueBuffer())->c_str()) > 0;
+                    return strcmp(((const std::string *) ptrLhsTmp->PointerToBuffer())->c_str(),
+                                  ((const std::string *) ptrRhsTmp->PointerToBuffer())->c_str()) > 0;
                 }
                 case ValueType::VarChar: {
 
                     auto ptrLhsTmp = dynamic_cast<Data::Type::VarChar *>(lhs.get());
                     auto ptrRhsTmp = dynamic_cast<Data::Type::VarChar *>(lhs.get());
 
-                    return strcmp((const char *) ptrLhsTmp->RawPointerToValueBuffer(),
-                                  (const char *) ptrRhsTmp->RawPointerToValueBuffer()) > 0;
+                    return strcmp((const char *) ptrLhsTmp->PointerToBuffer(),
+                                  (const char *) ptrRhsTmp->PointerToBuffer()) > 0;
                 }
                 case ValueType::Text: {
                     std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());

@@ -37,7 +37,7 @@ namespace Cloude {
                     _dateTime.time.offset = offset;
                 }
 
-                void *DateTime::RawPointerToValueBuffer() {
+                void *DateTime::PointerToBuffer() {
                     return &_dateTime;
                 }
 

@@ -46,10 +46,10 @@ namespace Cloude {
                     auto &lastname = entity.getCell("LastName")->getValue();
                     auto &email = entity.getCell("Email")->getValue();
 
-                    customer.setId(*(int64_t *) (id->RawPointerToValueBuffer()));
-                    customer.setFirstName(std::string{(const char *) firstname->RawPointerToValueBuffer()});
-                    customer.setLastName(std::string{(const char *) lastname->RawPointerToValueBuffer()});
-                    customer.setEmail(std::string{(const char *) email->RawPointerToValueBuffer()});
+                    customer.setId(*(int64_t *) (id->PointerToBuffer()));
+                    customer.setFirstName(std::string{(const char *) firstname->PointerToBuffer()});
+                    customer.setLastName(std::string{(const char *) lastname->PointerToBuffer()});
+                    customer.setEmail(std::string{(const char *) email->PointerToBuffer()});
 
                     return customer;
                 };

@@ -25,9 +25,9 @@ namespace Cloude {
                     ~EntityStoreHelper() = delete;
 
                 public:
-                    static void GenerateFieldsFromColumns(const SPtrColumnVector &columnVector,
-                                                          const Store::SPtrDataRecord &dataRecord,
-                                                          bool checkIfFieldExists = true);
+                    static void GenerateCellsFromColumns(const SPtrColumnVector &columnVector,
+                                                         const Store::SPtrDataRecord &dataRecord,
+                                                         bool checkCellExists = true);
 
                     static SPtrEntityProxy CopySPtrProxy(const SPtrEntityProxy &proxy);
                 };

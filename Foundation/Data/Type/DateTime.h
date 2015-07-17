@@ -32,7 +32,7 @@ namespace Cloude {
                     ~DateTime() = default;
 
                     // Value
-                    virtual void *RawPointerToValueBuffer();
+                    virtual void *PointerToBuffer();
 
                     // IPrintable
                     virtual std::string ToString() const;

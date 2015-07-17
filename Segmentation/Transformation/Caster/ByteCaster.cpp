@@ -22,7 +22,7 @@ namespace Cloude {
                         throw Segmentation::Exception::TransformationException{msg};
                     }
 
-                    char *tmp = reinterpret_cast<char *>(value->RawPointerToValueBuffer());
+                    char *tmp = reinterpret_cast<char *>(value->PointerToBuffer());
 
                     switch (dataType) {
                         case Foundation::Data::ValueType::Int16:

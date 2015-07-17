@@ -137,8 +137,8 @@ namespace Cloude {
                                           return;
                                       }
 
-                                      auto ptrLength = value->RawPointerToValueLength();
-                                      auto ptrBuffer = value->RawPointerToValueBuffer();
+                                      auto ptrLength = value->PointerToActualSizeVar();
+                                      auto ptrBuffer = value->PointerToBuffer();
 
                                       command->PtrParamsBind[index].length = static_cast<unsigned long *>(ptrLength);
                                       command->PtrParamsBind[index].buffer = ptrBuffer;
@@ -171,8 +171,8 @@ namespace Cloude {
                                           return;
                                       }
 
-                                      auto ptrLength = value->RawPointerToValueLength();
-                                      auto ptrBuffer = value->RawPointerToValueBuffer();
+                                      auto ptrLength = value->PointerToActualSizeVar();
+                                      auto ptrBuffer = value->PointerToBuffer();
 
                                       command->PtrParamsBind[index].length = static_cast<unsigned long *>(ptrLength);
                                       command->PtrParamsBind[index].buffer = ptrBuffer;
@@ -234,6 +234,9 @@ namespace Cloude {
                                           case Foundation::Data::ValueType::VarChar:
                                               cell->setValue(CldeValueFactory::CreateVarChar(column->getLength()));
                                               break;
+                                          case Foundation::Data::ValueType::Text:
+                                              cell->setValue(CldeValueFactory::CreateText(column->getLength()));
+                                              break;
                                           case Foundation::Data::ValueType::Date:
                                               cell->setValue(Helper::MySqlSourceHelper::CreateDate());
                                               break;
@@ -251,7 +254,7 @@ namespace Cloude {
                                           }
                                       }
 
-                                      auto ptrValue = cell->getValue()->RawPointerToValueBuffer();
+                                      auto ptrValue = cell->getValue()->PointerToBuffer();
 
                                       command->PtrResultBind[index].is_null = &command->PtrResultIsNull[index];
                                       command->PtrResultBind[index].error = &command->PtrResultError[index];
@@ -320,6 +323,11 @@ namespace Cloude {
                             ptrBind->buffer_length = sptrColumn->getLength();
                             break;
                         }
+                        case Foundation::Data::ValueType::Text: {
+                            ptrBind->buffer_type = MYSQL_TYPE_STRING;
+                            ptrBind->buffer_length = sptrColumn->getLength();
+                            break;
+                        }
                         case Foundation::Data::ValueType::DateTime: {
                             ptrBind->buffer_type = MYSQL_TYPE_DATETIME;
                             ptrBind->buffer_length = sizeof(MYSQL_TIME);
@@ -335,11 +343,6 @@ namespace Cloude {
                             ptrBind->buffer_length = sizeof(MYSQL_TIME);
                             break;
                         }
-//                        case Foundation::Data::ValueType::Text: {
-//                            ptrBind->buffer_type = MYSQL_TYPE_STRING;
-//                            ptrBind->buffer_length = cell->getColumn()->getLength();
-//                            break;
-//                        }
                         default: {
                             using TypeHelper = Foundation::Data::Helper::TypeHelper;
                             std::string typeName{TypeHelper::CopyValueTypeToString(dataType)};
@@ -535,7 +538,7 @@ namespace Cloude {
                 auto sptrProxy = Foundation::CreateEntityProxy();
 
                 using StoreHelper = Foundation::Store::Helper::EntityStoreHelper;
-                StoreHelper::GenerateFieldsFromColumns(columnsForProjection, sptrProxy);
+                StoreHelper::GenerateCellsFromColumns(columnsForProjection, sptrProxy);
 
                 _mySqlApiImpl->initParamBinds(pairSelectStmt.second, command);
                 _mySqlApiImpl->initResultBinds(columnsForProjection, sptrProxy, command);

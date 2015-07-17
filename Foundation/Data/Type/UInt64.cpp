@@ -15,7 +15,7 @@ namespace Cloude {
                     //
                 }
 
-                void *UInt64::RawPointerToValueBuffer() {
+                void *UInt64::PointerToBuffer() {
                     return &this->_value;
                 }
 

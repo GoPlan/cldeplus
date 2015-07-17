@@ -27,7 +27,8 @@ namespace Cloude {
                     ~Text();
 
                     // Value
-                    virtual void *RawPointerToValueBuffer() override;
+                    virtual void *PointerToBuffer() override;
+                    virtual size_t getActualSize() override;
 
                     // IPrintable
                     virtual std::string ToString() const override;

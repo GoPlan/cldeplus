@@ -108,7 +108,7 @@ namespace Cloude {
                                           return;
                                       }
 
-                                      auto const ptrValueBuffer = field->getValue()->RawPointerToValueBuffer();
+                                      auto const ptrValueBuffer = field->getValue()->PointerToBuffer();
 
                                       switch (column->getDataType()) {
 
@@ -168,7 +168,7 @@ namespace Cloude {
                                           return;
                                       }
 
-                                      const auto ptrValueBuffer = sptrCriteria->getValue()->RawPointerToValueBuffer();
+                                      const auto ptrValueBuffer = sptrCriteria->getValue()->PointerToBuffer();
 
                                       switch (column->getDataType()) {
 
@@ -481,8 +481,8 @@ namespace Cloude {
                 while ((resultCode = sqlite3_step(uptrCommand->_ptrStmt)) == SQLITE_ROW) {
 
                     Foundation::SPtrEntityProxy sptrProxy{new Foundation::EntityProxy{}};
-                    Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForProjection,
-                                                                                            sptrProxy);
+                    Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForProjection,
+                                                                                           sptrProxy);
 
                     _sqliteApiImpl->bindResultToFields(sptrProxy, columnsForProjection, uptrCommand);
 

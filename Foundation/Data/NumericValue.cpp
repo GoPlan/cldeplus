@@ -8,8 +8,8 @@ namespace Cloude {
     namespace Foundation {
         namespace Data {
 
-            NumericValue::NumericValue(ValueType dataType, size_t length)
-                    : Value(dataType, length) {
+            NumericValue::NumericValue(ValueType dataType, size_t size)
+                    : Value(dataType, size) {
                 //
             }
 

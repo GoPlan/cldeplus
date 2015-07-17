@@ -20,7 +20,7 @@ namespace Cloude {
 
                 public:
                     explicit String(const std::string &string);
-                    explicit String(unsigned long length);
+                    explicit String(unsigned long size);
                     String()=default;
                     String(const String &) = default;
                     String(String &&) = default;
@@ -29,7 +29,8 @@ namespace Cloude {
                     ~String() = default;
 
                     // Value
-                    virtual void *RawPointerToValueBuffer();
+                    virtual void *PointerToBuffer() override;
+                    virtual size_t getActualSize() override;
 
                     // IPrintable
                     virtual std::string ToString() const;

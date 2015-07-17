@@ -14,7 +14,7 @@ namespace Cloude {
                     //
                 }
 
-                void *Float::RawPointerToValueBuffer() {
+                void *Float::PointerToBuffer() {
                     return &_value;
                 }
 

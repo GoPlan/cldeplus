@@ -12,10 +12,10 @@ namespace Cloude {
         namespace Store {
             namespace Helper {
 
-                void EntityStoreHelper::GenerateFieldsFromColumns(
+                void EntityStoreHelper::GenerateCellsFromColumns(
                         const Cloude::Foundation::SPtrColumnVector &columnVector,
                         const Cloude::Foundation::Store::SPtrDataRecord &dataRecord,
-                        bool checkIfFieldExists) {
+                        bool checkCellExists) {
 
                     if (!dataRecord) {
                         std::string msg{"DataRecord can not be nullptr or undefined"};
@@ -24,12 +24,12 @@ namespace Cloude {
 
                     for (auto column : columnVector) {
 
-                        if (checkIfFieldExists && dataRecord->hasCell(column->getName())) {
+                        if (checkCellExists && dataRecord->hasCell(column->getName())) {
                             continue;
                         }
 
-                        auto field = std::make_shared<Cell>(const_cast<SPtrColumn &>(column));
-                        dataRecord->setCell(field);
+                        auto cell = Foundation::CreateCell(const_cast<SPtrColumn &>(column));
+                        dataRecord->setCell(cell);
                     }
                 }
 

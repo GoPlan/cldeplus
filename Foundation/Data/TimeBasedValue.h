@@ -34,7 +34,7 @@ namespace Cloude {
                 };
 
             public:
-                TimeBasedValue(ValueType dataType, size_t length);
+                TimeBasedValue(ValueType dataType, size_t size);
                 TimeBasedValue(const TimeBasedValue &) = default;
                 TimeBasedValue(TimeBasedValue &&) = default;
                 TimeBasedValue &operator=(const TimeBasedValue &) = default;

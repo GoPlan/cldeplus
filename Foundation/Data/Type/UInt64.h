@@ -25,7 +25,7 @@ namespace Cloude {
                     ~UInt64() = default;
 
                     // Value
-                    virtual void *RawPointerToValueBuffer() override;
+                    virtual void *PointerToBuffer() override;
 
                     // IPrintable
                     virtual std::string ToString() const override;
