@@ -3,15 +3,15 @@
 //
 
 
-//#include "Type/CreateValue.hpp"
-//#include "Type/ValueComparison.hpp"
-//#include "Segmentation/Segmentation.hpp"
-//#include "Segmentation/Transformation.hpp"
-//#include "Relation/Relation.hpp"
-//#include "Store/SQLiteStore.hpp"
-//#include "Store/MySqlStore00.hpp"
+#include "Type/CreateValue.hpp"
+#include "Type/ValueComparison.hpp"
+#include "Segmentation/Segmentation.hpp"
+#include "Segmentation/Transformation.hpp"
+#include "Relation/Relation.hpp"
+#include "Store/SQLiteStore.hpp"
+#include "Store/MySqlStore00.hpp"
 #include "Store/MySqlStore01.hpp"
-//#include "Store/MySqlStore02.hpp"
+#include "Store/MySqlStore02.hpp"
 
 //#include "Store/Test/MongoDbStore.hpp"
 //#include "Store/Test/PostgreStore.hpp"

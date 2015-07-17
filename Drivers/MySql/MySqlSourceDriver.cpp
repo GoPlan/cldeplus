@@ -266,17 +266,17 @@ namespace Cloude {
                                               break;
                                           }
                                           case Foundation::Data::ValueType::DateTime: {
-                                              sptrCell->setValue(CldeValueFactory::CreateDateTime());
+                                              sptrCell->setValue(Helper::MySqlSourceHelper::CreateDateTime());
                                               ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
                                           }
                                           case Foundation::Data::ValueType::Date: {
-                                              sptrCell->setValue(CldeValueFactory::CreateDate());
+                                              sptrCell->setValue(Helper::MySqlSourceHelper::CreateDate());
                                               ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
                                           }
                                           case Foundation::Data::ValueType::Time: {
-                                              sptrCell->setValue(CldeValueFactory::CreateTime());
+                                              sptrCell->setValue(Helper::MySqlSourceHelper::CreateTime());
                                               ptrBind->buffer = sptrCell->getValue()->PointerToBuffer();
                                               break;
                                           }

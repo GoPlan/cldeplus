@@ -28,8 +28,8 @@ namespace Cloude {
                 this->_columnsForGet.push_back(SubmittedDate);
                 this->_columnsForGet.push_back(SubmittedHour);
                 this->_columnsForGet.push_back(Subject);
-                this->_columnsForGet.push_back(UpdatedDate);
                 this->_columnsForGet.push_back(Content);
+                this->_columnsForGet.push_back(UpdatedDate);
                 this->_columnsForUpdate.push_back(CustId);
                 this->_columnsForUpdate.push_back(SubmittedDate);
                 this->_columnsForUpdate.push_back(SubmittedHour);

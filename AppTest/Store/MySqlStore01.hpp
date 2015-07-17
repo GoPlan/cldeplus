@@ -33,22 +33,22 @@ namespace Cloude {
                     auto sptrCells = {sptrIdCell};
                     auto sptrIdentity = Foundation::CreateIdentity(sptrCells);
 
-//                    // DELETE - Check if Entity is nullptr
-//                    {
-//                        auto sptrEnquiry = _storeEnquiry.Get(sptrIdentity);
-//
-//                        if (sptrEnquiry.get() != 0) {
-//                            _storeEnquiry.Delete(sptrEnquiry);
-//                            _storeEnquiry.Clear();
-//                        }
-//                    }
+                    // DELETE - Check if Entity is nullptr
+                    {
+                        auto sptrEnquiry = _storeEnquiry.Get(sptrIdentity);
+
+                        if (sptrEnquiry.get() != 0) {
+                            _storeEnquiry.Delete(sptrEnquiry);
+                            _storeEnquiry.Clear();
+                        }
+                    }
 
                     // CREATE
-//                    {
-//                        auto sptrEnquiry = _storeEnquiry.Create(sptrIdentity);
-//                        EXPECT_TRUE(sptrEnquiry.get() != 0);
-//                        EXPECT_TRUE(_storeEnquiry.HasIdentityInMap(sptrIdentity));
-//                    }
+                    {
+                        auto sptrEnquiry = _storeEnquiry.Create(sptrIdentity);
+                        EXPECT_TRUE(sptrEnquiry.get() != 0);
+                        EXPECT_TRUE(_storeEnquiry.HasIdentityInMap(sptrIdentity));
+                    }
 
                     // SAVE
                     {
@@ -59,8 +59,6 @@ namespace Cloude {
                         auto &sptrSubjectCell = sptrEnquiry->getCell("Subject");
                         auto &sptrContentCell = sptrEnquiry->getCell("Content");
                         auto &sptrUpdatedDateCell = sptrEnquiry->getCell("UpdatedDate");
-
-                        std::cout << sptrEnquiry->ToString() << std::endl;
 
                         sptrCustIdCell->setValue(sptrCustId);
                         sptrSubmittedDateCell->setValue(sptrSubmittedDate);
