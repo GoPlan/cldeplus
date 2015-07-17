@@ -75,7 +75,7 @@ namespace Cloude {
                 }
 
                 bool MySqlSourceHelper::Compare(const MYSQL_TIME &lhs, const MYSQL_TIME &rhs) {
-                    return !Less(lhs, rhs) && !Greater(lhs, rhs);
+                    return !MySqlSourceHelper::Less(lhs, rhs) && !MySqlSourceHelper::Greater(lhs, rhs);
                 }
 
                 std::string MySqlSourceHelper::DateToISO8601String(const MYSQL_TIME &date) {
