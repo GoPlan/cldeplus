@@ -7,6 +7,7 @@
 
 #include <Foundation/Store/AbstractEntity.h>
 #include <Foundation/Data/Comparer/Greater.h>
+#include <Foundation/Data/Comparer/Compare.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -18,6 +19,7 @@ namespace Cloude {
                     SPtrColumnVector _lhsCmpColumns;
                     SPtrColumnVector _rhsCmpColumns;
                     Data::Comparer::Greater _greater{};
+                    Data::Comparer::Compare _equal{};
 
                 public:
                     Greater(const SPtrColumnVector &lhsCmpColumns, const SPtrColumnVector &rhsCmpColumns)

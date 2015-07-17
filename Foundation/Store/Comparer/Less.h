@@ -5,8 +5,9 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_LESS_H
 #define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_LESS_H
 
-#include <Foundation/Data/Comparer/Less.h>
 #include <Foundation/Store/AbstractEntity.h>
+#include <Foundation/Data/Comparer/Less.h>
+#include <Foundation/Data/Comparer/Compare.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -18,6 +19,7 @@ namespace Cloude {
                     SPtrColumnVector _lhsCmpColumns{};
                     SPtrColumnVector _rhsCmpColumns{};
                     Data::Comparer::Less _less{};
+                    Data::Comparer::Compare _equal{};
 
                 public:
                     Less(const SPtrColumnVector &lhsCmpColumns, const SPtrColumnVector &rhsCmpColumns)

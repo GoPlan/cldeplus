@@ -47,34 +47,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4e9e6f2-c877-4aed-acae-80d83c1eef83" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Foundation/Common/IComparable.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Drivers/MySql/MySqlSourceHelper.cpp" afterPath="$PROJECT_DIR$/Drivers/MySql/Helper/MySqlSourceHelper.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Drivers/MySql/MySqlSourceHelper.h" afterPath="$PROJECT_DIR$/Drivers/MySql/Helper/MySqlSourceHelper.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/MySql/CMakeLists.txt" afterPath="$PROJECT_DIR$/Drivers/MySql/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/CMakeLists.txt" afterPath="$PROJECT_DIR$/Foundation/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Comparer/Compare.h" afterPath="$PROJECT_DIR$/Foundation/Data/Comparer/Compare.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Type/Date.cpp" afterPath="$PROJECT_DIR$/Foundation/Data/Type/Date.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Type/Date.h" afterPath="$PROJECT_DIR$/Foundation/Data/Type/Date.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Type/DateTime.cpp" afterPath="$PROJECT_DIR$/Foundation/Data/Type/DateTime.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Type/DateTime.h" afterPath="$PROJECT_DIR$/Foundation/Data/Type/DateTime.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Comparer/Greater.cpp" afterPath="$PROJECT_DIR$/Foundation/Data/Comparer/Greater.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Common/IComputable.h" afterPath="$PROJECT_DIR$/Foundation/Common/IComputable.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Common/IEquatable.h" afterPath="$PROJECT_DIR$/Foundation/Common/IEquatable.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Common/IPrintable.h" afterPath="$PROJECT_DIR$/Foundation/Common/IPrintable.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Comparer/Less.cpp" afterPath="$PROJECT_DIR$/Foundation/Data/Comparer/Less.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlDate.cpp" afterPath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlDate.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlDate.h" afterPath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlDate.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlDateTime.cpp" afterPath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlDateTime.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlDateTime.h" afterPath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlDateTime.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp" afterPath="$PROJECT_DIR$/Drivers/MySql/MySqlSourceDriver.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppTest/Store/MySqlStore01.hpp" afterPath="$PROJECT_DIR$/AppTest/Store/MySqlStore01.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlTime.cpp" afterPath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlTime.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlTime.h" afterPath="$PROJECT_DIR$/Drivers/MySql/Data/MySqlTime.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Type/Time.cpp" afterPath="$PROJECT_DIR$/Foundation/Data/Type/Time.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Type/Time.h" afterPath="$PROJECT_DIR$/Foundation/Data/Type/Time.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/TimeBasedValue.h" afterPath="$PROJECT_DIR$/Foundation/Data/TimeBasedValue.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Data/Value.h" afterPath="$PROJECT_DIR$/Foundation/Data/Value.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.cpp" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.h" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/Less.cpp" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/Less.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foundation/Store/Comparer/Less.h" afterPath="$PROJECT_DIR$/Foundation/Store/Comparer/Less.h" />
     </list>
     <ignored path="cloud-e-plus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,45 +76,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DateTime.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Foundation/Data/Type/DateTime.cpp">
+      <file leaf-file-name="Greater.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Greater.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="70" selection-start-line="68" selection-start-column="20" selection-end-line="69" selection-end-column="70" />
-              <folding>
-                <element signature="e#45#96#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Time.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Foundation/Data/Type/Time.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52804375">
-              <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
-              <folding>
-                <element signature="e#45#96#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Currency.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Foundation/Data/Type/Currency.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Date.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Foundation/Data/Type/Date.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
+            <state vertical-scroll-proportion="1.1401426">
+              <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -162,10 +104,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Foundation/Data/Type/Int32.h" />
-        <option value="$PROJECT_DIR$/Foundation/Data/Type/Int64.h" />
-        <option value="$PROJECT_DIR$/Foundation/Data/Type/String.h" />
-        <option value="$PROJECT_DIR$/Foundation/Data/Type/UInt16.h" />
         <option value="$PROJECT_DIR$/Foundation/Data/Type/UInt32.h" />
         <option value="$PROJECT_DIR$/Foundation/Data/Type/UInt64.h" />
         <option value="$PROJECT_DIR$/Foundation/Data/Helper/ValueHelper.cpp" />
@@ -213,6 +151,10 @@
         <option value="$PROJECT_DIR$/Foundation/Data/Type/Date.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Data/Type/DateTime.cpp" />
         <option value="$PROJECT_DIR$/Foundation/Data/Type/Time.cpp" />
+        <option value="$PROJECT_DIR$/Foundation/Store/Comparer/Less.h" />
+        <option value="$PROJECT_DIR$/Foundation/Store/Comparer/Less.cpp" />
+        <option value="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.h" />
+        <option value="$PROJECT_DIR$/Foundation/Store/Comparer/Greater.cpp" />
       </list>
     </option>
   </component>
@@ -338,47 +280,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Foundation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Comparer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud-e-plus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Foundation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Exception" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foundation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud-e-plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foundation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Type" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -561,14 +503,14 @@
     <frame x="-1600" y="23" width="1600" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40843216" sideWeight="0.53080875" order="10" side_tool="false" content_ui="tabs" x="1600" y="69" width="1024" height="720" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40843216" sideWeight="0.53080875" order="10" side_tool="false" content_ui="tabs" x="1600" y="69" width="1024" height="720" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32765958" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="-1102" y="144" width="873" height="430" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31620553" sideWeight="0.49802372" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14056483" sideWeight="0.5059289" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32279316" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1600" y="23" width="1600" height="877" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1944801" sideWeight="0.42424244" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3610013" sideWeight="0.50289017" order="4" side_tool="false" content_ui="tabs" x="23" y="35" width="1024" height="703" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.35177866" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="765" y="84" width="817" height="676" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.35177866" sideWeight="0.46919128" order="2" side_tool="false" content_ui="tabs" x="765" y="84" width="817" height="676" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25288832" sideWeight="0.57575756" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5104031" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24518614" sideWeight="0.5777778" order="2" side_tool="true" content_ui="tabs" />
@@ -735,22 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Less.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Less.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Data/Helper/ValueHelper.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -857,22 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Greater.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Greater.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="43" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -1057,11 +967,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Foundation/Data/Type/Time.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52804375">
+        <state vertical-scroll-proportion="0.0">
           <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
           <folding>
             <element signature="e#45#96#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Less.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Less.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+          <folding>
+            <element signature="e#154#198#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Greater.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Foundation/Store/Comparer/Greater.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1401426">
+          <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
