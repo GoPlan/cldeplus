@@ -23,7 +23,7 @@ add_library(application STATIC
     Entity/Enquiry.cpp
     Entity/Enquiry.h
     Entity/PreOrderItems.cpp
-    Entity/PreOrderItems.h Store/MySqlStore01.hpp)
+    Entity/PreOrderItems.h Store/MySqlStore01.hpp Store/MySqlStore02.hpp)
 
 add_library(apptest STATIC
     Store/Preparation/ProductSQLiteStore.cpp

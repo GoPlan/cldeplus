@@ -324,7 +324,7 @@ namespace Cloude {
                             break;
                         }
                         case Foundation::Data::ValueType::Text: {
-                            ptrBind->buffer_type = MYSQL_TYPE_STRING;
+                            ptrBind->buffer_type = MYSQL_TYPE_MEDIUM_BLOB;
                             ptrBind->buffer_length = sptrColumn->getLength();
                             break;
                         }

@@ -18,51 +18,7 @@ namespace Cloude {
                 using EnquiryMySqlStore = Preparation::EnquiryMySqlStore;
                 using MySqlDriverHelper = Drivers::MySql::Helper::MySqlSourceHelper;
 
-                TEST_F(EnquiryMySqlStore, Comparable) {
-
-                    Foundation::Data::Comparer::Less LT{};
-                    Foundation::Data::Comparer::Greater GT{};
-                    Foundation::Data::Comparer::Compare EQ{};
-
-                    // Date
-                    {
-                        auto sptrDateLo = MySqlDriverHelper::CreateDate(2015, 7, 15);
-                        auto sptrDateHi = MySqlDriverHelper::CreateDate(2015, 7, 16);
-                        auto sptrDateLoAlt = MySqlDriverHelper::CreateDate(2015, 7, 15);
-
-                        EXPECT_TRUE(LT(sptrDateLo, sptrDateHi));
-                        EXPECT_TRUE(GT(sptrDateHi, sptrDateLo));
-                        EXPECT_TRUE(EQ(sptrDateLo, sptrDateLoAlt));
-                        EXPECT_TRUE(!EQ(sptrDateLo, sptrDateHi));
-                    }
-
-                    // Time
-                    {
-                        auto sptrTimeLo = MySqlDriverHelper::CreateTime(22, 12, 35);
-                        auto sptrTimeHi = MySqlDriverHelper::CreateTime(23, 7, 16);
-                        auto sptrTimeLoAlt = MySqlDriverHelper::CreateTime(22, 12, 35);
-
-                        EXPECT_TRUE(LT(sptrTimeLo, sptrTimeHi));
-                        EXPECT_TRUE(GT(sptrTimeHi, sptrTimeLo));
-                        EXPECT_TRUE(EQ(sptrTimeLo, sptrTimeLoAlt));
-                        EXPECT_TRUE(!EQ(sptrTimeLo, sptrTimeHi));
-                    }
-
-                    // Date & Time
-                    {
-                        auto sptrDateTimeLo = MySqlDriverHelper::CreateDateTime(2015, 7, 15, 22, 12, 35);
-                        auto sptrDateTimeHi = MySqlDriverHelper::CreateDateTime(2015, 7, 18, 23, 7, 16);
-                        auto sptrDateTimeAlt = MySqlDriverHelper::CreateDateTime(2015, 7, 15, 22, 12, 35);
-
-                        EXPECT_TRUE(LT(sptrDateTimeLo, sptrDateTimeHi));
-                        EXPECT_TRUE(GT(sptrDateTimeHi, sptrDateTimeLo));
-                        EXPECT_TRUE(EQ(sptrDateTimeLo, sptrDateTimeAlt));
-                        EXPECT_TRUE(!EQ(sptrDateTimeLo, sptrDateTimeHi));
-                    }
-                }
-
                 TEST_F(EnquiryMySqlStore, CreateSaveDelete01) {
-
 
                     Foundation::Data::Comparer::Compare compare{};
 
@@ -77,22 +33,22 @@ namespace Cloude {
                     auto sptrCells = {sptrIdCell};
                     auto sptrIdentity = Foundation::CreateIdentity(sptrCells);
 
-                    // DELETE - Check if Entity is nullptr
-                    {
-                        auto sptrEnquiry = _storeEnquiry.Get(sptrIdentity);
-
-                        if (sptrEnquiry.get() != 0) {
-                            _storeEnquiry.Delete(sptrEnquiry);
-                            _storeEnquiry.Clear();
-                        }
-                    }
+//                    // DELETE - Check if Entity is nullptr
+//                    {
+//                        auto sptrEnquiry = _storeEnquiry.Get(sptrIdentity);
+//
+//                        if (sptrEnquiry.get() != 0) {
+//                            _storeEnquiry.Delete(sptrEnquiry);
+//                            _storeEnquiry.Clear();
+//                        }
+//                    }
 
                     // CREATE
-                    {
-                        auto sptrEnquiry = _storeEnquiry.Create(sptrIdentity);
-                        EXPECT_TRUE(sptrEnquiry.get() != 0);
-                        EXPECT_TRUE(_storeEnquiry.HasIdentityInMap(sptrIdentity));
-                    }
+//                    {
+//                        auto sptrEnquiry = _storeEnquiry.Create(sptrIdentity);
+//                        EXPECT_TRUE(sptrEnquiry.get() != 0);
+//                        EXPECT_TRUE(_storeEnquiry.HasIdentityInMap(sptrIdentity));
+//                    }
 
                     // SAVE
                     {
@@ -101,6 +57,7 @@ namespace Cloude {
                         auto &sptrSubmittedHourCell = sptrEnquiry->getCell("SubmittedHour");
                         auto &sptrCustIdCell = sptrEnquiry->getCell("CustId");
                         auto &sptrSubjectCell = sptrEnquiry->getCell("Subject");
+//                        auto &sptrContentCell = sptrEnquiry->getCell("Content");
                         auto &sptrUpdatedDateCell = sptrEnquiry->getCell("UpdatedDate");
 
                         sptrCustIdCell->setValue(sptrCustId);
