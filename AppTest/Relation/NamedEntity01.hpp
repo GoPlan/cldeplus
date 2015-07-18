@@ -9,6 +9,7 @@
 #include <Foundation/Foundation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include <AppTest/Entity/Customer.h>
+#include <AppTest/Application/CustomerMap.h>
 
 namespace Cloude {
     namespace AppTest {

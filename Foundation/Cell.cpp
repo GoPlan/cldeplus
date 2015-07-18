@@ -20,8 +20,8 @@ namespace Cloude {
         }
 
         std::string Cell::ToString() const {
-            std::string result{_value->ToString() +
-                               "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_value->getDataType()) + ")"};
+            std::string result{_value->ToString()
+                               + "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_value->getDataType()) + ")"};
             return result;
         }
 
@@ -29,17 +29,9 @@ namespace Cloude {
 
             if (value->getDataType() != _column->getDataType()) {
                 std::string msg{"Value has type "
-                                + Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType()) + " "
-                                + "that is different with column " + _column->ToString()
+                                + Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())
+                                + " that is different with column " + _column->ToString()
                                 + "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_column->getDataType()) + ")"};
-                throw Exception::cldeEntityException{msg};
-            }
-
-            auto &srcType = typeid(value.get());
-            auto &dstType = typeid(value.get());
-
-            if (std::type_index(srcType) != std::type_index(dstType)) {
-                std::string msg{"Source value type is different with target value type"};
                 throw Exception::cldeEntityException{msg};
             }
 

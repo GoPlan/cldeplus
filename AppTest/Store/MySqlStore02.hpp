@@ -58,7 +58,6 @@ namespace Cloude {
                         EXPECT_TRUE(!EQ(sptrDateTimeLo, sptrDateTimeHi));
                     }
                 }
-
             }
         }
     }

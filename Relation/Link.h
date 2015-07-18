@@ -14,8 +14,7 @@ namespace Cloude {
         class Link {
 
         public:
-            Link(const Foundation::SPtrEntityQuery &entityQuery,
-                 const Foundation::Query::SPtrCriteria &criteria)
+            Link(const Foundation::SPtrEntityQuery &entityQuery, const Foundation::Query::SPtrCriteria &criteria)
                     : _sptrEntityQuery{entityQuery}, _sptrCriteria{criteria} { };
 
             Link(const Link &) = default;

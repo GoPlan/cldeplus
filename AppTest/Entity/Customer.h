@@ -19,7 +19,8 @@ namespace Cloude {
                 std::string _lastName;
                 std::string _email;
 
-                Relation::SPtrLinkToMany _sptrPreOrders;
+                Relation::SPtrLinkToMany _linkToPreOrders;
+                Relation::SPtrMultiCellsObj _objAddress;
 
             public:
                 Customer() = default;
@@ -34,14 +35,16 @@ namespace Cloude {
                 const std::string &getFirstName() const { return _firstName; }
                 const std::string &getLastName() const { return _lastName; }
                 const std::string &getEmail() const { return _email; }
-                const Relation::SPtrLinkToMany &sptrPreOrders() const { return _sptrPreOrders; }
+                const Relation::SPtrLinkToMany &LinkToPreOrders() const { return _linkToPreOrders; }
+                const Relation::SPtrMultiCellsObj &objAddress() const { return _objAddress; }
 
                 // Mutators
                 void setId(int64_t Id) { _id = Id; }
                 void setFirstName(const std::string &firstName) { _firstName = firstName; }
                 void setLastName(const std::string &lastName) { _lastName = lastName; }
                 void setEmail(const std::string &email) { _email = email; }
-                void setSptrPreOrders(const Relation::SPtrLinkToMany &sptrPreOrders) { _sptrPreOrders = sptrPreOrders; }
+                void setLinkToPreOrders(const Relation::SPtrLinkToMany &sptrPreOrders) { _linkToPreOrders = sptrPreOrders; }
+                void setObjAddress(const Relation::SPtrMultiCellsObj &objAddress) { _objAddress = objAddress; }
             };
         }
     }

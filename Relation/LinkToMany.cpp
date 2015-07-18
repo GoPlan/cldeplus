@@ -7,7 +7,7 @@
 namespace Cloude {
     namespace Relation {
 
-        Foundation::SPtrEntityProxyVector LinkToMany::Call() {
+        Foundation::SPtrEntityProxyVector LinkToMany::Refer() {
             return _sptrEntityQuery->Select(_sptrCriteria);
         }
 

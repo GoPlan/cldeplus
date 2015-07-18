@@ -2,8 +2,8 @@
 // Created by LE, Duc-Anh on 5/21/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_H
-#define CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_H
+#ifndef CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_HPP
+#define CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_HPP
 
 #include <gtest/gtest.h>
 #include <Foundation/Foundation.h>
@@ -106,9 +106,9 @@ namespace Cloude {
                     auto sptrIdHi = ValueFactory::CreateInt64(15);
 
                     // Criterias
-                    auto gteLowId = CmpFactory::CreateGTE(_mapPreOrder.Id, sptrIdLo);
-                    auto lteHiiId = CmpFactory::CreateLTE(_mapPreOrder.Id, sptrIdHi);
-                    auto criteria = CmpFactory::CreateAND(gteLowId, lteHiiId);
+                    auto gteLoId = CmpFactory::CreateGTE(_mapPreOrder.Id, sptrIdLo);
+                    auto lteHiId = CmpFactory::CreateLTE(_mapPreOrder.Id, sptrIdHi);
+                    auto criteria = CmpFactory::CreateAND(gteLoId, lteHiId);
 
                     // Execute
                     auto rsPreOrder = _queryPreOrder.Select(criteria);
@@ -124,4 +124,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_H
+#endif //CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_HPP

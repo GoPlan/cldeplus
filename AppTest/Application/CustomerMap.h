@@ -20,6 +20,10 @@ namespace Cloude {
                 static Foundation::SPtrColumn FirstName;
                 static Foundation::SPtrColumn LastName;
                 static Foundation::SPtrColumn Email;
+                static Foundation::SPtrColumn AddrStreet;
+                static Foundation::SPtrColumn AddrZipCode;
+                static Foundation::SPtrColumn AddrCity;
+                static Foundation::SPtrColumn AddrCountry;
 
             public:
                 CustomerMap();
