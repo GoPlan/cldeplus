@@ -11,7 +11,7 @@ namespace Cloude {
         namespace Transformation {
             Foundation::Data::SPtrValue Caster::VarCharCaster::Cast(
                     Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
-                std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
+                std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
                 std::string msg{"This converter can not convert VarCharCaster into " + type};
                 throw Segmentation::Exception::TransformationException{msg};
             }

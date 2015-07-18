@@ -10,10 +10,10 @@ namespace Cloude {
 
             std::string ProductMap::TableName{"Product"};
 
-            Foundation::SPtrColumn ProductMap::Id = std::make_shared<Foundation::Column>("Id", "id", Foundation::Data::ValueType::Int64);
-            Foundation::SPtrColumn ProductMap::Name = std::make_shared<Foundation::Column>("Name", "name", Foundation::Data::ValueType::VarChar);
-            Foundation::SPtrColumn ProductMap::Code = std::make_shared<Foundation::Column>("Code", "code", Foundation::Data::ValueType::VarChar);
-            Foundation::SPtrColumn ProductMap::Price = std::make_shared<Foundation::Column>("Price", "price", Foundation::Data::ValueType::Double);
+            Foundation::SPtrColumn ProductMap::Id = Foundation::CreateColumn("Id", "id", Foundation::Data::ValueType::Int64);
+            Foundation::SPtrColumn ProductMap::Name = Foundation::CreateColumn("Name", "name", Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn ProductMap::Code = Foundation::CreateColumn("Code", "code", Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn ProductMap::Price = Foundation::CreateColumn("Price", "price", Foundation::Data::ValueType::Double);
 
             const std::string &ProductMap::TableNameCore() const { return TableName; }
 
@@ -23,8 +23,8 @@ namespace Cloude {
                 _columnsForGet.push_back(Code);
                 _columnsForGet.push_back(Price);
                 _columnsForUpdate.push_back(Name);
-                _columnsForUpdate.push_back(Name);
-                _columnsForUpdate.push_back(Name);
+                _columnsForUpdate.push_back(Code);
+                _columnsForUpdate.push_back(Price);
                 _columnsForSelect.push_back(Name);
             }
         }

@@ -31,7 +31,7 @@ namespace Cloude {
 
             SPtrEntity entity = Foundation::CreateEntity(identity);
 
-            Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, entity, false);
+            Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForGet, entity, false);
 
             Insert(entity);
 
@@ -39,6 +39,11 @@ namespace Cloude {
         }
 
         SPtrEntity EntityStore::Get(const SPtrIdentity &identity) {
+
+            if(!identity){
+                std::string msg{"Identity is either invalid or a nullptr"};
+                throw Exception::cldeEntityStoreRoutineException{msg};
+            }
 
             auto search = _identityMap.find(identity);
 
@@ -50,7 +55,7 @@ namespace Cloude {
 
             SPtrEntity sptrEntity = Foundation::CreateEntity(identity);
 
-            Foundation::Store::Helper::EntityStoreHelper::GenerateFieldsFromColumns(columnsForGet, sptrEntity, false);
+            Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForGet, sptrEntity, false);
 
             if (!_entitySourceDriver.Load(sptrEntity)) {
                 return SPtrEntity(nullptr);
@@ -65,6 +70,11 @@ namespace Cloude {
 
         void EntityStore::Insert(SPtrEntity &entity) {
 
+            if(!entity){
+                std::string msg{"Entity is either invalid or a nullptr"};
+                throw Exception::cldeEntityStoreRoutineException{msg};
+            }
+
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
@@ -74,10 +84,22 @@ namespace Cloude {
         }
 
         void EntityStore::Save(SPtrEntity &entity) {
+
+            if(!entity){
+                std::string msg{"Entity is either invalid or a nullptr"};
+                throw Exception::cldeEntityStoreRoutineException{msg};
+            }
+
             _entitySourceDriver.Save(entity);
         }
 
         void EntityStore::Delete(SPtrEntity &entity) {
+
+            if(!entity){
+                std::string msg{"Entity shared pointer is either invalid or a nullptr"};
+                throw Exception::cldeEntityStoreRoutineException{msg};
+            }
+
             if (_entitySourceDriver.Delete(entity)) {
                 auto identity = entity->getIdentity();
                 _identityMap.erase(identity);

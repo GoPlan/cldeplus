@@ -2,31 +2,31 @@
 // Created by LE, Duc Anh on 5/29/15.
 //
 
-#ifndef CLOUD_E_CPLUS_SOURCEDRIVER_MYSQL_MYSQLSOURCEDEXCEPTION_H
-#define CLOUD_E_CPLUS_SOURCEDRIVER_MYSQL_MYSQLSOURCEDEXCEPTION_H
+#ifndef CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOURCEDEXCEPTION_H
+#define CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOURCEDEXCEPTION_H
 
-#include <exception>
-#include <string>
+#include <Foundation/Exception/cldeException.h>
 
 namespace Cloude {
-    namespace SourceDriver {
+    namespace Drivers {
         namespace MySql {
-            class MySqlSourceException : public std::exception {
+
+            class MySqlSourceException : public Foundation::Exception::cldeException {
+
+                static std::string _name;
+
             public:
-                MySqlSourceException() = default;
-                virtual ~MySqlSourceException() = default;
-                MySqlSourceException(const MySqlSourceException &srcMySqlDriverException) = default;
-                MySqlSourceException &operator=(const MySqlSourceException &srcMySqlDriverException) = default;
+                MySqlSourceException(const std::string &message);
+                MySqlSourceException(const MySqlSourceException &) = default;
+                MySqlSourceException(MySqlSourceException &&) = default;
+                MySqlSourceException &operator=(const MySqlSourceException &) = default;
+                MySqlSourceException &operator=(MySqlSourceException &&) = default;
+                ~MySqlSourceException() = default;
 
-                explicit MySqlSourceException(const std::string &sstrMessage);
-                explicit MySqlSourceException(const char *cstrMessage);
-                virtual const char *what() const noexcept override;
-
-            private:
-                std::string _message;
+                virtual const std::string &Name() const noexcept override;
             };
         }
     }
 }
 
-#endif //CLOUD_E_CPLUS_SOURCEDRIVER_MYSQL_MYSQLSOURCEDEXCEPTION_H
+#endif //CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOURCEDEXCEPTION_H

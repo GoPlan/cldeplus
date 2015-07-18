@@ -19,4 +19,4 @@ add_library(relation STATIC
     NamedEntityStore.h
     Exception/NamedEntityStoreException.cpp
     Exception/NamedEntityStoreException.h
-)
+MultiCellsObject.cpp MultiCellsObject.h)

@@ -15,12 +15,13 @@ namespace Cloude {
                         Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
                     if (value->getDataType() != Foundation::Data::ValueType::Boolean) {
-                        std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
+                        std::string type{
+                                Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
                         std::string msg{type + " is not supported by BooleanCaster"};
                         throw Segmentation::Exception::TransformationException{msg};
                     }
 
-                    bool *tmp = reinterpret_cast<bool *>(value->RawPointerToValueBuffer());
+                    bool *tmp = reinterpret_cast<bool *>(value->PointerToBuffer());
 
                     switch (dataType) {
                         case Foundation::Data::ValueType::Int16:
@@ -43,7 +44,7 @@ namespace Cloude {
                             return Foundation::Data::ValueFactory::CreateBoolean((char) *tmp);
 
                         default: {
-                            std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
+                            std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
                             std::string msg{"This converter can not convert Boolean into " + type};
                             throw Segmentation::Exception::TransformationException{msg};
                         }

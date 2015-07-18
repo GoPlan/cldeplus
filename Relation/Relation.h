@@ -8,6 +8,7 @@
 #include "Link.h"
 #include "LinkToMany.h"
 #include "LinkToOne.h"
+#include "MultiCellsObject.h"
 #include "NamedEntityLoader.h"
 #include "NamedEntityStore.h"
 #include "RelationMap.h"

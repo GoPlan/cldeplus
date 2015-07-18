@@ -4,10 +4,38 @@
 
 #include <Foundation/Exception/cldeEntityException.h>
 #include <Foundation/Exception/cldeNonSupportedFunctionException.h>
+#include <Foundation/Store/Helper/CellHelper.h>
 #include "AbstractEntity.h"
 
 namespace Cloude {
     namespace Foundation {
+
+        Store::AbstractEntity::AbstractEntity(const Store::AbstractEntity &entity) {
+
+            auto &srcCellsMap = entity.getCellsMap();
+
+            for (auto &srcCellPair : srcCellsMap) {
+                auto newCell = Foundation::Store::Helper::CellHelper::CopySPtrCell(srcCellPair.second);
+                _cellMap[srcCellPair.first] = newCell;
+            }
+        }
+
+        Store::AbstractEntity &Store::AbstractEntity::operator=(const Store::AbstractEntity &entity) {
+
+            if (this == &entity)
+                return *this;
+
+            _cellMap.clear();
+
+            auto &srcCellsMap = entity.getCellsMap();
+
+            for (auto &srcCellPair : srcCellsMap) {
+                auto newCell = Foundation::Store::Helper::CellHelper::CopySPtrCell(srcCellPair.second);
+                _cellMap[srcCellPair.first] = newCell;
+            }
+
+            return *this;
+        }
 
         void Store::AbstractEntity::setCell(const SPtrCell &cell) {
             _cellMap[cell->getColumn()->getName()] = cell;

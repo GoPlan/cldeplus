@@ -7,7 +7,7 @@
 namespace Cloude {
     namespace Relation {
 
-        Foundation::SPtrEntityProxy LinkToOne::Call() {
+        Foundation::SPtrEntityProxy LinkToOne::Refer() {
             return _sptrEntityQuery->SelectFirst(_sptrCriteria);
         }
 

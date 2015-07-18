@@ -8,11 +8,12 @@
 #include <memory>
 #include <vector>
 #include <Foundation/Entity.h>
+#include <Foundation/EntityProxy.h>
 
 namespace Cloude {
     namespace Foundation {
         namespace Store {
-            namespace Helper{
+            namespace Helper {
 
                 class EntityStoreHelper {
 
@@ -24,10 +25,11 @@ namespace Cloude {
                     ~EntityStoreHelper() = delete;
 
                 public:
-                    static void GenerateFieldsFromColumns(const SPtrColumnVector &columnVector,
-                                                          const Store::SPtrDataRecord &dataRecord,
-                                                          bool checkIfFieldExists = true);
+                    static void GenerateCellsFromColumns(const SPtrColumnVector &columnVector,
+                                                         const Store::SPtrDataRecord &dataRecord,
+                                                         bool checkCellExists = true);
 
+                    static SPtrEntityProxy CopySPtrProxy(const SPtrEntityProxy &proxy);
                 };
             }
         }

@@ -12,17 +12,17 @@ namespace Cloude {
         namespace Data {
 
             enum class ValueCategory {
-                Undefined,
                 Numeric,
                 DateTime,
-                Mathematic,
                 CharacterBased,
-                UserDefined,
+                Mathematic,
+                UserDefined
             };
 
             enum class ValueType {
                 Boolean,
                 Byte,
+                Blob,
                 Int16,
                 Int32,
                 Int64,
@@ -35,10 +35,9 @@ namespace Cloude {
                 VarChar,
                 Text,
                 Currency,
+                DateTime,
                 Date,
                 Time,
-                DateTime,
-                TimeStamp,
                 Point,
                 Matrix
             };

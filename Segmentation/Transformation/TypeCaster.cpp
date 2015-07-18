@@ -42,7 +42,7 @@ namespace Cloude {
                 case Foundation::Data::ValueType::VarChar:
                     break;
                 default: {
-                    std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
+                    std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
                     std::string msg{type + " converting is not supported"};
                     throw Segmentation::Exception::TransformationException{msg};
                 }

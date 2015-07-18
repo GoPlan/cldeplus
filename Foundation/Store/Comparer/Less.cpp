@@ -30,8 +30,8 @@ namespace Cloude {
                     auto &lhsValue = lhsCell->getValue();
                     auto &rhsValue = rhsCell->getValue();
 
-                    if (_less(lhsValue, rhsValue))
-                        return true;
+                    if (!_equal(lhsValue, rhsValue))
+                        return _less(lhsValue, rhsValue);
                 }
 
                 return false;

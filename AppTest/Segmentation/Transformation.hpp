@@ -33,13 +33,13 @@ namespace Cloude {
                 auto sptrOrderName = Foundation::Data::ValueFactory::CreateVarChar(std::string{"My Order"});
                 auto sptrTotal = Foundation::Data::ValueFactory::CreateDouble(15.0);
 
-                auto sptrOrderIdCell = std::make_shared<Foundation::Cell>(orderMap.Id);
-                auto sptrCustmIdCell = std::make_shared<Foundation::Cell>(orderMap.CustId);
-                auto sptrOrderNameCell = std::make_shared<Foundation::Cell>(orderMap.Name, sptrOrderName);
-                auto sptrTotalCell = std::make_shared<Foundation::Cell>(orderMap.Total, sptrTotal);
+                auto sptrOrderIdCell = Foundation::CreateCell(orderMap.Id);
+                auto sptrCustmIdCell = Foundation::CreateCell(orderMap.CustId);
+                auto sptrOrderNameCell = Foundation::CreateCell(orderMap.Name, sptrOrderName);
+                auto sptrTotalCell = Foundation::CreateCell(orderMap.Total, sptrTotal);
 
                 // Prepare source proxy
-                Foundation::SPtrEntityProxy sptrOrderProxy = std::make_shared<Foundation::EntityProxy>();
+                auto sptrOrderProxy = Foundation::CreateEntityProxy();
                 sptrOrderProxy->setCell(sptrCustmIdCell);
                 sptrOrderProxy->setCell(sptrOrderNameCell);
                 sptrOrderProxy->setCell(sptrTotalCell);
@@ -49,22 +49,22 @@ namespace Cloude {
                 auto sptrInt64Total = sptrDoubleConverter->Cast(Foundation::Data::ValueType::Int64, sptrTotal);
 
                 // Entity Transformer
-                Foundation::SPtrColumn orderNewNameColumn = std::make_shared<Foundation::Column>("NewName", Foundation::Data::ValueType::VarChar);
-                Foundation::SPtrColumn orderNewTotalColumn = std::make_shared<Foundation::Column>("NewTotal", Foundation::Data::ValueType::Int64);
+                auto orderNewNameColumn = Foundation::CreateColumn("NewName", Foundation::Data::ValueType::VarChar);
+                auto orderNewTotalColumn = Foundation::CreateColumn("NewTotal", Foundation::Data::ValueType::Int64);
 
-                Transformation::SPtrEntityTransformer orderTransformer = std::make_shared<Transformation::EntityTransformer>();
+                auto orderTransformer = Segmentation::Transformation::CreateEntityTransformer();
                 orderTransformer->AddCellTransformer(orderMap.Name->getName(),Transformation::CellTransformer{orderNewNameColumn});
                 orderTransformer->AddCellTransformer(orderMap.Total->getName(),Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
 
                 // Transforming Order into a new entity
-                Foundation::SPtrEntityProxy sptrNewProxy = std::make_shared<Foundation::EntityProxy>();
+                auto sptrNewProxy = Foundation::CreateEntityProxy();
                 orderTransformer->Transform(sptrOrderProxy, sptrNewProxy);
 
                 EXPECT_TRUE(sptrNewProxy.get() != 0);
 
                 // Assert Cost(Double) cell transformation
                 {
-                    Foundation::SPtrCell sptrNewProxyTotalCell = sptrNewProxy->getCell("NewTotal");
+                    auto sptrNewProxyTotalCell = sptrNewProxy->getCell("NewTotal");
                     Foundation::Data::Comparer::Compare compare{};
                     Foundation::Data::Comparer::Less lesser{};
                     Foundation::Data::Comparer::Greater greater{};
@@ -72,12 +72,12 @@ namespace Cloude {
                     EXPECT_TRUE(!lesser(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
                     EXPECT_TRUE(!greater(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
                     EXPECT_TRUE(compare(sptrInt64Total, sptrNewProxyTotalCell->getValue()));
-                    EXPECT_TRUE(strcmp(sptrNewProxyTotalCell->getColumn()->ToCString(), "NewTotal") == 0);
+                    EXPECT_TRUE(sptrNewProxyTotalCell->getColumn()->ToString().length() > 0);
                 }
 
                 // Assert Name(VarChar) cell transformation
                 {
-                    Foundation::SPtrCell sptrNewProxyNameCell = sptrNewProxy->getCell("NewName");
+                    auto sptrNewProxyNameCell = sptrNewProxy->getCell("NewName");
                     Foundation::Data::Comparer::Compare compare{};
                     Foundation::Data::Comparer::Less lesser{};
                     Foundation::Data::Comparer::Greater greater{};
@@ -85,7 +85,7 @@ namespace Cloude {
                     EXPECT_TRUE(!lesser(sptrOrderName, sptrNewProxyNameCell->getValue()));
                     EXPECT_TRUE(!greater(sptrOrderName, sptrNewProxyNameCell->getValue()));
                     EXPECT_TRUE(compare(sptrOrderName, sptrNewProxyNameCell->getValue()));
-                    EXPECT_TRUE(strcmp(sptrNewProxyNameCell->getColumn()->ToCString(), "NewName") == 0);
+                    EXPECT_TRUE(sptrNewProxyNameCell->getColumn()->ToString().length() > 0);
                 }
             }
         }

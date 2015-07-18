@@ -14,12 +14,12 @@ namespace Cloude {
                 Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
             if (value->getDataType() != Foundation::Data::ValueType::Float) {
-                std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
+                std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
                 std::string msg{type + " is not supported by FloatCaster"};
                 throw Segmentation::Exception::TransformationException{msg};
             }
 
-            float *tmp = reinterpret_cast<float *>(value->RawPointerToValueBuffer());
+            float *tmp = reinterpret_cast<float *>(value->PointerToBuffer());
 
             switch (dataType) {
                 case Foundation::Data::ValueType::Int16:
@@ -41,7 +41,7 @@ namespace Cloude {
                 case Foundation::Data::ValueType::Byte:
                     return Foundation::Data::ValueFactory::CreateByte((char) *tmp);
                 default: {
-                    std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
+                    std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
                     std::string msg{"This converter can not convert float into " + type};
                     throw Segmentation::Exception::TransformationException{msg};
                 }

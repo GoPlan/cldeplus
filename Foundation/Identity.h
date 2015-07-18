@@ -27,6 +27,10 @@ namespace Cloude {
         };
 
         using SPtrIdentity = std::shared_ptr<Identity>;
+
+        SPtrIdentity CreateIdentity();
+        SPtrIdentity CreateIdentity(const std::vector<SPtrCell> &cells);
+        SPtrIdentity CreateIdentity(const std::vector<Cell *> &cells);
     }
 }
 

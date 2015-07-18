@@ -14,11 +14,7 @@ namespace Cloude {
                     //
                 }
 
-                bool Float::Equal(const Common::IEquatable &rhs) const {
-                    return false;
-                }
-
-                void *Float::RawPointerToValueBuffer() {
+                void *Float::PointerToBuffer() {
                     return &_value;
                 }
 

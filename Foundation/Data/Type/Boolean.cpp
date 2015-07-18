@@ -16,17 +16,8 @@ namespace Cloude {
                     //
                 }
 
-                void *Boolean::RawPointerToValueBuffer() {
+                void *Boolean::PointerToBuffer() {
                     return &_value;
-                }
-
-                bool Boolean::Equal(const Common::IEquatable &rhs) const {
-                    try {
-                        auto cast = dynamic_cast<const Boolean &>(rhs);
-                        return (cast._value == this->_value);
-                    } catch (std::bad_cast &ex) {
-                        return false;
-                    }
                 }
 
                 std::string Boolean::ToString() const {

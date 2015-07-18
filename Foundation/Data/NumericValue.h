@@ -13,10 +13,11 @@ namespace Cloude {
         namespace Data {
 
             class NumericValue : public Value {
+
                 static ValueCategory _category;
 
             public:
-                NumericValue(ValueType dataType, size_t length);
+                NumericValue(ValueType dataType, size_t size);
                 NumericValue(const NumericValue &) = default;
                 NumericValue(NumericValue &&) = default;
                 NumericValue &operator=(const NumericValue &) = default;

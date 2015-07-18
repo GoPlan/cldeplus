@@ -19,7 +19,9 @@ namespace Cloude {
                     std::string _value;
 
                 public:
-                    String(const std::string &string);
+                    explicit String(const std::string &string);
+                    explicit String(unsigned long size);
+                    String()=default;
                     String(const String &) = default;
                     String(String &&) = default;
                     String &operator=(const String &) = default;
@@ -27,10 +29,8 @@ namespace Cloude {
                     ~String() = default;
 
                     // Value
-                    virtual void *RawPointerToValueBuffer();
-
-                    // IEquatable
-                    virtual bool Equal(const Common::IEquatable &rhs) const override;
+                    virtual void *PointerToBuffer() override;
+                    virtual size_t getActualSize() override;
 
                     // IPrintable
                     virtual std::string ToString() const;

@@ -9,14 +9,11 @@ namespace Cloude {
         namespace Data {
             namespace Helper {
 
-                std::string TypeHelper::CopyToString(const ValueCategory &category) {
+                std::string TypeHelper::CopyCategoryToString(const ValueCategory &category) {
 
                     std::string result;
 
                     switch (category) {
-                        case ValueCategory::Undefined:
-                            result = "Undefined";
-                            break;
                         case ValueCategory::Numeric:
                             result = "Numeric";
                             break;
@@ -26,22 +23,25 @@ namespace Cloude {
                         case ValueCategory::UserDefined:
                             result = "UserDefined";
                             break;
-                        case ValueCategory::DateTime:
-                            result = "DateTime";
-                            break;
                         case ValueCategory::Mathematic:
                             result = "Mathematic";
+                            break;
+                        case ValueCategory::DateTime:
+                            result = "DateTime";
                             break;
                     }
 
                     return result;
                 }
 
-                std::string TypeHelper::CopyToString(const ValueType &type) {
+                std::string TypeHelper::CopyValueTypeToString(const ValueType &type) {
 
                     std::string result;
 
                     switch (type) {
+                        case ValueType::Blob:
+                            result = "Blob";
+                            break;
                         case ValueType::Boolean:
                             result = "Boolean";
                             break;
@@ -92,9 +92,6 @@ namespace Cloude {
                             break;
                         case ValueType::DateTime:
                             result = "DateTime";
-                            break;
-                        case ValueType::TimeStamp:
-                            result = "TimeStamp";
                             break;
                         case ValueType::Point:
                             result = "Point";

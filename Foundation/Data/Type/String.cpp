@@ -10,21 +10,21 @@ namespace Cloude {
             namespace Type {
 
                 String::String(const std::string &string)
-                        : _value(string), CharacterValue(ValueType::String, _value.length()) {
+                        : _value(string), CharacterValue(ValueType::String, _value.length() + 1) {
                     //
                 }
 
-                bool String::Equal(const Common::IEquatable &rhs) const {
-                    try {
-                        auto cast = dynamic_cast<const String &>(rhs);
-                        return ((cast._value.compare(this->_value)) == 0);
-                    } catch (std::bad_cast &ex) {
-                        return false;
-                    }
+                String::String(unsigned long size)
+                        : CharacterValue{ValueType::String, size} {
+                    _value.reserve(size);
                 }
 
-                void *String::RawPointerToValueBuffer() {
+                void *String::PointerToBuffer() {
                     return &_value;
+                }
+
+                size_t String::getActualSize() {
+                    return _value.length() + 1;
                 }
 
                 std::string String::ToString() const {

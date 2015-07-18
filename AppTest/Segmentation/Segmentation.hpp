@@ -12,10 +12,10 @@
 #include <Foundation/Foundation.h>
 #include <Segmentation/Segmentation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
+#include <Drivers/MySql/MySqlSourceDriver.h>
 #include <AppTest/Application/EnquiryMap.h>
 #include <AppTest/Application/CustomerMap.h>
 #include <AppTest/Application/PreOrderMap.h>
-
 
 namespace Cloude {
     namespace AppTest {
@@ -29,19 +29,23 @@ namespace Cloude {
                 Application::PreOrderMap mapPreOrder;
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
-                Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
+                Drivers::MySql::MySqlSourceDriver driverPreOrder{mapPreOrder};
 
                 auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, driverCustomer);
-                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverOrder);
+                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverPreOrder);
 
                 Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
-                Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
+                Foundation::EntityQuery queryOrder{mapPreOrder, driverPreOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
-                driverOrder.OptionArgs().ConnectionString = "example01.db";
-
                 driverCustomer.Connect();
-                driverOrder.Connect();
+
+                driverPreOrder.OptionArgs().Host = "dell-3020";
+                driverPreOrder.OptionArgs().User = "cloud-e";
+                driverPreOrder.OptionArgs().Pass = "cloud-e";
+                driverPreOrder.OptionArgs().Base = "cloud-e";
+                driverPreOrder.OptionArgs().Port = 3306;
+                driverPreOrder.Connect();
 
                 // Select Customer set
                 auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
@@ -75,7 +79,6 @@ namespace Cloude {
                 cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
-
                 // INNER JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Inner joinInner{};
                 joinInner.LhsComparingColumns().push_back(mapPreOrder.CustId);
@@ -85,12 +88,11 @@ namespace Cloude {
                 joinInner.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
                 joinInner.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
-                Foundation::SPtrEntityProxyVector rsJoinInner = joinInner.Join(rsPreOrder, rsCustomer);
+                auto rsJoinInner = joinInner.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsJoinInner.size() == 10);
                 for (auto &item : rsJoinInner) {
-                    std::cout << item->ToString() << std::endl;
+                    EXPECT_TRUE(item->ToString().length() > 0);
                 }
-
 
                 // LEFT JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Left joinLeft{};
@@ -101,15 +103,15 @@ namespace Cloude {
                 joinLeft.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
                 joinLeft.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
-                Foundation::SPtrEntityProxyVector rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
+                auto rsJoinLeft = joinLeft.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsJoinLeft.size() == rsPreOrder.size());
                 for (auto &item : rsJoinLeft) {
-                    std::cout << item->ToString() << std::endl;
+                    EXPECT_TRUE(item->ToString().length() > 0);
                 }
 
                 // Disconnect
                 driverCustomer.Disconnect();
-                driverOrder.Disconnect();
+                driverPreOrder.Disconnect();
             }
 
             TEST(Segmentation, RIGHT_JOIN_01) {
@@ -120,24 +122,28 @@ namespace Cloude {
                 Application::PreOrderMap mapPreOrder;
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
-                Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
+                Drivers::MySql::MySqlSourceDriver driverPreOrder{mapPreOrder};
 
                 auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, driverCustomer);
-                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverOrder);
+                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverPreOrder);
 
                 Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
-                Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
+                Foundation::EntityQuery queryOrder{mapPreOrder, driverPreOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
-                driverOrder.OptionArgs().ConnectionString = "example01.db";
-
                 driverCustomer.Connect();
-                driverOrder.Connect();
+
+                driverPreOrder.OptionArgs().Host = "dell-3020";
+                driverPreOrder.OptionArgs().User = "cloud-e";
+                driverPreOrder.OptionArgs().Pass = "cloud-e";
+                driverPreOrder.OptionArgs().Base = "cloud-e";
+                driverPreOrder.OptionArgs().Port = 3306;
+                driverPreOrder.Connect();
 
                 // Select Customer set
                 auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(20);
-                auto sptrCustomerIdGt00 = CmpFactory::CreateLT(mapCustomer.Id, sptrCustomerId);
-                auto rsCustomer = queryCustomer.Select(sptrCustomerIdGt00);
+                auto sptrCustomerIdLTE20 = CmpFactory::CreateLTE(mapCustomer.Id, sptrCustomerId);
+                auto rsCustomer = queryCustomer.Select(sptrCustomerIdLTE20);
 
                 // Select Order set
                 auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(0);
@@ -166,7 +172,6 @@ namespace Cloude {
                 cmp.RhsCmpColumns().push_back(mapPreOrder.CustId);
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
-
                 // RIGHT JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Right joinRight{};
                 joinRight.LhsComparingColumns().push_back(mapPreOrder.CustId);
@@ -176,13 +181,12 @@ namespace Cloude {
                 joinRight.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
                 joinRight.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
-                Foundation::SPtrEntityProxyVector rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
-                EXPECT_TRUE(rsJoinRight.size() == 24);
-
+                auto rsJoinRight = joinRight.Join(rsPreOrder, rsCustomer);
+                EXPECT_TRUE(rsJoinRight.size() >= 20);
 
                 // Disconnect
                 driverCustomer.Disconnect();
-                driverOrder.Disconnect();
+                driverPreOrder.Disconnect();
             }
 
             TEST(Segmentation, CROSS_JOIN) {
@@ -193,19 +197,23 @@ namespace Cloude {
                 Application::PreOrderMap mapPreOrder;
 
                 Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
-                Drivers::SQLite::SQLiteSourceDriver driverOrder{mapPreOrder};
+                Drivers::MySql::MySqlSourceDriver driverPreOrder{mapPreOrder};
 
                 auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, driverCustomer);
-                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverOrder);
+                auto sptrOrderStore = Foundation::CreateEntityStore(mapPreOrder, driverPreOrder);
 
                 Foundation::EntityQuery queryCustomer{mapCustomer, driverCustomer};
-                Foundation::EntityQuery queryOrder{mapPreOrder, driverOrder};
+                Foundation::EntityQuery queryOrder{mapPreOrder, driverPreOrder};
 
                 driverCustomer.OptionArgs().ConnectionString = "example01.db";
-                driverOrder.OptionArgs().ConnectionString = "example01.db";
-
                 driverCustomer.Connect();
-                driverOrder.Connect();
+
+                driverPreOrder.OptionArgs().Host = "dell-3020";
+                driverPreOrder.OptionArgs().User = "cloud-e";
+                driverPreOrder.OptionArgs().Pass = "cloud-e";
+                driverPreOrder.OptionArgs().Base = "cloud-e";
+                driverPreOrder.OptionArgs().Port = 3306;
+                driverPreOrder.Connect();
 
                 // Select Customer set
                 auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
@@ -246,12 +254,12 @@ namespace Cloude {
                 crossJoin.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
                 crossJoin.RhsTransformer()->AddCellTransformer("Email", customerEmailCell);
 
-                Foundation::SPtrEntityProxyVector rsCrossJoin = crossJoin.Join(rsPreOrder, rsCustomer);
+                auto rsCrossJoin = crossJoin.Join(rsPreOrder, rsCustomer);
                 EXPECT_TRUE(rsCrossJoin.size() == rsPreOrder.size() * rsCustomer.size());
 
                 // Disconnect
                 driverCustomer.Disconnect();
-                driverOrder.Disconnect();
+                driverPreOrder.Disconnect();
             }
         }
     }

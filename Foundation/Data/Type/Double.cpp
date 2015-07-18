@@ -15,11 +15,7 @@ namespace Cloude {
                     //
                 }
 
-                bool Double::Equal(const Common::IEquatable &rhs) const {
-                    return false;
-                }
-
-                void *Double::RawPointerToValueBuffer() {
+                void *Double::PointerToBuffer() {
                     return &_value;
                 }
 

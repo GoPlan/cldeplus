@@ -16,6 +16,10 @@
 #include <Foundation/Data/Type/VarChar.h>
 #include <Foundation/Data/Type/Byte.h>
 #include <Foundation/Data/Type/Boolean.h>
+#include <Foundation/Data/Type/Text.h>
+#include <Foundation/Data/Type/Date.h>
+#include <Foundation/Data/Type/Time.h>
+#include <Foundation/Data/Type/DateTime.h>
 
 namespace Cloude {
     namespace Foundation {
@@ -53,10 +57,6 @@ namespace Cloude {
                 return std::make_shared<Type::UInt64>(value);
             }
 
-            SPtrValue ValueFactory::CreateString(const char *value) {
-                return std::make_shared<Type::String>(value);
-            }
-
             SPtrValue ValueFactory::CreateVarChar(const char *value) {
                 return std::make_shared<Type::VarChar>(value);
             }
@@ -69,12 +69,69 @@ namespace Cloude {
                 return std::make_shared<Type::VarChar>(length);
             }
 
+            SPtrValue ValueFactory::CreateText(const std::string &value) {
+                return std::make_shared<Type::Text>(value);
+            }
+
+            SPtrValue ValueFactory::CreateText(unsigned long length) {
+                return std::make_shared<Type::Text>(length);
+            }
+
             SPtrValue ValueFactory::CreateByte(char value) {
                 return std::make_shared<Type::Byte>(value);
             }
 
             SPtrValue ValueFactory::CreateBoolean(bool value) {
                 return std::make_shared<Type::Boolean>(value);
+            }
+
+            SPtrValue ValueFactory::CreateDate() {
+                return std::make_shared<Type::Date>();
+            }
+
+            SPtrValue ValueFactory::CreateDate(int year, int month, int day) {
+                return std::make_shared<Type::Date>(year, month, day);
+            }
+
+            SPtrValue ValueFactory::CreateTime() {
+                return std::make_shared<Type::Time>();
+            }
+
+            SPtrValue ValueFactory::CreateTime(int hour, int minute, int second) {
+                return std::make_shared<Type::Time>(hour, minute, second);
+            }
+
+            SPtrValue ValueFactory::CreateTime(int hour, int minute, int second, int millisecond) {
+                return std::make_shared<Type::Time>(hour, minute, second, millisecond);
+            }
+
+            SPtrValue ValueFactory::CreateTime(int hour, int minute, int second, int millisecond,
+                                               bool hasOffSet, int offset) {
+                return std::make_shared<Type::Time>(hour, minute, second, millisecond, hasOffSet, offset);
+            }
+
+            SPtrValue ValueFactory::CreateDateTime() {
+                return std::make_shared<Type::DateTime>();
+            }
+
+            SPtrValue ValueFactory::CreateDateTime(int year, int month, int day) {
+                return std::make_shared<Type::DateTime>(year, month, day);
+            }
+
+            SPtrValue ValueFactory::CreateDateTime(int year, int month, int day, int hour, int minute, int second) {
+                return std::make_shared<Type::DateTime>(year, month, day, hour, minute, second);
+            }
+
+            SPtrValue ValueFactory::CreateDateTime(int year, int month, int day,
+                                                   int hour, int minute, int second, int millisecond) {
+                return std::make_shared<Type::DateTime>(year, month, day, hour, minute, second, millisecond);
+            }
+
+            SPtrValue ValueFactory::CreateDateTime(int year, int month, int day,
+                                                   int hour, int minute, int second, int millisecond,
+                                                   bool hasOffSet, int offset) {
+                return std::make_shared<Type::DateTime>(year, month, day, hour, minute, second, millisecond,
+                                                        hasOffSet, offset);
             }
         }
     }

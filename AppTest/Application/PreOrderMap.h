@@ -27,7 +27,7 @@ namespace Cloude {
                 PreOrderMap(PreOrderMap &&) = default;
                 PreOrderMap &operator=(const PreOrderMap &) = default;
                 PreOrderMap &operator=(PreOrderMap &&) = default;
-                virtual ~PreOrderMap() = default;
+                ~PreOrderMap() = default;
 
             protected:
                 virtual const std::string &TableNameCore() const override;

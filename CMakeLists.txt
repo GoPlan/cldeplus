@@ -24,6 +24,7 @@ add_subdirectory(Relation)
 add_subdirectory(Segmentation)
 add_subdirectory(AppTest)
 add_subdirectory(Drivers/SQLite)
+add_subdirectory(Drivers/MySql)
 add_subdirectory(.examples)
 
 # TARGET-EXECUTABLE: debug
@@ -33,8 +34,10 @@ add_executable(cloud_e_plus_debug main.cpp)
 add_executable(cloud_e_plus_test AppTest/main.cpp)
 target_link_libraries(cloud_e_plus_test foundation segmentation relation booting)
 target_link_libraries(cloud_e_plus_test application apptest gtest)
-target_link_libraries(cloud_e_plus_test cldesqlitedriver)
-#target_link_libraries(cloud_e_plus_test mysqlclient pq mongoc-1.0 bson-1.0)
+target_link_libraries(cloud_e_plus_test cldesqlitedriver cldemysqldriver)
+target_link_libraries(cloud_e_plus_test mysqlclient)
+#target_link_libraries(cloud_e_plus_test pq)
+#target_link_libraries(cloud_e_plus_test mongoc-1.0 bson-1.0)
 
 # TEST
 #enable_testing()

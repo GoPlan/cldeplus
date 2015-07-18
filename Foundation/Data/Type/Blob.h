@@ -14,7 +14,7 @@ namespace Cloude {
 
                 class Blob : public Value {
 
-                    void *buffer;
+                    void *_buffer;
 
                 public:
                     Blob() = default;

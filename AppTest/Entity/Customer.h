@@ -14,12 +14,13 @@ namespace Cloude {
 
             class Customer {
 
-                int64_t id;
-                std::string firstName;
-                std::string lastName;
-                std::string email;
+                int64_t _id;
+                std::string _firstName;
+                std::string _lastName;
+                std::string _email;
 
-                Relation::SPtrLinkToMany _sptrPreOrders;
+                Relation::SPtrLinkToMany _linkToPreOrders;
+                Relation::SPtrMultiCellsObj _objAddress;
 
             public:
                 Customer() = default;
@@ -27,21 +28,23 @@ namespace Cloude {
                 Customer(Customer &&) = default;
                 Customer &operator=(const Customer &) = default;
                 Customer &operator=(Customer &&) = default;
-                virtual ~Customer() = default;
+                ~Customer() = default;
 
                 // Accessors
-                int64_t getId() const { return id; }
-                const std::string &getFirstName() const { return firstName; }
-                const std::string &getLastName() const { return lastName; }
-                const std::string &getEmail() const { return email; }
-                const Relation::SPtrLinkToMany &sptrPreOrders() const { return _sptrPreOrders; }
+                int64_t getId() const { return _id; }
+                const std::string &getFirstName() const { return _firstName; }
+                const std::string &getLastName() const { return _lastName; }
+                const std::string &getEmail() const { return _email; }
+                const Relation::SPtrLinkToMany &LinkToPreOrders() const { return _linkToPreOrders; }
+                const Relation::SPtrMultiCellsObj &objAddress() const { return _objAddress; }
 
                 // Mutators
-                void setId(int64_t Id) { Customer::id = Id; }
-                void setFirstName(const std::string &firstName) { Customer::firstName = firstName; }
-                void setLastName(const std::string &lastName) { Customer::lastName = lastName; }
-                void setEmail(const std::string &email) { Customer::email = email; }
-                void setSptrPreOrders(const Relation::SPtrLinkToMany &sptrPreOrders) { _sptrPreOrders = sptrPreOrders; }
+                void setId(int64_t Id) { _id = Id; }
+                void setFirstName(const std::string &firstName) { _firstName = firstName; }
+                void setLastName(const std::string &lastName) { _lastName = lastName; }
+                void setEmail(const std::string &email) { _email = email; }
+                void setLinkToPreOrders(const Relation::SPtrLinkToMany &sptrPreOrders) { _linkToPreOrders = sptrPreOrders; }
+                void setObjAddress(const Relation::SPtrMultiCellsObj &objAddress) { _objAddress = objAddress; }
             };
         }
     }

@@ -15,17 +15,8 @@ namespace Cloude {
                     //
                 }
 
-                void *Int64::RawPointerToValueBuffer() {
+                void *Int64::PointerToBuffer() {
                     return &this->_value;
-                }
-
-                bool Int64::Equal(const Common::IEquatable &rhs) const {
-                    try {
-                        auto cast = dynamic_cast<const Int64 &>(rhs);
-                        return (cast._value == this->_value);
-                    } catch (std::bad_cast &ex) {
-                        return false;
-                    }
                 }
 
                 std::string Int64::ToString() const {

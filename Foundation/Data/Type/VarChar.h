@@ -31,10 +31,8 @@ namespace Cloude {
                     ~VarChar();
 
                     // Value
-                    virtual void *RawPointerToValueBuffer() override;
-
-                    // IEquatable
-                    virtual bool Equal(const Common::IEquatable &rhs) const override;
+                    virtual void *PointerToBuffer() override;
+                    virtual size_t getActualSize() override;
 
                     // IPrintable
                     virtual std::string ToString() const override;

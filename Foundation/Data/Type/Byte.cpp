@@ -15,17 +15,8 @@ namespace Cloude {
                     //
                 }
 
-                void *Byte::RawPointerToValueBuffer() {
+                void *Byte::PointerToBuffer() {
                     return &this->_value;
-                }
-
-                bool Byte::Equal(const Common::IEquatable &rhs) const {
-                    try {
-                        auto cast = dynamic_cast<const Byte &>(rhs);
-                        return (cast._value == this->_value);
-                    } catch (std::bad_cast &ex) {
-                        return false;
-                    }
                 }
 
                 std::string Byte::ToString() const {

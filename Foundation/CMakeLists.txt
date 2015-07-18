@@ -61,6 +61,7 @@ add_library(foundation STATIC
     Query/Comparative/IsNotNull.h
     Query/ComparativeType.cpp
     Query/ComparativeType.h
+    Data/Data.h
     Data/Helper/TypeHelper.cpp
     Data/Helper/TypeHelper.h
     Data/TypeEnums.h
@@ -73,21 +74,38 @@ add_library(foundation STATIC
     Data/CharacterValue.h
     Data/ValueFactory.cpp
     Data/ValueFactory.h
-    Data/Data.h
     Data/Helper/ValueHelper.cpp
     Data/Helper/ValueHelper.h
+    Data/Type/Int16.cpp
+    Data/Type/Int16.h
     Data/Type/Int32.cpp
     Data/Type/Int32.h
     Data/Type/Int64.cpp
     Data/Type/Int64.h
-    Data/Type/VarChar.cpp
-    Data/Type/VarChar.h
+    Data/Type/UInt16.cpp
+    Data/Type/UInt16.h
+    Data/Type/UInt32.cpp
+    Data/Type/UInt32.h
+    Data/Type/UInt64.cpp
+    Data/Type/UInt64.h
     Data/Type/Double.cpp
     Data/Type/Double.h
+    Data/Type/Float.cpp
+    Data/Type/Float.h
+    Data/Type/Point.cpp
+    Data/Type/Point.h
+    Data/Type/Matrix.cpp
+    Data/Type/Matrix.h
+    Data/Type/VarChar.cpp
+    Data/Type/VarChar.h
+    Data/Type/String.cpp
+    Data/Type/String.h
     Data/Type/Text.cpp
     Data/Type/Text.h
-    Data/Type/Int16.cpp
-    Data/Type/Int16.h
+    Data/Type/Blob.cpp
+    Data/Type/Blob.h
+    Data/Type/Byte.cpp
+    Data/Type/Byte.h
     Data/Type/Boolean.cpp
     Data/Type/Boolean.h
     Data/Type/Date.cpp
@@ -96,28 +114,8 @@ add_library(foundation STATIC
     Data/Type/DateTime.h
     Data/Type/Time.cpp
     Data/Type/Time.h
-    Data/Type/UInt16.cpp
-    Data/Type/UInt16.h
-    Data/Type/UInt32.cpp
-    Data/Type/UInt32.h
-    Data/Type/UInt64.cpp
-    Data/Type/UInt64.h
-    Data/Type/Byte.cpp
-    Data/Type/Byte.h
-    Data/Type/TimeStamp.cpp
-    Data/Type/TimeStamp.h
     Data/Type/Currency.cpp
     Data/Type/Currency.h
-    Data/Type/Float.cpp
-    Data/Type/Float.h
-    Data/Type/Point.cpp
-    Data/Type/Point.h
-    Data/Type/Matrix.cpp
-    Data/Type/Matrix.h
-    Data/Type/String.cpp
-    Data/Type/String.h
-    Data/Type/Blob.cpp
-    Data/Type/Blob.h
     Data/Comparer/Comparer.cpp
     Data/Comparer/Comparer.h
     Exception/cldeNonSupportedFunctionException.cpp
@@ -128,11 +126,12 @@ add_library(foundation STATIC
     Common/IComputable.h
     Common/IPrintable.h
     Common/IFormatter.h
+    Query/Query.h
     Query/Contract/IPredicateFormatter.h
+    Query/Comparative.cpp
     Query/Comparative.h
     Query/CriteriaLeaf.cpp
     Query/CriteriaLeaf.h
-    Query/Query.h
     Query/CriteriaComposite.cpp
     Query/CriteriaComposite.h
     Query/CriteriaIterator.cpp
@@ -164,4 +163,4 @@ add_library(foundation STATIC
     Store/Extra/EntityOutputFormatter.cpp
     Store/Extra/EntityOutputFormatter.h
     Foundation.h
-Query/Comparative.cpp)
+Data/TimeBasedValue.cpp Data/TimeBasedValue.h Data/Helper/TimeBasedHelper.cpp Data/Helper/TimeBasedHelper.h Exception/cldeNotImplementedException.cpp Exception/cldeNotImplementedException.h Common/IComparable.h)

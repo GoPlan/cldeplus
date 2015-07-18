@@ -22,7 +22,7 @@ namespace Cloude {
                     throw Exception::cldeNonSupportedDataTypeException{msg};
                 }
 
-                const T *ptrResult = reinterpret_cast<const T *>(value->RawPointerToValueBuffer());
+                const T *ptrResult = reinterpret_cast<const T *>(value->PointerToBuffer());
 
                 return *ptrResult;
             };

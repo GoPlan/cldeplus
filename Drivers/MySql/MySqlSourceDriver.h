@@ -2,8 +2,8 @@
 // Created by GoPlan on 18/05/2015.
 //
 
-#ifndef CLOUD_E_CPLUS_SOURCEDRIVER_MYSQL_MYSQLSOUCRCEDRIVER_H
-#define CLOUD_E_CPLUS_SOURCEDRIVER_MYSQL_MYSQLSOUCRCEDRIVER_H
+#ifndef CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOUCRCEDRIVER_H
+#define CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOUCRCEDRIVER_H
 
 #include <memory>
 #include <vector>
@@ -11,7 +11,7 @@
 #include "MySqlSourceException.h"
 
 namespace Cloude {
-    namespace SourceDriver {
+    namespace Drivers {
         namespace MySql {
 
             enum class MySqlSourceExecutionStatus {
@@ -31,22 +31,26 @@ namespace Cloude {
 
             public:
                 explicit MySqlSourceDriver(const Foundation::EntityMap &entityMap);
-                ~MySqlSourceDriver();
-                MySqlSourceDriver(const MySqlSourceDriver &entityMap) = default;
-                MySqlSourceDriver &operator=(const MySqlSourceDriver &entityMap) = default;
+                MySqlSourceDriver(const MySqlSourceDriver &) = default;
+                MySqlSourceDriver(MySqlSourceDriver &&) = default;
+                MySqlSourceDriver &operator=(const MySqlSourceDriver &) = default;
+                MySqlSourceDriver &operator=(MySqlSourceDriver &&) = default;
+                ~MySqlSourceDriver() = default;
 
                 // Locals
                 void Connect();
                 void Disconnect();
-                Options &getOptionArgs() { return _optionArgs; }
+                Options &OptionArgs() { return _optionArgs; }
 
                 // EntitySourceDriver
-                int Load(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
-                SPtrProxySPtrVector Select(const SPtrPredicate &predicate,
-                                           Foundation::EntityStore &entityStore) const override;
+                int Load(Foundation::SPtrEntity &entity) const override;
+                int Insert(Foundation::SPtrEntity &entity) const override;
+                int Save(Foundation::SPtrEntity &entity) const override;
+                int Delete(Foundation::SPtrEntity &entity) const override;
+                Foundation::SPtrEntityProxyVector Select(
+                        const Foundation::Query::SPtrCriteria &sptrCriteria,
+                        const Foundation::SPtrColumnVector &columnsForProjection) const override;
+
             private:
                 class MySqlApiImpl;
 
@@ -66,4 +70,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_CPLUS_SOURCEDRIVER_MYSQL_MYSQLSOUCRCEDRIVER_H
+#endif //CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOUCRCEDRIVER_H

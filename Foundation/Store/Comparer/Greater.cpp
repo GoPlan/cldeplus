@@ -29,8 +29,8 @@ namespace Cloude {
                     auto &lhsValue = lhsCell->getValue();
                     auto &rhsValue = rhsCell->getValue();
 
-                    if (_greater(lhsValue, rhsValue))
-                        return true;
+                    if(!_equal(lhsValue, rhsValue))
+                        return _greater(lhsValue, rhsValue);
                 }
 
                 return false;

@@ -2,65 +2,69 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY_HPP
-#define CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY_HPP
+#ifndef CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY01_HPP
+#define CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY01_HPP
 
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
-#include <AppTest/Entity/Enquiry.h>
+#include <AppTest/Entity/Customer.h>
+#include <AppTest/Application/CustomerMap.h>
 
 namespace Cloude {
     namespace AppTest {
         namespace Store {
 
-            TEST(Relation, NamedEntity01) {
+            TEST(Relation, ConvertEntityToNamedEntity) {
 
                 using namespace Foundation;
                 using namespace Foundation::Query;
 
-                auto sptrEnquiryId_04 = Data::ValueFactory::CreateInt64(4);
+                auto sptrId04 = Data::ValueFactory::CreateInt64(4);
 
-                AppTest::Application::EnquiryMap enquiryMap{};
-                Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{enquiryMap};
+                AppTest::Application::CustomerMap mapCustomer{};
+                Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{mapCustomer};
                 sqliteSourceDriver.OptionArgs().ConnectionString = "example01.db";
 
-                auto sptrEnquiryStore = Foundation::CreateEntityStore(enquiryMap, sqliteSourceDriver);
-                auto sptrEnquiryQuery = Foundation::CreateEntityQuery(enquiryMap, sqliteSourceDriver);
+                auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, sqliteSourceDriver);
+                auto sptrCustomerQuery = Foundation::CreateEntityQuery(mapCustomer, sqliteSourceDriver);
 
                 sqliteSourceDriver.Connect();
 
-                SPtrCriteria sptrIdEq01 = ComparativeFactory::CreateEQ(enquiryMap.EnquiryId, sptrEnquiryId_04);
-                SPtrEntityProxy sptrProxy = sptrEnquiryQuery->SelectFirst(sptrIdEq01);
-                SPtrEntity sptrEntity = sptrProxy->Summon(sptrEnquiryStore);
+                auto sptrIdEq01 = ComparativeFactory::CreateEQ(mapCustomer.Id, sptrId04);
+                auto sptrProxy = sptrCustomerQuery->SelectFirst(sptrIdEq01);
+                auto sptrEntity = sptrProxy->Summon(sptrCustomerStore);
 
                 EXPECT_TRUE(sptrProxy.get());
                 EXPECT_TRUE(sptrEntity.get());
 
-                auto converter = [](const Foundation::Entity &entity) -> Entity::Enquiry {
+                auto converter = [](const Foundation::Entity &entity) -> Entity::Customer {
 
-                    Entity::Enquiry enquiry{};
+                    Entity::Customer customer{};
 
-                    auto &id = entity.getCell("EnquiryId")->getValue();
+                    auto &id = entity.getCell("Id")->getValue();
+                    auto &firstname = entity.getCell("FirstName")->getValue();
+                    auto &lastname = entity.getCell("LastName")->getValue();
                     auto &email = entity.getCell("Email")->getValue();
-                    auto &subject = entity.getCell("Subject")->getValue();
 
-                    enquiry.setId(*(int64_t *) (id->RawPointerToValueBuffer()));
-                    enquiry.setEmail(std::string{(const char *) email->RawPointerToValueBuffer()});
-                    enquiry.setSubject(std::string{(const char *) subject->RawPointerToValueBuffer()});
+                    customer.setId(*(int64_t *) (id->PointerToBuffer()));
+                    customer.setFirstName(std::string{(const char *) firstname->PointerToBuffer()});
+                    customer.setLastName(std::string{(const char *) lastname->PointerToBuffer()});
+                    customer.setEmail(std::string{(const char *) email->PointerToBuffer()});
 
-                    return enquiry;
+                    return customer;
                 };
 
-                auto enquiry = sptrEntity->NamedEntity<Entity::Enquiry>(converter);
+                auto customer = sptrEntity->NamedEntity<Entity::Customer>(converter);
 
-                EXPECT_TRUE(enquiry.getId() > 0);
-                EXPECT_TRUE(enquiry.getEmail().length() > 0);
-                EXPECT_TRUE(enquiry.getSubject().length() > 0);
+                EXPECT_TRUE(customer.getId() > 0);
+                EXPECT_TRUE(customer.getFirstName().length() > 0);
+                EXPECT_TRUE(customer.getLastName().length() > 0);
+                EXPECT_TRUE(customer.getEmail().length() > 0);
 
                 sqliteSourceDriver.Disconnect();
             }
         }
     }
 }
-#endif //CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY_HPP
+#endif //CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY01_HPP

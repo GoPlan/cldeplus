@@ -15,12 +15,12 @@ namespace Cloude {
                     Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
                 if (value->getDataType() != Foundation::Data::ValueType::Int16) {
-                    std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(value->getDataType())};
+                    std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
                     std::string msg{type + " is not supported by Int16Caster"};
                     throw Segmentation::Exception::TransformationException{msg};
                 }
 
-                int16_t *tmp = reinterpret_cast<int16_t *>(value->RawPointerToValueBuffer());
+                int16_t *tmp = reinterpret_cast<int16_t *>(value->PointerToBuffer());
 
                 switch (dataType) {
                     case Foundation::Data::ValueType::Int32:
@@ -42,7 +42,7 @@ namespace Cloude {
                     case Foundation::Data::ValueType::Byte:
                         return Foundation::Data::ValueFactory::CreateByte((char) *tmp);
                     default: {
-                        std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
+                        std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
                         std::string msg{"This converter can not convert Int16 into " + type};
                         throw Segmentation::Exception::TransformationException{msg};
                     }

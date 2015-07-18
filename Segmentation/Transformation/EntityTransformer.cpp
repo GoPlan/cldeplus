@@ -38,6 +38,10 @@ namespace Cloude {
                 dstProxy->setCell(sptrNewCell);
             }
         }
+
+        Transformation::SPtrEntityTransformer Transformation::CreateEntityTransformer() {
+            return std::make_shared<EntityTransformer>();
+        }
     }
 }
 

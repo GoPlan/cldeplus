@@ -13,7 +13,7 @@ namespace Cloude {
             Foundation::Data::SPtrValue Caster::StringCaster::Cast(
                     Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
-                std::string type{Foundation::Data::Helper::TypeHelper::CopyToString(dataType)};
+                std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
                 std::string msg{"This converter can not convert StringCaster into " + type};
                 throw Segmentation::Exception::TransformationException{msg};
             }

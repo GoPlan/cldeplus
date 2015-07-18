@@ -19,7 +19,7 @@ namespace Cloude {
                 std::string _name;
                 double _total;
 
-                Relation::SPtrLinkToOne _sptrCustomer;
+                Relation::SPtrLinkToOne _linkToCustomer;
 
             public:
                 PreOrder() = default;
@@ -34,14 +34,14 @@ namespace Cloude {
                 int64_t getCustomerId() const { return _custId; }
                 double getTotal() const { return _total; }
                 const std::string &getName() const { return _name; }
-                const Relation::SPtrLinkToOne &sptrCustomer() const { return _sptrCustomer; }
+                const Relation::SPtrLinkToOne &LinkToCustomer() const { return _linkToCustomer; }
 
                 // Mutators
                 void setId(int64_t id) { _id = id; }
                 void setCustomerId(int64_t customerId) { _custId = customerId; }
                 void setName(const std::string &name) { _name = name; }
                 void setTotal(double total) { _total = total; }
-                void setSptrCustomer(const Relation::SPtrLinkToOne &sptrCustomer) { _sptrCustomer = sptrCustomer; }
+                void setLinkToCustomer(const Relation::SPtrLinkToOne &customer) { _linkToCustomer = customer; }
             };
         }
     }
