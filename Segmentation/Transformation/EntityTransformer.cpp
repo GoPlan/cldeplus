@@ -24,12 +24,10 @@ namespace Cloude {
                 throw Exception::TransformationException{msg};
             }
 
-
             if (!dstProxy) {
                 std::string msg{"dstProxy is either invalid or a nullptr"};
                 throw Exception::TransformationException{msg};
             }
-
 
             for (auto &pairCellMap : _mapCellTransformers) {
                 auto &srcColumnName = pairCellMap.first;
