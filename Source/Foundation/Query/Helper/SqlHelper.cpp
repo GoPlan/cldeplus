@@ -2,14 +2,11 @@
 // Created by LE, Duc Anh on 5/26/15.
 //
 
-#include <Foundation/Enum/CommonBufferSize.h>
-#include <Foundation/EntityMap.h>
-#include <Foundation/Query/Contract/IPredicateFormatter.h>
-#include <Foundation/Query/Comparative.h>
-#include "../CriteriaIterator.h"
-
 #include "CriteriaHelper.h"
 #include "SqlHelper.h"
+#include "../../Enum/CommonBufferSize.h"
+#include "../CriteriaComposite.h"
+#include "../CriteriaIterator.h"
 
 namespace Cloude {
     namespace Foundation {

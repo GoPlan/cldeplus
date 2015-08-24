@@ -5,9 +5,9 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_GREATER_H
 #define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_GREATER_H
 
-#include <Foundation/Store/AbstractEntity.h>
-#include <Foundation/Data/Comparer/Greater.h>
-#include <Foundation/Data/Comparer/Compare.h>
+#include "../AbstractEntity.h"
+#include "../../Data/Comparer/Greater.h"
+#include "../../Data/Comparer/Compare.h"
 
 namespace Cloude {
     namespace Foundation {

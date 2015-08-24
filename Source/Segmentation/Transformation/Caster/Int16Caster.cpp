@@ -2,10 +2,11 @@
 // Created by LE, Duc Anh on 7/1/15.
 //
 
-#include <Foundation/Data/Helper/TypeHelper.h>
-#include <Foundation/Data/ValueFactory.h>
-#include <Segmentation/Exception/TransformationException.h>
 #include "Int16Caster.h"
+#include "../../../Foundation/Data/Value.h"
+#include "../../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../../Foundation/Data/ValueFactory.h"
+#include "../../Exception/TransformationException.h"
 
 namespace Cloude {
     namespace Segmentation {

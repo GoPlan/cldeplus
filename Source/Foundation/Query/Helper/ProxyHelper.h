@@ -5,10 +5,10 @@
 #ifndef CLOUD_E_PLUS_PROXYHELPER_H
 #define CLOUD_E_PLUS_PROXYHELPER_H
 
-#include <Foundation/Entity.h>
-#include <Foundation/EntityStore.h>
-#include <Foundation/EntityProxy.h>
-#include <Foundation/Exception/cldeEntityException.h>
+#include "../../Entity.h"
+#include "../../EntityStore.h"
+#include "../../EntityProxy.h"
+#include "../../Exception/cldeEntityException.h"
 
 namespace Cloude {
     namespace Foundation {

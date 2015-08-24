@@ -5,8 +5,7 @@
 #ifndef CLOUD_E_PLUS_APPTEST_APPLICATION_CUSTOMERMAP_H
 #define CLOUD_E_PLUS_APPTEST_APPLICATION_CUSTOMERMAP_H
 
-#include <Foundation/Column.h>
-#include <Foundation/EntityMap.h>
+#include "../../Source/Foundation/EntityMap.h"
 
 namespace Cloude {
     namespace Test {

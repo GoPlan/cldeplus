@@ -2,8 +2,6 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#include <Foundation/Data/TimeBasedValue.h>
-#include <Drivers/MySql/Data/MySqlTime.h>
 #include "MySqlSourceHelper.h"
 
 namespace Cloude {

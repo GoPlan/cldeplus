@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_BLOB_H
 #define CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_BLOB_H
 
-#include <Foundation/Data/Value.h>
+#include "../Value.h"
 
 namespace Cloude {
     namespace Foundation {

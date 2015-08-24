@@ -5,9 +5,9 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_LESS_H
 #define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_LESS_H
 
-#include <Foundation/Store/AbstractEntity.h>
-#include <Foundation/Data/Comparer/Less.h>
-#include <Foundation/Data/Comparer/Compare.h>
+#include "../AbstractEntity.h"
+#include "../../Data/Comparer/Less.h"
+#include "../../Data/Comparer/Compare.h"
 
 namespace Cloude {
     namespace Foundation {

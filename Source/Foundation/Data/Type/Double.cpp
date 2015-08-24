@@ -2,7 +2,6 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#include <cstdlib>
 #include "Double.h"
 
 namespace Cloude {

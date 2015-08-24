@@ -6,15 +6,17 @@
 #define CLOUD_E_PLUS_DRIVERS_MYSQL_MYSQLSOURCEHELPER_H
 
 #include <mysql.h>
-#include <Foundation/Data/TimeBasedValue.h>
-#include <Drivers/MySql/Data/MySqlDate.h>
-#include <Drivers/MySql/Data/MySqlTime.h>
-#include <Drivers/MySql/Data/MySqlDateTime.h>
+#include "../../../Foundation/Data/TimeBasedValue.h"
+#include "../Data/MySqlDate.h"
+#include "../Data/MySqlTime.h"
+#include "../Data/MySqlDateTime.h"
 
 namespace Cloude {
     namespace Drivers {
         namespace MySql {
             namespace Helper {
+
+
                 struct MySqlSourceHelper {
 
                     static MYSQL_TIME DateToMYSQLTIME(const Foundation::Data::TimeBasedValue::TSDate &date);

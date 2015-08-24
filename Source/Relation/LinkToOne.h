@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_RELATION_LINKTOONE_H
 #define CLOUD_E_PLUS_RELATION_LINKTOONE_H
 
-#include <Foundation/EntityProxy.h>
+#include "../Foundation/EntityQuery.h"
 #include "Link.h"
 
 namespace Cloude {

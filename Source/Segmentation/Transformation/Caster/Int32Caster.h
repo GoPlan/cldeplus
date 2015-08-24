@@ -5,7 +5,8 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CONVERTER_INT32CASTER_H
 #define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CONVERTER_INT32CASTER_H
 
-#include <Segmentation/Transformation/TypeCaster.h>
+#include "../../../Foundation/Data/Value.h"
+#include "../TypeCaster.h"
 
 namespace Cloude {
     namespace Segmentation {

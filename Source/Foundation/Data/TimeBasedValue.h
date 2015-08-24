@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H
 #define CLOUD_E_PLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H
 
-#include <Foundation/Common/IComparable.h>
 #include "Value.h"
+#include "../Common/IComparable.h"
 
 namespace Cloude {
     namespace Foundation {

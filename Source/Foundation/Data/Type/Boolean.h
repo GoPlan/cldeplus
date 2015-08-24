@@ -5,8 +5,7 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_BOOLEAN_H
 #define CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_BOOLEAN_H
 
-#include <Foundation/Data/Value.h>
-#include <Foundation/Data/NumericValue.h>
+#include "../NumericValue.h"
 
 namespace Cloude {
     namespace Foundation {

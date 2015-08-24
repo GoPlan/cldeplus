@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_NUMERICVALUE_H
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_NUMERICVALUE_H
 
-#include <Foundation/Common/IComputable.h>
+#include "../Common/IComputable.h"
 #include "Value.h"
 
 namespace Cloude {

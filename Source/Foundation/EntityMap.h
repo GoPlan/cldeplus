@@ -40,6 +40,8 @@ namespace Cloude {
 
             virtual const std::string &TableNameCore() const = 0;
         };
+
+        using SPtrEntityMap = std::shared_ptr<EntityMap>;
     }
 }
 

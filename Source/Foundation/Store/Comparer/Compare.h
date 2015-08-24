@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
 #define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
 
-#include <Foundation/EntityProxy.h>
+#include "../../EntityProxy.h"
 #include "Less.h"
 
 namespace Cloude {

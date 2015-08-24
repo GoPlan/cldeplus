@@ -5,9 +5,9 @@
 #ifndef CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLDATETIME_H
 #define CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLDATETIME_H
 
-#include <Drivers/MySql/MySqlSourceException.h>
-#include <Foundation/Data/TimeBasedValue.h>
 #include <mysql.h>
+#include "../../../Foundation/Data/TimeBasedValue.h"
+#include "../../MySql/MySqlSourceException.h"
 
 namespace Cloude {
     namespace Drivers {

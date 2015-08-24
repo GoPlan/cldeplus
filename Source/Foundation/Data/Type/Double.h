@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_DOUBLE_H
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_DOUBLE_H
 
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
-#include <Foundation/Data/NumericValue.h>
+#include "../NumericValue.h"
+#include "../../Exception/cldeNonSupportedFunctionException.h"
 
 namespace Cloude {
     namespace Foundation {

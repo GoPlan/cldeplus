@@ -7,7 +7,7 @@
 
 #include <string>
 #include <functional>
-#include <Foundation/Query/Criteria.h>
+#include "../Criteria.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -29,17 +29,10 @@ namespace Cloude {
                 public:
                     using FPtrProcessor = std::function<std::string(const SPtrCriteria &)>;
 
-                public:
-                    static std::string ToStringCopy(const SPtrCriteria &sptrCriteria,
-                                                    const Contract::IPredicateFormatter &formatter);
-
-                    static std::string ToStringCopy(const SPtrCriteria &sptrCriteria,
-                                                    const FPtrProcessor fptrProcessor);
-
+                    static std::string CopyToString(const SPtrCriteria &sptrCriteria, const Contract::IPredicateFormatter &formatter);
+                    static std::string CopyToString(const SPtrCriteria &sptrCriteria, const FPtrProcessor fptrProcessor);
                 };
             }
-
-
         }
     }
 }

@@ -6,10 +6,10 @@
 #define CLOUD_E_PLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
 
 #include <memory>
-#include <Foundation/EntityMap.h>
-#include <Foundation/Column.h>
+#include "../../Source/Foundation/EntityMap.h"
 
 namespace Cloude {
+
     namespace Test {
         namespace Application {
 

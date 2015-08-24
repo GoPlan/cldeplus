@@ -14,10 +14,6 @@ namespace Cloude {
     namespace Drivers {
         namespace MySql {
 
-            enum class MySqlSourceExecutionStatus {
-
-            };
-
             class MySqlSourceDriver : public Foundation::EntitySourceDriver {
 
             public:

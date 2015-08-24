@@ -2,14 +2,15 @@
 // Created by LE, Duc Anh on 7/1/15.
 //
 
-#include <Foundation/Data/Helper/TypeHelper.h>
-#include <Segmentation/Exception/TransformationException.h>
-#include <Foundation/Data/ValueFactory.h>
+#include "../../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../../Foundation/Data/ValueFactory.h"
+#include "../../Exception/TransformationException.h"
 #include "Int64Caster.h"
 
 namespace Cloude {
     namespace Segmentation {
         namespace Transformation {
+
             Foundation::Data::SPtrValue Caster::Int64Caster::Cast(
                     Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 

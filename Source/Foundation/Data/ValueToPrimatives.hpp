@@ -6,7 +6,7 @@
 #define CLOUD_E_PLUS_FOUNDATION_DATA_TONUMERIC_HPP
 
 #include <stdexcept>
-#include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
+#include "../Exception/cldeNonSupportedDataTypeException.h"
 #include "Value.h"
 
 

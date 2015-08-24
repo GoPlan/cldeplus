@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
 #define CLOUD_E_PLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
 
-#include <Foundation/Common/IFormatter.h>
-#include <Foundation/Column.h>
+#include "../../Common/IFormatter.h"
+#include "../../Column.h"
 
 namespace Cloude {
     namespace Foundation {

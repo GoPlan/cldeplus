@@ -5,8 +5,7 @@
 #ifndef CLOUD_E_PLUS_RELATION_LINK_H
 #define CLOUD_E_PLUS_RELATION_LINK_H
 
-#include <Foundation/Query/Criteria.h>
-#include <Foundation/EntityQuery.h>
+#include "../Foundation/EntityQuery.h"
 
 namespace Cloude {
     namespace Relation {

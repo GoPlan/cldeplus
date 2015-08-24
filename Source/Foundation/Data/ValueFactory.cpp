@@ -4,22 +4,22 @@
 
 #include "ValueFactory.h"
 
-#include <Foundation/Data/Type/Float.h>
-#include <Foundation/Data/Type/Double.h>
-#include <Foundation/Data/Type/Int16.h>
-#include <Foundation/Data/Type/Int32.h>
-#include <Foundation/Data/Type/Int64.h>
-#include <Foundation/Data/Type/UInt16.h>
-#include <Foundation/Data/Type/UInt32.h>
-#include <Foundation/Data/Type/UInt64.h>
-#include <Foundation/Data/Type/String.h>
-#include <Foundation/Data/Type/VarChar.h>
-#include <Foundation/Data/Type/Byte.h>
-#include <Foundation/Data/Type/Boolean.h>
-#include <Foundation/Data/Type/Text.h>
-#include <Foundation/Data/Type/Date.h>
-#include <Foundation/Data/Type/Time.h>
-#include <Foundation/Data/Type/DateTime.h>
+#include "Type/Double.h"
+#include "Type/Int16.h"
+#include "Type/Int32.h"
+#include "Type/Int64.h"
+#include "Type/UInt16.h"
+#include "Type/UInt32.h"
+#include "Type/UInt64.h"
+#include "Type/String.h"
+#include "Type/VarChar.h"
+#include "Type/Byte.h"
+#include "Type/Boolean.h"
+#include "Type/Text.h"
+#include "Type/Date.h"
+#include "Type/Time.h"
+#include "Type/DateTime.h"
+#include "Type/Float.h"
 
 namespace Cloude {
     namespace Foundation {

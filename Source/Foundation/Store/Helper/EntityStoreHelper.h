@@ -7,8 +7,7 @@
 
 #include <memory>
 #include <vector>
-#include <Foundation/Entity.h>
-#include <Foundation/EntityProxy.h>
+#include "../../EntityProxy.h"
 
 namespace Cloude {
     namespace Foundation {

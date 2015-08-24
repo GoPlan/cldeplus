@@ -10,12 +10,12 @@ namespace Cloude {
         namespace Query {
             namespace Helper {
 
-                std::string CriteriaHelper::ToStringCopy(const SPtrCriteria &sptrCriteria,
+                std::string CriteriaHelper::CopyToString(const SPtrCriteria &sptrCriteria,
                                                          const Contract::IPredicateFormatter &formatter) {
                     return formatter.ParsePredicateToStringCopy(sptrCriteria);
                 }
 
-                std::string CriteriaHelper::ToStringCopy(const SPtrCriteria &sptrCriteria,
+                std::string CriteriaHelper::CopyToString(const SPtrCriteria &sptrCriteria,
                                                          const CriteriaHelper::FPtrProcessor fptrProcessor) {
                     return fptrProcessor(sptrCriteria);
                 }

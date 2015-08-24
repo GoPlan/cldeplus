@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_INT32_H
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_INT32_H
 
-#include <Foundation/Data/NumericValue.h>
 #include <string>
+#include "../NumericValue.h"
 
 namespace Cloude {
     namespace Foundation {

@@ -6,10 +6,9 @@
 #define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_PREORDERMYSQLSTORE_H
 
 #include "gtest/gtest.h"
-#include <Foundation/Foundation.h>
-#include <Drivers/MySql/MySqlSourceDriver.h>
 #include "../../Application/PreOrderMap.h"
 #include "../../Application/PreOrderItemsMap.h"
+#include "../../../Source/Foundation/EntityQuery.h"
 
 namespace Cloude {
     namespace Test {

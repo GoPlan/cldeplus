@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_OR_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_OR_H
 
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
+#include "../../Exception/cldeNonSupportedFunctionException.h"
 #include "../CriteriaComposite.h"
 
 namespace Cloude {
