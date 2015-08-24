@@ -12,16 +12,7 @@ namespace Cloude {
         namespace Store {
             namespace Helper {
 
-                class CellHelper {
-
-                    CellHelper() = delete;
-                    CellHelper(const CellHelper &) = delete;
-                    CellHelper(CellHelper &&) = delete;
-                    CellHelper &operator=(const CellHelper &) = delete;
-                    CellHelper &operator=(CellHelper &&) = delete;
-                    virtual ~CellHelper() = delete;
-
-                public:
+                struct CellHelper {
                     static SPtrCell CopySPtrCell(const SPtrCell &sptrCell);
                 };
             }

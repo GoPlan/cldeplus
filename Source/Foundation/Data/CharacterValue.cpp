@@ -24,23 +24,23 @@ namespace Cloude {
             }
 
             Value &CharacterValue::operator+(const Value &rhs) {
-                throw Exception::cldeNonSupportedFunctionException("operator+ can not be applied to Double type");
+                throw Exception::CLDENonSupportedFunctionException("operator+ can not be applied to Double type");
             }
 
             Value &CharacterValue::operator-(const Value &rhs) {
-                throw Exception::cldeNonSupportedFunctionException("operator- can not be applied to Double type");
+                throw Exception::CLDENonSupportedFunctionException("operator- can not be applied to Double type");
             }
 
             Value &CharacterValue::operator*(const Value &rhs) {
-                throw Exception::cldeNonSupportedFunctionException("operator* can not be applied to Double type");
+                throw Exception::CLDENonSupportedFunctionException("operator* can not be applied to Double type");
             }
 
             Value &CharacterValue::operator/(const Value &rhs) {
-                throw Exception::cldeNonSupportedFunctionException("operator/ can not be applied to Double type");
+                throw Exception::CLDENonSupportedFunctionException("operator/ can not be applied to Double type");
             }
 
             Value &CharacterValue::operator%(const Value &rhs) {
-                throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Double type");
+                throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to Double type");
             }
         }
     }

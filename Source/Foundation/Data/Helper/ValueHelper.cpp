@@ -23,7 +23,8 @@
 #include "../Type/String.h"
 #include "../Type/VarChar.h"
 #include "../Type/Text.h"
-#include "../../Exception/cldeNonSupportedDataTypeException.h"
+#include "../../Exception/CLDENotImplementedException.h"
+#include "../../Exception/CLDENonSupportedDataTypeException.h"
 #include "ValueHelper.h"
 #include "TypeHelper.h"
 
@@ -125,7 +126,7 @@ namespace Cloude {
                     using TypeHelper = Foundation::Data::Helper::TypeHelper;
                     std::string type{TypeHelper::CopyValueTypeToString(sptrValue->getDataType())};
                     std::string msg{"CopySPtrValue does not support " + type + " yet"};
-                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                    throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
         }

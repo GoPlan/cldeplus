@@ -5,8 +5,9 @@
 #include <Foundation/Data/Type/String.h>
 #include <Foundation/Data/Type/VarChar.h>
 #include <Foundation/Data/Helper/TypeHelper.h>
-#include <Foundation/Exception/cldeNotImplementedException.h>
 #include <Foundation/Common/IComparable.h>
+#include "../../Exception/CLDENotImplementedException.h"
+#include "../../Exception/CLDENonSupportedDataTypeException.h"
 #include "Less.h"
 
 namespace Cloude {
@@ -18,7 +19,7 @@ namespace Cloude {
                 std::string lhsType = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                 std::string rhsType = Data::Helper::TypeHelper::CopyValueTypeToString(rhs->getDataType());
                 std::string msg{lhsType + " has different type/category with " + rhsType};
-                throw Exception::cldeNonSupportedDataTypeException{msg};
+                throw Exception::CLDENonSupportedDataTypeException{msg};
             }
 
             switch (lhs->getCategory()) {
@@ -36,7 +37,7 @@ namespace Cloude {
                 }
                 case Data::ValueCategory::UserDefined: {
                     std::string msg{"UserDefined category is not supported by the comparer"};
-                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                    throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
         }
@@ -98,12 +99,12 @@ namespace Cloude {
                 case ValueType::Currency: {
                     std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                     std::string msg{type + " is not supported by the numeric comparer"};
-                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                    throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
                 default: {
                     std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                     std::string msg{type + " is not supported by the numeric comparer"};
-                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                    throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
         }
@@ -124,12 +125,12 @@ namespace Cloude {
                 case ValueType::Text: {
                     std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                     std::string msg{type + " is not supported by the character based comparer"};
-                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                    throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
                 default: {
                     std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                     std::string msg{type + " is not supported by the character based comparer"};
-                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                    throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
         }
@@ -153,14 +154,14 @@ namespace Cloude {
                 default: {
                     std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
                     std::string msg{type + " is not supported by the date&time based comparer"};
-                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                    throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
         }
 
         bool Data::Comparer::Less::CompareMathematic(const Data::SPtrValue &lhs,
                                                      const Data::SPtrValue &rhs) const {
-            throw Exception::cldeNotImplementedException{"CompareMathematic"};
+            throw Exception::CLDENotImplementedException{"CompareMathematic"};
         }
     }
 }

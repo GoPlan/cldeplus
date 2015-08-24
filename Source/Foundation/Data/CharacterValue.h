@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_CHARACTERVALUE_H
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_CHARACTERVALUE_H
 
-#include "../Exception/cldeNonSupportedFunctionException.h"
+#include "../Exception/CLDENonSupportedFunctionException.h"
 #include "Value.h"
 
 namespace Cloude {

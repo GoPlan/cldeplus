@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#include "cldeException.h"
+#include "CLDEException.h"
 
 namespace Cloude {
     namespace Foundation {

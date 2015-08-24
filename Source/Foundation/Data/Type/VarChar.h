@@ -5,7 +5,6 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_VARCHAR_H
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_VARCHAR_H
 
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include <Foundation/Data/CharacterValue.h>
 
 namespace Cloude {

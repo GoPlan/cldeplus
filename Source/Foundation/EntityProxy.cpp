@@ -2,9 +2,9 @@
 // Created by LE, Duc Anh on 6/9/15.
 //
 
-#include "Exception/cldeEntityException.h"
-#include "Query/Helper/ProxyHelper.h"
 #include "EntityProxy.h"
+#include "Exception/CLDEEntityException.h"
+#include "Query/Helper/ProxyHelper.h"
 
 namespace Cloude {
     namespace Foundation {

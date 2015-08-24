@@ -5,26 +5,26 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEENTITYSTOREROUTINEEXCEPTION_H
 #define CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEENTITYSTOREROUTINEEXCEPTION_H
 
-#include "cldeException.h"
+#include "CLDEException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
 
-            class cldeEntityStoreRoutineException : public cldeException {
+            class CLDEEntityStoreRoutineException : public CLDEException {
 
                 static std::string _name;
 
             public:
-                cldeEntityStoreRoutineException(const char *message) : cldeException(message) { };
-                cldeEntityStoreRoutineException(const std::string &message) : cldeException(message) { };
-                cldeEntityStoreRoutineException(const cldeEntityStoreRoutineException &) = default;
-                cldeEntityStoreRoutineException(cldeEntityStoreRoutineException &&) = default;
-                cldeEntityStoreRoutineException &operator=(const cldeEntityStoreRoutineException &) = default;
-                cldeEntityStoreRoutineException &operator=(cldeEntityStoreRoutineException &&) = default;
-                ~cldeEntityStoreRoutineException() = default;
+                CLDEEntityStoreRoutineException(const char *message) : CLDEException(message) { };
+                CLDEEntityStoreRoutineException(const std::string &message) : CLDEException(message) { };
+                CLDEEntityStoreRoutineException(const CLDEEntityStoreRoutineException &) = default;
+                CLDEEntityStoreRoutineException(CLDEEntityStoreRoutineException &&) = default;
+                CLDEEntityStoreRoutineException &operator=(const CLDEEntityStoreRoutineException &) = default;
+                CLDEEntityStoreRoutineException &operator=(CLDEEntityStoreRoutineException &&) = default;
+                virtual ~CLDEEntityStoreRoutineException() = default;
 
-                // cldeException
+                // CLDEException
                 virtual const std::string &Name() const noexcept override;
             };
         }

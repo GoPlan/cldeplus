@@ -37,11 +37,11 @@
 #include "Query/Helper/SqlHelper.h"
 
 // Excepti
-#include "Exception/cldeException.h"
-#include "Exception/cldeEntityException.h"
-#include "Exception/cldeEntityStoreRoutineException.h"
-#include "Exception/cldeDataSourceRoutineException.h"
-#include "Exception/cldeNonSupportedDataTypeException.h"
-#include "Exception/cldeNonSupportedFunctionException.h"
+#include "Exception/CLDEException.h"
+#include "Exception/CLDEEntityException.h"
+#include "Exception/CLDEEntityStoreRoutineException.h"
+#include "Exception/CLDEDataSourceRoutineException.h"
+#include "Exception/CLDENonSupportedDataTypeException.h"
+#include "Exception/CLDENonSupportedFunctionException.h"
 
 #endif //CLOUD_E_PLUS_FOUNDATION_FOUNDATION_H

@@ -5,26 +5,26 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEDATASOURCEROUTINEEXCEPTION_H
 #define CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEDATASOURCEROUTINEEXCEPTION_H
 
-#include "cldeException.h"
+#include "CLDEException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
 
-            class cldeDataSourceRoutineException : public cldeException {
+            class CLDEDataSourceRoutineException : public CLDEException {
 
                 static std::string _name;
 
             public:
-                cldeDataSourceRoutineException(const char *message) : cldeException(message) { };
-                cldeDataSourceRoutineException(const std::string &message) : cldeException(message) { };
-                cldeDataSourceRoutineException(const cldeDataSourceRoutineException &) = default;
-                cldeDataSourceRoutineException(cldeDataSourceRoutineException &&) = default;
-                cldeDataSourceRoutineException &operator=(const cldeDataSourceRoutineException &) = default;
-                cldeDataSourceRoutineException &operator=(cldeDataSourceRoutineException &&) = default;
-                ~cldeDataSourceRoutineException() = default;
+                CLDEDataSourceRoutineException(const char *message) : CLDEException(message) { };
+                CLDEDataSourceRoutineException(const std::string &message) : CLDEException(message) { };
+                CLDEDataSourceRoutineException(const CLDEDataSourceRoutineException &) = default;
+                CLDEDataSourceRoutineException(CLDEDataSourceRoutineException &&) = default;
+                CLDEDataSourceRoutineException &operator=(const CLDEDataSourceRoutineException &) = default;
+                CLDEDataSourceRoutineException &operator=(CLDEDataSourceRoutineException &&) = default;
+                ~CLDEDataSourceRoutineException() = default;
 
-                // cldeException
+                // CLDEException
                 virtual const std::string &Name() const noexcept override;
             };
         }

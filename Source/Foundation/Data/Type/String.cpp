@@ -3,6 +3,7 @@
 //
 
 #include "String.h"
+#include "../../Exception/CLDENonSupportedFunctionException.h"
 
 namespace Cloude {
     namespace Foundation {

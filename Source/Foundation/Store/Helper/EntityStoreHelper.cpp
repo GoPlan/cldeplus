@@ -3,9 +3,9 @@
 //
 
 #include <memory>
-#include <Foundation/Exception/cldeEntityStoreRoutineException.h>
 #include "EntityStoreHelper.h"
 #include "CellHelper.h"
+#include "../../Exception/CLDEEntityStoreRoutineException.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -19,7 +19,7 @@ namespace Cloude {
 
                     if (!dataRecord) {
                         std::string msg{"DataRecord can not be nullptr or undefined"};
-                        throw Foundation::Exception::cldeEntityStoreRoutineException{msg};
+                        throw Foundation::Exception::CLDEEntityStoreRoutineException{msg};
                     }
 
                     for (auto column : columnVector) {

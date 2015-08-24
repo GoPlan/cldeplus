@@ -5,7 +5,6 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_COMPARER_LESS_H
 #define CLOUD_E_PLUS_FOUNDATION_TYPE_COMPARER_LESS_H
 
-#include "../../Exception/cldeNonSupportedDataTypeException.h"
 #include "../../Data/Value.h"
 
 namespace Cloude {

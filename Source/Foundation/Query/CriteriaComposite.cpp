@@ -10,17 +10,17 @@ namespace Cloude {
 
             const ComparativeType &CriteriaComposite::getComparativeType() const {
                 const char *msg = "Composite comparative does not support getComparativeType()";
-                throw Exception::cldeNonSupportedFunctionException(msg);
+                throw Exception::CLDENonSupportedFunctionException(msg);
             }
 
             const SPtrColumn &CriteriaComposite::getColumn() const {
                 const char *msg = "Composite comparative does not support getColumn()";
-                throw Exception::cldeNonSupportedFunctionException(msg);
+                throw Exception::CLDENonSupportedFunctionException(msg);
             }
 
             const Data::SPtrValue &CriteriaComposite::getValue() const {
                 const char *msg = "Composite comparative does not support getValue() method.";
-                throw Exception::cldeNonSupportedFunctionException(msg);
+                throw Exception::CLDENonSupportedFunctionException(msg);
             }
         }
     }

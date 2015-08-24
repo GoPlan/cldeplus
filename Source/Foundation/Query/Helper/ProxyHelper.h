@@ -8,7 +8,7 @@
 #include "../../Entity.h"
 #include "../../EntityStore.h"
 #include "../../EntityProxy.h"
-#include "../../Exception/cldeEntityException.h"
+#include "../../Exception/CLDEEntityException.h"
 
 namespace Cloude {
     namespace Foundation {

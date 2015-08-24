@@ -2,11 +2,9 @@
 // Created by LE, Duc Anh on 14/05/2015.
 //
 
-#include <stdexcept>
-#include "Data/Helper/TypeHelper.h"
-#include "Exception/cldeEntityException.h"
-#include <typeindex>
 #include "Cell.h"
+#include "Data/Helper/TypeHelper.h"
+#include "Exception/CLDEEntityException.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -32,7 +30,7 @@ namespace Cloude {
                                 + Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())
                                 + " that is different with column " + _column->ToString()
                                 + "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_column->getDataType()) + ")"};
-                throw Exception::cldeEntityException{msg};
+                throw Exception::CLDEEntityException{msg};
             }
 
             _value = value;

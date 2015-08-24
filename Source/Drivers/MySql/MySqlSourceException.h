@@ -5,13 +5,13 @@
 #ifndef CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOURCEDEXCEPTION_H
 #define CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOURCEDEXCEPTION_H
 
-#include "../../Foundation/Exception/cldeException.h"
+#include <Foundation/Exception/CLDEException.h>
 
 namespace Cloude {
     namespace Drivers {
         namespace MySql {
 
-            class MySqlSourceException : public Foundation::Exception::cldeException {
+            class MySqlSourceException : public Foundation::Exception::CLDEException {
 
                 static std::string _name;
 

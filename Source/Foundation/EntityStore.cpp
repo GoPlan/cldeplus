@@ -3,8 +3,8 @@
 //
 
 #include <string>
-#include "Exception/cldeEntityStoreRoutineException.h"
 #include "EntitySourceDriver.h"
+#include "Exception/CLDEEntityStoreRoutineException.h"
 #include "Query/Helper/SqlHelper.h"
 #include "Store/Helper/EntityStoreHelper.h"
 
@@ -24,7 +24,7 @@ namespace Cloude {
 
             if (!identity) {
                 std::string msg{"Identity is either a nullptr or invalid"};
-                throw Exception::cldeEntityStoreRoutineException{msg};
+                throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
             auto &columnsForGet = _entityMap.getColumnsForGet();
@@ -42,7 +42,7 @@ namespace Cloude {
 
             if(!identity){
                 std::string msg{"Identity is either invalid or a nullptr"};
-                throw Exception::cldeEntityStoreRoutineException{msg};
+                throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
             auto search = _identityMap.find(identity);
@@ -72,7 +72,7 @@ namespace Cloude {
 
             if(!entity){
                 std::string msg{"Entity is either invalid or a nullptr"};
-                throw Exception::cldeEntityStoreRoutineException{msg};
+                throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
             auto identity = entity->getIdentity();
@@ -87,7 +87,7 @@ namespace Cloude {
 
             if(!entity){
                 std::string msg{"Entity is either invalid or a nullptr"};
-                throw Exception::cldeEntityStoreRoutineException{msg};
+                throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
             _entitySourceDriver.Save(entity);
@@ -97,7 +97,7 @@ namespace Cloude {
 
             if(!entity){
                 std::string msg{"Entity shared pointer is either invalid or a nullptr"};
-                throw Exception::cldeEntityStoreRoutineException{msg};
+                throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
             if (_entitySourceDriver.Delete(entity)) {

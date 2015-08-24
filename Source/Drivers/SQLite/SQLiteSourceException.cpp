@@ -13,13 +13,13 @@ namespace Cloude {
             const std::string SQLiteSourceException::_name{"SQLiteSourceException"};
 
             SQLiteSourceException::SQLiteSourceException(int resultCode)
-                    : cldeException{SQLiteSourceHelper::CopyToString(resultCode)},
+                    : CLDEException{SQLiteSourceHelper::CopyToString(resultCode)},
                       _resultCode{resultCode} {
                 //
             }
 
             SQLiteSourceException::SQLiteSourceException(int resultCode, const std::string &comment)
-                    : cldeException{SQLiteSourceHelper::CopyToString(resultCode) + "\n" + comment},
+                    : CLDEException{SQLiteSourceHelper::CopyToString(resultCode) + "\n" + comment},
                       _resultCode{resultCode} {
                 //
             }

@@ -5,10 +5,8 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TONUMERIC_HPP
 #define CLOUD_E_PLUS_FOUNDATION_DATA_TONUMERIC_HPP
 
-#include <stdexcept>
-#include "../Exception/cldeNonSupportedDataTypeException.h"
+#include <Foundation/Exception/CLDENonSupportedDataTypeException.h>
 #include "Value.h"
-
 
 namespace Cloude {
     namespace Foundation {
@@ -19,7 +17,7 @@ namespace Cloude {
 
                 if (!value->isNumeric() || value->getCategory() != ValueCategory::Numeric) {
                     std::string msg{"Value is not numeric"};
-                    throw Exception::cldeNonSupportedDataTypeException{msg};
+                    throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
 
                 const T *ptrResult = reinterpret_cast<const T *>(value->PointerToBuffer());

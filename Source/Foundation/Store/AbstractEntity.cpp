@@ -2,10 +2,10 @@
 // Created by LE, Duc Anh on 6/16/15.
 //
 
-#include <Foundation/Exception/cldeEntityException.h>
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include <Foundation/Store/Helper/CellHelper.h>
 #include "AbstractEntity.h"
+#include "../Exception/CLDEEntityException.h"
+#include "../Exception/CLDENonSupportedFunctionException.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -68,7 +68,7 @@ namespace Cloude {
 
             if (search == _cellMap.end()) {
                 std::string msg{columnName + " is not found in record"};
-                throw Exception::cldeEntityException{msg};
+                throw Exception::CLDEEntityException{msg};
             }
 
             return search->second;

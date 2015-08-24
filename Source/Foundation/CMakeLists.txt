@@ -23,14 +23,14 @@ add_library(foundation STATIC
         EntityQuery.h
         EntitySourceDriver.cpp
         EntitySourceDriver.h
-        Exception/cldeNonSupportedDataTypeException.cpp
-        Exception/cldeNonSupportedDataTypeException.h
-        Exception/cldeDataSourceRoutineException.cpp
-        Exception/cldeDataSourceRoutineException.h
-        Exception/cldeEntityStoreRoutineException.cpp
-        Exception/cldeEntityStoreRoutineException.h
-        Exception/cldeEntityException.cpp
-        Exception/cldeEntityException.h
+        Exception/CLDENonSupportedDataTypeException.cpp
+        Exception/CLDENonSupportedDataTypeException.h
+        Exception/CLDEDataSourceRoutineException.cpp
+        Exception/CLDEDataSourceRoutineException.h
+        Exception/CLDEEntityStoreRoutineException.cpp
+        Exception/CLDEEntityStoreRoutineException.h
+        Exception/CLDEEntityException.cpp
+        Exception/CLDEEntityException.h
         Query/Criteria.cpp
         Query/Criteria.h
         Query/Helper/SqlHelper.cpp
@@ -129,12 +129,12 @@ add_library(foundation STATIC
         Data/TimeBasedValue.h
         Data/Helper/TimeBasedHelper.cpp
         Data/Helper/TimeBasedHelper.h
-        Exception/cldeNonSupportedFunctionException.cpp
-        Exception/cldeNonSupportedFunctionException.h
-        Exception/cldeException.cpp
-        Exception/cldeException.h
-        Exception/cldeNotImplementedException.cpp
-        Exception/cldeNotImplementedException.h
+        Exception/CLDENonSupportedFunctionException.cpp
+        Exception/CLDENonSupportedFunctionException.h
+        Exception/CLDEException.cpp
+        Exception/CLDEException.h
+        Exception/CLDENotImplementedException.cpp
+        Exception/CLDENotImplementedException.h
         Common/IEquatable.h
         Common/IComputable.h
         Common/IPrintable.h

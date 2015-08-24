@@ -3,7 +3,8 @@
 //
 
 #include <Foundation/Data/Helper/TimeBasedHelper.h>
-#include <Foundation/Exception/cldeNotImplementedException.h>
+#include "../../Exception/CLDENonSupportedFunctionException.h"
+#include "../../Exception/CLDENotImplementedException.h"
 #include "Time.h"
 
 namespace Cloude {
@@ -35,38 +36,38 @@ namespace Cloude {
                 }
 
                 Value &Time::operator+(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Time type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to Time type");
                 }
 
                 Value &Time::operator-(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Time type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to Time type");
                 }
 
                 Value &Time::operator*(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Time type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to Time type");
                 }
 
                 Value &Time::operator/(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Time type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to Time type");
                 }
 
                 Value &Time::operator%(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Time type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to Time type");
                 }
 
                 bool Time::LessThan(const Common::IComparable &target) const {
                     std::string msg{"LessThan"};
-                    throw Exception::cldeNotImplementedException{msg};
+                    throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool Time::GreaterThan(const Common::IComparable &target) const {
                     std::string msg{"GreaterThan"};
-                    throw Exception::cldeNotImplementedException{msg};
+                    throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool Time::EquivalentTo(const Common::IComparable &target) const {
                     std::string msg{"EquivalentTo"};
-                    throw Exception::cldeNotImplementedException{msg};
+                    throw Exception::CLDENotImplementedException{msg};
                 }
             }
         }

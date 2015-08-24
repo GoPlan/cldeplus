@@ -6,7 +6,6 @@
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_STRING_H
 
 #include <string>
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include <Foundation/Data/CharacterValue.h>
 
 namespace Cloude {

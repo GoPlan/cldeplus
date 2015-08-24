@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
+#include "../../Exception/CLDENonSupportedFunctionException.h"
 #include "Boolean.h"
 
 namespace Cloude {
@@ -65,7 +65,7 @@ namespace Cloude {
                 }
 
                 Value &Boolean::operator%(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Boolean type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to Boolean type");
                 }
             }
         }

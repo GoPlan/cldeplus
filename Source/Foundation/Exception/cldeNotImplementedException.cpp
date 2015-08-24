@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#include "cldeNotImplementedException.h"
+#include "CLDENotImplementedException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
-            const std::string cldeNotImplementedException::_name{"cldeNotImplementedException"};
+            const std::string CLDENotImplementedException::_name{"CLDENotImplementedException"};
         }
     }
 }

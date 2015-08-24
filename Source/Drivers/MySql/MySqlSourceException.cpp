@@ -11,7 +11,7 @@ namespace Cloude {
             std::string MySqlSourceException::_name{"MySqlSourceException"};
 
             MySqlSourceException::MySqlSourceException(const std::string &message)
-                    : cldeException{message} {
+                    : CLDEException{message} {
                 //
             }
 

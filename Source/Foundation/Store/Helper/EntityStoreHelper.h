@@ -14,21 +14,11 @@ namespace Cloude {
         namespace Store {
             namespace Helper {
 
-                class EntityStoreHelper {
-
-                    EntityStoreHelper() = delete;
-                    EntityStoreHelper(const EntityStoreHelper &) = delete;
-                    EntityStoreHelper(EntityStoreHelper &&) = delete;
-                    EntityStoreHelper &operator=(const EntityStoreHelper &) = delete;
-                    EntityStoreHelper &operator=(EntityStoreHelper &&) = delete;
-                    ~EntityStoreHelper() = delete;
-
-                public:
+                struct EntityStoreHelper {
+                    static SPtrEntityProxy CopySPtrProxy(const SPtrEntityProxy &proxy);
                     static void GenerateCellsFromColumns(const SPtrColumnVector &columnVector,
                                                          const Store::SPtrDataRecord &dataRecord,
                                                          bool checkCellExists = true);
-
-                    static SPtrEntityProxy CopySPtrProxy(const SPtrEntityProxy &proxy);
                 };
             }
         }

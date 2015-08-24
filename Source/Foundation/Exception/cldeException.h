@@ -12,18 +12,18 @@ namespace Cloude {
     namespace Foundation {
         namespace Exception {
 
-            class cldeException : public std::exception {
+            class CLDEException : public std::exception {
 
                 mutable std::string _message;
 
             public:
-                cldeException(const char *message) : _message(message) { };
-                cldeException(const std::string &message) : _message(message) { };
-                cldeException(const cldeException &) = default;
-                cldeException(cldeException &&) = default;
-                cldeException &operator=(const cldeException &) = default;
-                cldeException &operator=(cldeException &&) = default;
-                virtual ~cldeException() = default;
+                CLDEException(const char *message) : _message(message) { };
+                CLDEException(const std::string &message) : _message(message) { };
+                CLDEException(const CLDEException &) = default;
+                CLDEException(CLDEException &&) = default;
+                CLDEException &operator=(const CLDEException &) = default;
+                CLDEException &operator=(CLDEException &&) = default;
+                virtual ~CLDEException() = default;
 
                 // Exception
                 virtual const char *what() const noexcept override {

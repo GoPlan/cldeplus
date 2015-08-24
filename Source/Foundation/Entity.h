@@ -6,13 +6,12 @@
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 
 #include <memory>
-#include <stdexcept>
 #include <list>
 #include <set>
-#include "Exception/cldeEntityException.h"
-#include "Store/AbstractEntity.h"
 #include "Cell.h"
 #include "Identity.h"
+#include "Exception/CLDEEntityException.h"
+#include "Store/AbstractEntity.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -22,18 +21,7 @@ namespace Cloude {
             SPtrIdentity _identity;
 
         public:
-            explicit Entity(const SPtrIdentity &identity) : _identity(identity) {
-                if (!identity) {
-                    std::string msg{"Identity can not be nullptr or undefined"};
-                    throw Exception::cldeEntityException{msg};
-                }
-
-                for (auto fieldPair : _identity->getCellsMap()) {
-                    auto field = fieldPair.second;
-                    setCell(field);
-                }
-            };
-
+            explicit Entity(const SPtrIdentity &identity);
             Entity(const Entity &) = default;
             Entity(Entity &&) = default;
             Entity &operator=(const Entity &) = default;

@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 5/26/15.
 //
 
-#include "cldeNonSupportedDataTypeException.h"
+#include "CLDENonSupportedDataTypeException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
 
-            const std::string cldeNonSupportedDataTypeException::_name{"cldeNonSupportedDataTypeException"};
+            const std::string CLDENonSupportedDataTypeException::_name{"CLDENonSupportedDataTypeException"};
 
-            const std::string &cldeNonSupportedDataTypeException::Name() const noexcept {
+            const std::string &CLDENonSupportedDataTypeException::Name() const noexcept {
                 return _name;
             }
 

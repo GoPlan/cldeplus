@@ -6,7 +6,6 @@
 #define CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_DATETIME_H
 
 #include <Foundation/Data/TimeBasedValue.h>
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 
 namespace Cloude {
     namespace Foundation {

@@ -5,13 +5,13 @@
 #ifndef CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEEXCEPTION_H
 #define CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEEXCEPTION_H
 
-#include "../../Foundation/Exception/cldeException.h"
+#include <Foundation/Exception/CLDEException.h>
 
 namespace Cloude {
     namespace Drivers {
         namespace SQLite {
 
-            class SQLiteSourceException : public Foundation::Exception::cldeException {
+            class SQLiteSourceException : public Foundation::Exception::CLDEException {
 
                 int _resultCode;
                 static const std::string _name;
@@ -25,7 +25,7 @@ namespace Cloude {
                 SQLiteSourceException &operator=(SQLiteSourceException &&) = default;
                 ~SQLiteSourceException() = default;
 
-                // cldeException
+                // CLDEException
                 virtual const std::string &Name() const noexcept override { return _name; };
             };
         }

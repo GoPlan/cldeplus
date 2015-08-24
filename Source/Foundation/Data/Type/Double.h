@@ -6,7 +6,6 @@
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_DOUBLE_H
 
 #include "../NumericValue.h"
-#include "../../Exception/cldeNonSupportedFunctionException.h"
 
 namespace Cloude {
     namespace Foundation {

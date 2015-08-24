@@ -27,7 +27,7 @@ namespace Cloude {
             Cell(Cell &&) = default;
             Cell &operator=(const Cell &) = default;
             Cell &operator=(Cell &&) = default;
-            ~Cell() = default;
+            virtual ~Cell() = default;
 
             // IPrintable
             std::string ToString() const override;

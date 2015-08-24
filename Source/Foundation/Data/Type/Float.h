@@ -5,7 +5,6 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_FLOAT_H
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_FLOAT_H
 
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
 #include <Foundation/Data/NumericValue.h>
 
 namespace Cloude {

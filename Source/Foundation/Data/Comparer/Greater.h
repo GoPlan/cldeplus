@@ -5,7 +5,6 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_COMPARER_GREATER_H
 #define CLOUD_E_PLUS_FOUNDATION_TYPE_COMPARER_GREATER_H
 
-#include "../../Exception/cldeNonSupportedDataTypeException.h"
 #include "../Value.h"
 
 namespace Cloude {

@@ -3,6 +3,7 @@
 //
 
 #include "IsNotNull.h"
+#include "../../Exception/CLDENonSupportedFunctionException.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -22,7 +23,7 @@ namespace Cloude {
                 }
                 const Data::SPtrValue &IsNotNull::getValue() const {
                     std::string msg{"IsNotNull comparator does not support getValue() method."};
-                    throw Exception::cldeNonSupportedFunctionException(msg);
+                    throw Exception::CLDENonSupportedFunctionException(msg);
                 }
             }
         }

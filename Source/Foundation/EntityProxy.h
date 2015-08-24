@@ -6,8 +6,6 @@
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYPROXY_H
 
 #include "EntityStore.h"
-#include "Entity.h"
-#include "Identity.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -32,8 +30,8 @@ namespace Cloude {
 
             // Locals
             SPtrEntity Summon(SPtrEntityStore &entityStore);
+            EntityProxySummonState getSummonState() const { return _summonState; }
             bool IsIdentifiableInStore(SPtrEntityStore &entityStore);
-            const EntityProxySummonState &getSummonState() const { return _summonState; }
             void setSummonState(const EntityProxySummonState &summonState) { _summonState = summonState; }
 
         private:

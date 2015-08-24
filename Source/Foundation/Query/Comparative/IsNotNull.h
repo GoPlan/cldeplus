@@ -6,7 +6,6 @@
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVE_ISNOTNULL_H
 
 #include "../Criteria.h"
-#include "../../Exception/cldeNonSupportedFunctionException.h"
 
 namespace Cloude {
     namespace Foundation {

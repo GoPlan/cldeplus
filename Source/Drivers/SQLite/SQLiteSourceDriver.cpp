@@ -3,14 +3,13 @@
 //
 
 #include <cstdlib>
-#include <stdexcept>
 #include "../../Foundation/Data/ValueFactory.h"
-#include "../../Foundation/Exception/cldeNonSupportedDataTypeException.h"
 #include "../../Foundation/Query/CriteriaComposite.h"
 #include "../../Foundation/Query/Comparative.h"
 #include "../../Foundation/Query/Helper/SqlHelper.h"
 #include "../../Foundation/Query/Helper/CriteriaHelper.h"
 #include "../../Foundation/Store/Helper/EntityStoreHelper.h"
+#include "../../Foundation/Exception/CLDENonSupportedDataTypeException.h"
 #include "Amalgamation/sqlite3.h"
 #include "SQLiteSourceDriver.h"
 
@@ -145,7 +144,7 @@ namespace Cloude {
                                           default: {
                                               ++index;
                                               std::string msg{"This type is not yet supported"};
-                                              throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
+                                              throw Foundation::Exception::CLDENonSupportedDataTypeException{msg};
                                           }
                                       }
                                   });
@@ -205,7 +204,7 @@ namespace Cloude {
                                           default: {
                                               ++index;
                                               std::string msg{"This type is not yet supported"};
-                                              throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
+                                              throw Foundation::Exception::CLDENonSupportedDataTypeException{msg};
                                           }
                                       }
                                   });
@@ -266,7 +265,7 @@ namespace Cloude {
                                      default: {
                                          ++index;
                                          std::string msg{"This type is not yet supported"};
-                                         throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
+                                         throw Foundation::Exception::CLDENonSupportedDataTypeException{msg};
                                      }
                                  }
                              });
@@ -327,7 +326,7 @@ namespace Cloude {
                                      default: {
                                          ++index;
                                          std::string msg{"This type is not yet supported"};
-                                         throw Foundation::Exception::cldeNonSupportedDataTypeException{msg};
+                                         throw Foundation::Exception::CLDENonSupportedDataTypeException{msg};
                                      }
                                  }
                              });

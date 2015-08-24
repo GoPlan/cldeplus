@@ -3,7 +3,8 @@
 //
 
 #include <Foundation/Data/Helper/TimeBasedHelper.h>
-#include <Foundation/Exception/cldeNotImplementedException.h>
+#include "../../Exception/CLDENonSupportedFunctionException.h"
+#include "../../Exception/CLDENotImplementedException.h"
 #include "DateTime.h"
 
 namespace Cloude {
@@ -46,38 +47,38 @@ namespace Cloude {
                 }
 
                 Value &DateTime::operator+(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to DateTime type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
                 Value &DateTime::operator-(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to DateTime type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
                 Value &DateTime::operator*(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to DateTime type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
                 Value &DateTime::operator/(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to DateTime type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
                 Value &DateTime::operator%(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to DateTime type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
                 bool DateTime::LessThan(const Common::IComparable &target) const {
                     std::string msg{"LessThan"};
-                    throw Exception::cldeNotImplementedException{msg};
+                    throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool DateTime::GreaterThan(const Common::IComparable &target) const {
                     std::string msg{"GreaterThan"};
-                    throw Exception::cldeNotImplementedException{msg};
+                    throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool DateTime::EquivalentTo(const Common::IComparable &target) const {
                     std::string msg{"EquivalentTo"};
-                    throw Exception::cldeNotImplementedException{msg};
+                    throw Exception::CLDENotImplementedException{msg};
                 }
             }
         }

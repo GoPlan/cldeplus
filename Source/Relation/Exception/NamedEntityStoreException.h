@@ -5,18 +5,18 @@
 #ifndef CLOUD_E_PLUS_RELATION_EXCEPTION_NAMEDENTITYSTOREEXCEPTION_H
 #define CLOUD_E_PLUS_RELATION_EXCEPTION_NAMEDENTITYSTOREEXCEPTION_H
 
-#include "../../Foundation/Exception/cldeException.h"
+#include <Foundation/Exception/CLDEException.h>
 
 namespace Cloude {
     namespace Relation {
         namespace Exception {
 
-            class NamedEntityStoreException : Foundation::Exception::cldeException {
+            class NamedEntityStoreException : Foundation::Exception::CLDEException {
 
                 static std::string _name;
 
             public:
-                NamedEntityStoreException(const std::string &message) : Foundation::Exception::cldeException{message} { };
+                NamedEntityStoreException(const std::string &message) : Foundation::Exception::CLDEException{message} { };
                 NamedEntityStoreException(const NamedEntityStoreException &) = default;
                 NamedEntityStoreException(NamedEntityStoreException &&) = default;
                 NamedEntityStoreException &operator=(const NamedEntityStoreException &) = default;

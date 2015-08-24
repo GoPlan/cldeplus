@@ -6,9 +6,7 @@
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYQUERY_H
 
 #include <memory>
-#include <vector>
 #include "EntityProxy.h"
-#include "EntityStore.h"
 #include "Query/Criteria.h"
 #include "EntitySourceDriver.h"
 
@@ -26,7 +24,7 @@ namespace Cloude {
             EntityQuery(EntityQuery &&) = delete;
             EntityQuery &operator=(const EntityQuery &) = delete;
             EntityQuery &operator=(EntityQuery &&) = delete;
-            ~EntityQuery() = default;
+            virtual ~EntityQuery() = default;
 
             // Locals
             virtual SPtrEntityProxy SelectFirst(const Query::SPtrCriteria &sptrCriteria);

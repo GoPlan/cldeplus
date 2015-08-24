@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 5/26/15.
 //
 
-#include "cldeDataSourceRoutineException.h"
+#include "CLDEDataSourceRoutineException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
 
-            std::string cldeDataSourceRoutineException::_name{"cldeDataSourceRoutineException"};
+            std::string CLDEDataSourceRoutineException::_name{"CLDEDataSourceRoutineException"};
 
-            const std::string &cldeDataSourceRoutineException::Name() const noexcept {
+            const std::string &CLDEDataSourceRoutineException::Name() const noexcept {
                 return _name;
             }
         }

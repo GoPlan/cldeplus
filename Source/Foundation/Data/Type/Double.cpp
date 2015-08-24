@@ -3,6 +3,7 @@
 //
 
 #include "Double.h"
+#include "../../Exception/CLDENonSupportedFunctionException.h"
 
 namespace Cloude {
     namespace Foundation {
@@ -63,7 +64,7 @@ namespace Cloude {
                 }
 
                 Value &Double::operator%(const Value &rhs) {
-                    throw Exception::cldeNonSupportedFunctionException("operator% can not be applied to Double type");
+                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to Double type");
                 }
             }
         }

@@ -5,26 +5,26 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDENONSUPPORTEDDATATYPEEXCEPTION_H
 #define CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDENONSUPPORTEDDATATYPEEXCEPTION_H
 
-#include "cldeException.h"
+#include "CLDEException.h"
 
 namespace Cloude {
     namespace Foundation {
         namespace Exception {
 
-            class cldeNonSupportedDataTypeException : public cldeException {
+            class CLDENonSupportedDataTypeException : public CLDEException {
 
                 static const std::string _name;
 
             public:
-                cldeNonSupportedDataTypeException(const char *message) : cldeException(message) { };
-                cldeNonSupportedDataTypeException(const std::string &message) : cldeException(message) { };
-                cldeNonSupportedDataTypeException(const cldeNonSupportedDataTypeException &) = default;
-                cldeNonSupportedDataTypeException(cldeNonSupportedDataTypeException &&) = default;
-                cldeNonSupportedDataTypeException &operator=(const cldeNonSupportedDataTypeException &) = default;
-                cldeNonSupportedDataTypeException &operator=(cldeNonSupportedDataTypeException &&) = default;
-                ~cldeNonSupportedDataTypeException() = default;
+                CLDENonSupportedDataTypeException(const char *message) : CLDEException(message) { };
+                CLDENonSupportedDataTypeException(const std::string &message) : CLDEException(message) { };
+                CLDENonSupportedDataTypeException(const CLDENonSupportedDataTypeException &) = default;
+                CLDENonSupportedDataTypeException(CLDENonSupportedDataTypeException &&) = default;
+                CLDENonSupportedDataTypeException &operator=(const CLDENonSupportedDataTypeException &) = default;
+                CLDENonSupportedDataTypeException &operator=(CLDENonSupportedDataTypeException &&) = default;
+                virtual ~CLDENonSupportedDataTypeException() = default;
 
-                // cldeException
+                // CLDEException
                 virtual const std::string &Name() const noexcept override;
             };
         }
