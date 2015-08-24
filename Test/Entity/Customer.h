@@ -6,7 +6,7 @@
 #define CLOUD_E_PLUS_APPTEST_ENTITY_CUSTOMER_H
 
 #include <string>
-#include <Relation/Relation.h>
+#include "../../Source/Relation/Relation.h"
 
 namespace Cloude {
     namespace Test {

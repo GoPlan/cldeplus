@@ -5,12 +5,10 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_LEFT_H
 #define CLOUD_E_PLUS_SEGMENTATION_JOIN_LEFT_H
 
-#include <Foundation/Store/Helper/CellHelper.h>
-#include <Foundation/Store/Comparer/Less.h>
-#include <Foundation/Store/Comparer/Compare.h>
-#include <Foundation/Store/Comparer/Greater.h>
-#include <Foundation/EntityProxy.h>
-#include <Segmentation/Transformation/EntityTransformer.h>
+#include "../../Foundation/Store/Comparer/Compare.h"
+#include "../../Foundation/Store/Comparer/Greater.h"
+#include "../../Foundation/Store/Helper/CellHelper.h"
+#include "../../Segmentation/Transformation/EntityTransformer.h"
 
 namespace Cloude {
     namespace Segmentation {

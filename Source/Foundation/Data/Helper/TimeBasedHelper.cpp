@@ -2,7 +2,6 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#include <Foundation/Data/TimeBasedValue.h>
 #include "TimeBasedHelper.h"
 
 namespace Cloude {

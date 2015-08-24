@@ -10,9 +10,8 @@
 #include <iostream>
 #include <functional>
 
-#include <Foundation/Foundation.h>
-#include <Foundation/Data/Comparer/Comparer.h>
-#include <Segmentation/Segmentation.h>
+#include "../../Source/Foundation/Foundation.h"
+#include "../../Source/Segmentation/Segmentation.h"
 
 #include "../Application/ProductMap.h"
 #include "../Application/PreOrderMap.h"

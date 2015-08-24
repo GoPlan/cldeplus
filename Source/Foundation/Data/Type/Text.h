@@ -6,7 +6,7 @@
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_TEXT_H
 
 #include <cstdlib>
-#include <Foundation/Data/CharacterValue.h>
+#include "../CharacterValue.h"
 
 namespace Cloude {
     namespace Foundation {

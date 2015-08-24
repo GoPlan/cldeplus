@@ -6,7 +6,7 @@
 #define CLOUD_E_PLUS_SEGMENTATION_EXCEPTION_TRANSFORMATIONEXCEPTION_H
 
 #include <string>
-#include <Foundation/Exception/CLDEException.h>
+#include "../../Foundation/Exception/CLDEException.h"
 
 namespace Cloude {
     namespace Segmentation {

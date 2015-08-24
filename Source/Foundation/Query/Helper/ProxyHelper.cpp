@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
-#include <Foundation/EntityProxy.h>
 #include "ProxyHelper.h"
+#include "../../EntityProxy.h"
 
 /// Summon solid entity from proxy from a store
 /// If Identity can not be generated from selected columns, function throws an CLDEEntityException.

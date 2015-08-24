@@ -5,7 +5,6 @@
 #ifndef CLOUD_E_PLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
 #define CLOUD_E_PLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
 
-#include <memory>
 #include "../../Source/Foundation/EntityMap.h"
 
 namespace Cloude {

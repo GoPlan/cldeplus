@@ -5,7 +5,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_SOURCE_DIR "Source")
 
 # INCLUDE directories
-include_directories(${CMAKE_SOURCE_DIR})
 include_directories(Extra/libs/cldeparser/include)
 include_directories(Extra/libs/mysql-connector-c-6.1.6-osx10.8-x86_64/include)
 include_directories(Extra/libs/gtest-1.7.0/include)

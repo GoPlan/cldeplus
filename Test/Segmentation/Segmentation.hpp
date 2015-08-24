@@ -9,10 +9,12 @@
 #include <memory>
 #include <iostream>
 #include <functional>
-#include <Foundation/Foundation.h>
-#include <Segmentation/Segmentation.h>
-#include <Drivers/SQLite/SQLiteSourceDriver.h>
-#include <Drivers/MySql/MySqlSourceDriver.h>
+
+#include "../../Source/Foundation/Foundation.h"
+#include "../../Source/Segmentation/Segmentation.h"
+#include "../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
+#include "../../Source/Drivers/MySql/MySqlSourceDriver.h"
+
 #include "../Application/EnquiryMap.h"
 #include "../Application/CustomerMap.h"
 #include "../Application/PreOrderMap.h"

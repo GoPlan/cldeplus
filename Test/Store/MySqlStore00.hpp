@@ -6,7 +6,7 @@
 #define CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_HPP
 
 #include <gtest/gtest.h>
-#include <Foundation/Foundation.h>
+#include "../../Source/Foundation/Foundation.h"
 #include "../Store/Preparation/PreOrderMySqlStore.h"
 
 namespace Cloude {

@@ -6,8 +6,8 @@
 #define CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE002_HPP
 
 #include <gtest/gtest.h>
-#include <Foundation/Foundation.h>
-#include <Drivers/MySql/Helper/MySqlSourceHelper.h>
+#include "../../Source/Foundation/Foundation.h"
+#include "../../Source/Drivers/MySql/Helper/MySqlSourceHelper.h"
 
 namespace Cloude {
     namespace Test {

@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/16/15.
 //
 
-#include <Foundation/Store/Helper/CellHelper.h>
 #include "AbstractEntity.h"
+#include "Helper/CellHelper.h"
 #include "../Exception/CLDEEntityException.h"
 #include "../Exception/CLDENonSupportedFunctionException.h"
 

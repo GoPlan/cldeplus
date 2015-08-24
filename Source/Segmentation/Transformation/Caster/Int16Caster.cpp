@@ -3,7 +3,6 @@
 //
 
 #include "Int16Caster.h"
-#include "../../../Foundation/Data/Value.h"
 #include "../../../Foundation/Data/Helper/TypeHelper.h"
 #include "../../../Foundation/Data/ValueFactory.h"
 #include "../../Exception/TransformationException.h"

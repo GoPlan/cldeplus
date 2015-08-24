@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+long main(int argc, char *argv[]) {
 
     std::cout << sizeof(char) << std::endl;
 

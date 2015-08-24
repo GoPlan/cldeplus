@@ -6,7 +6,7 @@
 #define CLOUD_E_PLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
 
 #include <string>
-#include <Foundation/Data/TimeBasedValue.h>
+#include "../TimeBasedValue.h"
 
 namespace Cloude {
     namespace Foundation {

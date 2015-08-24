@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/15/15.
 //
 
-#include <Foundation/Query/Contract/IPredicateFormatter.h>
 #include "CriteriaHelper.h"
+#include "../Contract/IPredicateFormatter.h"
 
 namespace Cloude {
     namespace Foundation {

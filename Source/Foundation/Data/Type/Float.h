@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_FLOAT_H
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_FLOAT_H
 
-#include <Foundation/Data/NumericValue.h>
+#include "../NumericValue.h"
 
 namespace Cloude {
     namespace Foundation {

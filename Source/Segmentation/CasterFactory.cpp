@@ -2,19 +2,19 @@
 // Created by LE, Duc Anh on 7/2/15.
 //
 
-#include <Segmentation/Transformation/Caster/ByteCaster.h>
-#include <Segmentation/Transformation/Caster/BooleanCaster.h>
-#include <Segmentation/Transformation/Caster/DoubleCaster.h>
-#include <Segmentation/Transformation/Caster/FloatCaster.h>
-#include <Segmentation/Transformation/Caster/Int16Caster.h>
-#include <Segmentation/Transformation/Caster/Int32Caster.h>
-#include <Segmentation/Transformation/Caster/Int64Caster.h>
-#include <Segmentation/Transformation/Caster/UInt16Caster.h>
-#include <Segmentation/Transformation/Caster/UInt32Caster.h>
-#include <Segmentation/Transformation/Caster/UInt64Caster.h>
-#include <Segmentation/Transformation/Caster/StringCaster.h>
-#include <Segmentation/Transformation/Caster/VarCharCaster.h>
 #include "CasterFactory.h"
+#include "Transformation/Caster/ByteCaster.h"
+#include "Transformation/Caster/BooleanCaster.h"
+#include "Transformation/Caster/DoubleCaster.h"
+#include "Transformation/Caster/FloatCaster.h"
+#include "Transformation/Caster/Int16Caster.h"
+#include "Transformation/Caster/Int32Caster.h"
+#include "Transformation/Caster/Int64Caster.h"
+#include "Transformation/Caster/UInt16Caster.h"
+#include "Transformation/Caster/UInt32Caster.h"
+#include "Transformation/Caster/UInt64Caster.h"
+#include "Transformation/Caster/StringCaster.h"
+#include "Transformation/Caster/VarCharCaster.h"
 
 namespace Cloude {
     namespace Segmentation {

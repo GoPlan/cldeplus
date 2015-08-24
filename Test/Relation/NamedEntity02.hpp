@@ -6,14 +6,14 @@
 #define CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY02_HPP
 
 #include "gtest/gtest.h"
-#include <Foundation/Foundation.h>
-#include <Relation/Relation.h>
-#include <Drivers/SQLite/SQLiteSourceDriver.h>
-#include <Drivers/MySql/MySqlSourceDriver.h>
+
 #include "../Application/CustomerMap.h"
 #include "../Application/PreOrderMap.h"
 #include "../Entity/Customer.h"
 #include "../Entity/PreOrder.h"
+
+#include "../../Source/Drivers/MySql/MySqlSourceDriver.h"
+#include "../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
 
 namespace Cloude {
     namespace Test {

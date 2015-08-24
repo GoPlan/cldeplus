@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#include <Foundation/Store/AbstractEntity.h>
 #include "EntityOutputFormatter.h"
+#include "../AbstractEntity.h"
 
 namespace Cloude {
     namespace Foundation {

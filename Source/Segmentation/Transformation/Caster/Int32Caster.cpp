@@ -4,8 +4,8 @@
 
 #include "Int32Caster.h"
 #include "../../../Foundation/Data/Helper/TypeHelper.h"
-#include "../../Exception/TransformationException.h"
 #include "../../../Foundation/Data/ValueFactory.h"
+#include "../../Exception/TransformationException.h"
 
 namespace Cloude {
     namespace Segmentation {

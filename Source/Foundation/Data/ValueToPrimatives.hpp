@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TONUMERIC_HPP
 #define CLOUD_E_PLUS_FOUNDATION_DATA_TONUMERIC_HPP
 
-#include <Foundation/Exception/CLDENonSupportedDataTypeException.h>
 #include "Value.h"
+#include "../Exception/CLDENonSupportedDataTypeException.h"
 
 namespace Cloude {
     namespace Foundation {

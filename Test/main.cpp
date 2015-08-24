@@ -2,7 +2,6 @@
 // Created by LE, Duc-Anh on 5/21/15.
 //
 
-
 #include "Type/CreateValue.hpp"
 #include "Type/ValueComparison.hpp"
 #include "Segmentation/Segmentation.hpp"
@@ -13,10 +12,7 @@
 #include "Store/MySqlStore01.hpp"
 #include "Store/MySqlStore02.hpp"
 
-//#include "Store/Test/MongoDbStore.hpp"
-//#include "Store/Test/PostgreStore.hpp"
-
-int main(int argc, char** argv) {
+int main(int argc, char *argv[]) {
     ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    return RUN_ALL_TESTS();;
 };

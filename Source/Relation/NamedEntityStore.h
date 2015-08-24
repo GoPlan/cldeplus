@@ -5,10 +5,10 @@
 #ifndef CLOUD_E_PLUS_RELATION_NAMEDENTITYSTORE_H
 #define CLOUD_E_PLUS_RELATION_NAMEDENTITYSTORE_H
 
-#include <Foundation/EntityStore.h>
-#include <Relation/Exception/NamedEntityStoreException.h>
-#include <Foundation/Query/Helper/ProxyHelper.h>
 #include "NamedEntityLoader.h"
+#include "Exception/NamedEntityStoreException.h"
+#include "../Foundation/EntityStore.h"
+#include "../Foundation/Query/Helper/ProxyHelper.h"
 
 namespace Cloude {
     namespace Relation {

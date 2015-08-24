@@ -2,9 +2,9 @@
 // Created by LE, Duc Anh on 7/2/15.
 //
 
-#include <Foundation/Data/Helper/TypeHelper.h>
-#include <Segmentation/Exception/TransformationException.h>
 #include "VarCharCaster.h"
+#include "../../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../Exception/TransformationException.h"
 
 namespace Cloude {
     namespace Segmentation {

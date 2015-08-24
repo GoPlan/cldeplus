@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_EXCEPTION_SEGMENTATIONEXCEPTION_H
 #define CLOUD_E_PLUS_SEGMENTATION_EXCEPTION_SEGMENTATIONEXCEPTION_H
 
-#include <Foundation/Exception/CLDEException.h>
+#include "../../Foundation/Exception/CLDEException.h"
 
 namespace Cloude {
     namespace Segmentation {

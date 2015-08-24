@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_RELATION_EXCEPTION_NAMEDENTITYSTOREEXCEPTION_H
 #define CLOUD_E_PLUS_RELATION_EXCEPTION_NAMEDENTITYSTOREEXCEPTION_H
 
-#include <Foundation/Exception/CLDEException.h>
+#include "../../Foundation/Exception/CLDEException.h"
 
 namespace Cloude {
     namespace Relation {

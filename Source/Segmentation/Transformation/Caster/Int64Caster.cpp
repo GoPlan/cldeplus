@@ -2,10 +2,10 @@
 // Created by LE, Duc Anh on 7/1/15.
 //
 
+#include "Int64Caster.h"
 #include "../../../Foundation/Data/Helper/TypeHelper.h"
 #include "../../../Foundation/Data/ValueFactory.h"
 #include "../../Exception/TransformationException.h"
-#include "Int64Caster.h"
 
 namespace Cloude {
     namespace Segmentation {

@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEEXCEPTION_H
 #define CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEEXCEPTION_H
 
-#include <Foundation/Exception/CLDEException.h>
+#include "../../Foundation/Exception/CLDEException.h"
 
 namespace Cloude {
     namespace Drivers {

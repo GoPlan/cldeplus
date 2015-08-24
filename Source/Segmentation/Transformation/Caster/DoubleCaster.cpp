@@ -2,10 +2,10 @@
 // Created by LE, Duc Anh on 7/1/15.
 //
 
-#include "../../Exception/TransformationException.h"
+#include "DoubleCaster.h"
 #include "../../../Foundation/Data/Helper/TypeHelper.h"
 #include "../../../Foundation/Data/ValueFactory.h"
-#include "DoubleCaster.h"
+#include "../../Exception/TransformationException.h"
 
 namespace Cloude {
     namespace Segmentation {

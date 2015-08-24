@@ -2,13 +2,14 @@
 // Created by LE, Duc Anh on 6/26/15.
 //
 
-#include <Foundation/Data/Type/String.h>
-#include <Foundation/Data/Type/VarChar.h>
-#include <Foundation/Data/Helper/TypeHelper.h>
-#include "../../Exception/CLDENonSupportedDataTypeException.h"
-#include "../../Exception/CLDENotImplementedException.h"
-#include <Foundation/Common/IComparable.h>
 #include "Greater.h"
+#include "../Helper/TypeHelper.h"
+#include "../Type/String.h"
+#include "../Type/VarChar.h"
+#include "../../Exception/CLDENotImplementedException.h"
+#include "../../Exception/CLDENonSupportedDataTypeException.h"
+#include "../../Common/IComparable.h"
+
 
 namespace Cloude {
     namespace Foundation {

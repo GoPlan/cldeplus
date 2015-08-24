@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_CROSS_H
 #define CLOUD_E_PLUS_SEGMENTATION_JOIN_CROSS_H
 
-#include <Foundation/EntityProxy.h>
-#include <Segmentation/Transformation/EntityTransformer.h>
+#include "../../Foundation/EntityProxy.h"
+#include "../Transformation/EntityTransformer.h"
 
 namespace Cloude {
     namespace Segmentation {
