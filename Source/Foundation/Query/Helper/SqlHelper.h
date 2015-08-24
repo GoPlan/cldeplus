@@ -8,7 +8,7 @@
 #include <memory>
 #include <vector>
 #include <functional>
-#include <Foundation/Query/Criteria.h>
+#include "../Criteria.h"
 
 namespace Cloude {
     namespace Foundation {

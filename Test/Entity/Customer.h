@@ -9,7 +9,7 @@
 #include <Relation/Relation.h>
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Entity {
 
             class Customer {

@@ -11,7 +11,7 @@
 using namespace std;
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
             namespace Test {
 

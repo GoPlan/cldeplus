@@ -5,7 +5,7 @@
 #include "EnquiryMap.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Application {
 
             std::string EnquiryMap::TableName = "Enquiry";

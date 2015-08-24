@@ -9,7 +9,7 @@
 #include <string>
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Entity {
 
             class Enquiry {

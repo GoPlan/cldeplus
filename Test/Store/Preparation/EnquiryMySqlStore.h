@@ -8,19 +8,19 @@
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <Drivers/MySql/MySqlSourceDriver.h>
-#include <AppTest/Application/EnquiryMap.h>
-#include <AppTest/Entity/Enquiry.h>
+#include "../../Application/EnquiryMap.h"
+#include "../../Entity/Enquiry.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
             namespace Preparation {
 
                 class EnquiryMySqlStore : public ::testing::Test {
 
                 protected:
-                    using Enquiry = AppTest::Entity::Enquiry;
-                    using EnquiryMap = AppTest::Application::EnquiryMap;
+                    using Enquiry = Entity::Enquiry;
+                    using EnquiryMap = Application::EnquiryMap;
                     using MySqlSourceDriver = Drivers::MySql::MySqlSourceDriver;
                     using EntityStore = Foundation::EntityStore;
                     using EntityQuery = Foundation::EntityQuery;

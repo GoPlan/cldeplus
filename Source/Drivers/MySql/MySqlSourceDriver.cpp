@@ -5,12 +5,12 @@
 #include <string>
 #include <iostream>
 #include <mysql.h>
-#include <Foundation/Query/Helper/SqlHelper.h>
-#include <Foundation/Data/ValueFactory.h>
-#include <Foundation/Data/Helper/TypeHelper.h>
-#include <Foundation/Data/Helper/ValueHelper.h>
-#include <Foundation/Store/Helper/EntityStoreHelper.h>
-#include <Foundation/Enum/CommonBufferSize.h>
+#include "../../Foundation/Query/Helper/SqlHelper.h"
+#include "../../Foundation/Data/ValueFactory.h"
+#include "../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../Foundation/Data/Helper/ValueHelper.h"
+#include "../../Foundation/Store/Helper/EntityStoreHelper.h"
+#include "../../Foundation/Enum/CommonBufferSize.h"
 #include "MySqlSourceDriver.h"
 #include "Helper/MySqlSourceHelper.h"
 

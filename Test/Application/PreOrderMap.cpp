@@ -5,7 +5,7 @@
 #include "PreOrderMap.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Application{
 
             std::string PreOrderMap::TableName{"PreOrder"};

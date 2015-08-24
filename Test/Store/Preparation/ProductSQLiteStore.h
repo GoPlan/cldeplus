@@ -8,10 +8,10 @@
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
-#include <AppTest/Application/ProductMap.h>
+#include "../../Application/ProductMap.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
             namespace Preparation {
 

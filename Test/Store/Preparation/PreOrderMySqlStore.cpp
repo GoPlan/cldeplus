@@ -6,7 +6,7 @@
 #include "PreOrderMySqlStore.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
 
             void PreOrderMySqlStore::SetUp() {

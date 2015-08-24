@@ -9,15 +9,17 @@
 #include <memory>
 #include <iostream>
 #include <functional>
+
 #include <Foundation/Foundation.h>
 #include <Foundation/Data/Comparer/Comparer.h>
 #include <Segmentation/Segmentation.h>
-#include <AppTest/Application/ProductMap.h>
-#include <AppTest/Application/PreOrderMap.h>
-#include <AppTest/Application/CustomerMap.h>
+
+#include "../Application/ProductMap.h"
+#include "../Application/PreOrderMap.h"
+#include "../Application/CustomerMap.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Segmentation {
 
             using namespace Cloude::Segmentation;
@@ -53,8 +55,11 @@ namespace Cloude {
                 auto orderNewTotalColumn = Foundation::CreateColumn("NewTotal", Foundation::Data::ValueType::Int64);
 
                 auto orderTransformer = Segmentation::Transformation::CreateEntityTransformer();
-                orderTransformer->AddCellTransformer(orderMap.Name->getName(),Transformation::CellTransformer{orderNewNameColumn});
-                orderTransformer->AddCellTransformer(orderMap.Total->getName(),Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
+                orderTransformer->AddCellTransformer(orderMap.Name->getName(),
+                                                     Transformation::CellTransformer{orderNewNameColumn});
+                orderTransformer->AddCellTransformer(orderMap.Total->getName(),
+                                                     Transformation::CellTransformer{orderNewTotalColumn,
+                                                                                     sptrDoubleConverter});
 
                 // Transforming Order into a new entity
                 auto sptrNewProxy = Foundation::CreateEntityProxy();

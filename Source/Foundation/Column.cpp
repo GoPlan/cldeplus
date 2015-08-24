@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 14/05/2015.
 //
 
-#include <Foundation/Data/Helper/TypeHelper.h>
+#include "Data/Helper/TypeHelper.h"
 #include "Column.h"
 
 namespace Cloude {

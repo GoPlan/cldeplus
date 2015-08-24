@@ -8,11 +8,12 @@
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
-#include <AppTest/Entity/Customer.h>
-#include <AppTest/Application/CustomerMap.h>
+
+#include "../Entity/Customer.h"
+#include "../Application/CustomerMap.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
 
             TEST(Relation, ConvertEntityToNamedEntity) {
@@ -22,7 +23,7 @@ namespace Cloude {
 
                 auto sptrId04 = Data::ValueFactory::CreateInt64(4);
 
-                AppTest::Application::CustomerMap mapCustomer{};
+                Application::CustomerMap mapCustomer{};
                 Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{mapCustomer};
                 sqliteSourceDriver.OptionArgs().ConnectionString = "example01.db";
 

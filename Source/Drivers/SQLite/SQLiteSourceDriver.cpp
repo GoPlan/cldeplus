@@ -4,13 +4,13 @@
 
 #include <cstdlib>
 #include <stdexcept>
-#include <Foundation/Data/ValueFactory.h>
-#include <Foundation/Exception/cldeNonSupportedDataTypeException.h>
-#include <Foundation/Query/CriteriaComposite.h>
-#include <Foundation/Query/Comparative.h>
-#include <Foundation/Query/Helper/SqlHelper.h>
-#include <Foundation/Query/Helper/CriteriaHelper.h>
-#include <Foundation/Store/Helper/EntityStoreHelper.h>
+#include "../../Foundation/Data/ValueFactory.h"
+#include "../../Foundation/Exception/cldeNonSupportedDataTypeException.h"
+#include "../../Foundation/Query/CriteriaComposite.h"
+#include "../../Foundation/Query/Comparative.h"
+#include "../../Foundation/Query/Helper/SqlHelper.h"
+#include "../../Foundation/Query/Helper/CriteriaHelper.h"
+#include "../../Foundation/Store/Helper/EntityStoreHelper.h"
 #include "Amalgamation/sqlite3.h"
 #include "SQLiteSourceDriver.h"
 

@@ -3,8 +3,8 @@
 //
 
 #include <stdexcept>
-#include <Foundation/Data/Helper/TypeHelper.h>
-#include <Foundation/Exception/cldeEntityException.h>
+#include "Data/Helper/TypeHelper.h"
+#include "Exception/cldeEntityException.h"
 #include <typeindex>
 #include "Cell.h"
 

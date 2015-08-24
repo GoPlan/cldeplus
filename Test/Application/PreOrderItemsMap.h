@@ -8,7 +8,7 @@
 #include <Foundation/EntityMap.h>
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Application {
 
             class PreOrderItemsMap : public Foundation::EntityMap {

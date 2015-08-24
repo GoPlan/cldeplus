@@ -10,7 +10,7 @@
 #include <Foundation/Column.h>
 
 namespace Cloude {
-    namespace AppTest{
+    namespace Test {
         namespace Application {
 
             class EnquiryMap : public Foundation::EntityMap {

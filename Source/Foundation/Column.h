@@ -7,7 +7,7 @@
 
 #include <string>
 #include <vector>
-#include <Foundation/Common/IPrintable.h>
+#include "Common/IPrintable.h"
 #include "Data/TypeEnums.h"
 
 namespace Cloude {

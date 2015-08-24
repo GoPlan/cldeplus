@@ -6,12 +6,13 @@
 #define CLOUD_E_PLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
 
 #include <string>
-#include <Foundation/Data/TypeEnums.h>
+#include "../TypeEnums.h"
 
-namespace Cloude{
+namespace Cloude {
     namespace Foundation {
         namespace Data{
             namespace Helper{
+
                 struct TypeHelper {
                     static std::string CopyCategoryToString(const ValueCategory &category);
                     static std::string CopyValueTypeToString(const ValueType &type);

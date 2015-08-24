@@ -7,9 +7,9 @@
 
 #include <memory>
 #include <iterator>
-#include <Foundation/Column.h>
-#include <Foundation/Data/Value.h>
-#include <Foundation/Query/ComparativeType.h>
+#include "../Column.h"
+#include "../Data/Value.h"
+#include "../Query/ComparativeType.h"
 
 namespace Cloude {
     namespace Foundation {

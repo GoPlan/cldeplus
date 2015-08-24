@@ -6,7 +6,7 @@
 #include "ProductSQLiteStore.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
             namespace Preparation {
 

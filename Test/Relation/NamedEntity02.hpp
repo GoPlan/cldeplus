@@ -10,13 +10,13 @@
 #include <Relation/Relation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include <Drivers/MySql/MySqlSourceDriver.h>
-#include <AppTest/Application/CustomerMap.h>
-#include <AppTest/Application/PreOrderMap.h>
-#include <AppTest/Entity/Customer.h>
-#include <AppTest/Entity/PreOrder.h>
+#include "../Application/CustomerMap.h"
+#include "../Application/PreOrderMap.h"
+#include "../Entity/Customer.h"
+#include "../Entity/PreOrder.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
 
             TEST(Relation, NamedEntityReferencingSQLiteAndMySql) {

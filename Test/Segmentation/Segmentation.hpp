@@ -13,12 +13,12 @@
 #include <Segmentation/Segmentation.h>
 #include <Drivers/SQLite/SQLiteSourceDriver.h>
 #include <Drivers/MySql/MySqlSourceDriver.h>
-#include <AppTest/Application/EnquiryMap.h>
-#include <AppTest/Application/CustomerMap.h>
-#include <AppTest/Application/PreOrderMap.h>
+#include "../Application/EnquiryMap.h"
+#include "../Application/CustomerMap.h"
+#include "../Application/PreOrderMap.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Segmentation {
 
             TEST(Segmentation, LEFT_INNER_JOIN_01) {
@@ -58,9 +58,11 @@ namespace Cloude {
                 auto rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
 
                 auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
-                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
+                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail",
+                                                                       Foundation::Data::ValueType::VarChar);
                 auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
-                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
+                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal",
+                                                                       Foundation::Data::ValueType::Double);
 
                 Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
                 Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
@@ -151,9 +153,11 @@ namespace Cloude {
                 auto rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
 
                 auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
-                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
+                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail",
+                                                                       Foundation::Data::ValueType::VarChar);
                 auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
-                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
+                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal",
+                                                                       Foundation::Data::ValueType::Double);
 
                 Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
                 Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
@@ -226,9 +230,11 @@ namespace Cloude {
                 auto rsPreOrder = queryOrder.Select(sptrOrderIdGt00);
 
                 auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
-                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
+                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail",
+                                                                       Foundation::Data::ValueType::VarChar);
                 auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
-                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
+                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal",
+                                                                       Foundation::Data::ValueType::Double);
 
                 Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
                 Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};

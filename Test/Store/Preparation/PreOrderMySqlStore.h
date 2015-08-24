@@ -8,11 +8,11 @@
 #include "gtest/gtest.h"
 #include <Foundation/Foundation.h>
 #include <Drivers/MySql/MySqlSourceDriver.h>
-#include <AppTest/Application/PreOrderMap.h>
-#include <AppTest/Application/PreOrderItemsMap.h>
+#include "../../Application/PreOrderMap.h"
+#include "../../Application/PreOrderItemsMap.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
 
             class PreOrderMySqlStore : public ::testing::Test {
@@ -20,8 +20,8 @@ namespace Cloude {
             public:
 
             protected:
-                using PreOrderMap = AppTest::Application::PreOrderMap;
-                using PreOrderItemsMap = AppTest::Application::PreOrderItemsMap;
+                using PreOrderMap = Application::PreOrderMap;
+                using PreOrderItemsMap = Application::PreOrderItemsMap;
                 using MySqlSourceDriver = Drivers::MySql::MySqlSourceDriver;
                 using EntityStore = Foundation::EntityStore;
                 using EntityQuery = Foundation::EntityQuery;

@@ -9,7 +9,7 @@
 #include "Preparation/ProductSQLiteStore.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
 
             using Cell = Cloude::Foundation::Cell;

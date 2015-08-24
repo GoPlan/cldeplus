@@ -7,10 +7,10 @@
 
 #include <gtest/gtest.h>
 #include <Foundation/Foundation.h>
-#include <AppTest/Store/Preparation/PreOrderMySqlStore.h>
+#include "../Store/Preparation/PreOrderMySqlStore.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Store {
             namespace Test {
 

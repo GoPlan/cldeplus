@@ -5,7 +5,7 @@
 #include "ProductMap.h"
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Application {
 
             std::string ProductMap::TableName{"Product"};

@@ -9,7 +9,7 @@
 #include <Relation/RelationMap.h>
 
 namespace Cloude {
-    namespace AppTest {
+    namespace Test {
         namespace Application {
 
             class PreOrderMap : public Foundation::EntityMap {
