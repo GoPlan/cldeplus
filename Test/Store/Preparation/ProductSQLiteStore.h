@@ -6,8 +6,8 @@
 #define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
 
 #include "gtest/gtest.h"
-#include <Foundation/Foundation.h>
-#include <Drivers/SQLite/SQLiteSourceDriver.h>
+#include "../../../Source/Foundation/Foundation.h"
+#include "../../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
 #include "../../Application/ProductMap.h"
 
 namespace Cloude {

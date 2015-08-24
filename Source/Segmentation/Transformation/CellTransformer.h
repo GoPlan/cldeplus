@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CELLTRANSFORMER_H
 #define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CELLTRANSFORMER_H
 
-#include <Foundation/Column.h>
-#include <Foundation/Cell.h>
+#include "../../Foundation/Column.h"
+#include "../../Foundation/Cell.h"
 #include "TypeCaster.h"
 
 namespace Cloude {

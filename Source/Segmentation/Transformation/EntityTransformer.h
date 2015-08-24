@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_ENTITYTRANSFORMER_H
 #define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_ENTITYTRANSFORMER_H
 
-#include <Foundation/EntityProxy.h>
+#include "../../Foundation/EntityProxy.h"
 #include "CellTransformer.h"
 
 namespace Cloude {

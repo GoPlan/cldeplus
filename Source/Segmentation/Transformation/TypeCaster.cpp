@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/30/15.
 //
 
-#include <Foundation/Data/Helper/TypeHelper.h>
-#include <Segmentation/Exception/TransformationException.h>
+#include "../../Foundation/Data/Helper/TypeHelper.h"
+#include "../Exception/TransformationException.h"
 #include "TypeCaster.h"
 
 namespace Cloude {

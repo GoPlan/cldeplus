@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_COMPARER_COMAPARE_H
 #define CLOUD_E_PLUS_FOUNDATION_TYPE_COMPARER_COMAPARE_H
 
-#include <Foundation/Data/Value.h>
+#include "../Value.h"
 #include "Greater.h"
 #include "Less.h"
 

@@ -6,8 +6,8 @@
 #define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_TYPECASTER_H
 
 #include <memory>
-#include <Foundation/Data/Value.h>
-#include <Foundation/Column.h>
+#include "../../Foundation/Data/Value.h"
+#include "../../Foundation/Column.h"
 #include <unordered_map>
 
 namespace Cloude {

@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_PLUS_RELATION_RELATIONMAP_H
 #define CLOUD_E_PLUS_RELATION_RELATIONMAP_H
 
-#include <Foundation/Query/Query.h>
-#include <Foundation/Entity.h>
+#include "../Foundation/Query/Query.h"
+#include "../Foundation/Entity.h"
 
 namespace Cloude {
     namespace Relation {

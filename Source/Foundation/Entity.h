@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <list>
 #include <set>
-#include <Foundation/Exception/cldeEntityException.h>
+#include "Exception/cldeEntityException.h"
 #include "Store/AbstractEntity.h"
 #include "Cell.h"
 #include "Identity.h"

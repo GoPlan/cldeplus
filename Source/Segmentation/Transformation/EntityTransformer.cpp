@@ -3,7 +3,7 @@
 //
 
 #include <stdexcept>
-#include <Segmentation/Exception/TransformationException.h>
+#include "../Exception/TransformationException.h"
 #include "EntityTransformer.h"
 
 namespace Cloude {

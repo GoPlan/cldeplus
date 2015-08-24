@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_CRITERIACOMPOSITE_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_CRITERIACOMPOSITE_H
 
-#include <Foundation/Exception/cldeNonSupportedFunctionException.h>
+#include "../Exception/cldeNonSupportedFunctionException.h"
 #include "Criteria.h"
 
 namespace Cloude {

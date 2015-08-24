@@ -5,8 +5,8 @@
 #ifndef CLOUD_E_PLUS_RELATION_NAMEDENTITYLOADER_H
 #define CLOUD_E_PLUS_RELATION_NAMEDENTITYLOADER_H
 
-#include <Foundation/Identity.h>
-#include <Foundation/Entity.h>
+#include "../Foundation/Identity.h"
+#include "../Foundation/Entity.h"
 
 namespace Cloude {
     namespace Relation {
