@@ -1,7 +1,5 @@
-cmake_minimum_required(VERSION 3.2)
-project(cloud_e_plus)
+# Examples
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_library(examples STATIC
     mysql_c_example.h

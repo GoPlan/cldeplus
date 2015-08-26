@@ -2,9 +2,8 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-
 #include "MySqlDate.h"
-#include "../Helper/MySqlSourceHelper.h"
+#include "../MySqlHelper.h"
 
 namespace Cloude {
     namespace Drivers {
@@ -44,7 +43,7 @@ namespace Cloude {
                 }
 
                 std::string MySqlDate::ToString() const {
-                    return Helper::MySqlSourceHelper::DateToISO8601String(_date);
+                    return MySqlHelper::DateToISO8601String(_date);
                 }
 
                 Foundation::Data::Value &MySqlDate::operator+(const Foundation::Data::Value &rhs) {
@@ -74,12 +73,12 @@ namespace Cloude {
 
                 bool MySqlDate::LessThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlDate &>(target);
-                    return Helper::MySqlSourceHelper::Less(_date, targetTs._date);
+                    return MySqlHelper::Less(_date, targetTs._date);
                 }
 
                 bool MySqlDate::GreaterThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlDate &>(target);
-                    return Helper::MySqlSourceHelper::Greater(_date, targetTs._date);
+                    return MySqlHelper::Greater(_date, targetTs._date);
                 }
 
                 bool MySqlDate::EquivalentTo(const Foundation::Common::IComparable &target) const {

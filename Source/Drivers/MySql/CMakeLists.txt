@@ -1,15 +1,16 @@
-cmake_minimum_required(VERSION 3.2)
-project(cloud_e_plus)
+# Drivers - MySql
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+include_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/include)
 add_library(cldemysqldriver STATIC
         MySqlSourceDriver.h
         MySqlSourceDriver.cpp
         MySqlSourceException.h
         MySqlSourceException.cpp
-        Helper/MySqlSourceHelper.cpp
-        Helper/MySqlSourceHelper.h
+        MySqlSourceFactory.cpp
+        MySqlSourceFactory.h
+        MySqlHelper.cpp
+        MySqlHelper.h
         Data/MySqlDate.cpp
         Data/MySqlDate.h
         Data/MySqlTime.cpp
@@ -17,3 +18,4 @@ add_library(cldemysqldriver STATIC
         Data/MySqlDateTime.cpp
         Data/MySqlDateTime.h
 )
+

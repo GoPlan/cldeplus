@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_APPTEST_TYPE_HPP
 #define CLOUD_E_PLUS_APPTEST_TYPE_HPP
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include <iostream>
 #include "../../Source/Foundation/Foundation.h"
 

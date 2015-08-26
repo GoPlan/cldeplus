@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include "../../Source/Foundation/Foundation.h"
-#include "../../Source/Drivers/MySql/Helper/MySqlSourceHelper.h"
+#include "MySqlSourceFactory.h"
 #include "Preparation/EnquiryMySqlStore.h"
 
 namespace Cloude {
@@ -15,7 +15,7 @@ namespace Cloude {
         namespace Store {
 
             using EnquiryMySqlStore = Preparation::EnquiryMySqlStore;
-            using MySqlDriverHelper = Drivers::MySql::Helper::MySqlSourceHelper;
+            using MySqlDriverHelper = Drivers::MySql::Helper::MySqlSourceFactory;
 
             TEST_F(EnquiryMySqlStore, CreateSaveDelete01) {
 

@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
 #define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "../../../Source/Foundation/Foundation.h"
 #include "../../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
 #include "../../Application/ProductMap.h"

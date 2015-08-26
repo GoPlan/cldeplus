@@ -3,7 +3,7 @@
 //
 
 #include "MySqlTime.h"
-#include "../Helper/MySqlSourceHelper.h"
+#include "../MySqlHelper.h"
 
 namespace Cloude {
     namespace Drivers {
@@ -45,7 +45,7 @@ namespace Cloude {
                 }
 
                 std::string MySqlTime::ToString() const {
-                    return Helper::MySqlSourceHelper::TimeToISO8601String(_time);
+                    return MySqlHelper::TimeToISO8601String(_time);
                 }
 
                 Foundation::Data::Value &MySqlTime::operator+(const Foundation::Data::Value &rhs) {
@@ -75,12 +75,12 @@ namespace Cloude {
 
                 bool MySqlTime::LessThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlTime &>(target);
-                    return Helper::MySqlSourceHelper::Less(_time, targetTs._time);
+                    return MySqlHelper::Less(_time, targetTs._time);
                 }
 
                 bool MySqlTime::GreaterThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlTime &>(target);
-                    return Helper::MySqlSourceHelper::Greater(_time, targetTs._time);
+                    return MySqlHelper::Greater(_time, targetTs._time);
                 }
 
                 bool MySqlTime::EquivalentTo(const Foundation::Common::IComparable &target) const {

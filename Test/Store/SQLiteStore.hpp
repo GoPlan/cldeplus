@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_APPTEST_STORE_SQLITESTORE_HPP
 #define CLOUD_E_PLUS_APPTEST_STORE_SQLITESTORE_HPP
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "Preparation/ProductSQLiteStore.h"
 
 namespace Cloude {

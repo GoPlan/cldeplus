@@ -8,9 +8,9 @@
 #include "Segmentation/Transformation.hpp"
 #include "Relation/Relation.hpp"
 #include "Store/SQLiteStore.hpp"
-#include "Store/MySqlStore00.hpp"
-#include "Store/MySqlStore01.hpp"
-#include "Store/MySqlStore02.hpp"
+//#include "Store/MySqlStore00.hpp"
+//#include "Store/MySqlStore01.hpp"
+//#include "Store/MySqlStore02.hpp"
 
 int main(int argc, char *argv[]) {
     ::testing::InitGoogleTest(&argc, argv);

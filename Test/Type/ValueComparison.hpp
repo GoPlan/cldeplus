@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_APPTEST_TYPE_VALUECOMPARISON_H
 #define CLOUD_E_PLUS_APPTEST_TYPE_VALUECOMPARISON_H
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include <iostream>
 #include "../../Source/Foundation/Foundation.h"
 

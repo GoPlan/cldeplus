@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_PREORDERMYSQLSTORE_H
 #define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_PREORDERMYSQLSTORE_H
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "../../Application/PreOrderMap.h"
 #include "../../Application/PreOrderItemsMap.h"
 #include "../../../Source/Foundation/EntityQuery.h"

@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY01_HPP
 #define CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY01_HPP
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 #include "../Entity/Customer.h"
 #include "../Application/CustomerMap.h"

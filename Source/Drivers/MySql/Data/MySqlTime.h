@@ -7,6 +7,7 @@
 
 #include <mysql.h>
 #include "../../../Foundation/Data/TimeBasedValue.h"
+#include "../MySqlSourceException.h"
 
 namespace Cloude {
     namespace Drivers {
@@ -26,7 +27,7 @@ namespace Cloude {
                     MySqlTime(MySqlTime &&) = default;
                     MySqlTime &operator=(const MySqlTime &) = default;
                     MySqlTime &operator=(MySqlTime &&) = default;
-                    ~MySqlTime() = default;
+                    virtual ~MySqlTime() = default;
 
                     // Value
                     virtual void *PointerToBuffer() override;

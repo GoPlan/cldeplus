@@ -7,13 +7,13 @@
 
 #include <gtest/gtest.h>
 #include "../../Source/Foundation/Foundation.h"
-#include "../../Source/Drivers/MySql/Helper/MySqlSourceHelper.h"
+#include "MySqlSourceFactory.h"
 
 namespace Cloude {
     namespace Test {
         namespace Store {
 
-            using MySqlDriverHelper = Drivers::MySql::Helper::MySqlSourceHelper;
+            using MySqlDriverHelper = Drivers::MySql::Helper::MySqlSourceFactory;
 
             TEST(MySqlSourceDriver, Comparable) {
 

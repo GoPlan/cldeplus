@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_APPTEST_SEGMENTATION_HPP
 #define CLOUD_E_PLUS_APPTEST_SEGMENTATION_HPP
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include <memory>
 #include <iostream>
 #include <functional>

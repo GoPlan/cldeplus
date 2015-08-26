@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYMYSQLSTORE_H
 #define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYMYSQLSTORE_H
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "../../Application/EnquiryMap.h"
 #include "../../Entity/Enquiry.h"
 #include "../../../Source/Foundation/EntityQuery.h"
