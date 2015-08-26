@@ -7,13 +7,13 @@
 
 #include <gtest/gtest.h>
 #include "../../Source/Foundation/Foundation.h"
-#include "MySqlSourceFactory.h"
+#include "../../Source/Drivers/MySql/MySqlSourceFactory.h"
 
 namespace Cloude {
     namespace Test {
         namespace Store {
 
-            using MySqlDriverHelper = Drivers::MySql::Helper::MySqlSourceFactory;
+            using MySqlDriverFactory = Drivers::MySql::MySqlSourceFactory;
 
             TEST(MySqlSourceDriver, Comparable) {
 
@@ -23,9 +23,9 @@ namespace Cloude {
 
                 // Date
                 {
-                    auto sptrDateLo = MySqlDriverHelper::CreateDate(2015, 7, 15);
-                    auto sptrDateHi = MySqlDriverHelper::CreateDate(2015, 7, 16);
-                    auto sptrDateLoAlt = MySqlDriverHelper::CreateDate(2015, 7, 15);
+                    auto sptrDateLo = MySqlDriverFactory::CreateDate(2015, 7, 15);
+                    auto sptrDateHi = MySqlDriverFactory::CreateDate(2015, 7, 16);
+                    auto sptrDateLoAlt = MySqlDriverFactory::CreateDate(2015, 7, 15);
 
                     EXPECT_TRUE(LT(sptrDateLo, sptrDateHi));
                     EXPECT_TRUE(GT(sptrDateHi, sptrDateLo));
@@ -35,9 +35,9 @@ namespace Cloude {
 
                 // Time
                 {
-                    auto sptrTimeLo = MySqlDriverHelper::CreateTime(22, 12, 35);
-                    auto sptrTimeHi = MySqlDriverHelper::CreateTime(23, 7, 16);
-                    auto sptrTimeLoAlt = MySqlDriverHelper::CreateTime(22, 12, 35);
+                    auto sptrTimeLo = MySqlDriverFactory::CreateTime(22, 12, 35);
+                    auto sptrTimeHi = MySqlDriverFactory::CreateTime(23, 7, 16);
+                    auto sptrTimeLoAlt = MySqlDriverFactory::CreateTime(22, 12, 35);
 
                     EXPECT_TRUE(LT(sptrTimeLo, sptrTimeHi));
                     EXPECT_TRUE(GT(sptrTimeHi, sptrTimeLo));
@@ -47,9 +47,9 @@ namespace Cloude {
 
                 // Date & Time
                 {
-                    auto sptrDateTimeLo = MySqlDriverHelper::CreateDateTime(2015, 7, 15, 22, 12, 35);
-                    auto sptrDateTimeHi = MySqlDriverHelper::CreateDateTime(2015, 7, 18, 23, 7, 16);
-                    auto sptrDateTimeAlt = MySqlDriverHelper::CreateDateTime(2015, 7, 15, 22, 12, 35);
+                    auto sptrDateTimeLo = MySqlDriverFactory::CreateDateTime(2015, 7, 15, 22, 12, 35);
+                    auto sptrDateTimeHi = MySqlDriverFactory::CreateDateTime(2015, 7, 18, 23, 7, 16);
+                    auto sptrDateTimeAlt = MySqlDriverFactory::CreateDateTime(2015, 7, 15, 22, 12, 35);
 
                     EXPECT_TRUE(LT(sptrDateTimeLo, sptrDateTimeHi));
                     EXPECT_TRUE(GT(sptrDateTimeHi, sptrDateTimeLo));

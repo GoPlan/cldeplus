@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include "../../Source/Foundation/Foundation.h"
-#include "MySqlSourceFactory.h"
+#include "../../Source/Drivers/MySql/MySqlSourceFactory.h"
 #include "Preparation/EnquiryMySqlStore.h"
 
 namespace Cloude {
@@ -15,7 +15,7 @@ namespace Cloude {
         namespace Store {
 
             using EnquiryMySqlStore = Preparation::EnquiryMySqlStore;
-            using MySqlDriverHelper = Drivers::MySql::Helper::MySqlSourceFactory;
+            using MySqlDriverFactory = Drivers::MySql::MySqlSourceFactory;
 
             TEST_F(EnquiryMySqlStore, CreateSaveDelete01) {
 
@@ -24,9 +24,9 @@ namespace Cloude {
                 auto sptrId = Foundation::Data::ValueFactory::CreateInt64(0);
                 auto sptrCustId = Foundation::Data::ValueFactory::CreateInt64(0);
                 auto sptrSubject = Foundation::Data::ValueFactory::CreateVarChar("Enquiry 00");
-                auto sptrSubmittedDate = MySqlDriverHelper::CreateDate(2015, 7, 15);
-                auto sptrSubmittedHour = MySqlDriverHelper::CreateTime(22, 53, 18, 43256);
-                auto sptrUpdatedDate = MySqlDriverHelper::CreateDateTime(2015, 7, 15, 22, 15, 13);
+                auto sptrSubmittedDate = MySqlDriverFactory::CreateDate(2015, 7, 15);
+                auto sptrSubmittedHour = MySqlDriverFactory::CreateTime(22, 53, 18, 43256);
+                auto sptrUpdatedDate = MySqlDriverFactory::CreateDateTime(2015, 7, 15, 22, 15, 13);
 
                 auto sptrIdCell = Foundation::CreateCell(_mapEnquiry.Id, sptrId);
                 auto sptrCells = {sptrIdCell};

@@ -17,5 +17,8 @@ add_library(cldemysqldriver STATIC
         Data/MySqlTime.h
         Data/MySqlDateTime.cpp
         Data/MySqlDateTime.h
+        Data/MySqlDateTimeImpl.cpp
+        Data/MySqlDateTimeImpl.h
 )
+
 

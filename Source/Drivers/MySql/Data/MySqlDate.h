@@ -5,7 +5,6 @@
 #ifndef CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLDATE_H
 #define CLOUD_E_PLUS_DRIVERS_MYSQL_DATA_MYSQLDATE_H
 
-#include <mysql.h>
 #include "../../../Foundation/Data/TimeBasedValue.h"
 #include "../MySqlSourceException.h"
 
@@ -14,9 +13,11 @@ namespace Cloude {
         namespace MySql {
             namespace Data {
 
+                class MySqlDateTimeImpl;
+
                 class MySqlDate : public Foundation::Data::TimeBasedValue {
 
-                    MYSQL_TIME _date;
+                    std::shared_ptr<MySqlDateTimeImpl> _sptrDateImpl;
 
                 public:
                     MySqlDate(unsigned year, unsigned month, unsigned day);

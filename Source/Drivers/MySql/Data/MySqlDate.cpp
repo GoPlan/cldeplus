@@ -3,6 +3,7 @@
 //
 
 #include "MySqlDate.h"
+#include "MySqlDateTimeImpl.h"
 #include "../MySqlHelper.h"
 
 namespace Cloude {
@@ -12,38 +13,22 @@ namespace Cloude {
 
                 MySqlDate::MySqlDate(unsigned year, unsigned month, unsigned day)
                         : TimeBasedValue{Foundation::Data::ValueType::Date, sizeof(MYSQL_TIME)} {
-
-                    _date.year = year;
-                    _date.month = month;
-                    _date.day = day;
-                    _date.hour = 0;
-                    _date.minute = 0;
-                    _date.second = 0;
-                    _date.second_part = 0;
-                    _date.neg = false;
-                    _date.time_type = MYSQL_TIMESTAMP_DATE;
+                    //
+                    _sptrDateImpl->SetDate(year, month, day);
                 }
 
                 MySqlDate::MySqlDate()
                         : TimeBasedValue{Foundation::Data::ValueType::Date, sizeof(MYSQL_TIME)} {
-
-                    _date.year = 0;
-                    _date.month = 0;
-                    _date.day = 0;
-                    _date.hour = 0;
-                    _date.minute = 0;
-                    _date.second = 0;
-                    _date.second_part = 0;
-                    _date.neg = false;
-                    _date.time_type = MYSQL_TIMESTAMP_DATE;
+                    //
+                    _sptrDateImpl->SetDate(0, 0, 0);
                 }
 
                 void *MySqlDate::PointerToBuffer() {
-                    return &_date;
+                    return &_sptrDateImpl->mysql_datetime;
                 }
 
                 std::string MySqlDate::ToString() const {
-                    return MySqlHelper::DateToISO8601String(_date);
+                    return MySqlHelper::DateToISO8601String(_sptrDateImpl->mysql_datetime);
                 }
 
                 Foundation::Data::Value &MySqlDate::operator+(const Foundation::Data::Value &rhs) {
@@ -73,12 +58,12 @@ namespace Cloude {
 
                 bool MySqlDate::LessThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlDate &>(target);
-                    return MySqlHelper::Less(_date, targetTs._date);
+                    return MySqlHelper::Less(_sptrDateImpl->mysql_datetime, targetTs._sptrDateImpl->mysql_datetime);
                 }
 
                 bool MySqlDate::GreaterThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlDate &>(target);
-                    return MySqlHelper::Greater(_date, targetTs._date);
+                    return MySqlHelper::Greater(_sptrDateImpl->mysql_datetime, targetTs._sptrDateImpl->mysql_datetime);
                 }
 
                 bool MySqlDate::EquivalentTo(const Foundation::Common::IComparable &target) const {

@@ -3,6 +3,7 @@
 //
 
 #include "MySqlDateTime.h"
+#include "MySqlDateTimeImpl.h"
 #include "../MySqlHelper.h"
 
 namespace Cloude {
@@ -13,16 +14,8 @@ namespace Cloude {
 
                 MySqlDateTime::MySqlDateTime(unsigned int year, unsigned int month, unsigned int day)
                         : TimeBasedValue{Foundation::Data::ValueType::DateTime, sizeof(MYSQL_TIME)} {
-
-                    _dateTime.year = year;
-                    _dateTime.month = month;
-                    _dateTime.day = day;
-                    _dateTime.hour = 0;
-                    _dateTime.minute = 0;
-                    _dateTime.second = 0;
-                    _dateTime.second_part = 0;
-                    _dateTime.neg = false;
-                    _dateTime.time_type = MYSQL_TIMESTAMP_DATETIME;
+                    //
+                    _sptrDateTimeImpl->SetDateTime(year, month, day);
                 }
 
                 MySqlDateTime::MySqlDateTime(unsigned int year,
@@ -31,40 +24,24 @@ namespace Cloude {
                                              unsigned int hour,
                                              unsigned int minute,
                                              unsigned int second,
-                                             unsigned long milliseconds)
+                                             unsigned long millisecond)
                         : TimeBasedValue{Foundation::Data::ValueType::DateTime, sizeof(MYSQL_TIME)} {
-
-                    _dateTime.year = year;
-                    _dateTime.month = month;
-                    _dateTime.day = day;
-                    _dateTime.hour = hour;
-                    _dateTime.minute = minute;
-                    _dateTime.second = second;
-                    _dateTime.second_part = milliseconds;
-                    _dateTime.neg = false;
-                    _dateTime.time_type = MYSQL_TIMESTAMP_DATETIME;
+                    //
+                    _sptrDateTimeImpl->SetDateTime(year, month, day, hour, minute, second, millisecond);
                 }
 
                 MySqlDateTime::MySqlDateTime()
                         : TimeBasedValue{Foundation::Data::ValueType::DateTime, sizeof(MYSQL_TIME)} {
-
-                    _dateTime.year = 0;
-                    _dateTime.month = 0;
-                    _dateTime.day = 0;
-                    _dateTime.hour = 0;
-                    _dateTime.minute = 0;
-                    _dateTime.second = 0;
-                    _dateTime.second_part = 0;
-                    _dateTime.neg = false;
-                    _dateTime.time_type = MYSQL_TIMESTAMP_DATETIME;
+                    //
+                    _sptrDateTimeImpl->SetDateTime(0, 0, 0);
                 }
 
                 void *MySqlDateTime::PointerToBuffer() {
-                    return &_dateTime;
+                    return &_sptrDateTimeImpl->mysql_datetime;
                 }
 
                 std::string MySqlDateTime::ToString() const {
-                    return MySqlHelper::DateTimeToISO8601String(_dateTime);
+                    return MySqlHelper::DateTimeToISO8601String(_sptrDateTimeImpl->mysql_datetime);
                 }
 
                 Foundation::Data::Value &MySqlDateTime::operator+(const Foundation::Data::Value &rhs) {
@@ -94,12 +71,14 @@ namespace Cloude {
 
                 bool MySqlDateTime::LessThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlDateTime &>(target);
-                    return MySqlHelper::Less(_dateTime, targetTs._dateTime);
+                    return MySqlHelper::Less(_sptrDateTimeImpl->mysql_datetime,
+                                             targetTs._sptrDateTimeImpl->mysql_datetime);
                 }
 
                 bool MySqlDateTime::GreaterThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlDateTime &>(target);
-                    return MySqlHelper::Greater(_dateTime, targetTs._dateTime);
+                    return MySqlHelper::Greater(_sptrDateTimeImpl->mysql_datetime,
+                                                targetTs._sptrDateTimeImpl->mysql_datetime);
                 }
 
                 bool MySqlDateTime::EquivalentTo(const Foundation::Common::IComparable &target) const {

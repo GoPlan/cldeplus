@@ -3,6 +3,7 @@
 //
 
 #include "MySqlTime.h"
+#include "MySqlDateTimeImpl.h"
 #include "../MySqlHelper.h"
 
 namespace Cloude {
@@ -13,39 +14,22 @@ namespace Cloude {
                 MySqlTime::MySqlTime(unsigned int hour, unsigned int minute, unsigned int second,
                                      unsigned long millisecond)
                         : TimeBasedValue{Foundation::Data::ValueType::Time, sizeof(MYSQL_TIME)} {
-
-                    _time.year = 0;
-                    _time.month = 0;
-                    _time.day = 0;
-                    _time.hour = hour;
-                    _time.minute = minute;
-                    _time.second = second;
-                    _time.second_part = millisecond;
-                    _time.neg = false;
-                    _time.time_type = MYSQL_TIMESTAMP_TIME;
-
+                    //
+                    _sptrTimeImpl->SetTime(hour, minute, second, millisecond);
                 }
 
                 MySqlTime::MySqlTime() :
                         TimeBasedValue{Foundation::Data::ValueType::Time, sizeof(MYSQL_TIME)} {
-
-                    _time.year = 0;
-                    _time.month = 0;
-                    _time.day = 0;
-                    _time.hour = 0;
-                    _time.minute = 0;
-                    _time.second = 0;
-                    _time.second_part = 0;
-                    _time.neg = false;
-                    _time.time_type = MYSQL_TIMESTAMP_TIME;
+                    //
+                    _sptrTimeImpl->SetTime(0, 0, 0, 0);
                 }
 
                 void *MySqlTime::PointerToBuffer() {
-                    return &_time;
+                    return &_sptrTimeImpl->mysql_datetime;
                 }
 
                 std::string MySqlTime::ToString() const {
-                    return MySqlHelper::TimeToISO8601String(_time);
+                    return MySqlHelper::TimeToISO8601String(_sptrTimeImpl->mysql_datetime);
                 }
 
                 Foundation::Data::Value &MySqlTime::operator+(const Foundation::Data::Value &rhs) {
@@ -75,12 +59,12 @@ namespace Cloude {
 
                 bool MySqlTime::LessThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlTime &>(target);
-                    return MySqlHelper::Less(_time, targetTs._time);
+                    return MySqlHelper::Less(_sptrTimeImpl->mysql_datetime, targetTs._sptrTimeImpl->mysql_datetime);
                 }
 
                 bool MySqlTime::GreaterThan(const Foundation::Common::IComparable &target) const {
                     auto &targetTs = dynamic_cast<const MySqlTime &>(target);
-                    return MySqlHelper::Greater(_time, targetTs._time);
+                    return MySqlHelper::Greater(_sptrTimeImpl->mysql_datetime, targetTs._sptrTimeImpl->mysql_datetime);
                 }
 
                 bool MySqlTime::EquivalentTo(const Foundation::Common::IComparable &target) const {
