@@ -18,11 +18,7 @@ namespace Cloude {
             Foundation::SPtrColumn PreOrderItemsMap::Amount = Foundation::CreateColumn("Amount", "amount", Foundation::Data::ValueType::Double);
             Foundation::SPtrColumn PreOrderItemsMap::Comment = Foundation::CreateColumn("Comment", "comment", Foundation::Data::ValueType::Text);
 
-            const std::string &PreOrderItemsMap::TableNameCore() const {
-                return TableName;
-            }
-
-            PreOrderItemsMap::PreOrderItemsMap() {
+            PreOrderItemsMap::PreOrderItemsMap() : EntityMap(TableName) {
 
                 SetColumn("Id", OrderId);
                 SetColumn("OrderId", OrderId);

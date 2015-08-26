@@ -20,7 +20,7 @@ namespace Cloude {
             auto pair = _columnsMap.find(name);
 
             if (_columnsMap.find(name) == _columnsMap.cend()) {
-                std::string message{"Column " + name + " is not found in " + TableNameCore()};
+                std::string message{"Column " + name + " is not found in " + _tableName};
                 throw Exception::CLDEEntityMapException{message};
             }
 

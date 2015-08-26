@@ -31,12 +31,16 @@ namespace Cloude {
             virtual SPtrEntityProxyVector Select(const Query::SPtrCriteria &sptrCriteria);
             virtual SPtrEntityProxyVector Select(const Query::SPtrCriteria &sptrCriteria,
                                                  const SPtrColumnVector &columnsForProjection);
+
+            static std::shared_ptr<EntityQuery> CreateSharedPtr(SPtrEntityMap const &sptrEntityMap,
+                                                                SPtrEntitySourceDriver const &sptrEntitySourceDriver);
+
+            static std::unique_ptr<EntityQuery> CreateUniquePtr(SPtrEntityMap const &sptrEntityMap,
+                                                                SPtrEntitySourceDriver const &sptrEntitySourceDriver);
         };
 
+        using UPtrEntityQuery = std::unique_ptr<EntityQuery>;
         using SPtrEntityQuery = std::shared_ptr<EntityQuery>;
-
-        SPtrEntityQuery CreateEntityQuery(const SPtrEntityMap &sptrEntityMap,
-                                          const SPtrEntitySourceDriver &sptrEntitySourceDriver);
     }
 }
 

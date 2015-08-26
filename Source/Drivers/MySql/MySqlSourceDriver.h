@@ -47,7 +47,11 @@ namespace Cloude {
                         const Foundation::Query::SPtrCriteria &sptrCriteria,
                         const Foundation::SPtrColumnVector &columnsForProjection) const override;
 
-                static std::shared_ptr<MySqlSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                static std::unique_ptr<MySqlSourceDriver> CreateUniquePtr(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                    return std::unique_ptr<MySqlSourceDriver>(new MySqlSourceDriver(sptrEntityMap));
+                }
+
+                static std::shared_ptr<MySqlSourceDriver> CreateSharedPtr(Foundation::SPtrEntityMap const &sptrEntityMap) {
                     return std::make_shared<MySqlSourceDriver>(sptrEntityMap);
                 }
 

@@ -15,9 +15,7 @@ namespace Cloude {
             Foundation::SPtrColumn ProductMap::Code = Foundation::CreateColumn("Code", "code", Foundation::Data::ValueType::VarChar);
             Foundation::SPtrColumn ProductMap::Price = Foundation::CreateColumn("Price", "price", Foundation::Data::ValueType::Double);
 
-            const std::string &ProductMap::TableNameCore() const { return TableName; }
-
-            ProductMap::ProductMap() {
+            ProductMap::ProductMap() : EntityMap(TableName) {
 
                 SetColumn("Id", Id);
                 SetColumn("Name", Name);

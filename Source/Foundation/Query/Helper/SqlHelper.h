@@ -26,18 +26,10 @@ namespace Cloude {
 
             namespace Helper {
 
-                class SqlHelper {
-                    SqlHelper() = delete;
-                    SqlHelper(const SqlHelper &) = delete;
-                    SqlHelper(SqlHelper &&) = delete;
-                    SqlHelper &operator=(const SqlHelper &) = delete;
-                    SqlHelper &operator=(SqlHelper &&) = delete;
-                    ~SqlHelper() = delete;
+                struct SqlHelper {
 
-                public:
                     using FPtrParamProcessor = std::function<std::string(const SPtrColumn &column, const int &index)>;
 
-                public:
                     static std::string CreateGetPreparedQuery
                             (const std::string &strSourceName,
                              const SPtrColumnVector &columnsForProjection,

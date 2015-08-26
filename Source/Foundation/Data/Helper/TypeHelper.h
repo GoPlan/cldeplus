@@ -12,7 +12,6 @@ namespace Cloude {
     namespace Foundation {
         namespace Data{
             namespace Helper{
-
                 struct TypeHelper {
                     static std::string CopyCategoryToString(const ValueCategory &category);
                     static std::string CopyValueTypeToString(const ValueType &type);

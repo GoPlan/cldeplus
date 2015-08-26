@@ -44,7 +44,11 @@ namespace Cloude {
                         const Foundation::Query::SPtrCriteria &sptrCriteria,
                         const Foundation::SPtrColumnVector &columnsForProjection) const override;
 
-                static std::shared_ptr<SQLiteSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                static std::unique_ptr<SQLiteSourceDriver> CreateUniquePtr(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                    return std::unique_ptr<SQLiteSourceDriver>(new SQLiteSourceDriver(sptrEntityMap));
+                }
+
+                static std::shared_ptr<SQLiteSourceDriver> CreateSharedPtr(Foundation::SPtrEntityMap const &sptrEntityMap){
                     return std::make_shared<SQLiteSourceDriver>(sptrEntityMap);
                 }
 
@@ -64,6 +68,7 @@ namespace Cloude {
                 void Init();
             };
 
+            using UPtrSQLiteSourceDriver = std::unique_ptr<SQLiteSourceDriver>;
             using SPtrSQLiteSourceDriver = std::shared_ptr<SQLiteSourceDriver>;
         }
     }

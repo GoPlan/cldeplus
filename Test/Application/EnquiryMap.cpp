@@ -18,11 +18,7 @@ namespace Cloude {
             Foundation::SPtrColumn EnquiryMap::Content = Foundation::CreateColumn("Content", "content", Foundation::Data::ValueType::Text);
             Foundation::SPtrColumn EnquiryMap::UpdatedDate = Foundation::CreateColumn("UpdatedDate", "updateddate", Foundation::Data::ValueType::DateTime);
 
-            const std::string &EnquiryMap::TableNameCore() const {
-                return TableName;
-            }
-
-            EnquiryMap::EnquiryMap() {
+            EnquiryMap::EnquiryMap() : EntityMap(TableName) {
 
                 SetColumn("Id", Id);
                 SetColumn("CustId", CustId);

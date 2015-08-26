@@ -30,7 +30,7 @@ namespace Cloude {
 
             auto &columnsForGet = _sptrEntityMap->getColumnsForGet();
 
-            SPtrEntity entity = Foundation::CreateEntity(identity);
+            SPtrEntity entity = Foundation::Entity::CreateSharedPtr(identity);
 
             Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForGet, entity, false);
 
@@ -54,7 +54,7 @@ namespace Cloude {
 
             auto &columnsForGet = _sptrEntityMap->getColumnsForGet();
 
-            SPtrEntity sptrEntity = Foundation::CreateEntity(identity);
+            SPtrEntity sptrEntity = Foundation::Entity::CreateSharedPtr(identity);
 
             Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForGet, sptrEntity, false);
 
@@ -115,8 +115,13 @@ namespace Cloude {
             return _identityMap.size();
         }
 
-        SPtrEntityStore CreateEntityStore(const SPtrEntityMap &sptrEntityMap,
-                                          const SPtrEntitySourceDriver &sptrEntitySourceDriver) {
+        std::unique_ptr<EntityStore> EntityStore::CreateUniquePtr(SPtrEntityMap const &sptrEntityMap,
+                                                                  SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
+            return std::unique_ptr<EntityStore>(new EntityStore(sptrEntityMap, sptrEntitySourceDriver));
+        }
+
+        std::shared_ptr<EntityStore> EntityStore::CreateSharedPtr(SPtrEntityMap const &sptrEntityMap,
+                                                                  SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
             return std::make_shared<EntityStore>(sptrEntityMap, sptrEntitySourceDriver);
         }
     }

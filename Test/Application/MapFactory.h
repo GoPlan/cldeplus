@@ -15,6 +15,11 @@ namespace Cloude {
             std::shared_ptr<T> Create() {
                 return std::make_shared<T>();
             }
+
+            template <class T>
+            std::shared_ptr<T> Share(std::unique_ptr<T> uptrT){
+                return std::shared_ptr<T>(uptrT);
+            }
         }
     }
 }

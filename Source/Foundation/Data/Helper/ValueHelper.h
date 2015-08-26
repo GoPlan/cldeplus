@@ -11,19 +11,8 @@ namespace Cloude {
     namespace Foundation {
         namespace Data {
             namespace Helper {
-
-                class ValueHelper {
-
-                    ValueHelper() = delete;
-                    ValueHelper(const ValueHelper &) = delete;
-                    ValueHelper(ValueHelper &&) = delete;
-                    ValueHelper &operator=(const ValueHelper &) = delete;
-                    ValueHelper &operator=(ValueHelper &&) = delete;
-                    virtual ~ValueHelper() = delete;
-
-                public:
+                struct ValueHelper {
                     static SPtrValue CopySPtrValue(const SPtrValue &sptrValue);
-
                 };
             }
         }

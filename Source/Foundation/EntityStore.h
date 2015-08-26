@@ -45,12 +45,16 @@ namespace Cloude {
 
             SPtrEntityMap const &getEntityMap() const { return _sptrEntityMap; }
             SPtrEntitySourceDriver const &getEntitySourceDriver() const { return _sptrEntitySourceDriver; }
+
+            static std::unique_ptr<EntityStore> CreateUniquePtr(SPtrEntityMap const &sptrEntityMap,
+                                                                SPtrEntitySourceDriver const &sptrEntitySourceDriver);
+
+            static std::shared_ptr<EntityStore> CreateSharedPtr(SPtrEntityMap const &sptrEntityMap,
+                                                                SPtrEntitySourceDriver const &sptrEntitySourceDriver);
         };
 
+        using UPtrEntityStore = std::unique_ptr<EntityStore>;
         using SPtrEntityStore = std::shared_ptr<EntityStore>;
-
-        SPtrEntityStore CreateEntityStore(const SPtrEntityMap &sptrEntityMap,
-                                          const SPtrEntitySourceDriver &sptrEntitySourceDriver);
     }
 }
 

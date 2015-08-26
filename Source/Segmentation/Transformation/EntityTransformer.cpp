@@ -37,8 +37,8 @@ namespace Cloude {
             }
         }
 
-        Transformation::SPtrEntityTransformer Transformation::CreateEntityTransformer() {
-            return std::make_shared<EntityTransformer>();
+        Transformation::UPtrEntityTransformer Transformation::CreateEntityTransformerInstance() {
+            return std::unique_ptr<EntityTransformer>(new EntityTransformer());
         }
     }
 }

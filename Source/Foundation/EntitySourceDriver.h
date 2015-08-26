@@ -37,6 +37,7 @@ namespace Cloude {
             const SPtrEntityMap &getEntityMap() const { return _sptrEntityMap; }
         };
 
+        using UPtrEntitySourceDriver = std::unique_ptr<EntitySourceDriver>;
         using SPtrEntitySourceDriver = std::shared_ptr<EntitySourceDriver>;
     }
 }

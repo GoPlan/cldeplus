@@ -26,9 +26,6 @@ namespace Cloude {
                 ProductMap &operator=(const ProductMap &) = default;
                 ProductMap &operator=(ProductMap &&) = default;
                 ~ProductMap() = default;
-
-            protected:
-                virtual const std::string &TableNameCore() const override;
             };
 
             using SPtrProductMap = std::shared_ptr<ProductMap>;

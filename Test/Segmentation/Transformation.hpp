@@ -44,10 +44,10 @@ namespace Cloude {
                 auto sptrTotalCell = Foundation::CreateCell(sptrPreOrderMap->GetColumn("Total"), sptrTotal);
 
                 // Prepare source proxy
-                auto sptrOrderProxy = Foundation::CreateEntityProxy();
-                sptrOrderProxy->setCell(sptrCustmIdCell);
-                sptrOrderProxy->setCell(sptrOrderNameCell);
-                sptrOrderProxy->setCell(sptrTotalCell);
+                auto sptrEntityProxy = Foundation::EntityProxy::CreateSharedPtr();
+                sptrEntityProxy->setCell(sptrCustmIdCell);
+                sptrEntityProxy->setCell(sptrOrderNameCell);
+                sptrEntityProxy->setCell(sptrTotalCell);
 
                 // Double (Type) Caster
                 auto sptrDoubleConverter = CasterFactory::CreateDoubleConverter();
@@ -57,13 +57,13 @@ namespace Cloude {
                 auto orderNewNameColumn = Foundation::CreateColumn("NewName", Foundation::Data::ValueType::VarChar);
                 auto orderNewTotalColumn = Foundation::CreateColumn("NewTotal", Foundation::Data::ValueType::Int64);
 
-                auto orderTransformer = Segmentation::Transformation::CreateEntityTransformer();
-                orderTransformer->AddCellTransformer(sptrPreOrderMap->GetColumn("Name")->getName(), Transformation::CellTransformer{orderNewNameColumn});
-                orderTransformer->AddCellTransformer(sptrPreOrderMap->GetColumn("Total")->getName(), Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
+                auto uptrOrderTransformer = Segmentation::Transformation::CreateEntityTransformerInstance();
+                uptrOrderTransformer->AddCellTransformer(sptrPreOrderMap->GetColumn("Name")->getName(), Transformation::CellTransformer{orderNewNameColumn});
+                uptrOrderTransformer->AddCellTransformer(sptrPreOrderMap->GetColumn("Total")->getName(), Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
 
                 // Transforming Order into a new entity
-                auto sptrNewProxy = Foundation::CreateEntityProxy();
-                orderTransformer->Transform(sptrOrderProxy, sptrNewProxy);
+                auto sptrNewProxy = Foundation::EntityProxy::CreateSharedPtr();
+                uptrOrderTransformer->Transform(sptrEntityProxy, sptrNewProxy);
 
                 EXPECT_TRUE(sptrNewProxy.get() != 0);
 

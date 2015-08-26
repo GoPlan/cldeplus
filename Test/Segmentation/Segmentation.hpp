@@ -30,13 +30,13 @@ namespace Cloude {
 
                 auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
                 auto sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
-                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
-                auto sptrPreOrderDriver = Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
+                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::CreateSharedPtr(sptrCustomerMap);
+                auto sptrPreOrderDriver = Drivers::MySql::MySqlSourceDriver::CreateSharedPtr(sptrPreOrderMap);
 
-                auto sptrCustomerStore = Foundation::CreateEntityStore(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrCustomerQuery = Foundation::CreateEntityQuery(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrOrderStore = Foundation::CreateEntityStore(sptrPreOrderMap, sptrPreOrderDriver);
-                auto sptrOrderQuery = Foundation::CreateEntityQuery(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrCustomerStore = Foundation::EntityStore::CreateSharedPtr(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerQuery = Foundation::EntityQuery::CreateSharedPtr(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrOrderStore = Foundation::EntityStore::CreateSharedPtr(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrOrderQuery = Foundation::EntityQuery::CreateSharedPtr(sptrPreOrderMap, sptrPreOrderDriver);
 
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
                 sptrCustomerDriver->Connect();
@@ -121,13 +121,13 @@ namespace Cloude {
 
                 auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
                 auto sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
-                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
-                auto sptrPreOrderDriver = Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
+                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::CreateSharedPtr(sptrCustomerMap);
+                auto sptrPreOrderDriver = Drivers::MySql::MySqlSourceDriver::CreateSharedPtr(sptrPreOrderMap);
 
-                auto sptrCustomerStore = Foundation::CreateEntityStore(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrCustomerQuery = Foundation::CreateEntityQuery(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrOrderStore = Foundation::CreateEntityStore(sptrPreOrderMap, sptrPreOrderDriver);
-                auto sptrOrderQuery = Foundation::CreateEntityQuery(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrCustomerStore = Foundation::EntityStore::CreateSharedPtr(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerQuery = Foundation::EntityQuery::CreateSharedPtr(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrOrderStore = Foundation::EntityStore::CreateSharedPtr(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrOrderQuery = Foundation::EntityQuery::CreateSharedPtr(sptrPreOrderMap, sptrPreOrderDriver);
 
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
                 sptrCustomerDriver->Connect();
@@ -194,13 +194,13 @@ namespace Cloude {
 
                 auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
                 auto sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
-                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
-                auto sptrPreOrderDriver = Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
+                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::CreateSharedPtr(sptrCustomerMap);
+                auto sptrPreOrderDriver = Drivers::MySql::MySqlSourceDriver::CreateSharedPtr(sptrPreOrderMap);
 
-                auto sptrCustomerStore = Foundation::CreateEntityStore(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrCustomerQuery = Foundation::CreateEntityQuery(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrOrderStore = Foundation::CreateEntityStore(sptrPreOrderMap, sptrPreOrderDriver);
-                auto sptrOrderQuery = Foundation::CreateEntityQuery(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrCustomerStore = Foundation::EntityStore::CreateSharedPtr(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerQuery = Foundation::EntityQuery::CreateSharedPtr(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrOrderStore = Foundation::EntityStore::CreateSharedPtr(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrOrderQuery = Foundation::EntityQuery::CreateSharedPtr(sptrPreOrderMap, sptrPreOrderDriver);
 
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
                 sptrCustomerDriver->Connect();

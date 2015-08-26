@@ -35,7 +35,7 @@ namespace Cloude {
 
                 SPtrEntityProxy EntityStoreHelper::CopySPtrProxy(const SPtrEntityProxy &proxy) {
 
-                    SPtrEntityProxy newProxy = Foundation::CreateEntityProxy();
+                    SPtrEntityProxy newProxy = Foundation::EntityProxy::CreateSharedPtr();
 
                     for(auto &srcCellPair : proxy->getCellsMap()){
                         auto newCell = Foundation::Store::Helper::CellHelper::CopySPtrCell(srcCellPair.second);

@@ -30,9 +30,6 @@ namespace Cloude {
                 EnquiryMap &operator=(const EnquiryMap &) = default;
                 EnquiryMap &operator=(EnquiryMap &&) = default;
                 virtual ~EnquiryMap() = default;
-
-            protected:
-                const std::string &TableNameCore() const override;
             };
 
             using SPtrEnquiryMap = std::shared_ptr<EnquiryMap>;

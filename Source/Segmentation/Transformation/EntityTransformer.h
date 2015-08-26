@@ -38,9 +38,10 @@ namespace Cloude {
                 void Transform(const Foundation::SPtrEntityProxy &srcProxy, Foundation::SPtrEntityProxy &dstProxy) const;
             };
 
+            using UPtrEntityTransformer = std::unique_ptr<EntityTransformer>;
             using SPtrEntityTransformer = std::shared_ptr<EntityTransformer>;
 
-            SPtrEntityTransformer CreateEntityTransformer();
+            UPtrEntityTransformer CreateEntityTransformerInstance();
         }
     }
 }

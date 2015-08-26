@@ -26,9 +26,6 @@ namespace Cloude {
                 PreOrderMap &operator=(const PreOrderMap &) = default;
                 PreOrderMap &operator=(PreOrderMap &&) = default;
                 ~PreOrderMap() = default;
-
-            protected:
-                virtual const std::string &TableNameCore() const override;
             };
 
             using SPtrPreOrderMap = std::shared_ptr<PreOrderMap>;

@@ -30,9 +30,6 @@ namespace Cloude {
                 CustomerMap &operator=(const CustomerMap &) = default;
                 CustomerMap &operator=(CustomerMap &&) = default;
                 virtual ~CustomerMap() = default;
-
-            protected:
-                virtual const std::string &TableNameCore() const override;
             };
         }
     }

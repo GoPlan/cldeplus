@@ -10,6 +10,7 @@ namespace Cloude {
     namespace Foundation {
 
         Entity::Entity(const SPtrIdentity &identity) : _identity(identity) {
+
             if (!identity) {
                 std::string msg{"Identity can not be nullptr or undefined"};
                 throw Exception::CLDEEntityException{msg};
@@ -21,8 +22,12 @@ namespace Cloude {
             }
         }
 
-        SPtrEntity CreateEntity(const SPtrIdentity &identity) {
+        std::shared_ptr<Entity> Entity::CreateSharedPtr(const SPtrIdentity &identity) {
             return std::make_shared<Entity>(identity);
+        }
+
+        std::unique_ptr<Entity> Entity::CreateUniquePtr(const SPtrIdentity &identity) {
+            return std::unique_ptr<Entity>(new Entity(identity));
         }
     }
 }

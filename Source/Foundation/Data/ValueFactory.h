@@ -12,15 +12,7 @@ namespace Cloude {
     namespace Foundation {
         namespace Data {
 
-            class ValueFactory {
-
-            public:
-                ValueFactory() = delete;
-                ValueFactory(const ValueFactory &) = delete;
-                ValueFactory(ValueFactory &&) = delete;
-                ValueFactory &operator=(const ValueFactory &) = delete;
-                ValueFactory &operator=(ValueFactory &&) = delete;
-                ~ValueFactory() = delete;
+            struct ValueFactory {
 
                 // Numeric
                 static SPtrValue CreateByte(char value);

@@ -12,23 +12,14 @@
 namespace Cloude {
     namespace Foundation {
         namespace Query {
+
             namespace Contract {
                 class IPredicateFormatter;
             }
 
             namespace Helper {
-
-                class CriteriaHelper {
-                    CriteriaHelper() = delete;
-                    CriteriaHelper(const CriteriaHelper &) = delete;
-                    CriteriaHelper(CriteriaHelper &&) = delete;
-                    CriteriaHelper &operator=(const CriteriaHelper &) = delete;
-                    CriteriaHelper &operator=(CriteriaHelper &&) = delete;
-                    virtual ~CriteriaHelper() = delete;
-
-                public:
+                struct CriteriaHelper {
                     using FPtrProcessor = std::function<std::string(const SPtrCriteria &)>;
-
                     static std::string CopyToString(const SPtrCriteria &sptrCriteria, const Contract::IPredicateFormatter &formatter);
                     static std::string CopyToString(const SPtrCriteria &sptrCriteria, const FPtrProcessor fptrProcessor);
                 };

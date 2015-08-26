@@ -33,14 +33,17 @@ namespace Cloude {
 
             template<class TEntity>
             TEntity NamedEntity(std::function<TEntity(const Entity &)> converter) { return converter(*this); };
+
+            static std::unique_ptr<Entity> CreateUniquePtr(const SPtrIdentity &identity);
+            static std::shared_ptr<Entity> CreateSharedPtr(const SPtrIdentity &identity);
         };
 
+        using UPtrEntity = std::unique_ptr<Entity>;
         using SPtrEntity = std::shared_ptr<Entity>;
         using SPtrEntityVector = std::vector<SPtrEntity>;
         using SPtrEntityList = std::list<SPtrEntity>;
         using SPtrEntitySet = std::set<SPtrEntity>;
 
-        SPtrEntity CreateEntity(const SPtrIdentity &identity);
     }
 }
 

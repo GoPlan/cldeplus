@@ -19,9 +19,7 @@ namespace Cloude {
             Foundation::SPtrColumn CustomerMap::AddrCity = Foundation::CreateColumn("AddrCity", "addrcity", Foundation::Data::ValueType::VarChar);
             Foundation::SPtrColumn CustomerMap::AddrCountry = Foundation::CreateColumn("AddrCountry", "addrcountry", Foundation::Data::ValueType::VarChar);
 
-            const std::string &CustomerMap::TableNameCore() const { return TableName; }
-
-            CustomerMap::CustomerMap() {
+            CustomerMap::CustomerMap() : EntityMap(TableName) {
 
                 SetColumn("Id", Id);
                 SetColumn("FirstName", FirstName);
