@@ -14,11 +14,11 @@ namespace Cloude {
     namespace Foundation {
 
         class EntitySourceDriver {
-        
-            const EntityMap &_entityMap;
+
+            SPtrEntityMap _sptrEntityMap;
 
         public:
-            explicit EntitySourceDriver(const EntityMap &entityMap);
+            explicit EntitySourceDriver(const SPtrEntityMap &entityMap);
             EntitySourceDriver(const EntitySourceDriver &) = delete;
             EntitySourceDriver(EntitySourceDriver &&) = delete;
             EntitySourceDriver &operator=(const EntitySourceDriver &) = delete;
@@ -34,7 +34,7 @@ namespace Cloude {
                     const Foundation::Query::SPtrCriteria &sptrCriteria,
                     const Foundation::SPtrColumnVector &columnsForProjection) const = 0;
 
-            const EntityMap &getEntityMap() const { return _entityMap; }
+            const SPtrEntityMap &getEntityMap() const { return _sptrEntityMap; }
         };
 
         using SPtrEntitySourceDriver = std::shared_ptr<EntitySourceDriver>;

@@ -9,26 +9,38 @@ namespace Cloude {
     namespace Test {
         namespace Store {
 
+            PreOrderMySqlStore::PreOrderMySqlStore() {
+                _sptrPreOrderMap = std::make_shared<Application::PreOrderMap>();
+                _sptrPreOrderItemsMap = std::make_shared<Application::PreOrderItemsMap>();
+                _sptrPreOrderDriver = std::make_shared<Drivers::MySql::MySqlSourceDriver>(_sptrPreOrderMap);
+                _sptrPreOrderItemsDriver = std::make_shared<Drivers::MySql::MySqlSourceDriver>(_sptrPreOrderItemsMap);
+                _sptrPreOrderStore = std::make_shared<Foundation::EntityStore>(_sptrPreOrderMap, _sptrPreOrderDriver);
+                _sptrPreOrderItemsStore = std::make_shared<Foundation::EntityStore>(_sptrPreOrderItemsMap, _sptrPreOrderItemsDriver);
+                _sptrPreOrderQuery = std::make_shared<Foundation::EntityQuery>(_sptrPreOrderMap, _sptrPreOrderDriver);
+                _sptrPreOrderItemsQuery = std::make_shared<Foundation::EntityQuery>(_sptrPreOrderItemsMap, _sptrPreOrderItemsDriver);
+            }
+
             void PreOrderMySqlStore::SetUp() {
-                _driverPreOrder.OptionArgs().Host = "dell-3020";
-                _driverPreOrder.OptionArgs().User = "cloud-e";
-                _driverPreOrder.OptionArgs().Pass = "cloud-e";
-                _driverPreOrder.OptionArgs().Base = "cloud-e";
-                _driverPreOrder.OptionArgs().Port = 3306;
 
-                _driverPreOrderItems.OptionArgs().Host = "dell-3020";
-                _driverPreOrderItems.OptionArgs().User = "cloud-e";
-                _driverPreOrderItems.OptionArgs().Pass = "cloud-e";
-                _driverPreOrderItems.OptionArgs().Base = "cloud-e";
-                _driverPreOrderItems.OptionArgs().Port = 3306;
+                _sptrPreOrderDriver->OptionArgs().Host = "dell-3020";
+                _sptrPreOrderDriver->OptionArgs().User = "cloud-e";
+                _sptrPreOrderDriver->OptionArgs().Pass = "cloud-e";
+                _sptrPreOrderDriver->OptionArgs().Base = "cloud-e";
+                _sptrPreOrderDriver->OptionArgs().Port = 3306;
 
-                _driverPreOrder.Connect();
-                _driverPreOrderItems.Connect();
+                _sptrPreOrderItemsDriver->OptionArgs().Host = "dell-3020";
+                _sptrPreOrderItemsDriver->OptionArgs().User = "cloud-e";
+                _sptrPreOrderItemsDriver->OptionArgs().Pass = "cloud-e";
+                _sptrPreOrderItemsDriver->OptionArgs().Base = "cloud-e";
+                _sptrPreOrderItemsDriver->OptionArgs().Port = 3306;
+
+                _sptrPreOrderDriver->Connect();
+                _sptrPreOrderItemsDriver->Connect();
             }
 
             void PreOrderMySqlStore::TearDown() {
-                _driverPreOrder.Disconnect();
-                _driverPreOrderItems.Disconnect();
+                _sptrPreOrderDriver->Disconnect();
+                _sptrPreOrderItemsDriver->Disconnect();
             }
         }
     }

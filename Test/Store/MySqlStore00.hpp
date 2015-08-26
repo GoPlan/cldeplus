@@ -22,7 +22,7 @@ namespace Cloude {
                     Foundation::Data::Comparer::Compare compare{};
 
                     auto sptrIdValue = Foundation::Data::ValueFactory::CreateInt64(0);
-                    auto sptrIdCell = Foundation::CreateCell(_mapPreOrder.Id, sptrIdValue);
+                    auto sptrIdCell = Foundation::CreateCell(_sptrPreOrderMap->Id, sptrIdValue);
                     auto sptrNameValue = Foundation::Data::ValueFactory::CreateVarChar("ORDER-0");
                     auto sptrCustIdValue = Foundation::Data::ValueFactory::CreateInt64(15);
                     auto sptrTotalValue = Foundation::Data::ValueFactory::CreateDouble(35);
@@ -31,28 +31,28 @@ namespace Cloude {
 
                     // DELETE - Check if Entity is nullptr
                     {
-                        auto sptrPreOrder = _storePreOrder.Get(sptrIdentity);
+                        auto sptrPreOrder = _sptrPreOrderStore->Get(sptrIdentity);
 
                         EXPECT_TRUE(sptrPreOrder.get() != 0);
-                        EXPECT_TRUE(_storePreOrder.HasIdentityInMap(sptrIdentity));
+                        EXPECT_TRUE(_sptrPreOrderStore->HasIdentityInMap(sptrIdentity));
 
-                        _storePreOrder.Delete(sptrPreOrder);
-                        _storePreOrder.Clear();
+                        _sptrPreOrderStore->Delete(sptrPreOrder);
+                        _sptrPreOrderStore->Clear();
 
-                        EXPECT_TRUE(!_storePreOrder.HasIdentityInMap(sptrIdentity));
-                        EXPECT_TRUE(_storePreOrder.Size() == 0);
+                        EXPECT_TRUE(!_sptrPreOrderStore->HasIdentityInMap(sptrIdentity));
+                        EXPECT_TRUE(_sptrPreOrderStore->Size() == 0);
                     }
 
                     // CREATE
                     {
-                        auto sptrPreOrder = _storePreOrder.Create(sptrIdentity);
+                        auto sptrPreOrder = _sptrPreOrderStore->Create(sptrIdentity);
                         EXPECT_TRUE(sptrPreOrder.get() != 0);
-                        EXPECT_TRUE(_storePreOrder.HasIdentityInMap(sptrIdentity));
+                        EXPECT_TRUE(_sptrPreOrderStore->HasIdentityInMap(sptrIdentity));
                     }
 
                     // SAVE
                     {
-                        auto sptrEntity = _storePreOrder.Get(sptrIdentity);
+                        auto sptrEntity = _sptrPreOrderStore->Get(sptrIdentity);
                         auto &sptrIdCell = sptrEntity->getCell("Id");
                         auto &sptrNameCell = sptrEntity->getCell("Name");
                         auto &sptrCustIdCell = sptrEntity->getCell("CustId");
@@ -69,17 +69,17 @@ namespace Cloude {
                         sptrCustIdCell->setValue(sptrCustIdValue);
                         sptrTotalCell->setValue(sptrTotalValue);
 
-                        _storePreOrder.Save(sptrEntity);
-                        _storePreOrder.Clear();
+                        _sptrPreOrderStore->Save(sptrEntity);
+                        _sptrPreOrderStore->Clear();
                     }
 
                     // GET - Check for saved field
                     {
-                        auto sptrEntity = _storePreOrder.Get(sptrIdentity);
+                        auto sptrEntity = _sptrPreOrderStore->Get(sptrIdentity);
 
                         EXPECT_TRUE(sptrEntity.get() != 0);
-                        EXPECT_TRUE(_storePreOrder.Size() > 0);
-                        EXPECT_TRUE(_storePreOrder.HasIdentityInMap(sptrIdentity));
+                        EXPECT_TRUE(_sptrPreOrderStore->Size() > 0);
+                        EXPECT_TRUE(_sptrPreOrderStore->HasIdentityInMap(sptrIdentity));
 
                         if (sptrEntity) {
 
@@ -106,12 +106,12 @@ namespace Cloude {
                     auto sptrIdHi = ValueFactory::CreateInt64(15);
 
                     // Criterias
-                    auto gteLoId = CmpFactory::CreateGTE(_mapPreOrder.Id, sptrIdLo);
-                    auto lteHiId = CmpFactory::CreateLTE(_mapPreOrder.Id, sptrIdHi);
+                    auto gteLoId = CmpFactory::CreateGTE(_sptrPreOrderMap->Id, sptrIdLo);
+                    auto lteHiId = CmpFactory::CreateLTE(_sptrPreOrderMap->Id, sptrIdHi);
                     auto criteria = CmpFactory::CreateAND(gteLoId, lteHiId);
 
                     // Execute
-                    auto rsPreOrder = _queryPreOrder.Select(criteria);
+                    auto rsPreOrder = _sptrPreOrderQuery->Select(criteria);
                     auto &sptrFistPreOrder = *rsPreOrder.cbegin();
                     auto &sptrLastPreOrder = *(rsPreOrder.cbegin() + rsPreOrder.size() - 1);
 

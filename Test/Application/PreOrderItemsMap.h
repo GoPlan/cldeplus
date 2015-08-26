@@ -35,6 +35,8 @@ namespace Cloude {
                 virtual const std::string &TableNameCore() const override;
 
             };
+
+            using SPtrPreOrderItemMap = std::shared_ptr<PreOrderItemsMap>;
         }
     }
 }

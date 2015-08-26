@@ -10,18 +10,21 @@ namespace Cloude {
         namespace Store {
             namespace Preparation {
 
-                ProductSQLiteStore::ProductSQLiteStore() : _driverSQLite(_mapProduct),
-                                                           _storeProduct(_mapProduct, _driverSQLite) {
-                    //
+                ProductSQLiteStore::ProductSQLiteStore() {
+                    _sptrProductMap = std::make_shared<Application::ProductMap>();
+                    _sptrSQLiteSourceDriver = std::make_shared<Drivers::SQLite::SQLiteSourceDriver>(_sptrProductMap);
+                    _sptrProductStore = std::make_shared<Foundation::EntityStore>(_sptrProductMap,
+                                                                                  _sptrSQLiteSourceDriver);
+
                 }
 
                 void ProductSQLiteStore::SetUp() {
-                    _driverSQLite.OptionArgs().ConnectionString = "example01.db";
-                    _driverSQLite.Connect();
+                    _sptrSQLiteSourceDriver->OptionArgs().ConnectionString = "example01.db";
+                    _sptrSQLiteSourceDriver->Connect();
                 }
 
                 void ProductSQLiteStore::TearDown() {
-                    _driverSQLite.Disconnect();
+                    _sptrSQLiteSourceDriver->Disconnect();
                 }
             }
         }

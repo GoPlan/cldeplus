@@ -10,19 +10,26 @@ namespace Cloude {
         namespace Store {
             namespace Preparation {
 
+                EnquiryMySqlStore::EnquiryMySqlStore() {
+                    _sptrEnquiryMap = std::make_shared<Application::EnquiryMap>();
+                    _sptrMySqlSourceDriver = std::make_shared<Drivers::MySql::MySqlSourceDriver>(_sptrEnquiryMap);
+                    _sptrEnquiryStore = std::make_shared<Foundation::EntityStore>(_sptrEnquiryMap, _sptrMySqlSourceDriver);
+                    _sptrEnquiryQuery = std::make_shared<Foundation::EntityQuery>(_sptrEnquiryMap, _sptrMySqlSourceDriver);
+                }
+
                 void EnquiryMySqlStore::SetUp() {
 
-                    _driverEnquiry.OptionArgs().Host = "dell-3020";
-                    _driverEnquiry.OptionArgs().User = "cloud-e";
-                    _driverEnquiry.OptionArgs().Pass = "cloud-e";
-                    _driverEnquiry.OptionArgs().Base = "cloud-e";
-                    _driverEnquiry.OptionArgs().Port = 3306;
+                    _sptrMySqlSourceDriver->OptionArgs().Host = "dell-3020";
+                    _sptrMySqlSourceDriver->OptionArgs().User = "cloud-e";
+                    _sptrMySqlSourceDriver->OptionArgs().Pass = "cloud-e";
+                    _sptrMySqlSourceDriver->OptionArgs().Base = "cloud-e";
+                    _sptrMySqlSourceDriver->OptionArgs().Port = 3306;
 
-                    _driverEnquiry.Connect();
+                    _sptrMySqlSourceDriver->Connect();
                 }
 
                 void EnquiryMySqlStore::TearDown() {
-                    _driverEnquiry.Disconnect();
+                    _sptrMySqlSourceDriver->Disconnect();
                 }
             }
         }

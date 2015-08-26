@@ -18,25 +18,15 @@ namespace Cloude {
                 class EnquiryMySqlStore : public ::testing::Test {
 
                 protected:
-                    using Enquiry = Entity::Enquiry;
-                    using EnquiryMap = Application::EnquiryMap;
-                    using MySqlSourceDriver = Drivers::MySql::MySqlSourceDriver;
-                    using EntityStore = Foundation::EntityStore;
-                    using EntityQuery = Foundation::EntityQuery;
-
-                    EnquiryMySqlStore() : _driverEnquiry{_mapEnquiry},
-                                          _storeEnquiry{_mapEnquiry, _driverEnquiry},
-                                          _queryEnquiry{_mapEnquiry, _driverEnquiry} {
-                        //
-                    }
+                    EnquiryMySqlStore();
 
                     virtual void SetUp();
                     virtual void TearDown();
 
-                    EnquiryMap _mapEnquiry;
-                    MySqlSourceDriver _driverEnquiry;
-                    EntityStore _storeEnquiry;
-                    EntityQuery _queryEnquiry;
+                    Application::SPtrEnquiryMap _sptrEnquiryMap;
+                    Drivers::MySql::SPtrMySqlSourceDriver _sptrMySqlSourceDriver;
+                    Foundation::SPtrEntityStore _sptrEnquiryStore;
+                    Foundation::SPtrEntityQuery _sptrEnquiryQuery;
                 };
             }
         }

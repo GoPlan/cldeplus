@@ -31,6 +31,8 @@ namespace Cloude {
             protected:
                 virtual const std::string &TableNameCore() const override;
             };
+
+            using SPtrProductMap = std::shared_ptr<ProductMap>;
         }
     }
 }

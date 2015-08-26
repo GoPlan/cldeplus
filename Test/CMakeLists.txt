@@ -38,7 +38,7 @@ add_library(apptest STATIC
         Store/Preparation/PreOrderMySqlStore.h
         Store/Preparation/EnquiryMySqlStore.cpp
         Store/Preparation/EnquiryMySqlStore.h
-)
+        Application/MapFactory.cpp Application/MapFactory.h)
 
 
 # Library links search paths

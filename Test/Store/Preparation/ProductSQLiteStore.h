@@ -26,16 +26,12 @@ namespace Cloude {
                     ~ProductSQLiteStore() = default;
 
                 protected:
-                    using ProductMap = Application::ProductMap;
-                    using SQLiteSourceDriver = Drivers::SQLite::SQLiteSourceDriver;
-                    using EntityStore = Foundation::EntityStore;
-
                     void SetUp() override;
                     void TearDown() override;
 
-                    ProductMap _mapProduct;
-                    SQLiteSourceDriver _driverSQLite;
-                    EntityStore _storeProduct;
+                    Application::SPtrProductMap _sptrProductMap;
+                    Drivers::SQLite::SPtrSQLiteSourceDriver _sptrSQLiteSourceDriver;
+                    Foundation::SPtrEntityStore _sptrProductStore;
                 };
             }
         }

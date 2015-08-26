@@ -6,8 +6,8 @@
 
 namespace Cloude {
     namespace Foundation {
-        EntitySourceDriver::EntitySourceDriver(const EntityMap &entityMap)
-                : _entityMap(entityMap) {
+        EntitySourceDriver::EntitySourceDriver(const SPtrEntityMap &entityMap)
+                : _sptrEntityMap(entityMap) {
             //
         }
     }

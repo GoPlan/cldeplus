@@ -24,16 +24,16 @@ namespace Cloude {
 
                 auto sptrId04 = Data::ValueFactory::CreateInt64(4);
 
-                Application::CustomerMap mapCustomer{};
-                Drivers::SQLite::SQLiteSourceDriver sqliteSourceDriver{mapCustomer};
-                sqliteSourceDriver.OptionArgs().ConnectionString = "example01.db";
+                auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
+                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
+                sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
 
-                auto sptrCustomerStore = Foundation::CreateEntityStore(mapCustomer, sqliteSourceDriver);
-                auto sptrCustomerQuery = Foundation::CreateEntityQuery(mapCustomer, sqliteSourceDriver);
+                auto sptrCustomerStore = Foundation::CreateEntityStore(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerQuery = Foundation::CreateEntityQuery(sptrCustomerMap, sptrCustomerDriver);
 
-                sqliteSourceDriver.Connect();
+                sptrCustomerDriver->Connect();
 
-                auto sptrIdEq01 = ComparativeFactory::CreateEQ(mapCustomer.Id, sptrId04);
+                auto sptrIdEq01 = ComparativeFactory::CreateEQ(sptrCustomerMap->Id, sptrId04);
                 auto sptrProxy = sptrCustomerQuery->SelectFirst(sptrIdEq01);
                 auto sptrEntity = sptrProxy->Summon(sptrCustomerStore);
 
@@ -64,9 +64,10 @@ namespace Cloude {
                 EXPECT_TRUE(customer.getLastName().length() > 0);
                 EXPECT_TRUE(customer.getEmail().length() > 0);
 
-                sqliteSourceDriver.Disconnect();
+                sptrCustomerDriver->Disconnect();
             }
         }
     }
 }
+
 #endif //CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY01_HPP

@@ -21,34 +21,33 @@ namespace Cloude {
 
             TEST(Relation, NamedEntityReferencingSQLiteAndMySql) {
 
-                Application::CustomerMap mapCustomer{};
-                Application::PreOrderMap mapPreOrder{};
+                auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
+                auto sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
+                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
+                auto sptrPreOrderDriver = Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
 
-                Drivers::SQLite::SQLiteSourceDriver driverCustomer{mapCustomer};
-                Drivers::MySql::MySqlSourceDriver driverPreOrder{mapPreOrder};
-
-                driverCustomer.OptionArgs().ConnectionString = "example01.db";
-                driverPreOrder.OptionArgs().Host = "dell-3020";
-                driverPreOrder.OptionArgs().User = "cloud-e";
-                driverPreOrder.OptionArgs().Pass = "cloud-e";
-                driverPreOrder.OptionArgs().Base = "cloud-e";
-                driverPreOrder.OptionArgs().Port = 3306;
+                sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
+                sptrPreOrderDriver->OptionArgs().Host = "dell-3020";
+                sptrPreOrderDriver->OptionArgs().User = "cloud-e";
+                sptrPreOrderDriver->OptionArgs().Pass = "cloud-e";
+                sptrPreOrderDriver->OptionArgs().Base = "cloud-e";
+                sptrPreOrderDriver->OptionArgs().Port = 3306;
 
                 Relation::RelationMap relCustomerToPreOrder{};
                 Relation::RelationMap relCustomerAddress{};
                 Relation::RelationMap relPreOrderToCustomer{};
 
-                relCustomerToPreOrder.AddLink(mapCustomer.Id, mapPreOrder.CustId);
-                relCustomerAddress.AddLink(mapCustomer.Id, mapCustomer.Id);
-                relPreOrderToCustomer.AddLink(mapPreOrder.CustId, mapCustomer.Id);
+                relCustomerToPreOrder.AddLink(sptrCustomerMap->Id, sptrPreOrderMap->CustId);
+                relCustomerAddress.AddLink(sptrCustomerMap->Id, sptrCustomerMap->Id);
+                relPreOrderToCustomer.AddLink(sptrPreOrderMap->CustId, sptrCustomerMap->Id);
 
-                auto sptrCustomerQuery = Foundation::CreateEntityQuery(mapCustomer, driverCustomer);
-                auto sptrPreOrderQuery = Foundation::CreateEntityQuery(mapPreOrder, driverPreOrder);
-                auto sptrCustomerStore = Relation::CreateNamedStore<Entity::Customer>(mapCustomer, driverCustomer);
-                auto sptrPreOrderStore = Relation::CreateNamedStore<Entity::PreOrder>(mapPreOrder, driverPreOrder);
+                auto sptrCustomerQuery = Foundation::CreateEntityQuery(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrPreOrderQuery = Foundation::CreateEntityQuery(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrCustomerStore = Relation::CreateNamedStore<Entity::Customer>(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrPreOrderStore = Relation::CreateNamedStore<Entity::PreOrder>(sptrPreOrderMap, sptrPreOrderDriver);
 
                 sptrCustomerStore->EntityLoader().fptrNamedEntityCreator =
-                        [&mapCustomer, &mapPreOrder,
+                        [&sptrCustomerMap, &sptrPreOrderMap,
                                 &sptrPreOrderQuery, &sptrCustomerQuery,
                                 &relCustomerToPreOrder, &relCustomerAddress]
                                 (const Foundation::Entity &entity) -> Entity::Customer {
@@ -69,10 +68,10 @@ namespace Cloude {
 
                             auto criteriaAddress = relCustomerAddress.Generate(entity);
 
-                            auto columnsList = {mapCustomer.AddrStreet,
-                                                mapCustomer.AddrZipCode,
-                                                mapCustomer.AddrCity,
-                                                mapCustomer.AddrCountry};
+                            auto columnsList = {sptrCustomerMap->AddrStreet,
+                                                sptrCustomerMap->AddrZipCode,
+                                                sptrCustomerMap->AddrCity,
+                                                sptrCustomerMap->AddrCountry};
 
                             customer.setObjAddress(Relation::CreateMultiCellsObj(sptrCustomerQuery,
                                                                                  criteriaAddress,
@@ -82,7 +81,7 @@ namespace Cloude {
                         };
 
                 sptrPreOrderStore->EntityLoader().fptrNamedEntityCreator =
-                        [&mapCustomer, &sptrCustomerQuery, &relPreOrderToCustomer]
+                        [&sptrCustomerMap, &sptrCustomerQuery, &relPreOrderToCustomer]
                                 (const Foundation::Entity &entity) -> Entity::PreOrder {
 
                             using namespace Foundation::Data;
@@ -100,8 +99,8 @@ namespace Cloude {
                             return preOrder;
                         };
 
-                driverCustomer.Connect();
-                driverPreOrder.Connect();
+                sptrCustomerDriver->Connect();
+                sptrPreOrderDriver->Connect();
 
                 // PreOrder referencing Customer (LinkToOne)
                 {
@@ -109,7 +108,7 @@ namespace Cloude {
                     using namespace Foundation::Data;
                     using CmprFactory = ComparativeFactory;
 
-                    auto sptrPreOrderIdGt00 = CmprFactory::CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
+                    auto sptrPreOrderIdGt00 = CmprFactory::CreateGTE(sptrPreOrderMap->Id, ValueFactory::CreateInt64(0));
                     auto sptrPreOrderProxy = sptrPreOrderQuery->SelectFirst(sptrPreOrderIdGt00);
                     auto sptrPreOrderEntity = sptrPreOrderStore->Summon(sptrPreOrderProxy);
                     auto preOrder = sptrPreOrderStore->NamedEntity(sptrPreOrderEntity);
@@ -127,7 +126,7 @@ namespace Cloude {
                     using namespace Foundation::Data;
                     using CmprFactory = ComparativeFactory;
 
-                    auto sptrCustomerIdGt00 = CmprFactory::CreateGTE(mapPreOrder.Id, ValueFactory::CreateInt64(0));
+                    auto sptrCustomerIdGt00 = CmprFactory::CreateGTE(sptrPreOrderMap->Id, ValueFactory::CreateInt64(0));
                     auto sptrCustomerProxy = sptrCustomerQuery->SelectFirst(sptrCustomerIdGt00);
                     auto sptrCustomerEntity = sptrCustomerStore->Summon(sptrCustomerProxy);
                     auto customer = (Entity::Customer) sptrCustomerStore->NamedEntity(sptrCustomerEntity);
@@ -149,8 +148,8 @@ namespace Cloude {
                     EXPECT_TRUE(sptrCountryCell->getValue()->ToString().length() > 0);
                 }
 
-                driverCustomer.Disconnect();
-                driverPreOrder.Disconnect();
+                sptrCustomerDriver->Disconnect();
+                sptrPreOrderDriver->Disconnect();
             }
         }
     }

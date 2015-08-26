@@ -380,7 +380,7 @@ namespace Cloude {
 
 
             // MYSQLSOURCEDRIVER
-            MySqlSourceDriver::MySqlSourceDriver(const Foundation::EntityMap &entityMap)
+            MySqlSourceDriver::MySqlSourceDriver(const Foundation::SPtrEntityMap &entityMap)
                     : EntitySourceDriver(entityMap),
                       _mySqlApiImpl(new MySqlApiImpl()) {
                 Init();
@@ -400,10 +400,10 @@ namespace Cloude {
                             return std::string(column->getDatasourceName() + " = ?");
                         };
 
-                auto &sourceName = getEntityMap().getTableName();
-                auto &columnsForKey = getEntityMap().getColumnsForKey();
-                auto &columnsForGet = getEntityMap().getColumnsForGet();
-                auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
+                auto &sourceName = getEntityMap()->getTableName();
+                auto &columnsForKey = getEntityMap()->getColumnsForKey();
+                auto &columnsForGet = getEntityMap()->getColumnsForGet();
+                auto &columnsForUpdate = getEntityMap()->getColumnsForUpdate();
 
                 _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName,
                                                                   columnsForGet,
@@ -450,8 +450,8 @@ namespace Cloude {
 
                 SPtrCommand command = _mySqlApiImpl->createCommand(_getStatement);
 
-                _mySqlApiImpl->initParamBinds(getEntityMap().getColumnsForKey(), entity, command);
-                _mySqlApiImpl->initResultBinds(getEntityMap().getColumnsForGet(), entity, command);
+                _mySqlApiImpl->initParamBinds(getEntityMap()->getColumnsForKey(), entity, command);
+                _mySqlApiImpl->initResultBinds(getEntityMap()->getColumnsForGet(), entity, command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -480,7 +480,7 @@ namespace Cloude {
                             _mySqlApiImpl->assertStmtError(command->PtrStmt);
                         }
 
-                        auto &sptrColumn = getEntityMap().getColumnsForGet().at(index);
+                        auto &sptrColumn = getEntityMap()->getColumnsForGet().at(index);
                         auto &sptrCell = entity->getCell(sptrColumn->getName());
                         auto value = Foundation::Data::ValueFactory::CreateText(*ptrLength);
                         sptrCell->setValue(value);
@@ -504,7 +504,7 @@ namespace Cloude {
 
                 std::shared_ptr<Command> command = _mySqlApiImpl->createCommand(_insertStatement);
 
-                _mySqlApiImpl->initParamBinds(getEntityMap().getColumnsForKey(), entity, command);
+                _mySqlApiImpl->initParamBinds(getEntityMap()->getColumnsForKey(), entity, command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -520,8 +520,8 @@ namespace Cloude {
             int MySqlSourceDriver::Save(Foundation::SPtrEntity &entity) const {
 
                 auto command = _mySqlApiImpl->createCommand(_updateStatement);
-                auto &columnsForKey = getEntityMap().getColumnsForKey();
-                auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
+                auto &columnsForKey = getEntityMap()->getColumnsForKey();
+                auto &columnsForUpdate = getEntityMap()->getColumnsForUpdate();
 
                 Foundation::SPtrColumnVector joinedColumnsList;
                 joinedColumnsList.reserve(columnsForUpdate.size() + columnsForKey.size());
@@ -545,7 +545,7 @@ namespace Cloude {
 
                 auto command = _mySqlApiImpl->createCommand(_deleteStatement);
 
-                _mySqlApiImpl->initParamBinds(getEntityMap().getColumnsForKey(), entity, command);
+                _mySqlApiImpl->initParamBinds(getEntityMap()->getColumnsForKey(), entity, command);
 
                 if (mysql_stmt_bind_param(command->PtrStmt, command->PtrParamsBind)) {
                     _mySqlApiImpl->assertStmtError(command->PtrStmt);
@@ -569,7 +569,7 @@ namespace Cloude {
                             return std::string("?");
                         };
 
-                auto pairSelectStmt = SqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
+                auto pairSelectStmt = SqlHelper::CreateSelectPreparedQuery(getEntityMap()->getTableName(),
                                                                            columnsForProjection,
                                                                            sptrCriteria,
                                                                            fptrSelectParamProcessor);

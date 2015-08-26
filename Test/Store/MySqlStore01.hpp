@@ -28,30 +28,30 @@ namespace Cloude {
                 auto sptrSubmittedHour = MySqlDriverFactory::CreateTime(22, 53, 18, 43256);
                 auto sptrUpdatedDate = MySqlDriverFactory::CreateDateTime(2015, 7, 15, 22, 15, 13);
 
-                auto sptrIdCell = Foundation::CreateCell(_mapEnquiry.Id, sptrId);
+                auto sptrIdCell = Foundation::CreateCell(_sptrEnquiryMap->Id, sptrId);
                 auto sptrCells = {sptrIdCell};
                 auto sptrIdentity = Foundation::CreateIdentity(sptrCells);
 
                 // DELETE - Check if Entity is nullptr
                 {
-                    auto sptrEnquiry = _storeEnquiry.Get(sptrIdentity);
+                    auto sptrEnquiry = _sptrEnquiryStore->Get(sptrIdentity);
 
                     if (sptrEnquiry.get() != 0) {
-                        _storeEnquiry.Delete(sptrEnquiry);
-                        _storeEnquiry.Clear();
+                        _sptrEnquiryStore->Delete(sptrEnquiry);
+                        _sptrEnquiryStore->Clear();
                     }
                 }
 
                 // CREATE
                 {
-                    auto sptrEnquiry = _storeEnquiry.Create(sptrIdentity);
+                    auto sptrEnquiry = _sptrEnquiryStore->Create(sptrIdentity);
                     EXPECT_TRUE(sptrEnquiry.get() != 0);
-                    EXPECT_TRUE(_storeEnquiry.HasIdentityInMap(sptrIdentity));
+                    EXPECT_TRUE(_sptrEnquiryStore->HasIdentityInMap(sptrIdentity));
                 }
 
                 // SAVE
                 {
-                    auto sptrEnquiry = _storeEnquiry.Get(sptrIdentity);
+                    auto sptrEnquiry = _sptrEnquiryStore->Get(sptrIdentity);
                     auto &sptrSubmittedDateCell = sptrEnquiry->getCell("SubmittedDate");
                     auto &sptrSubmittedHourCell = sptrEnquiry->getCell("SubmittedHour");
                     auto &sptrCustIdCell = sptrEnquiry->getCell("CustId");
@@ -65,17 +65,17 @@ namespace Cloude {
                     sptrSubjectCell->setValue(sptrSubject);
                     sptrUpdatedDateCell->setValue(sptrUpdatedDate);
 
-                    _storeEnquiry.Save(sptrEnquiry);
-                    _storeEnquiry.Clear();
+                    _sptrEnquiryStore->Save(sptrEnquiry);
+                    _sptrEnquiryStore->Clear();
                 }
 
                 // GET - Check for saved field
                 {
-                    auto sptrEnquiry = _storeEnquiry.Get(sptrIdentity);
+                    auto sptrEnquiry = _sptrEnquiryStore->Get(sptrIdentity);
 
                     EXPECT_TRUE(sptrEnquiry.get() != 0);
-                    EXPECT_TRUE(_storeEnquiry.Size() > 0);
-                    EXPECT_TRUE(_storeEnquiry.HasIdentityInMap(sptrIdentity));
+                    EXPECT_TRUE(_sptrEnquiryStore->Size() > 0);
+                    EXPECT_TRUE(_sptrEnquiryStore->HasIdentityInMap(sptrIdentity));
 
                     if (sptrEnquiry) {
 

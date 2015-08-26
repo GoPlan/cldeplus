@@ -15,11 +15,11 @@ namespace Cloude {
 
         class EntityQuery {
 
-            const EntityMap &_entityMap;
-            const EntitySourceDriver &_entitySourceDriver;
+            SPtrEntityMap _sptrEntityMap;
+            SPtrEntitySourceDriver _sptrEntitySourceDriver;
 
         public:
-            explicit EntityQuery(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
+            EntityQuery(const SPtrEntityMap &sptrEntityMap, const SPtrEntitySourceDriver &sptrEntitySourceDriver);
             EntityQuery(const EntityQuery &) = delete;
             EntityQuery(EntityQuery &&) = delete;
             EntityQuery &operator=(const EntityQuery &) = delete;
@@ -35,7 +35,8 @@ namespace Cloude {
 
         using SPtrEntityQuery = std::shared_ptr<EntityQuery>;
 
-        SPtrEntityQuery CreateEntityQuery(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
+        SPtrEntityQuery CreateEntityQuery(const SPtrEntityMap &sptrEntityMap,
+                                          const SPtrEntitySourceDriver &sptrEntitySourceDriver);
     }
 }
 

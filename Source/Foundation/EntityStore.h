@@ -13,18 +13,19 @@
 namespace Cloude {
     namespace Foundation {
 
-        using SPtrIdentityMap = std::unordered_map<SPtrIdentity, SPtrEntity>;
-
         class EntitySourceDriver;
+
+        using SPtrIdentityMap = std::unordered_map<SPtrIdentity, SPtrEntity>;
+        using SPtrEntitySourceDriver = std::shared_ptr<EntitySourceDriver>;
 
         class EntityStore {
 
-            const EntityMap &_entityMap;
-            const EntitySourceDriver &_entitySourceDriver;
+            SPtrEntityMap _sptrEntityMap;
+            SPtrEntitySourceDriver _sptrEntitySourceDriver;
             SPtrIdentityMap _identityMap;
 
         public:
-            EntityStore(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
+            EntityStore(const SPtrEntityMap &sptrEntityMap, const SPtrEntitySourceDriver &sptrEntitySourceDriver);
             EntityStore(const EntityStore &) = default;
             EntityStore(EntityStore &&) = default;
             EntityStore &operator=(const EntityStore &) = default;
@@ -42,13 +43,14 @@ namespace Cloude {
             void Clear();
             unsigned long Size() const;
 
-            const EntityMap &getEntityMap() const { return _entityMap; }
-            const EntitySourceDriver &getEntitySourceDriver() const { return _entitySourceDriver; }
+            SPtrEntityMap const &getEntityMap() const { return _sptrEntityMap; }
+            SPtrEntitySourceDriver const &getEntitySourceDriver() const { return _sptrEntitySourceDriver; }
         };
 
         using SPtrEntityStore = std::shared_ptr<EntityStore>;
 
-        SPtrEntityStore CreateEntityStore(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver);
+        SPtrEntityStore CreateEntityStore(const SPtrEntityMap &sptrEntityMap,
+                                          const SPtrEntitySourceDriver &sptrEntitySourceDriver);
     }
 }
 

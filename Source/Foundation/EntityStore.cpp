@@ -11,8 +11,9 @@
 namespace Cloude {
     namespace Foundation {
 
-        EntityStore::EntityStore(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver)
-                : _entityMap(entityMap), _entitySourceDriver(entitySourceDriver) {
+        EntityStore::EntityStore(const SPtrEntityMap &sptrEntityMap,
+                                 const SPtrEntitySourceDriver &sptrEntitySourceDriver)
+                : _sptrEntityMap(sptrEntityMap), _sptrEntitySourceDriver(sptrEntitySourceDriver) {
             //
         }
 
@@ -27,7 +28,7 @@ namespace Cloude {
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
-            auto &columnsForGet = _entityMap.getColumnsForGet();
+            auto &columnsForGet = _sptrEntityMap->getColumnsForGet();
 
             SPtrEntity entity = Foundation::CreateEntity(identity);
 
@@ -40,7 +41,7 @@ namespace Cloude {
 
         SPtrEntity EntityStore::Get(const SPtrIdentity &identity) {
 
-            if(!identity){
+            if (!identity) {
                 std::string msg{"Identity is either invalid or a nullptr"};
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
@@ -51,13 +52,13 @@ namespace Cloude {
                 return search->second;
             }
 
-            auto &columnsForGet = _entityMap.getColumnsForGet();
+            auto &columnsForGet = _sptrEntityMap->getColumnsForGet();
 
             SPtrEntity sptrEntity = Foundation::CreateEntity(identity);
 
             Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForGet, sptrEntity, false);
 
-            if (!_entitySourceDriver.Load(sptrEntity)) {
+            if (!_sptrEntitySourceDriver->Load(sptrEntity)) {
                 return SPtrEntity(nullptr);
             }
 
@@ -70,7 +71,7 @@ namespace Cloude {
 
         void EntityStore::Insert(SPtrEntity &entity) {
 
-            if(!entity){
+            if (!entity) {
                 std::string msg{"Entity is either invalid or a nullptr"};
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
@@ -78,29 +79,29 @@ namespace Cloude {
             auto identity = entity->getIdentity();
             auto pairItem = make_pair(identity, entity);
 
-            if (_entitySourceDriver.Insert(entity)) {
+            if (_sptrEntitySourceDriver->Insert(entity)) {
                 _identityMap.insert(pairItem);
             }
         }
 
         void EntityStore::Save(SPtrEntity &entity) {
 
-            if(!entity){
+            if (!entity) {
                 std::string msg{"Entity is either invalid or a nullptr"};
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
-            _entitySourceDriver.Save(entity);
+            _sptrEntitySourceDriver->Save(entity);
         }
 
         void EntityStore::Delete(SPtrEntity &entity) {
 
-            if(!entity){
+            if (!entity) {
                 std::string msg{"Entity shared pointer is either invalid or a nullptr"};
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
-            if (_entitySourceDriver.Delete(entity)) {
+            if (_sptrEntitySourceDriver->Delete(entity)) {
                 auto identity = entity->getIdentity();
                 _identityMap.erase(identity);
             }
@@ -114,8 +115,9 @@ namespace Cloude {
             return _identityMap.size();
         }
 
-        SPtrEntityStore CreateEntityStore(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver) {
-            return std::make_shared<EntityStore>(entityMap, entitySourceDriver);
+        SPtrEntityStore CreateEntityStore(const SPtrEntityMap &sptrEntityMap,
+                                          const SPtrEntitySourceDriver &sptrEntitySourceDriver) {
+            return std::make_shared<EntityStore>(sptrEntityMap, sptrEntitySourceDriver);
         }
     }
 }

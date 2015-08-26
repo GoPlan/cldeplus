@@ -35,6 +35,8 @@ namespace Cloude {
             protected:
                 const std::string &TableNameCore() const override;
             };
+
+            using SPtrEnquiryMap = std::shared_ptr<EnquiryMap>;
         }
     }
 }

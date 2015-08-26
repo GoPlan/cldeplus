@@ -26,7 +26,7 @@ namespace Cloude {
                 };
 
             public:
-                explicit MySqlSourceDriver(const Foundation::EntityMap &entityMap);
+                explicit MySqlSourceDriver(const Foundation::SPtrEntityMap &entityMap);
                 MySqlSourceDriver(const MySqlSourceDriver &) = default;
                 MySqlSourceDriver(MySqlSourceDriver &&) = default;
                 MySqlSourceDriver &operator=(const MySqlSourceDriver &) = default;
@@ -47,6 +47,10 @@ namespace Cloude {
                         const Foundation::Query::SPtrCriteria &sptrCriteria,
                         const Foundation::SPtrColumnVector &columnsForProjection) const override;
 
+                static std::shared_ptr<MySqlSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                    return std::make_shared<MySqlSourceDriver>(sptrEntityMap);
+                }
+
             private:
                 class MySqlApiImpl;
 
@@ -61,6 +65,8 @@ namespace Cloude {
             private:
                 void Init();
             };
+
+            using SPtrMySqlSourceDriver = std::shared_ptr<MySqlSourceDriver>;
         }
     }
 }

@@ -7,8 +7,9 @@
 namespace Cloude {
     namespace Foundation {
 
-        EntityQuery::EntityQuery(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver)
-                : _entityMap{entityMap}, _entitySourceDriver{entitySourceDriver} {
+        EntityQuery::EntityQuery(const SPtrEntityMap &sptrEntityMap,
+                                 const SPtrEntitySourceDriver &sptrEntitySourceDriver)
+                : _sptrEntityMap{sptrEntityMap}, _sptrEntitySourceDriver{sptrEntitySourceDriver} {
             //
         }
 
@@ -18,8 +19,8 @@ namespace Cloude {
 
         SPtrEntityProxyVector EntityQuery::Select(const Query::SPtrCriteria &sptrCriteria) {
 
-            auto &columnsForKey = _entityMap.getColumnsForKey();
-            auto &columnsForSelect = _entityMap.getColumnsForSelect();
+            auto &columnsForKey = _sptrEntityMap->getColumnsForKey();
+            auto &columnsForSelect = _sptrEntityMap->getColumnsForSelect();
             auto size = columnsForKey.size() + columnsForSelect.size();
 
             SPtrColumnVector columnsForProjection;
@@ -32,11 +33,12 @@ namespace Cloude {
 
         SPtrEntityProxyVector EntityQuery::Select(const Query::SPtrCriteria &sptrCriteria,
                                                   const SPtrColumnVector &columnsForProjection) {
-            return _entitySourceDriver.Select(sptrCriteria, columnsForProjection);
+            return _sptrEntitySourceDriver->Select(sptrCriteria, columnsForProjection);
         }
 
-        SPtrEntityQuery CreateEntityQuery(const EntityMap &entityMap, const EntitySourceDriver &entitySourceDriver) {
-            return std::make_shared<EntityQuery>(entityMap, entitySourceDriver);
+        SPtrEntityQuery CreateEntityQuery(const SPtrEntityMap &sptrEntityMap,
+                                          const SPtrEntitySourceDriver &sptrEntitySourceDriver) {
+            return std::make_shared<EntityQuery>(sptrEntityMap, sptrEntitySourceDriver);
         }
     }
 }

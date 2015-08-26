@@ -20,8 +20,8 @@ Cloude::Foundation::SPtrEntity Cloude::Foundation::Query::Helper::ProxyHelper::S
 
     Foundation::SPtrIdentity sptrIdentity = std::make_shared<Foundation::Identity>();
 
-    std::for_each(store->getEntityMap().getColumnsForKey().begin(),
-                  store->getEntityMap().getColumnsForKey().cend(),
+    std::for_each(store->getEntityMap()->getColumnsForKey().begin(),
+                  store->getEntityMap()->getColumnsForKey().cend(),
                   [&sptrIdentity, &proxy](const Foundation::SPtrColumn &sptrColumn) {
                       auto &cell = proxy->getCell(sptrColumn->getName());
                       sptrIdentity->setCell(cell);
@@ -38,7 +38,7 @@ bool Cloude::Foundation::Query::Helper::ProxyHelper::IsIdentifiableInStore(const
     switch (proxy->getSummonState()) {
         case EntityProxy::EntityProxySummonState::Undefined: {
 
-            auto &columnsForKey = store->getEntityMap().getColumnsForKey();
+            auto &columnsForKey = store->getEntityMap()->getColumnsForKey();
 
             for (auto &column : columnsForKey) {
                 if (proxy->getCell(column->getName())->isNull())

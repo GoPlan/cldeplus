@@ -335,7 +335,7 @@ namespace Cloude {
                 }
             };
 
-            SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::EntityMap &entityMap)
+            SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::SPtrEntityMap &entityMap)
                     : EntitySourceDriver(entityMap), _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
                 Init();
             }
@@ -354,14 +354,20 @@ namespace Cloude {
                     return std::string(column->getDatasourceName() + " = " + "?");
                 };
 
-                auto &sourceName = getEntityMap().getTableName();
-                auto &columnsForKey = getEntityMap().getColumnsForKey();
-                auto &columnsForGet = getEntityMap().getColumnsForGet();
-                auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
+                auto &sourceName = getEntityMap()->getTableName();
+                auto &columnsForKey = getEntityMap()->getColumnsForKey();
+                auto &columnsForGet = getEntityMap()->getColumnsForGet();
+                auto &columnsForUpdate = getEntityMap()->getColumnsForUpdate();
 
-                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName, columnsForGet, columnsForKey, fptrProcessor);
+                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName,
+                                                                  columnsForGet,
+                                                                  columnsForKey,
+                                                                  fptrProcessor);
                 _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName, columnsForKey, fptrValueProcessor);
-                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName, columnsForUpdate, columnsForKey, fptrProcessor);
+                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName,
+                                                                        columnsForUpdate,
+                                                                        columnsForKey,
+                                                                        fptrProcessor);
                 _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName, columnsForKey, fptrProcessor);
             }
 
@@ -380,8 +386,8 @@ namespace Cloude {
 
             int SQLiteSourceDriver::Load(Foundation::SPtrEntity &entity) const {
 
-                auto &columnsForGet = getEntityMap().getColumnsForGet();
-                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto &columnsForGet = getEntityMap()->getColumnsForGet();
+                auto &columnsForKey = getEntityMap()->getColumnsForKey();
                 auto uptrCommand = _sqliteApiImpl->createCommand(_getStatement);
 
                 _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
@@ -401,7 +407,7 @@ namespace Cloude {
 
             int SQLiteSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
 
-                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto &columnsForKey = getEntityMap()->getColumnsForKey();
                 auto uptrCommand = _sqliteApiImpl->createCommand(_insertStatement);
 
                 _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
@@ -417,8 +423,8 @@ namespace Cloude {
 
             int SQLiteSourceDriver::Save(Foundation::SPtrEntity &entity) const {
 
-                auto &columnsForUpdate = getEntityMap().getColumnsForUpdate();
-                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto &columnsForUpdate = getEntityMap()->getColumnsForUpdate();
+                auto &columnsForKey = getEntityMap()->getColumnsForKey();
                 auto size = columnsForUpdate.size() + columnsForKey.size();
 
                 Foundation::SPtrColumnVector columnsList;
@@ -441,7 +447,7 @@ namespace Cloude {
 
             int SQLiteSourceDriver::Delete(Foundation::SPtrEntity &entity) const {
 
-                auto &columnsForKey = getEntityMap().getColumnsForKey();
+                auto &columnsForKey = getEntityMap()->getColumnsForKey();
                 auto uptrCommand = _sqliteApiImpl->createCommand(_deleteStatement);
 
                 _sqliteApiImpl->initializeParamBindBuffers(columnsForKey, uptrCommand, entity);
@@ -464,7 +470,7 @@ namespace Cloude {
                             return std::string{"?"};
                         };
 
-                auto tuplQuery = SqlHelper::CreateSelectPreparedQuery(getEntityMap().getTableName(),
+                auto tuplQuery = SqlHelper::CreateSelectPreparedQuery(getEntityMap()->getTableName(),
                                                                       columnsForProjection,
                                                                       sptrCriteria,
                                                                       fptrConditionProcessor);

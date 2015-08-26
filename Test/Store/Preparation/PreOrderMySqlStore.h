@@ -16,35 +16,20 @@ namespace Cloude {
 
             class PreOrderMySqlStore : public ::testing::Test {
 
-            public:
-
             protected:
-                using PreOrderMap = Application::PreOrderMap;
-                using PreOrderItemsMap = Application::PreOrderItemsMap;
-                using MySqlSourceDriver = Drivers::MySql::MySqlSourceDriver;
-                using EntityStore = Foundation::EntityStore;
-                using EntityQuery = Foundation::EntityQuery;
-
-                PreOrderMySqlStore() : _driverPreOrder{_mapPreOrder},
-                                       _driverPreOrderItems{_mapPreOrderItems},
-                                       _storePreOrder{_mapPreOrder, _driverPreOrder},
-                                       _storePreOrderItems{_mapPreOrderItems, _driverPreOrderItems},
-                                       _queryPreOrder{_mapPreOrder, _driverPreOrder},
-                                       _queryPreOrderItems{_mapPreOrderItems, _driverPreOrderItems} {
-                    //
-                };
+                PreOrderMySqlStore();
 
                 virtual void SetUp();
                 virtual void TearDown();
 
-                PreOrderMap _mapPreOrder;
-                PreOrderItemsMap _mapPreOrderItems;
-                MySqlSourceDriver _driverPreOrder;
-                MySqlSourceDriver _driverPreOrderItems;
-                EntityStore _storePreOrder;
-                EntityStore _storePreOrderItems;
-                EntityQuery _queryPreOrder;
-                EntityQuery _queryPreOrderItems;
+                Application::SPtrPreOrderMap _sptrPreOrderMap;
+                Application::SPtrPreOrderItemMap _sptrPreOrderItemsMap;
+                Drivers::MySql::SPtrMySqlSourceDriver _sptrPreOrderDriver;
+                Drivers::MySql::SPtrMySqlSourceDriver _sptrPreOrderItemsDriver;
+                Foundation::SPtrEntityStore _sptrPreOrderStore;
+                Foundation::SPtrEntityStore _sptrPreOrderItemsStore;
+                Foundation::SPtrEntityQuery _sptrPreOrderQuery;
+                Foundation::SPtrEntityQuery _sptrPreOrderItemsQuery;
             };
         }
     }

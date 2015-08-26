@@ -26,7 +26,7 @@ namespace Cloude {
                 auto sptrCodeValue = Foundation::Data::ValueFactory::CreateVarChar(code);
                 auto sptrPriceValue = Foundation::Data::ValueFactory::CreateDouble(18);
 
-                auto sptrIdCell = Foundation::CreateCell(_mapProduct.Id);
+                auto sptrIdCell = Foundation::CreateCell(_sptrProductMap->Id);
                 sptrIdCell->setValue(sptrIdValue);
 
                 auto initFieldList{sptrIdCell};
@@ -34,32 +34,32 @@ namespace Cloude {
 
                 // TRUNCATE EXAMPLE DATA
                 {
-                    auto sptrProduct = _storeProduct.Get(sptrIdentity);
+                    auto sptrProduct = _sptrProductStore->Get(sptrIdentity);
 
                     if (sptrProduct.get() != 0) {
 
-                        _storeProduct.Delete(sptrProduct);
-                        EXPECT_TRUE(!_storeProduct.HasIdentityInMap(sptrIdentity));
+                        _sptrProductStore->Delete(sptrProduct);
+                        EXPECT_TRUE(!_sptrProductStore->HasIdentityInMap(sptrIdentity));
 
-                        auto sptrProductAlt = _storeProduct.Get(sptrIdentity);
+                        auto sptrProductAlt = _sptrProductStore->Get(sptrIdentity);
                         EXPECT_TRUE(sptrProductAlt.get() == 0);
                     }
                 }
 
                 // CREATE
                 {
-                    auto sptrProduct = _storeProduct.Create(sptrIdentity);
+                    auto sptrProduct = _sptrProductStore->Create(sptrIdentity);
                     EXPECT_TRUE(sptrProduct.get() != 0);
-                    EXPECT_TRUE(_storeProduct.HasIdentityInMap(sptrIdentity));
+                    EXPECT_TRUE(_sptrProductStore->HasIdentityInMap(sptrIdentity));
 
-                    _storeProduct.Clear();
+                    _sptrProductStore->Clear();
                 }
 
                 // GET & SAVE
                 {
-                    auto sptrProduct = _storeProduct.Get(sptrIdentity);
+                    auto sptrProduct = _sptrProductStore->Get(sptrIdentity);
                     EXPECT_TRUE(sptrProduct.get() != 0);
-                    EXPECT_TRUE(_storeProduct.HasIdentityInMap(sptrIdentity));
+                    EXPECT_TRUE(_sptrProductStore->HasIdentityInMap(sptrIdentity));
 
                     auto &sptrNameCell = sptrProduct->getCell("Name");
                     auto &sptrCodeCell = sptrProduct->getCell("Code");
@@ -72,11 +72,11 @@ namespace Cloude {
                     sptrCodeCell->setValue(sptrCodeValue);
                     sptrPriceCell->setValue(sptrPriceValue);
 
-                    _storeProduct.Save(sptrProduct);
-                    _storeProduct.Clear();
+                    _sptrProductStore->Save(sptrProduct);
+                    _sptrProductStore->Clear();
 
-                    EXPECT_TRUE(!_storeProduct.HasIdentityInMap(sptrIdentity));
-                    EXPECT_TRUE(_storeProduct.Size() == 0);
+                    EXPECT_TRUE(!_sptrProductStore->HasIdentityInMap(sptrIdentity));
+                    EXPECT_TRUE(_sptrProductStore->Size() == 0);
                 }
 
 //                // DELETE

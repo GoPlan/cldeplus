@@ -22,7 +22,7 @@ namespace Cloude {
                 };
 
             public:
-                explicit SQLiteSourceDriver(const Foundation::EntityMap &entityMap);
+                explicit SQLiteSourceDriver(const Foundation::SPtrEntityMap &entityMap);
                 SQLiteSourceDriver(const SQLiteSourceDriver &) = default;
                 SQLiteSourceDriver(SQLiteSourceDriver &&) = default;
                 SQLiteSourceDriver &operator=(const SQLiteSourceDriver &) = default;
@@ -44,6 +44,9 @@ namespace Cloude {
                         const Foundation::Query::SPtrCriteria &sptrCriteria,
                         const Foundation::SPtrColumnVector &columnsForProjection) const override;
 
+                static std::shared_ptr<SQLiteSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                    return std::make_shared<SQLiteSourceDriver>(sptrEntityMap);
+                }
 
             private:
                 class SQLiteApiImpl;
@@ -60,6 +63,8 @@ namespace Cloude {
             private:
                 void Init();
             };
+
+            using SPtrSQLiteSourceDriver = std::shared_ptr<SQLiteSourceDriver>;
         }
     }
 }
