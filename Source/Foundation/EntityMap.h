@@ -8,6 +8,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include "Exception/CLDEEntityMapException.h"
 #include "Column.h"
 
 namespace Cloude {
@@ -22,16 +23,21 @@ namespace Cloude {
             EntityMap &operator=(EntityMap &&) = delete;
             virtual ~EntityMap() = default;
 
-            const std::string &getTableName() const { return TableNameCore(); }
+            std::string const &getTableName() const { return TableNameCore(); }
+            SPtrColumnMap const &getColumnsMap() const { return _columnsMap; }
+            SPtrColumnVector const &getColumnsForKey() const { return _columnsForKey; }
+            SPtrColumnVector const &getColumnsForGet() const { return _columnsForGet; }
+            SPtrColumnVector const &getColumnsForUpdate() const { return _columnsForUpdate; }
+            SPtrColumnVector const &getColumnsForSelect() const { return _columnsForSelect; }
 
-            const SPtrColumnVector &getColumnsForKey() const { return _columnsForKey; }
-            const SPtrColumnVector &getColumnsForGet() const { return _columnsForGet; }
-            const SPtrColumnVector &getColumnsForUpdate() const { return _columnsForUpdate; }
-            const SPtrColumnVector &getColumnsForSelect() const { return _columnsForSelect; }
+            bool HasColumn(std::string const &name) const;
+            void SetColumn(std::string const &name, SPtrColumn const &sptrColumn);
+            SPtrColumn const &GetColumn(std::string const &name) const;
 
         protected:
             EntityMap() = default;
 
+            SPtrColumnMap _columnsMap;
             SPtrColumnVector _columnsForKey;
             SPtrColumnVector _columnsForGet;
             SPtrColumnVector _columnsForUpdate;

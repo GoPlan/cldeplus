@@ -21,8 +21,8 @@ namespace Cloude {
                 Criteria() = default;
                 Criteria(const Criteria &) = default;
                 Criteria(Criteria &&) = default;
-                Criteria &operator=(const Criteria &srcExpression) = default;
-                Criteria &operator=(Criteria &&srcExpression) = default;
+                Criteria &operator=(const Criteria &) = default;
+                Criteria &operator=(Criteria &&) = default;
                 ~Criteria() = default;
 
                 virtual const bool isComposite() const = 0;

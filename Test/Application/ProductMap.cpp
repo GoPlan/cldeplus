@@ -18,6 +18,12 @@ namespace Cloude {
             const std::string &ProductMap::TableNameCore() const { return TableName; }
 
             ProductMap::ProductMap() {
+
+                SetColumn("Id", Id);
+                SetColumn("Name", Name);
+                SetColumn("Code", Code);
+                SetColumn("Price", Price);
+
                 _columnsForKey.push_back(Id);
                 _columnsForGet.push_back(Name);
                 _columnsForGet.push_back(Code);

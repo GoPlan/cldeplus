@@ -14,7 +14,6 @@ namespace Cloude {
 
             class EnquiryMap : public Foundation::EntityMap {
 
-            public:
                 static std::string TableName;
                 static Foundation::SPtrColumn Id;
                 static Foundation::SPtrColumn CustId;

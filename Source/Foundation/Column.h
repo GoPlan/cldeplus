@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include "Common/IPrintable.h"
 #include "Data/TypeEnums.h"
 
@@ -23,8 +24,7 @@ namespace Cloude {
         public:
             Column() = default;
             Column(std::string name, Data::ValueType dataType);
-            Column(std::string name, std::string datasourceName, Data::ValueType dataType);
-            Column(std::string name, std::string datasourceName, size_t length, Data::ValueType dataType);
+            Column(std::string name, std::string datasourceName, Data::ValueType dataType, size_t length = 0);
             Column(const Column &) = default;
             Column(Column &&) = default;
             Column &operator=(const Column &) = default;
@@ -49,10 +49,14 @@ namespace Cloude {
 
         using SPtrColumn = std::shared_ptr<Column>;
         using SPtrColumnVector = std::vector<SPtrColumn>;
+        using SPtrColumnMap = std::unordered_map<std::string, SPtrColumn>;
 
-        SPtrColumn CreateColumn(const std::string& name, Data::ValueType dataType);
-        SPtrColumn CreateColumn(const std::string& name, const std::string& datasourceName, Data::ValueType dataType);
-        SPtrColumn CreateColumn(const std::string& name, const std::string& datasourceName, size_t length, Data::ValueType dataType);
+        SPtrColumn CreateColumn(const std::string &name, Data::ValueType dataType);
+        SPtrColumn CreateColumn(const std::string &name, const std::string &datasourceName, Data::ValueType dataType);
+        SPtrColumn CreateColumn(const std::string &name,
+                                const std::string &datasourceName,
+                                Data::ValueType dataType,
+                                size_t length);
     }
 }
 

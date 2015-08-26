@@ -15,7 +15,7 @@ namespace Cloude {
 
                 class IsNull : public Criteria {
 
-                    const SPtrColumn &_column;
+                    SPtrColumn _column;
                     static ComparativeType _type;
 
                 public:

@@ -13,6 +13,7 @@ namespace Cloude {
             namespace Comparative {
 
                 class LesserOrEqual : public CriteriaLeaf {
+
                     static ComparativeType _type;
 
                 public:

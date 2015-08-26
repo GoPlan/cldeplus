@@ -23,6 +23,15 @@ namespace Cloude {
             }
 
             PreOrderItemsMap::PreOrderItemsMap() {
+
+                SetColumn("Id", OrderId);
+                SetColumn("OrderId", OrderId);
+                SetColumn("ItemId", ItemId);
+                SetColumn("Qty", Qty);
+                SetColumn("Price", Price);
+                SetColumn("Amount", Amount);
+                SetColumn("Comment", Comment);
+
                 _columnsForKey.push_back(Id);
                 _columnsForGet.push_back(OrderId);
                 _columnsForGet.push_back(ItemId);

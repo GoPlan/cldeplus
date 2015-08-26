@@ -14,7 +14,7 @@ namespace Cloude {
             Foundation::SPtrColumn EnquiryMap::CustId = Foundation::CreateColumn("CustId", "custid", Foundation::Data::ValueType::Int64);
             Foundation::SPtrColumn EnquiryMap::SubmittedDate = Foundation::CreateColumn("SubmittedDate", "submitteddate", Foundation::Data::ValueType::Date);
             Foundation::SPtrColumn EnquiryMap::SubmittedHour = Foundation::CreateColumn("SubmittedHour", "submittedhour", Foundation::Data::ValueType::Time);
-            Foundation::SPtrColumn EnquiryMap::Subject = Foundation::CreateColumn("Subject", "subject", 255, Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn EnquiryMap::Subject = Foundation::CreateColumn("Subject", "subject", Foundation::Data::ValueType::VarChar, 255);
             Foundation::SPtrColumn EnquiryMap::Content = Foundation::CreateColumn("Content", "content", Foundation::Data::ValueType::Text);
             Foundation::SPtrColumn EnquiryMap::UpdatedDate = Foundation::CreateColumn("UpdatedDate", "updateddate", Foundation::Data::ValueType::DateTime);
 
@@ -23,6 +23,15 @@ namespace Cloude {
             }
 
             EnquiryMap::EnquiryMap() {
+
+                SetColumn("Id", Id);
+                SetColumn("CustId", CustId);
+                SetColumn("SubmittedDate", SubmittedDate);
+                SetColumn("SubmittedHour", SubmittedHour);
+                SetColumn("Subject", Subject);
+                SetColumn("Content", Content);
+                SetColumn("UpdatedDate", UpdatedDate);
+
                 this->_columnsForKey.push_back(Id);
                 this->_columnsForGet.push_back(CustId);
                 this->_columnsForGet.push_back(SubmittedDate);

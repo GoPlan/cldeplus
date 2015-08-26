@@ -14,6 +14,7 @@ namespace Cloude {
             namespace Comparative {
 
                 class Or : public Query::CriteriaComposite {
+
                     static ComparativeType _type;
 
                 public:

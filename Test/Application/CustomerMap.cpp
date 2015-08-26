@@ -22,6 +22,16 @@ namespace Cloude {
             const std::string &CustomerMap::TableNameCore() const { return TableName; }
 
             CustomerMap::CustomerMap() {
+
+                SetColumn("Id", Id);
+                SetColumn("FirstName", FirstName);
+                SetColumn("LastName", LastName);
+                SetColumn("Email", Email);
+                SetColumn("AddrStreet", AddrStreet);
+                SetColumn("AddrZipCode", AddrZipCode);
+                SetColumn("AddrCity", AddrCity);
+                SetColumn("AddrCountry", AddrCountry);
+
                 _columnsForKey.push_back(Id);
                 _columnsForGet.push_back(FirstName);
                 _columnsForGet.push_back(LastName);

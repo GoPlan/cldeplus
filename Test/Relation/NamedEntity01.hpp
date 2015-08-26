@@ -33,7 +33,7 @@ namespace Cloude {
 
                 sptrCustomerDriver->Connect();
 
-                auto sptrIdEq01 = ComparativeFactory::CreateEQ(sptrCustomerMap->Id, sptrId04);
+                auto sptrIdEq01 = ComparativeFactory::CreateEQ(sptrCustomerMap->GetColumn("Id"), sptrId04);
                 auto sptrProxy = sptrCustomerQuery->SelectFirst(sptrIdEq01);
                 auto sptrEntity = sptrProxy->Summon(sptrCustomerStore);
 

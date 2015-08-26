@@ -13,15 +13,18 @@ namespace Cloude {
 
             class CriteriaLeaf : public Criteria {
 
-                const SPtrColumn _column;
-                const Data::SPtrValue _value;
+                SPtrColumn _column;
+                Data::SPtrValue _value;
 
             public:
                 CriteriaLeaf(const SPtrColumn &column, const Data::SPtrValue &value)
                         : _column(column), _value(value) { };
+
+                CriteriaLeaf(const CriteriaLeaf &) = default;
+                CriteriaLeaf(CriteriaLeaf &&) = default;
+                CriteriaLeaf &operator=(const CriteriaLeaf &) = default;
+                CriteriaLeaf &operator=(CriteriaLeaf &&) = default;
                 virtual ~CriteriaLeaf() = default;
-                CriteriaLeaf(const CriteriaLeaf &rhs) = default;
-                CriteriaLeaf &operator=(const CriteriaLeaf &rhs) = default;
 
                 // Criteria
                 virtual const bool isComposite() const override;

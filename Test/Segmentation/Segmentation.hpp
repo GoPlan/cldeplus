@@ -50,12 +50,12 @@ namespace Cloude {
 
                 // Select Customer set
                 auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
-                auto sptrCustomerIdGt00 = CmpFactory::CreateGTE(sptrCustomerMap->Id, sptrCustomerId);
+                auto sptrCustomerIdGt00 = CmpFactory::CreateGTE(sptrCustomerMap->GetColumn("Id"), sptrCustomerId);
                 auto rsCustomer = sptrCustomerQuery->Select(sptrCustomerIdGt00);
 
                 // Select Order set
                 auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(10);
-                auto sptrOrderIdGt00 = CmpFactory::CreateLTE(sptrPreOrderMap->Id, sptrOrderId);
+                auto sptrOrderIdGt00 = CmpFactory::CreateLTE(sptrPreOrderMap->GetColumn("Id"), sptrOrderId);
                 auto rsPreOrder = sptrOrderQuery->Select(sptrOrderIdGt00);
 
                 auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
@@ -76,14 +76,14 @@ namespace Cloude {
 
                 // SORT PreOrder
                 Foundation::Store::Comparer::Less cmp{};
-                cmp.LhsCmpColumns().push_back(sptrPreOrderMap->CustId);
-                cmp.RhsCmpColumns().push_back(sptrPreOrderMap->CustId);
+                cmp.LhsCmpColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
+                cmp.RhsCmpColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
                 // INNER JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Inner joinInner{};
-                joinInner.LhsComparingColumns().push_back(sptrPreOrderMap->CustId);
-                joinInner.RhsComparingColumns().push_back(sptrCustomerMap->Id);
+                joinInner.LhsComparingColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
+                joinInner.RhsComparingColumns().push_back(sptrCustomerMap->GetColumn("Id"));
                 joinInner.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
                 joinInner.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
                 joinInner.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
@@ -97,8 +97,8 @@ namespace Cloude {
 
                 // LEFT JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Left joinLeft{};
-                joinLeft.LhsComparingColumns().push_back(sptrPreOrderMap->CustId);
-                joinLeft.RhsComparingColumns().push_back(sptrCustomerMap->Id);
+                joinLeft.LhsComparingColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
+                joinLeft.RhsComparingColumns().push_back(sptrCustomerMap->GetColumn("Id"));
                 joinLeft.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
                 joinLeft.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
                 joinLeft.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
@@ -141,12 +141,12 @@ namespace Cloude {
 
                 // Select Customer set
                 auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(20);
-                auto sptrCustomerIdLTE20 = CmpFactory::CreateLTE(sptrCustomerMap->Id, sptrCustomerId);
+                auto sptrCustomerIdLTE20 = CmpFactory::CreateLTE(sptrCustomerMap->GetColumn("Id"), sptrCustomerId);
                 auto rsCustomer = sptrCustomerQuery->Select(sptrCustomerIdLTE20);
 
                 // Select Order set
                 auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(0);
-                auto sptrOrderIdGt00 = CmpFactory::CreateGTE(sptrPreOrderMap->Id, sptrOrderId);
+                auto sptrOrderIdGt00 = CmpFactory::CreateGTE(sptrPreOrderMap->GetColumn("Id"), sptrOrderId);
                 auto rsPreOrder = sptrOrderQuery->Select(sptrOrderIdGt00);
 
                 auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
@@ -167,14 +167,14 @@ namespace Cloude {
 
                 // SORT PreOrder
                 Foundation::Store::Comparer::Less cmp{};
-                cmp.LhsCmpColumns().push_back(sptrPreOrderMap->CustId);
-                cmp.RhsCmpColumns().push_back(sptrPreOrderMap->CustId);
+                cmp.LhsCmpColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
+                cmp.RhsCmpColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
                 // RIGHT JOIN - PREORDER <> CUSTOMER
                 Cloude::Segmentation::Join::Right joinRight{};
-                joinRight.LhsComparingColumns().push_back(sptrPreOrderMap->CustId);
-                joinRight.RhsComparingColumns().push_back(sptrCustomerMap->Id);
+                joinRight.LhsComparingColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
+                joinRight.RhsComparingColumns().push_back(sptrCustomerMap->GetColumn("Id"));
                 joinRight.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
                 joinRight.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
                 joinRight.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
@@ -214,20 +214,18 @@ namespace Cloude {
 
                 // Select Customer set
                 auto sptrCustomerId = Foundation::Data::ValueFactory::CreateInt64(0);
-                auto sptrCustomerIdGt00 = CmpFactory::CreateGTE(sptrCustomerMap->Id, sptrCustomerId);
+                auto sptrCustomerIdGt00 = CmpFactory::CreateGTE(sptrCustomerMap->GetColumn("Id"), sptrCustomerId);
                 auto rsCustomer = sptrCustomerQuery->Select(sptrCustomerIdGt00);
 
                 // Select Order set
                 auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(10);
-                auto sptrOrderIdGt00 = CmpFactory::CreateLTE(sptrPreOrderMap->Id, sptrOrderId);
+                auto sptrOrderIdGt00 = CmpFactory::CreateLTE(sptrPreOrderMap->GetColumn("Id"), sptrOrderId);
                 auto rsPreOrder = sptrOrderQuery->Select(sptrOrderIdGt00);
 
                 auto newCustomerIdColumn = Foundation::CreateColumn("_custId", Foundation::Data::ValueType::Int64);
-                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail",
-                                                                       Foundation::Data::ValueType::VarChar);
+                auto newCustomerEmailColumn = Foundation::CreateColumn("customerEmail", Foundation::Data::ValueType::VarChar);
                 auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
-                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal",
-                                                                       Foundation::Data::ValueType::Double);
+                auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
 
                 Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
                 Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
@@ -242,8 +240,8 @@ namespace Cloude {
 
                 // SORT PreOrder
                 Foundation::Store::Comparer::Less cmp{};
-                cmp.LhsCmpColumns().push_back(sptrPreOrderMap->CustId);
-                cmp.RhsCmpColumns().push_back(sptrPreOrderMap->CustId);
+                cmp.LhsCmpColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
+                cmp.RhsCmpColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
                 // CROSSJOIN - PREORDER <> CUSTOMER

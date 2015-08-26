@@ -13,6 +13,7 @@ namespace Cloude {
         namespace Query {
 
             class CriteriaComposite : public Criteria {
+
                 SPtrCriteria _sptrRhs;
                 SPtrCriteria _sptrLhs;
 

@@ -22,7 +22,7 @@ namespace Cloude {
                     Foundation::Data::Comparer::Compare compare{};
 
                     auto sptrIdValue = Foundation::Data::ValueFactory::CreateInt64(0);
-                    auto sptrIdCell = Foundation::CreateCell(_sptrPreOrderMap->Id, sptrIdValue);
+                    auto sptrIdCell = Foundation::CreateCell(_sptrPreOrderMap->GetColumn("Id"), sptrIdValue);
                     auto sptrNameValue = Foundation::Data::ValueFactory::CreateVarChar("ORDER-0");
                     auto sptrCustIdValue = Foundation::Data::ValueFactory::CreateInt64(15);
                     auto sptrTotalValue = Foundation::Data::ValueFactory::CreateDouble(35);
@@ -106,8 +106,8 @@ namespace Cloude {
                     auto sptrIdHi = ValueFactory::CreateInt64(15);
 
                     // Criterias
-                    auto gteLoId = CmpFactory::CreateGTE(_sptrPreOrderMap->Id, sptrIdLo);
-                    auto lteHiId = CmpFactory::CreateLTE(_sptrPreOrderMap->Id, sptrIdHi);
+                    auto gteLoId = CmpFactory::CreateGTE(_sptrPreOrderMap->GetColumn("Id"), sptrIdLo);
+                    auto lteHiId = CmpFactory::CreateLTE(_sptrPreOrderMap->GetColumn("Id"), sptrIdHi);
                     auto criteria = CmpFactory::CreateAND(gteLoId, lteHiId);
 
                     // Execute

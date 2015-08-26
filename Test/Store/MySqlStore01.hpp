@@ -28,7 +28,7 @@ namespace Cloude {
                 auto sptrSubmittedHour = MySqlDriverFactory::CreateTime(22, 53, 18, 43256);
                 auto sptrUpdatedDate = MySqlDriverFactory::CreateDateTime(2015, 7, 15, 22, 15, 13);
 
-                auto sptrIdCell = Foundation::CreateCell(_sptrEnquiryMap->Id, sptrId);
+                auto sptrIdCell = Foundation::CreateCell(_sptrEnquiryMap->GetColumn("Id"), sptrId);
                 auto sptrCells = {sptrIdCell};
                 auto sptrIdentity = Foundation::CreateIdentity(sptrCells);
 

@@ -37,9 +37,9 @@ namespace Cloude {
                 Relation::RelationMap relCustomerAddress{};
                 Relation::RelationMap relPreOrderToCustomer{};
 
-                relCustomerToPreOrder.AddLink(sptrCustomerMap->Id, sptrPreOrderMap->CustId);
-                relCustomerAddress.AddLink(sptrCustomerMap->Id, sptrCustomerMap->Id);
-                relPreOrderToCustomer.AddLink(sptrPreOrderMap->CustId, sptrCustomerMap->Id);
+                relCustomerToPreOrder.AddLink(sptrCustomerMap->GetColumn("Id"), sptrPreOrderMap->GetColumn("CustId"));
+                relCustomerAddress.AddLink(sptrCustomerMap->GetColumn("Id"), sptrCustomerMap->GetColumn("Id"));
+                relPreOrderToCustomer.AddLink(sptrPreOrderMap->GetColumn("CustId"), sptrCustomerMap->GetColumn("Id"));
 
                 auto sptrCustomerQuery = Foundation::CreateEntityQuery(sptrCustomerMap, sptrCustomerDriver);
                 auto sptrPreOrderQuery = Foundation::CreateEntityQuery(sptrPreOrderMap, sptrPreOrderDriver);
@@ -68,10 +68,12 @@ namespace Cloude {
 
                             auto criteriaAddress = relCustomerAddress.Generate(entity);
 
-                            auto columnsList = {sptrCustomerMap->AddrStreet,
-                                                sptrCustomerMap->AddrZipCode,
-                                                sptrCustomerMap->AddrCity,
-                                                sptrCustomerMap->AddrCountry};
+                            auto columnsList = {
+                                    sptrCustomerMap->GetColumn("AddrStreet"),
+                                    sptrCustomerMap->GetColumn("AddrZipCode"),
+                                    sptrCustomerMap->GetColumn("AddrCity"),
+                                    sptrCustomerMap->GetColumn("AddrCountry")
+                            };
 
                             customer.setObjAddress(Relation::CreateMultiCellsObj(sptrCustomerQuery,
                                                                                  criteriaAddress,
@@ -108,7 +110,7 @@ namespace Cloude {
                     using namespace Foundation::Data;
                     using CmprFactory = ComparativeFactory;
 
-                    auto sptrPreOrderIdGt00 = CmprFactory::CreateGTE(sptrPreOrderMap->Id, ValueFactory::CreateInt64(0));
+                    auto sptrPreOrderIdGt00 = CmprFactory::CreateGTE(sptrPreOrderMap->GetColumn("Id"), ValueFactory::CreateInt64(0));
                     auto sptrPreOrderProxy = sptrPreOrderQuery->SelectFirst(sptrPreOrderIdGt00);
                     auto sptrPreOrderEntity = sptrPreOrderStore->Summon(sptrPreOrderProxy);
                     auto preOrder = sptrPreOrderStore->NamedEntity(sptrPreOrderEntity);
@@ -126,7 +128,7 @@ namespace Cloude {
                     using namespace Foundation::Data;
                     using CmprFactory = ComparativeFactory;
 
-                    auto sptrCustomerIdGt00 = CmprFactory::CreateGTE(sptrPreOrderMap->Id, ValueFactory::CreateInt64(0));
+                    auto sptrCustomerIdGt00 = CmprFactory::CreateGTE(sptrPreOrderMap->GetColumn("Id"), ValueFactory::CreateInt64(0));
                     auto sptrCustomerProxy = sptrCustomerQuery->SelectFirst(sptrCustomerIdGt00);
                     auto sptrCustomerEntity = sptrCustomerStore->Summon(sptrCustomerProxy);
                     auto customer = (Entity::Customer) sptrCustomerStore->NamedEntity(sptrCustomerEntity);

@@ -13,7 +13,6 @@ namespace Cloude {
 
             class PreOrderItemsMap : public Foundation::EntityMap {
 
-            public:
                 static std::string TableName;
                 static Foundation::SPtrColumn Id;
                 static Foundation::SPtrColumn OrderId;

@@ -29,15 +29,19 @@ namespace Cloude {
                 Application::ProductMap productMap{};
                 Application::CustomerMap customerMap{};
 
+                auto sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
+                auto sptrProductMap = Application::Create<Application::ProductMap>();
+                auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
+
                 auto sptrOrderId = Foundation::Data::ValueFactory::CreateInt64(1);
                 auto sptrCustmId = Foundation::Data::ValueFactory::CreateInt64(2);
                 auto sptrOrderName = Foundation::Data::ValueFactory::CreateVarChar(std::string{"My Order"});
                 auto sptrTotal = Foundation::Data::ValueFactory::CreateDouble(15.0);
 
-                auto sptrOrderIdCell = Foundation::CreateCell(orderMap.Id);
-                auto sptrCustmIdCell = Foundation::CreateCell(orderMap.CustId);
-                auto sptrOrderNameCell = Foundation::CreateCell(orderMap.Name, sptrOrderName);
-                auto sptrTotalCell = Foundation::CreateCell(orderMap.Total, sptrTotal);
+                auto sptrOrderIdCell = Foundation::CreateCell(sptrPreOrderMap->GetColumn("Id"));
+                auto sptrCustmIdCell = Foundation::CreateCell(sptrPreOrderMap->GetColumn("CustId"));
+                auto sptrOrderNameCell = Foundation::CreateCell(sptrPreOrderMap->GetColumn("Name"), sptrOrderName);
+                auto sptrTotalCell = Foundation::CreateCell(sptrPreOrderMap->GetColumn("Total"), sptrTotal);
 
                 // Prepare source proxy
                 auto sptrOrderProxy = Foundation::CreateEntityProxy();
@@ -54,11 +58,8 @@ namespace Cloude {
                 auto orderNewTotalColumn = Foundation::CreateColumn("NewTotal", Foundation::Data::ValueType::Int64);
 
                 auto orderTransformer = Segmentation::Transformation::CreateEntityTransformer();
-                orderTransformer->AddCellTransformer(orderMap.Name->getName(),
-                                                     Transformation::CellTransformer{orderNewNameColumn});
-                orderTransformer->AddCellTransformer(orderMap.Total->getName(),
-                                                     Transformation::CellTransformer{orderNewTotalColumn,
-                                                                                     sptrDoubleConverter});
+                orderTransformer->AddCellTransformer(sptrPreOrderMap->GetColumn("Name")->getName(), Transformation::CellTransformer{orderNewNameColumn});
+                orderTransformer->AddCellTransformer(sptrPreOrderMap->GetColumn("Total")->getName(), Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
 
                 // Transforming Order into a new entity
                 auto sptrNewProxy = Foundation::CreateEntityProxy();

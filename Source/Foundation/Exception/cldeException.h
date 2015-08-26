@@ -17,8 +17,8 @@ namespace Cloude {
                 mutable std::string _message;
 
             public:
-                CLDEException(const char *message) : _message(message) { };
-                CLDEException(const std::string &message) : _message(message) { };
+                explicit CLDEException(std::string const &message) : _message{message} { };
+                explicit CLDEException(char const *message) : _message(message) { };
                 CLDEException(const CLDEException &) = default;
                 CLDEException(CLDEException &&) = default;
                 CLDEException &operator=(const CLDEException &) = default;
