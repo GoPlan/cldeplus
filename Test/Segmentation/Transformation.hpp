@@ -50,7 +50,7 @@ namespace Cloude {
                 sptrEntityProxy->setCell(sptrTotalCell);
 
                 // Double (Type) Caster
-                auto sptrDoubleConverter = CasterFactory::CreateDoubleConverter();
+                auto sptrDoubleConverter = CasterFactory::CreateDoubleCaster();
                 auto sptrInt64Total = sptrDoubleConverter->Cast(Foundation::Data::ValueType::Int64, sptrTotal);
 
                 // Entity Transformer

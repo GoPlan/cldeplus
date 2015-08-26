@@ -9,29 +9,19 @@
 
 namespace Cloude {
     namespace Segmentation {
-
-        class CasterFactory {
-
-            CasterFactory() = delete;
-            CasterFactory(const CasterFactory &) = delete;
-            CasterFactory(CasterFactory &&) = delete;
-            CasterFactory &operator=(const CasterFactory &) = delete;
-            CasterFactory &operator=(CasterFactory &&) = delete;
-            virtual ~CasterFactory() = delete;
-
-        public:
-            static Transformation::SPtrCaster CreateByteConverter();
-            static Transformation::SPtrCaster CreateBooleanConverter();
-            static Transformation::SPtrCaster CreateDoubleConverter();
-            static Transformation::SPtrCaster CreateFloatConverter();
-            static Transformation::SPtrCaster CreateInt16Converter();
-            static Transformation::SPtrCaster CreateInt32Converter();
-            static Transformation::SPtrCaster CreateInt64Converter();
-            static Transformation::SPtrCaster CreateUInt16Converter();
-            static Transformation::SPtrCaster CreateUInt32Converter();
-            static Transformation::SPtrCaster CreateUInt64Converter();
-            static Transformation::SPtrCaster CreateStringConverter();
-            static Transformation::SPtrCaster CreateVarCharConverter();
+        struct CasterFactory {
+            static Transformation::SPtrCaster CreateByteCaster();
+            static Transformation::SPtrCaster CreateBooleanCaster();
+            static Transformation::SPtrCaster CreateDoubleCaster();
+            static Transformation::SPtrCaster CreateFloatCaster();
+            static Transformation::SPtrCaster CreateInt16Caster();
+            static Transformation::SPtrCaster CreateInt32Caster();
+            static Transformation::SPtrCaster CreateInt64Caster();
+            static Transformation::SPtrCaster CreateUInt16Caster();
+            static Transformation::SPtrCaster CreateUInt32Caster();
+            static Transformation::SPtrCaster CreateUInt64Caster();
+            static Transformation::SPtrCaster CreateStringCaster();
+            static Transformation::SPtrCaster CreateVarCharCaster();
         };
     }
 }

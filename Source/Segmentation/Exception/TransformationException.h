@@ -14,7 +14,7 @@ namespace Cloude {
 
             class TransformationException : public Foundation::Exception::CLDEException {
 
-            static const std::string _name;
+                static const std::string _name;
 
             public:
                 TransformationException(const std::string &message) : CLDEException{message} { };

@@ -13,7 +13,7 @@ namespace Cloude {
 
             class SegmentationException : public Foundation::Exception::CLDEException {
 
-            static const std::string _name;
+                static const std::string _name;
 
             public:
                 SegmentationException(const std::string &message) : CLDEException{message} { };
