@@ -14,12 +14,14 @@ namespace Cloude {
                 MySqlDate::MySqlDate(unsigned year, unsigned month, unsigned day)
                         : TimeBasedValue{Foundation::Data::ValueType::Date, sizeof(MYSQL_TIME)} {
                     //
+                    _sptrDateImpl = std::make_shared<MySqlDateTimeImpl>();
                     _sptrDateImpl->SetDate(year, month, day);
                 }
 
                 MySqlDate::MySqlDate()
                         : TimeBasedValue{Foundation::Data::ValueType::Date, sizeof(MYSQL_TIME)} {
                     //
+                    _sptrDateImpl = std::make_shared<MySqlDateTimeImpl>();
                     _sptrDateImpl->SetDate(0, 0, 0);
                 }
 

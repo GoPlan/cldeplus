@@ -15,12 +15,14 @@ namespace Cloude {
                                      unsigned long millisecond)
                         : TimeBasedValue{Foundation::Data::ValueType::Time, sizeof(MYSQL_TIME)} {
                     //
+                    _sptrTimeImpl = std::make_shared<MySqlDateTimeImpl>();
                     _sptrTimeImpl->SetTime(hour, minute, second, millisecond);
                 }
 
                 MySqlTime::MySqlTime() :
                         TimeBasedValue{Foundation::Data::ValueType::Time, sizeof(MYSQL_TIME)} {
                     //
+                    _sptrTimeImpl = std::make_shared<MySqlDateTimeImpl>();
                     _sptrTimeImpl->SetTime(0, 0, 0, 0);
                 }
 
