@@ -24,7 +24,7 @@ namespace Cloude {
         public:
             Column() = default;
             Column(std::string name, Data::ValueType dataType);
-            Column(std::string name, std::string datasourceName, Data::ValueType dataType, size_t length = 0);
+            Column(std::string name, Data::ValueType dataType, std::string datasourceName, size_t length);
             Column(const Column &) = default;
             Column(Column &&) = default;
             Column &operator=(const Column &) = default;
@@ -52,11 +52,8 @@ namespace Cloude {
         using SPtrColumnMap = std::unordered_map<std::string, SPtrColumn>;
 
         SPtrColumn CreateColumn(const std::string &name, Data::ValueType dataType);
-        SPtrColumn CreateColumn(const std::string &name, const std::string &datasourceName, Data::ValueType dataType);
-        SPtrColumn CreateColumn(const std::string &name,
-                                const std::string &datasourceName,
-                                Data::ValueType dataType,
-                                size_t length);
+        SPtrColumn CreateColumn(const std::string &name, Data::ValueType dataType, const std::string &datasourceName,
+                                size_t length = 0);
     }
 }
 

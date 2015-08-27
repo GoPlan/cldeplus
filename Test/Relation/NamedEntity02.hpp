@@ -23,8 +23,8 @@ namespace Cloude {
 
                 auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
                 auto sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
-                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::CreateSharedPtr(sptrCustomerMap);
-                auto sptrPreOrderDriver = Drivers::MySql::MySqlSourceDriver::CreateSharedPtr(sptrPreOrderMap);
+                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver)Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
+                auto sptrPreOrderDriver = (Drivers::MySql::SPtrMySqlSourceDriver)Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
 
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
                 sptrPreOrderDriver->OptionArgs().Host = "dell-3020";
@@ -41,8 +41,8 @@ namespace Cloude {
                 relCustomerAddress.AddLink(sptrCustomerMap->GetColumn("Id"), sptrCustomerMap->GetColumn("Id"));
                 relPreOrderToCustomer.AddLink(sptrPreOrderMap->GetColumn("CustId"), sptrCustomerMap->GetColumn("Id"));
 
-                auto sptrCustomerQuery = Foundation::EntityQuery::CreateSharedPtr(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrPreOrderQuery = Foundation::EntityQuery::CreateSharedPtr(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrCustomerQuery = (Foundation::SPtrEntityQuery)Foundation::EntityQuery::Create(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrPreOrderQuery = (Foundation::SPtrEntityQuery)Foundation::EntityQuery::Create(sptrPreOrderMap, sptrPreOrderDriver);
                 auto sptrCustomerStore = Relation::CreateNamedStore<Entity::Customer>(sptrCustomerMap, sptrCustomerDriver);
                 auto sptrPreOrderStore = Relation::CreateNamedStore<Entity::PreOrder>(sptrPreOrderMap, sptrPreOrderDriver);
 

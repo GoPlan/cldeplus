@@ -38,13 +38,13 @@ namespace Cloude {
                 auto sptrOrderName = Foundation::Data::ValueFactory::CreateVarChar(std::string{"My Order"});
                 auto sptrTotal = Foundation::Data::ValueFactory::CreateDouble(15.0);
 
-                auto sptrOrderIdCell = Foundation::CreateCell(sptrPreOrderMap->GetColumn("Id"));
-                auto sptrCustmIdCell = Foundation::CreateCell(sptrPreOrderMap->GetColumn("CustId"));
-                auto sptrOrderNameCell = Foundation::CreateCell(sptrPreOrderMap->GetColumn("Name"), sptrOrderName);
-                auto sptrTotalCell = Foundation::CreateCell(sptrPreOrderMap->GetColumn("Total"), sptrTotal);
+                auto sptrOrderIdCell = (Foundation::SPtrCell)Foundation::Cell::Create(sptrPreOrderMap->GetColumn("Id"));
+                auto sptrCustmIdCell = (Foundation::SPtrCell)Foundation::Cell::Create(sptrPreOrderMap->GetColumn("CustId"));
+                auto sptrOrderNameCell = (Foundation::SPtrCell)Foundation::Cell::Create(sptrPreOrderMap->GetColumn("Name"), sptrOrderName);
+                auto sptrTotalCell = (Foundation::SPtrCell)Foundation::Cell::Create(sptrPreOrderMap->GetColumn("Total"), sptrTotal);
 
                 // Prepare source proxy
-                auto sptrEntityProxy = Foundation::EntityProxy::CreateSharedPtr();
+                auto sptrEntityProxy = (Foundation::SPtrEntityProxy) Foundation::EntityProxy::Create();
                 sptrEntityProxy->setCell(sptrCustmIdCell);
                 sptrEntityProxy->setCell(sptrOrderNameCell);
                 sptrEntityProxy->setCell(sptrTotalCell);
@@ -62,7 +62,7 @@ namespace Cloude {
                 uptrOrderTransformer->AddCellTransformer(sptrPreOrderMap->GetColumn("Total")->getName(), Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
 
                 // Transforming Order into a new entity
-                auto sptrNewProxy = Foundation::EntityProxy::CreateSharedPtr();
+                auto sptrNewProxy = (Foundation::SPtrEntityProxy)Foundation::EntityProxy::Create();
                 uptrOrderTransformer->Transform(sptrEntityProxy, sptrNewProxy);
 
                 EXPECT_TRUE(sptrNewProxy.get() != 0);

@@ -37,14 +37,18 @@ namespace Cloude {
             const SPtrColumn &getColumn() const { return _column; }
             const Data::SPtrValue &getValue() const { return _value; }
             void setValue(const Data::SPtrValue &value);
+
+
+            // Factory methods
+            static std::unique_ptr<Cell> Create(const SPtrColumn &column) { return std::unique_ptr<Cell>(new Cell(column)); }
+            static std::unique_ptr<Cell> Create(const SPtrColumn &column, const Data::SPtrValue &value) {
+                return std::unique_ptr<Cell>(new Cell(column, value));
+            }
         };
 
         using SPtrCell = std::shared_ptr<Cell>;
         using SPtrCellMap = std::unordered_map<std::string, SPtrCell>;
         using SPtrCellVector = std::vector<SPtrCell>;
-
-        SPtrCell CreateCell(const SPtrColumn& column);
-        SPtrCell CreateCell(const SPtrColumn& column, const Data::SPtrValue& value);
     }
 }
 

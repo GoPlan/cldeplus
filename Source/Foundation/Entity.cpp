@@ -22,12 +22,6 @@ namespace Cloude {
             }
         }
 
-        std::shared_ptr<Entity> Entity::CreateSharedPtr(const SPtrIdentity &identity) {
-            return std::make_shared<Entity>(identity);
-        }
 
-        std::unique_ptr<Entity> Entity::CreateUniquePtr(const SPtrIdentity &identity) {
-            return std::unique_ptr<Entity>(new Entity(identity));
-        }
     }
 }

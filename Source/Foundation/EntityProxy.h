@@ -34,12 +34,14 @@ namespace Cloude {
             bool IsIdentifiableInStore(SPtrEntityStore &entityStore);
             void setSummonState(const EntityProxySummonState &summonState) { _summonState = summonState; }
 
-            static std::unique_ptr<EntityProxy> CreateUniquePtr();
-            static std::shared_ptr<EntityProxy> CreateSharedPtr();
+            // Factory methods
+            static std::unique_ptr<EntityProxy> Create() {
+                return std::unique_ptr<EntityProxy>(new EntityProxy());
+            }
 
         private:
             EntityProxySummonState _summonState{EntityProxySummonState::Undefined};
-            
+
         };
 
         using UPtrEntityProxy = std::unique_ptr<EntityProxy>;

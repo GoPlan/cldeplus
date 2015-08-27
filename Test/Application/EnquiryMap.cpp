@@ -10,13 +10,28 @@ namespace Cloude {
 
             std::string EnquiryMap::TableName = "Enquiry";
 
-            Foundation::SPtrColumn EnquiryMap::Id = Foundation::CreateColumn("Id", "id", Foundation::Data::ValueType::Int64);
-            Foundation::SPtrColumn EnquiryMap::CustId = Foundation::CreateColumn("CustId", "custid", Foundation::Data::ValueType::Int64);
-            Foundation::SPtrColumn EnquiryMap::SubmittedDate = Foundation::CreateColumn("SubmittedDate", "submitteddate", Foundation::Data::ValueType::Date);
-            Foundation::SPtrColumn EnquiryMap::SubmittedHour = Foundation::CreateColumn("SubmittedHour", "submittedhour", Foundation::Data::ValueType::Time);
-            Foundation::SPtrColumn EnquiryMap::Subject = Foundation::CreateColumn("Subject", "subject", Foundation::Data::ValueType::VarChar, 255);
-            Foundation::SPtrColumn EnquiryMap::Content = Foundation::CreateColumn("Content", "content", Foundation::Data::ValueType::Text);
-            Foundation::SPtrColumn EnquiryMap::UpdatedDate = Foundation::CreateColumn("UpdatedDate", "updateddate", Foundation::Data::ValueType::DateTime);
+            Foundation::SPtrColumn EnquiryMap::Id = Foundation::CreateColumn("Id",
+                                                                             Foundation::Data::ValueType::Int64,
+                                                                             "id");
+            Foundation::SPtrColumn EnquiryMap::CustId = Foundation::CreateColumn("CustId",
+                                                                                 Foundation::Data::ValueType::Int64,
+                                                                                 "custid");
+            Foundation::SPtrColumn EnquiryMap::SubmittedDate = Foundation::CreateColumn("SubmittedDate",
+                                                                                        Foundation::Data::ValueType::Date,
+                                                                                        "submitteddate");
+            Foundation::SPtrColumn EnquiryMap::SubmittedHour = Foundation::CreateColumn("SubmittedHour",
+                                                                                        Foundation::Data::ValueType::Time,
+                                                                                        "submittedhour");
+            Foundation::SPtrColumn EnquiryMap::Subject = Foundation::CreateColumn("Subject",
+                                                                                  Foundation::Data::ValueType::VarChar,
+                                                                                  "subject",
+                                                                                  255);
+            Foundation::SPtrColumn EnquiryMap::Content = Foundation::CreateColumn("Content",
+                                                                                  Foundation::Data::ValueType::Text,
+                                                                                  "content");
+            Foundation::SPtrColumn EnquiryMap::UpdatedDate = Foundation::CreateColumn("UpdatedDate",
+                                                                                      Foundation::Data::ValueType::DateTime,
+                                                                                      "updateddate");
 
             EnquiryMap::EnquiryMap() : EntityMap(TableName) {
 

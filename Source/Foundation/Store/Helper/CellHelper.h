@@ -11,7 +11,6 @@ namespace Cloude {
     namespace Foundation {
         namespace Store {
             namespace Helper {
-
                 struct CellHelper {
                     static SPtrCell CopySPtrCell(const SPtrCell &sptrCell);
                 };

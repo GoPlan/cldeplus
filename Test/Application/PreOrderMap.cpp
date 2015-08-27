@@ -10,10 +10,19 @@ namespace Cloude {
 
             std::string PreOrderMap::TableName{"PreOrder"};
 
-            Foundation::SPtrColumn PreOrderMap::Id = Foundation::CreateColumn("Id", "id", Foundation::Data::ValueType::Int64);
-            Foundation::SPtrColumn PreOrderMap::Name = Foundation::CreateColumn("Name", "name", Foundation::Data::ValueType::VarChar, 255);
-            Foundation::SPtrColumn PreOrderMap::CustId = Foundation::CreateColumn("CustId", "custid", Foundation::Data::ValueType::Int64);
-            Foundation::SPtrColumn PreOrderMap::Total = Foundation::CreateColumn("Total", "total", Foundation::Data::ValueType::Double);
+            Foundation::SPtrColumn PreOrderMap::Id = Foundation::CreateColumn("Id",
+                                                                              Foundation::Data::ValueType::Int64,
+                                                                              "id");
+            Foundation::SPtrColumn PreOrderMap::Name = Foundation::CreateColumn("Name",
+                                                                                Foundation::Data::ValueType::VarChar,
+                                                                                "name",
+                                                                                255);
+            Foundation::SPtrColumn PreOrderMap::CustId = Foundation::CreateColumn("CustId",
+                                                                                  Foundation::Data::ValueType::Int64,
+                                                                                  "custid");
+            Foundation::SPtrColumn PreOrderMap::Total = Foundation::CreateColumn("Total",
+                                                                                 Foundation::Data::ValueType::Double,
+                                                                                 "total");
 
             PreOrderMap::PreOrderMap(): EntityMap(TableName) {
 

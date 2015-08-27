@@ -18,7 +18,7 @@ Cloude::Foundation::SPtrEntity Cloude::Foundation::Query::Helper::ProxyHelper::S
         throw Exception::CLDEEntityException{msg};
     }
 
-    Foundation::SPtrIdentity sptrIdentity = std::make_shared<Foundation::Identity>();
+    Foundation::SPtrIdentity sptrIdentity = Identity::Create();
 
     std::for_each(store->getEntityMap()->getColumnsForKey().begin(),
                   store->getEntityMap()->getColumnsForKey().cend(),

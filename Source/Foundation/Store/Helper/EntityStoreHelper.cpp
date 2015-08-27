@@ -28,14 +28,14 @@ namespace Cloude {
                             continue;
                         }
 
-                        auto cell = Foundation::CreateCell(const_cast<SPtrColumn &>(column));
+                        SPtrCell cell = Foundation::Cell::Create(const_cast<SPtrColumn &>(column));
                         dataRecord->setCell(cell);
                     }
                 }
 
                 SPtrEntityProxy EntityStoreHelper::CopySPtrProxy(const SPtrEntityProxy &proxy) {
 
-                    SPtrEntityProxy newProxy = Foundation::EntityProxy::CreateSharedPtr();
+                    SPtrEntityProxy newProxy = Foundation::EntityProxy::Create();
 
                     for(auto &srcCellPair : proxy->getCellsMap()){
                         auto newCell = Foundation::Store::Helper::CellHelper::CopySPtrCell(srcCellPair.second);

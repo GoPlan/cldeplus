@@ -10,14 +10,30 @@ namespace Cloude {
 
             std::string CustomerMap::TableName{"Customer"};
 
-            Foundation::SPtrColumn CustomerMap::Id = Foundation::CreateColumn("Id", "id", Foundation::Data::ValueType::Int64);
-            Foundation::SPtrColumn CustomerMap::FirstName = Foundation::CreateColumn("FirstName", "firstname", Foundation::Data::ValueType::VarChar);
-            Foundation::SPtrColumn CustomerMap::LastName = Foundation::CreateColumn("LastName", "lastname", Foundation::Data::ValueType::VarChar);
-            Foundation::SPtrColumn CustomerMap::Email = Foundation::CreateColumn("Email", "email", Foundation::Data::ValueType::VarChar);
-            Foundation::SPtrColumn CustomerMap::AddrStreet = Foundation::CreateColumn("AddrStreet", "addrstreet", Foundation::Data::ValueType::VarChar);
-            Foundation::SPtrColumn CustomerMap::AddrZipCode = Foundation::CreateColumn("AddrZipCode", "addrzipcode", Foundation::Data::ValueType::VarChar);
-            Foundation::SPtrColumn CustomerMap::AddrCity = Foundation::CreateColumn("AddrCity", "addrcity", Foundation::Data::ValueType::VarChar);
-            Foundation::SPtrColumn CustomerMap::AddrCountry = Foundation::CreateColumn("AddrCountry", "addrcountry", Foundation::Data::ValueType::VarChar);
+            Foundation::SPtrColumn CustomerMap::Id = Foundation::CreateColumn("Id",
+                                                                              Foundation::Data::ValueType::Int64,
+                                                                              "id");
+            Foundation::SPtrColumn CustomerMap::FirstName = Foundation::CreateColumn("FirstName",
+                                                                                     Foundation::Data::ValueType::VarChar,
+                                                                                     "firstname");
+            Foundation::SPtrColumn CustomerMap::LastName = Foundation::CreateColumn("LastName",
+                                                                                    Foundation::Data::ValueType::VarChar,
+                                                                                    "lastname");
+            Foundation::SPtrColumn CustomerMap::Email = Foundation::CreateColumn("Email",
+                                                                                 Foundation::Data::ValueType::VarChar,
+                                                                                 "email");
+            Foundation::SPtrColumn CustomerMap::AddrStreet = Foundation::CreateColumn("AddrStreet",
+                                                                                      Foundation::Data::ValueType::VarChar,
+                                                                                      "addrstreet");
+            Foundation::SPtrColumn CustomerMap::AddrZipCode = Foundation::CreateColumn("AddrZipCode",
+                                                                                       Foundation::Data::ValueType::VarChar,
+                                                                                       "addrzipcode");
+            Foundation::SPtrColumn CustomerMap::AddrCity = Foundation::CreateColumn("AddrCity",
+                                                                                    Foundation::Data::ValueType::VarChar,
+                                                                                    "addrcity");
+            Foundation::SPtrColumn CustomerMap::AddrCountry = Foundation::CreateColumn("AddrCountry",
+                                                                                       Foundation::Data::ValueType::VarChar,
+                                                                                       "addrcountry");
 
             CustomerMap::CustomerMap() : EntityMap(TableName) {
 

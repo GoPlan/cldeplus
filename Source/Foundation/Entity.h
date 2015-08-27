@@ -34,8 +34,10 @@ namespace Cloude {
             template<class TEntity>
             TEntity NamedEntity(std::function<TEntity(const Entity &)> converter) { return converter(*this); };
 
-            static std::unique_ptr<Entity> CreateUniquePtr(const SPtrIdentity &identity);
-            static std::shared_ptr<Entity> CreateSharedPtr(const SPtrIdentity &identity);
+            // Factory methods
+            static std::unique_ptr<Entity> Create(const SPtrIdentity &identity) {
+                return std::unique_ptr<Entity>(new Entity(identity));
+            }
         };
 
         using UPtrEntity = std::unique_ptr<Entity>;

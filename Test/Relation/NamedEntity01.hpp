@@ -25,11 +25,11 @@ namespace Cloude {
                 auto sptrId04 = Data::ValueFactory::CreateInt64(4);
 
                 auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
-                auto sptrCustomerDriver = Drivers::SQLite::SQLiteSourceDriver::CreateSharedPtr(sptrCustomerMap);
+                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver)Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
 
-                auto sptrCustomerStore = Foundation::EntityStore::CreateSharedPtr(sptrCustomerMap,sptrCustomerDriver);
-                auto sptrCustomerQuery = Foundation::EntityQuery::CreateSharedPtr(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerStore = (Foundation::SPtrEntityStore)Foundation::EntityStore::Create(sptrCustomerMap,sptrCustomerDriver);
+                auto sptrCustomerQuery = (Foundation::SPtrEntityQuery)Foundation::EntityQuery::Create(sptrCustomerMap, sptrCustomerDriver);
 
                 sptrCustomerDriver->Connect();
 

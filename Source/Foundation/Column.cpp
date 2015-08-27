@@ -14,7 +14,7 @@ namespace Cloude {
             //
         }
 
-        Column::Column(std::string name, std::string datasourceName, Data::ValueType dataType, size_t length)
+        Column::Column(std::string name, Data::ValueType dataType, std::string datasourceName, size_t length)
                 : _name{name}, _datasourceName{datasourceName}, _length{length}, _dataType{dataType} {
             //
         }
@@ -29,15 +29,9 @@ namespace Cloude {
             return std::make_shared<Column>(name, dataType);
         }
 
-        SPtrColumn CreateColumn(const std::string &name, const std::string &datasourceName, Data::ValueType dataType) {
-            return std::make_shared<Column>(name, datasourceName, dataType);
-        }
-
-        SPtrColumn CreateColumn(const std::string &name,
-                                const std::string &datasourceName,
-                                Data::ValueType dataType,
+        SPtrColumn CreateColumn(const std::string &name, Data::ValueType dataType, const std::string &datasourceName,
                                 size_t length) {
-            return std::make_shared<Column>(name, datasourceName, dataType, length);
+            return std::make_shared<Column>(name, dataType, datasourceName, length);
         }
     }
 }

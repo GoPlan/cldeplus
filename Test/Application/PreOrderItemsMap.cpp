@@ -10,13 +10,27 @@ namespace Cloude {
 
             std::string PreOrderItemsMap::TableName{"PreOrderItemsMap"};
 
-            Foundation::SPtrColumn PreOrderItemsMap::Id = Foundation::CreateColumn("Id", "id", Foundation::Data::ValueType::Int64);
-            Foundation::SPtrColumn PreOrderItemsMap::OrderId = Foundation::CreateColumn("OrderId", "orderid", Foundation::Data::ValueType::Int64);
-            Foundation::SPtrColumn PreOrderItemsMap::ItemId = Foundation::CreateColumn("ItemId", "itemid", Foundation::Data::ValueType::Int64);
-            Foundation::SPtrColumn PreOrderItemsMap::Qty = Foundation::CreateColumn("Qty", "qty", Foundation::Data::ValueType::Double);
-            Foundation::SPtrColumn PreOrderItemsMap::Price = Foundation::CreateColumn("Price", "price", Foundation::Data::ValueType::Double);
-            Foundation::SPtrColumn PreOrderItemsMap::Amount = Foundation::CreateColumn("Amount", "amount", Foundation::Data::ValueType::Double);
-            Foundation::SPtrColumn PreOrderItemsMap::Comment = Foundation::CreateColumn("Comment", "comment", Foundation::Data::ValueType::Text);
+            Foundation::SPtrColumn PreOrderItemsMap::Id = Foundation::CreateColumn("Id",
+                                                                                   Foundation::Data::ValueType::Int64,
+                                                                                   "id");
+            Foundation::SPtrColumn PreOrderItemsMap::OrderId = Foundation::CreateColumn("OrderId",
+                                                                                        Foundation::Data::ValueType::Int64,
+                                                                                        "orderid");
+            Foundation::SPtrColumn PreOrderItemsMap::ItemId = Foundation::CreateColumn("ItemId",
+                                                                                       Foundation::Data::ValueType::Int64,
+                                                                                       "itemid");
+            Foundation::SPtrColumn PreOrderItemsMap::Qty = Foundation::CreateColumn("Qty",
+                                                                                    Foundation::Data::ValueType::Double,
+                                                                                    "qty");
+            Foundation::SPtrColumn PreOrderItemsMap::Price = Foundation::CreateColumn("Price",
+                                                                                      Foundation::Data::ValueType::Double,
+                                                                                      "price");
+            Foundation::SPtrColumn PreOrderItemsMap::Amount = Foundation::CreateColumn("Amount",
+                                                                                       Foundation::Data::ValueType::Double,
+                                                                                       "amount");
+            Foundation::SPtrColumn PreOrderItemsMap::Comment = Foundation::CreateColumn("Comment",
+                                                                                        Foundation::Data::ValueType::Text,
+                                                                                        "comment");
 
             PreOrderItemsMap::PreOrderItemsMap() : EntityMap(TableName) {
 

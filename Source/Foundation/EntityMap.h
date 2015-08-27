@@ -40,6 +40,11 @@ namespace Cloude {
             void AddUpdateColumn(SPtrColumn const &sptrColumn) { _columnsForUpdate.push_back(sptrColumn); }
             void AddSelectColumn(SPtrColumn const &sptrColumn) { _columnsForSelect.push_back(sptrColumn); }
 
+            // Factory methods
+            static std::unique_ptr<EntityMap> Create(std::string const&tableName){
+                return std::unique_ptr<EntityMap>(new EntityMap(tableName));
+            }
+
         protected:
 
             SPtrColumnMap _columnsMap;
@@ -51,6 +56,7 @@ namespace Cloude {
             std::string _tableName;
         };
 
+        using UPtrEntityMap = std::unique_ptr<EntityMap>;
         using SPtrEntityMap = std::shared_ptr<EntityMap>;
     }
 }

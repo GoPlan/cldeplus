@@ -15,6 +15,7 @@ namespace Cloude {
         class Identity : public Store::AbstractEntity {
 
         public:
+            explicit Identity(const std::vector<SPtrCell> &sptrCells);
             Identity() = default;
             Identity(const Identity &) = default;
             Identity(Identity &&) = default;
@@ -22,15 +23,18 @@ namespace Cloude {
             Identity &operator=(Identity &&) = default;
             ~Identity() = default;
 
-            Identity(const std::vector<SPtrCell> &fieldVector);
-            Identity(const std::vector<Cell *> &fieldVector);
+            // Factory methods
+            static std::unique_ptr<Identity> Create(){
+                return std::unique_ptr<Identity>(new Identity());
+            }
+
+            static std::unique_ptr<Identity> Create(SPtrCellVector const &cells){
+                return std::unique_ptr<Identity>(new Identity(cells));
+            }
         };
 
+        using UPtrIdentity = std::unique_ptr<Identity>;
         using SPtrIdentity = std::shared_ptr<Identity>;
-
-        SPtrIdentity CreateIdentity();
-        SPtrIdentity CreateIdentity(const std::vector<SPtrCell> &cells);
-        SPtrIdentity CreateIdentity(const std::vector<Cell *> &cells);
     }
 }
 

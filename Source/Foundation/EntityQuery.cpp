@@ -35,16 +35,6 @@ namespace Cloude {
                                                   const SPtrColumnVector &columnsForProjection) {
             return _sptrEntitySourceDriver->Select(sptrCriteria, columnsForProjection);
         }
-
-        std::shared_ptr<EntityQuery> EntityQuery::CreateSharedPtr(SPtrEntityMap const &sptrEntityMap,
-                                                                  SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
-            return std::make_shared<EntityQuery>(sptrEntityMap, sptrEntitySourceDriver);
-        }
-
-        std::unique_ptr<EntityQuery> EntityQuery::CreateUniquePtr(SPtrEntityMap const &sptrEntityMap,
-                                                                  SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
-            return std::unique_ptr<EntityQuery>(new EntityQuery(sptrEntityMap, sptrEntitySourceDriver));
-        }
     }
 }
 

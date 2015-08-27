@@ -22,12 +22,11 @@ namespace Cloude {
                     Foundation::Data::Comparer::Compare compare{};
 
                     auto sptrIdValue = Foundation::Data::ValueFactory::CreateInt64(0);
-                    auto sptrIdCell = Foundation::CreateCell(_sptrPreOrderMap->GetColumn("Id"), sptrIdValue);
+                    auto sptrIdCell = (Foundation::SPtrCell)Foundation::Cell::Create(_sptrPreOrderMap->GetColumn("Id"), sptrIdValue);
                     auto sptrNameValue = Foundation::Data::ValueFactory::CreateVarChar("ORDER-0");
                     auto sptrCustIdValue = Foundation::Data::ValueFactory::CreateInt64(15);
                     auto sptrTotalValue = Foundation::Data::ValueFactory::CreateDouble(35);
-                    auto cells{sptrIdCell};
-                    auto sptrIdentity = Foundation::CreateIdentity(cells);
+                    auto sptrIdentity = (Foundation::SPtrIdentity)Foundation::Identity::Create({sptrIdCell});
 
                     // DELETE - Check if Entity is nullptr
                     {

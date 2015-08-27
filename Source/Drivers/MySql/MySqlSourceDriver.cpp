@@ -575,7 +575,7 @@ namespace Cloude {
                                                                            fptrSelectParamProcessor);
 
                 auto command = _mySqlApiImpl->createCommand(pairSelectStmt.first);
-                auto sptrProxy = Foundation::EntityProxy::CreateSharedPtr();
+                auto sptrProxy = (Foundation::SPtrEntityProxy)Foundation::EntityProxy::Create();
 
                 using StoreHelper = Foundation::Store::Helper::EntityStoreHelper;
                 StoreHelper::GenerateCellsFromColumns(columnsForProjection, sptrProxy);

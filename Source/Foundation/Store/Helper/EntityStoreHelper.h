@@ -13,7 +13,6 @@ namespace Cloude {
     namespace Foundation {
         namespace Store {
             namespace Helper {
-
                 struct EntityStoreHelper {
                     static SPtrEntityProxy CopySPtrProxy(const SPtrEntityProxy &proxy);
                     static void GenerateCellsFromColumns(const SPtrColumnVector &columnVector,

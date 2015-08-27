@@ -32,6 +32,7 @@ namespace Cloude {
             EntityStore &operator=(EntityStore &&) = default;
             virtual ~EntityStore() = default;
 
+            // Locals
             bool HasIdentityInMap(const SPtrIdentity &identity) const;
             SPtrEntity Create(const SPtrIdentity &identity);
             SPtrEntity Get(const SPtrIdentity &identity);
@@ -46,11 +47,11 @@ namespace Cloude {
             SPtrEntityMap const &getEntityMap() const { return _sptrEntityMap; }
             SPtrEntitySourceDriver const &getEntitySourceDriver() const { return _sptrEntitySourceDriver; }
 
-            static std::unique_ptr<EntityStore> CreateUniquePtr(SPtrEntityMap const &sptrEntityMap,
-                                                                SPtrEntitySourceDriver const &sptrEntitySourceDriver);
-
-            static std::shared_ptr<EntityStore> CreateSharedPtr(SPtrEntityMap const &sptrEntityMap,
-                                                                SPtrEntitySourceDriver const &sptrEntitySourceDriver);
+            // Factory methods
+            static std::unique_ptr<EntityStore> Create(SPtrEntityMap const &sptrEntityMap,
+                                                       SPtrEntitySourceDriver const &sptrEntitySourceDriver){
+                return std::unique_ptr<EntityStore>(new EntityStore(sptrEntityMap, sptrEntitySourceDriver));
+            }
         };
 
         using UPtrEntityStore = std::unique_ptr<EntityStore>;
