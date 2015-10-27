@@ -31,17 +31,17 @@ namespace Cloude {
                     ~DateTime() = default;
 
                     // Value
-                    virtual void *PointerToBuffer();
+                    virtual void *PointerToBuffer() override;
 
                     // IPrintable
-                    virtual std::string ToString() const;
+                    virtual std::string ToString() const override;
 
                     // IComputable
-                    virtual Value &operator+(const Value &rhs);
-                    virtual Value &operator-(const Value &rhs);
-                    virtual Value &operator*(const Value &rhs);
-                    virtual Value &operator/(const Value &rhs);
-                    virtual Value &operator%(const Value &rhs);
+                    virtual Value &operator+(const Value &rhs) override;
+                    virtual Value &operator-(const Value &rhs) override;
+                    virtual Value &operator*(const Value &rhs) override;
+                    virtual Value &operator/(const Value &rhs) override;
+                    virtual Value &operator%(const Value &rhs) override;
 
                     // IComparable
                     virtual bool LessThan(const Common::IComparable &target) const override;

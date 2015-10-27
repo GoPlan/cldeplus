@@ -1,6 +1,4 @@
 # AppTest
-
-
 include_directories(${GTEST}/include)
 add_library(apptest STATIC
         Application/EnquiryMap.cpp
@@ -50,8 +48,7 @@ link_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/lib)
 
 
 # TARGET-EXECUTABLE: cloud_e_plus
-add_executable(cloud_e_plus_test main.cpp)
-target_link_libraries(cloud_e_plus_test foundation segmentation relation configuration)
-target_link_libraries(cloud_e_plus_test cldesqlitedriver cldemysqldriver)
-target_link_libraries(cloud_e_plus_test apptest)
-target_link_libraries(cloud_e_plus_test cldeparser-static gtest mysqlclient)
+add_executable(cldeplus-test main.cpp)
+target_link_libraries(cldeplus-test apptest)
+target_link_libraries(cldeplus-test cldeplus-static)
+target_link_libraries(cldeplus-test cldeparser-static gtest)

@@ -11,7 +11,7 @@ namespace Cloude {
             namespace Type {
 
                 String::String(const std::string &string)
-                        : _value(string), CharacterValue(ValueType::String, _value.length() + 1) {
+                        : _value(string), CharacterValue(ValueType::String, string.length() + 1) {
                     //
                 }
 

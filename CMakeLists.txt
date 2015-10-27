@@ -1,26 +1,59 @@
 cmake_minimum_required(VERSION 3.2)
-project(cloud_e_plus)
+project(cldeplus)
 
 # Build variables
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(VERSION 0.7.0)
 
 # Directories
 set(EXTRA_DIR "${CMAKE_SOURCE_DIR}/Extra")
 set(GTEST "${EXTRA_DIR}/gtest-1.7.0")
-set(CLDEPARSER "${EXTRA_DIR}/cldeparser-0.9.0")
-
+set(CLDEPARSER "${EXTRA_DIR}/cldeparser-1.0.0")
 
 # TARGET-LIBRARIES (Sub-directories)
-add_subdirectory(Source/Foundation)
-add_subdirectory(Source/Relation)
-add_subdirectory(Source/Segmentation)
-add_subdirectory(Source/Drivers/SQLite)
-add_subdirectory(Source/Drivers/MySql)
-add_subdirectory(Source/Configuration)
 add_subdirectory(Examples)
 add_subdirectory(Test)
 
+# SOURCE - Core
+file(GLOB_RECURSE FOUNDATION_SOURCE Source/Foundation/*.cpp Source/Foundation/*.h)
+file(GLOB_RECURSE RELATION_SOURCE Source/Relation/*.cpp Source/Relation/*.h)
+file(GLOB_RECURSE SEGMENTATION_SOURCE Source/Segmentation/*.cpp Source/Segmentation/*.h)
 
-# TEST
-#enable_testing()
-#add_test(cloud_e_plus_test cloud_e_plus_test)
+# SOURCE - Drivers
+file(GLOB_RECURSE DRIVERS_MYSQL
+        Source/Drivers/MySql/*.cpp
+        Source/Drivers/MySql/*.h
+)
+
+file(GLOB_RECURSE DRIVERS_SQLITE
+        Source/Drivers/SQLite/*.cpp
+        Source/Drivers/SQLite/*.h
+        Source/Drivers/SQLite/Amalgamation/*
+)
+
+set(COMPLETE_SOURCE
+        ${FOUNDATION_SOURCE}
+        ${RELATION_SOURCE}
+        ${SEGMENTATION_SOURCE}
+        ${DRIVERS_SQLITE}
+        ${DRIVERS_MYSQL}
+)
+
+include_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/include)
+link_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/lib)
+
+add_library(cldeplus-static STATIC ${COMPLETE_SOURCE})
+add_library(cldeplus SHARED ${COMPLETE_SOURCE})
+target_link_libraries(cldeplus-static mysqlclient)
+target_link_libraries(cldeplus mysqlclient)
+
+
+# Installation
+set(INSTALL_DIR "${EXTRA_DIR}")
+set(CMAKE_INSTALL_PREFIX ${INSTALL_DIR}/${CMAKE_PROJECT_NAME}-${VERSION})
+install(DIRECTORY Source/ DESTINATION include/${CMAKE_PROJECT_NAME} FILES_MATCHING PATTERN "*.h")
+install(TARGETS cldeplus cldeplus-static
+        LIBRARY DESTINATION ./
+        ARCHIVE DESTINATION ./
+)
+
