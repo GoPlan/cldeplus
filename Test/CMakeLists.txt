@@ -1,5 +1,6 @@
 # AppTest
 include_directories(${GTEST}/include)
+
 add_library(apptest STATIC
         Application/EnquiryMap.cpp
         Application/EnquiryMap.h

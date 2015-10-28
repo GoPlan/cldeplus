@@ -1,23 +1,28 @@
 cmake_minimum_required(VERSION 3.2)
 project(cldeplus)
 
+
 # Build variables
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(VERSION 0.7.0)
+
 
 # Directories
 set(EXTRA_DIR "${CMAKE_SOURCE_DIR}/Extra")
 set(GTEST "${EXTRA_DIR}/gtest-1.7.0")
 set(CLDEPARSER "${EXTRA_DIR}/cldeparser-1.0.0")
 
+
 # TARGET-LIBRARIES (Sub-directories)
 add_subdirectory(Examples)
 add_subdirectory(Test)
+
 
 # SOURCE - Core
 file(GLOB_RECURSE FOUNDATION_SOURCE Source/Foundation/*.cpp Source/Foundation/*.h)
 file(GLOB_RECURSE RELATION_SOURCE Source/Relation/*.cpp Source/Relation/*.h)
 file(GLOB_RECURSE SEGMENTATION_SOURCE Source/Segmentation/*.cpp Source/Segmentation/*.h)
+
 
 # SOURCE - Drivers
 file(GLOB_RECURSE DRIVERS_MYSQL
@@ -46,6 +51,17 @@ add_library(cldeplus-static STATIC ${COMPLETE_SOURCE})
 add_library(cldeplus SHARED ${COMPLETE_SOURCE})
 target_link_libraries(cldeplus-static mysqlclient)
 target_link_libraries(cldeplus mysqlclient)
+
+set_target_properties(cldeplus cldeplus-static PROPERTIES
+        VERSION ${VERSION}
+        SOVERSION ${VERSION}
+        POSITION_INDEPENDENT_CODE True
+)
+
+if (APPLE)
+    set_property(TARGET cldeplus PROPERTY PREFIX "lib")
+    set_property(TARGET cldeplus PROPERTY SUFFIX ".so")
+endif ()
 
 
 # Installation
