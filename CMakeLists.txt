@@ -13,11 +13,6 @@ set(GTEST "${EXTRA_DIR}/gtest-1.7.0")
 set(CLDEPARSER "${EXTRA_DIR}/cldeparser-1.0.0")
 
 
-# TARGET-LIBRARIES (Sub-directories)
-add_subdirectory(Examples)
-add_subdirectory(Test)
-
-
 # SOURCE - Core
 file(GLOB_RECURSE FOUNDATION_SOURCE
         Source/Foundation/*.cpp
@@ -86,3 +81,7 @@ install(TARGETS cldeplus cldeplus-static
         ARCHIVE DESTINATION ./
 )
 
+
+# TARGET-LIBRARIES (Sub-directories)
+add_subdirectory(Examples)
+add_subdirectory(Test)

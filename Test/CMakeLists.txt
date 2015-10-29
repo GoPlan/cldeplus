@@ -63,10 +63,10 @@ add_custom_command(TARGET cldeplus-test POST_BUILD
 )
 
 
-# Valgrind cldeparser-apptest
-add_custom_target(cldeplus-valgrind ALL
-        COMMAND valgrind -v --leak-check=summary --show-leak-kinds=all --track-origins=yes ./cldeplus-test
-        COMMENT cldeplus-test
-)
+# TESTs
+enable_testing()
+add_test(
+        NAME cldeplus-valgrind
+        COMMAND valgrind -v --leak-check=summary --show-leak-kinds=all --track-origins=yes ./cldeplus-test)
 
-add_dependencies(cldeplus-valgrind cldeplus-test)
+
