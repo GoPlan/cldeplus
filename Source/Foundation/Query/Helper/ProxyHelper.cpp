@@ -9,7 +9,7 @@
 /// If Identity can not be generated from selected columns, function throws an CLDEEntityException.
 /// IsSummonable() should be check prior to this function call.
 
-Cloude::Foundation::SPtrEntity Cloude::Foundation::Query::Helper::ProxyHelper::Summon(
+CLDEPlus::Foundation::SPtrEntity CLDEPlus::Foundation::Query::Helper::ProxyHelper::Summon(
         const SPtrEntityProxy &proxy,
         SPtrEntityStore &store) {
 
@@ -32,7 +32,7 @@ Cloude::Foundation::SPtrEntity Cloude::Foundation::Query::Helper::ProxyHelper::S
     return entity;
 }
 
-bool Cloude::Foundation::Query::Helper::ProxyHelper::IsIdentifiableInStore(const SPtrEntityProxy &proxy,
+bool CLDEPlus::Foundation::Query::Helper::ProxyHelper::IsIdentifiableInStore(const SPtrEntityProxy &proxy,
                                                                            const SPtrEntityStore &store) {
 
     switch (proxy->getSummonState()) {

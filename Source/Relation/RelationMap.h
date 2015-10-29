@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 7/3/15.
 //
 
-#ifndef CLOUD_E_PLUS_RELATION_RELATIONMAP_H
-#define CLOUD_E_PLUS_RELATION_RELATIONMAP_H
+#ifndef CLDEPLUS_RELATION_RELATIONMAP_H
+#define CLDEPLUS_RELATION_RELATIONMAP_H
 
 #include "../Foundation/Query/Query.h"
 #include "../Foundation/Entity.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         using LinkColumn = std::pair<std::string, Foundation::SPtrColumn>;
@@ -35,4 +35,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_RELATION_RELATIONMAP_H
+#endif //CLDEPLUS_RELATION_RELATIONMAP_H

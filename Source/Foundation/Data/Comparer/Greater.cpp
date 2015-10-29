@@ -11,7 +11,7 @@
 #include "../../Common/IComparable.h"
 
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         bool Data::Comparer::Greater::operator()(const Data::SPtrValue &lhs,

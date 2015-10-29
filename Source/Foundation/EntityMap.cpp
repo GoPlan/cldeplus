@@ -4,7 +4,7 @@
 
 #include "EntityMap.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         bool EntityMap::HasColumn(std::string const &name) const {

@@ -9,7 +9,7 @@
 #include <iterator>
 #include "Criteria.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
 

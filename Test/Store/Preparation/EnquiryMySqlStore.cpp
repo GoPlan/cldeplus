@@ -5,7 +5,7 @@
 #include "../../../Source/Drivers/MySql/MySqlSourceDriver.h"
 #include "EnquiryMySqlStore.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
             namespace Preparation {

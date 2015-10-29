@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE01_HPP
-#define CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE01_HPP
+#ifndef CLDEPLUS_APPTEST_STORE_MYSQLSTORE01_HPP
+#define CLDEPLUS_APPTEST_STORE_MYSQLSTORE01_HPP
 
 #include <gtest/gtest.h>
 #include "../../Source/Foundation/Foundation.h"
 #include "../../Source/Drivers/MySql/MySqlSourceFactory.h"
 #include "Preparation/EnquiryMySqlStore.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
 
@@ -96,4 +96,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE01_HPP
+#endif //CLDEPLUS_APPTEST_STORE_MYSQLSTORE01_HPP

@@ -4,7 +4,7 @@
 
 #include "Greater.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
             bool Comparer::Greater::operator()(const Store::SPtrDataRecord &lhs,

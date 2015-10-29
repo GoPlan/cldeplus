@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 6/30/15.
 //
 
-#ifndef CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_TYPECASTER_H
-#define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_TYPECASTER_H
+#ifndef CLDEPLUS_SEGMENTATION_TRANSFORMATION_TYPECASTER_H
+#define CLDEPLUS_SEGMENTATION_TRANSFORMATION_TYPECASTER_H
 
 #include <memory>
 #include "../../Foundation/Data/Value.h"
 #include "../../Foundation/Column.h"
 #include <unordered_map>
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
         namespace Transformation {
 
@@ -38,4 +38,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_TYPECASTER_H
+#endif //CLDEPLUS_SEGMENTATION_TRANSFORMATION_TYPECASTER_H

@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_TIME_H
-#define CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_TIME_H
+#ifndef CLDEPLUS_FOUNDATION_DATA_TYPE_TIME_H
+#define CLDEPLUS_FOUNDATION_DATA_TYPE_TIME_H
 
 #include "../TimeBasedValue.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Type {
@@ -52,4 +52,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_FOUNDATION_DATA_TYPE_TIME_H
+#endif //CLDEPLUS_FOUNDATION_DATA_TYPE_TIME_H

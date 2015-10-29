@@ -19,7 +19,7 @@
 #include "Comparative/IsNull.h"
 #include "Comparative/IsNotNull.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
 

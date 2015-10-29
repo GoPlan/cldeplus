@@ -5,7 +5,7 @@
 #include "Data/Helper/TypeHelper.h"
 #include "Column.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
 

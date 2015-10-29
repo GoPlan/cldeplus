@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 7/18/15.
 //
 
-#ifndef CLOUD_E_PLUS_RELATION_MULTICELLSOBJECT_H
-#define CLOUD_E_PLUS_RELATION_MULTICELLSOBJECT_H
+#ifndef CLDEPLUS_RELATION_MULTICELLSOBJECT_H
+#define CLDEPLUS_RELATION_MULTICELLSOBJECT_H
 
 #include "LinkToOne.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         class MultiCellsObject : LinkToOne {
@@ -46,4 +46,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_RELATION_MULTICELLSOBJECT_H
+#endif //CLDEPLUS_RELATION_MULTICELLSOBJECT_H

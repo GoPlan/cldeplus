@@ -6,7 +6,7 @@
 #include "../Exception/TransformationException.h"
 #include "EntityTransformer.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
 
         void Transformation::EntityTransformer::AddCellTransformer(

@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
-#ifndef CLOUD_E_PLUS_PROXYHELPER_H
-#define CLOUD_E_PLUS_PROXYHELPER_H
+#ifndef CLDEPLUS_PROXYHELPER_H
+#define CLDEPLUS_PROXYHELPER_H
 
 #include "../../Entity.h"
 #include "../../EntityStore.h"
 #include "../../EntityProxy.h"
 #include "../../Exception/CLDEEntityException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
             namespace Helper {
@@ -24,4 +24,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_PROXYHELPER_H
+#endif //CLDEPLUS_PROXYHELPER_H

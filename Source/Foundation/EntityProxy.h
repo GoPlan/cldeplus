@@ -7,7 +7,7 @@
 
 #include "EntityStore.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class EntityProxy : public Store::AbstractEntity,

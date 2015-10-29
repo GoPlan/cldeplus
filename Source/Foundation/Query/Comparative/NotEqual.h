@@ -7,7 +7,7 @@
 
 #include "../CriteriaLeaf.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
             namespace Comparative {

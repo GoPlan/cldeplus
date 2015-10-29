@@ -4,7 +4,7 @@
 
 #include "TimeBasedValue.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
 

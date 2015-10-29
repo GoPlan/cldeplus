@@ -5,7 +5,7 @@
 #include "../../../Source/Drivers/MySql/MySqlSourceDriver.h"
 #include "PreOrderMySqlStore.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
 

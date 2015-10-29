@@ -12,7 +12,7 @@
 #include "Column.h"
 
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class Cell : public Common::IPrintable {

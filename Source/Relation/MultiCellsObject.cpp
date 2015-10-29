@@ -4,7 +4,7 @@
 
 #include "MultiCellsObject.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         Foundation::SPtrEntityProxy MultiCellsObject::Refer() {

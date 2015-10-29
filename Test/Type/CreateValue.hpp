@@ -2,14 +2,14 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_TYPE_HPP
-#define CLOUD_E_PLUS_APPTEST_TYPE_HPP
+#ifndef CLDEPLUS_APPTEST_TYPE_HPP
+#define CLDEPLUS_APPTEST_TYPE_HPP
 
 #include <gtest/gtest.h>
 #include <iostream>
 #include "../../Source/Foundation/Foundation.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace AppTest {
         namespace Type {
 
@@ -33,4 +33,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_TYPE_HPP
+#endif //CLDEPLUS_APPTEST_TYPE_HPP

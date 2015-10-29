@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 15/05/2015.
 //
 
-#ifndef CLOUD_E_PLUS_RELATION_NAMEDENTITYLOADER_H
-#define CLOUD_E_PLUS_RELATION_NAMEDENTITYLOADER_H
+#ifndef CLDEPLUS_RELATION_NAMEDENTITYLOADER_H
+#define CLDEPLUS_RELATION_NAMEDENTITYLOADER_H
 
 #include "../Foundation/Identity.h"
 #include "../Foundation/Entity.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         template<typename TEntity>
@@ -20,4 +20,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_RELATION_NAMEDENTITYLOADER_H
+#endif //CLDEPLUS_RELATION_NAMEDENTITYLOADER_H

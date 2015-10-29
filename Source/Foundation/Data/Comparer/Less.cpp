@@ -10,7 +10,7 @@
 #include "../../Exception/CLDENonSupportedDataTypeException.h"
 #include "../../Common/IComparable.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         bool Data::Comparer::Less::operator()(const Data::SPtrValue &lhs, const Data::SPtrValue &rhs) const {

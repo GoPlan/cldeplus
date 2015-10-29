@@ -9,7 +9,7 @@
 #include "../Common/IComputable.h"
 #include "TypeEnums.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
 

@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_RELATION_LINKTOONE_H
-#define CLOUD_E_PLUS_RELATION_LINKTOONE_H
+#ifndef CLDEPLUS_RELATION_LINKTOONE_H
+#define CLDEPLUS_RELATION_LINKTOONE_H
 
 #include "../Foundation/EntityQuery.h"
 #include "Link.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         class LinkToOne : public Link {
@@ -34,4 +34,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_RELATION_LINKTOONE_H
+#endif //CLDEPLUS_RELATION_LINKTOONE_H

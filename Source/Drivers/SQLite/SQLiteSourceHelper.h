@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 6/17/15.
 //
 
-#ifndef CLOUD_E_PLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H
-#define CLOUD_E_PLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H
+#ifndef CLDEPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H
+#define CLDEPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H
 
 #include <string>
 #include "Amalgamation/sqlite3.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace SQLite {
 
@@ -29,4 +29,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H
+#endif //CLDEPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H

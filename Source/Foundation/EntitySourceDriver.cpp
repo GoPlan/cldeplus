@@ -4,7 +4,7 @@
 
 #include "EntitySourceDriver.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         EntitySourceDriver::EntitySourceDriver(const SPtrEntityMap &entityMap)
                 : _sptrEntityMap(entityMap) {

@@ -5,13 +5,13 @@
 #include "EntityOutputFormatter.h"
 #include "../AbstractEntity.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
             namespace Extra {
 
                 std::string EntityOutputFormatter::Format(
-                        const Cloude::Foundation::Common::IPrintable &printable) const {
+                        const CLDEPlus::Foundation::Common::IPrintable &printable) const {
 
                     auto &entity = dynamic_cast<const Store::AbstractEntity &>(printable);
 

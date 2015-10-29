@@ -2,14 +2,14 @@
 // Created by LE, Duc Anh on 6/26/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_GREATER_H
-#define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_GREATER_H
+#ifndef CLDEPLUS_FOUNDATION_STORE_COMPARER_GREATER_H
+#define CLDEPLUS_FOUNDATION_STORE_COMPARER_GREATER_H
 
 #include "../AbstractEntity.h"
 #include "../../Data/Comparer/Greater.h"
 #include "../../Data/Comparer/Compare.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
             namespace Comparer {
@@ -44,4 +44,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_GREATER_H
+#endif //CLDEPLUS_FOUNDATION_STORE_COMPARER_GREATER_H

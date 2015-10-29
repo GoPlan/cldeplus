@@ -4,7 +4,7 @@
 
 #include "Comparative.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
 

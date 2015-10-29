@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 6/22/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
-#define CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
+#ifndef CLDEPLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
+#define CLDEPLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
 
 #include "../../EntityProxy.h"
 #include "Less.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
             namespace Comparer {
@@ -42,4 +42,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_STORE_COMPARER_COMPARE_H
+#endif //CLDEPLUS_FOUNDATION_STORE_COMPARER_COMPARE_H

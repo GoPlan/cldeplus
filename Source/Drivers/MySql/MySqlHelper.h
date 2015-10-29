@@ -2,14 +2,14 @@
 // Created by LE, Duc Anh on 8/26/15.
 //
 
-#ifndef CLOUD_E_PLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
-#define CLOUD_E_PLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
+#ifndef CLDEPLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
+#define CLDEPLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
 
 #include <string>
 #include <mysql.h>
 #include "../../Foundation/Data/TimeBasedValue.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace MySql {
             struct MySqlHelper {
@@ -28,4 +28,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
+#endif //CLDEPLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H

@@ -8,7 +8,7 @@
 #include "../Exception/CLDENonSupportedFunctionException.h"
 #include "Criteria.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
 

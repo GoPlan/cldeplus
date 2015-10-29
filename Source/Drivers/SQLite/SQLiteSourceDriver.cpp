@@ -13,9 +13,9 @@
 #include "Amalgamation/sqlite3.h"
 #include "SQLiteSourceDriver.h"
 
-using namespace Cloude::Drivers::SQLite;
+using namespace CLDEPlus::Drivers::SQLite;
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace SQLite {
 
@@ -219,7 +219,7 @@ namespace Cloude {
                     int index = 0;
 
                     for_each(columnsVector.cbegin(), columnsVector.cend(),
-                             [&entity, &uptrCommand, &index](const Cloude::Foundation::SPtrColumn &column) {
+                             [&entity, &uptrCommand, &index](const CLDEPlus::Foundation::SPtrColumn &column) {
 
                                  if (sqlite3_column_type(uptrCommand->_ptrStmt, index) == SQLITE_NULL) {
                                      ++index;
@@ -230,26 +230,26 @@ namespace Cloude {
 
                                  switch (column->getDataType()) {
 
-                                     case Cloude::Foundation::Data::ValueType::Int32: {
+                                     case CLDEPlus::Foundation::Data::ValueType::Int32: {
                                          auto value = sqlite3_column_int(uptrCommand->_ptrStmt, index++);
                                          sptrField->setValue(ValueFactory::CreateInt32(value));
                                          break;
                                      }
 
-                                     case Cloude::Foundation::Data::ValueType::Int64: {
+                                     case CLDEPlus::Foundation::Data::ValueType::Int64: {
                                          auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
                                          sptrField->setValue(ValueFactory::CreateInt64(value));
                                          break;
                                      }
 
-                                     case Cloude::Foundation::Data::ValueType::VarChar: {
+                                     case CLDEPlus::Foundation::Data::ValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
                                          sptrField->setValue(ValueFactory::CreateVarChar(cstr));
                                          break;
                                      }
 
-                                     case Cloude::Foundation::Data::ValueType::Text: {
+                                     case CLDEPlus::Foundation::Data::ValueType::Text: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
                                          sptrField->setValue(ValueFactory::CreateVarChar(cstr));
@@ -280,7 +280,7 @@ namespace Cloude {
                     int index = 0;
 
                     for_each(columnsVector.cbegin(), columnsVector.cend(),
-                             [&proxy, &uptrCommand, &index](const Cloude::Foundation::SPtrColumn &column) {
+                             [&proxy, &uptrCommand, &index](const CLDEPlus::Foundation::SPtrColumn &column) {
 
                                  if (sqlite3_column_type(uptrCommand->_ptrStmt, index) == SQLITE_NULL) {
                                      ++index;
@@ -291,13 +291,13 @@ namespace Cloude {
 
                                  switch (column->getDataType()) {
 
-                                     case Cloude::Foundation::Data::ValueType::Int32: {
+                                     case CLDEPlus::Foundation::Data::ValueType::Int32: {
                                          auto value = sqlite3_column_int(uptrCommand->_ptrStmt, index++);
                                          sptrField->setValue(ValueFactory::CreateInt32(value));
                                          break;
                                      }
 
-                                     case Cloude::Foundation::Data::ValueType::Int64: {
+                                     case CLDEPlus::Foundation::Data::ValueType::Int64: {
                                          auto value = sqlite3_column_int64(uptrCommand->_ptrStmt, index++);
                                          sptrField->setValue(ValueFactory::CreateInt64(value));
                                          break;
@@ -309,14 +309,14 @@ namespace Cloude {
                                          break;
                                      }
 
-                                     case Cloude::Foundation::Data::ValueType::VarChar: {
+                                     case CLDEPlus::Foundation::Data::ValueType::VarChar: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
                                          sptrField->setValue(ValueFactory::CreateVarChar(cstr));
                                          break;
                                      }
 
-                                     case Cloude::Foundation::Data::ValueType::Text: {
+                                     case CLDEPlus::Foundation::Data::ValueType::Text: {
                                          auto value = sqlite3_column_text(uptrCommand->_ptrStmt, index++);
                                          auto cstr = reinterpret_cast<const char *>(value);
                                          sptrField->setValue(ValueFactory::CreateVarChar(cstr));

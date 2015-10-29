@@ -6,7 +6,7 @@
 #include "SQLiteSourceHelper.h"
 
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace SQLite {
 

@@ -5,7 +5,7 @@
 #include "../Exception/TransformationException.h"
 #include "CellTransformer.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
 
 

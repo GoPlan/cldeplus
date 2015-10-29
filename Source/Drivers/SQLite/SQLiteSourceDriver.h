@@ -10,7 +10,7 @@
 #include "../../Foundation/Query/Contract/IPredicateFormatter.h"
 #include "SQLiteSourceException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace SQLite {
 

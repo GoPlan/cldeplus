@@ -7,7 +7,7 @@
 #include "../Exception/CLDEEntityException.h"
 #include "../Exception/CLDENonSupportedFunctionException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         Store::AbstractEntity::AbstractEntity(const Store::AbstractEntity &entity) {
@@ -58,11 +58,11 @@ namespace Cloude {
             }
         }
 
-        const SPtrCell &Cloude::Foundation::Store::AbstractEntity::operator[](const std::string &columnName) const {
+        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::operator[](const std::string &columnName) const {
             return getCell(columnName);
         }
 
-        const SPtrCell &Cloude::Foundation::Store::AbstractEntity::getCell(const std::string &columnName) const {
+        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::getCell(const std::string &columnName) const {
 
             auto search = _cellMap.find(columnName);
 

@@ -4,7 +4,7 @@
 
 #include "EntityQuery.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         EntityQuery::EntityQuery(const SPtrEntityMap &sptrEntityMap,

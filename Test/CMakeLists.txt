@@ -53,3 +53,12 @@ add_executable(cldeplus-test main.cpp)
 target_link_libraries(cldeplus-test apptest)
 target_link_libraries(cldeplus-test cldeplus-static)
 target_link_libraries(cldeplus-test cldeparser-static gtest)
+
+
+# Valgrind cldeparser-apptest
+add_custom_target(cldeplus-valgrind ALL
+        COMMAND valgrind -v --leak-check=summary --show-leak-kinds=all --track-origins=yes ./cldeplus-test
+        COMMENT cldeplus-test
+)
+
+add_dependencies(cldeplus-valgrind cldeplus-test)

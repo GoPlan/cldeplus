@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_RELATION_LINK_H
-#define CLOUD_E_PLUS_RELATION_LINK_H
+#ifndef CLDEPLUS_RELATION_LINK_H
+#define CLDEPLUS_RELATION_LINK_H
 
 #include "../Foundation/EntityQuery.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         class Link {
@@ -35,4 +35,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_RELATION_LINK_H
+#endif //CLDEPLUS_RELATION_LINK_H

@@ -2,20 +2,20 @@
 // Created by LE, Duc-Anh on 5/21/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_HPP
-#define CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_HPP
+#ifndef CLDEPLUS_APPTEST_STORE_MYSQLSTORE00_HPP
+#define CLDEPLUS_APPTEST_STORE_MYSQLSTORE00_HPP
 
 #include <gtest/gtest.h>
 #include "../../Source/Foundation/Foundation.h"
 #include "../Store/Preparation/PreOrderMySqlStore.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
             namespace Test {
 
-                using Cell = Cloude::Foundation::Cell;
-                using Identity = Cloude::Foundation::Identity;
+                using Cell = CLDEPlus::Foundation::Cell;
+                using Identity = CLDEPlus::Foundation::Identity;
 
                 TEST_F(PreOrderMySqlStore, CreateGetSaveDelete00) {
 
@@ -123,4 +123,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_STORE_MYSQLSTORE00_HPP
+#endif //CLDEPLUS_APPTEST_STORE_MYSQLSTORE00_HPP

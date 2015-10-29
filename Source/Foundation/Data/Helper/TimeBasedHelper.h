@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
-#define CLOUD_E_PLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
+#ifndef CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
+#define CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
 
 #include <string>
 #include "../TimeBasedValue.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Helper {
@@ -23,4 +23,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
+#endif //CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H

@@ -10,7 +10,7 @@
 #include "../../Foundation/EntitySourceDriver.h"
 #include "MySqlSourceException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace MySql {
 

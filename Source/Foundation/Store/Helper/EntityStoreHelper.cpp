@@ -7,14 +7,14 @@
 #include "CellHelper.h"
 #include "../../Exception/CLDEEntityStoreRoutineException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
             namespace Helper {
 
                 void EntityStoreHelper::GenerateCellsFromColumns(
-                        const Cloude::Foundation::SPtrColumnVector &columnVector,
-                        const Cloude::Foundation::Store::SPtrDataRecord &dataRecord,
+                        const CLDEPlus::Foundation::SPtrColumnVector &columnVector,
+                        const CLDEPlus::Foundation::Store::SPtrDataRecord &dataRecord,
                         bool checkCellExists) {
 
                     if (!dataRecord) {

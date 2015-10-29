@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 6/16/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_CONTRACT_IDATARECORD_H
-#define CLOUD_E_PLUS_FOUNDATION_CONTRACT_IDATARECORD_H
+#ifndef CLDEPLUS_FOUNDATION_CONTRACT_IDATARECORD_H
+#define CLDEPLUS_FOUNDATION_CONTRACT_IDATARECORD_H
 
 #include "../Cell.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
 
@@ -52,4 +52,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_CONTRACT_IDATARECORD_H
+#endif //CLDEPLUS_FOUNDATION_CONTRACT_IDATARECORD_H

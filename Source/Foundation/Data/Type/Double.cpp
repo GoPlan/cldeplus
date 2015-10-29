@@ -5,7 +5,7 @@
 #include "Double.h"
 #include "../../Exception/CLDENonSupportedFunctionException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Type {

@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 7/9/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TONUMERIC_HPP
-#define CLOUD_E_PLUS_FOUNDATION_DATA_TONUMERIC_HPP
+#ifndef CLDEPLUS_FOUNDATION_DATA_TONUMERIC_HPP
+#define CLDEPLUS_FOUNDATION_DATA_TONUMERIC_HPP
 
 #include "Value.h"
 #include "../Exception/CLDENonSupportedDataTypeException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
 
@@ -28,4 +28,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_DATA_TONUMERIC_HPP
+#endif //CLDEPLUS_FOUNDATION_DATA_TONUMERIC_HPP

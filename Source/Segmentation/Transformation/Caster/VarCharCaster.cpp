@@ -6,7 +6,7 @@
 #include "../../../Foundation/Data/Helper/TypeHelper.h"
 #include "../../Exception/TransformationException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
         namespace Transformation {
             Foundation::Data::SPtrValue Caster::VarCharCaster::Cast(

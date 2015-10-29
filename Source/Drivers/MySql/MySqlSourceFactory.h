@@ -2,14 +2,14 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#ifndef CLOUD_E_PLUS_DRIVERS_MYSQL_MYSQLSOURCEHELPER_H
-#define CLOUD_E_PLUS_DRIVERS_MYSQL_MYSQLSOURCEHELPER_H
+#ifndef CLDEPLUS_DRIVERS_MYSQL_MYSQLSOURCEHELPER_H
+#define CLDEPLUS_DRIVERS_MYSQL_MYSQLSOURCEHELPER_H
 
 #include "Data/MySqlDate.h"
 #include "Data/MySqlTime.h"
 #include "Data/MySqlDateTime.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace MySql {
             struct MySqlSourceFactory {
@@ -42,4 +42,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_DRIVERS_MYSQL_MYSQLSOURCEHELPER_H
+#endif //CLDEPLUS_DRIVERS_MYSQL_MYSQLSOURCEHELPER_H

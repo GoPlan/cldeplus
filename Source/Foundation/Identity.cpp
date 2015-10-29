@@ -4,7 +4,7 @@
 
 #include "Identity.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         Identity::Identity(const std::vector<SPtrCell> &sptrCells) {

@@ -11,7 +11,7 @@
 #include "../Data/Value.h"
 #include "../Query/ComparativeType.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
 

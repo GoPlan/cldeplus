@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 7/9/15.
 //
 
-#ifndef CLOUD_E_PLUS_RELATION_NAMEDENTITYSTORE_H
-#define CLOUD_E_PLUS_RELATION_NAMEDENTITYSTORE_H
+#ifndef CLDEPLUS_RELATION_NAMEDENTITYSTORE_H
+#define CLDEPLUS_RELATION_NAMEDENTITYSTORE_H
 
 #include "NamedEntityLoader.h"
 #include "Exception/NamedEntityStoreException.h"
 #include "../Foundation/EntityStore.h"
 #include "../Foundation/Query/Helper/ProxyHelper.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         template<class TEntity>
@@ -76,4 +76,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_RELATION_NAMEDENTITYSTORE_H
+#endif //CLDEPLUS_RELATION_NAMEDENTITYSTORE_H

@@ -13,7 +13,7 @@
 #include "Exception/CLDEEntityException.h"
 #include "Store/AbstractEntity.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class Entity : public Store::AbstractEntity {

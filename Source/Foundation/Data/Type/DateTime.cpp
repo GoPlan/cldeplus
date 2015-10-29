@@ -7,7 +7,7 @@
 #include "../../Exception/CLDENotImplementedException.h"
 #include "../Helper/TimeBasedHelper.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Type {

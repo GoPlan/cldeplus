@@ -6,7 +6,7 @@
 #include "Exception/CLDEEntityException.h"
 #include "Query/Helper/ProxyHelper.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         SPtrEntity EntityProxy::Summon(SPtrEntityStore &entityStore) {

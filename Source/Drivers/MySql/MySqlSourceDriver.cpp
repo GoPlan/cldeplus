@@ -14,7 +14,7 @@
 #include "MySqlSourceDriver.h"
 #include "MySqlSourceFactory.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace MySql {
 

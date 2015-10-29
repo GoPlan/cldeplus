@@ -2,15 +2,15 @@
 // Created by LE, Duc-Anh on 5/21/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_PREORDERMYSQLSTORE_H
-#define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_PREORDERMYSQLSTORE_H
+#ifndef CLDEPLUS_APPTEST_STORE_PREPARATION_PREORDERMYSQLSTORE_H
+#define CLDEPLUS_APPTEST_STORE_PREPARATION_PREORDERMYSQLSTORE_H
 
 #include <gtest/gtest.h>
 #include "../../Application/PreOrderMap.h"
 #include "../../Application/PreOrderItemsMap.h"
 #include "../../../Source/Foundation/EntityQuery.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
 
@@ -35,4 +35,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_PREORDERMYSQLSTORE_H
+#endif //CLDEPLUS_APPTEST_STORE_PREPARATION_PREORDERMYSQLSTORE_H

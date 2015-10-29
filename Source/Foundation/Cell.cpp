@@ -6,7 +6,7 @@
 #include "Data/Helper/TypeHelper.h"
 #include "Exception/CLDEEntityException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         Cell::Cell(const SPtrColumn &column) : _column(column) {

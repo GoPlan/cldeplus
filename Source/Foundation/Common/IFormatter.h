@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_COMMON_IFORMATTER_H
-#define CLOUD_E_PLUS_FOUNDATION_COMMON_IFORMATTER_H
+#ifndef CLDEPLUS_FOUNDATION_COMMON_IFORMATTER_H
+#define CLDEPLUS_FOUNDATION_COMMON_IFORMATTER_H
 
 #include <string>
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Common {
 
@@ -20,4 +20,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_COMMON_IFORMATTER_H
+#endif //CLDEPLUS_FOUNDATION_COMMON_IFORMATTER_H

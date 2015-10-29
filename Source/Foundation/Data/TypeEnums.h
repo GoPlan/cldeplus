@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
 

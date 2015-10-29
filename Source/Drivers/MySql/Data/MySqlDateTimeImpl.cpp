@@ -4,7 +4,7 @@
 
 #include "MySqlDateTimeImpl.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace MySql {
             namespace Data {

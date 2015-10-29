@@ -10,7 +10,7 @@
 #include "Entity.h"
 #include "EntityMap.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class EntitySourceDriver;

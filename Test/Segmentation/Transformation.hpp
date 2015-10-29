@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 7/1/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_TRANSFORMATION_HPP
-#define CLOUD_E_PLUS_APPTEST_TRANSFORMATION_HPP
+#ifndef CLDEPLUS_APPTEST_TRANSFORMATION_HPP
+#define CLDEPLUS_APPTEST_TRANSFORMATION_HPP
 
 #include <gtest/gtest.h>
 #include <memory>
@@ -17,11 +17,11 @@
 #include "../Application/PreOrderMap.h"
 #include "../Application/CustomerMap.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Segmentation {
 
-            using namespace Cloude::Segmentation;
+            using namespace CLDEPlus::Segmentation;
 
             TEST(Transformation, case01) {
 
@@ -97,4 +97,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_TRANSFORMATION_HPP
+#endif //CLDEPLUS_APPTEST_TRANSFORMATION_HPP

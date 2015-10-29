@@ -4,7 +4,7 @@
 
 #include "SegmentationException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
         namespace Exception {
 

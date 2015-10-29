@@ -28,7 +28,7 @@
 #include "ValueHelper.h"
 #include "TypeHelper.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         Data::SPtrValue Data::Helper::ValueHelper::CopySPtrValue(const Data::SPtrValue &sptrValue) {

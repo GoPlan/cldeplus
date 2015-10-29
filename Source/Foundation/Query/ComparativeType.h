@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVETYPE_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_COMPARATIVETYPE_H
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
             enum class ComparativeType {

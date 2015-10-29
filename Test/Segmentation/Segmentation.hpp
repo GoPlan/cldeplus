@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 6/19/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_SEGMENTATION_HPP
-#define CLOUD_E_PLUS_APPTEST_SEGMENTATION_HPP
+#ifndef CLDEPLUS_APPTEST_SEGMENTATION_HPP
+#define CLDEPLUS_APPTEST_SEGMENTATION_HPP
 
 #include <gtest/gtest.h>
 #include <memory>
@@ -20,7 +20,7 @@
 #include "../Application/PreOrderMap.h"
 #include "../Application/MapFactory.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Segmentation {
 
@@ -63,12 +63,12 @@ namespace Cloude {
                 auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
                 auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
 
-                Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
-                Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
-                Cloude::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
-                Cloude::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
 
-                Cloude::Foundation::Store::Extra::EntityOutputFormatter formatter{};
+                CLDEPlus::Foundation::Store::Extra::EntityOutputFormatter formatter{};
                 formatter.DisplayColumns().push_back(newPreOrderIdColumn);
                 formatter.DisplayColumns().push_back(newPreOrderTotalColumn);
                 formatter.DisplayColumns().push_back(newCustomerIdColumn);
@@ -81,7 +81,7 @@ namespace Cloude {
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
                 // INNER JOIN - PREORDER <> CUSTOMER
-                Cloude::Segmentation::Join::Inner joinInner{};
+                CLDEPlus::Segmentation::Join::Inner joinInner{};
                 joinInner.LhsComparingColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
                 joinInner.RhsComparingColumns().push_back(sptrCustomerMap->GetColumn("Id"));
                 joinInner.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
@@ -96,7 +96,7 @@ namespace Cloude {
                 }
 
                 // LEFT JOIN - PREORDER <> CUSTOMER
-                Cloude::Segmentation::Join::Left joinLeft{};
+                CLDEPlus::Segmentation::Join::Left joinLeft{};
                 joinLeft.LhsComparingColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
                 joinLeft.RhsComparingColumns().push_back(sptrCustomerMap->GetColumn("Id"));
                 joinLeft.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
@@ -154,12 +154,12 @@ namespace Cloude {
                 auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
                 auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
 
-                Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
-                Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
-                Cloude::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
-                Cloude::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
 
-                Cloude::Foundation::Store::Extra::EntityOutputFormatter formatter{};
+                CLDEPlus::Foundation::Store::Extra::EntityOutputFormatter formatter{};
                 formatter.DisplayColumns().push_back(newPreOrderIdColumn);
                 formatter.DisplayColumns().push_back(newPreOrderTotalColumn);
                 formatter.DisplayColumns().push_back(newCustomerIdColumn);
@@ -172,7 +172,7 @@ namespace Cloude {
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
                 // RIGHT JOIN - PREORDER <> CUSTOMER
-                Cloude::Segmentation::Join::Right joinRight{};
+                CLDEPlus::Segmentation::Join::Right joinRight{};
                 joinRight.LhsComparingColumns().push_back(sptrPreOrderMap->GetColumn("CustId"));
                 joinRight.RhsComparingColumns().push_back(sptrCustomerMap->GetColumn("Id"));
                 joinRight.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
@@ -227,12 +227,12 @@ namespace Cloude {
                 auto newPreOrderIdColumn = Foundation::CreateColumn("preorderId", Foundation::Data::ValueType::Int64);
                 auto newPreOrderTotalColumn = Foundation::CreateColumn("preorderTotal", Foundation::Data::ValueType::Double);
 
-                Cloude::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
-                Cloude::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
-                Cloude::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
-                Cloude::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer customerIdCell{newCustomerIdColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer customerEmailCell{newCustomerEmailColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
+                CLDEPlus::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
 
-                Cloude::Foundation::Store::Extra::EntityOutputFormatter formatter{};
+                CLDEPlus::Foundation::Store::Extra::EntityOutputFormatter formatter{};
                 formatter.DisplayColumns().push_back(newPreOrderIdColumn);
                 formatter.DisplayColumns().push_back(newPreOrderTotalColumn);
                 formatter.DisplayColumns().push_back(newCustomerIdColumn);
@@ -245,7 +245,7 @@ namespace Cloude {
                 std::sort(rsPreOrder.begin(), rsPreOrder.end(), cmp);
 
                 // CROSSJOIN - PREORDER <> CUSTOMER
-                Cloude::Segmentation::Join::Cross crossJoin{};
+                CLDEPlus::Segmentation::Join::Cross crossJoin{};
                 crossJoin.LhsTransformer()->AddCellTransformer("Id", preorderIdCell);
                 crossJoin.LhsTransformer()->AddCellTransformer("Total", preorderTotalCell);
                 crossJoin.RhsTransformer()->AddCellTransformer("Id", customerIdCell);
@@ -262,4 +262,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_SEGMENTATION_HPP
+#endif //CLDEPLUS_APPTEST_SEGMENTATION_HPP

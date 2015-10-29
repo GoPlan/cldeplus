@@ -6,7 +6,7 @@
 #include "MySqlDateTimeImpl.h"
 #include "../MySqlHelper.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace MySql {
             namespace Data {

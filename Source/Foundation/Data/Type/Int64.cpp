@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "Int64.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Type {

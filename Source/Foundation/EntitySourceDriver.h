@@ -10,7 +10,7 @@
 #include "EntityProxy.h"
 #include "Query/Criteria.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class EntitySourceDriver {

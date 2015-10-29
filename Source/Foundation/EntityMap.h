@@ -11,7 +11,7 @@
 #include "Exception/CLDEEntityMapException.h"
 #include "Column.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class EntityMap {

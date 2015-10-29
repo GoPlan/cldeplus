@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_LEFT_H
-#define CLOUD_E_PLUS_SEGMENTATION_JOIN_LEFT_H
+#ifndef CLDEPLUS_SEGMENTATION_JOIN_LEFT_H
+#define CLDEPLUS_SEGMENTATION_JOIN_LEFT_H
 
 #include "../../Foundation/Store/Comparer/Compare.h"
 #include "../../Foundation/Store/Comparer/Greater.h"
 #include "../../Foundation/Store/Helper/CellHelper.h"
 #include "../../Segmentation/Transformation/EntityTransformer.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
         namespace Join {
 
@@ -120,4 +120,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_SEGMENTATION_JOIN_LEFT_H
+#endif //CLDEPLUS_SEGMENTATION_JOIN_LEFT_H

@@ -4,7 +4,7 @@
 
 #include "PreOrderMap.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Application{
 

@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
-#define CLOUD_E_PLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
+#ifndef CLDEPLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
+#define CLDEPLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
 
 #include "../../Common/IFormatter.h"
 #include "../../Column.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
             namespace Extra {
@@ -46,4 +46,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
+#endif //CLDEPLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H

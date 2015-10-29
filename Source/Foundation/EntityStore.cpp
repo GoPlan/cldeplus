@@ -8,7 +8,7 @@
 #include "Query/Helper/SqlHelper.h"
 #include "Store/Helper/EntityStoreHelper.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         EntityStore::EntityStore(const SPtrEntityMap &sptrEntityMap,

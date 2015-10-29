@@ -9,7 +9,7 @@
 #include <vector>
 #include "../../EntityProxy.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
             namespace Helper {

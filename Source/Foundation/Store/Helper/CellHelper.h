@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_CELLHELPER_H
-#define CLOUD_E_PLUS_CELLHELPER_H
+#ifndef CLDEPLUS_CELLHELPER_H
+#define CLDEPLUS_CELLHELPER_H
 
 #include "../../Cell.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
             namespace Helper {
@@ -20,4 +20,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_CELLHELPER_H
+#endif //CLDEPLUS_CELLHELPER_H

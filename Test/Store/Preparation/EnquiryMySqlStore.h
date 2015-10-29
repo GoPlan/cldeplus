@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYMYSQLSTORE_H
-#define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYMYSQLSTORE_H
+#ifndef CLDEPLUS_APPTEST_STORE_PREPARATION_ENQUIRYMYSQLSTORE_H
+#define CLDEPLUS_APPTEST_STORE_PREPARATION_ENQUIRYMYSQLSTORE_H
 
 #include <gtest/gtest.h>
 #include "../../Application/EnquiryMap.h"
 #include "../../Entity/Enquiry.h"
 #include "../../../Source/Foundation/EntityQuery.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
             namespace Preparation {
@@ -34,4 +34,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYMYSQLSTORE_H
+#endif //CLDEPLUS_APPTEST_STORE_PREPARATION_ENQUIRYMYSQLSTORE_H

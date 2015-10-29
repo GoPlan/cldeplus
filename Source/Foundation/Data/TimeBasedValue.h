@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 7/16/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H
-#define CLOUD_E_PLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H
+#ifndef CLDEPLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H
+#define CLDEPLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H
 
 #include "Value.h"
 #include "../Common/IComparable.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
 
@@ -54,4 +54,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H
+#endif //CLDEPLUS_FOUNDATION_DATA_TIMEBASEDVALUE_H

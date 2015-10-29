@@ -16,7 +16,7 @@
 #include "Transformation/Caster/StringCaster.h"
 #include "Transformation/Caster/VarCharCaster.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
 
         Transformation::SPtrCaster CasterFactory::CreateByteCaster() {

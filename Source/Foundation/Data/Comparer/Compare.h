@@ -2,14 +2,14 @@
 // Created by LE, Duc Anh on 6/26/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_COMPARER_COMAPARE_H
-#define CLOUD_E_PLUS_FOUNDATION_TYPE_COMPARER_COMAPARE_H
+#ifndef CLDEPLUS_FOUNDATION_TYPE_COMPARER_COMAPARE_H
+#define CLDEPLUS_FOUNDATION_TYPE_COMPARER_COMAPARE_H
 
 #include "../Value.h"
 #include "Greater.h"
 #include "Less.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Comparer {
@@ -29,4 +29,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_TYPE_COMPARER_COMAPARE_H
+#endif //CLDEPLUS_FOUNDATION_TYPE_COMPARER_COMAPARE_H

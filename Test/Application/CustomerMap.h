@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 7/1/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_APPLICATION_CUSTOMERMAP_H
-#define CLOUD_E_PLUS_APPTEST_APPLICATION_CUSTOMERMAP_H
+#ifndef CLDEPLUS_APPTEST_APPLICATION_CUSTOMERMAP_H
+#define CLDEPLUS_APPTEST_APPLICATION_CUSTOMERMAP_H
 
 #include "../../Source/Foundation/EntityMap.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Application {
 
@@ -36,4 +36,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_APPTEST_APPLICATION_CUSTOMERMAP_H
+#endif //CLDEPLUS_APPTEST_APPLICATION_CUSTOMERMAP_H

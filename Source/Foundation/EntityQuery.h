@@ -10,7 +10,7 @@
 #include "Query/Criteria.h"
 #include "EntitySourceDriver.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class EntityQuery {

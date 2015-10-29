@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_CROSS_H
-#define CLOUD_E_PLUS_SEGMENTATION_JOIN_CROSS_H
+#ifndef CLDEPLUS_SEGMENTATION_JOIN_CROSS_H
+#define CLDEPLUS_SEGMENTATION_JOIN_CROSS_H
 
 #include "../../Foundation/EntityProxy.h"
 #include "../Transformation/EntityTransformer.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
         namespace Join {
 
@@ -73,4 +73,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_SEGMENTATION_JOIN_CROSS_H
+#endif //CLDEPLUS_SEGMENTATION_JOIN_CROSS_H

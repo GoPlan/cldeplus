@@ -2,18 +2,18 @@
 // Created by LE, Duc Anh on 6/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_STORE_SQLITESTORE_HPP
-#define CLOUD_E_PLUS_APPTEST_STORE_SQLITESTORE_HPP
+#ifndef CLDEPLUS_APPTEST_STORE_SQLITESTORE_HPP
+#define CLDEPLUS_APPTEST_STORE_SQLITESTORE_HPP
 
 #include <gtest/gtest.h>
 #include "Preparation/ProductSQLiteStore.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
 
-            using Cell = Cloude::Foundation::Cell;
-            using Identity = Cloude::Foundation::Identity;
+            using Cell = CLDEPlus::Foundation::Cell;
+            using Identity = CLDEPlus::Foundation::Identity;
             using ProductSQLiteStore = Preparation::ProductSQLiteStore;
 
             TEST_F(ProductSQLiteStore, CreateGetSaveDelete) {
@@ -101,4 +101,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_STORE_SQLITESTORE_HPP
+#endif //CLDEPLUS_APPTEST_STORE_SQLITESTORE_HPP

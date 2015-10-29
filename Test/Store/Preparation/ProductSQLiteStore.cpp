@@ -5,7 +5,7 @@
 #include "../../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
 #include "ProductSQLiteStore.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
             namespace Preparation {

@@ -4,7 +4,7 @@
 
 #include "NamedEntityStoreException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
         namespace Exception {
 

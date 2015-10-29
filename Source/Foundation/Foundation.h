@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 7/7/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_FOUNDATION_H
-#define CLOUD_E_PLUS_FOUNDATION_FOUNDATION_H
+#ifndef CLDEPLUS_FOUNDATION_FOUNDATION_H
+#define CLDEPLUS_FOUNDATION_FOUNDATION_H
 
 #include "Enum/CommonBufferSize.h"
 
@@ -44,4 +44,4 @@
 #include "Exception/CLDENonSupportedDataTypeException.h"
 #include "Exception/CLDENonSupportedFunctionException.h"
 
-#endif //CLOUD_E_PLUS_FOUNDATION_FOUNDATION_H
+#endif //CLDEPLUS_FOUNDATION_FOUNDATION_H

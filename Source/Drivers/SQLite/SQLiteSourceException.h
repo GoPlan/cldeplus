@@ -7,7 +7,7 @@
 
 #include "../../Foundation/Exception/CLDEException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace SQLite {
 

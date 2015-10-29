@@ -4,7 +4,7 @@
 
 #include "LinkToOne.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         Foundation::SPtrEntityProxy LinkToOne::Refer() {

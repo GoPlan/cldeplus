@@ -5,7 +5,7 @@
 #include "../EntityStore.h"
 #include "CLDEEntityStoreRoutineException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
 

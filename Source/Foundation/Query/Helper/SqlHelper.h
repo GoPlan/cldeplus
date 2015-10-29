@@ -10,7 +10,7 @@
 #include <functional>
 #include "../Criteria.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class Column;

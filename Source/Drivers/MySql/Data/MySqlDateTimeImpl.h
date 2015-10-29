@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 8/26/15.
 //
 
-#ifndef CLOUD_E_PLUS_DRIVER_MYSQL_DATA_MYSQLTIMEIMPL_H
-#define CLOUD_E_PLUS_DRIVER_MYSQL_DATA_MYSQLTIMEIMPL_H
+#ifndef CLDEPLUS_DRIVER_MYSQL_DATA_MYSQLTIMEIMPL_H
+#define CLDEPLUS_DRIVER_MYSQL_DATA_MYSQLTIMEIMPL_H
 
 #include "mysql.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace MySql {
             namespace Data {
@@ -38,4 +38,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_DRIVER_MYSQL_DATA_MYSQLTIMEIMPL_H
+#endif //CLDEPLUS_DRIVER_MYSQL_DATA_MYSQLTIMEIMPL_H

@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_ENTITY_CUSTOMER_H
-#define CLOUD_E_PLUS_APPTEST_ENTITY_CUSTOMER_H
+#ifndef CLDEPLUS_APPTEST_ENTITY_CUSTOMER_H
+#define CLDEPLUS_APPTEST_ENTITY_CUSTOMER_H
 
 #include <string>
 #include "../../Source/Relation/Relation.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Entity {
 
@@ -51,4 +51,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_APPTEST_ENTITY_CUSTOMER_H
+#endif //CLDEPLUS_APPTEST_ENTITY_CUSTOMER_H

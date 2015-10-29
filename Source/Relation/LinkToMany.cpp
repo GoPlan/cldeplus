@@ -4,7 +4,7 @@
 
 #include "LinkToMany.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         Foundation::SPtrEntityProxyVector LinkToMany::Refer() {

@@ -6,7 +6,7 @@
 #include <cstring>
 #include "VarChar.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Type {

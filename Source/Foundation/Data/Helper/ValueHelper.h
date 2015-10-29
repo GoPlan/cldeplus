@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_TYPE_HELPER_VALUEHELPER_H
-#define CLOUD_E_PLUS_FOUNDATION_TYPE_HELPER_VALUEHELPER_H
+#ifndef CLDEPLUS_FOUNDATION_TYPE_HELPER_VALUEHELPER_H
+#define CLDEPLUS_FOUNDATION_TYPE_HELPER_VALUEHELPER_H
 
 #include "../Value.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Helper {
@@ -20,4 +20,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_FOUNDATION_TYPE_HELPER_VALUEHELPER_H
+#endif //CLDEPLUS_FOUNDATION_TYPE_HELPER_VALUEHELPER_H

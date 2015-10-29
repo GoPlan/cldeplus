@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#ifndef CLOUD_E_PLUS_SEGMENTATION_JOIN_RIGHT_H
-#define CLOUD_E_PLUS_SEGMENTATION_JOIN_RIGHT_H
+#ifndef CLDEPLUS_SEGMENTATION_JOIN_RIGHT_H
+#define CLDEPLUS_SEGMENTATION_JOIN_RIGHT_H
 
 #include "TLeft.hpp"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
         namespace Join {
 
@@ -47,4 +47,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_SEGMENTATION_JOIN_RIGHT_H
+#endif //CLDEPLUS_SEGMENTATION_JOIN_RIGHT_H

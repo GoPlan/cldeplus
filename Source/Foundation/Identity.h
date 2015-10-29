@@ -9,7 +9,7 @@
 #include "Store/AbstractEntity.h"
 #include "Cell.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class Identity : public Store::AbstractEntity {

@@ -4,7 +4,7 @@
 
 #include "CLDENonSupportedFunctionException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
             const std::string CLDENonSupportedFunctionException::_name{"CLDENonSupportedFunctionException"};

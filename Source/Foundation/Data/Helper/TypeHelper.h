@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 7/1/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
-#define CLOUD_E_PLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
+#ifndef CLDEPLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
+#define CLDEPLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
 
 #include <string>
 #include "../TypeEnums.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Data{
             namespace Helper{
@@ -23,4 +23,4 @@ namespace Cloude {
 
 
 
-#endif //CLOUD_E_PLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
+#endif //CLDEPLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H

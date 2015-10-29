@@ -2,15 +2,15 @@
 // Created by LE, Duc Anh on 6/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
-#define CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
+#ifndef CLDEPLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
+#define CLDEPLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
 
 #include <gtest/gtest.h>
 #include "../../../Source/Foundation/Foundation.h"
 #include "../../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
 #include "../../Application/ProductMap.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
             namespace Preparation {
@@ -39,4 +39,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H
+#endif //CLDEPLUS_APPTEST_STORE_PREPARATION_ENQUIRYSQLITESTORE_H

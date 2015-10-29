@@ -7,7 +7,7 @@
 #include "../../../Foundation/Data/ValueFactory.h"
 #include "../../Exception/TransformationException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
         namespace Transformation {
 

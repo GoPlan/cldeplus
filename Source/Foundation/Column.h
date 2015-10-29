@@ -11,7 +11,7 @@
 #include "Common/IPrintable.h"
 #include "Data/TypeEnums.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         class Column : public Common::IPrintable {

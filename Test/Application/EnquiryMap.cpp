@@ -4,7 +4,7 @@
 
 #include "EnquiryMap.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Application {
 

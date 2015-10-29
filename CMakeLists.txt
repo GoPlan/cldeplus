@@ -42,7 +42,7 @@ set(COMPLETE_SOURCE
         ${SEGMENTATION_SOURCE}
         ${DRIVERS_SQLITE}
         ${DRIVERS_MYSQL}
-)
+        Source/cldeplus.h.h)
 
 include_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/include)
 link_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/lib)
@@ -55,7 +55,6 @@ target_link_libraries(cldeplus mysqlclient)
 set_target_properties(cldeplus cldeplus-static PROPERTIES
         VERSION ${VERSION}
         SOVERSION ${VERSION}
-        POSITION_INDEPENDENT_CODE True
 )
 
 if (APPLE)

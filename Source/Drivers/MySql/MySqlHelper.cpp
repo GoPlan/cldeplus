@@ -4,7 +4,7 @@
 
 #include "MySqlHelper.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Drivers {
         namespace MySql {
 

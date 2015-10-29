@@ -7,7 +7,7 @@
 #include "../../../Foundation/Data/ValueFactory.h"
 #include "../../Exception/TransformationException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
 
         Foundation::Data::SPtrValue Transformation::Caster::FloatCaster::Cast(

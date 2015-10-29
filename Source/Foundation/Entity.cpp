@@ -6,7 +6,7 @@
 
 using namespace std;
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         Entity::Entity(const SPtrIdentity &identity) : _identity(identity) {

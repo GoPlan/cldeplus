@@ -8,7 +8,7 @@
 #include <string>
 #include <exception>
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
 

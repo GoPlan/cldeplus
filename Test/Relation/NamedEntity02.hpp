@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 7/9/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY02_HPP
-#define CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY02_HPP
+#ifndef CLDEPLUS_APPTEST_RELATION_NAMEDENTITY02_HPP
+#define CLDEPLUS_APPTEST_RELATION_NAMEDENTITY02_HPP
 
 #include <gtest/gtest.h>
 
@@ -15,7 +15,7 @@
 #include "../../Source/Drivers/MySql/MySqlSourceDriver.h"
 #include "../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Test {
         namespace Store {
 
@@ -157,4 +157,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_RELATION_NAMEDENTITY02_HPP
+#endif //CLDEPLUS_APPTEST_RELATION_NAMEDENTITY02_HPP

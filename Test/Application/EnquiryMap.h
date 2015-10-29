@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 6/5/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
-#define CLOUD_E_PLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
+#ifndef CLDEPLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
+#define CLDEPLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
 
 #include "../../Source/Foundation/EntityMap.h"
 
-namespace Cloude {
+namespace CLDEPlus {
 
     namespace Test {
         namespace Application {
@@ -38,4 +38,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_APPTEST_APPLICATION_ENQUIRYMAP_H
+#endif //CLDEPLUS_APPTEST_APPLICATION_ENQUIRYMAP_H

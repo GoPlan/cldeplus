@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENUMS_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENUMS_H
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         enum CommonBufferSize {
             ONE = 1,

@@ -5,7 +5,7 @@
 #include "CriteriaHelper.h"
 #include "../Contract/IPredicateFormatter.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
             namespace Helper {

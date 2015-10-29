@@ -2,14 +2,14 @@
 // Created by LE, Duc Anh on 6/26/15.
 //
 
-#ifndef CLOUD_E_PLUS_APPTEST_TYPE_VALUECOMPARISON_H
-#define CLOUD_E_PLUS_APPTEST_TYPE_VALUECOMPARISON_H
+#ifndef CLDEPLUS_APPTEST_TYPE_VALUECOMPARISON_H
+#define CLDEPLUS_APPTEST_TYPE_VALUECOMPARISON_H
 
 #include <gtest/gtest.h>
 #include <iostream>
 #include "../../Source/Foundation/Foundation.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace AppTest {
         namespace Type {
 
@@ -35,4 +35,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_APPTEST_TYPE_VALUECOMPARISON_H
+#endif //CLDEPLUS_APPTEST_TYPE_VALUECOMPARISON_H

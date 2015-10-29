@@ -2,12 +2,12 @@
 // Created by LE, Duc Anh on 7/2/15.
 //
 
-#ifndef CLOUD_E_PLUS_SEGMENTATION_CASTERFACTORY_H
-#define CLOUD_E_PLUS_SEGMENTATION_CASTERFACTORY_H
+#ifndef CLDEPLUS_SEGMENTATION_CASTERFACTORY_H
+#define CLDEPLUS_SEGMENTATION_CASTERFACTORY_H
 
 #include "Transformation/TypeCaster.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
         struct CasterFactory {
             static Transformation::SPtrCaster CreateByteCaster();
@@ -27,4 +27,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_SEGMENTATION_CASTERFACTORY_H
+#endif //CLDEPLUS_SEGMENTATION_CASTERFACTORY_H

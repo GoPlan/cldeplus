@@ -4,7 +4,7 @@
 
 #include "Less.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
 

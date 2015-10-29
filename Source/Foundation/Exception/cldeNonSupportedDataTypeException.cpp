@@ -4,7 +4,7 @@
 
 #include "CLDENonSupportedDataTypeException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
 

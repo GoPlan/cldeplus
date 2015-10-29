@@ -2,10 +2,10 @@
 // Created by LE, Duc Anh on 6/10/15.
 //
 
-#ifndef CLOUD_E_PLUS_FOUNDATION_COMMON_ICOMPUTABLE_H
-#define CLOUD_E_PLUS_FOUNDATION_COMMON_ICOMPUTABLE_H
+#ifndef CLDEPLUS_FOUNDATION_COMMON_ICOMPUTABLE_H
+#define CLDEPLUS_FOUNDATION_COMMON_ICOMPUTABLE_H
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Common {
 
@@ -23,4 +23,4 @@ namespace Cloude {
     }
 }
 
-#endif //CLOUD_E_PLUS_FOUNDATION_COMMON_ICOMPUTABLE_H
+#endif //CLDEPLUS_FOUNDATION_COMMON_ICOMPUTABLE_H

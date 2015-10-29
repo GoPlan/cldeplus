@@ -4,7 +4,7 @@
 
 #include "CLDENotImplementedException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
             const std::string CLDENotImplementedException::_name{"CLDENotImplementedException"};

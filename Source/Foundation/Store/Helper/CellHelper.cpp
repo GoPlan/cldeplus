@@ -5,7 +5,7 @@
 #include "CellHelper.h"
 #include "../../Data/Helper/ValueHelper.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
 
         SPtrCell Store::Helper::CellHelper::CopySPtrCell(const SPtrCell &sptrCell) {

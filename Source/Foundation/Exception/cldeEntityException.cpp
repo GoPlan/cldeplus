@@ -4,7 +4,7 @@
 
 #include "CLDEEntityException.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
 

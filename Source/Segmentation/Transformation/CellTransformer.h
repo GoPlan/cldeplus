@@ -2,14 +2,14 @@
 // Created by LE, Duc Anh on 6/30/15.
 //
 
-#ifndef CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CELLTRANSFORMER_H
-#define CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CELLTRANSFORMER_H
+#ifndef CLDEPLUS_SEGMENTATION_TRANSFORMATION_CELLTRANSFORMER_H
+#define CLDEPLUS_SEGMENTATION_TRANSFORMATION_CELLTRANSFORMER_H
 
 #include "../../Foundation/Column.h"
 #include "../../Foundation/Cell.h"
 #include "TypeCaster.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Segmentation {
         namespace Transformation {
 
@@ -54,4 +54,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_SEGMENTATION_TRANSFORMATION_CELLTRANSFORMER_H
+#endif //CLDEPLUS_SEGMENTATION_TRANSFORMATION_CELLTRANSFORMER_H

@@ -2,13 +2,13 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#ifndef CLOUD_E_PLUS_RELATION_LINKTOMANY_H
-#define CLOUD_E_PLUS_RELATION_LINKTOMANY_H
+#ifndef CLDEPLUS_RELATION_LINKTOMANY_H
+#define CLDEPLUS_RELATION_LINKTOMANY_H
 
 #include "../Foundation/EntityProxy.h"
 #include "Link.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         class LinkToMany : public Link {
@@ -34,4 +34,4 @@ namespace Cloude {
 }
 
 
-#endif //CLOUD_E_PLUS_RELATION_LINKTOMANY_H
+#endif //CLDEPLUS_RELATION_LINKTOMANY_H

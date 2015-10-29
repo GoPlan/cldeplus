@@ -4,7 +4,7 @@
 
 #include "RelationMap.h"
 
-namespace Cloude {
+namespace CLDEPlus {
     namespace Relation {
 
         void RelationMap::AddLink(const std::string &srcColumnName, const Foundation::SPtrColumn &dstColumn) {
