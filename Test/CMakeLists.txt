@@ -1,6 +1,5 @@
 # AppTest
 include_directories(${GTEST}/include)
-
 add_library(apptest STATIC
         Application/EnquiryMap.cpp
         Application/EnquiryMap.h
@@ -53,6 +52,15 @@ add_executable(cldeplus-test main.cpp)
 target_link_libraries(cldeplus-test apptest)
 target_link_libraries(cldeplus-test cldeplus-static)
 target_link_libraries(cldeplus-test cldeparser-static gtest)
+
+
+# COPY Examples
+set(EXAMPLE "example01.db")
+add_custom_command(TARGET cldeplus-test POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE}
+        $<TARGET_FILE_DIR:cldeplus-test>/${EXAMPLE}
+)
 
 
 # Valgrind cldeparser-apptest

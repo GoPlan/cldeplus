@@ -19,9 +19,23 @@ add_subdirectory(Test)
 
 
 # SOURCE - Core
-file(GLOB_RECURSE FOUNDATION_SOURCE Source/Foundation/*.cpp Source/Foundation/*.h)
-file(GLOB_RECURSE RELATION_SOURCE Source/Relation/*.cpp Source/Relation/*.h)
-file(GLOB_RECURSE SEGMENTATION_SOURCE Source/Segmentation/*.cpp Source/Segmentation/*.h)
+file(GLOB_RECURSE FOUNDATION_SOURCE
+        Source/Foundation/*.cpp
+        Source/Foundation/*.h
+        Source/Foundation/*.hpp
+)
+
+file(GLOB_RECURSE RELATION_SOURCE
+        Source/Relation/*.cpp
+        Source/Relation/*.h
+        Source/Relation/*.hpp
+)
+
+file(GLOB_RECURSE SEGMENTATION_SOURCE
+        Source/Segmentation/*.cpp
+        Source/Segmentation/*.h
+        Source
+)
 
 
 # SOURCE - Drivers
@@ -42,7 +56,7 @@ set(COMPLETE_SOURCE
         ${SEGMENTATION_SOURCE}
         ${DRIVERS_SQLITE}
         ${DRIVERS_MYSQL}
-        Source/cldeplus.h.h)
+        Source/cldeplus.h)
 
 include_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/include)
 link_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/lib)
