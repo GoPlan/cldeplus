@@ -5,9 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
 
-#include <memory>
-#include <vector>
-#include <string>
+#include "cldeplus_default"
 #include "Exception/CLDEEntityMapException.h"
 #include "Column.h"
 
@@ -39,11 +37,6 @@ namespace CLDEPlus {
             void AddKeyColumn(SPtrColumn const &sptrColumn) { _columnsForKey.push_back(sptrColumn); }
             void AddUpdateColumn(SPtrColumn const &sptrColumn) { _columnsForUpdate.push_back(sptrColumn); }
             void AddSelectColumn(SPtrColumn const &sptrColumn) { _columnsForSelect.push_back(sptrColumn); }
-
-            // Factory methods
-            static std::unique_ptr<EntityMap> Create(std::string const&tableName){
-                return std::unique_ptr<EntityMap>(new EntityMap(tableName));
-            }
 
         protected:
 

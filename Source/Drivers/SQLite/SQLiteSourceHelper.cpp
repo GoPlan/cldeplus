@@ -4,7 +4,6 @@
 
 #include "SQLiteSourceHelper.h"
 
-
 std::string CLDEPlus::Drivers::SQLite::SQLiteSourceHelper::CopyToString(int resultCode) {
 
     std::string code = std::to_string(resultCode);

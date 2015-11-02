@@ -5,9 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_CELL_H
 #define CLOUD_E_CPLUS_FOUNDATION_CELL_H
 
-#include <string>
-#include <memory>
-#include <unordered_map>
+#include "cldeplus_default"
 #include "Data/Value.h"
 #include "Column.h"
 
@@ -27,7 +25,7 @@ namespace CLDEPlus {
             Cell(Cell &&) = default;
             Cell &operator=(const Cell &) = default;
             Cell &operator=(Cell &&) = default;
-            virtual ~Cell() = default;
+            ~Cell() = default;
 
             // IPrintable
             std::string ToString() const override;
@@ -37,7 +35,6 @@ namespace CLDEPlus {
             const SPtrColumn &getColumn() const { return _column; }
             const Data::SPtrValue &getValue() const { return _value; }
             void setValue(const Data::SPtrValue &value);
-
 
             // Factory methods
             static std::unique_ptr<Cell> Create(const SPtrColumn &column) { return std::unique_ptr<Cell>(new Cell(column)); }

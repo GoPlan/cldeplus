@@ -5,9 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_COLUMN_H
 #define CLOUD_E_CPLUS_FOUNDATION_COLUMN_H
 
-#include <string>
-#include <vector>
-#include <unordered_map>
+#include "cldeplus_default"
 #include "Common/IPrintable.h"
 #include "Data/TypeEnums.h"
 

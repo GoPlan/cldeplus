@@ -5,7 +5,7 @@
 #ifndef CLDEPLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
 #define CLDEPLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
 
-#include <string>
+#include "cldeplus_default"
 #include <mysql.h>
 #include "../../Foundation/Data/TimeBasedValue.h"
 

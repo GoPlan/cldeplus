@@ -2,7 +2,7 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#include <memory>
+#include "cldeplus_default"
 #include "../Type/Blob.h"
 #include "../Type/Boolean.h"
 #include "../Type/Byte.h"

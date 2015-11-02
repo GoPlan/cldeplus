@@ -5,7 +5,6 @@
 #include "SQLiteSourceException.h"
 #include "SQLiteSourceHelper.h"
 
-
 namespace CLDEPlus {
     namespace Drivers {
         namespace SQLite {

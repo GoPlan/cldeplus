@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_CONTRACT_IPREDICATEFORMATTER_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_CONTRACT_IPREDICATEFORMATTER_H
 
-#include <string>
+#include "cldeplus_default"
 #include "../Criteria.h"
 
 namespace CLDEPlus {

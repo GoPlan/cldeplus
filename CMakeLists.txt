@@ -29,7 +29,7 @@ file(GLOB_RECURSE RELATION_SOURCE
 file(GLOB_RECURSE SEGMENTATION_SOURCE
         Source/Segmentation/*.cpp
         Source/Segmentation/*.h
-        Source
+        Source/Segmentation/*.hpp
 )
 
 
@@ -46,13 +46,16 @@ file(GLOB_RECURSE DRIVERS_SQLITE
 )
 
 set(COMPLETE_SOURCE
+        Source/Ports/cldeplus_default
+        Source/cldeplus.h
         ${FOUNDATION_SOURCE}
         ${RELATION_SOURCE}
         ${SEGMENTATION_SOURCE}
         ${DRIVERS_SQLITE}
         ${DRIVERS_MYSQL}
-        Source/cldeplus.h)
+)
 
+include_directories(${CMAKE_SOURCE_DIR}/Source/Ports)
 include_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/include)
 link_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/lib)
 
@@ -76,6 +79,7 @@ endif ()
 set(INSTALL_DIR "${EXTRA_DIR}")
 set(CMAKE_INSTALL_PREFIX ${INSTALL_DIR}/${CMAKE_PROJECT_NAME}-${VERSION})
 install(DIRECTORY Source/ DESTINATION include/${CMAKE_PROJECT_NAME} FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY Source/ DESTINATION include/${CMAKE_PROJECT_NAME} FILES_MATCHING PATTERN "*.hpp")
 install(TARGETS cldeplus cldeplus-static
         LIBRARY DESTINATION ./
         ARCHIVE DESTINATION ./

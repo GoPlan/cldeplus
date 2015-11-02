@@ -5,7 +5,7 @@
 #ifndef CLDEPLUS_FOUNDATION_COMMON_IPRINTABLE_H
 #define CLDEPLUS_FOUNDATION_COMMON_IPRINTABLE_H
 
-#include <string>
+#include "cldeplus_default"
 #include "IFormatter.h"
 
 namespace CLDEPlus {

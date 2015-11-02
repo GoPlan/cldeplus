@@ -5,6 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUE_H
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUE_H
 
+#include "cldeplus_default"
 #include "../Common/IPrintable.h"
 #include "../Common/IComputable.h"
 #include "TypeEnums.h"

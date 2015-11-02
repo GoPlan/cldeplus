@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 
-#include <unordered_map>
+#include "cldeplus_default"
 #include "Identity.h"
 #include "Entity.h"
 #include "EntityMap.h"
@@ -30,7 +30,7 @@ namespace CLDEPlus {
             EntityStore(EntityStore &&) = default;
             EntityStore &operator=(const EntityStore &) = default;
             EntityStore &operator=(EntityStore &&) = default;
-            virtual ~EntityStore() = default;
+            ~EntityStore() = default;
 
             // Locals
             bool HasIdentityInMap(const SPtrIdentity &identity) const;
@@ -49,7 +49,7 @@ namespace CLDEPlus {
 
             // Factory methods
             static std::unique_ptr<EntityStore> Create(SPtrEntityMap const &sptrEntityMap,
-                                                       SPtrEntitySourceDriver const &sptrEntitySourceDriver){
+                                                       SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
                 return std::unique_ptr<EntityStore>(new EntityStore(sptrEntityMap, sptrEntitySourceDriver));
             }
         };

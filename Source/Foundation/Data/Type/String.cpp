@@ -3,7 +3,6 @@
 //
 
 #include "String.h"
-#include "../../Exception/CLDENonSupportedFunctionException.h"
 
 namespace CLDEPlus {
     namespace Foundation {

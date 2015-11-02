@@ -5,8 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_STORE_HELPER_ENTITYSTOREHELPER_H
 #define CLOUD_E_CPLUS_FOUNDATION_STORE_HELPER_ENTITYSTOREHELPER_H
 
-#include <memory>
-#include <vector>
+#include "cldeplus_default"
 #include "../../EntityProxy.h"
 
 namespace CLDEPlus {

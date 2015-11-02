@@ -17,7 +17,7 @@ namespace CLDEPlus {
                     uint32_t _value;
 
                 public:
-                    explicit UInt32(int value);
+                    explicit UInt32(uint32_t value);
                     UInt32(const UInt32 &) = default;
                     UInt32(UInt32 &&) = default;
                     UInt32 &operator=(const UInt32 &) = default;

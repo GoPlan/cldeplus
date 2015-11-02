@@ -42,6 +42,8 @@ namespace CLDEPlus {
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
+
+            return false;
         }
 
         bool Data::Comparer::Greater::CompareNumeric(
@@ -109,6 +111,8 @@ namespace CLDEPlus {
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
+
+            return false;
         }
 
         bool Data::Comparer::Greater::CompareCharacterBased(

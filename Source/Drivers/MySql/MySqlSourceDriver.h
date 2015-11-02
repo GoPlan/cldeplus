@@ -5,8 +5,7 @@
 #ifndef CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOUCRCEDRIVER_H
 #define CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOUCRCEDRIVER_H
 
-#include <memory>
-#include <vector>
+#include "cldeplus_default"
 #include "../../Foundation/EntitySourceDriver.h"
 #include "MySqlSourceException.h"
 

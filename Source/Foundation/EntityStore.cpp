@@ -2,10 +2,8 @@
 // Created by LE, Duc-Anh on 5/23/15.
 //
 
-#include <string>
 #include "EntitySourceDriver.h"
 #include "Exception/CLDEEntityStoreRoutineException.h"
-#include "Query/Helper/SqlHelper.h"
 #include "Store/Helper/EntityStoreHelper.h"
 
 namespace CLDEPlus {

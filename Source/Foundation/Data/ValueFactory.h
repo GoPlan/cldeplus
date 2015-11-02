@@ -5,7 +5,6 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUEFACTORY_H
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUEFACTORY_H
 
-#include <memory>
 #include "Value.h"
 
 namespace CLDEPlus {
@@ -39,12 +38,10 @@ namespace CLDEPlus {
                 static SPtrValue CreateTime();
                 static SPtrValue CreateTime(int hour, int minute, int second);
                 static SPtrValue CreateTime(int hour, int minute, int second, int milliseconds);
-                static SPtrValue CreateTime(int hour, int minute, int second, int millisecond, bool hasOffSet, int offset);
+                static SPtrValue CreateTime(int hour, int minute, int second, int milliseconds, int offset);
                 static SPtrValue CreateDateTime();
                 static SPtrValue CreateDateTime(int year, int month, int day);
-                static SPtrValue CreateDateTime(int year, int month, int day, int hour, int minute, int second);
-                static SPtrValue CreateDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond);
-                static SPtrValue CreateDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond, bool hasOffSet, int offset);
+                static SPtrValue CreateDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond = 0, int offset = 0);
             };
         }
     }

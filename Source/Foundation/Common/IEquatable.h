@@ -9,9 +9,7 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Common {
 
-            class IEquatable : public std::binary_function<IEquatable, IEquatable, bool> {
-
-            public:
+            struct IEquatable : public std::binary_function<IEquatable, IEquatable, bool> {
                 virtual bool Equal(const IEquatable &rhs) const = 0;
             };
         }

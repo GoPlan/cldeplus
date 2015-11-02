@@ -5,7 +5,7 @@
 #ifndef CLDEPLUS_FOUNDATION_COMMON_IFORMATTER_H
 #define CLDEPLUS_FOUNDATION_COMMON_IFORMATTER_H
 
-#include <string>
+#include "cldeplus_default"
 
 namespace CLDEPlus {
     namespace Foundation {

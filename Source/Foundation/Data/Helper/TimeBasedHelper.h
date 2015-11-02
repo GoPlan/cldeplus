@@ -5,7 +5,7 @@
 #ifndef CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
 #define CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
 
-#include <string>
+#include "cldeplus_default"
 #include "../TimeBasedValue.h"
 
 namespace CLDEPlus {

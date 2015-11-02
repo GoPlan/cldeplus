@@ -106,8 +106,8 @@ namespace CLDEPlus {
             }
 
             SPtrValue ValueFactory::CreateTime(int hour, int minute, int second, int millisecond,
-                                               bool hasOffSet, int offset) {
-                return std::make_shared<Type::Time>(hour, minute, second, millisecond, hasOffSet, offset);
+                                               int offset) {
+                return std::make_shared<Type::Time>(hour, minute, second, millisecond, offset);
             }
 
             SPtrValue ValueFactory::CreateDateTime() {
@@ -118,20 +118,11 @@ namespace CLDEPlus {
                 return std::make_shared<Type::DateTime>(year, month, day);
             }
 
-            SPtrValue ValueFactory::CreateDateTime(int year, int month, int day, int hour, int minute, int second) {
-                return std::make_shared<Type::DateTime>(year, month, day, hour, minute, second);
-            }
-
-            SPtrValue ValueFactory::CreateDateTime(int year, int month, int day,
-                                                   int hour, int minute, int second, int millisecond) {
-                return std::make_shared<Type::DateTime>(year, month, day, hour, minute, second, millisecond);
-            }
-
             SPtrValue ValueFactory::CreateDateTime(int year, int month, int day,
                                                    int hour, int minute, int second, int millisecond,
-                                                   bool hasOffSet, int offset) {
+                                                   int offset) {
                 return std::make_shared<Type::DateTime>(year, month, day, hour, minute, second, millisecond,
-                                                        hasOffSet, offset);
+                                                        offset);
             }
         }
     }

@@ -5,7 +5,6 @@
 #ifndef CLDEPLUS_SEGMENTATION_EXCEPTION_TRANSFORMATIONEXCEPTION_H
 #define CLDEPLUS_SEGMENTATION_EXCEPTION_TRANSFORMATIONEXCEPTION_H
 
-#include <string>
 #include "../../Foundation/Exception/CLDEException.h"
 
 namespace CLDEPlus {

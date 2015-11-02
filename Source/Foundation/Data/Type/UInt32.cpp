@@ -9,7 +9,7 @@ namespace CLDEPlus {
         namespace Data {
             namespace Type {
 
-                UInt32::UInt32(int value) : _value(value),
+                UInt32::UInt32(uint32_t value) : _value(value),
                                             NumericValue(ValueType::UInt32, sizeof(uint32_t)) {
                     //
                 }

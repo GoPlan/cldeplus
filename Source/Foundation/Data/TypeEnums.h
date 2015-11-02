@@ -5,8 +5,6 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUETYPE_H
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUETYPE_H
 
-#include <string>
-
 namespace CLDEPlus {
     namespace Foundation {
         namespace Data {

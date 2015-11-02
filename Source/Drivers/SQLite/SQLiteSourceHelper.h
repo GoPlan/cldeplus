@@ -5,7 +5,7 @@
 #ifndef CLDEPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H
 #define CLDEPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H
 
-#include <string>
+#include "cldeplus_default"
 #include "Amalgamation/sqlite3.h"
 
 namespace CLDEPlus {

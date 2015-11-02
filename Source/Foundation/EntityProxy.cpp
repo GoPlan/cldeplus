@@ -3,7 +3,6 @@
 //
 
 #include "EntityProxy.h"
-#include "Exception/CLDEEntityException.h"
 #include "Query/Helper/ProxyHelper.h"
 
 namespace CLDEPlus {

@@ -1,0 +1,24 @@
+//
+// Created by LE, Duc Anh on 11/2/15.
+//
+
+#ifndef CLDEPLUS_CLDE_DEFAULT_H
+#define CLDEPLUS_CLDE_DEFAULT_H
+
+/*
+ * The idea of of using clde_default is to encapsulate uses of STL components.
+ * These components usually include string, vector, memory, exception, unordered_map, list, set.
+ * All STL uses are declared & defined here so that they can be easily cross-platform maintained.
+ *
+ */
+
+#include <memory>
+#include <exception>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <functional>
+
+#endif //CLDEPLUS_CLDE_DEFAULT_H

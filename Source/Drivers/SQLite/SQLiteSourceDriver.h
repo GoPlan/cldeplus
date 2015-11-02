@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEDRIVER_H
 #define CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEDRIVER_H
 
-#include <memory>
+#include "cldeplus_default"
 #include "../../Foundation/EntitySourceDriver.h"
 #include "../../Foundation/Query/Contract/IPredicateFormatter.h"
 #include "SQLiteSourceException.h"
