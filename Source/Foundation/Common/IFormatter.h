@@ -5,7 +5,7 @@
 #ifndef CLDEPLUS_FOUNDATION_COMMON_IFORMATTER_H
 #define CLDEPLUS_FOUNDATION_COMMON_IFORMATTER_H
 
-#include "cldeplus_default"
+#include "../../Port/Definitions.h"
 
 namespace CLDEPlus {
     namespace Foundation {

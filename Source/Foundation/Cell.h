@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_CELL_H
 #define CLOUD_E_CPLUS_FOUNDATION_CELL_H
 
-#include "cldeplus_default"
+#include "../Port/Definitions.h"
 #include "Data/Value.h"
 #include "Column.h"
 

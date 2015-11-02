@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_TEXT_H
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_TEXT_H
 
-#include <cstdlib>
+#include "../../../Port/Definitions.h"
 #include "../CharacterValue.h"
 
 namespace CLDEPlus {

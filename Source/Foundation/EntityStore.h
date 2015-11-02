@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 
-#include "cldeplus_default"
+#include "../Port/Definitions.h"
 #include "Identity.h"
 #include "Entity.h"
 #include "EntityMap.h"

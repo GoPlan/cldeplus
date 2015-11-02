@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEEXCEPTION_H
 #define CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEEXCEPTION_H
 
-#include "cldeplus_default"
+#include "../../Port/Definitions.h"
 
 namespace CLDEPlus {
     namespace Foundation {

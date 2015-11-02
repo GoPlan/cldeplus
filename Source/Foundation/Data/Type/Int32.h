@@ -5,7 +5,6 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_INT32_H
 #define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_INT32_H
 
-#include "cldeplus_default"
 #include "../NumericValue.h"
 
 namespace CLDEPlus {

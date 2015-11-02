@@ -5,8 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_CRITERIA_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_CRITERIA_H
 
-#include <memory>
-#include <iterator>
+#include "../../Port/Definitions.h"
 #include "../Column.h"
 #include "../Data/Value.h"
 #include "../Query/ComparativeType.h"

@@ -5,7 +5,7 @@
 #ifndef CLDEPLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
 #define CLDEPLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
 
-#include "cldeplus_default"
+#include "../../../Port/Definitions.h"
 #include "../TypeEnums.h"
 
 namespace CLDEPlus {

@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 
-#include "cldeplus_default"
+#include "../Port/Definitions.h"
 #include "Cell.h"
 #include "Identity.h"
 #include "Exception/CLDEEntityException.h"

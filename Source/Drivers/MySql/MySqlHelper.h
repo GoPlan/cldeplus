@@ -5,8 +5,8 @@
 #ifndef CLDEPLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
 #define CLDEPLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
 
-#include "cldeplus_default"
 #include <mysql.h>
+#include "../../Port/Definitions.h"
 #include "../../Foundation/Data/TimeBasedValue.h"
 
 namespace CLDEPlus {

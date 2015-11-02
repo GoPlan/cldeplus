@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_SQLGENERATOR_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_SQLGENERATOR_H
 
-#include "cldeplus_default"
+#include "../../../Port/Definitions.h"
 #include "../Criteria.h"
 
 namespace CLDEPlus {

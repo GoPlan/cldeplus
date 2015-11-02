@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_COLUMN_H
 #define CLOUD_E_CPLUS_FOUNDATION_COLUMN_H
 
-#include "cldeplus_default"
+#include "../Port/Definitions.h"
 #include "Common/IPrintable.h"
 #include "Data/TypeEnums.h"
 

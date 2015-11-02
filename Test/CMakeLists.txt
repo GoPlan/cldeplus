@@ -1,5 +1,5 @@
+
 # AppTest
-include_directories(${GTEST}/include)
 add_library(apptest STATIC
         Application/EnquiryMap.cpp
         Application/EnquiryMap.h
@@ -39,19 +39,24 @@ add_library(apptest STATIC
         Application/MapFactory.h
 )
 
-
-# Library links search paths
+# GTEST
+set(GTEST "${CMAKE_SOURCE_DIR}/Extra/gtest-1.7.0")
+include_directories(${GTEST}/include)
 link_directories(${GTEST}/lib)
-link_directories(${CLDEPARSER})
-link_directories(${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64/lib)
 
+# MYSQL
+include_directories(${MYSQL_DIR}/include)
+link_directories(${MYSQL_DIR}/lib)
+
+# CLDEPARSER
+include_directories(${CLDEPARSER_DIR}/include)
+link_directories(${CLDEPARSER_DIR})
 
 # TARGET-EXECUTABLE: cloud_e_plus
 add_executable(cldeplus-test main.cpp)
 target_link_libraries(cldeplus-test apptest)
 target_link_libraries(cldeplus-test cldeplus-static)
 target_link_libraries(cldeplus-test cldeparser-static gtest)
-
 
 # COPY Examples
 set(EXAMPLE "example01.db")
@@ -61,11 +66,8 @@ add_custom_command(TARGET cldeplus-test POST_BUILD
         $<TARGET_FILE_DIR:cldeplus-test>/${EXAMPLE}
 )
 
-
 # TESTs
 enable_testing()
-add_test(
-        NAME cldeplus-valgrind
-        COMMAND valgrind -v --leak-check=summary --show-leak-kinds=all --track-origins=yes ./cldeplus-test)
+add_test(NAME cldeplus-valgrind COMMAND valgrind -v --leak-check=summary --show-leak-kinds=all --track-origins=yes ./cldeplus-test)
 
 

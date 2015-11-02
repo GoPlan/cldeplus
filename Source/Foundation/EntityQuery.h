@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYQUERY_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYQUERY_H
 
-#include "cldeplus_default"
+#include "../Port/Definitions.h"
 #include "EntityProxy.h"
 #include "Query/Criteria.h"
 #include "EntitySourceDriver.h"

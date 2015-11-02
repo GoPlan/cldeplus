@@ -5,7 +5,7 @@
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
 
-#include "cldeplus_default"
+#include "../Port/Definitions.h"
 #include "Exception/CLDEEntityMapException.h"
 #include "Column.h"
 
