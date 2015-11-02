@@ -36,7 +36,7 @@ namespace CLDEPlus {
 
             // Factory methods
             static unique_ptr<EntityProxy> Create() {
-                return unique_ptr<EntityProxy>(new EntityProxy());
+                return cldeplus_make_unique<EntityProxy>();
             }
 
         private:

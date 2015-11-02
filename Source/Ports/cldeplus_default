@@ -49,12 +49,12 @@ namespace CLDEPlus {
 
     template<typename T, typename... Args>
     auto cldeplus_make_shared(Args &&... args) -> decltype(std::make_shared<T>(std::forward<Args>(args)...)) {
-        return static_cast<shared_ptr<T>>(std::make_shared<T>(std::forward<Args>(args)...));
+        return std::make_shared<T>(std::forward<Args>(args)...);
     }
 
     template<typename T, typename... Args>
     unique_ptr<T> cldeplus_make_unique(Args &&... args) {
-        return new T(std::forward<Args>(args)...);
+        return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
     }
 }
 

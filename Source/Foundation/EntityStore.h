@@ -25,10 +25,10 @@ namespace CLDEPlus {
             SPtrIdentityMap _identityMap;
 
         public:
-            EntityStore(const SPtrEntityMap &sptrEntityMap, const SPtrEntitySourceDriver &sptrEntitySourceDriver);
+            EntityStore(SPtrEntityMap const &sptrEntityMap, SPtrEntitySourceDriver const &sptrEntitySourceDriver);
             EntityStore(const EntityStore &) = default;
             EntityStore(EntityStore &&) = default;
-            EntityStore &operator=(const EntityStore &) = default;
+            EntityStore &operator=(EntityStore const &) = default;
             EntityStore &operator=(EntityStore &&) = default;
             virtual ~EntityStore() = default;
 
@@ -48,9 +48,8 @@ namespace CLDEPlus {
             SPtrEntitySourceDriver const &getEntitySourceDriver() const { return _sptrEntitySourceDriver; }
 
             // Factory methods
-            static unique_ptr<EntityStore> Create(SPtrEntityMap const &sptrEntityMap,
-                                                       SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
-                return unique_ptr<EntityStore>(new EntityStore(sptrEntityMap, sptrEntitySourceDriver));
+            static unique_ptr <EntityStore> Create(SPtrEntityMap const &sptrEntityMap, SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
+                return cldeplus_make_unique<EntityStore>(sptrEntityMap, sptrEntitySourceDriver);
             }
         };
 

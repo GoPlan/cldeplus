@@ -48,7 +48,7 @@ namespace CLDEPlus {
 
                 // Factory methods
                 static unique_ptr<MySqlSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
-                    return unique_ptr<MySqlSourceDriver>(new MySqlSourceDriver(sptrEntityMap));
+                    return cldeplus_make_unique<MySqlSourceDriver>(sptrEntityMap);
                 }
 
             private:

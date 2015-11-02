@@ -37,9 +37,11 @@ namespace CLDEPlus {
             void setValue(const Data::SPtrValue &value);
 
             // Factory methods
-            static unique_ptr<Cell> Create(const SPtrColumn &column) { return unique_ptr<Cell>(new Cell(column)); }
-            static unique_ptr<Cell> Create(const SPtrColumn &column, const Data::SPtrValue &value) {
-                return unique_ptr<Cell>(new Cell(column, value));
+            static unique_ptr<Cell> Create(SPtrColumn column) {
+                return cldeplus_make_unique<Cell>(column);
+            }
+            static unique_ptr<Cell> Create(SPtrColumn column, Data::SPtrValue &value) {
+                return cldeplus_make_unique<Cell>(column, value);
             }
         };
 

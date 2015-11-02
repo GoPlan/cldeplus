@@ -24,12 +24,12 @@ namespace CLDEPlus {
             ~Identity() = default;
 
             // Factory methods
-            static unique_ptr<Identity> Create(){
-                return unique_ptr<Identity>(new Identity());
+            static unique_ptr<Identity> Create() {
+                return cldeplus_make_unique<Identity>();
             }
 
-            static unique_ptr<Identity> Create(SPtrCellVector const &cells){
-                return unique_ptr<Identity>(new Identity(cells));
+            static unique_ptr<Identity> Create(SPtrCellVector const &cells) {
+                return cldeplus_make_unique<Identity>(cells);
             }
         };
 

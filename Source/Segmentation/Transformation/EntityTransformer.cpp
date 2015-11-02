@@ -38,7 +38,7 @@ namespace CLDEPlus {
         }
 
         Transformation::UPtrEntityTransformer Transformation::CreateEntityTransformerInstance() {
-            return unique_ptr<EntityTransformer>(new EntityTransformer());
+            return cldeplus_make_unique<EntityTransformer>();
         }
     }
 }

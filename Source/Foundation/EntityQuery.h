@@ -34,8 +34,8 @@ namespace CLDEPlus {
 
             // Factory methods
             static unique_ptr<EntityQuery> Create(SPtrEntityMap const &sptrEntityMap,
-                                                       SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
-                return unique_ptr<EntityQuery>(new EntityQuery(sptrEntityMap, sptrEntitySourceDriver));
+                                                  SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
+                return cldeplus_make_unique<EntityQuery>(sptrEntityMap, sptrEntitySourceDriver);
             }
         };
 

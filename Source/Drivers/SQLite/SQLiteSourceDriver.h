@@ -46,7 +46,7 @@ namespace CLDEPlus {
 
                 // Factory methods
                 static unique_ptr<SQLiteSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
-                    return unique_ptr<SQLiteSourceDriver>(new SQLiteSourceDriver(sptrEntityMap));
+                    return cldeplus_make_unique<SQLiteSourceDriver>(sptrEntityMap);
                 }
 
             private:
