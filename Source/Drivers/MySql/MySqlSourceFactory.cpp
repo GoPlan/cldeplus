@@ -9,34 +9,34 @@ namespace CLDEPlus {
         namespace MySql {
 
             Data::SPtrMySqlDate MySqlSourceFactory::CreateDate() {
-                return std::make_shared<Data::MySqlDate>();
+                return cldeplus_make_shared<Data::MySqlDate>();
             }
 
             Data::SPtrMySqlDate MySqlSourceFactory::CreateDate(unsigned int year,
                                                                unsigned int month,
                                                                unsigned int day) {
-                return std::make_shared<Data::MySqlDate>(year, month, day);
+                return cldeplus_make_shared<Data::MySqlDate>(year, month, day);
             }
 
             Data::SPtrMySqlTime MySqlSourceFactory::CreateTime() {
-                return std::make_shared<Data::MySqlTime>();
+                return cldeplus_make_shared<Data::MySqlTime>();
             }
 
             Data::SPtrMySqlTime MySqlSourceFactory::CreateTime(unsigned int hour,
                                                                unsigned int minute,
                                                                unsigned int second,
                                                                unsigned long millisecond) {
-                return std::make_shared<Data::MySqlTime>(hour, minute, second, millisecond);
+                return cldeplus_make_shared<Data::MySqlTime>(hour, minute, second, millisecond);
             }
 
             Data::SPtrMySqlDateTime MySqlSourceFactory::CreateDateTime() {
-                return std::make_shared<Data::MySqlDateTime>();
+                return cldeplus_make_shared<Data::MySqlDateTime>();
             }
 
             Data::SPtrMySqlDateTime MySqlSourceFactory::CreateDateTime(unsigned int year,
                                                                        unsigned int month,
                                                                        unsigned int day) {
-                return std::make_shared<Data::MySqlDateTime>(year, month, day);
+                return cldeplus_make_shared<Data::MySqlDateTime>(year, month, day);
             }
 
             Data::SPtrMySqlDateTime MySqlSourceFactory::CreateDateTime(unsigned int year,
@@ -46,7 +46,7 @@ namespace CLDEPlus {
                                                                        unsigned int minute,
                                                                        unsigned int second,
                                                                        unsigned long millisecond) {
-                return std::make_shared<Data::MySqlDateTime>(year, month, day, hour, minute, second, millisecond);
+                return cldeplus_make_shared<Data::MySqlDateTime>(year, month, day, hour, minute, second, millisecond);
             }
         }
     }

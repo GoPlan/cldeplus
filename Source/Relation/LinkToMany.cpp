@@ -11,9 +11,9 @@ namespace CLDEPlus {
             return _sptrEntityQuery->Select(_sptrCriteria);
         }
 
-        SPtrLinkToMany CreateLinkToMany(const Foundation::SPtrEntityQuery &entityQuery,
-                                        const Foundation::Query::SPtrCriteria &criteria) {
-            return std::make_shared<LinkToMany>(entityQuery, criteria);
+        SPtrLinkToMany CreateLinkToMany(Foundation::SPtrEntityQuery &entityQuery,
+                                        Foundation::Query::SPtrCriteria &criteria) {
+            return cldeplus_make_shared<LinkToMany>(entityQuery, criteria);
         }
     }
 }

@@ -66,7 +66,7 @@ namespace CLDEPlus {
                     while (lhsCurrent != lhsEnd || rhsCurrent != rhsEnd) {
 
                         if (lhsCurrent == lhsEnd) {
-                            Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
+                            Foundation::SPtrEntityProxy proxy = cldeplus_make_shared<Foundation::EntityProxy>();
                             _sptrRhsTransformer->Transform(*rhsCurrent, proxy);
                             proxiesContainer.insert(proxiesContainer.cend(), proxy);
                             ++rhsCurrent;
@@ -74,7 +74,7 @@ namespace CLDEPlus {
                         }
 
                         if (rhsCurrent == rhsEnd) {
-                            Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
+                            Foundation::SPtrEntityProxy proxy = cldeplus_make_shared<Foundation::EntityProxy>();
                             _sptrLhsTransformer->Transform(*lhsCurrent, proxy);
                             proxiesContainer.insert(proxiesContainer.cend(), proxy);
                             ++lhsCurrent;
@@ -82,14 +82,14 @@ namespace CLDEPlus {
                         }
 
                         if (lhsCurrent != lhsEnd && LT(*lhsCurrent, *rhsCurrent)) {
-                            Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
+                            Foundation::SPtrEntityProxy proxy = cldeplus_make_shared<Foundation::EntityProxy>();
                             _sptrLhsTransformer->Transform(*lhsCurrent, proxy);
                             proxiesContainer.insert(proxiesContainer.cend(), proxy);
                             ++lhsCurrent;
                             continue;
                         }
                         else if (rhsCurrent != rhsEnd && GT(*lhsCurrent, *rhsCurrent)) {
-                            Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
+                            Foundation::SPtrEntityProxy proxy = cldeplus_make_shared<Foundation::EntityProxy>();
                             _sptrRhsTransformer->Transform(*rhsCurrent, proxy);
                             proxiesContainer.insert(proxiesContainer.cend(), proxy);
                             ++rhsCurrent;
@@ -101,7 +101,7 @@ namespace CLDEPlus {
                             auto lhsTmp = lhsCurrent;
 
                             while (rhsCurrent != rhsEnd && !LT(*lhsCurrent, *rhsCurrent)) {
-                                Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
+                                Foundation::SPtrEntityProxy proxy = cldeplus_make_shared<Foundation::EntityProxy>();
                                 _sptrLhsTransformer->Transform(*lhsCurrent, proxy);
                                 _sptrRhsTransformer->Transform(*rhsCurrent, proxy);
                                 proxiesContainer.insert(proxiesContainer.cend(), proxy);

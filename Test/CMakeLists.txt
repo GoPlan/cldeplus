@@ -29,7 +29,6 @@ add_library(apptest STATIC
         Segmentation/Transformation.hpp
         Relation/NamedEntity01.hpp
         Relation/NamedEntity02.hpp
-        Relation/Relation.hpp
         Store/Preparation/ProductSQLiteStore.cpp
         Store/Preparation/ProductSQLiteStore.h
         Store/Preparation/PreOrderMySqlStore.cpp

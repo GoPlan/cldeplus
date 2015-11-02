@@ -30,7 +30,7 @@ namespace CLDEPlus {
                     throw Exception::TransformationException{msg};
                 }
 
-                Foundation::SPtrCell dstSPtrCell = std::make_shared<Foundation::Cell>(_sptrTargetColumn);
+                Foundation::SPtrCell dstSPtrCell = cldeplus_make_shared<Foundation::Cell>(_sptrTargetColumn);
                 dstSPtrCell->setValue(_sptrTypeConverter->Cast(_sptrTargetColumn->getDataType(),
                                                                srcSPtrCell->getValue()));
                 return dstSPtrCell;
@@ -38,7 +38,7 @@ namespace CLDEPlus {
             }
             else if (_sptrTargetColumn) {
 
-                Foundation::SPtrCell dstSPtrCell = std::make_shared<Foundation::Cell>(_sptrTargetColumn);
+                Foundation::SPtrCell dstSPtrCell = cldeplus_make_shared<Foundation::Cell>(_sptrTargetColumn);
                 dstSPtrCell->setValue(srcSPtrCell->getValue());
                 return dstSPtrCell;
 

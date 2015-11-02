@@ -7,16 +7,16 @@
 namespace CLDEPlus {
     namespace Relation {
 
-        void RelationMap::AddLink(const string &srcColumnName, const Foundation::SPtrColumn &dstColumn) {
+        void RelationMap::AddLink(const string &srcColumnName, Foundation::SPtrColumn const &dstColumn) {
             _columnsMap.push_back(std::make_pair(srcColumnName, dstColumn));
         }
 
 
-        void RelationMap::AddLink(const Foundation::SPtrColumn &srcColumn, const Foundation::SPtrColumn &dstColumn) {
+        void RelationMap::AddLink(const Foundation::SPtrColumn &srcColumn, Foundation::SPtrColumn const &dstColumn) {
             AddLink(srcColumn->getName(), dstColumn);
         }
 
-        Foundation::Query::SPtrCriteria RelationMap::Generate(const Foundation::Entity &entity) const {
+        Foundation::Query::SPtrCriteria RelationMap::Generate(Foundation::Entity const &entity) const {
 
             using CmpFactory = Foundation::Query::ComparativeFactory;
 
@@ -30,7 +30,8 @@ namespace CLDEPlus {
 
                 if (!criteria) {
                     criteria = current;
-                } else {
+                }
+                else {
                     auto tmp = criteria;
                     criteria = CmpFactory::CreateAND(tmp, current);
                 }

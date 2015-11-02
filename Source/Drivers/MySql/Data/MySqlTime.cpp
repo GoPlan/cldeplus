@@ -11,18 +11,17 @@ namespace CLDEPlus {
         namespace MySql {
             namespace Data {
 
-                MySqlTime::MySqlTime(unsigned int hour, unsigned int minute, unsigned int second,
-                                     unsigned long millisecond)
+                MySqlTime::MySqlTime(unsigned int hour, unsigned int minute, unsigned int second, unsigned long millisecond)
                         : TimeBasedValue{Foundation::Data::ValueType::Time, sizeof(MYSQL_TIME)} {
                     //
-                    _sptrTimeImpl = std::make_shared<MySqlDateTimeImpl>();
-                    _sptrTimeImpl->SetTime(hour, minute, second, millisecond);
+                    _sptrTimeImpl = cldeplus_make_shared<MySqlDateTimeImpl>();
+                    _sptrTimeImpl->SetTime(hour, minute, second, (unsigned int) millisecond);
                 }
 
                 MySqlTime::MySqlTime() :
                         TimeBasedValue{Foundation::Data::ValueType::Time, sizeof(MYSQL_TIME)} {
                     //
-                    _sptrTimeImpl = std::make_shared<MySqlDateTimeImpl>();
+                    _sptrTimeImpl = cldeplus_make_shared<MySqlDateTimeImpl>();
                     _sptrTimeImpl->SetTime(0, 0, 0, 0);
                 }
 

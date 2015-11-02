@@ -50,7 +50,7 @@ namespace CLDEPlus {
                              const SPtrColumnVector &conditionalColumns,
                              FPtrParamProcessor fptrProcessor);
 
-                    static std::pair<string, vector<SPtrCriteria>> CreateSelectPreparedQuery
+                    static pair<string, vector<SPtrCriteria>> CreateSelectPreparedQuery
                             (const string &strSourceName,
                              const SPtrColumnVector &columnsForProjection,
                              const SPtrCriteria &sptrCriteria,

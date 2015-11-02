@@ -5,20 +5,20 @@
 #ifndef CLDEPLUS_APPTEST_APPLICATION_MAPFACTORY_H
 #define CLDEPLUS_APPTEST_APPLICATION_MAPFACTORY_H
 
-#include <memory>
+#include <cldeplus_default>
 
 namespace CLDEPlus {
     namespace Test {
         namespace Application {
 
             template<class T>
-            std::shared_ptr<T> Create() {
-                return std::make_shared<T>();
+            CLDEPlus::shared_ptr<T> Create() {
+                return CLDEPlus::cldeplus_make_shared<T>();
             }
 
             template <class T>
-            std::shared_ptr<T> Share(std::unique_ptr<T> uptrT){
-                return std::shared_ptr<T>(uptrT);
+            CLDEPlus::shared_ptr<T> Share(unique_ptr<T> uptrT){
+                return CLDEPlus::shared_ptr<T>(uptrT);
             }
         }
     }

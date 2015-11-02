@@ -28,8 +28,8 @@ namespace CLDEPlus {
         };
 
         using SPtrLinkToOne = shared_ptr<LinkToOne>;
-        SPtrLinkToOne CreateLinkToOne(const Foundation::SPtrEntityQuery &entityQuery,
-                                      const Foundation::Query::SPtrCriteria &criteria);
+        SPtrLinkToOne CreateLinkToOne(Foundation::SPtrEntityQuery &entityQuery,
+                                      Foundation::Query::SPtrCriteria &criteria);
     }
 }
 

@@ -20,13 +20,13 @@ namespace CLDEPlus {
             NamedEntityLoader<TEntity> _entityLoader;
 
         public:
-            NamedEntityStore(const Foundation::SPtrEntityMap &sptrEntityMap,
-                             const Foundation::SPtrEntitySourceDriver &sptrEntitySourceDriver)
+            NamedEntityStore(Foundation::SPtrEntityMap const &sptrEntityMap,
+                             Foundation::SPtrEntitySourceDriver const &sptrEntitySourceDriver)
                     : Foundation::EntityStore{sptrEntityMap, sptrEntitySourceDriver} { };
 
             NamedEntityStore(const NamedEntityStore &) = default;
             NamedEntityStore(NamedEntityStore &&) = default;
-            NamedEntityStore &operator=(const NamedEntityStore &) = default;
+            NamedEntityStore &operator=(NamedEntityStore const &) = default;
             NamedEntityStore &operator=(NamedEntityStore &&) = default;
             virtual ~NamedEntityStore() = default;
 
@@ -47,13 +47,13 @@ namespace CLDEPlus {
                 return entity;
             };
 
-            Foundation::SPtrEntity Summon(const Foundation::SPtrEntityProxy &proxy) {
+            Foundation::SPtrEntity Summon(Foundation::SPtrEntityProxy const &proxy) {
                 auto sptrNamedStore = std::enable_shared_from_this<NamedEntityStore<TEntity>>::shared_from_this();
                 auto sptrEntityStore = std::dynamic_pointer_cast<Foundation::EntityStore>(sptrNamedStore);
                 return Foundation::Query::Helper::ProxyHelper::Summon(proxy, sptrEntityStore);
             };
 
-            TEntity NamedEntity(const Foundation::SPtrEntity &entity) {
+            TEntity NamedEntity(Foundation::SPtrEntity const &entity) {
 
                 if (!_entityLoader.fptrNamedEntityCreator) {
                     string msg{"NamedEntity creator is not defined"};
@@ -68,9 +68,9 @@ namespace CLDEPlus {
         using SPtrNamedStore = shared_ptr<NamedEntityStore<TEntity>>;
 
         template<class TEntity>
-        SPtrNamedStore<TEntity> CreateNamedStore(const Foundation::SPtrEntityMap &entityMap,
-                                                 const Foundation::SPtrEntitySourceDriver &entitySourceDriver) {
-            return std::make_shared<NamedEntityStore<TEntity>>(entityMap, entitySourceDriver);
+        SPtrNamedStore<TEntity> CreateNamedStore(Foundation::SPtrEntityMap const &entityMap,
+                                                 Foundation::SPtrEntitySourceDriver const &entitySourceDriver) {
+            return cldeplus_make_shared<NamedEntityStore<TEntity>>(entityMap, entitySourceDriver);
         }
     }
 }

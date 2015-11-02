@@ -60,7 +60,6 @@ namespace CLDEPlus {
                 string _insertStatement;
                 string _updateStatement;
                 string _deleteStatement;
-                bool isConnected = false;
 
             private:
                 void Init();

@@ -11,7 +11,7 @@
 namespace CLDEPlus {
     namespace Relation {
 
-        using LinkColumn = std::pair<string, Foundation::SPtrColumn>;
+        using LinkColumn = pair<string, Foundation::SPtrColumn>;
         using LinkColumnsMap = vector<LinkColumn>;
 
         class RelationMap {
@@ -27,9 +27,9 @@ namespace CLDEPlus {
             virtual ~RelationMap() = default;
 
             // Locals
-            void AddLink(const string& srcColumnName, const Foundation::SPtrColumn& dstColumn);
-            void AddLink(const Foundation::SPtrColumn& srcColumn, const Foundation::SPtrColumn& dstColumn);
-            Foundation::Query::SPtrCriteria Generate(const Foundation::Entity &entity) const;
+            void AddLink(string const &srcColumnName, Foundation::SPtrColumn const &dstColumn);
+            void AddLink(Foundation::SPtrColumn const &srcColumn, Foundation::SPtrColumn const &dstColumn);
+            Foundation::Query::SPtrCriteria Generate(Foundation::Entity const &entity) const;
         };
     }
 }

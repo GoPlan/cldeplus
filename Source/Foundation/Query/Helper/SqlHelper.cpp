@@ -163,7 +163,7 @@ namespace CLDEPlus {
                     return strQuery;
                 }
 
-                std::pair<string, vector<SPtrCriteria>> SqlHelper::CreateSelectPreparedQuery
+                pair<string, vector<SPtrCriteria>> SqlHelper::CreateSelectPreparedQuery
                         (const string &strSourceName, const SPtrColumnVector &columnsForProjection,
                          const SPtrCriteria &sptrCriteria, const FPtrParamProcessor fptrParamProcessor) {
 

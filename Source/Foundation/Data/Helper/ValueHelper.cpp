@@ -2,7 +2,6 @@
 // Created by LE, Duc Anh on 6/24/15.
 //
 
-#include "cldeplus_default"
 #include "../Type/Blob.h"
 #include "../Type/Boolean.h"
 #include "../Type/Byte.h"
@@ -40,7 +39,7 @@ namespace CLDEPlus {
                 }
                 case ValueType::Boolean: {
                     auto &value = static_cast<Data::Type::Boolean &>(*sptrValue);
-                    auto sptrNewValue = std::make_shared<Data::Type::Boolean>(value);
+                    auto sptrNewValue = cldeplus_make_shared<Data::Type::Boolean>(value);
                     return sptrNewValue;
                 }
                 case ValueType::Byte: {
@@ -49,17 +48,17 @@ namespace CLDEPlus {
                 }
                 case ValueType::Int16: {
                     auto &value = static_cast<Data::Type::Int16 &>(*sptrValue);
-                    auto sptrNewValue = std::make_shared<Data::Type::Int16>(value);
+                    auto sptrNewValue = cldeplus_make_shared<Data::Type::Int16>(value);
                     return sptrNewValue;
                 }
                 case ValueType::Int32: {
                     auto &value = static_cast<Data::Type::Int32 &>(*sptrValue);
-                    auto sptrNewValue = std::make_shared<Data::Type::Int32>(value);
+                    auto sptrNewValue = cldeplus_make_shared<Data::Type::Int32>(value);
                     return sptrNewValue;
                 }
                 case ValueType::Int64: {
                     auto &value = static_cast<Data::Type::Int64 &>(*sptrValue);
-                    auto sptrNewValue = std::make_shared<Data::Type::Int64>(value);
+                    auto sptrNewValue = cldeplus_make_shared<Data::Type::Int64>(value);
                     return sptrNewValue;
                 }
                 case ValueType::UInt16: {
@@ -76,22 +75,22 @@ namespace CLDEPlus {
                 }
                 case ValueType::Double: {
                     auto &value = static_cast<Data::Type::Double &>(*sptrValue);
-                    auto sptrNewValue = std::make_shared<Data::Type::Double>(value);
+                    auto sptrNewValue = cldeplus_make_shared<Data::Type::Double>(value);
                     return sptrNewValue;
                 }
                 case ValueType::Float: {
                     auto &value = static_cast<Data::Type::Float &>(*sptrValue);
-                    auto sptrNewValue = std::make_shared<Data::Type::Float>(value);
+                    auto sptrNewValue = cldeplus_make_shared<Data::Type::Float>(value);
                     return sptrNewValue;
                 }
                 case ValueType::String: {
                     auto &value = static_cast<Data::Type::String &>(*sptrValue);
-                    auto sptrNewValue = std::make_shared<Data::Type::String>(value);
+                    auto sptrNewValue = cldeplus_make_shared<Data::Type::String>(value);
                     return sptrNewValue;
                 }
                 case ValueType::VarChar: {
                     auto &value = static_cast<Data::Type::VarChar &>(*sptrValue);
-                    auto sptrNewValue = std::make_shared<Data::Type::VarChar>(value.ToString());
+                    auto sptrNewValue = cldeplus_make_shared<Data::Type::VarChar>(value.ToString());
                     return sptrNewValue;
                 }
                 case ValueType::Text: {

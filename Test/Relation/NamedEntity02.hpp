@@ -21,8 +21,8 @@ namespace CLDEPlus {
 
             TEST(Relation, NamedEntityReferencingSQLiteAndMySql) {
 
-                auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
-                auto sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
+                auto sptrCustomerMap = CLDEPlus::cldeplus_make_shared<Application::CustomerMap>();
+                auto sptrPreOrderMap = CLDEPlus::cldeplus_make_shared<Application::PreOrderMap>();
                 auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver)Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
                 auto sptrPreOrderDriver = (Drivers::MySql::SPtrMySqlSourceDriver)Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
 

@@ -13,7 +13,7 @@ namespace CLDEPlus {
 
         template<typename TEntity>
         struct NamedEntityLoader {
-            std::function<TEntity(const Foundation::Entity &entity)> fptrNamedEntityCreator;
+            std::function<TEntity(Foundation::Entity const &entity)> fptrNamedEntityCreator;
             std::function<Foundation::SPtrIdentity()> fptrIdentityCreator;
         };
     }

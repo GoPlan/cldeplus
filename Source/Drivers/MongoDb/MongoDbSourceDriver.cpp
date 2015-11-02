@@ -80,7 +80,7 @@ namespace Cloude {
                         throw ex;
                     }
 
-                    auto command = std::make_shared<Command>(*_ptrClient, *_ptrCollection);
+                    auto command = cldeplus_make_shared<Command>(*_ptrClient, *_ptrCollection);
 
                     return command;
                 }

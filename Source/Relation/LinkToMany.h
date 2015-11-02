@@ -28,8 +28,8 @@ namespace CLDEPlus {
         };
 
         using SPtrLinkToMany = shared_ptr<LinkToMany>;
-        SPtrLinkToMany CreateLinkToMany(const Foundation::SPtrEntityQuery &entityQuery,
-                                        const Foundation::Query::SPtrCriteria &criteria);
+        SPtrLinkToMany CreateLinkToMany(Foundation::SPtrEntityQuery &entityQuery,
+                                        Foundation::Query::SPtrCriteria &criteria);
     }
 }
 

@@ -374,7 +374,7 @@ namespace CLDEPlus {
             void SQLiteSourceDriver::Connect() {
 
                 if (!_sqliteApiImpl) {
-                    _sqliteApiImpl = std::make_shared<SQLiteApiImpl>(_optionArgs.ConnectionString);
+                    _sqliteApiImpl = cldeplus_make_shared<SQLiteApiImpl>(_optionArgs.ConnectionString);
                 }
 
                 _sqliteApiImpl->Connect();

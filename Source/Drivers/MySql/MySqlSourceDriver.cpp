@@ -57,7 +57,6 @@ namespace CLDEPlus {
                 MYSQL_STMT *PtrStmt = nullptr;
                 MYSQL_BIND *PtrParamsBind = nullptr;
                 MYSQL_BIND *PtrResultBind = nullptr;
-                unsigned long *PtrParamsLength = nullptr;
                 unsigned long *PtrResultLength = nullptr;
                 my_bool *PtrResultIsNull = nullptr;
                 my_bool *PtrResultIsUnsigned = nullptr;
@@ -84,7 +83,7 @@ namespace CLDEPlus {
 
                 shared_ptr<Command> createCommand(const string &query) {
 
-                    auto command = std::make_shared<Command>();
+                    auto command = cldeplus_make_shared<Command>();
                     command->PtrStmt = mysql_stmt_init(PtrMySql);
 
                     if (!command->PtrStmt) {
@@ -119,7 +118,6 @@ namespace CLDEPlus {
                     auto columnsListSize = columnsList.size();
 
                     command->PtrParamsBind = (MYSQL_BIND *) calloc(columnsListSize, sizeof(MYSQL_BIND));
-                    command->PtrParamsLength = (unsigned long *) calloc(columnsListSize, sizeof(unsigned long));
 
                     int index = 0;
 
@@ -154,7 +152,6 @@ namespace CLDEPlus {
                                     SPtrCommand &command) {
 
                     command->PtrParamsBind = (MYSQL_BIND *) calloc(criteriaList.size(), sizeof(MYSQL_BIND));
-                    command->PtrParamsLength = (unsigned long *) calloc(criteriaList.size(), sizeof(unsigned long));
 
                     int index = 0;
 
@@ -473,14 +470,13 @@ namespace CLDEPlus {
                     for (auto &index : command->LargeCellIndices) {
 
                         auto ptrLength = command->PtrResultBind[index].length;
-                        auto &isNull = command->PtrResultIsNull[index];
                         auto &isError = command->PtrResultError[index];
 
                         if (isError) {
                             _mySqlApiImpl->assertStmtError(command->PtrStmt);
                         }
 
-                        auto &sptrColumn = getEntityMap()->getColumnsForGet().at(index);
+                        auto &sptrColumn = getEntityMap()->getColumnsForGet().at((unsigned long) index);
                         auto &sptrCell = entity->getCell(sptrColumn->getName());
                         auto value = Foundation::Data::ValueFactory::CreateText(*ptrLength);
                         sptrCell->setValue(value);
@@ -488,7 +484,7 @@ namespace CLDEPlus {
                         command->PtrResultBind[index].buffer = value->PointerToBuffer();
                         command->PtrResultBind[index].buffer_length = *ptrLength;
 
-                        mysql_stmt_fetch_column(command->PtrStmt, &command->PtrResultBind[index], index, 0);
+                        mysql_stmt_fetch_column(command->PtrStmt, &command->PtrResultBind[index], (unsigned int) index, 0);
                     }
                 }
 
@@ -502,7 +498,7 @@ namespace CLDEPlus {
 
             int MySqlSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
 
-                shared_ptr<Command> command = _mySqlApiImpl->createCommand(_insertStatement);
+                auto command = _mySqlApiImpl->createCommand(_insertStatement);
 
                 _mySqlApiImpl->initParamBinds(getEntityMap()->getColumnsForKey(), entity, command);
 
@@ -523,7 +519,7 @@ namespace CLDEPlus {
                 auto &columnsForKey = getEntityMap()->getColumnsForKey();
                 auto &columnsForUpdate = getEntityMap()->getColumnsForUpdate();
 
-                Foundation::SPtrColumnVector joinedColumnsList;
+                Foundation::SPtrColumnVector joinedColumnsList{};
                 joinedColumnsList.reserve(columnsForUpdate.size() + columnsForKey.size());
                 joinedColumnsList.insert(joinedColumnsList.end(), columnsForUpdate.begin(), columnsForUpdate.end());
                 joinedColumnsList.insert(joinedColumnsList.end(), columnsForKey.begin(), columnsForKey.end());
@@ -575,7 +571,7 @@ namespace CLDEPlus {
                                                                            fptrSelectParamProcessor);
 
                 auto command = _mySqlApiImpl->createCommand(pairSelectStmt.first);
-                auto sptrProxy = (Foundation::SPtrEntityProxy)Foundation::EntityProxy::Create();
+                auto sptrProxy = (Foundation::SPtrEntityProxy) Foundation::EntityProxy::Create();
 
                 using StoreHelper = Foundation::Store::Helper::EntityStoreHelper;
                 StoreHelper::GenerateCellsFromColumns(columnsForProjection, sptrProxy);

@@ -14,7 +14,7 @@ namespace CLDEPlus {
 
             class EnquiryMap : public Foundation::EntityMap {
 
-                static std::string TableName;
+                static string TableName;
                 static Foundation::SPtrColumn Id;
                 static Foundation::SPtrColumn CustId;
                 static Foundation::SPtrColumn SubmittedDate;

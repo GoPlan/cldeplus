@@ -39,6 +39,8 @@ namespace CLDEPlus {
                     string msg{"UserDefined category is not supported by the comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
+                default:
+                    return false;
             }
         }
 

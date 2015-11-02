@@ -51,7 +51,7 @@ namespace CLDEPlus {
 
                         while (rhsCurrent != rhsEnd) {
 
-                            Foundation::SPtrEntityProxy proxy = std::make_shared<Foundation::EntityProxy>();
+                            Foundation::SPtrEntityProxy proxy = cldeplus_make_shared<Foundation::EntityProxy>();
                             _sptrLhsTransformer->Transform(*lhsCurrent, proxy);
                             _sptrRhsTransformer->Transform(*rhsCurrent, proxy);
 

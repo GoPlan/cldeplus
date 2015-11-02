@@ -26,102 +26,102 @@ namespace CLDEPlus {
         namespace Data {
 
             SPtrValue ValueFactory::CreateFloat(float value) {
-                return std::make_shared<Type::Float>(value);
+                return cldeplus_make_shared<Type::Float>(value);
             }
 
             SPtrValue ValueFactory::CreateDouble(double value) {
-                return std::make_shared<Type::Double>(value);
+                return cldeplus_make_shared<Type::Double>(value);
             }
 
             SPtrValue ValueFactory::CreateInt16(int16_t value) {
-                return std::make_shared<Type::Int16>(value);
+                return cldeplus_make_shared<Type::Int16>(value);
             }
 
             SPtrValue ValueFactory::CreateInt32(int32_t value) {
-                return std::make_shared<Type::Int32>(value);
+                return cldeplus_make_shared<Type::Int32>(value);
             }
 
             SPtrValue ValueFactory::CreateInt64(int64_t value) {
-                return std::make_shared<Type::Int64>(value);
+                return cldeplus_make_shared<Type::Int64>(value);
             }
 
             SPtrValue ValueFactory::CreateUInt16(uint16_t value) {
-                return std::make_shared<Type::UInt16>(value);
+                return cldeplus_make_shared<Type::UInt16>(value);
             }
 
             SPtrValue ValueFactory::CreateUInt32(uint32_t value) {
-                return std::make_shared<Type::UInt32>(value);
+                return cldeplus_make_shared<Type::UInt32>(value);
             }
 
             SPtrValue ValueFactory::CreateUInt64(uint64_t value) {
-                return std::make_shared<Type::UInt64>(value);
+                return cldeplus_make_shared<Type::UInt64>(value);
             }
 
             SPtrValue ValueFactory::CreateVarChar(const char *value) {
-                return std::make_shared<Type::VarChar>(value);
+                return cldeplus_make_shared<Type::VarChar>(value);
             }
 
             SPtrValue ValueFactory::CreateVarChar(const string &value) {
-                return std::make_shared<Type::VarChar>(value.c_str());
+                return cldeplus_make_shared<Type::VarChar>(value.c_str());
             }
 
             SPtrValue ValueFactory::CreateVarChar(unsigned long length) {
-                return std::make_shared<Type::VarChar>(length);
+                return cldeplus_make_shared<Type::VarChar>(length);
             }
 
             SPtrValue ValueFactory::CreateText(const string &value) {
-                return std::make_shared<Type::Text>(value);
+                return cldeplus_make_shared<Type::Text>(value);
             }
 
             SPtrValue ValueFactory::CreateText(unsigned long length) {
-                return std::make_shared<Type::Text>(length);
+                return cldeplus_make_shared<Type::Text>(length);
             }
 
             SPtrValue ValueFactory::CreateByte(char value) {
-                return std::make_shared<Type::Byte>(value);
+                return cldeplus_make_shared<Type::Byte>(value);
             }
 
             SPtrValue ValueFactory::CreateBoolean(bool value) {
-                return std::make_shared<Type::Boolean>(value);
+                return cldeplus_make_shared<Type::Boolean>(value);
             }
 
             SPtrValue ValueFactory::CreateDate() {
-                return std::make_shared<Type::Date>();
+                return cldeplus_make_shared<Type::Date>();
             }
 
             SPtrValue ValueFactory::CreateDate(int year, int month, int day) {
-                return std::make_shared<Type::Date>(year, month, day);
+                return cldeplus_make_shared<Type::Date>(year, month, day);
             }
 
             SPtrValue ValueFactory::CreateTime() {
-                return std::make_shared<Type::Time>();
+                return cldeplus_make_shared<Type::Time>();
             }
 
             SPtrValue ValueFactory::CreateTime(int hour, int minute, int second) {
-                return std::make_shared<Type::Time>(hour, minute, second);
+                return cldeplus_make_shared<Type::Time>(hour, minute, second);
             }
 
             SPtrValue ValueFactory::CreateTime(int hour, int minute, int second, int millisecond) {
-                return std::make_shared<Type::Time>(hour, minute, second, millisecond);
+                return cldeplus_make_shared<Type::Time>(hour, minute, second, millisecond);
             }
 
             SPtrValue ValueFactory::CreateTime(int hour, int minute, int second, int millisecond,
                                                int offset) {
-                return std::make_shared<Type::Time>(hour, minute, second, millisecond, offset);
+                return cldeplus_make_shared<Type::Time>(hour, minute, second, millisecond, offset);
             }
 
             SPtrValue ValueFactory::CreateDateTime() {
-                return std::make_shared<Type::DateTime>();
+                return cldeplus_make_shared<Type::DateTime>();
             }
 
             SPtrValue ValueFactory::CreateDateTime(int year, int month, int day) {
-                return std::make_shared<Type::DateTime>(year, month, day);
+                return cldeplus_make_shared<Type::DateTime>(year, month, day);
             }
 
             SPtrValue ValueFactory::CreateDateTime(int year, int month, int day,
                                                    int hour, int minute, int second, int millisecond,
                                                    int offset) {
-                return std::make_shared<Type::DateTime>(year, month, day, hour, minute, second, millisecond,
+                return cldeplus_make_shared<Type::DateTime>(year, month, day, hour, minute, second, millisecond,
                                                         offset);
             }
         }

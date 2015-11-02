@@ -13,7 +13,7 @@ namespace CLDEPlus {
 
             class CustomerMap : public Foundation::EntityMap {
 
-                static std::string TableName;
+                static string TableName;
                 static Foundation::SPtrColumn Id;
                 static Foundation::SPtrColumn FirstName;
                 static Foundation::SPtrColumn LastName;

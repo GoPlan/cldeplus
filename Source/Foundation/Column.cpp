@@ -26,12 +26,12 @@ namespace CLDEPlus {
         }
 
         SPtrColumn CreateColumn(const string &name, Data::ValueType dataType) {
-            return std::make_shared<Column>(name, dataType);
+            return cldeplus_make_shared<Column>(name, dataType);
         }
 
         SPtrColumn CreateColumn(const string &name, Data::ValueType dataType, const string &datasourceName,
                                 size_t length) {
-            return std::make_shared<Column>(name, dataType, datasourceName, length);
+            return cldeplus_make_shared<Column>(name, dataType, datasourceName, length);
         }
     }
 }

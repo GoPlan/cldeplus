@@ -15,7 +15,7 @@ namespace CLDEPlus {
                 MySqlDateTime::MySqlDateTime(unsigned int year, unsigned int month, unsigned int day)
                         : TimeBasedValue{Foundation::Data::ValueType::DateTime, sizeof(MYSQL_TIME)} {
                     //
-                    _sptrDateTimeImpl = std::make_shared<MySqlDateTimeImpl>();
+                    _sptrDateTimeImpl = cldeplus_make_shared<MySqlDateTimeImpl>();
                     _sptrDateTimeImpl->SetDateTime(year, month, day);
                 }
 
@@ -28,14 +28,14 @@ namespace CLDEPlus {
                                              unsigned long millisecond)
                         : TimeBasedValue{Foundation::Data::ValueType::DateTime, sizeof(MYSQL_TIME)} {
                     //
-                    _sptrDateTimeImpl = std::make_shared<MySqlDateTimeImpl>();
+                    _sptrDateTimeImpl = cldeplus_make_shared<MySqlDateTimeImpl>();
                     _sptrDateTimeImpl->SetDateTime(year, month, day, hour, minute, second, millisecond);
                 }
 
                 MySqlDateTime::MySqlDateTime()
                         : TimeBasedValue{Foundation::Data::ValueType::DateTime, sizeof(MYSQL_TIME)} {
                     //
-                    _sptrDateTimeImpl = std::make_shared<MySqlDateTimeImpl>();
+                    _sptrDateTimeImpl = cldeplus_make_shared<MySqlDateTimeImpl>();
                     _sptrDateTimeImpl->SetDateTime(0, 0, 0);
                 }
 

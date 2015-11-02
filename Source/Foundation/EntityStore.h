@@ -30,7 +30,7 @@ namespace CLDEPlus {
             EntityStore(EntityStore &&) = default;
             EntityStore &operator=(const EntityStore &) = default;
             EntityStore &operator=(EntityStore &&) = default;
-            ~EntityStore() = default;
+            virtual ~EntityStore() = default;
 
             // Locals
             bool HasIdentityInMap(const SPtrIdentity &identity) const;

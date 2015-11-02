@@ -11,10 +11,10 @@ namespace CLDEPlus {
             return _sptrEntityQuery->Select(_sptrCriteria, _columns).front();
         }
 
-        SPtrMultiCellsObj CreateMultiCellsObj(const Foundation::SPtrEntityQuery &entityQuery,
-                                              const Foundation::Query::SPtrCriteria &criteria,
-                                              const std::initializer_list<Foundation::SPtrColumn> &columns) {
-            return std::make_shared<MultiCellsObject>(entityQuery, criteria, columns);
+        SPtrMultiCellsObj CreateMultiCellsObj(Foundation::SPtrEntityQuery &entityQuery,
+                                              Foundation::Query::SPtrCriteria &criteria,
+                                              std::initializer_list<Foundation::SPtrColumn> &columns) {
+            return cldeplus_make_shared<MultiCellsObject>(entityQuery, criteria, columns);
         }
     }
 }
