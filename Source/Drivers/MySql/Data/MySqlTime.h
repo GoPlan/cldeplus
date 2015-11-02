@@ -17,7 +17,7 @@ namespace CLDEPlus {
 
                 class MySqlTime : public Foundation::Data::TimeBasedValue {
 
-                    std::shared_ptr<MySqlDateTimeImpl> _sptrTimeImpl;
+                    shared_ptr<MySqlDateTimeImpl> _sptrTimeImpl;
 
                 public:
                     MySqlTime(unsigned int hour, unsigned int minute, unsigned int second,
@@ -34,7 +34,7 @@ namespace CLDEPlus {
                     virtual void *PointerToBuffer() override;
 
                     // IPrintable
-                    virtual std::string ToString() const override;
+                    virtual string ToString() const override;
 
                     // IComputable
                     virtual Foundation::Data::Value &operator+(const Foundation::Data::Value &rhs) override;
@@ -49,7 +49,7 @@ namespace CLDEPlus {
                     virtual bool EquivalentTo(const Foundation::Common::IComparable &target) const override;
                 };
 
-                using SPtrMySqlTime = std::shared_ptr<MySqlTime>;
+                using SPtrMySqlTime = shared_ptr<MySqlTime>;
             }
         }
     }

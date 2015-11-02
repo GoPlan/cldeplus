@@ -22,7 +22,7 @@ namespace CLDEPlus {
                     return false;
                 }
                 const Data::SPtrValue &IsNotNull::getValue() const {
-                    std::string msg{"IsNotNull comparator does not support getValue() method."};
+                    string msg{"IsNotNull comparator does not support getValue() method."};
                     throw Exception::CLDENonSupportedFunctionException(msg);
                 }
             }

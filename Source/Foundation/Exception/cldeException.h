@@ -11,12 +11,12 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
 
-            class CLDEException : public std::exception {
+            class CLDEException : public exception {
 
-                mutable std::string _message;
+                mutable string _message;
 
             public:
-                explicit CLDEException(std::string const &message) : _message{message} { };
+                explicit CLDEException(string const &message) : _message{message} { };
                 explicit CLDEException(char const *message) : _message(message) { };
                 CLDEException(const CLDEException &) = default;
                 CLDEException(CLDEException &&) = default;
@@ -27,7 +27,7 @@ namespace CLDEPlus {
                 // Exception
                 virtual const char *what() const noexcept override {
 
-                    std::string tmp{std::move(_message)};
+                    string tmp{std::move(_message)};
 
                     _message.reserve(Name().length() + tmp.length() + 3);
                     _message += "[" + Name() + "]";
@@ -37,7 +37,7 @@ namespace CLDEPlus {
                 };
 
                 // Locals
-                virtual const std::string &Name() const noexcept = 0;
+                virtual const string &Name() const noexcept = 0;
             };
         }
     }

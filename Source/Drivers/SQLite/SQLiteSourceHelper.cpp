@@ -4,10 +4,10 @@
 
 #include "SQLiteSourceHelper.h"
 
-std::string CLDEPlus::Drivers::SQLite::SQLiteSourceHelper::CopyToString(int resultCode) {
+CLDEPlus::string CLDEPlus::Drivers::SQLite::SQLiteSourceHelper::CopyToString(int resultCode) {
 
-    std::string code = std::to_string(resultCode);
-    std::string msg{"[RESULTCODE:" + code + "] "};
+    CLDEPlus::string code = std::to_string(resultCode);
+    CLDEPlus::string msg{"[RESULTCODE:" + code + "] "};
 
     switch (resultCode) {
 

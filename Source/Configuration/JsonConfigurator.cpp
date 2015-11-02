@@ -33,7 +33,7 @@ namespace Cloude {
             _scanner.Tokenizers().push_back(CLDEParser::Scanning::TokenizerFactory::CreateBracketClosing());
         }
 
-        CLDEParser::Parsing::Json::SPtrJsonEntity JsonConfigurator::parse(std::string const &json) const {
+        CLDEParser::Parsing::Json::SPtrJsonEntity JsonConfigurator::parse(string const &json) const {
 
             // Scanning
             auto tokens = _scanner.Scan(json);
@@ -47,12 +47,12 @@ namespace Cloude {
             return sptrJsonEntity;
         }
 
-        Foundation::SPtrEntityMap JsonConfigurator::CreateSPtrEntityMap(std::string const &jsonEntityMap) {
-            return std::shared_ptr<Foundation::EntityMap>();
+        Foundation::SPtrEntityMap JsonConfigurator::CreateSPtrEntityMap(string const &jsonEntityMap) {
+            return shared_ptr<Foundation::EntityMap>();
         }
 
-        Foundation::Query::SPtrCriteria JsonConfigurator::CreateSPtrCriteria(std::string const &jsonCriteria) {
-            return std::shared_ptr<Foundation::Query::Criteria>();
+        Foundation::Query::SPtrCriteria JsonConfigurator::CreateSPtrCriteria(string const &jsonCriteria) {
+            return shared_ptr<Foundation::Query::Criteria>();
         }
     }
 }

@@ -10,12 +10,12 @@ namespace CLDEPlus {
         namespace Store {
             namespace Extra {
 
-                std::string EntityOutputFormatter::Format(
+                string EntityOutputFormatter::Format(
                         const CLDEPlus::Foundation::Common::IPrintable &printable) const {
 
                     auto &entity = dynamic_cast<const Store::AbstractEntity &>(printable);
 
-                    std::string result;
+                    string result;
 
                     for (auto &sptrColumn : _displayColumns) {
 
@@ -34,9 +34,9 @@ namespace CLDEPlus {
                     return result;
                 }
 
-                std::string EntityOutputFormatter::ToString() const {
+                string EntityOutputFormatter::ToString() const {
 
-                    std::string result;
+                    string result;
 
                     for (auto &sptrColumn : _displayColumns) {
 

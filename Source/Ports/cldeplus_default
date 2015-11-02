@@ -21,4 +21,30 @@
 #include <list>
 #include <functional>
 
+namespace CLDEPlus {
+
+    using exception = std::exception;
+    using string = std::string;
+
+    template<typename T>
+    using shared_ptr = std::shared_ptr<T>;
+
+    template<typename T>
+    using unique_ptr = std::unique_ptr<T>;
+
+    template<typename T>
+    using vector = std::vector<T>;
+
+    template<typename T>
+    using set = std::set<T>;
+
+    template<typename T>
+    using list = std::list<T>;
+
+    template<typename TKey, typename TElem>
+    using unordered_map = std::unordered_map<TKey, TElem>;
+
+}
+
+
 #endif //CLDEPLUS_CLDE_DEFAULT_H

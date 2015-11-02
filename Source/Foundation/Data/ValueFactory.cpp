@@ -61,7 +61,7 @@ namespace CLDEPlus {
                 return std::make_shared<Type::VarChar>(value);
             }
 
-            SPtrValue ValueFactory::CreateVarChar(const std::string &value) {
+            SPtrValue ValueFactory::CreateVarChar(const string &value) {
                 return std::make_shared<Type::VarChar>(value.c_str());
             }
 
@@ -69,7 +69,7 @@ namespace CLDEPlus {
                 return std::make_shared<Type::VarChar>(length);
             }
 
-            SPtrValue ValueFactory::CreateText(const std::string &value) {
+            SPtrValue ValueFactory::CreateText(const string &value) {
                 return std::make_shared<Type::Text>(value);
             }
 

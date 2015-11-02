@@ -14,15 +14,15 @@ namespace CLDEPlus {
 
         class Column : public Common::IPrintable {
 
-            std::string _name;
-            std::string _datasourceName;
+            string _name;
+            string _datasourceName;
             Data::ValueType _dataType;
             size_t _length;
 
         public:
             Column() = default;
-            Column(std::string name, Data::ValueType dataType);
-            Column(std::string name, Data::ValueType dataType, std::string datasourceName, size_t length);
+            Column(string name, Data::ValueType dataType);
+            Column(string name, Data::ValueType dataType, string datasourceName, size_t length);
             Column(const Column &) = default;
             Column(Column &&) = default;
             Column &operator=(const Column &) = default;
@@ -30,27 +30,27 @@ namespace CLDEPlus {
             ~Column() = default;
 
             // IPrintable
-            std::string ToString() const override;
+            string ToString() const override;
 
             // Locals - Mutators
-            void setDatasourceName(const std::string &datasourceName) { _datasourceName = datasourceName; }
-            void setName(const std::string &name) { _name = name; }
+            void setDatasourceName(const string &datasourceName) { _datasourceName = datasourceName; }
+            void setName(const string &name) { _name = name; }
             void setDataType(const Data::ValueType &dataType) { _dataType = dataType; }
             void setLength(size_t length) { _length = length; }
 
             // Locals - Accessors
-            const std::string &getDatasourceName() const { return _datasourceName; }
-            const std::string &getName() const { return _name; }
+            const string &getDatasourceName() const { return _datasourceName; }
+            const string &getName() const { return _name; }
             const Foundation::Data::ValueType &getDataType() const { return _dataType; }
             size_t getLength() const { return _length; }
         };
 
-        using SPtrColumn = std::shared_ptr<Column>;
-        using SPtrColumnVector = std::vector<SPtrColumn>;
-        using SPtrColumnMap = std::unordered_map<std::string, SPtrColumn>;
+        using SPtrColumn = shared_ptr<Column>;
+        using SPtrColumnVector = vector<SPtrColumn>;
+        using SPtrColumnMap = unordered_map<string, SPtrColumn>;
 
-        SPtrColumn CreateColumn(const std::string &name, Data::ValueType dataType);
-        SPtrColumn CreateColumn(const std::string &name, Data::ValueType dataType, const std::string &datasourceName,
+        SPtrColumn CreateColumn(const string &name, Data::ValueType dataType);
+        SPtrColumn CreateColumn(const string &name, Data::ValueType dataType, const string &datasourceName,
                                 size_t length = 0);
     }
 }

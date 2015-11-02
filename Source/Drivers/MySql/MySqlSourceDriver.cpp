@@ -62,10 +62,10 @@ namespace CLDEPlus {
                 my_bool *PtrResultIsNull = nullptr;
                 my_bool *PtrResultIsUnsigned = nullptr;
                 my_bool *PtrResultError = nullptr;
-                std::vector<int> LargeCellIndices;
+                CLDEPlus::vector<int> LargeCellIndices;
             };
 
-            using SPtrCommand = std::shared_ptr<Command>;
+            using SPtrCommand = shared_ptr<Command>;
 
             // MYSQLAPIIMPL
             struct MySqlSourceDriver::MySqlApiImpl {
@@ -82,7 +82,7 @@ namespace CLDEPlus {
                     mysql_library_end;
                 }
 
-                std::shared_ptr<Command> createCommand(const std::string &query) {
+                shared_ptr<Command> createCommand(const string &query) {
 
                     auto command = std::make_shared<Command>();
                     command->PtrStmt = mysql_stmt_init(PtrMySql);
@@ -100,14 +100,14 @@ namespace CLDEPlus {
 
                 void assertSqlError() {
                     if (mysql_errno(PtrMySql)) {
-                        std::string msg{mysql_error(PtrMySql)};
+                        string msg{mysql_error(PtrMySql)};
                         throw MySqlSourceException{msg};
                     }
                 }
 
                 void assertStmtError(MYSQL_STMT *ptrMySqlStmt) {
                     if (mysql_stmt_errno(ptrMySqlStmt)) {
-                        std::string msg{mysql_stmt_error(ptrMySqlStmt)};
+                        string msg{mysql_stmt_error(ptrMySqlStmt)};
                         throw MySqlSourceException{msg};
                     }
                 }
@@ -282,8 +282,8 @@ namespace CLDEPlus {
                                           }
                                           default: {
                                               using TypeHelper = Foundation::Data::Helper::TypeHelper;
-                                              std::string typeName{TypeHelper::CopyValueTypeToString(dataType)};
-                                              std::string msg{"MySql driver does not support " + typeName + " yet"};
+                                              string typeName{TypeHelper::CopyValueTypeToString(dataType)};
+                                              string msg{"MySql driver does not support " + typeName + " yet"};
                                               throw MySqlSourceException{msg};
                                           }
                                       }
@@ -370,8 +370,8 @@ namespace CLDEPlus {
                         }
                         default: {
                             using TypeHelper = Foundation::Data::Helper::TypeHelper;
-                            std::string typeName{TypeHelper::CopyValueTypeToString(dataType)};
-                            std::string msg{"MySqlSourceDriver(SetupBind) does not support " + typeName + " yet"};
+                            string typeName{TypeHelper::CopyValueTypeToString(dataType)};
+                            string msg{"MySqlSourceDriver(SetupBind) does not support " + typeName + " yet"};
                             throw MySqlSourceException{msg};
                         }
                     }
@@ -391,13 +391,13 @@ namespace CLDEPlus {
                 using SqlHelper = Foundation::Query::Helper::SqlHelper;
 
                 auto fptrInsertParamProcessor =
-                        [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
-                            return std::string("?");
+                        [](const Foundation::SPtrColumn &column, const int &index) -> string {
+                            return string("?");
                         };
 
                 auto fptrSelectParamProcessor =
-                        [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
-                            return std::string(column->getDatasourceName() + " = ?");
+                        [](const Foundation::SPtrColumn &column, const int &index) -> string {
+                            return string(column->getDatasourceName() + " = ?");
                         };
 
                 auto &sourceName = getEntityMap()->getTableName();
@@ -502,7 +502,7 @@ namespace CLDEPlus {
 
             int MySqlSourceDriver::Insert(Foundation::SPtrEntity &entity) const {
 
-                std::shared_ptr<Command> command = _mySqlApiImpl->createCommand(_insertStatement);
+                shared_ptr<Command> command = _mySqlApiImpl->createCommand(_insertStatement);
 
                 _mySqlApiImpl->initParamBinds(getEntityMap()->getColumnsForKey(), entity, command);
 
@@ -565,8 +565,8 @@ namespace CLDEPlus {
                 using SqlHelper = Foundation::Query::Helper::SqlHelper;
 
                 auto fptrSelectParamProcessor =
-                        [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
-                            return std::string("?");
+                        [](const Foundation::SPtrColumn &column, const int &index) -> string {
+                            return string("?");
                         };
 
                 auto pairSelectStmt = SqlHelper::CreateSelectPreparedQuery(getEntityMap()->getTableName(),

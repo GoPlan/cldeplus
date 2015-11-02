@@ -25,7 +25,7 @@ namespace CLDEPlus {
             if (_sptrTargetColumn && _sptrTargetColumn->getDataType() != srcSPtrCell->getColumn()->getDataType()) {
 
                 if (!_sptrTypeConverter) {
-                    std::string msg{"Cell can not be transformed if source and destination types are different" \
+                    string msg{"Cell can not be transformed if source and destination types are different" \
                     "but converter is not provided"};
                     throw Exception::TransformationException{msg};
                 }

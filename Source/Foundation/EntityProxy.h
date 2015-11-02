@@ -35,8 +35,8 @@ namespace CLDEPlus {
             void setSummonState(const EntityProxySummonState &summonState) { _summonState = summonState; }
 
             // Factory methods
-            static std::unique_ptr<EntityProxy> Create() {
-                return std::unique_ptr<EntityProxy>(new EntityProxy());
+            static unique_ptr<EntityProxy> Create() {
+                return unique_ptr<EntityProxy>(new EntityProxy());
             }
 
         private:
@@ -44,10 +44,10 @@ namespace CLDEPlus {
 
         };
 
-        using UPtrEntityProxy = std::unique_ptr<EntityProxy>;
-        using SPtrEntityProxy = std::shared_ptr<EntityProxy>;
-        using SPtrEntityProxyVector = std::vector<SPtrEntityProxy>;
-        using SPtrEntityProxySet = std::set<SPtrEntityProxy>;
+        using UPtrEntityProxy = unique_ptr<EntityProxy>;
+        using SPtrEntityProxy = shared_ptr<EntityProxy>;
+        using SPtrEntityProxyVector = vector<SPtrEntityProxy>;
+        using SPtrEntityProxySet = set<SPtrEntityProxy>;
 
 
     }

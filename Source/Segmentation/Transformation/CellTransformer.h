@@ -46,9 +46,9 @@ namespace CLDEPlus {
                 virtual Foundation::SPtrCell Transform(const Foundation::SPtrCell &srcSPtrCell) const;
             };
 
-            using SPtrCellTransformer = std::shared_ptr<CellTransformer>;
-            using SPtrCellTransformerMap = std::unordered_map<std::string, Transformation::SPtrCellTransformer>;
-            using CellTransformerMap = std::unordered_map<std::string, Transformation::CellTransformer>;
+            using SPtrCellTransformer = shared_ptr<CellTransformer>;
+            using SPtrCellTransformerMap = unordered_map<string, Transformation::SPtrCellTransformer>;
+            using CellTransformerMap = unordered_map<string, Transformation::CellTransformer>;
         }
     }
 }

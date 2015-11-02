@@ -17,10 +17,10 @@ namespace CLDEPlus {
 
             public:
                 using Options = struct {
-                    std::string Host;
-                    std::string User;
-                    std::string Pass;
-                    std::string Base;
+                    string Host;
+                    string User;
+                    string Pass;
+                    string Base;
                     unsigned int Port = 3306;
                 };
 
@@ -47,26 +47,26 @@ namespace CLDEPlus {
                         const Foundation::SPtrColumnVector &columnsForProjection) const override;
 
                 // Factory methods
-                static std::unique_ptr<MySqlSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
-                    return std::unique_ptr<MySqlSourceDriver>(new MySqlSourceDriver(sptrEntityMap));
+                static unique_ptr<MySqlSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                    return unique_ptr<MySqlSourceDriver>(new MySqlSourceDriver(sptrEntityMap));
                 }
 
             private:
                 class MySqlApiImpl;
 
                 Options _optionArgs;
-                std::shared_ptr<MySqlApiImpl> _mySqlApiImpl;
-                std::string _getStatement;
-                std::string _insertStatement;
-                std::string _updateStatement;
-                std::string _deleteStatement;
+                shared_ptr<MySqlApiImpl> _mySqlApiImpl;
+                string _getStatement;
+                string _insertStatement;
+                string _updateStatement;
+                string _deleteStatement;
                 bool isConnected = false;
 
             private:
                 void Init();
             };
 
-            using SPtrMySqlSourceDriver = std::shared_ptr<MySqlSourceDriver>;
+            using SPtrMySqlSourceDriver = shared_ptr<MySqlSourceDriver>;
         }
     }
 }

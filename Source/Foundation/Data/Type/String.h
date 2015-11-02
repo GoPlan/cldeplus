@@ -15,10 +15,10 @@ namespace CLDEPlus {
 
                 class String : public CharacterValue {
 
-                    std::string _value;
+                    string _value;
 
                 public:
-                    explicit String(const std::string &string);
+                    explicit String(const string &string);
                     explicit String(unsigned long size);
                     String() = default;
                     String(const String &) = default;
@@ -32,7 +32,7 @@ namespace CLDEPlus {
                     virtual size_t getActualSize() override;
 
                     // IPrintable
-                    virtual std::string ToString() const override;
+                    virtual string ToString() const override;
                 };
             }
         }

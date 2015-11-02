@@ -8,9 +8,9 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
 
-            std::string CLDEDataSourceRoutineException::_name{"CLDEDataSourceRoutineException"};
+            string CLDEDataSourceRoutineException::_name{"CLDEDataSourceRoutineException"};
 
-            const std::string &CLDEDataSourceRoutineException::Name() const noexcept {
+            const string &CLDEDataSourceRoutineException::Name() const noexcept {
                 return _name;
             }
         }

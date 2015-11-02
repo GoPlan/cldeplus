@@ -124,8 +124,8 @@ namespace CLDEPlus {
                 }
                 default: {
                     using TypeHelper = Foundation::Data::Helper::TypeHelper;
-                    std::string type{TypeHelper::CopyValueTypeToString(sptrValue->getDataType())};
-                    std::string msg{"CopySPtrValue does not support " + type + " yet"};
+                    string type{TypeHelper::CopyValueTypeToString(sptrValue->getDataType())};
+                    string msg{"CopySPtrValue does not support " + type + " yet"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }

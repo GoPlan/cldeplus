@@ -17,7 +17,7 @@ namespace CLDEPlus {
                                               public Foundation::Common::IPrintable {
 
                     SPtrColumnVector _displayColumns{};
-                    std::string _delimiter{"|"};
+                    string _delimiter{"|"};
 
                 public:
                     EntityOutputFormatter() = default;
@@ -31,14 +31,14 @@ namespace CLDEPlus {
                     SPtrColumnVector &DisplayColumns() { return _displayColumns; }
 
                     // Accessors
-                    void setDelimiter(const std::string &delimiter) { _delimiter = delimiter; }
+                    void setDelimiter(const string &delimiter) { _delimiter = delimiter; }
 
                     // IFormatter
-                    virtual std::string Format(const Common::IPrintable &printable) const override;
+                    virtual string Format(const Common::IPrintable &printable) const override;
 
                     // IPrintable
 
-                    virtual std::string ToString() const override;
+                    virtual string ToString() const override;
                 };
             }
         }

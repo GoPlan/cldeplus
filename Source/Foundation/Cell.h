@@ -28,7 +28,7 @@ namespace CLDEPlus {
             ~Cell() = default;
 
             // IPrintable
-            std::string ToString() const override;
+            string ToString() const override;
 
             // Locals
             bool isNull() const { return _value.get() == nullptr; };
@@ -37,15 +37,15 @@ namespace CLDEPlus {
             void setValue(const Data::SPtrValue &value);
 
             // Factory methods
-            static std::unique_ptr<Cell> Create(const SPtrColumn &column) { return std::unique_ptr<Cell>(new Cell(column)); }
-            static std::unique_ptr<Cell> Create(const SPtrColumn &column, const Data::SPtrValue &value) {
-                return std::unique_ptr<Cell>(new Cell(column, value));
+            static unique_ptr<Cell> Create(const SPtrColumn &column) { return unique_ptr<Cell>(new Cell(column)); }
+            static unique_ptr<Cell> Create(const SPtrColumn &column, const Data::SPtrValue &value) {
+                return unique_ptr<Cell>(new Cell(column, value));
             }
         };
 
-        using SPtrCell = std::shared_ptr<Cell>;
-        using SPtrCellMap = std::unordered_map<std::string, SPtrCell>;
-        using SPtrCellVector = std::vector<SPtrCell>;
+        using SPtrCell = shared_ptr<Cell>;
+        using SPtrCellMap = unordered_map<string, SPtrCell>;
+        using SPtrCellVector = vector<SPtrCell>;
     }
 }
 

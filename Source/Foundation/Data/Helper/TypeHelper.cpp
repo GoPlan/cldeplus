@@ -9,9 +9,9 @@ namespace CLDEPlus {
         namespace Data {
             namespace Helper {
 
-                std::string TypeHelper::CopyCategoryToString(const ValueCategory &category) {
+                string TypeHelper::CopyCategoryToString(const ValueCategory &category) {
 
-                    std::string result;
+                    string result;
 
                     switch (category) {
                         case ValueCategory::Numeric:
@@ -34,9 +34,9 @@ namespace CLDEPlus {
                     return result;
                 }
 
-                std::string TypeHelper::CopyValueTypeToString(const ValueType &type) {
+                string TypeHelper::CopyValueTypeToString(const ValueType &type) {
 
-                    std::string result;
+                    string result;
 
                     switch (type) {
                         case ValueType::Blob:

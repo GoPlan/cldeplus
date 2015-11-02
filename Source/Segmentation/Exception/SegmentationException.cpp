@@ -8,9 +8,9 @@ namespace CLDEPlus {
     namespace Segmentation {
         namespace Exception {
 
-            const std::string SegmentationException::_name{"SegmentationException"};
+            const string SegmentationException::_name{"SegmentationException"};
 
-            const std::string &SegmentationException::Name() const noexcept {
+            const string &SegmentationException::Name() const noexcept {
                 return _name;
             }
         }

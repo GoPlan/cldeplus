@@ -15,8 +15,8 @@ namespace CLDEPlus {
 
         class EntitySourceDriver;
 
-        using SPtrIdentityMap = std::unordered_map<SPtrIdentity, SPtrEntity>;
-        using SPtrEntitySourceDriver = std::shared_ptr<EntitySourceDriver>;
+        using SPtrIdentityMap = unordered_map<SPtrIdentity, SPtrEntity>;
+        using SPtrEntitySourceDriver = shared_ptr<EntitySourceDriver>;
 
         class EntityStore {
 
@@ -48,14 +48,14 @@ namespace CLDEPlus {
             SPtrEntitySourceDriver const &getEntitySourceDriver() const { return _sptrEntitySourceDriver; }
 
             // Factory methods
-            static std::unique_ptr<EntityStore> Create(SPtrEntityMap const &sptrEntityMap,
+            static unique_ptr<EntityStore> Create(SPtrEntityMap const &sptrEntityMap,
                                                        SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
-                return std::unique_ptr<EntityStore>(new EntityStore(sptrEntityMap, sptrEntitySourceDriver));
+                return unique_ptr<EntityStore>(new EntityStore(sptrEntityMap, sptrEntitySourceDriver));
             }
         };
 
-        using UPtrEntityStore = std::unique_ptr<EntityStore>;
-        using SPtrEntityStore = std::shared_ptr<EntityStore>;
+        using UPtrEntityStore = unique_ptr<EntityStore>;
+        using SPtrEntityStore = shared_ptr<EntityStore>;
     }
 }
 

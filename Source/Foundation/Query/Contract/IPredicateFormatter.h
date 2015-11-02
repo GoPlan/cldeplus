@@ -16,7 +16,7 @@ namespace CLDEPlus {
                 class IPredicateFormatter {
 
                 public:
-                    virtual std::string ParsePredicateToStringCopy(const SPtrCriteria &criteria) const = 0;
+                    virtual string ParsePredicateToStringCopy(const SPtrCriteria &criteria) const = 0;
                 };
             }
         }

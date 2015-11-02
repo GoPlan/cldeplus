@@ -26,32 +26,32 @@ namespace CLDEPlus {
 
                 struct SqlHelper {
 
-                    using FPtrParamProcessor = std::function<std::string(const SPtrColumn &column, const int &index)>;
+                    using FPtrParamProcessor = std::function<string(const SPtrColumn &column, const int &index)>;
 
-                    static std::string CreateGetPreparedQuery
-                            (const std::string &strSourceName,
+                    static string CreateGetPreparedQuery
+                            (const string &strSourceName,
                              const SPtrColumnVector &columnsForProjection,
                              const SPtrColumnVector &columnsForKey,
                              FPtrParamProcessor fptrProcessor);
 
-                    static std::string CreateInsertPreparedQuery
-                            (const std::string &strSourceName,
+                    static string CreateInsertPreparedQuery
+                            (const string &strSourceName,
                              const SPtrColumnVector &columnsForValue,
                              FPtrParamProcessor fptrProcessor);
 
-                    static std::string CreateUpdatePreparedQuery
-                            (const std::string &strSourceName,
+                    static string CreateUpdatePreparedQuery
+                            (const string &strSourceName,
                              const SPtrColumnVector &columnsForValue,
                              const SPtrColumnVector &conditionalColumns,
                              FPtrParamProcessor fptrProcessor);
 
-                    static std::string CreateDeletePreparedQuery
-                            (const std::string &strSourceName,
+                    static string CreateDeletePreparedQuery
+                            (const string &strSourceName,
                              const SPtrColumnVector &conditionalColumns,
                              FPtrParamProcessor fptrProcessor);
 
-                    static std::pair<std::string, std::vector<SPtrCriteria>> CreateSelectPreparedQuery
-                            (const std::string &strSourceName,
+                    static std::pair<string, vector<SPtrCriteria>> CreateSelectPreparedQuery
+                            (const string &strSourceName,
                              const SPtrColumnVector &columnsForProjection,
                              const SPtrCriteria &sptrCriteria,
                              const FPtrParamProcessor fptrProcessor);

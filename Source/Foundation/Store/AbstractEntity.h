@@ -23,12 +23,12 @@ namespace CLDEPlus {
                 virtual void setCell(const SPtrCell &cell);
                 virtual void setCell(Cell *ptrCell);
                 virtual void setMultiCells(const SPtrCellVector &cellVector);
-                virtual void setMultiCells(const std::vector<Cell *> &cellVector);
+                virtual void setMultiCells(const vector<Cell *> &cellVector);
 
-                virtual const SPtrCell &getCell(const std::string &columnName) const;
-                virtual const SPtrCell &operator[](const std::string &columnName) const;
-                virtual bool TryGetCell(const std::string &columnName, SPtrCell &sptrOutCell) const;
-                virtual bool hasCell(const std::string &cellName) const;
+                virtual const SPtrCell &getCell(const string &columnName) const;
+                virtual const SPtrCell &operator[](const string &columnName) const;
+                virtual bool TryGetCell(const string &columnName, SPtrCell &sptrOutCell) const;
+                virtual bool hasCell(const string &cellName) const;
                 virtual unsigned long Size() const;
 
                 const SPtrCellMap &getCellsMap() const{ return _cellMap; };
@@ -38,8 +38,8 @@ namespace CLDEPlus {
                 SPtrColumnVector getColumns() const;
 
                 // IPrintable
-                virtual std::string ToString() const override;
-                virtual std::string ToString(const Foundation::Common::IFormatter &formatter) const override;
+                virtual string ToString() const override;
+                virtual string ToString(const Foundation::Common::IFormatter &formatter) const override;
 
             protected:
                 AbstractEntity() = default;
@@ -47,7 +47,7 @@ namespace CLDEPlus {
 
             };
 
-            using SPtrDataRecord = std::shared_ptr<AbstractEntity>;
+            using SPtrDataRecord = shared_ptr<AbstractEntity>;
         }
     }
 }

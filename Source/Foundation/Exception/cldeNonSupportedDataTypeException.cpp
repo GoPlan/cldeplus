@@ -8,9 +8,9 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
 
-            const std::string CLDENonSupportedDataTypeException::_name{"CLDENonSupportedDataTypeException"};
+            const string CLDENonSupportedDataTypeException::_name{"CLDENonSupportedDataTypeException"};
 
-            const std::string &CLDENonSupportedDataTypeException::Name() const noexcept {
+            const string &CLDENonSupportedDataTypeException::Name() const noexcept {
                 return _name;
             }
 

@@ -75,41 +75,41 @@ namespace CLDEPlus {
                 return !MySqlHelper::Less(lhs, rhs) && !MySqlHelper::Greater(lhs, rhs);
             }
 
-            std::string MySqlHelper::DateToISO8601String(const MYSQL_TIME &date) {
+            string MySqlHelper::DateToISO8601String(const MYSQL_TIME &date) {
 
-                std::string year{std::to_string(date.year)};
-                std::string month{std::to_string(date.month)};
-                std::string day{std::to_string(date.day)};
-                std::string result = year + "-" + month + "-" + day;
-
-                return result;
-            }
-
-            std::string MySqlHelper::TimeToISO8601String(const MYSQL_TIME &time) {
-
-                std::string hour{std::to_string(time.hour)};
-                std::string minute{std::to_string(time.minute)};
-                std::string second{std::to_string(time.second)};
-                std::string milliseconds{std::to_string(time.second_part)};
-                std::string result = hour + ":" + minute + ":" + second + "." + milliseconds;
+                string year{std::to_string(date.year)};
+                string month{std::to_string(date.month)};
+                string day{std::to_string(date.day)};
+                string result = year + "-" + month + "-" + day;
 
                 return result;
             }
 
-            std::string MySqlHelper::DateTimeToISO8601String(const MYSQL_TIME &dateTime) {
+            string MySqlHelper::TimeToISO8601String(const MYSQL_TIME &time) {
 
-                std::string year{std::to_string(dateTime.year)};
-                std::string month{std::to_string(dateTime.month)};
-                std::string day{std::to_string(dateTime.day)};
-                std::string dayPart = year + "-" + month + "-" + day;
+                string hour{std::to_string(time.hour)};
+                string minute{std::to_string(time.minute)};
+                string second{std::to_string(time.second)};
+                string milliseconds{std::to_string(time.second_part)};
+                string result = hour + ":" + minute + ":" + second + "." + milliseconds;
 
-                std::string hour{std::to_string(dateTime.hour)};
-                std::string minute{std::to_string(dateTime.minute)};
-                std::string second{std::to_string(dateTime.second)};
-                std::string milliseconds{std::to_string(dateTime.second_part)};
-                std::string timePart = hour + ":" + minute + ":" + second + "." + milliseconds;
+                return result;
+            }
 
-                std::string result = dayPart + " " + timePart;
+            string MySqlHelper::DateTimeToISO8601String(const MYSQL_TIME &dateTime) {
+
+                string year{std::to_string(dateTime.year)};
+                string month{std::to_string(dateTime.month)};
+                string day{std::to_string(dateTime.day)};
+                string dayPart = year + "-" + month + "-" + day;
+
+                string hour{std::to_string(dateTime.hour)};
+                string minute{std::to_string(dateTime.minute)};
+                string second{std::to_string(dateTime.second)};
+                string milliseconds{std::to_string(dateTime.second_part)};
+                string timePart = hour + ":" + minute + ":" + second + "." + milliseconds;
+
+                string result = dayPart + " " + timePart;
 
                 return result;
             }

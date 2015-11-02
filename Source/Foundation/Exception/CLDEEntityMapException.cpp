@@ -8,7 +8,7 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
 
-            std::string CLDEEntityMapException::_name{"CLDEEntityMapException"};
+            string CLDEEntityMapException::_name{"CLDEEntityMapException"};
 
         }
     }

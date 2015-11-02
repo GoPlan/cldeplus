@@ -31,7 +31,7 @@ namespace CLDEPlus {
                     return &_time;
                 }
 
-                std::string Time::ToString() const {
+                string Time::ToString() const {
                     return Data::Helper::TimeBasedHelper::TimeToISO8601String(_time, true, _hasOffSet);
                 }
 
@@ -56,17 +56,17 @@ namespace CLDEPlus {
                 }
 
                 bool Time::LessThan(const Common::IComparable &target) const {
-                    std::string msg{"LessThan"};
+                    string msg{"LessThan"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool Time::GreaterThan(const Common::IComparable &target) const {
-                    std::string msg{"GreaterThan"};
+                    string msg{"GreaterThan"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool Time::EquivalentTo(const Common::IComparable &target) const {
-                    std::string msg{"EquivalentTo"};
+                    string msg{"EquivalentTo"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
             }

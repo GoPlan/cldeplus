@@ -32,10 +32,10 @@ namespace Cloude {
 
             public:
                 using Options = struct {
-                    std::string Host;
-                    std::string User;
-                    std::string Pass;
-                    std::string Base;
+                    string Host;
+                    string User;
+                    string Pass;
+                    string Base;
                     unsigned int Port = 5432;
                 };
 
@@ -51,21 +51,21 @@ namespace Cloude {
                 Options &getOptionArgs() { return _optionArgs; }
 
                 // EntitySourceDriver
-                int Load(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Insert(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Save(std::shared_ptr<Foundation::Entity> &entity) const override;
-                int Delete(std::shared_ptr<Foundation::Entity> &entity) const override;
+                int Load(shared_ptr<Foundation::Entity> &entity) const override;
+                int Insert(shared_ptr<Foundation::Entity> &entity) const override;
+                int Save(shared_ptr<Foundation::Entity> &entity) const override;
+                int Delete(shared_ptr<Foundation::Entity> &entity) const override;
                 SPtrProxySPtrVector Select(const SPtrPredicate &predicate,
                                            Foundation::EntityStore &entityStore) const override;
             private:
                 class PgApiImpl;
 
-                std::shared_ptr<PgApiImpl> _pgApiImpl;
+                shared_ptr<PgApiImpl> _pgApiImpl;
                 Options _optionArgs;
-                std::string _getStatement;
-                std::string _insertStatement;
-                std::string _updateStatement;
-                std::string _deleteStatement;
+                string _getStatement;
+                string _insertStatement;
+                string _updateStatement;
+                string _deleteStatement;
                 bool _isConnected = false;
 
             private:

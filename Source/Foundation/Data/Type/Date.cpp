@@ -28,7 +28,7 @@ namespace CLDEPlus {
                     return &_date;
                 }
 
-                std::string Date::ToString() const {
+                string Date::ToString() const {
                     return Data::Helper::TimeBasedHelper::DateToISO8601String(_date);
                 }
 
@@ -53,17 +53,17 @@ namespace CLDEPlus {
                 }
 
                 bool Date::LessThan(const Common::IComparable &target) const {
-                    std::string msg{"LessThan"};
+                    string msg{"LessThan"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool Date::GreaterThan(const Common::IComparable &target) const {
-                    std::string msg{"GreaterThan"};
+                    string msg{"GreaterThan"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool Date::EquivalentTo(const Common::IComparable &target) const {
-                    std::string msg{"EquivalentTo"};
+                    string msg{"EquivalentTo"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
             }

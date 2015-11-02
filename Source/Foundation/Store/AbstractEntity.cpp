@@ -52,22 +52,22 @@ namespace CLDEPlus {
             }
         }
 
-        void Store::AbstractEntity::setMultiCells(const std::vector<Cell *> &cellVector) {
+        void Store::AbstractEntity::setMultiCells(const vector<Cell *> &cellVector) {
             for (auto ptrField : cellVector) {
                 setCell(ptrField);
             }
         }
 
-        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::operator[](const std::string &columnName) const {
+        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::operator[](const string &columnName) const {
             return getCell(columnName);
         }
 
-        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::getCell(const std::string &columnName) const {
+        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::getCell(const string &columnName) const {
 
             auto search = _cellMap.find(columnName);
 
             if (search == _cellMap.end()) {
-                std::string msg{columnName + " is not found in record"};
+                string msg{columnName + " is not found in record"};
                 throw Exception::CLDEEntityException{msg};
             }
 
@@ -75,7 +75,7 @@ namespace CLDEPlus {
         }
 
 
-        bool Store::AbstractEntity::TryGetCell(const std::string &columnName, SPtrCell &sptrOutCell) const {
+        bool Store::AbstractEntity::TryGetCell(const string &columnName, SPtrCell &sptrOutCell) const {
 
             auto search = _cellMap.find(columnName);
 
@@ -88,7 +88,7 @@ namespace CLDEPlus {
             return true;
         }
 
-        bool Store::AbstractEntity::hasCell(const std::string &cellName) const {
+        bool Store::AbstractEntity::hasCell(const string &cellName) const {
             auto search = _cellMap.find(cellName);
             auto result = !(search == _cellMap.end());
             return result;
@@ -136,9 +136,9 @@ namespace CLDEPlus {
             return columnVector;
         }
 
-        std::string Store::AbstractEntity::ToString() const {
+        string Store::AbstractEntity::ToString() const {
 
-            std::string result;
+            string result;
 
             auto sptrFieldVector = getCells();
 
@@ -158,7 +158,7 @@ namespace CLDEPlus {
             return result;
         }
 
-        std::string Store::AbstractEntity::ToString(const Foundation::Common::IFormatter &formatter) const {
+        string Store::AbstractEntity::ToString(const Foundation::Common::IFormatter &formatter) const {
             return formatter.Format(*this);
         }
     }

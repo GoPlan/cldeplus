@@ -9,27 +9,27 @@ namespace CLDEPlus {
     namespace Foundation {
 
 
-        Column::Column(std::string name, Data::ValueType dataType)
+        Column::Column(string name, Data::ValueType dataType)
                 : _name{name}, _dataType{dataType} {
             //
         }
 
-        Column::Column(std::string name, Data::ValueType dataType, std::string datasourceName, size_t length)
+        Column::Column(string name, Data::ValueType dataType, string datasourceName, size_t length)
                 : _name{name}, _datasourceName{datasourceName}, _length{length}, _dataType{dataType} {
             //
         }
 
-        std::string Column::ToString() const {
-            std::string result{_name + "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_dataType) +
+        string Column::ToString() const {
+            string result{_name + "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_dataType) +
                                "[" + std::to_string(_length) + "]" + ")"};
             return result;
         }
 
-        SPtrColumn CreateColumn(const std::string &name, Data::ValueType dataType) {
+        SPtrColumn CreateColumn(const string &name, Data::ValueType dataType) {
             return std::make_shared<Column>(name, dataType);
         }
 
-        SPtrColumn CreateColumn(const std::string &name, Data::ValueType dataType, const std::string &datasourceName,
+        SPtrColumn CreateColumn(const string &name, Data::ValueType dataType, const string &datasourceName,
                                 size_t length) {
             return std::make_shared<Column>(name, dataType, datasourceName, length);
         }

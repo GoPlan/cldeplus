@@ -16,7 +16,7 @@ namespace CLDEPlus {
             T NumericToPrimative(const SPtrValue &value) {
 
                 if (!value->isNumeric() || value->getCategory() != ValueCategory::Numeric) {
-                    std::string msg{"Value is not numeric"};
+                    string msg{"Value is not numeric"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
 

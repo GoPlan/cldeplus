@@ -14,8 +14,8 @@ namespace CLDEPlus {
                 Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
             if (value->getDataType() != Foundation::Data::ValueType::Double) {
-                std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
-                std::string msg{type + " is not supported by DoubleCaster"};
+                string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
+                string msg{type + " is not supported by DoubleCaster"};
                 throw Segmentation::Exception::TransformationException{msg};
             }
 
@@ -41,8 +41,8 @@ namespace CLDEPlus {
                 case Foundation::Data::ValueType::Byte:
                     return Foundation::Data::ValueFactory::CreateByte((char) *tmp);
                 default: {
-                    std::string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
-                    std::string msg{"This converter can not convert double into " + type};
+                    string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
+                    string msg{"This converter can not convert double into " + type};
                     throw Segmentation::Exception::TransformationException{msg};
                 }
             }

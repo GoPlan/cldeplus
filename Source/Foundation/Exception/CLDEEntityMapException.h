@@ -13,10 +13,10 @@ namespace CLDEPlus {
 
             class CLDEEntityMapException : public CLDEException {
 
-                static std::string _name;
+                static string _name;
 
             public:
-                CLDEEntityMapException(std::string const &message) : CLDEException(message) { };
+                CLDEEntityMapException(string const &message) : CLDEException(message) { };
                 CLDEEntityMapException(const CLDEEntityMapException &) = default;
                 CLDEEntityMapException(CLDEEntityMapException &&) = default;
                 CLDEEntityMapException &operator=(const CLDEEntityMapException &) = default;
@@ -24,7 +24,7 @@ namespace CLDEPlus {
                 virtual ~CLDEEntityMapException() = default;
 
                 // CLDEException
-                virtual const std::string &Name() const noexcept override { return _name; }
+                virtual const string &Name() const noexcept override { return _name; }
             };
         }
     }

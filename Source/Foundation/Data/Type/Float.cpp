@@ -19,7 +19,7 @@ namespace CLDEPlus {
                     return &_value;
                 }
 
-                std::string Float::ToString() const {
+                string Float::ToString() const {
                     return std::to_string(_value);
                 }
 

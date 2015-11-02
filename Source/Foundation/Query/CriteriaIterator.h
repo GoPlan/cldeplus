@@ -15,7 +15,7 @@ namespace CLDEPlus {
 
             class CriteriaIterator;
 
-            using SPtrCriteriaIterator = std::shared_ptr<CriteriaIterator>;
+            using SPtrCriteriaIterator = shared_ptr<CriteriaIterator>;
             using WPtrCriteriaIterator = std::weak_ptr<CriteriaIterator>;
 
             class CriteriaIterator : public std::enable_shared_from_this<CriteriaIterator> {

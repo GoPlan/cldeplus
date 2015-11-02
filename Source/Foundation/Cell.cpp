@@ -17,8 +17,8 @@ namespace CLDEPlus {
             setValue(value);
         }
 
-        std::string Cell::ToString() const {
-            std::string result{_value->ToString()
+        string Cell::ToString() const {
+            string result{_value->ToString()
                                + "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_value->getDataType()) + ")"};
             return result;
         }
@@ -26,7 +26,7 @@ namespace CLDEPlus {
         void Cell::setValue(const Data::SPtrValue &value) {
 
             if (value->getDataType() != _column->getDataType()) {
-                std::string msg{"Value has type "
+                string msg{"Value has type "
                                 + Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())
                                 + " that is different with column " + _column->ToString()
                                 + "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_column->getDataType()) + ")"};

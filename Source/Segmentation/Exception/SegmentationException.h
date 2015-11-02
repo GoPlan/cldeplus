@@ -13,10 +13,10 @@ namespace CLDEPlus {
 
             class SegmentationException : public Foundation::Exception::CLDEException {
 
-                static const std::string _name;
+                static const string _name;
 
             public:
-                SegmentationException(const std::string &message) : CLDEException{message} { };
+                SegmentationException(const string &message) : CLDEException{message} { };
                 SegmentationException(const SegmentationException &) = default;
                 SegmentationException(SegmentationException &&) = default;
                 SegmentationException &operator=(const SegmentationException &) = default;
@@ -24,7 +24,7 @@ namespace CLDEPlus {
                 virtual ~SegmentationException() = default;
 
                 // CLDEException
-                virtual const std::string &Name() const noexcept override;
+                virtual const string &Name() const noexcept override;
             };
         }
     }

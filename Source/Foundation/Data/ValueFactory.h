@@ -27,9 +27,9 @@ namespace CLDEPlus {
 
                 // Character
                 static SPtrValue CreateVarChar(const char *value);
-                static SPtrValue CreateVarChar(const std::string &value);
+                static SPtrValue CreateVarChar(const string &value);
                 static SPtrValue CreateVarChar(unsigned long length);
-                static SPtrValue CreateText(const std::string &value);
+                static SPtrValue CreateText(const string &value);
                 static SPtrValue CreateText(unsigned long length);
 
                 // DateTime

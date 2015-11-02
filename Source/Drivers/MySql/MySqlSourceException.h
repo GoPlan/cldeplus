@@ -13,17 +13,17 @@ namespace CLDEPlus {
 
             class MySqlSourceException : public Foundation::Exception::CLDEException {
 
-                static std::string _name;
+                static string _name;
 
             public:
-                MySqlSourceException(const std::string &message);
+                MySqlSourceException(const string &message);
                 MySqlSourceException(const MySqlSourceException &) = default;
                 MySqlSourceException(MySqlSourceException &&) = default;
                 MySqlSourceException &operator=(const MySqlSourceException &) = default;
                 MySqlSourceException &operator=(MySqlSourceException &&) = default;
                 ~MySqlSourceException() = default;
 
-                virtual const std::string &Name() const noexcept override;
+                virtual const string &Name() const noexcept override;
             };
         }
     }

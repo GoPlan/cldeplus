@@ -15,7 +15,7 @@ namespace CLDEPlus {
                 class Int64 : public NumericValue {
 
                     int64_t _value;
-                    mutable std::string _string;
+                    mutable string _string;
 
                 public:
                     explicit Int64(int64_t value);
@@ -29,7 +29,7 @@ namespace CLDEPlus {
                     virtual void *PointerToBuffer() override;
 
                     // IPrintable
-                    virtual std::string ToString() const override;
+                    virtual string ToString() const override;
 
                     // IComputable
                     virtual Value &operator+(const Value &rhs) override;

@@ -33,16 +33,16 @@ namespace CLDEPlus {
             TEntity NamedEntity(std::function<TEntity(const Entity &)> converter) { return converter(*this); };
 
             // Factory methods
-            static std::unique_ptr<Entity> Create(const SPtrIdentity &identity) {
-                return std::unique_ptr<Entity>(new Entity(identity));
+            static unique_ptr<Entity> Create(const SPtrIdentity &identity) {
+                return unique_ptr<Entity>(new Entity(identity));
             }
         };
 
-        using UPtrEntity = std::unique_ptr<Entity>;
-        using SPtrEntity = std::shared_ptr<Entity>;
-        using SPtrEntityVector = std::vector<SPtrEntity>;
-        using SPtrEntityList = std::list<SPtrEntity>;
-        using SPtrEntitySet = std::set<SPtrEntity>;
+        using UPtrEntity = unique_ptr<Entity>;
+        using SPtrEntity = shared_ptr<Entity>;
+        using SPtrEntityVector = vector<SPtrEntity>;
+        using SPtrEntityList = list<SPtrEntity>;
+        using SPtrEntitySet = set<SPtrEntity>;
 
     }
 }

@@ -13,11 +13,11 @@ namespace CLDEPlus {
 
             class CLDENonSupportedDataTypeException : public CLDEException {
 
-                static const std::string _name;
+                static const string _name;
 
             public:
                 CLDENonSupportedDataTypeException(const char *message) : CLDEException(message) { };
-                CLDENonSupportedDataTypeException(const std::string &message) : CLDEException(message) { };
+                CLDENonSupportedDataTypeException(const string &message) : CLDEException(message) { };
                 CLDENonSupportedDataTypeException(const CLDENonSupportedDataTypeException &) = default;
                 CLDENonSupportedDataTypeException(CLDENonSupportedDataTypeException &&) = default;
                 CLDENonSupportedDataTypeException &operator=(const CLDENonSupportedDataTypeException &) = default;
@@ -25,7 +25,7 @@ namespace CLDEPlus {
                 virtual ~CLDENonSupportedDataTypeException() = default;
 
                 // CLDEException
-                virtual const std::string &Name() const noexcept override;
+                virtual const string &Name() const noexcept override;
             };
         }
     }

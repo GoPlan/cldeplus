@@ -14,11 +14,11 @@ namespace CLDEPlus {
             class SQLiteSourceException : public Foundation::Exception::CLDEException {
 
                 int _resultCode;
-                static const std::string _name;
+                static const string _name;
 
             public:
                 explicit SQLiteSourceException(int resultCode);
-                explicit SQLiteSourceException(int resultCode, const std::string &comment);
+                explicit SQLiteSourceException(int resultCode, const string &comment);
                 SQLiteSourceException(const SQLiteSourceException &) = default;
                 SQLiteSourceException(SQLiteSourceException &&) = default;
                 SQLiteSourceException &operator=(const SQLiteSourceException &) = default;
@@ -26,7 +26,7 @@ namespace CLDEPlus {
                 ~SQLiteSourceException() = default;
 
                 // CLDEException
-                virtual const std::string &Name() const noexcept override { return _name; };
+                virtual const string &Name() const noexcept override { return _name; };
             };
         }
     }

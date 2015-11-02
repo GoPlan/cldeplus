@@ -15,7 +15,7 @@ namespace CLDEPlus {
         class Identity : public Store::AbstractEntity {
 
         public:
-            explicit Identity(const std::vector<SPtrCell> &sptrCells);
+            explicit Identity(const vector<SPtrCell> &sptrCells);
             Identity() = default;
             Identity(const Identity &) = default;
             Identity(Identity &&) = default;
@@ -24,17 +24,17 @@ namespace CLDEPlus {
             ~Identity() = default;
 
             // Factory methods
-            static std::unique_ptr<Identity> Create(){
-                return std::unique_ptr<Identity>(new Identity());
+            static unique_ptr<Identity> Create(){
+                return unique_ptr<Identity>(new Identity());
             }
 
-            static std::unique_ptr<Identity> Create(SPtrCellVector const &cells){
-                return std::unique_ptr<Identity>(new Identity(cells));
+            static unique_ptr<Identity> Create(SPtrCellVector const &cells){
+                return unique_ptr<Identity>(new Identity(cells));
             }
         };
 
-        using UPtrIdentity = std::unique_ptr<Identity>;
-        using SPtrIdentity = std::shared_ptr<Identity>;
+        using UPtrIdentity = unique_ptr<Identity>;
+        using SPtrIdentity = shared_ptr<Identity>;
     }
 }
 

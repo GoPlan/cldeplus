@@ -18,7 +18,7 @@ namespace CLDEPlus {
                     char *_buffer = nullptr;
 
                 public:
-                    explicit Text(const std::string &text);
+                    explicit Text(const string &text);
                     explicit Text(const char *text);
                     explicit Text(unsigned long length);
                     Text(const Text &) = default;
@@ -32,7 +32,7 @@ namespace CLDEPlus {
                     virtual size_t getActualSize() override;
 
                     // IPrintable
-                    virtual std::string ToString() const override;
+                    virtual string ToString() const override;
                 };
             }
         }

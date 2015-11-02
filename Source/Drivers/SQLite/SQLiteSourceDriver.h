@@ -18,7 +18,7 @@ namespace CLDEPlus {
 
             public:
                 using Options = struct {
-                    std::string ConnectionString;
+                    string ConnectionString;
                 };
 
             public:
@@ -45,28 +45,28 @@ namespace CLDEPlus {
                         const Foundation::SPtrColumnVector &columnsForProjection) const override;
 
                 // Factory methods
-                static std::unique_ptr<SQLiteSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
-                    return std::unique_ptr<SQLiteSourceDriver>(new SQLiteSourceDriver(sptrEntityMap));
+                static unique_ptr<SQLiteSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                    return unique_ptr<SQLiteSourceDriver>(new SQLiteSourceDriver(sptrEntityMap));
                 }
 
             private:
                 class SQLiteApiImpl;
-                using SPtrSQLiteApiImpl = std::shared_ptr<SQLiteApiImpl>;
+                using SPtrSQLiteApiImpl = shared_ptr<SQLiteApiImpl>;
                 SPtrSQLiteApiImpl _sqliteApiImpl;
 
                 Options _optionArgs;
 
-                std::string _getStatement;
-                std::string _insertStatement;
-                std::string _updateStatement;
-                std::string _deleteStatement;
+                string _getStatement;
+                string _insertStatement;
+                string _updateStatement;
+                string _deleteStatement;
 
             private:
                 void Init();
             };
 
-            using UPtrSQLiteSourceDriver = std::unique_ptr<SQLiteSourceDriver>;
-            using SPtrSQLiteSourceDriver = std::shared_ptr<SQLiteSourceDriver>;
+            using UPtrSQLiteSourceDriver = unique_ptr<SQLiteSourceDriver>;
+            using SPtrSQLiteSourceDriver = shared_ptr<SQLiteSourceDriver>;
         }
     }
 }

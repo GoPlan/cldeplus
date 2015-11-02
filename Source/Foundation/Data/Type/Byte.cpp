@@ -19,7 +19,7 @@ namespace CLDEPlus {
                     return &this->_value;
                 }
 
-                std::string Byte::ToString() const {
+                string Byte::ToString() const {
                     return std::to_string(_value);
                 }
 

@@ -8,14 +8,14 @@ namespace CLDEPlus {
     namespace Drivers {
         namespace MySql {
 
-            std::string MySqlSourceException::_name{"MySqlSourceException"};
+            string MySqlSourceException::_name{"MySqlSourceException"};
 
-            MySqlSourceException::MySqlSourceException(const std::string &message)
+            MySqlSourceException::MySqlSourceException(const string &message)
                     : CLDEException{message} {
                 //
             }
 
-            const std::string &Drivers::MySql::MySqlSourceException::Name() const noexcept {
+            const string &Drivers::MySql::MySqlSourceException::Name() const noexcept {
                 return _name;
             }
         }

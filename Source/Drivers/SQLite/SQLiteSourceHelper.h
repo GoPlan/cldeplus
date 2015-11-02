@@ -15,7 +15,7 @@ namespace CLDEPlus {
             class SQLiteSourceHelper {
 
             public:
-                static std::string CopyToString(int resultCode);
+                static CLDEPlus::string CopyToString(int resultCode);
 
             private:
                 SQLiteSourceHelper() = default;

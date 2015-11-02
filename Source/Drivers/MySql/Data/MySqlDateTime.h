@@ -17,7 +17,7 @@ namespace CLDEPlus {
 
                 class MySqlDateTime : public Foundation::Data::TimeBasedValue {
 
-                    std::shared_ptr<MySqlDateTimeImpl> _sptrDateTimeImpl;
+                    shared_ptr<MySqlDateTimeImpl> _sptrDateTimeImpl;
 
                 public:
                     MySqlDateTime(unsigned int year, unsigned int month, unsigned int day);
@@ -36,7 +36,7 @@ namespace CLDEPlus {
                     virtual void *PointerToBuffer() override;
 
                     // IPrintable
-                    virtual std::string ToString() const override;
+                    virtual string ToString() const override;
 
                     // IComputable
                     virtual Foundation::Data::Value &operator+(const Foundation::Data::Value &rhs) override;
@@ -51,7 +51,7 @@ namespace CLDEPlus {
                     virtual bool EquivalentTo(const Foundation::Common::IComparable &target) const override;
                 };
 
-                using SPtrMySqlDateTime = std::shared_ptr<MySqlDateTime>;
+                using SPtrMySqlDateTime = shared_ptr<MySqlDateTime>;
             }
         }
     }

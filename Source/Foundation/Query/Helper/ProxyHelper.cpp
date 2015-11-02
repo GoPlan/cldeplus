@@ -13,7 +13,7 @@ CLDEPlus::Foundation::SPtrEntity CLDEPlus::Foundation::Query::Helper::ProxyHelpe
         SPtrEntityStore &store) {
 
     if (!IsIdentifiableInStore(proxy, store)) {
-        std::string msg{"Proxy is not summonable. See if selected columns are sufficient for Identity."};
+        string msg{"Proxy is not summonable. See if selected columns are sufficient for Identity."};
         throw Exception::CLDEEntityException{msg};
     }
 

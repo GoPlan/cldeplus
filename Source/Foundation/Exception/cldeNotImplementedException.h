@@ -13,11 +13,11 @@ namespace CLDEPlus {
 
             class CLDENotImplementedException : public CLDEException {
 
-                static const std::string _name;
+                static const string _name;
 
             public:
                 CLDENotImplementedException(const char *message) : CLDEException(message) { };
-                CLDENotImplementedException(const std::string &message) : CLDEException(message) { };
+                CLDENotImplementedException(const string &message) : CLDEException(message) { };
                 CLDENotImplementedException(const CLDENotImplementedException &) = default;
                 CLDENotImplementedException(CLDENotImplementedException &&) = default;
                 CLDENotImplementedException &operator=(const CLDENotImplementedException &) = default;
@@ -25,7 +25,7 @@ namespace CLDEPlus {
                 virtual ~CLDENotImplementedException() = default;
 
                 // CLDEException
-                virtual const std::string &Name() const noexcept override { return _name; };
+                virtual const string &Name() const noexcept override { return _name; };
             };
         }
     }

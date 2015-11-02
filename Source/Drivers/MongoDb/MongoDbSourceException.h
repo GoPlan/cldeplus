@@ -20,12 +20,12 @@ namespace Cloude {
 
                 const char *what() const noexcept override;
 
-                void setMessage(std::string &message) {
+                void setMessage(string &message) {
                     this->message = message;
                 }
 
             private:
-                std::string message;
+                string message;
 
             };
         }

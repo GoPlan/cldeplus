@@ -10,7 +10,7 @@ namespace CLDEPlus {
     namespace Segmentation {
 
         void Transformation::EntityTransformer::AddCellTransformer(
-                const std::string &columnName,
+                const string &columnName,
                 const Transformation::CellTransformer &cellTransformer) {
             _mapCellTransformers.insert(std::make_pair(columnName, cellTransformer));
         }
@@ -20,12 +20,12 @@ namespace CLDEPlus {
                 Foundation::SPtrEntityProxy &dstProxy) const {
 
             if (!srcProxy) {
-                std::string msg{"srcProxy is either invalid or a nullptr"};
+                string msg{"srcProxy is either invalid or a nullptr"};
                 throw Exception::TransformationException{msg};
             }
 
             if (!dstProxy) {
-                std::string msg{"dstProxy is either invalid or a nullptr"};
+                string msg{"dstProxy is either invalid or a nullptr"};
                 throw Exception::TransformationException{msg};
             }
 
@@ -38,7 +38,7 @@ namespace CLDEPlus {
         }
 
         Transformation::UPtrEntityTransformer Transformation::CreateEntityTransformerInstance() {
-            return std::unique_ptr<EntityTransformer>(new EntityTransformer());
+            return unique_ptr<EntityTransformer>(new EntityTransformer());
         }
     }
 }

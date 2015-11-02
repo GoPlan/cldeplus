@@ -22,7 +22,7 @@ namespace CLDEPlus {
         SPtrEntity EntityStore::Create(const SPtrIdentity &identity) {
 
             if (!identity) {
-                std::string msg{"Identity is either a nullptr or invalid"};
+                string msg{"Identity is either a nullptr or invalid"};
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
@@ -40,7 +40,7 @@ namespace CLDEPlus {
         SPtrEntity EntityStore::Get(const SPtrIdentity &identity) {
 
             if (!identity) {
-                std::string msg{"Identity is either invalid or a nullptr"};
+                string msg{"Identity is either invalid or a nullptr"};
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
@@ -60,7 +60,7 @@ namespace CLDEPlus {
                 return SPtrEntity(nullptr);
             }
 
-            // Entity makes a copy of std::shared_ptr<Identity>,
+            // Entity makes a copy of shared_ptr<Identity>,
             // Therefore, Identity must be taken from Entity
             _identityMap.insert(make_pair(sptrEntity->getIdentity(), sptrEntity));
 
@@ -70,7 +70,7 @@ namespace CLDEPlus {
         void EntityStore::Insert(SPtrEntity &entity) {
 
             if (!entity) {
-                std::string msg{"Entity is either invalid or a nullptr"};
+                string msg{"Entity is either invalid or a nullptr"};
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
@@ -85,7 +85,7 @@ namespace CLDEPlus {
         void EntityStore::Save(SPtrEntity &entity) {
 
             if (!entity) {
-                std::string msg{"Entity is either invalid or a nullptr"};
+                string msg{"Entity is either invalid or a nullptr"};
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 
@@ -95,7 +95,7 @@ namespace CLDEPlus {
         void EntityStore::Delete(SPtrEntity &entity) {
 
             if (!entity) {
-                std::string msg{"Entity shared pointer is either invalid or a nullptr"};
+                string msg{"Entity shared pointer is either invalid or a nullptr"};
                 throw Exception::CLDEEntityStoreRoutineException{msg};
             }
 

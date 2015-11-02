@@ -29,32 +29,32 @@ namespace CLDEPlus {
                     return &_sptrDateImpl->mysql_datetime;
                 }
 
-                std::string MySqlDate::ToString() const {
+                string MySqlDate::ToString() const {
                     return MySqlHelper::DateToISO8601String(_sptrDateImpl->mysql_datetime);
                 }
 
                 Foundation::Data::Value &MySqlDate::operator+(const Foundation::Data::Value &rhs) {
-                    std::string msg{"Does not support operator+ yet"};
+                    string msg{"Does not support operator+ yet"};
                     throw MySqlSourceException{msg};
                 }
 
                 Foundation::Data::Value &MySqlDate::operator-(const Foundation::Data::Value &rhs) {
-                    std::string msg{"Does not support operator- yet"};
+                    string msg{"Does not support operator- yet"};
                     throw MySqlSourceException{msg};
                 }
 
                 Foundation::Data::Value &MySqlDate::operator*(const Foundation::Data::Value &rhs) {
-                    std::string msg{"Does not support operator* yet"};
+                    string msg{"Does not support operator* yet"};
                     throw MySqlSourceException{msg};
                 }
 
                 Foundation::Data::Value &MySqlDate::operator/(const Foundation::Data::Value &rhs) {
-                    std::string msg{"Does not support operator/ yet"};
+                    string msg{"Does not support operator/ yet"};
                     throw MySqlSourceException{msg};
                 }
 
                 Foundation::Data::Value &MySqlDate::operator%(const Foundation::Data::Value &rhs) {
-                    std::string msg{"Does not support operator% yet"};
+                    string msg{"Does not support operator% yet"};
                     throw MySqlSourceException{msg};
                 }
 

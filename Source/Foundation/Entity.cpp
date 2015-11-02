@@ -12,7 +12,7 @@ namespace CLDEPlus {
         Entity::Entity(const SPtrIdentity &identity) : _identity(identity) {
 
             if (!identity) {
-                std::string msg{"Identity can not be nullptr or undefined"};
+                string msg{"Identity can not be nullptr or undefined"};
                 throw Exception::CLDEEntityException{msg};
             }
 

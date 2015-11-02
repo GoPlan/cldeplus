@@ -71,10 +71,10 @@ namespace Cloude {
                     mongoc_cleanup();
                 }
 
-                std::shared_ptr<Command> createCommand() {
+                shared_ptr<Command> createCommand() {
 
                     if (_ptrClient == nullptr || _ptrCollection == nullptr) {
-                        std::string message("Either client or collection is a nullptr");
+                        string message("Either client or collection is a nullptr");
                         MongoDbSourceException ex;
                         ex.setMessage(message);
                         throw ex;
@@ -85,9 +85,9 @@ namespace Cloude {
                     return command;
                 }
 
-                std::string parseConnectionString(Options &optionArgs) {
+                string parseConnectionString(Options &optionArgs) {
 
-                    std::string connStr = "mongodb://";
+                    string connStr = "mongodb://";
 
                     if (optionArgs.User.length() > 0 && optionArgs.Pass.length() > 0) {
                         connStr += optionArgs.User + ":" + optionArgs.Pass;
@@ -101,13 +101,13 @@ namespace Cloude {
                     return connStr;
                 }
 
-                void initializeBindBuffers(const std::vector<std::shared_ptr<Column>> &columns,
+                void initializeBindBuffers(const CLDEPlus::vector<shared_ptr<Column>> &columns,
                                            bson_t *bsonDoc,
-                                           std::shared_ptr<Entity> &entity) {
+                                           shared_ptr<Entity> &entity) {
 
                     std::for_each(columns.cbegin(),
                                   columns.cend(),
-                                  [&bsonDoc, &entity](const std::shared_ptr<Column> &column) {
+                                  [&bsonDoc, &entity](const shared_ptr<Column> &column) {
 
                                       auto &field = entity->getField(column->getName());
                                       auto &value = field->getValue();
@@ -139,8 +139,8 @@ namespace Cloude {
                 }
 
                 void setFieldValue(const bson_iter_t *ptrIter,
-                                   const std::shared_ptr<Column> &column,
-                                   const std::shared_ptr<Field> &field) const {
+                                   const shared_ptr<Column> &column,
+                                   const shared_ptr<Field> &field) const {
 
                     using cldeFactory = Foundation::Type::cldeValueFactory;
 
@@ -179,7 +179,7 @@ namespace Cloude {
 
             void MongoDbSourceDriver::Connect() {
 
-                std::string uriString = _mongoDbApiImpl->parseConnectionString(_optionArgs);
+                string uriString = _mongoDbApiImpl->parseConnectionString(_optionArgs);
 
                 _mongoDbApiImpl->_ptrClient = mongoc_client_new(uriString.c_str());
                 _mongoDbApiImpl->_ptrCollection = mongoc_client_get_collection(_mongoDbApiImpl->_ptrClient,
@@ -195,12 +195,12 @@ namespace Cloude {
                 //
             }
 
-            int MongoDbSourceDriver::Load(std::shared_ptr<Foundation::Entity> &entity) const {
+            int MongoDbSourceDriver::Load(shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
                 auto &columnsForGet = _entityMap.getColumnsForGet();
 
-                std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
+                shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
                 _mongoDbApiImpl->initializeBindBuffers(columnsForKey,
                                                        command->_ptrBsonPredicate,
@@ -208,7 +208,7 @@ namespace Cloude {
 
                 std::for_each(columnsForGet.cbegin(),
                               columnsForGet.cend(),
-                              [&command](const std::shared_ptr<Column> &column) {
+                              [&command](const shared_ptr<Column> &column) {
                                   BSON_APPEND_INT32(command->_ptrBsonProjection,
                                                     column->getDatasourceName().c_str(),
                                                     1);
@@ -246,7 +246,7 @@ namespace Cloude {
 
                     while (bson_iter_next(&iter)) {
 
-                        std::string columnName(bson_iter_key(&iter));
+                        string columnName(bson_iter_key(&iter));
 
                         try {
 
@@ -266,11 +266,11 @@ namespace Cloude {
                 return 1;
             }
 
-            int MongoDbSourceDriver::Insert(std::shared_ptr<Foundation::Entity> &entity) const {
+            int MongoDbSourceDriver::Insert(shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
-                std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
+                shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
                 bson_oid_init(&command->oid, NULL);
 
@@ -290,12 +290,12 @@ namespace Cloude {
                 return 1;
             }
 
-            int MongoDbSourceDriver::Save(std::shared_ptr<Foundation::Entity> &entity) const {
+            int MongoDbSourceDriver::Save(shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
                 auto &columnsForUpdate = _entityMap.getColumnsForUpdate();
 
-                std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
+                shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
                 _mongoDbApiImpl->initializeBindBuffers(columnsForKey,
                                                        command->_ptrBsonPredicate,
@@ -324,11 +324,11 @@ namespace Cloude {
                 return 1;
             }
 
-            int MongoDbSourceDriver::Delete(std::shared_ptr<Foundation::Entity> &entity) const {
+            int MongoDbSourceDriver::Delete(shared_ptr<Foundation::Entity> &entity) const {
 
                 auto &columnsForKey = _entityMap.getColumnsForKey();
 
-                std::shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
+                shared_ptr<Command> command = _mongoDbApiImpl->createCommand();
 
                 _mongoDbApiImpl->initializeBindBuffers(columnsForKey,
                                                        command->_ptrBsonPredicate,

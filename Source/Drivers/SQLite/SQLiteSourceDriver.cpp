@@ -22,7 +22,7 @@ namespace CLDEPlus {
             class Command {
 
             public:
-                Command(const std::string &query) : query(query) { };
+                Command(const string &query) : query(query) { };
                 Command(const Command &) = default;
                 Command(Command &&) = default;
                 Command &operator=(const Command &) = default;
@@ -32,7 +32,7 @@ namespace CLDEPlus {
                 int prepareStatment(sqlite3 *ptrDb) {
 
                     if (ptrDb == NULL) {
-                        std::string msg{"sqlite3 pointer is either nullptr or NULL"};
+                        string msg{"sqlite3 pointer is either nullptr or NULL"};
                         throw std::invalid_argument{msg};
                     }
 
@@ -47,21 +47,21 @@ namespace CLDEPlus {
 
                 sqlite3_stmt *_ptrStmt = nullptr;
 
-                const std::string &query;
+                const string &query;
             };
 
             using SqlHelper = Foundation::Query::Helper::SqlHelper;
             using ValueFactory = Foundation::Data::ValueFactory;
             using ValueType = Foundation::Data::ValueType;
-            using UPtrCommand = std::unique_ptr<Command>;
+            using UPtrCommand = unique_ptr<Command>;
 
             class SQLiteSourceDriver::SQLiteApiImpl {
 
-                std::string &connectionString;
+                string &connectionString;
                 sqlite3 *_ptrSqlite3 = nullptr;
 
             public:
-                SQLiteApiImpl(std::string &connectionString) : connectionString(connectionString) {
+                SQLiteApiImpl(string &connectionString) : connectionString(connectionString) {
                     //
                 };
 
@@ -84,7 +84,7 @@ namespace CLDEPlus {
                     return 1;
                 }
 
-                UPtrCommand createCommand(const std::string &query) {
+                UPtrCommand createCommand(const string &query) {
                     UPtrCommand command(new Command(query));
                     command->prepareStatment(_ptrSqlite3);
                     return command;
@@ -143,7 +143,7 @@ namespace CLDEPlus {
 
                                           default: {
                                               ++index;
-                                              std::string msg{"This type is not yet supported"};
+                                              string msg{"This type is not yet supported"};
                                               throw Foundation::Exception::CLDENonSupportedDataTypeException{msg};
                                           }
                                       }
@@ -203,7 +203,7 @@ namespace CLDEPlus {
 
                                           default: {
                                               ++index;
-                                              std::string msg{"This type is not yet supported"};
+                                              string msg{"This type is not yet supported"};
                                               throw Foundation::Exception::CLDENonSupportedDataTypeException{msg};
                                           }
                                       }
@@ -264,7 +264,7 @@ namespace CLDEPlus {
 
                                      default: {
                                          ++index;
-                                         std::string msg{"This type is not yet supported"};
+                                         string msg{"This type is not yet supported"};
                                          throw Foundation::Exception::CLDENonSupportedDataTypeException{msg};
                                      }
                                  }
@@ -325,7 +325,7 @@ namespace CLDEPlus {
 
                                      default: {
                                          ++index;
-                                         std::string msg{"This type is not yet supported"};
+                                         string msg{"This type is not yet supported"};
                                          throw Foundation::Exception::CLDENonSupportedDataTypeException{msg};
                                      }
                                  }
@@ -346,12 +346,12 @@ namespace CLDEPlus {
 
             void SQLiteSourceDriver::Init() {
 
-                auto fptrValueProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
-                    return std::string("?");
+                auto fptrValueProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> string {
+                    return string("?");
                 };
 
-                auto fptrProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
-                    return std::string(column->getDatasourceName() + " = " + "?");
+                auto fptrProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> string {
+                    return string(column->getDatasourceName() + " = " + "?");
                 };
 
                 auto &sourceName = getEntityMap()->getTableName();
@@ -466,8 +466,8 @@ namespace CLDEPlus {
                     const Foundation::SPtrColumnVector &columnsForProjection) const {
 
                 auto fptrConditionProcessor =
-                        [](const Foundation::SPtrColumn &column, const int &index) -> std::string {
-                            return std::string{"?"};
+                        [](const Foundation::SPtrColumn &column, const int &index) -> string {
+                            return string{"?"};
                         };
 
                 auto tuplQuery = SqlHelper::CreateSelectPreparedQuery(getEntityMap()->getTableName(),

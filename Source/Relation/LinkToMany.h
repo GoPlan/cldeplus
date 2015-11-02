@@ -27,7 +27,7 @@ namespace CLDEPlus {
             Foundation::SPtrEntityProxyVector Refer();
         };
 
-        using SPtrLinkToMany = std::shared_ptr<LinkToMany>;
+        using SPtrLinkToMany = shared_ptr<LinkToMany>;
         SPtrLinkToMany CreateLinkToMany(const Foundation::SPtrEntityQuery &entityQuery,
                                         const Foundation::Query::SPtrCriteria &criteria);
     }

@@ -13,10 +13,10 @@ namespace CLDEPlus {
 
             class TransformationException : public Foundation::Exception::CLDEException {
 
-                static const std::string _name;
+                static const string _name;
 
             public:
-                TransformationException(const std::string &message) : CLDEException{message} { };
+                TransformationException(const string &message) : CLDEException{message} { };
                 TransformationException(const TransformationException &) = default;
                 TransformationException(TransformationException &&) = default;
                 TransformationException &operator=(const TransformationException &) = default;
@@ -24,7 +24,7 @@ namespace CLDEPlus {
                 virtual ~TransformationException() = default;
 
                 // CLDEException
-                virtual const std::string &Name() const noexcept override;
+                virtual const string &Name() const noexcept override;
             };
         }
     }

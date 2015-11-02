@@ -37,7 +37,7 @@ namespace CLDEPlus {
             Foundation::SPtrEntity Create() {
 
                 if (!_entityLoader.fptrIdentityCreator) {
-                    std::string msg{"Identity creator is not defined"};
+                    string msg{"Identity creator is not defined"};
                     throw Exception::NamedEntityStoreException{msg};
                 }
 
@@ -56,7 +56,7 @@ namespace CLDEPlus {
             TEntity NamedEntity(const Foundation::SPtrEntity &entity) {
 
                 if (!_entityLoader.fptrNamedEntityCreator) {
-                    std::string msg{"NamedEntity creator is not defined"};
+                    string msg{"NamedEntity creator is not defined"};
                     throw Exception::NamedEntityStoreException{msg};
                 }
 
@@ -65,7 +65,7 @@ namespace CLDEPlus {
         };
 
         template<class TEntity>
-        using SPtrNamedStore = std::shared_ptr<NamedEntityStore<TEntity>>;
+        using SPtrNamedStore = shared_ptr<NamedEntityStore<TEntity>>;
 
         template<class TEntity>
         SPtrNamedStore<TEntity> CreateNamedStore(const Foundation::SPtrEntityMap &entityMap,

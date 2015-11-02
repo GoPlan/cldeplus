@@ -37,8 +37,8 @@ namespace CLDEPlus {
             const SPtrEntityMap &getEntityMap() const { return _sptrEntityMap; }
         };
 
-        using UPtrEntitySourceDriver = std::unique_ptr<EntitySourceDriver>;
-        using SPtrEntitySourceDriver = std::shared_ptr<EntitySourceDriver>;
+        using UPtrEntitySourceDriver = unique_ptr<EntitySourceDriver>;
+        using SPtrEntitySourceDriver = shared_ptr<EntitySourceDriver>;
     }
 }
 

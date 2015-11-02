@@ -13,11 +13,11 @@ namespace CLDEPlus {
 
             class CLDEEntityStoreRoutineException : public CLDEException {
 
-                static std::string _name;
+                static string _name;
 
             public:
                 CLDEEntityStoreRoutineException(const char *message) : CLDEException(message) { };
-                CLDEEntityStoreRoutineException(const std::string &message) : CLDEException(message) { };
+                CLDEEntityStoreRoutineException(const string &message) : CLDEException(message) { };
                 CLDEEntityStoreRoutineException(const CLDEEntityStoreRoutineException &) = default;
                 CLDEEntityStoreRoutineException(CLDEEntityStoreRoutineException &&) = default;
                 CLDEEntityStoreRoutineException &operator=(const CLDEEntityStoreRoutineException &) = default;
@@ -25,7 +25,7 @@ namespace CLDEPlus {
                 virtual ~CLDEEntityStoreRoutineException() = default;
 
                 // CLDEException
-                virtual const std::string &Name() const noexcept override;
+                virtual const string &Name() const noexcept override;
             };
         }
     }

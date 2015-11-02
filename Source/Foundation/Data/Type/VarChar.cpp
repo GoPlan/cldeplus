@@ -16,7 +16,7 @@ namespace CLDEPlus {
                     init();
                 }
 
-                VarChar::VarChar(const std::string &value)
+                VarChar::VarChar(const string &value)
                         : VarChar(value.c_str()) {
                     //
                 }
@@ -78,8 +78,8 @@ namespace CLDEPlus {
                     }
                 }
 
-                std::string VarChar::ToString() const {
-                    return std::string(_value);
+                string VarChar::ToString() const {
+                    return string(_value);
                 }
 
                 void *VarChar::PointerToBuffer() {

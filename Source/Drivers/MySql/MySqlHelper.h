@@ -19,9 +19,9 @@ namespace CLDEPlus {
                 static bool Less(const MYSQL_TIME &lhs, const MYSQL_TIME &rhs);
                 static bool Greater(const MYSQL_TIME &lhs, const MYSQL_TIME &rhs);
                 static bool Compare(const MYSQL_TIME &lhs, const MYSQL_TIME &rhs);
-                static std::string DateToISO8601String(const MYSQL_TIME &date);
-                static std::string TimeToISO8601String(const MYSQL_TIME &time);
-                static std::string DateTimeToISO8601String(const MYSQL_TIME &dateTime);
+                static string DateToISO8601String(const MYSQL_TIME &date);
+                static string TimeToISO8601String(const MYSQL_TIME &time);
+                static string DateTimeToISO8601String(const MYSQL_TIME &dateTime);
             };
         }
     }

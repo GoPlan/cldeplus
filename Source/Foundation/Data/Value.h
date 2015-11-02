@@ -42,7 +42,7 @@ namespace CLDEPlus {
 
             };
 
-            using SPtrValue = std::shared_ptr<Value>;
+            using SPtrValue = shared_ptr<Value>;
         }
     }
 }

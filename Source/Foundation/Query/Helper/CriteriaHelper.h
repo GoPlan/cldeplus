@@ -19,9 +19,9 @@ namespace CLDEPlus {
 
             namespace Helper {
                 struct CriteriaHelper {
-                    using FPtrProcessor = std::function<std::string(const SPtrCriteria &)>;
-                    static std::string CopyToString(const SPtrCriteria &sptrCriteria, const Contract::IPredicateFormatter &formatter);
-                    static std::string CopyToString(const SPtrCriteria &sptrCriteria, const FPtrProcessor fptrProcessor);
+                    using FPtrProcessor = std::function<string(const SPtrCriteria &)>;
+                    static string CopyToString(const SPtrCriteria &sptrCriteria, const Contract::IPredicateFormatter &formatter);
+                    static string CopyToString(const SPtrCriteria &sptrCriteria, const FPtrProcessor fptrProcessor);
                 };
             }
         }

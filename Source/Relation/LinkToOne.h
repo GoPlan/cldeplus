@@ -27,7 +27,7 @@ namespace CLDEPlus {
             virtual Foundation::SPtrEntityProxy Refer();
         };
 
-        using SPtrLinkToOne = std::shared_ptr<LinkToOne>;
+        using SPtrLinkToOne = shared_ptr<LinkToOne>;
         SPtrLinkToOne CreateLinkToOne(const Foundation::SPtrEntityQuery &entityQuery,
                                       const Foundation::Query::SPtrCriteria &criteria);
     }

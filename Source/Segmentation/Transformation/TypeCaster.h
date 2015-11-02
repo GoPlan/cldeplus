@@ -32,7 +32,7 @@ namespace CLDEPlus {
             };
 
 
-            using SPtrCaster = std::shared_ptr<TypeCaster>;
+            using SPtrCaster = shared_ptr<TypeCaster>;
         }
     }
 }

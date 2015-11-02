@@ -21,7 +21,7 @@ namespace CLDEPlus {
 
                 public:
                     explicit VarChar(size_t length);
-                    explicit VarChar(const std::string &value);
+                    explicit VarChar(const string &value);
                     explicit VarChar(const char *value);
                     VarChar(const VarChar &);
                     VarChar(VarChar &&);
@@ -34,7 +34,7 @@ namespace CLDEPlus {
                     virtual size_t getActualSize() override;
 
                     // IPrintable
-                    virtual std::string ToString() const override;
+                    virtual string ToString() const override;
                 };
             }
         }

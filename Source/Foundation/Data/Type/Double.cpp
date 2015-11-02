@@ -19,7 +19,7 @@ namespace CLDEPlus {
                     return &_value;
                 }
 
-                std::string Double::ToString() const {
+                string Double::ToString() const {
                     return std::to_string(_value);
                 }
 

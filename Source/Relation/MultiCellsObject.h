@@ -38,7 +38,7 @@ namespace CLDEPlus {
             Foundation::SPtrEntityProxy Refer() override;
         };
 
-        using SPtrMultiCellsObj = std::shared_ptr<MultiCellsObject>;
+        using SPtrMultiCellsObj = shared_ptr<MultiCellsObject>;
         SPtrMultiCellsObj CreateMultiCellsObj(const Foundation::SPtrEntityQuery &entityQuery,
                                               const Foundation::Query::SPtrCriteria &criteria,
                                               const std::initializer_list<Foundation::SPtrColumn> &columns);

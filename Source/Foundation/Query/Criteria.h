@@ -31,9 +31,9 @@ namespace CLDEPlus {
                 virtual const Data::SPtrValue &getValue() const = 0;
             };
 
-            using SPtrCriteria = std::shared_ptr<Criteria>;
+            using SPtrCriteria = shared_ptr<Criteria>;
             using WPtrCriteria = std::weak_ptr<Criteria>;
-            using SPtrCriteriaVector = std::vector<SPtrCriteria>;
+            using SPtrCriteriaVector = vector<SPtrCriteria>;
         }
     }
 }

@@ -13,15 +13,15 @@ namespace CLDEPlus {
         namespace Query {
             namespace Helper {
 
-                std::string SqlHelper::CreateGetPreparedQuery(const std::string &strSourceName,
+                string SqlHelper::CreateGetPreparedQuery(const string &strSourceName,
                                                               const SPtrColumnVector &columnsForProjection,
                                                               const SPtrColumnVector &columnsForKey,
                                                               FPtrParamProcessor fptrProcessor) {
 
-                    std::string strColumns;
+                    string strColumns;
 
                     std::for_each(columnsForProjection.cbegin(), columnsForProjection.cend(),
-                                  [&strColumns](const std::shared_ptr<Column> &p) {
+                                  [&strColumns](const shared_ptr<Column> &p) {
                                       if (strColumns.length() != 0)
                                           strColumns += ", ";
 
@@ -29,13 +29,13 @@ namespace CLDEPlus {
                                   });
 
 
-                    std::string strCondition;
+                    string strCondition;
 
                     int index = 0;
 
                     std::for_each(columnsForKey.cbegin(),
                                   columnsForKey.cend(),
-                                  [&](const std::shared_ptr<Column> &column) {
+                                  [&](const shared_ptr<Column> &column) {
 
                                       if (index != 0) {
                                           strCondition += " AND ";
@@ -46,7 +46,7 @@ namespace CLDEPlus {
                                       ++index;
                                   });
 
-                    std::string strQuery;
+                    string strQuery;
 
                     strQuery += " SELECT " + strColumns;
                     strQuery += " FROM " + strSourceName;
@@ -55,19 +55,19 @@ namespace CLDEPlus {
                     return strQuery;
                 }
 
-                std::string SqlHelper::CreateInsertPreparedQuery(const std::string &strSourceName,
+                string SqlHelper::CreateInsertPreparedQuery(const string &strSourceName,
                                                                  const SPtrColumnVector &columnsForValue,
                                                                  FPtrParamProcessor fptrProcessor) {
 
-                    std::string strColumns;
-                    std::string strCondition;
-                    std::string strQuery;
+                    string strColumns;
+                    string strCondition;
+                    string strQuery;
 
                     int index = 0;
 
                     std::for_each(columnsForValue.cbegin(),
                                   columnsForValue.cend(),
-                                  [&](const std::shared_ptr<Column> &column) -> void {
+                                  [&](const shared_ptr<Column> &column) -> void {
 
                                       if (index != 0) {
                                           strColumns += ", ";
@@ -86,14 +86,14 @@ namespace CLDEPlus {
                     return strQuery;
                 }
 
-                std::string SqlHelper::CreateUpdatePreparedQuery(const std::string &strSourceName,
+                string SqlHelper::CreateUpdatePreparedQuery(const string &strSourceName,
                                                                  const SPtrColumnVector &columnsForValue,
                                                                  const SPtrColumnVector &conditionalColumns,
                                                                  FPtrParamProcessor fptrProcessor) {
 
-                    std::string strColumns;
-                    std::string strCondition;
-                    std::string strQuery;
+                    string strColumns;
+                    string strCondition;
+                    string strQuery;
 
                     int index = 0;
 
@@ -101,7 +101,7 @@ namespace CLDEPlus {
                     bool isWhereStart = true;
 
                     std::for_each(columnsForValue.cbegin(), columnsForValue.cend(),
-                                  [&](const std::shared_ptr<Column> &column) -> void {
+                                  [&](const shared_ptr<Column> &column) -> void {
 
                                       if (!isSetStart) {
                                           strColumns += ", ";
@@ -116,7 +116,7 @@ namespace CLDEPlus {
                                   });
 
                     std::for_each(conditionalColumns.cbegin(), conditionalColumns.cend(),
-                                  [&](const std::shared_ptr<Column> &column) -> void {
+                                  [&](const shared_ptr<Column> &column) -> void {
 
                                       if (!isWhereStart) {
                                           strCondition += ", ";
@@ -136,17 +136,17 @@ namespace CLDEPlus {
                     return strQuery;
                 }
 
-                std::string SqlHelper::CreateDeletePreparedQuery(const std::string &strSourceName,
+                string SqlHelper::CreateDeletePreparedQuery(const string &strSourceName,
                                                                  const SPtrColumnVector &conditionalColumns,
                                                                  FPtrParamProcessor fptrProcessor) {
 
-                    std::string strCondition;
-                    std::string strQuery;
+                    string strCondition;
+                    string strQuery;
 
                     int i = 0;
 
                     std::for_each(conditionalColumns.cbegin(), conditionalColumns.cend(),
-                                  [&](const std::shared_ptr<Column> &column) -> void {
+                                  [&](const shared_ptr<Column> &column) -> void {
 
                                       if (i != 0) {
                                           strCondition += ", ";
@@ -163,8 +163,8 @@ namespace CLDEPlus {
                     return strQuery;
                 }
 
-                std::pair<std::string, std::vector<SPtrCriteria>> SqlHelper::CreateSelectPreparedQuery
-                        (const std::string &strSourceName, const SPtrColumnVector &columnsForProjection,
+                std::pair<string, vector<SPtrCriteria>> SqlHelper::CreateSelectPreparedQuery
+                        (const string &strSourceName, const SPtrColumnVector &columnsForProjection,
                          const SPtrCriteria &sptrCriteria, const FPtrParamProcessor fptrParamProcessor) {
 
                     using PredicateComposite = Foundation::Query::CriteriaComposite;
@@ -175,13 +175,13 @@ namespace CLDEPlus {
                     ///
                     /// Note: This lambda is RECURSIVE.
                     ///
-                    std::function<std::string(const SPtrCriteria, int &)>
+                    std::function<string(const SPtrCriteria, int &)>
                             fptr = [&fptr, &fptrParamProcessor](const SPtrCriteria &fptrSPtrCriteria,
-                                                                int &index) -> std::string {
+                                                                int &index) -> string {
 
                         using PredicateComposite = Foundation::Query::CriteriaComposite;
 
-                        std::string result;
+                        string result;
                         result.reserve(CLDEPlus::Foundation::THIRTYTWO);
 
                         switch (fptrSPtrCriteria->getComparativeType()) {
@@ -272,15 +272,15 @@ namespace CLDEPlus {
                         return result;
                     };
 
-                    std::string statement;
-                    std::vector<SPtrCriteria> values;
+                    string statement;
+                    vector<SPtrCriteria> values;
 
                     // Prepare Columns segment
-                    std::string strColumns;
+                    string strColumns;
                     strColumns.reserve(Foundation::CommonBufferSize::EIGHTY);
 
                     std::for_each(columnsForProjection.cbegin(), columnsForProjection.cend(),
-                                  [&strColumns](const std::shared_ptr<Column> &p) {
+                                  [&strColumns](const shared_ptr<Column> &p) {
                                       if (strColumns.length() != 0)
                                           strColumns += ", ";
 
@@ -291,7 +291,7 @@ namespace CLDEPlus {
 
                     // Prepare Conditions segment
                     int x = 0;
-                    std::string strCondition = fptr(sptrCriteria, x);
+                    string strCondition = fptr(sptrCriteria, x);
                     strCondition.reserve(Foundation::CommonBufferSize::EIGHTY);
 
                     int y = 0;

@@ -16,9 +16,9 @@ namespace CLDEPlus {
         bool Data::Comparer::Less::operator()(const Data::SPtrValue &lhs, const Data::SPtrValue &rhs) const {
 
             if (lhs->getDataType() != rhs->getDataType() || lhs->getCategory() != rhs->getCategory()) {
-                std::string lhsType = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
-                std::string rhsType = Data::Helper::TypeHelper::CopyValueTypeToString(rhs->getDataType());
-                std::string msg{lhsType + " has different type/category with " + rhsType};
+                string lhsType = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                string rhsType = Data::Helper::TypeHelper::CopyValueTypeToString(rhs->getDataType());
+                string msg{lhsType + " has different type/category with " + rhsType};
                 throw Exception::CLDENonSupportedDataTypeException{msg};
             }
 
@@ -36,7 +36,7 @@ namespace CLDEPlus {
                     return CompareMathematic(lhs, rhs);
                 }
                 case Data::ValueCategory::UserDefined: {
-                    std::string msg{"UserDefined category is not supported by the comparer"};
+                    string msg{"UserDefined category is not supported by the comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
@@ -97,13 +97,13 @@ namespace CLDEPlus {
                     return *ptrLhsTmp < *ptrRhsTmp;
                 }
                 case ValueType::Currency: {
-                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
-                    std::string msg{type + " is not supported by the numeric comparer"};
+                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string msg{type + " is not supported by the numeric comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
                 default: {
-                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
-                    std::string msg{type + " is not supported by the numeric comparer"};
+                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string msg{type + " is not supported by the numeric comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
@@ -123,13 +123,13 @@ namespace CLDEPlus {
                     return strcmp(ptrLhsTmp->ToString().c_str(), ptrRhsTmp->ToString().c_str()) < 0;
                 }
                 case ValueType::Text: {
-                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
-                    std::string msg{type + " is not supported by the character based comparer"};
+                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string msg{type + " is not supported by the character based comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
                 default: {
-                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
-                    std::string msg{type + " is not supported by the character based comparer"};
+                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string msg{type + " is not supported by the character based comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }
@@ -152,8 +152,8 @@ namespace CLDEPlus {
                     return lhsComparable.LessThan(rhsComparable);
                 }
                 default: {
-                    std::string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
-                    std::string msg{type + " is not supported by the date&time based comparer"};
+                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string msg{type + " is not supported by the date&time based comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
             }

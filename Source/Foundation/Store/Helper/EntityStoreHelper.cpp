@@ -18,7 +18,7 @@ namespace CLDEPlus {
                         bool checkCellExists) {
 
                     if (!dataRecord) {
-                        std::string msg{"DataRecord can not be nullptr or undefined"};
+                        string msg{"DataRecord can not be nullptr or undefined"};
                         throw Foundation::Exception::CLDEEntityStoreRoutineException{msg};
                     }
 

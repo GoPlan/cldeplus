@@ -33,14 +33,14 @@ namespace CLDEPlus {
                                                  const SPtrColumnVector &columnsForProjection);
 
             // Factory methods
-            static std::unique_ptr<EntityQuery> Create(SPtrEntityMap const &sptrEntityMap,
+            static unique_ptr<EntityQuery> Create(SPtrEntityMap const &sptrEntityMap,
                                                        SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
-                return std::unique_ptr<EntityQuery>(new EntityQuery(sptrEntityMap, sptrEntitySourceDriver));
+                return unique_ptr<EntityQuery>(new EntityQuery(sptrEntityMap, sptrEntitySourceDriver));
             }
         };
 
-        using UPtrEntityQuery = std::unique_ptr<EntityQuery>;
-        using SPtrEntityQuery = std::shared_ptr<EntityQuery>;
+        using UPtrEntityQuery = unique_ptr<EntityQuery>;
+        using SPtrEntityQuery = shared_ptr<EntityQuery>;
     }
 }
 

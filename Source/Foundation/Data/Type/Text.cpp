@@ -9,7 +9,7 @@ namespace CLDEPlus {
         namespace Data {
             namespace Type {
 
-                Text::Text(const std::string &text)
+                Text::Text(const string &text)
                         : Text(text.c_str()) {
                     //
                 }
@@ -38,8 +38,8 @@ namespace CLDEPlus {
                     return strlen(_buffer) + 1;
                 }
 
-                std::string Text::ToString() const {
-                    return std::string{_buffer};
+                string Text::ToString() const {
+                    return string{_buffer};
                 }
             }
         }

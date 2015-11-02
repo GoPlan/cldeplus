@@ -18,7 +18,7 @@ namespace Cloude {
             CLDEParser::ParserSingle _parser;
 
             void init();
-            CLDEParser::Parsing::Json::SPtrJsonEntity parse(std::string const &json) const;
+            CLDEParser::Parsing::Json::SPtrJsonEntity parse(string const &json) const;
 
         public:
             JsonConfigurator();
@@ -28,8 +28,8 @@ namespace Cloude {
             JsonConfigurator &operator=(JsonConfigurator &&) = default;
             virtual ~JsonConfigurator() = default;
 
-            virtual Foundation::SPtrEntityMap CreateSPtrEntityMap(std::string const &jsonEntityMap);
-            virtual Foundation::Query::SPtrCriteria CreateSPtrCriteria(std::string const &jsonCriteria);
+            virtual Foundation::SPtrEntityMap CreateSPtrEntityMap(string const &jsonEntityMap);
+            virtual Foundation::Query::SPtrCriteria CreateSPtrCriteria(string const &jsonCriteria);
         };
     }
 }

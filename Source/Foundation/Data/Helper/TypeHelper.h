@@ -13,8 +13,8 @@ namespace CLDEPlus {
         namespace Data{
             namespace Helper{
                 struct TypeHelper {
-                    static std::string CopyCategoryToString(const ValueCategory &category);
-                    static std::string CopyValueTypeToString(const ValueType &type);
+                    static string CopyCategoryToString(const ValueCategory &category);
+                    static string CopyValueTypeToString(const ValueType &type);
                 };
             }
         }

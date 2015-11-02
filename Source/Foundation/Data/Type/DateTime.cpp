@@ -40,7 +40,7 @@ namespace CLDEPlus {
                     return &_dateTime;
                 }
 
-                std::string DateTime::ToString() const {
+                string DateTime::ToString() const {
                     return Data::Helper::TimeBasedHelper::DateTimeToISO8601String(_dateTime);
                 }
 
@@ -65,17 +65,17 @@ namespace CLDEPlus {
                 }
 
                 bool DateTime::LessThan(const Common::IComparable &target) const {
-                    std::string msg{"LessThan"};
+                    string msg{"LessThan"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool DateTime::GreaterThan(const Common::IComparable &target) const {
-                    std::string msg{"GreaterThan"};
+                    string msg{"GreaterThan"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
 
                 bool DateTime::EquivalentTo(const Common::IComparable &target) const {
-                    std::string msg{"EquivalentTo"};
+                    string msg{"EquivalentTo"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
             }

@@ -9,9 +9,9 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Exception {
 
-            std::string CLDEEntityStoreRoutineException::_name{"CLDEEntityStoreRoutineException"};
+            string CLDEEntityStoreRoutineException::_name{"CLDEEntityStoreRoutineException"};
 
-            const std::string &CLDEEntityStoreRoutineException::Name() const noexcept {
+            const string &CLDEEntityStoreRoutineException::Name() const noexcept {
                 return _name;
             }
         }

@@ -12,8 +12,8 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Common {
             struct IPrintable {
-                virtual std::string ToString() const = 0;
-                virtual std::string ToString(const IFormatter &formatter) const { return formatter.Format(*this); };
+                virtual string ToString() const = 0;
+                virtual string ToString(const IFormatter &formatter) const { return formatter.Format(*this); };
             };
         }
     }

@@ -15,7 +15,7 @@ namespace Cloude {
     namespace SourceDriver {
         namespace PostgreSql {
 
-            using ColumnsList = std::vector<std::shared_ptr<Foundation::Column>>;
+            using ColumnsList = CLDEPlus::vector<shared_ptr<Foundation::Column>>;
             using Column = Foundation::Column;
             using Entity = Foundation::Entity;
             using EntityMap = Foundation::EntityMap;
@@ -23,7 +23,7 @@ namespace Cloude {
             class Command {
 
             public:
-                Command(const PGconn &conn, const std::string &query) : PGConn(conn),
+                Command(const PGconn &conn, const string &query) : PGConn(conn),
                                                                         Query(query) {
                     //
                 };
@@ -56,7 +56,7 @@ namespace Cloude {
                 const char **PtrParamValues = nullptr;
 
                 const PGconn &PGConn;
-                const std::string &Query;
+                const string &Query;
             };
 
             class PostgreSourceDriver::PgApiImpl {
@@ -65,14 +65,14 @@ namespace Cloude {
                 PGconn *PtrPgConn;
 
             public:
-                std::unique_ptr<Command> createCommand(const std::string &query) {
-                    std::unique_ptr<Command> command(new Command(*PtrPgConn, query));
+                unique_ptr<Command> createCommand(const string &query) {
+                    unique_ptr<Command> command(new Command(*PtrPgConn, query));
                     return command;
                 }
 
                 void initializeParamsBindBuffer(const ColumnsList &columnsList,
-                                                const std::unique_ptr<Command> &command,
-                                                std::shared_ptr<Entity> &entity) {
+                                                const unique_ptr<Command> &command,
+                                                shared_ptr<Entity> &entity) {
 
                     auto nParam = columnsList.size();
 
@@ -84,7 +84,7 @@ namespace Cloude {
 
                     std::for_each(columnsList.cbegin(),
                                   columnsList.cend(),
-                                  [&entity, &command, &index](const std::shared_ptr<Column> &column) {
+                                  [&entity, &command, &index](const shared_ptr<Column> &column) {
 
                                       auto &field = entity->operator[](column->getName());
                                       auto &value = field->getValue();
@@ -103,7 +103,7 @@ namespace Cloude {
                                   });
                 }
 
-                std::string getTypeAlias(Foundation::Type::cldeValueType valueType) {
+                string getTypeAlias(Foundation::Type::cldeValueType valueType) {
 
                     switch (valueType) {
                         case Foundation::Type::cldeValueType::Boolean:
@@ -150,7 +150,7 @@ namespace Cloude {
 
                 int retrieveResult(const EntityMap &entityMap,
                                    const PGresult *ptrResult,
-                                   std::shared_ptr<Entity> &entity) {
+                                   shared_ptr<Entity> &entity) {
 
                     using cldeFactory = Foundation::Type::cldeValueFactory;
 
@@ -166,7 +166,7 @@ namespace Cloude {
 
                     std::for_each(columnsForGet.cbegin(),
                                   columnsForGet.cend(),
-                                  [&entity, &ptrResult, &index](const std::shared_ptr<Column> &column) {
+                                  [&entity, &ptrResult, &index](const shared_ptr<Column> &column) {
 
                                       auto &field = entity->getField(column->getName());
 
@@ -234,8 +234,8 @@ namespace Cloude {
 
             void PostgreSourceDriver::Init() {
 
-                auto fpValue = [this](const std::shared_ptr<Column> &column,
-                                      int index) -> std::string {
+                auto fpValue = [this](const shared_ptr<Column> &column,
+                                      int index) -> string {
 
                     auto typeName = _pgApiImpl->getTypeAlias(column->getDataType());
                     auto expr = "$" + std::to_string(++index) + "::" + typeName;
@@ -243,8 +243,8 @@ namespace Cloude {
                     return expr;
                 };
 
-                auto fpCondition = [this](const std::shared_ptr<Column> &column,
-                                          int index) -> std::string {
+                auto fpCondition = [this](const shared_ptr<Column> &column,
+                                          int index) -> string {
 
                     auto typeName = _pgApiImpl->getTypeAlias(column->getDataType());
                     auto expr = column->getDatasourceName() + " = " + "$" + std::to_string(++index) + "::" + typeName;
@@ -258,7 +258,7 @@ namespace Cloude {
                 _deleteStatement = Foundation::Helper::CreateDeletePreparedQuery(_entityMap, fpCondition);
             }
 
-            int PostgreSourceDriver::Load(std::shared_ptr<Entity> &entity) const {
+            int PostgreSourceDriver::Load(shared_ptr<Entity> &entity) const {
 
                 const ColumnsList &columnList = _entityMap.getColumnsForKey();
 
@@ -319,7 +319,7 @@ namespace Cloude {
                 return resultCode;
             }
 
-            int PostgreSourceDriver::Insert(std::shared_ptr<Entity> &entity) const {
+            int PostgreSourceDriver::Insert(shared_ptr<Entity> &entity) const {
 
                 const ColumnsList &columnsList = _entityMap.getColumnsForKey();
 
@@ -377,7 +377,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int PostgreSourceDriver::Save(std::shared_ptr<Entity> &entity) const {
+            int PostgreSourceDriver::Save(shared_ptr<Entity> &entity) const {
 
                 ColumnsList columnList;
 
@@ -443,7 +443,7 @@ namespace Cloude {
                 return 1;
             }
 
-            int PostgreSourceDriver::Delete(std::shared_ptr<Entity> &entity) const {
+            int PostgreSourceDriver::Delete(shared_ptr<Entity> &entity) const {
 
                 const ColumnsList &columnList = _entityMap.getColumnsForKey();
 
