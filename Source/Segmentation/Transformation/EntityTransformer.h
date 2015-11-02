@@ -32,10 +32,10 @@ namespace CLDEPlus {
                 Transformation::CellTransformerMap &CellTransformerMap() { return _mapCellTransformers; };
 
                 // Mutators
-                void AddCellTransformer(const string &columnName, const CellTransformer &cellTransformer);
-                
+                void AddCellTransformer(string const &columnName, CellTransformer const &cellTransformer);
+
                 // Locals
-                void Transform(const Foundation::SPtrEntityProxy &srcProxy, Foundation::SPtrEntityProxy &dstProxy) const;
+                void Transform(Foundation::SPtrEntityProxy const &srcProxy, Foundation::SPtrEntityProxy &dstProxy) const;
             };
 
             using UPtrEntityTransformer = unique_ptr<EntityTransformer>;

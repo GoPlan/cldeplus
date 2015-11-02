@@ -13,11 +13,11 @@ namespace CLDEPlus {
             class IComputable {
 
             public:
-                virtual T &operator+(const T &rhs) = 0;
-                virtual T &operator-(const T &rhs) = 0;
-                virtual T &operator*(const T &rhs) = 0;
-                virtual T &operator/(const T &rhs) = 0;
-                virtual T &operator%(const T &rhs) = 0;
+                virtual T &operator+(T const &rhs) = 0;
+                virtual T &operator-(T const &rhs) = 0;
+                virtual T &operator*(T const &rhs) = 0;
+                virtual T &operator/(T const &rhs) = 0;
+                virtual T &operator%(T const &rhs) = 0;
             };
         }
     }

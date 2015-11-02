@@ -9,18 +9,18 @@ namespace CLDEPlus {
     namespace Segmentation {
 
 
-        Transformation::CellTransformer::CellTransformer(const Foundation::SPtrColumn &targetColumn)
+        Transformation::CellTransformer::CellTransformer(Foundation::SPtrColumn const &targetColumn)
                 : _sptrTargetColumn{targetColumn} {
             //
         }
 
-        Transformation::CellTransformer::CellTransformer(const Foundation::SPtrColumn &targetColumn,
-                                                         const Transformation::SPtrCaster &converter)
+        Transformation::CellTransformer::CellTransformer(Foundation::SPtrColumn const &targetColumn,
+                                                         Transformation::SPtrCaster const &converter)
                 : _sptrTargetColumn{targetColumn}, _sptrTypeConverter{converter} {
             //
         }
 
-        Foundation::SPtrCell Transformation::CellTransformer::Transform(const Foundation::SPtrCell &srcSPtrCell) const {
+        Foundation::SPtrCell Transformation::CellTransformer::Transform(Foundation::SPtrCell const &srcSPtrCell) const {
 
             if (_sptrTargetColumn && _sptrTargetColumn->getDataType() != srcSPtrCell->getColumn()->getDataType()) {
 

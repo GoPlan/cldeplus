@@ -15,11 +15,11 @@ namespace CLDEPlus {
         class Identity : public Store::AbstractEntity {
 
         public:
-            explicit Identity(const vector<SPtrCell> &sptrCells);
+            explicit Identity(vector<SPtrCell> const &sptrCells);
             Identity() = default;
-            Identity(const Identity &) = default;
+            Identity(Identity const &) = default;
             Identity(Identity &&) = default;
-            Identity &operator=(const Identity &) = default;
+            Identity &operator=(Identity const &) = default;
             Identity &operator=(Identity &&) = default;
             ~Identity() = default;
 
@@ -27,7 +27,6 @@ namespace CLDEPlus {
             static unique_ptr<Identity> Create() {
                 return cldeplus_make_unique<Identity>();
             }
-
             static unique_ptr<Identity> Create(SPtrCellVector const &cells) {
                 return cldeplus_make_unique<Identity>(cells);
             }

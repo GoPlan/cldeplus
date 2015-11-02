@@ -12,9 +12,9 @@ namespace CLDEPlus {
             class IComparable {
 
             public:
-                virtual bool LessThan(const IComparable &target) const = 0;
-                virtual bool GreaterThan(const IComparable &target) const = 0;
-                virtual bool EquivalentTo(const IComparable &target) const = 0;
+                virtual bool LessThan(IComparable const &target) const = 0;
+                virtual bool GreaterThan(IComparable const &target) const = 0;
+                virtual bool EquivalentTo(IComparable const &target) const = 0;
             };
         }
     }

@@ -26,11 +26,11 @@ namespace CLDEPlus {
 
             public:
                 CellTransformer() = default;
-                CellTransformer(const Foundation::SPtrColumn &targetColumn);
-                CellTransformer(const Foundation::SPtrColumn &targetColumn, const SPtrCaster &converter);
-                CellTransformer(const CellTransformer &) = default;
+                CellTransformer(Foundation::SPtrColumn const &targetColumn);
+                CellTransformer(Foundation::SPtrColumn const &targetColumn, const SPtrCaster &converter);
+                CellTransformer(CellTransformer const &) = default;
                 CellTransformer(CellTransformer &&) = default;
-                CellTransformer &operator=(const CellTransformer &) = default;
+                CellTransformer &operator=(CellTransformer const &) = default;
                 CellTransformer &operator=(CellTransformer &&) = default;
                 virtual ~CellTransformer() = default;
 
@@ -39,11 +39,11 @@ namespace CLDEPlus {
                 const SPtrCaster &TypeConverter() const { return _sptrTypeConverter; }
 
                 // Mutator
-                void setTargetColumn(const Foundation::SPtrColumn &sptrTargetColumn) { _sptrTargetColumn = sptrTargetColumn; }
-                void setTypeConverter(const SPtrCaster &sptrTypeConverter) { _sptrTypeConverter = sptrTypeConverter; }
+                void setTargetColumn(Foundation::SPtrColumn const &sptrTargetColumn) { _sptrTargetColumn = sptrTargetColumn; }
+                void setTypeConverter(SPtrCaster const &sptrTypeConverter) { _sptrTypeConverter = sptrTypeConverter; }
 
                 // Locals
-                virtual Foundation::SPtrCell Transform(const Foundation::SPtrCell &srcSPtrCell) const;
+                virtual Foundation::SPtrCell Transform(Foundation::SPtrCell const &srcSPtrCell) const;
             };
 
             using SPtrCellTransformer = shared_ptr<CellTransformer>;

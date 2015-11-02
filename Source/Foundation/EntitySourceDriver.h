@@ -19,9 +19,9 @@ namespace CLDEPlus {
 
         public:
             explicit EntitySourceDriver(const SPtrEntityMap &entityMap);
-            EntitySourceDriver(const EntitySourceDriver &) = delete;
+            EntitySourceDriver(EntitySourceDriver const &) = delete;
             EntitySourceDriver(EntitySourceDriver &&) = delete;
-            EntitySourceDriver &operator=(const EntitySourceDriver &) = delete;
+            EntitySourceDriver &operator=(EntitySourceDriver const &) = delete;
             EntitySourceDriver &operator=(EntitySourceDriver &&) = delete;
             virtual ~EntitySourceDriver() = default;
 
@@ -29,12 +29,9 @@ namespace CLDEPlus {
             virtual int Insert(SPtrEntity &entity) const = 0;
             virtual int Save(SPtrEntity &entity) const = 0;
             virtual int Delete(SPtrEntity &entity) const = 0;
+            virtual SPtrEntityProxyVector Select(Query::SPtrCriteria const &sptrCriteria, SPtrColumnVector const &columnsForProjection) const = 0;
 
-            virtual SPtrEntityProxyVector Select(
-                    const Query::SPtrCriteria &sptrCriteria,
-                    const SPtrColumnVector &columnsForProjection) const = 0;
-
-            const SPtrEntityMap &getEntityMap() const { return _sptrEntityMap; }
+            SPtrEntityMap const &getEntityMap() const { return _sptrEntityMap; }
         };
 
         using UPtrEntitySourceDriver = unique_ptr<EntitySourceDriver>;

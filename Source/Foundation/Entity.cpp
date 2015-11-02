@@ -21,7 +21,5 @@ namespace CLDEPlus {
                 setCell(field);
             }
         }
-
-
     }
 }

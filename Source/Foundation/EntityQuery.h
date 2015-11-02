@@ -19,22 +19,21 @@ namespace CLDEPlus {
             SPtrEntitySourceDriver _sptrEntitySourceDriver;
 
         public:
-            EntityQuery(const SPtrEntityMap &sptrEntityMap, const SPtrEntitySourceDriver &sptrEntitySourceDriver);
-            EntityQuery(const EntityQuery &) = default;
+            EntityQuery(SPtrEntityMap const &sptrEntityMap, SPtrEntitySourceDriver const &sptrEntitySourceDriver);
+            EntityQuery(EntityQuery const &) = default;
             EntityQuery(EntityQuery &&) = default;
-            EntityQuery &operator=(const EntityQuery &) = default;
+            EntityQuery &operator=(EntityQuery const &) = default;
             EntityQuery &operator=(EntityQuery &&) = default;
             ~EntityQuery() = default;
 
             // Locals
-            virtual SPtrEntityProxy SelectFirst(const Query::SPtrCriteria &sptrCriteria);
-            virtual SPtrEntityProxyVector Select(const Query::SPtrCriteria &sptrCriteria);
-            virtual SPtrEntityProxyVector Select(const Query::SPtrCriteria &sptrCriteria,
-                                                 const SPtrColumnVector &columnsForProjection);
+            virtual SPtrEntityProxy SelectFirst(Query::SPtrCriteria const &sptrCriteria);
+            virtual SPtrEntityProxyVector Select(Query::SPtrCriteria const &sptrCriteria);
+            virtual SPtrEntityProxyVector Select(Query::SPtrCriteria const &sptrCriteria,
+                                                 SPtrColumnVector const &columnsForProjection);
 
             // Factory methods
-            static unique_ptr<EntityQuery> Create(SPtrEntityMap const &sptrEntityMap,
-                                                  SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
+            static unique_ptr<EntityQuery> Create(SPtrEntityMap const &sptrEntityMap, SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
                 return cldeplus_make_unique<EntityQuery>(sptrEntityMap, sptrEntitySourceDriver);
             }
         };

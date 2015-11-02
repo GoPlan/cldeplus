@@ -19,13 +19,13 @@ namespace CLDEPlus {
                     T _compare;
 
                 public:
-                    Compare(const SPtrColumnVector &lhsComparingColumns, const SPtrColumnVector &rhsComparingColumns)
+                    Compare(SPtrColumnVector const &lhsComparingColumns, SPtrColumnVector const &rhsComparingColumns)
                             : _compare{lhsComparingColumns, rhsComparingColumns} { };
 
                     Compare() = default;
-                    Compare(const Compare &) = default;
+                    Compare(Compare const &) = default;
                     Compare(Compare &&) = default;
-                    Compare &operator=(const Compare &) = default;
+                    Compare &operator=(Compare const &) = default;
                     Compare &operator=(Compare &&) = default;
                     ~Compare() = default;
 
@@ -33,7 +33,7 @@ namespace CLDEPlus {
                     SPtrColumnVector &RhsCmpColumns() { return _compare.LhsCmpColumns(); }
                     SPtrColumnVector &LhsCmpColumns() { return _compare.RhsCmpColumns(); }
 
-                    bool operator()(const Store::SPtrDataRecord &lhs, const Store::SPtrDataRecord &rhs) const {
+                    bool operator()(Store::SPtrDataRecord const &lhs, Store::SPtrDataRecord const &rhs) const {
                         return !_compare(lhs, rhs) && !_compare(rhs, lhs);
                     };
                 };

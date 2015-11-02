@@ -8,8 +8,8 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
 
-            bool Comparer::Less::operator()(const Store::SPtrDataRecord &lhs,
-                                            const Store::SPtrDataRecord &rhs) const {
+            bool Comparer::Less::operator()( Store::SPtrDataRecord const&lhs,
+                                             Store::SPtrDataRecord const&rhs) const {
 
                 if (_lhsCmpColumns.size() != _rhsCmpColumns.size()) {
                     return false;

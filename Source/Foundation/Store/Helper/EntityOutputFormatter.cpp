@@ -8,10 +8,9 @@
 namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
-            namespace Extra {
+            namespace Helper {
 
-                string EntityOutputFormatter::Format(
-                        const CLDEPlus::Foundation::Common::IPrintable &printable) const {
+                string EntityOutputFormatter::Format(CLDEPlus::Foundation::Common::IPrintable const &printable) const {
 
                     auto &entity = dynamic_cast<const Store::AbstractEntity &>(printable);
 
@@ -19,14 +18,15 @@ namespace CLDEPlus {
 
                     for (auto &sptrColumn : _displayColumns) {
 
-                        if(!result.empty()){
+                        if (!result.empty()) {
                             result += _delimiter;
                         }
 
-                        if(entity.hasCell(sptrColumn->getName())){
+                        if (entity.hasCell(sptrColumn->getName())) {
                             auto &sptrCell = entity.getCell(sptrColumn->getName());
                             result += sptrCell->ToString();
-                        }else{
+                        }
+                        else {
                             result += "(empty)";
                         }
                     }
@@ -40,7 +40,7 @@ namespace CLDEPlus {
 
                     for (auto &sptrColumn : _displayColumns) {
 
-                        if(!result.empty()){
+                        if (!result.empty()) {
                             result += _delimiter;
                         }
 

@@ -22,9 +22,9 @@ namespace CLDEPlus {
 
         public:
             EntityProxy() = default;
-            EntityProxy(const EntityProxy &) = default;
+            EntityProxy(EntityProxy const &) = default;
             EntityProxy(EntityProxy &&) = default;
-            EntityProxy &operator=(const EntityProxy &) = default;
+            EntityProxy &operator=(EntityProxy const &) = default;
             EntityProxy &operator=(EntityProxy &&) = default;
             ~EntityProxy() = default;
 
@@ -32,7 +32,7 @@ namespace CLDEPlus {
             SPtrEntity Summon(SPtrEntityStore &entityStore);
             EntityProxySummonState getSummonState() const { return _summonState; }
             bool IsIdentifiableInStore(SPtrEntityStore &entityStore);
-            void setSummonState(const EntityProxySummonState &summonState) { _summonState = summonState; }
+            void setSummonState(EntityProxySummonState const &summonState) { _summonState = summonState; }
 
             // Factory methods
             static unique_ptr<EntityProxy> Create() {

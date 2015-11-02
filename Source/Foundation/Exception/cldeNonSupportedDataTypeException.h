@@ -16,11 +16,11 @@ namespace CLDEPlus {
                 static const string _name;
 
             public:
-                CLDENonSupportedDataTypeException(const char *message) : CLDEException(message) { };
-                CLDENonSupportedDataTypeException(const string &message) : CLDEException(message) { };
-                CLDENonSupportedDataTypeException(const CLDENonSupportedDataTypeException &) = default;
+                explicit CLDENonSupportedDataTypeException(char const *message) : CLDEException(message) { };
+                explicit CLDENonSupportedDataTypeException(string const &message) : CLDEException(message) { };
+                CLDENonSupportedDataTypeException(CLDENonSupportedDataTypeException const &) = default;
                 CLDENonSupportedDataTypeException(CLDENonSupportedDataTypeException &&) = default;
-                CLDENonSupportedDataTypeException &operator=(const CLDENonSupportedDataTypeException &) = default;
+                CLDENonSupportedDataTypeException &operator=(CLDENonSupportedDataTypeException const &) = default;
                 CLDENonSupportedDataTypeException &operator=(CLDENonSupportedDataTypeException &&) = default;
                 virtual ~CLDENonSupportedDataTypeException() = default;
 

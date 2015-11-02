@@ -16,10 +16,10 @@ namespace CLDEPlus {
                 static string _name;
 
             public:
-                NamedEntityStoreException(const string &message) : Foundation::Exception::CLDEException{message} { };
-                NamedEntityStoreException(const NamedEntityStoreException &) = default;
+                NamedEntityStoreException(string const &message) : Foundation::Exception::CLDEException{message} { };
+                NamedEntityStoreException(NamedEntityStoreException const &) = default;
                 NamedEntityStoreException(NamedEntityStoreException &&) = default;
-                NamedEntityStoreException &operator=(const NamedEntityStoreException &) = default;
+                NamedEntityStoreException &operator=(NamedEntityStoreException const &) = default;
                 NamedEntityStoreException &operator=(NamedEntityStoreException &&) = default;
                 virtual ~NamedEntityStoreException() = default;
 

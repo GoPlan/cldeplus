@@ -25,7 +25,7 @@ namespace CLDEPlus {
 
                 // Locals
                 virtual Foundation::Data::SPtrValue Cast(Foundation::Data::ValueType dataType,
-                                                         const Foundation::Data::SPtrValue &value) const;
+                                                         Foundation::Data::SPtrValue const &value) const;
 
             protected:
                 TypeCaster() = default;

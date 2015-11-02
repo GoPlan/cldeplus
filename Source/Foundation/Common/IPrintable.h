@@ -13,7 +13,7 @@ namespace CLDEPlus {
         namespace Common {
             struct IPrintable {
                 virtual string ToString() const = 0;
-                virtual string ToString(const IFormatter &formatter) const { return formatter.Format(*this); };
+                virtual string ToString(IFormatter const &formatter) const { return formatter.Format(*this); };
             };
         }
     }

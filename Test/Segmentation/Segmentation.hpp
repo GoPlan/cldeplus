@@ -68,7 +68,7 @@ namespace CLDEPlus {
                 CLDEPlus::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
                 CLDEPlus::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
 
-                CLDEPlus::Foundation::Store::Extra::EntityOutputFormatter formatter{};
+                CLDEPlus::Foundation::Store::Helper::EntityOutputFormatter formatter{};
                 formatter.DisplayColumns().push_back(newPreOrderIdColumn);
                 formatter.DisplayColumns().push_back(newPreOrderTotalColumn);
                 formatter.DisplayColumns().push_back(newCustomerIdColumn);
@@ -159,7 +159,7 @@ namespace CLDEPlus {
                 CLDEPlus::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
                 CLDEPlus::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
 
-                CLDEPlus::Foundation::Store::Extra::EntityOutputFormatter formatter{};
+                CLDEPlus::Foundation::Store::Helper::EntityOutputFormatter formatter{};
                 formatter.DisplayColumns().push_back(newPreOrderIdColumn);
                 formatter.DisplayColumns().push_back(newPreOrderTotalColumn);
                 formatter.DisplayColumns().push_back(newCustomerIdColumn);
@@ -232,7 +232,7 @@ namespace CLDEPlus {
                 CLDEPlus::Segmentation::Transformation::CellTransformer preorderIdCell{newPreOrderIdColumn};
                 CLDEPlus::Segmentation::Transformation::CellTransformer preorderTotalCell{newPreOrderTotalColumn};
 
-                CLDEPlus::Foundation::Store::Extra::EntityOutputFormatter formatter{};
+                CLDEPlus::Foundation::Store::Helper::EntityOutputFormatter formatter{};
                 formatter.DisplayColumns().push_back(newPreOrderIdColumn);
                 formatter.DisplayColumns().push_back(newPreOrderTotalColumn);
                 formatter.DisplayColumns().push_back(newCustomerIdColumn);

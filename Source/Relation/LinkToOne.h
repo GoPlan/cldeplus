@@ -14,7 +14,8 @@ namespace CLDEPlus {
         class LinkToOne : public Link {
 
         public:
-            LinkToOne(const Foundation::SPtrEntityQuery &entityQuery, const Foundation::Query::SPtrCriteria &criteria)
+            LinkToOne(Foundation::SPtrEntityQuery const &entityQuery,
+                      Foundation::Query::SPtrCriteria const &criteria)
                     : Link{entityQuery, criteria} { }
 
             LinkToOne(const LinkToOne &) = default;

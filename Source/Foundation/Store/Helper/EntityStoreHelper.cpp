@@ -13,8 +13,8 @@ namespace CLDEPlus {
             namespace Helper {
 
                 void EntityStoreHelper::GenerateCellsFromColumns(
-                        const CLDEPlus::Foundation::SPtrColumnVector &columnVector,
-                        const CLDEPlus::Foundation::Store::SPtrDataRecord &dataRecord,
+                        CLDEPlus::Foundation::SPtrColumnVector const &columnVector,
+                        CLDEPlus::Foundation::Store::SPtrDataRecord const &dataRecord,
                         bool checkCellExists) {
 
                     if (!dataRecord) {
@@ -33,11 +33,11 @@ namespace CLDEPlus {
                     }
                 }
 
-                SPtrEntityProxy EntityStoreHelper::CopySPtrProxy(const SPtrEntityProxy &proxy) {
+                SPtrEntityProxy EntityStoreHelper::CopySPtrProxy(SPtrEntityProxy const &proxy) {
 
                     SPtrEntityProxy newProxy = Foundation::EntityProxy::Create();
 
-                    for(auto &srcCellPair : proxy->getCellsMap()){
+                    for (auto &srcCellPair : proxy->getCellsMap()) {
                         auto newCell = Foundation::Store::Helper::CellHelper::CopySPtrCell(srcCellPair.second);
                         newProxy->setCell(newCell);
                     }

@@ -14,7 +14,7 @@ namespace CLDEPlus {
             class IPrintable;
 
             struct IFormatter {
-                virtual string Format(const IPrintable &printable) const = 0;
+                virtual string Format( IPrintable const&printable) const = 0;
             };
         }
     }

@@ -7,17 +7,17 @@
 namespace CLDEPlus {
     namespace Foundation {
 
-        EntityQuery::EntityQuery(const SPtrEntityMap &sptrEntityMap,
-                                 const SPtrEntitySourceDriver &sptrEntitySourceDriver)
+        EntityQuery::EntityQuery(SPtrEntityMap const &sptrEntityMap,
+                                 SPtrEntitySourceDriver const &sptrEntitySourceDriver)
                 : _sptrEntityMap{sptrEntityMap}, _sptrEntitySourceDriver{sptrEntitySourceDriver} {
             //
         }
 
-        SPtrEntityProxy EntityQuery::SelectFirst(const Query::SPtrCriteria &sptrCriteria) {
+        SPtrEntityProxy EntityQuery::SelectFirst(Query::SPtrCriteria const &sptrCriteria) {
             return Select(sptrCriteria).front();
         }
 
-        SPtrEntityProxyVector EntityQuery::Select(const Query::SPtrCriteria &sptrCriteria) {
+        SPtrEntityProxyVector EntityQuery::Select(Query::SPtrCriteria const &sptrCriteria) {
 
             auto &columnsForKey = _sptrEntityMap->getColumnsForKey();
             auto &columnsForSelect = _sptrEntityMap->getColumnsForSelect();
@@ -31,8 +31,8 @@ namespace CLDEPlus {
             return Select(sptrCriteria, columnsForProjection);
         }
 
-        SPtrEntityProxyVector EntityQuery::Select(const Query::SPtrCriteria &sptrCriteria,
-                                                  const SPtrColumnVector &columnsForProjection) {
+        SPtrEntityProxyVector EntityQuery::Select(Query::SPtrCriteria const &sptrCriteria,
+                                                  SPtrColumnVector const &columnsForProjection) {
             return _sptrEntitySourceDriver->Select(sptrCriteria, columnsForProjection);
         }
     }

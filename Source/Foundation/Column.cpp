@@ -21,15 +21,15 @@ namespace CLDEPlus {
 
         string Column::ToString() const {
             string result{_name + "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_dataType) +
-                               "[" + std::to_string(_length) + "]" + ")"};
+                          "[" + std::to_string(_length) + "]" + ")"};
             return result;
         }
 
-        SPtrColumn CreateColumn(const string &name, Data::ValueType dataType) {
+        SPtrColumn CreateColumn(string const &name, Data::ValueType dataType) {
             return cldeplus_make_shared<Column>(name, dataType);
         }
 
-        SPtrColumn CreateColumn(const string &name, Data::ValueType dataType, const string &datasourceName,
+        SPtrColumn CreateColumn(string const &name, Data::ValueType dataType, string const &datasourceName,
                                 size_t length) {
             return cldeplus_make_shared<Column>(name, dataType, datasourceName, length);
         }

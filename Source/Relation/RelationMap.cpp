@@ -7,12 +7,11 @@
 namespace CLDEPlus {
     namespace Relation {
 
-        void RelationMap::AddLink(const string &srcColumnName, Foundation::SPtrColumn const &dstColumn) {
+        void RelationMap::AddLink(string const &srcColumnName, Foundation::SPtrColumn const &dstColumn) {
             _columnsMap.push_back(std::make_pair(srcColumnName, dstColumn));
         }
 
-
-        void RelationMap::AddLink(const Foundation::SPtrColumn &srcColumn, Foundation::SPtrColumn const &dstColumn) {
+        void RelationMap::AddLink(Foundation::SPtrColumn const &srcColumn, Foundation::SPtrColumn const &dstColumn) {
             AddLink(srcColumn->getName(), dstColumn);
         }
 

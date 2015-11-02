@@ -13,9 +13,9 @@ namespace CLDEPlus {
         namespace Store {
             namespace Helper {
                 struct EntityStoreHelper {
-                    static SPtrEntityProxy CopySPtrProxy(const SPtrEntityProxy &proxy);
-                    static void GenerateCellsFromColumns(const SPtrColumnVector &columnVector,
-                                                         const Store::SPtrDataRecord &dataRecord,
+                    static SPtrEntityProxy CopySPtrProxy(SPtrEntityProxy const &proxy);
+                    static void GenerateCellsFromColumns(SPtrColumnVector const &columnVector,
+                                                         Store::SPtrDataRecord const &dataRecord,
                                                          bool checkCellExists = true);
                 };
             }

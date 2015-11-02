@@ -16,10 +16,10 @@ namespace CLDEPlus {
                 static string _name;
 
             public:
-                CLDEEntityMapException(string const &message) : CLDEException(message) { };
-                CLDEEntityMapException(const CLDEEntityMapException &) = default;
+                explicit CLDEEntityMapException(string const &message) : CLDEException(message) { };
+                CLDEEntityMapException(CLDEEntityMapException const &) = default;
                 CLDEEntityMapException(CLDEEntityMapException &&) = default;
-                CLDEEntityMapException &operator=(const CLDEEntityMapException &) = default;
+                CLDEEntityMapException &operator=(CLDEEntityMapException const &) = default;
                 CLDEEntityMapException &operator=(CLDEEntityMapException &&) = default;
                 virtual ~CLDEEntityMapException() = default;
 

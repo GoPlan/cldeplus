@@ -12,7 +12,7 @@ namespace CLDEPlus {
         namespace Common {
 
             struct IEquatable : public std::binary_function<IEquatable, IEquatable, bool> {
-                virtual bool Equal(const IEquatable &rhs) const = 0;
+                virtual bool Equal(IEquatable const &rhs) const = 0;
             };
         }
     }

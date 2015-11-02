@@ -13,7 +13,8 @@ namespace CLDEPlus {
         class Link {
 
         public:
-            Link(const Foundation::SPtrEntityQuery &entityQuery, const Foundation::Query::SPtrCriteria &criteria)
+            Link(Foundation::SPtrEntityQuery const &entityQuery,
+                 Foundation::Query::SPtrCriteria const &criteria)
                     : _sptrEntityQuery{entityQuery}, _sptrCriteria{criteria} { };
 
             Link(const Link &) = default;
@@ -23,8 +24,8 @@ namespace CLDEPlus {
             virtual ~Link() = default;
 
             // Accessors
-            const Foundation::SPtrEntityQuery &EntityQuery() const { return _sptrEntityQuery; }
-            const Foundation::Query::SPtrCriteria &Criteria() const { return _sptrCriteria; }
+            Foundation::SPtrEntityQuery const &EntityQuery() const { return _sptrEntityQuery; }
+            Foundation::Query::SPtrCriteria const &Criteria() const { return _sptrCriteria; }
 
         protected:
             Foundation::SPtrEntityQuery _sptrEntityQuery;

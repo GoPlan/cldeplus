@@ -22,13 +22,13 @@ namespace CLDEPlus {
                     Data::Comparer::Compare _equal{};
 
                 public:
-                    Greater(const SPtrColumnVector &lhsCmpColumns, const SPtrColumnVector &rhsCmpColumns)
+                    Greater(SPtrColumnVector const &lhsCmpColumns, SPtrColumnVector const &rhsCmpColumns)
                             : _lhsCmpColumns(lhsCmpColumns), _rhsCmpColumns(rhsCmpColumns) { };
 
                     Greater() = default;
-                    Greater(const Greater &) = default;
+                    Greater(Greater const &) = default;
                     Greater(Greater &&) = default;
-                    Greater &operator=(const Greater &) = default;
+                    Greater &operator=(Greater const &) = default;
                     Greater &operator=(Greater &&) = default;
                     ~Greater() = default;
 
@@ -36,7 +36,7 @@ namespace CLDEPlus {
                     SPtrColumnVector &LhsCmpColumns() { return _lhsCmpColumns; }
                     SPtrColumnVector &RhsCmpColumns() { return _rhsCmpColumns; }
 
-                    bool operator()(const Store::SPtrDataRecord &lhs, const Store::SPtrDataRecord &rhs) const;
+                    bool operator()(Store::SPtrDataRecord const &lhs, Store::SPtrDataRecord const &rhs) const;
                 };
             }
         }

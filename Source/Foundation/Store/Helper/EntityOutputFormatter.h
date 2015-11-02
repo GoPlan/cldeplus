@@ -2,8 +2,8 @@
 // Created by LE, Duc Anh on 7/8/15.
 //
 
-#ifndef CLDEPLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
-#define CLDEPLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
+#ifndef CLDEPLUS_FOUNDATION_STORE_HELPER_ENTITYOUTPUTFORMATTER_H
+#define CLDEPLUS_FOUNDATION_STORE_HELPER_ENTITYOUTPUTFORMATTER_H
 
 #include "../../Common/IFormatter.h"
 #include "../../Column.h"
@@ -11,7 +11,7 @@
 namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
-            namespace Extra {
+            namespace Helper {
 
                 class EntityOutputFormatter : public Foundation::Common::IFormatter,
                                               public Foundation::Common::IPrintable {
@@ -21,9 +21,9 @@ namespace CLDEPlus {
 
                 public:
                     EntityOutputFormatter() = default;
-                    EntityOutputFormatter(const EntityOutputFormatter &) = default;
+                    EntityOutputFormatter(EntityOutputFormatter const &) = default;
                     EntityOutputFormatter(EntityOutputFormatter &&) = default;
-                    EntityOutputFormatter &operator=(const EntityOutputFormatter &) = default;
+                    EntityOutputFormatter &operator=(EntityOutputFormatter const &) = default;
                     EntityOutputFormatter &operator=(EntityOutputFormatter &&) = default;
                     virtual ~EntityOutputFormatter() = default;
 
@@ -31,13 +31,12 @@ namespace CLDEPlus {
                     SPtrColumnVector &DisplayColumns() { return _displayColumns; }
 
                     // Accessors
-                    void setDelimiter(const string &delimiter) { _delimiter = delimiter; }
+                    void setDelimiter(string const &delimiter) { _delimiter = delimiter; }
 
                     // IFormatter
-                    virtual string Format(const Common::IPrintable &printable) const override;
+                    virtual string Format(Common::IPrintable const &printable) const override;
 
                     // IPrintable
-
                     virtual string ToString() const override;
                 };
             }
@@ -46,4 +45,4 @@ namespace CLDEPlus {
 }
 
 
-#endif //CLDEPLUS_FOUNDATION_STORE_EXTRA_ENTITYOUTPUTFORMATTER_H
+#endif //CLDEPLUS_FOUNDATION_STORE_HELPER_ENTITYOUTPUTFORMATTER_H

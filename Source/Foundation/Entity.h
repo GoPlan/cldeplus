@@ -19,15 +19,15 @@ namespace CLDEPlus {
             SPtrIdentity _identity;
 
         public:
-            explicit Entity(const SPtrIdentity &identity);
+            explicit Entity(SPtrIdentity const &identity);
             Entity(const Entity &) = default;
             Entity(Entity &&) = default;
-            Entity &operator=(const Entity &) = default;
+            Entity &operator=(Entity const &) = default;
             Entity &operator=(Entity &&) = default;
             ~Entity() = default;
 
             // Locals
-            const SPtrIdentity &getIdentity() { return _identity; }
+            SPtrIdentity const &getIdentity() { return _identity; }
 
             template<class TEntity>
             TEntity NamedEntity(std::function<TEntity(const Entity &)> converter) { return converter(*this); };

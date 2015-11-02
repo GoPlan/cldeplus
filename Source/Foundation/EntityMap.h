@@ -16,9 +16,9 @@ namespace CLDEPlus {
 
         public:
             EntityMap(string const &tableName) : _tableName{tableName} { };
-            EntityMap(const EntityMap &) = default;
+            EntityMap(EntityMap const &) = default;
             EntityMap(EntityMap &&) = default;
-            EntityMap &operator=(const EntityMap &) = default;
+            EntityMap &operator=(EntityMap const &) = default;
             EntityMap &operator=(EntityMap &&) = default;
             virtual ~EntityMap() = default;
 

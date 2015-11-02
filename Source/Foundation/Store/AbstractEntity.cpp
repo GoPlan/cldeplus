@@ -20,7 +20,7 @@ namespace CLDEPlus {
             }
         }
 
-        Store::AbstractEntity &Store::AbstractEntity::operator=(const Store::AbstractEntity &entity) {
+        Store::AbstractEntity &Store::AbstractEntity::operator=(Store::AbstractEntity const &entity) {
 
             if (this == &entity)
                 return *this;
@@ -37,7 +37,7 @@ namespace CLDEPlus {
             return *this;
         }
 
-        void Store::AbstractEntity::setCell(const SPtrCell &cell) {
+        void Store::AbstractEntity::setCell(SPtrCell const &cell) {
             _cellMap[cell->getColumn()->getName()] = cell;
         }
 
@@ -46,23 +46,23 @@ namespace CLDEPlus {
             _cellMap[ptrCell->getColumn()->getName()] = sptrCell;
         }
 
-        void Store::AbstractEntity::setMultiCells(const SPtrCellVector &cellVector) {
+        void Store::AbstractEntity::setMultiCells(SPtrCellVector const &cellVector) {
             for (auto &sptrField : cellVector) {
                 setCell(sptrField);
             }
         }
 
-        void Store::AbstractEntity::setMultiCells(const vector<Cell *> &cellVector) {
+        void Store::AbstractEntity::setMultiCells(vector<Cell *> const &cellVector) {
             for (auto ptrField : cellVector) {
                 setCell(ptrField);
             }
         }
 
-        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::operator[](const string &columnName) const {
+        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::operator[](string const &columnName) const {
             return getCell(columnName);
         }
 
-        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::getCell(const string &columnName) const {
+        const SPtrCell &CLDEPlus::Foundation::Store::AbstractEntity::getCell(string const &columnName) const {
 
             auto search = _cellMap.find(columnName);
 
@@ -150,7 +150,8 @@ namespace CLDEPlus {
 
                               if (field->isNull()) {
                                   result += "null";
-                              } else {
+                              }
+                              else {
                                   result += field->getValue()->ToString();
                               }
                           });

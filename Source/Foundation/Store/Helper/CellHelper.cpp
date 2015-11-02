@@ -8,7 +8,7 @@
 namespace CLDEPlus {
     namespace Foundation {
 
-        SPtrCell Store::Helper::CellHelper::CopySPtrCell(const SPtrCell &sptrCell) {
+        SPtrCell Store::Helper::CellHelper::CopySPtrCell(SPtrCell const &sptrCell) {
 
             Data::SPtrValue sptrValue = Data::Helper::ValueHelper::CopySPtrValue(sptrCell->getValue());
             SPtrColumn sptrColumn{new Column{*(sptrCell->getColumn())}};

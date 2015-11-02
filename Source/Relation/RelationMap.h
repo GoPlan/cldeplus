@@ -20,9 +20,9 @@ namespace CLDEPlus {
 
         public:
             RelationMap() = default;
-            RelationMap(const RelationMap &) = default;
+            RelationMap(RelationMap const &) = default;
             RelationMap(RelationMap &&) = default;
-            RelationMap &operator=(const RelationMap &) = default;
+            RelationMap &operator=(RelationMap const &) = default;
             RelationMap &operator=(RelationMap &&) = default;
             virtual ~RelationMap() = default;
 

@@ -18,9 +18,9 @@ namespace CLDEPlus {
             public:
                 explicit CLDEException(string const &message) : _message{message} { };
                 explicit CLDEException(char const *message) : _message(message) { };
-                CLDEException(const CLDEException &) = default;
+                CLDEException(CLDEException const &) = default;
                 CLDEException(CLDEException &&) = default;
-                CLDEException &operator=(const CLDEException &) = default;
+                CLDEException &operator=(CLDEException const &) = default;
                 CLDEException &operator=(CLDEException &&) = default;
                 virtual ~CLDEException() = default;
 

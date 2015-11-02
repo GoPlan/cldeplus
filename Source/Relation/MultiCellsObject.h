@@ -15,8 +15,8 @@ namespace CLDEPlus {
             Foundation::SPtrColumnVector _columns{};
 
         public:
-            MultiCellsObject(const Foundation::SPtrEntityQuery &entityQuery,
-                             const Foundation::Query::SPtrCriteria &criteria)
+            MultiCellsObject(Foundation::SPtrEntityQuery const &entityQuery,
+                             Foundation::Query::SPtrCriteria const &criteria)
                     : LinkToOne{entityQuery, criteria} { }
 
             MultiCellsObject(Foundation::SPtrEntityQuery const &entityQuery,

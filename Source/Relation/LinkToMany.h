@@ -14,7 +14,8 @@ namespace CLDEPlus {
         class LinkToMany : public Link {
 
         public:
-            LinkToMany(const Foundation::SPtrEntityQuery &entityQuery, const Foundation::Query::SPtrCriteria &criteria)
+            LinkToMany(Foundation::SPtrEntityQuery const &entityQuery,
+                       Foundation::Query::SPtrCriteria const &criteria)
                     : Link{entityQuery, criteria} { }
 
             LinkToMany(const LinkToMany &) = default;

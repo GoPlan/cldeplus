@@ -16,11 +16,11 @@ namespace CLDEPlus {
                 static const string _name;
 
             public:
-                CLDENotImplementedException(const char *message) : CLDEException(message) { };
-                CLDENotImplementedException(const string &message) : CLDEException(message) { };
-                CLDENotImplementedException(const CLDENotImplementedException &) = default;
+                explicit CLDENotImplementedException(char const *message) : CLDEException(message) { };
+                explicit CLDENotImplementedException(string const &message) : CLDEException(message) { };
+                CLDENotImplementedException(CLDENotImplementedException const &) = default;
                 CLDENotImplementedException(CLDENotImplementedException &&) = default;
-                CLDENotImplementedException &operator=(const CLDENotImplementedException &) = default;
+                CLDENotImplementedException &operator=(CLDENotImplementedException const &) = default;
                 CLDENotImplementedException &operator=(CLDENotImplementedException &&) = default;
                 virtual ~CLDENotImplementedException() = default;
 

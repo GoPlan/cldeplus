@@ -16,11 +16,11 @@ namespace CLDEPlus {
                 static const string _name;
 
             public:
-                CLDEEntityException(const char *message) : CLDEException(message) { };
-                CLDEEntityException(const string &message) : CLDEException(message) { };
-                CLDEEntityException(const CLDEEntityException &) = default;
+                explicit CLDEEntityException(char const *message) : CLDEException(message) { };
+                explicit CLDEEntityException(string const &message) : CLDEException(message) { };
+                CLDEEntityException(CLDEEntityException const &) = default;
                 CLDEEntityException(CLDEEntityException &&) = default;
-                CLDEEntityException &operator=(const CLDEEntityException &) = default;
+                CLDEEntityException &operator=(CLDEEntityException const &) = default;
                 CLDEEntityException &operator=(CLDEEntityException &&) = default;
                 virtual ~CLDEEntityException() = default;
 

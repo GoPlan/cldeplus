@@ -7,8 +7,8 @@
 namespace CLDEPlus {
     namespace Foundation {
         namespace Store {
-            bool Comparer::Greater::operator()(const Store::SPtrDataRecord &lhs,
-                                               const Store::SPtrDataRecord &rhs) const {
+            bool Comparer::Greater::operator()(Store::SPtrDataRecord const &lhs,
+                                               Store::SPtrDataRecord const &rhs) const {
 
                 if (_lhsCmpColumns.size() != _rhsCmpColumns.size()) {
                     return false;
@@ -29,7 +29,7 @@ namespace CLDEPlus {
                     auto &lhsValue = lhsCell->getValue();
                     auto &rhsValue = rhsCell->getValue();
 
-                    if(!_equal(lhsValue, rhsValue))
+                    if (!_equal(lhsValue, rhsValue))
                         return _greater(lhsValue, rhsValue);
                 }
 

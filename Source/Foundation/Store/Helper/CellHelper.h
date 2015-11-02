@@ -12,7 +12,7 @@ namespace CLDEPlus {
         namespace Store {
             namespace Helper {
                 struct CellHelper {
-                    static SPtrCell CopySPtrCell(const SPtrCell &sptrCell);
+                    static SPtrCell CopySPtrCell(SPtrCell const &sptrCell);
                 };
             }
         }

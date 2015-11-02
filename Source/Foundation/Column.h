@@ -33,15 +33,15 @@ namespace CLDEPlus {
             string ToString() const override;
 
             // Locals - Mutators
-            void setDatasourceName(const string &datasourceName) { _datasourceName = datasourceName; }
-            void setName(const string &name) { _name = name; }
-            void setDataType(const Data::ValueType &dataType) { _dataType = dataType; }
+            void setDatasourceName(string const &datasourceName) { _datasourceName = datasourceName; }
+            void setName(string const &name) { _name = name; }
+            void setDataType(Data::ValueType const &dataType) { _dataType = dataType; }
             void setLength(size_t length) { _length = length; }
 
             // Locals - Accessors
-            const string &getDatasourceName() const { return _datasourceName; }
-            const string &getName() const { return _name; }
-            const Foundation::Data::ValueType &getDataType() const { return _dataType; }
+            string const &getDatasourceName() const { return _datasourceName; }
+            string const &getName() const { return _name; }
+            Foundation::Data::ValueType const &getDataType() const { return _dataType; }
             size_t getLength() const { return _length; }
         };
 
@@ -49,9 +49,8 @@ namespace CLDEPlus {
         using SPtrColumnVector = vector<SPtrColumn>;
         using SPtrColumnMap = unordered_map<string, SPtrColumn>;
 
-        SPtrColumn CreateColumn(const string &name, Data::ValueType dataType);
-        SPtrColumn CreateColumn(const string &name, Data::ValueType dataType, const string &datasourceName,
-                                size_t length = 0);
+        SPtrColumn CreateColumn(string const &name, Data::ValueType dataType);
+        SPtrColumn CreateColumn(string const &name, Data::ValueType dataType, string const &datasourceName, size_t length = 0);
     }
 }
 
