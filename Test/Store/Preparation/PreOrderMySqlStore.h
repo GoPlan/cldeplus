@@ -8,6 +8,9 @@
 #include <gtest/gtest.h>
 #include "../../Application/PreOrderMap.h"
 #include "../../Application/PreOrderItemsMap.h"
+
+#include "../../../Source/Drivers/MySql/MySqlSourceDriver.h"
+#include "../../../Source/Foundation/EntityStore.h"
 #include "../../../Source/Foundation/EntityQuery.h"
 
 namespace CLDEPlus {

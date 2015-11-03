@@ -6,15 +6,13 @@
 #define CLDEPLUS_APPTEST_SEGMENTATION_HPP
 
 #include <gtest/gtest.h>
-#include <memory>
-#include <iostream>
-#include <functional>
 
 #include "../../Source/Foundation/Foundation.h"
 #include "../../Source/Segmentation/Segmentation.h"
 #include "../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
 #include "../../Source/Drivers/MySql/MySqlSourceDriver.h"
 
+#include "../Application/MapFactory.h"
 #include "../Application/EnquiryMap.h"
 #include "../Application/CustomerMap.h"
 #include "../Application/PreOrderMap.h"

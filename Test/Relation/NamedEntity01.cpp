@@ -9,6 +9,7 @@
 
 #include "../Entity/Customer.h"
 #include "../Application/CustomerMap.h"
+#include "../Application/MapFactory.h"
 
 #include "../../Source/Foundation/Foundation.h"
 #include "../../Source/Drivers/SQLite/SQLiteSourceDriver.h"

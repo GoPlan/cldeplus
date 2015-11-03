@@ -6,8 +6,12 @@
 #define CLDEPLUS_APPTEST_STORE_PREPARATION_ENQUIRYMYSQLSTORE_H
 
 #include <gtest/gtest.h>
+
 #include "../../Application/EnquiryMap.h"
 #include "../../Entity/Enquiry.h"
+
+#include "../../../Source/Drivers/MySql/MySqlSourceDriver.h"
+#include "../../../Source/Foundation/EntityStore.h"
 #include "../../../Source/Foundation/EntityQuery.h"
 
 namespace CLDEPlus {

@@ -6,13 +6,11 @@
 #define CLDEPLUS_APPTEST_TRANSFORMATION_HPP
 
 #include <gtest/gtest.h>
-#include <memory>
-#include <iostream>
-#include <functional>
 
 #include "../../Source/Foundation/Foundation.h"
 #include "../../Source/Segmentation/Segmentation.h"
 
+#include "../Application/MapFactory.h"
 #include "../Application/ProductMap.h"
 #include "../Application/PreOrderMap.h"
 #include "../Application/CustomerMap.h"
