@@ -385,6 +385,13 @@ namespace CLDEPlus {
 
             void MySqlSourceDriver::Init() {
 
+                assert(!getEntityMap()->getTableName().empty());
+                assert(!getEntityMap()->getColumnsMap().empty());
+                assert(!getEntityMap()->getColumnsForKey().empty());
+                assert(!getEntityMap()->getColumnsForGet().empty());
+                assert(!getEntityMap()->getColumnsForUpdate().empty());
+                assert(!getEntityMap()->getColumnsForSelect().empty());
+
                 using SqlHelper = Foundation::Query::Helper::SqlHelper;
 
                 auto fptrInsertParamProcessor =
@@ -402,23 +409,10 @@ namespace CLDEPlus {
                 auto &columnsForGet = getEntityMap()->getColumnsForGet();
                 auto &columnsForUpdate = getEntityMap()->getColumnsForUpdate();
 
-                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName,
-                                                                  columnsForGet,
-                                                                  columnsForKey,
-                                                                  fptrSelectParamProcessor);
-
-                _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName,
-                                                                        columnsForKey,
-                                                                        fptrInsertParamProcessor);
-
-                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName,
-                                                                        columnsForUpdate,
-                                                                        columnsForKey,
-                                                                        fptrSelectParamProcessor);
-
-                _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName,
-                                                                        columnsForKey,
-                                                                        fptrSelectParamProcessor);
+                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName, columnsForGet, columnsForKey, fptrSelectParamProcessor);
+                _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName, columnsForKey, fptrInsertParamProcessor);
+                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName, columnsForUpdate, columnsForKey, fptrSelectParamProcessor);
+                _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName, columnsForKey, fptrSelectParamProcessor);
             }
 
             void MySqlSourceDriver::Connect() {

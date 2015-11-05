@@ -6,7 +6,7 @@
 
 namespace CLDEPlus {
     namespace Foundation {
-        EntitySourceDriver::EntitySourceDriver(const SPtrEntityMap &entityMap)
+        EntitySourceDriver::EntitySourceDriver(SPtrEntityMap const &entityMap)
                 : _sptrEntityMap(entityMap) {
             //
         }

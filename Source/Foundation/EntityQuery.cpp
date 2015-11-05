@@ -31,8 +31,7 @@ namespace CLDEPlus {
             return Select(sptrCriteria, columnsForProjection);
         }
 
-        SPtrEntityProxyVector EntityQuery::Select(Query::SPtrCriteria const &sptrCriteria,
-                                                  SPtrColumnVector const &columnsForProjection) {
+        SPtrEntityProxyVector EntityQuery::Select(Query::SPtrCriteria const &sptrCriteria, SPtrColumnVector const &columnsForProjection) {
             return _sptrEntitySourceDriver->Select(sptrCriteria, columnsForProjection);
         }
     }

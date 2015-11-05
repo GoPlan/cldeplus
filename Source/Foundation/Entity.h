@@ -30,10 +30,10 @@ namespace CLDEPlus {
             SPtrIdentity const &getIdentity() { return _identity; }
 
             template<class TEntity>
-            TEntity NamedEntity(std::function<TEntity(const Entity &)> converter) { return converter(*this); };
+            TEntity NamedEntity(std::function<TEntity(Entity const &)> converter) { return converter(*this); };
 
             // Factory methods
-            static unique_ptr<Entity> Create(const SPtrIdentity &identity) {
+            static unique_ptr<Entity> Create(SPtrIdentity const &identity) {
                 return unique_ptr<Entity>(new Entity(identity));
             }
         };

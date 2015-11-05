@@ -25,10 +25,10 @@ namespace CLDEPlus {
                 };
 
             public:
-                explicit MySqlSourceDriver(const Foundation::SPtrEntityMap &entityMap);
-                MySqlSourceDriver(const MySqlSourceDriver &) = default;
+                explicit MySqlSourceDriver(Foundation::SPtrEntityMap const &entityMap);
+                MySqlSourceDriver(MySqlSourceDriver const &) = default;
                 MySqlSourceDriver(MySqlSourceDriver &&) = default;
-                MySqlSourceDriver &operator=(const MySqlSourceDriver &) = default;
+                MySqlSourceDriver &operator=(MySqlSourceDriver const &) = default;
                 MySqlSourceDriver &operator=(MySqlSourceDriver &&) = default;
                 ~MySqlSourceDriver() = default;
 
@@ -43,8 +43,8 @@ namespace CLDEPlus {
                 int Save(Foundation::SPtrEntity &entity) const override;
                 int Delete(Foundation::SPtrEntity &entity) const override;
                 Foundation::SPtrEntityProxyVector Select(
-                        const Foundation::Query::SPtrCriteria &sptrCriteria,
-                        const Foundation::SPtrColumnVector &columnsForProjection) const override;
+                        Foundation::Query::SPtrCriteria const &sptrCriteria,
+                        Foundation::SPtrColumnVector const &columnsForProjection) const override;
 
                 // Factory methods
                 static unique_ptr<MySqlSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
@@ -53,9 +53,9 @@ namespace CLDEPlus {
 
             private:
                 class MySqlApiImpl;
+                shared_ptr<MySqlApiImpl> _mySqlApiImpl;
 
                 Options _optionArgs;
-                shared_ptr<MySqlApiImpl> _mySqlApiImpl;
                 string _getStatement;
                 string _insertStatement;
                 string _updateStatement;

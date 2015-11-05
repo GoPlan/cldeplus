@@ -25,7 +25,7 @@ namespace CLDEPlus {
 
                 auto sptrCustomerMap = CLDEPlus::cldeplus_make_shared<Application::CustomerMap>();
                 auto sptrPreOrderMap = CLDEPlus::cldeplus_make_shared<Application::PreOrderMap>();
-                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver)Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
+                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::CreateUnique(sptrCustomerMap);
                 auto sptrPreOrderDriver = (Drivers::MySql::SPtrMySqlSourceDriver)Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
 
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";

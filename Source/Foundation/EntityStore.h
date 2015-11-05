@@ -26,16 +26,16 @@ namespace CLDEPlus {
 
         public:
             EntityStore(SPtrEntityMap const &sptrEntityMap, SPtrEntitySourceDriver const &sptrEntitySourceDriver);
-            EntityStore(const EntityStore &) = default;
+            EntityStore(EntityStore const &) = default;
             EntityStore(EntityStore &&) = default;
             EntityStore &operator=(EntityStore const &) = default;
             EntityStore &operator=(EntityStore &&) = default;
             virtual ~EntityStore() = default;
 
             // Locals
-            bool HasIdentityInMap(const SPtrIdentity &identity) const;
-            SPtrEntity Create(const SPtrIdentity &identity);
-            SPtrEntity Get(const SPtrIdentity &identity);
+            bool HasIdentityInMap(SPtrIdentity const &identity) const;
+            SPtrEntity Create(SPtrIdentity const &identity);
+            SPtrEntity Get(SPtrIdentity const &identity);
 
             void Insert(SPtrEntity &entity);
             void Save(SPtrEntity &entity);
@@ -47,9 +47,12 @@ namespace CLDEPlus {
             SPtrEntityMap const &getEntityMap() const { return _sptrEntityMap; }
             SPtrEntitySourceDriver const &getEntitySourceDriver() const { return _sptrEntitySourceDriver; }
 
-            // Factory methods
-            static unique_ptr <EntityStore> Create(SPtrEntityMap const &sptrEntityMap, SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
+            // Initialisation & Factory methods
+            static unique_ptr <EntityStore> CreateUnique(SPtrEntityMap const &sptrEntityMap, SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
                 return cldeplus_make_unique<EntityStore>(sptrEntityMap, sptrEntitySourceDriver);
+            }
+            static shared_ptr <EntityStore> CreateShared(SPtrEntityMap const &sptrEntityMap, SPtrEntitySourceDriver const &sptrEntitySourceDriver) {
+                return cldeplus_make_shared<EntityStore>(sptrEntityMap, sptrEntitySourceDriver);
             }
         };
 

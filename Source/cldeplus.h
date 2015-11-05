@@ -5,6 +5,7 @@
 #ifndef CLDEPLUS_CLDEPLUS_H
 #define CLDEPLUS_CLDEPLUS_H
 
+#include "Port/Definitions.h"
 #include "Foundation/Foundation.h"
 #include "Relation/Relation.h"
 #include "Segmentation/Segmentation.h"

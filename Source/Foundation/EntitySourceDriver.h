@@ -18,7 +18,7 @@ namespace CLDEPlus {
             SPtrEntityMap _sptrEntityMap;
 
         public:
-            explicit EntitySourceDriver(const SPtrEntityMap &entityMap);
+            explicit EntitySourceDriver(SPtrEntityMap const &entityMap);
             EntitySourceDriver(EntitySourceDriver const &) = delete;
             EntitySourceDriver(EntitySourceDriver &&) = delete;
             EntitySourceDriver &operator=(EntitySourceDriver const &) = delete;

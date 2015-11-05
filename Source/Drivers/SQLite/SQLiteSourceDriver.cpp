@@ -22,10 +22,10 @@ namespace CLDEPlus {
             class Command {
 
             public:
-                Command(const string &query) : query(query) { };
-                Command(const Command &) = default;
+                Command(string const &query) : query(query) { };
+                Command(Command const &) = default;
                 Command(Command &&) = default;
-                Command &operator=(const Command &) = default;
+                Command &operator=(Command const &) = default;
                 Command &operator=(Command &&) = default;
                 ~Command() { if (_ptrStmt != nullptr) { sqlite3_finalize(_ptrStmt); }};
 
@@ -46,8 +46,7 @@ namespace CLDEPlus {
                 }
 
                 sqlite3_stmt *_ptrStmt = nullptr;
-
-                const string &query;
+                string const &query;
             };
 
             using SqlHelper = Foundation::Query::Helper::SqlHelper;
@@ -346,6 +345,13 @@ namespace CLDEPlus {
 
             void SQLiteSourceDriver::Init() {
 
+                assert(!getEntityMap()->getTableName().empty());
+                assert(!getEntityMap()->getColumnsMap().empty());
+                assert(!getEntityMap()->getColumnsForKey().empty());
+                assert(!getEntityMap()->getColumnsForGet().empty());
+                assert(!getEntityMap()->getColumnsForUpdate().empty());
+                assert(!getEntityMap()->getColumnsForSelect().empty());
+
                 auto fptrValueProcessor = [](const Foundation::SPtrColumn &column, const int &index) -> string {
                     return string("?");
                 };
@@ -359,15 +365,9 @@ namespace CLDEPlus {
                 auto &columnsForGet = getEntityMap()->getColumnsForGet();
                 auto &columnsForUpdate = getEntityMap()->getColumnsForUpdate();
 
-                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName,
-                                                                  columnsForGet,
-                                                                  columnsForKey,
-                                                                  fptrProcessor);
+                _getStatement = SqlHelper::CreateGetPreparedQuery(sourceName, columnsForGet, columnsForKey, fptrProcessor);
                 _insertStatement = SqlHelper::CreateInsertPreparedQuery(sourceName, columnsForKey, fptrValueProcessor);
-                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName,
-                                                                        columnsForUpdate,
-                                                                        columnsForKey,
-                                                                        fptrProcessor);
+                _updateStatement = SqlHelper::CreateUpdatePreparedQuery(sourceName, columnsForUpdate, columnsForKey, fptrProcessor);
                 _deleteStatement = SqlHelper::CreateDeletePreparedQuery(sourceName, columnsForKey, fptrProcessor);
             }
 

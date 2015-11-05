@@ -19,8 +19,8 @@ namespace CLDEPlus {
             Data::SPtrValue _value;
 
         public:
-            explicit Cell(const SPtrColumn &column);
-            explicit Cell(const SPtrColumn &column, const Data::SPtrValue &value);
+            explicit Cell(SPtrColumn const &column);
+            explicit Cell(SPtrColumn const &column, Data::SPtrValue const &value);
             Cell(Cell const &) = default;
             Cell(Cell &&) = default;
             Cell &operator=(Cell const &) = default;
@@ -37,12 +37,8 @@ namespace CLDEPlus {
             void setValue(Data::SPtrValue const &value);
 
             // Factory methods
-            static unique_ptr<Cell> Create(SPtrColumn column) {
-                return cldeplus_make_unique<Cell>(column);
-            }
-            static unique_ptr<Cell> Create(SPtrColumn column, Data::SPtrValue &value) {
-                return cldeplus_make_unique<Cell>(column, value);
-            }
+            static unique_ptr<Cell> Create(SPtrColumn column) { return cldeplus_make_unique<Cell>(column); }
+            static unique_ptr<Cell> Create(SPtrColumn column, Data::SPtrValue &value) { return cldeplus_make_unique<Cell>(column, value); }
         };
 
         using SPtrCell = shared_ptr<Cell>;

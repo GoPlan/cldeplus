@@ -7,7 +7,7 @@
 namespace CLDEPlus {
     namespace Foundation {
 
-        Identity::Identity(const vector<SPtrCell> &sptrCells) {
+        Identity::Identity(vector<SPtrCell> const &sptrCells) {
             Store::AbstractEntity::setMultiCells(sptrCells);
         }
     }

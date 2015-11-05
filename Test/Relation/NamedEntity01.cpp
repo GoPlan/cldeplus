@@ -26,10 +26,10 @@ namespace CLDEPlus {
                 auto sptrId04 = Data::ValueFactory::CreateInt64(4);
 
                 auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
-                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver)Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
+                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::CreateUnique(sptrCustomerMap);
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
 
-                auto sptrCustomerStore = (Foundation::SPtrEntityStore)Foundation::EntityStore::Create(sptrCustomerMap,sptrCustomerDriver);
+                auto sptrCustomerStore = (Foundation::SPtrEntityStore) Foundation::EntityStore::CreateUnique(sptrCustomerMap, sptrCustomerDriver);
                 auto sptrCustomerQuery = (Foundation::SPtrEntityQuery)Foundation::EntityQuery::Create(sptrCustomerMap, sptrCustomerDriver);
 
                 sptrCustomerDriver->Connect();

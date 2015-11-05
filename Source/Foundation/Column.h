@@ -23,9 +23,9 @@ namespace CLDEPlus {
             Column() = default;
             Column(string name, Data::ValueType dataType);
             Column(string name, Data::ValueType dataType, string datasourceName, size_t length);
-            Column(const Column &) = default;
+            Column(Column const &) = default;
             Column(Column &&) = default;
-            Column &operator=(const Column &) = default;
+            Column &operator=(Column const &) = default;
             Column &operator=(Column &&) = default;
             ~Column() = default;
 

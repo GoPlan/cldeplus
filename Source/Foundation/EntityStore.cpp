@@ -9,17 +9,17 @@
 namespace CLDEPlus {
     namespace Foundation {
 
-        EntityStore::EntityStore(const SPtrEntityMap &sptrEntityMap,
-                                 const SPtrEntitySourceDriver &sptrEntitySourceDriver)
+        EntityStore::EntityStore(SPtrEntityMap const &sptrEntityMap,
+                                 SPtrEntitySourceDriver const &sptrEntitySourceDriver)
                 : _sptrEntityMap(sptrEntityMap), _sptrEntitySourceDriver(sptrEntitySourceDriver) {
             //
         }
 
-        bool EntityStore::HasIdentityInMap(const SPtrIdentity &identity) const {
+        bool EntityStore::HasIdentityInMap(SPtrIdentity const &identity) const {
             return !(_identityMap.find(identity) == _identityMap.end());
         }
 
-        SPtrEntity EntityStore::Create(const SPtrIdentity &identity) {
+        SPtrEntity EntityStore::Create(SPtrIdentity const &identity) {
 
             if (!identity) {
                 string msg{"Identity is either a nullptr or invalid"};
@@ -37,7 +37,7 @@ namespace CLDEPlus {
             return entity;
         }
 
-        SPtrEntity EntityStore::Get(const SPtrIdentity &identity) {
+        SPtrEntity EntityStore::Get(SPtrIdentity const &identity) {
 
             if (!identity) {
                 string msg{"Identity is either invalid or a nullptr"};

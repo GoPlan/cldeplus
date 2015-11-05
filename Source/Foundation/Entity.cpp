@@ -9,7 +9,7 @@ using namespace std;
 namespace CLDEPlus {
     namespace Foundation {
 
-        Entity::Entity(const SPtrIdentity &identity) : _identity(identity) {
+        Entity::Entity(SPtrIdentity const &identity) : _identity(identity) {
 
             if (!identity) {
                 string msg{"Identity can not be nullptr or undefined"};

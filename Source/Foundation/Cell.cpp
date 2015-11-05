@@ -9,11 +9,11 @@
 namespace CLDEPlus {
     namespace Foundation {
 
-        Cell::Cell(const SPtrColumn &column) : _column(column) {
+        Cell::Cell(SPtrColumn const &column) : _column(column) {
             //
         }
 
-        Cell::Cell(const SPtrColumn &column, const Data::SPtrValue &value) : Cell{column} {
+        Cell::Cell(SPtrColumn const &column, Data::SPtrValue const &value) : Cell{column} {
             setValue(value);
         }
 
@@ -22,7 +22,7 @@ namespace CLDEPlus {
             return result;
         }
 
-        void Cell::setValue(const Data::SPtrValue &value) {
+        void Cell::setValue(Data::SPtrValue const &value) {
 
             if (value->getDataType() != _column->getDataType()) {
                 string msg{"Value has type "

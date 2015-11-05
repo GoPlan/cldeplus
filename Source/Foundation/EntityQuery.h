@@ -29,8 +29,7 @@ namespace CLDEPlus {
             // Locals
             virtual SPtrEntityProxy SelectFirst(Query::SPtrCriteria const &sptrCriteria);
             virtual SPtrEntityProxyVector Select(Query::SPtrCriteria const &sptrCriteria);
-            virtual SPtrEntityProxyVector Select(Query::SPtrCriteria const &sptrCriteria,
-                                                 SPtrColumnVector const &columnsForProjection);
+            virtual SPtrEntityProxyVector Select(Query::SPtrCriteria const &sptrCriteria, SPtrColumnVector const &columnsForProjection);
 
             // Factory methods
             static unique_ptr<EntityQuery> Create(SPtrEntityMap const &sptrEntityMap, SPtrEntitySourceDriver const &sptrEntitySourceDriver) {

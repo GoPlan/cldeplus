@@ -19,9 +19,9 @@ namespace CLDEPlus {
 
             private:
                 SQLiteSourceHelper() = default;
-                SQLiteSourceHelper(const SQLiteSourceHelper &) = default;
+                SQLiteSourceHelper(SQLiteSourceHelper const &) = default;
                 SQLiteSourceHelper(SQLiteSourceHelper &&) = default;
-                SQLiteSourceHelper &operator=(const SQLiteSourceHelper &) = default;
+                SQLiteSourceHelper &operator=(SQLiteSourceHelper const &) = default;
                 SQLiteSourceHelper &operator=(SQLiteSourceHelper &&) = default;
                 ~SQLiteSourceHelper() = default;
             };

@@ -22,10 +22,10 @@ namespace CLDEPlus {
                 };
 
             public:
-                explicit SQLiteSourceDriver(const Foundation::SPtrEntityMap &entityMap);
-                SQLiteSourceDriver(const SQLiteSourceDriver &) = default;
+                explicit SQLiteSourceDriver(Foundation::SPtrEntityMap const &entityMap);
+                SQLiteSourceDriver(SQLiteSourceDriver const &) = default;
                 SQLiteSourceDriver(SQLiteSourceDriver &&) = default;
-                SQLiteSourceDriver &operator=(const SQLiteSourceDriver &) = default;
+                SQLiteSourceDriver &operator=(SQLiteSourceDriver const &) = default;
                 SQLiteSourceDriver &operator=(SQLiteSourceDriver &&) = default;
                 ~SQLiteSourceDriver();
 
@@ -41,13 +41,17 @@ namespace CLDEPlus {
                 int Delete(Foundation::SPtrEntity &entity) const override;
 
                 Foundation::SPtrEntityProxyVector Select(
-                        const Foundation::Query::SPtrCriteria &sptrCriteria,
-                        const Foundation::SPtrColumnVector &columnsForProjection) const override;
+                        Foundation::Query::SPtrCriteria const &sptrCriteria,
+                        Foundation::SPtrColumnVector const &columnsForProjection) const override;
 
                 // Factory methods
-                static unique_ptr<SQLiteSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                static unique_ptr<SQLiteSourceDriver> CreateUnique(Foundation::SPtrEntityMap const &sptrEntityMap) {
                     return cldeplus_make_unique<SQLiteSourceDriver>(sptrEntityMap);
                 }
+                static shared_ptr<SQLiteSourceDriver> CreateShared(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                    return cldeplus_make_shared<SQLiteSourceDriver>(sptrEntityMap);
+                }
+
 
             private:
                 class SQLiteApiImpl;

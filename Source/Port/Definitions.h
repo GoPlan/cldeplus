@@ -12,6 +12,7 @@
  *
  */
 
+#include <cassert>
 #include <memory>
 #include <cstdlib>
 #include <exception>

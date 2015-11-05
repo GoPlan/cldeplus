@@ -18,10 +18,10 @@ namespace CLDEPlus {
 
             public:
                 explicit SQLiteSourceException(int resultCode);
-                explicit SQLiteSourceException(int resultCode, const string &comment);
-                SQLiteSourceException(const SQLiteSourceException &) = default;
+                explicit SQLiteSourceException(int resultCode, string const &comment);
+                SQLiteSourceException(SQLiteSourceException const &) = default;
                 SQLiteSourceException(SQLiteSourceException &&) = default;
-                SQLiteSourceException &operator=(const SQLiteSourceException &) = default;
+                SQLiteSourceException &operator=(SQLiteSourceException const &) = default;
                 SQLiteSourceException &operator=(SQLiteSourceException &&) = default;
                 ~SQLiteSourceException() = default;
 

@@ -28,12 +28,12 @@ namespace CLDEPlus {
 
                 auto const sptrCustomerMap = Application::Create<Application::CustomerMap>();
                 auto const sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
-                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
+                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::CreateUnique(sptrCustomerMap);
                 auto sptrPreOrderDriver = (Drivers::MySql::SPtrMySqlSourceDriver) Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
 
-                auto sptrCustomerStore = Foundation::EntityStore::Create(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerStore = Foundation::EntityStore::CreateUnique(sptrCustomerMap, sptrCustomerDriver);
                 auto sptrCustomerQuery = Foundation::EntityQuery::Create(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrOrderStore = Foundation::EntityStore::Create(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrOrderStore = Foundation::EntityStore::CreateUnique(sptrPreOrderMap, sptrPreOrderDriver);
                 auto sptrOrderQuery = Foundation::EntityQuery::Create(sptrPreOrderMap, sptrPreOrderDriver);
 
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
@@ -119,12 +119,12 @@ namespace CLDEPlus {
 
                 auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
                 auto sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
-                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
+                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::CreateUnique(sptrCustomerMap);
                 auto sptrPreOrderDriver = (Drivers::MySql::SPtrMySqlSourceDriver) Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
 
-                auto sptrCustomerStore = Foundation::EntityStore::Create(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerStore = Foundation::EntityStore::CreateUnique(sptrCustomerMap, sptrCustomerDriver);
                 auto sptrCustomerQuery = Foundation::EntityQuery::Create(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrOrderStore = Foundation::EntityStore::Create(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrOrderStore = Foundation::EntityStore::CreateUnique(sptrPreOrderMap, sptrPreOrderDriver);
                 auto sptrOrderQuery = Foundation::EntityQuery::Create(sptrPreOrderMap, sptrPreOrderDriver);
 
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
@@ -192,12 +192,12 @@ namespace CLDEPlus {
 
                 auto sptrCustomerMap = Application::Create<Application::CustomerMap>();
                 auto sptrPreOrderMap = Application::Create<Application::PreOrderMap>();
-                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::Create(sptrCustomerMap);
+                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::CreateUnique(sptrCustomerMap);
                 auto sptrPreOrderDriver = (Drivers::MySql::SPtrMySqlSourceDriver) Drivers::MySql::MySqlSourceDriver::Create(sptrPreOrderMap);
 
-                auto sptrCustomerStore = Foundation::EntityStore::Create(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerStore = Foundation::EntityStore::CreateUnique(sptrCustomerMap, sptrCustomerDriver);
                 auto sptrCustomerQuery = Foundation::EntityQuery::Create(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrOrderStore = Foundation::EntityStore::Create(sptrPreOrderMap, sptrPreOrderDriver);
+                auto sptrOrderStore = Foundation::EntityStore::CreateUnique(sptrPreOrderMap, sptrPreOrderDriver);
                 auto sptrOrderQuery = Foundation::EntityQuery::Create(sptrPreOrderMap, sptrPreOrderDriver);
 
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";

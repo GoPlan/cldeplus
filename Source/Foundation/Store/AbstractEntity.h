@@ -25,7 +25,7 @@ namespace CLDEPlus {
                 virtual void setMultiCells(SPtrCellVector const &cellVector);
                 virtual void setMultiCells(vector<Cell *> const &cellVector);
 
-                virtual const SPtrCell &getCell(string const &constcolumnName) const;
+                virtual const SPtrCell &getCell(string const &columnName) const;
                 virtual const SPtrCell &operator[](string const &columnName) const;
                 virtual bool TryGetCell(string const &columnName, SPtrCell &sptrOutCell) const;
                 virtual bool hasCell(string const &cellName) const;

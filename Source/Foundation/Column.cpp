@@ -29,8 +29,7 @@ namespace CLDEPlus {
             return cldeplus_make_shared<Column>(name, dataType);
         }
 
-        SPtrColumn CreateColumn(string const &name, Data::ValueType dataType, string const &datasourceName,
-                                size_t length) {
+        SPtrColumn CreateColumn(string const &name, Data::ValueType dataType, string const &datasourceName, size_t length) {
             return cldeplus_make_shared<Column>(name, dataType, datasourceName, length);
         }
     }
