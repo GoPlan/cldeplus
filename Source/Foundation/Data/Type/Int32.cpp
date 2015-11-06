@@ -23,53 +23,33 @@ namespace CLDEPlus {
                 }
 
                 Value &Int32::operator+(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int32 &>(rhs);
-                        this->_value = this->_value + cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const Int32 &>(rhs);
+                    this->_value = this->_value + cast._value;
+                    return *this;
                 }
 
                 Value &Int32::operator-(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int32 &>(rhs);
-                        this->_value = this->_value - cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const Int32 &>(rhs);
+                    this->_value = this->_value - cast._value;
+                    return *this;
                 }
 
                 Value &Int32::operator*(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int32 &>(rhs);
-                        this->_value = this->_value * cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const Int32 &>(rhs);
+                    this->_value = this->_value * cast._value;
+                    return *this;
                 }
 
                 Value &Int32::operator/(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int32 &>(rhs);
-                        this->_value = this->_value / cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const Int32 &>(rhs);
+                    this->_value = this->_value / cast._value;
+                    return *this;
                 }
 
                 Value &Int32::operator%(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int32 &>(rhs);
-                        this->_value = this->_value % cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const Int32 &>(rhs);
+                    this->_value = this->_value % cast._value;
+                    return *this;
                 }
             }
         }

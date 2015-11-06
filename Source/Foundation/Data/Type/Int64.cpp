@@ -23,54 +23,34 @@ namespace CLDEPlus {
                     return std::to_string(_value);
                 }
 
-                Value &Int64::operator+(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int64 &>(rhs);
-                        this->_value = this->_value + cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                Value &Int64::operator+(Value const &rhs) {
+                    auto cast = dynamic_cast< Int64 const &>(rhs);
+                    this->_value = this->_value + cast._value;
+                    return *this;
                 }
 
-                Value &Int64::operator-(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int64 &>(rhs);
-                        this->_value = this->_value - cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                Value &Int64::operator-(Value const &rhs) {
+                    auto cast = dynamic_cast<const Int64 &>(rhs);
+                    this->_value = this->_value - cast._value;
+                    return *this;
                 }
 
-                Value &Int64::operator*(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int64 &>(rhs);
-                        this->_value = this->_value * cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                Value &Int64::operator*(Value const &rhs) {
+                    auto cast = dynamic_cast<const Int64 &>(rhs);
+                    this->_value = this->_value * cast._value;
+                    return *this;
                 }
 
-                Value &Int64::operator/(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int64 &>(rhs);
-                        this->_value = this->_value / cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                Value &Int64::operator/(Value const &rhs) {
+                    auto cast = dynamic_cast<const Int64 &>(rhs);
+                    this->_value = this->_value / cast._value;
+                    return *this;
                 }
 
                 Value &Int64::operator%(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Int64 &>(rhs);
-                        this->_value = this->_value % cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const Int64 &>(rhs);
+                    this->_value = this->_value % cast._value;
+                    return *this;
                 }
             }
         }

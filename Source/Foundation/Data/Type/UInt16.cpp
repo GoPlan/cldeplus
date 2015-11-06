@@ -23,53 +23,33 @@ namespace CLDEPlus {
                 }
 
                 Value &UInt16::operator+(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const UInt16 &>(rhs);
-                        this->_value = this->_value + cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                    this->_value = this->_value + cast._value;
+                    return *this;
                 }
 
                 Value &UInt16::operator-(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const UInt16 &>(rhs);
-                        this->_value = this->_value - cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                    this->_value = this->_value - cast._value;
+                    return *this;
                 }
 
                 Value &UInt16::operator*(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const UInt16 &>(rhs);
-                        this->_value = this->_value * cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                    this->_value = this->_value * cast._value;
+                    return *this;
                 }
 
                 Value &UInt16::operator/(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const UInt16 &>(rhs);
-                        this->_value = this->_value / cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                    this->_value = this->_value / cast._value;
+                    return *this;
                 }
 
                 Value &UInt16::operator%(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const UInt16 &>(rhs);
-                        this->_value = this->_value % cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                    this->_value = this->_value % cast._value;
+                    return *this;
                 }
             }
         }

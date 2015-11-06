@@ -28,7 +28,7 @@ namespace CLDEPlus {
 
             auto &columnsForGet = _sptrEntityMap->getColumnsForGet();
 
-            SPtrEntity entity = Foundation::Entity::Create(identity);
+            SPtrEntity entity = Foundation::Entity::CreateUnique(identity);
 
             Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForGet, entity, false);
 
@@ -52,7 +52,7 @@ namespace CLDEPlus {
 
             auto &columnsForGet = _sptrEntityMap->getColumnsForGet();
 
-            SPtrEntity sptrEntity = Foundation::Entity::Create(identity);
+            SPtrEntity sptrEntity = Foundation::Entity::CreateUnique(identity);
 
             Foundation::Store::Helper::EntityStoreHelper::GenerateCellsFromColumns(columnsForGet, sptrEntity, false);
 

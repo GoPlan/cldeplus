@@ -32,11 +32,11 @@ namespace CLDEPlus {
                     virtual string ToString() const override;
 
                     // IComputable
-                    virtual Value &operator+(const Value &rhs) override;
-                    virtual Value &operator-(const Value &rhs) override;
-                    virtual Value &operator*(const Value &rhs) override;
-                    virtual Value &operator/(const Value &rhs) override;
-                    virtual Value &operator%(const Value &rhs) override;
+                    virtual Value &operator+(Value const &rhs) override;
+                    virtual Value &operator-(Value const &rhs) override;
+                    virtual Value &operator*(Value const &rhs) override;
+                    virtual Value &operator/(Value const &rhs) override;
+                    virtual Value &operator%(Value const &rhs) override;
                 };
             }
         }

@@ -35,9 +35,8 @@ namespace CLDEPlus {
             void setSummonState(EntityProxySummonState const &summonState) { _summonState = summonState; }
 
             // Factory methods
-            static unique_ptr<EntityProxy> Create() {
-                return cldeplus_make_unique<EntityProxy>();
-            }
+            static unique_ptr<EntityProxy> CreateUnique() { return cldeplus_make_unique<EntityProxy>(); }
+            static shared_ptr<EntityProxy> CreateShared() { return cldeplus_make_shared<EntityProxy>(); }
 
         private:
             EntityProxySummonState _summonState{EntityProxySummonState::Undefined};

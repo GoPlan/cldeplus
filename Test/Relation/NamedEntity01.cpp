@@ -29,8 +29,8 @@ namespace CLDEPlus {
                 auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::CreateUnique(sptrCustomerMap);
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
 
-                auto sptrCustomerStore = (Foundation::SPtrEntityStore) Foundation::EntityStore::CreateUnique(sptrCustomerMap, sptrCustomerDriver);
-                auto sptrCustomerQuery = (Foundation::SPtrEntityQuery)Foundation::EntityQuery::Create(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerStore = (Foundation::SPtrEntityStore) Foundation::EntityStore::CreateShared(sptrCustomerMap, sptrCustomerDriver);
+                auto sptrCustomerQuery = (Foundation::SPtrEntityQuery) Foundation::EntityQuery::CreateShared(sptrCustomerMap, sptrCustomerDriver);
 
                 sptrCustomerDriver->Connect();
 

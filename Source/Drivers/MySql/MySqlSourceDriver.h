@@ -47,8 +47,11 @@ namespace CLDEPlus {
                         Foundation::SPtrColumnVector const &columnsForProjection) const override;
 
                 // Factory methods
-                static unique_ptr<MySqlSourceDriver> Create(Foundation::SPtrEntityMap const &sptrEntityMap) {
+                static unique_ptr<MySqlSourceDriver> CreateUnique(Foundation::SPtrEntityMap const &sptrEntityMap) {
                     return cldeplus_make_unique<MySqlSourceDriver>(sptrEntityMap);
+                }
+                static shared_ptr<MySqlSourceDriver> CreateShared(Foundation::SPtrEntityMap const &sPtrEntityMap) {
+                    return cldeplus_make_shared<MySqlSourceDriver>(sPtrEntityMap);
                 }
 
             private:

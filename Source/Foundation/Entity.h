@@ -20,7 +20,7 @@ namespace CLDEPlus {
 
         public:
             explicit Entity(SPtrIdentity const &identity);
-            Entity(const Entity &) = default;
+            Entity(Entity const &) = default;
             Entity(Entity &&) = default;
             Entity &operator=(Entity const &) = default;
             Entity &operator=(Entity &&) = default;
@@ -33,8 +33,11 @@ namespace CLDEPlus {
             TEntity NamedEntity(std::function<TEntity(Entity const &)> converter) { return converter(*this); };
 
             // Factory methods
-            static unique_ptr<Entity> Create(SPtrIdentity const &identity) {
-                return unique_ptr<Entity>(new Entity(identity));
+            static unique_ptr<Entity> CreateUnique(SPtrIdentity const &identity) {
+                return cldeplus_make_unique<Entity>(identity);
+            }
+            static shared_ptr<Entity> CreateShared(SPtrIdentity const &identity) {
+                return cldeplus_make_shared<Entity>(identity);
             }
         };
 

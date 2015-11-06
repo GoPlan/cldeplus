@@ -565,7 +565,7 @@ namespace CLDEPlus {
                                                                            fptrSelectParamProcessor);
 
                 auto command = _mySqlApiImpl->createCommand(pairSelectStmt.first);
-                auto sptrProxy = (Foundation::SPtrEntityProxy) Foundation::EntityProxy::Create();
+                auto sptrProxy = (Foundation::SPtrEntityProxy) Foundation::EntityProxy::CreateUnique();
 
                 using StoreHelper = Foundation::Store::Helper::EntityStoreHelper;
                 StoreHelper::GenerateCellsFromColumns(columnsForProjection, sptrProxy);

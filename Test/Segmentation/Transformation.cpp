@@ -42,7 +42,7 @@ namespace CLDEPlus {
                 auto sptrTotalCell = (Foundation::SPtrCell)Foundation::Cell::Create(sptrPreOrderMap->GetColumn("Total"), sptrTotal);
 
                 // Prepare source proxy
-                auto sptrEntityProxy = (Foundation::SPtrEntityProxy) Foundation::EntityProxy::Create();
+                auto sptrEntityProxy = (Foundation::SPtrEntityProxy) Foundation::EntityProxy::CreateUnique();
                 sptrEntityProxy->setCell(sptrCustmIdCell);
                 sptrEntityProxy->setCell(sptrOrderNameCell);
                 sptrEntityProxy->setCell(sptrTotalCell);
@@ -60,7 +60,7 @@ namespace CLDEPlus {
                 uptrOrderTransformer->AddCellTransformer(sptrPreOrderMap->GetColumn("Total")->getName(), Transformation::CellTransformer{orderNewTotalColumn, sptrDoubleConverter});
 
                 // Transforming Order into a new entity
-                auto sptrNewProxy = (Foundation::SPtrEntityProxy)Foundation::EntityProxy::Create();
+                auto sptrNewProxy = (Foundation::SPtrEntityProxy) Foundation::EntityProxy::CreateUnique();
                 uptrOrderTransformer->Transform(sptrEntityProxy, sptrNewProxy);
 
                 EXPECT_TRUE(sptrNewProxy.get() != 0);

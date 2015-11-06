@@ -35,7 +35,7 @@ namespace CLDEPlus {
 
                 SPtrEntityProxy EntityStoreHelper::CopySPtrProxy(SPtrEntityProxy const &proxy) {
 
-                    SPtrEntityProxy newProxy = Foundation::EntityProxy::Create();
+                    SPtrEntityProxy newProxy = Foundation::EntityProxy::CreateUnique();
 
                     for (auto &srcCellPair : proxy->getCellsMap()) {
                         auto newCell = Foundation::Store::Helper::CellHelper::CopySPtrCell(srcCellPair.second);
