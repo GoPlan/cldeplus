@@ -16,17 +16,17 @@ namespace CLDEPlus {
                     init();
                 }
 
-                VarChar::VarChar(const string &value)
+                VarChar::VarChar(string const &value)
                         : VarChar(value.c_str()) {
                     //
                 }
 
-                VarChar::VarChar(const char *value)
+                VarChar::VarChar(char const *value)
                         : CharacterValue(ValueType::VarChar, sizeof(char) * (strlen(value) + 1)) {
                     init(value);
                 }
 
-                VarChar::VarChar(const VarChar &varchar)
+                VarChar::VarChar(VarChar const &varchar)
                         : CharacterValue(ValueType::VarChar, sizeof(char) * (strlen(varchar._value) + 1)),
                           _value{strdup(varchar._value)} {
                     //
@@ -39,7 +39,7 @@ namespace CLDEPlus {
                     varchar._value = nullptr;
                 }
 
-                VarChar &VarChar::operator=(const VarChar &varchar) {
+                VarChar &VarChar::operator=(VarChar const &varchar) {
 
                     if (this == &varchar)
                         return *this;
@@ -94,7 +94,7 @@ namespace CLDEPlus {
                     _value = (char *) calloc(_reservedSize, sizeof(char));
                 }
 
-                void VarChar::init(const char *value) {
+                void VarChar::init(char const *value) {
                     _value = strdup(value);
                 }
             }

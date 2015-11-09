@@ -10,7 +10,9 @@ namespace CLDEPlus {
         namespace Data {
 
             Value::Value(ValueType dataType, size_t size)
-                    : _dataType(dataType), _reservedSize(size), _actualSize(size) {
+                    : _dataType(dataType),
+                      _reservedSize(size),
+                      _actualSize(size) {
                 //
             }
         }

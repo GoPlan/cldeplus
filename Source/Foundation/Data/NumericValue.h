@@ -18,9 +18,9 @@ namespace CLDEPlus {
 
             public:
                 NumericValue(ValueType dataType, size_t size);
-                NumericValue(const NumericValue &) = default;
+                NumericValue(NumericValue const &) = default;
                 NumericValue(NumericValue &&) = default;
-                NumericValue &operator=(const NumericValue &) = default;
+                NumericValue &operator=(NumericValue const &) = default;
                 NumericValue &operator=(NumericValue &&) = default;
                 virtual ~NumericValue() = default;
 

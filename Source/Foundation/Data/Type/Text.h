@@ -18,12 +18,12 @@ namespace CLDEPlus {
                     char *_buffer = nullptr;
 
                 public:
-                    explicit Text(const string &text);
-                    explicit Text(const char *text);
+                    explicit Text(string const &text);
+                    explicit Text(char const *text);
                     explicit Text(unsigned long length);
-                    Text(const Text &) = default;
+                    Text(Text const &) = default;
                     Text(Text &&) = default;
-                    Text &operator=(const Text &) = default;
+                    Text &operator=(Text const &) = default;
                     Text &operator=(Text &&) = default;
                     ~Text();
 

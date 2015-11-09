@@ -28,7 +28,7 @@ namespace CLDEPlus {
                             continue;
                         }
 
-                        SPtrCell cell = Foundation::Cell::Create(const_cast<SPtrColumn &>(column));
+                        auto cell = Foundation::Cell::CreateShared(const_cast<SPtrColumn &>(column));
                         dataRecord->setCell(cell);
                     }
                 }

@@ -36,10 +36,10 @@ namespace CLDEPlus {
                 auto sptrOrderName = Foundation::Data::ValueFactory::CreateVarChar(std::string{"My Order"});
                 auto sptrTotal = Foundation::Data::ValueFactory::CreateDouble(15.0);
 
-                auto sptrOrderIdCell = (Foundation::SPtrCell)Foundation::Cell::Create(sptrPreOrderMap->GetColumn("Id"));
-                auto sptrCustmIdCell = (Foundation::SPtrCell)Foundation::Cell::Create(sptrPreOrderMap->GetColumn("CustId"));
-                auto sptrOrderNameCell = (Foundation::SPtrCell)Foundation::Cell::Create(sptrPreOrderMap->GetColumn("Name"), sptrOrderName);
-                auto sptrTotalCell = (Foundation::SPtrCell)Foundation::Cell::Create(sptrPreOrderMap->GetColumn("Total"), sptrTotal);
+                auto sptrOrderIdCell = (Foundation::SPtrCell) Foundation::Cell::CreateUnique(sptrPreOrderMap->GetColumn("Id"));
+                auto sptrCustmIdCell = (Foundation::SPtrCell) Foundation::Cell::CreateUnique(sptrPreOrderMap->GetColumn("CustId"));
+                auto sptrOrderNameCell = (Foundation::SPtrCell) Foundation::Cell::CreateUnique(sptrPreOrderMap->GetColumn("Name"), sptrOrderName);
+                auto sptrTotalCell = (Foundation::SPtrCell) Foundation::Cell::CreateUnique(sptrPreOrderMap->GetColumn("Total"), sptrTotal);
 
                 // Prepare source proxy
                 auto sptrEntityProxy = (Foundation::SPtrEntityProxy) Foundation::EntityProxy::CreateUnique();

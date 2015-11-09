@@ -14,8 +14,7 @@ namespace CLDEPlus {
 
                 class Int64 : public NumericValue {
 
-                    int64_t _value;
-                    mutable string _string;
+                    int64_t _value = 0;
 
                 public:
                     explicit Int64(int64_t value);
@@ -37,6 +36,17 @@ namespace CLDEPlus {
                     virtual Value &operator*(Value const &rhs) override;
                     virtual Value &operator/(Value const &rhs) override;
                     virtual Value &operator%(Value const &rhs) override;
+
+                    // IPrimitiveAssignable
+                    virtual Value &operator=(bool value) override;
+                    virtual Value &operator=(double value) override;
+                    virtual Value &operator=(float value) override;
+                    virtual Value &operator=(int16 value) override;
+                    virtual Value &operator=(int32 value) override;
+                    virtual Value &operator=(int64 value) override;
+                    virtual Value &operator=(uint16 value) override;
+                    virtual Value &operator=(uint32 value) override;
+                    virtual Value &operator=(uint64 value) override;
                 };
             }
         }

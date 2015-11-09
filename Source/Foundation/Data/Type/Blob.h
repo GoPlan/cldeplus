@@ -14,7 +14,7 @@ namespace CLDEPlus {
 
                 class Blob : public Value {
 
-                    void *_buffer;
+                    void *_buffer = nullptr;
 
                 public:
                     Blob() = default;

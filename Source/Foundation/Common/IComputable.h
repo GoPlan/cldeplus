@@ -10,9 +10,7 @@ namespace CLDEPlus {
         namespace Common {
 
             template<class T>
-            class IComputable {
-
-            public:
+            struct IComputable {
                 virtual T &operator+(T const &rhs) = 0;
                 virtual T &operator-(T const &rhs) = 0;
                 virtual T &operator*(T const &rhs) = 0;

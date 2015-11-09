@@ -25,9 +25,21 @@
 #include <functional>
 
 namespace CLDEPlus {
+    namespace Primitives {
 
-    using exception = std::exception;
-    using string = std::string;
+        using int16 = int16_t;
+        using int32 = int32_t;
+        using int64 = int64_t;
+
+        using uint16 = uint16_t;
+        using uint32 = uint32_t;
+        using uint64 = uint64_t;
+
+        using exception = std::exception;
+        using string = std::string;
+    }
+
+    using namespace Primitives;
 
     template<typename T>
     using shared_ptr = std::shared_ptr<T>;
@@ -56,7 +68,7 @@ namespace CLDEPlus {
     }
 
     template<typename T, typename... Args>
-    unique_ptr<T> cldeplus_make_unique(Args &&... args) {
+    auto cldeplus_make_unique(Args &&... args) -> decltype(std::unique_ptr<T>(new T(std::forward<Args>(args)...))) {
         return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
     }
 }

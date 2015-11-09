@@ -22,33 +22,78 @@ namespace CLDEPlus {
                     return std::to_string(_value);
                 }
 
-                Value &UInt16::operator+(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                Value &UInt16::operator+(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt16 const &>(rhs);
                     this->_value = this->_value + cast._value;
                     return *this;
                 }
 
-                Value &UInt16::operator-(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                Value &UInt16::operator-(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt16 const &>(rhs);
                     this->_value = this->_value - cast._value;
                     return *this;
                 }
 
-                Value &UInt16::operator*(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                Value &UInt16::operator*(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt16 const &>(rhs);
                     this->_value = this->_value * cast._value;
                     return *this;
                 }
 
-                Value &UInt16::operator/(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                Value &UInt16::operator/(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt16 const &>(rhs);
                     this->_value = this->_value / cast._value;
                     return *this;
                 }
 
-                Value &UInt16::operator%(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt16 &>(rhs);
+                Value &UInt16::operator%(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt16 const &>(rhs);
                     this->_value = this->_value % cast._value;
+                    return *this;
+                }
+
+                Value &UInt16::operator=(bool value) {
+                    _value = (uint16_t) value;
+                    return *this;
+                }
+
+                Value &UInt16::operator=(double value) {
+                    _value = (uint16_t) value;
+                    return *this;
+                }
+
+                Value &UInt16::operator=(float value) {
+                    _value = (uint16_t) value;
+                    return *this;
+                }
+
+                Value &UInt16::operator=(int16 value) {
+                    _value = (uint16_t) value;
+                    return *this;
+                }
+
+                Value &UInt16::operator=(int32 value) {
+                    _value = (uint16_t) value;
+                    return *this;
+                }
+
+                Value &UInt16::operator=(int64 value) {
+                    _value = (uint16_t) value;
+                    return *this;
+                }
+
+                Value &UInt16::operator=(uint16 value) {
+                    _value = (uint16_t) value;
+                    return *this;
+                }
+
+                Value &UInt16::operator=(uint32 value) {
+                    _value = (uint16_t) value;
+                    return *this;
+                }
+
+                Value &UInt16::operator=(uint64 value) {
+                    _value = (uint16_t) value;
                     return *this;
                 }
             }

@@ -21,9 +21,9 @@ namespace CLDEPlus {
                     DateTime(int year, int month, int day, int hour, int minute, int second, int millisecond, int offset);
 
                     DateTime();
-                    DateTime(const DateTime &) = default;
+                    DateTime(DateTime const &) = default;
                     DateTime(DateTime &&) = default;
-                    DateTime &operator=(const DateTime &) = default;
+                    DateTime &operator=(DateTime const &) = default;
                     DateTime &operator=(DateTime &&) = default;
                     ~DateTime() = default;
 
@@ -34,16 +34,16 @@ namespace CLDEPlus {
                     virtual string ToString() const override;
 
                     // IComputable
-                    virtual Value &operator+(const Value &rhs) override;
-                    virtual Value &operator-(const Value &rhs) override;
-                    virtual Value &operator*(const Value &rhs) override;
-                    virtual Value &operator/(const Value &rhs) override;
-                    virtual Value &operator%(const Value &rhs) override;
+                    virtual Value &operator+(Value const &rhs) override;
+                    virtual Value &operator-(Value const &rhs) override;
+                    virtual Value &operator*(Value const &rhs) override;
+                    virtual Value &operator/(Value const &rhs) override;
+                    virtual Value &operator%(Value const &rhs) override;
 
                     // IComparable
-                    virtual bool LessThan(const Common::IComparable &target) const override;
-                    virtual bool GreaterThan(const Common::IComparable &target) const override;
-                    virtual bool EquivalentTo(const Common::IComparable &target) const override;
+                    virtual bool LessThan(Common::IComparable const &target) const override;
+                    virtual bool GreaterThan(Common::IComparable const &target) const override;
+                    virtual bool EquivalentTo(Common::IComparable const &target) const override;
                 };
             }
         }

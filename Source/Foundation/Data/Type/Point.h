@@ -16,9 +16,9 @@ namespace CLDEPlus {
 
                 public:
                     Point() = default;
-                    Point(const Point &) = default;
+                    Point(Point const &) = default;
                     Point(Point &&) = default;
-                    Point &operator=(const Point &) = default;
+                    Point &operator=(Point const &) = default;
                     Point &operator=(Point &&) = default;
                     ~Point() = default;
                 };

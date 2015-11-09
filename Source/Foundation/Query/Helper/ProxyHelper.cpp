@@ -17,7 +17,7 @@ CLDEPlus::Foundation::SPtrEntity CLDEPlus::Foundation::Query::Helper::ProxyHelpe
         throw Exception::CLDEEntityException{msg};
     }
 
-    Foundation::SPtrIdentity sptrIdentity = Identity::Create();
+    Foundation::SPtrIdentity sptrIdentity = Identity::CreateUnique();
 
     std::for_each(store->getEntityMap()->getColumnsForKey().begin(),
                   store->getEntityMap()->getColumnsForKey().cend(),

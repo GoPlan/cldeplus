@@ -22,11 +22,11 @@ namespace CLDEPlus {
                     Foundation::Data::Comparer::Compare compare{};
 
                     auto sptrIdValue = Foundation::Data::ValueFactory::CreateInt64(0);
-                    auto sptrIdCell = (Foundation::SPtrCell)Foundation::Cell::Create(_sptrPreOrderMap->GetColumn("Id"), sptrIdValue);
+                    auto sptrIdCell = Foundation::Cell::CreateShared(_sptrPreOrderMap->GetColumn("Id"), sptrIdValue);
                     auto sptrNameValue = Foundation::Data::ValueFactory::CreateVarChar("ORDER-0");
                     auto sptrCustIdValue = Foundation::Data::ValueFactory::CreateInt64(15);
                     auto sptrTotalValue = Foundation::Data::ValueFactory::CreateDouble(35);
-                    auto sptrIdentity = (Foundation::SPtrIdentity)Foundation::Identity::Create({sptrIdCell});
+                    auto sptrIdentity = Foundation::Identity::CreateShared({sptrIdCell});
 
                     // DELETE - Check if Entity is nullptr
                     {

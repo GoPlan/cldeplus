@@ -9,7 +9,7 @@ namespace CLDEPlus {
         namespace Data {
             namespace Type {
 
-                String::String(const string &string)
+                String::String(string const &string)
                         : _value(string), CharacterValue(ValueType::String, string.length() + 1) {
                     //
                 }

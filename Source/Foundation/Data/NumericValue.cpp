@@ -18,6 +18,7 @@ namespace CLDEPlus {
             const ValueCategory &NumericValue::getCategory() const { return _category; }
 
             bool NumericValue::isNumeric() const { return true; }
+
         }
     }
 }

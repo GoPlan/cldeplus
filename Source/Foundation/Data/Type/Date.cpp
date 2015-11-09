@@ -32,37 +32,37 @@ namespace CLDEPlus {
                     return Data::Helper::TimeBasedHelper::DateToISO8601String(_date);
                 }
 
-                Value &Date::operator+(const Value &rhs) {
+                Value &Date::operator+(Value const &rhs) {
                     throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
-                Value &Date::operator-(const Value &rhs) {
+                Value &Date::operator-(Value const &rhs) {
                     throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
-                Value &Date::operator*(const Value &rhs) {
+                Value &Date::operator*(Value const &rhs) {
                     throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
-                Value &Date::operator/(const Value &rhs) {
+                Value &Date::operator/(Value const &rhs) {
                     throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
-                Value &Date::operator%(const Value &rhs) {
+                Value &Date::operator%(Value const &rhs) {
                     throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
                 }
 
-                bool Date::LessThan(const Common::IComparable &target) const {
+                bool Date::LessThan(Common::IComparable const &target) const {
                     string msg{"LessThan"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
 
-                bool Date::GreaterThan(const Common::IComparable &target) const {
+                bool Date::GreaterThan(Common::IComparable const &target) const {
                     string msg{"GreaterThan"};
                     throw Exception::CLDENotImplementedException{msg};
                 }
 
-                bool Date::EquivalentTo(const Common::IComparable &target) const {
+                bool Date::EquivalentTo(Common::IComparable const &target) const {
                     string msg{"EquivalentTo"};
                     throw Exception::CLDENotImplementedException{msg};
                 }

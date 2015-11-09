@@ -18,12 +18,12 @@ namespace CLDEPlus {
                     string _value;
 
                 public:
-                    explicit String(const string &string);
+                    explicit String(string const &string);
                     explicit String(unsigned long size);
                     String() = default;
-                    String(const String &) = default;
+                    String(String const &) = default;
                     String(String &&) = default;
-                    String &operator=(const String &) = default;
+                    String &operator=(String const &) = default;
                     String &operator=(String &&) = default;
                     ~String() = default;
 

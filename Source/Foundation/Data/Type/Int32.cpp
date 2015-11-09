@@ -22,33 +22,78 @@ namespace CLDEPlus {
                     return std::to_string(_value);
                 }
 
-                Value &Int32::operator+(const Value &rhs) {
+                Value &Int32::operator+(Value const &rhs) {
                     auto cast = dynamic_cast<const Int32 &>(rhs);
                     this->_value = this->_value + cast._value;
                     return *this;
                 }
 
-                Value &Int32::operator-(const Value &rhs) {
+                Value &Int32::operator-(Value const &rhs) {
                     auto cast = dynamic_cast<const Int32 &>(rhs);
                     this->_value = this->_value - cast._value;
                     return *this;
                 }
 
-                Value &Int32::operator*(const Value &rhs) {
+                Value &Int32::operator*(Value const &rhs) {
                     auto cast = dynamic_cast<const Int32 &>(rhs);
                     this->_value = this->_value * cast._value;
                     return *this;
                 }
 
-                Value &Int32::operator/(const Value &rhs) {
+                Value &Int32::operator/(Value const &rhs) {
                     auto cast = dynamic_cast<const Int32 &>(rhs);
                     this->_value = this->_value / cast._value;
                     return *this;
                 }
 
-                Value &Int32::operator%(const Value &rhs) {
+                Value &Int32::operator%(Value const &rhs) {
                     auto cast = dynamic_cast<const Int32 &>(rhs);
                     this->_value = this->_value % cast._value;
+                    return *this;
+                }
+
+                Value &Int32::operator=(bool value) {
+                    _value = (int32_t) value;
+                    return *this;
+                }
+
+                Value &Int32::operator=(double value) {
+                    _value = (int32_t) value;
+                    return *this;
+                }
+
+                Value &Int32::operator=(float value) {
+                    _value = (int32_t) value;
+                    return *this;
+                }
+
+                Value &Int32::operator=(int16 value) {
+                    _value = (int32_t) value;
+                    return *this;
+                }
+
+                Value &Int32::operator=(int32 value) {
+                    _value = (int32_t) value;
+                    return *this;
+                }
+
+                Value &Int32::operator=(int64 value) {
+                    _value = (int32_t) value;
+                    return *this;
+                }
+
+                Value &Int32::operator=(uint16 value) {
+                    _value = (int32_t) value;
+                    return *this;
+                }
+
+                Value &Int32::operator=(uint32 value) {
+                    _value = (int32_t) value;
+                    return *this;
+                }
+
+                Value &Int32::operator=(uint64 value) {
+                    _value = (int32_t) value;
                     return *this;
                 }
             }

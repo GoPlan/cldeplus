@@ -4,6 +4,7 @@
 
 #include <cstdlib>
 #include "Int64.h"
+#include "../../Exception/cldeNonSupportedFunctionException.h"
 
 namespace CLDEPlus {
     namespace Foundation {
@@ -50,6 +51,51 @@ namespace CLDEPlus {
                 Value &Int64::operator%(const Value &rhs) {
                     auto cast = dynamic_cast<const Int64 &>(rhs);
                     this->_value = this->_value % cast._value;
+                    return *this;
+                }
+
+                Value &Int64::operator=(bool value) {
+                    _value = (int64_t) value;
+                    return *this;
+                }
+
+                Value &Int64::operator=(double value) {
+                    _value = (int64_t) value;
+                    return *this;
+                }
+
+                Value &Int64::operator=(float value) {
+                    _value = (int64_t) value;
+                    return *this;
+                }
+
+                Value &Int64::operator=(int16 value) {
+                    _value = (int64_t) value;
+                    return *this;
+                }
+
+                Value &Int64::operator=(int32 value) {
+                    _value = (int64_t) value;
+                    return *this;
+                }
+
+                Value &Int64::operator=(int64 value) {
+                    _value = (int64_t) value;
+                    return *this;
+                }
+
+                Value &Int64::operator=(uint16 value) {
+                    _value = (int64_t) value;
+                    return *this;
+                }
+
+                Value &Int64::operator=(uint32 value) {
+                    _value = (int64_t) value;
+                    return *this;
+                }
+
+                Value &Int64::operator=(uint64 value) {
+                    _value = (int64_t) value;
                     return *this;
                 }
             }

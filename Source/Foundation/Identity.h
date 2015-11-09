@@ -24,12 +24,10 @@ namespace CLDEPlus {
             ~Identity() = default;
 
             // Factory methods
-            static unique_ptr<Identity> Create() {
-                return cldeplus_make_unique<Identity>();
-            }
-            static unique_ptr<Identity> Create(SPtrCellVector const &cells) {
-                return cldeplus_make_unique<Identity>(cells);
-            }
+            static unique_ptr<Identity> CreateUnique() { return cldeplus_make_unique<Identity>(); }
+            static unique_ptr<Identity> CreateUnique(SPtrCellVector const &cells) { return cldeplus_make_unique<Identity>(cells); }
+            static shared_ptr<Identity> CreateShared() { return cldeplus_make_shared<Identity>(); }
+            static shared_ptr<Identity> CreateShared(SPtrCellVector const &cells) { return cldeplus_make_shared<Identity>(cells); }
         };
 
         using UPtrIdentity = unique_ptr<Identity>;

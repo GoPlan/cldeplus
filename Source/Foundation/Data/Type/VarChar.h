@@ -14,18 +14,18 @@ namespace CLDEPlus {
 
                 class VarChar : public CharacterValue {
 
-                    char *_value;
+                    char *_value = nullptr;
 
                     void init();
                     void init(const char *value);
 
                 public:
                     explicit VarChar(size_t length);
-                    explicit VarChar(const string &value);
-                    explicit VarChar(const char *value);
-                    VarChar(const VarChar &);
+                    explicit VarChar(string const &value);
+                    explicit VarChar(char const *value);
+                    VarChar(VarChar const &);
                     VarChar(VarChar &&);
-                    VarChar &operator=(const VarChar &);
+                    VarChar &operator=(VarChar const &);
                     VarChar &operator=(VarChar &&);
                     ~VarChar();
 

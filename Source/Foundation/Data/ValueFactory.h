@@ -18,18 +18,20 @@ namespace CLDEPlus {
                 static SPtrValue CreateBoolean(bool value);
                 static SPtrValue CreateFloat(float value);
                 static SPtrValue CreateDouble(double value);
+                static SPtrValue CreateInt(int value);
                 static SPtrValue CreateInt16(int16_t value);
                 static SPtrValue CreateInt32(int32_t value);
                 static SPtrValue CreateInt64(int64_t value);
+                static SPtrValue CreateUInt(unsigned int value);
                 static SPtrValue CreateUInt16(uint16_t value);
                 static SPtrValue CreateUInt32(uint32_t value);
                 static SPtrValue CreateUInt64(uint64_t value);
 
                 // Character
-                static SPtrValue CreateVarChar(const char *value);
-                static SPtrValue CreateVarChar(const string &value);
+                static SPtrValue CreateVarChar(char const *value);
+                static SPtrValue CreateVarChar(string const &value);
                 static SPtrValue CreateVarChar(unsigned long length);
-                static SPtrValue CreateText(const string &value);
+                static SPtrValue CreateText(string const &value);
                 static SPtrValue CreateText(unsigned long length);
 
                 // DateTime

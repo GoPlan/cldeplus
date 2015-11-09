@@ -16,9 +16,9 @@ namespace CLDEPlus {
 
                 public:
                     Currency() = default;
-                    Currency(const Currency &) = default;
+                    Currency(Currency const &) = default;
                     Currency(Currency &&) = default;
-                    Currency &operator=(const Currency &) = default;
+                    Currency &operator=(Currency const &) = default;
                     Currency &operator=(Currency &&) = default;
                     ~Currency() = default;
                 };

@@ -14,13 +14,13 @@ namespace CLDEPlus {
 
                 class Float : public NumericValue {
 
-                    float _value;
+                    float _value = 0;
 
                 public:
                     explicit Float(float value);
-                    Float(const Float &) = default;
+                    Float(Float const &) = default;
                     Float(Float &&) = default;
-                    Float &operator=(const Float &) = default;
+                    Float &operator=(Float const &) = default;
                     Float &operator=(Float &&) = default;
                     ~Float() = default;
 
@@ -31,11 +31,22 @@ namespace CLDEPlus {
                     virtual string ToString() const override;
 
                     // IComputable
-                    virtual Value &operator+(const Value &rhs) override;
-                    virtual Value &operator-(const Value &rhs) override;
-                    virtual Value &operator*(const Value &rhs) override;
-                    virtual Value &operator/(const Value &rhs) override;
-                    virtual Value &operator%(const Value &rhs) override;
+                    virtual Value &operator+(Value const &rhs) override;
+                    virtual Value &operator-(Value const &rhs) override;
+                    virtual Value &operator*(Value const &rhs) override;
+                    virtual Value &operator/(Value const &rhs) override;
+                    virtual Value &operator%(Value const &rhs) override;
+
+                    // IPrimitiveAssignable
+                    virtual Value &operator=(bool value) override;
+                    virtual Value &operator=(double value) override;
+                    virtual Value &operator=(float value) override;
+                    virtual Value &operator=(int16 value) override;
+                    virtual Value &operator=(int32 value) override;
+                    virtual Value &operator=(int64 value) override;
+                    virtual Value &operator=(uint16 value) override;
+                    virtual Value &operator=(uint32 value) override;
+                    virtual Value &operator=(uint64 value) override;
                 };
             }
         }

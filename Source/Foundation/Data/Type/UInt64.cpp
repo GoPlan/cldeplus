@@ -23,33 +23,78 @@ namespace CLDEPlus {
                     return std::to_string(_value);
                 }
 
-                Value &UInt64::operator+(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt64 &>(rhs);
+                Value &UInt64::operator+(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt64 const &>(rhs);
                     this->_value = this->_value + cast._value;
                     return *this;
                 }
 
-                Value &UInt64::operator-(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt64 &>(rhs);
+                Value &UInt64::operator-(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt64 const &>(rhs);
                     this->_value = this->_value - cast._value;
                     return *this;
                 }
 
-                Value &UInt64::operator*(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt64 &>(rhs);
+                Value &UInt64::operator*(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt64 const &>(rhs);
                     this->_value = this->_value * cast._value;
                     return *this;
                 }
 
-                Value &UInt64::operator/(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt64 &>(rhs);
+                Value &UInt64::operator/(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt64 const &>(rhs);
                     this->_value = this->_value / cast._value;
                     return *this;
                 }
 
-                Value &UInt64::operator%(const Value &rhs) {
-                    auto cast = dynamic_cast<const UInt64 &>(rhs);
+                Value &UInt64::operator%(Value const &rhs) {
+                    auto cast = dynamic_cast< UInt64 const &>(rhs);
                     this->_value = this->_value % cast._value;
+                    return *this;
+                }
+
+                Value &UInt64::operator=(bool value) {
+                    _value = (uint64_t) value;
+                    return *this;
+                }
+
+                Value &UInt64::operator=(double value) {
+                    _value = (uint64_t) value;
+                    return *this;
+                }
+
+                Value &UInt64::operator=(float value) {
+                    _value = (uint64_t) value;
+                    return *this;
+                }
+
+                Value &UInt64::operator=(int16 value) {
+                    _value = (uint64_t) value;
+                    return *this;
+                }
+
+                Value &UInt64::operator=(int32 value) {
+                    _value = (uint64_t) value;
+                    return *this;
+                }
+
+                Value &UInt64::operator=(int64 value) {
+                    _value = (uint64_t) value;
+                    return *this;
+                }
+
+                Value &UInt64::operator=(uint16 value) {
+                    _value = (uint64_t) value;
+                    return *this;
+                }
+
+                Value &UInt64::operator=(uint32 value) {
+                    _value = (uint64_t) value;
+                    return *this;
+                }
+
+                Value &UInt64::operator=(uint64 value) {
+                    _value = (uint64_t) value;
                     return *this;
                 }
             }

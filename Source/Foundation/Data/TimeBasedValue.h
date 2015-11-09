@@ -45,6 +45,17 @@ namespace CLDEPlus {
                 const ValueCategory &getCategory() const override;
                 bool isNumeric() const override;
 
+                // IPrimitiveAssignable
+                virtual Value &operator=(bool value) override;
+                virtual Value &operator=(double value) override;
+                virtual Value &operator=(float value) override;
+                virtual Value &operator=(int16 value) override;
+                virtual Value &operator=(int32 value) override;
+                virtual Value &operator=(int64 value) override;
+                virtual Value &operator=(uint16 value) override;
+                virtual Value &operator=(uint32 value) override;
+                virtual Value &operator=(uint64 value) override;
+
             protected:
                 static ValueCategory _category;
 

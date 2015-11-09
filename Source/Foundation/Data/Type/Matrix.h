@@ -16,9 +16,9 @@ namespace CLDEPlus {
 
                 public:
                     Matrix() = default;
-                    Matrix(const Matrix &) = default;
+                    Matrix(Matrix const &) = default;
                     Matrix(Matrix &&) = default;
-                    Matrix &operator=(const Matrix &) = default;
+                    Matrix &operator=(Matrix const &) = default;
                     Matrix &operator=(Matrix &&) = default;
                     ~Matrix() = default;
                 };

@@ -23,54 +23,79 @@ namespace CLDEPlus {
                     return std::to_string(_value);
                 }
 
-                Value &Byte::operator+(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Byte &>(rhs);
-                        this->_value = this->_value + cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                Value &Byte::operator+(Value const &rhs) {
+                    auto cast = dynamic_cast<const Byte &>(rhs);
+                    this->_value = this->_value + cast._value;
+                    return *this;
                 }
 
-                Value &Byte::operator-(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Byte &>(rhs);
-                        this->_value = this->_value - cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                Value &Byte::operator-(Value const &rhs) {
+                    auto cast = dynamic_cast<const Byte &>(rhs);
+                    this->_value = this->_value - cast._value;
+                    return *this;
                 }
 
-                Value &Byte::operator*(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Byte &>(rhs);
-                        this->_value = this->_value * cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                Value &Byte::operator*(Value const &rhs) {
+                    auto cast = dynamic_cast<const Byte &>(rhs);
+                    this->_value = this->_value * cast._value;
+                    return *this;
                 }
 
-                Value &Byte::operator/(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Byte &>(rhs);
-                        this->_value = this->_value / cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                Value &Byte::operator/(Value const &rhs) {
+                    auto cast = dynamic_cast<const Byte &>(rhs);
+                    this->_value = this->_value / cast._value;
+                    return *this;
                 }
 
-                Value &Byte::operator%(const Value &rhs) {
-                    try {
-                        auto cast = dynamic_cast<const Byte &>(rhs);
-                        this->_value = this->_value % cast._value;
-                        return *this;
-                    } catch (std::bad_cast &ex) {
-                        throw;
-                    }
+                Value &Byte::operator%(Value const &rhs) {
+                    auto cast = dynamic_cast<const Byte &>(rhs);
+                    this->_value = this->_value % cast._value;
+                    return *this;
+                }
+
+                Value &Byte::operator=(bool value) {
+                    _value = (int) value;
+                    return *this;
+                }
+
+                Value &Byte::operator=(double value) {
+                    _value = (int) value;
+                    return *this;
+                }
+
+                Value &Byte::operator=(float value) {
+                    _value = (int) value;
+                    return *this;
+                }
+
+                Value &Byte::operator=(int16 value) {
+                    _value = (int) value;
+                    return *this;
+                }
+
+                Value &Byte::operator=(int32 value) {
+                    _value = (int) value;
+                    return *this;
+                }
+
+                Value &Byte::operator=(int64 value) {
+                    _value = (int) value;
+                    return *this;
+                }
+
+                Value &Byte::operator=(uint16 value) {
+                    _value = (int) value;
+                    return *this;
+                }
+
+                Value &Byte::operator=(uint32 value) {
+                    _value = (int) value;
+                    return *this;
+                }
+
+                Value &Byte::operator=(uint64 value) {
+                    _value = (int) value;
+                    return *this;
                 }
             }
         }

@@ -26,11 +26,8 @@ namespace CLDEPlus {
                 auto sptrCodeValue = Foundation::Data::ValueFactory::CreateVarChar(code);
                 auto sptrPriceValue = Foundation::Data::ValueFactory::CreateDouble(18);
 
-                auto sptrIdCell = (Foundation::SPtrCell) Foundation::Cell::Create(_sptrProductMap->GetColumn("Id"));
-                sptrIdCell->setValue(sptrIdValue);
-
-                auto initFieldList = {sptrIdCell};
-                auto sptrIdentity = (Foundation::SPtrIdentity) Foundation::Identity::Create(initFieldList);
+                auto sptrIdCell = Foundation::Cell::CreateShared(_sptrProductMap->GetColumn("Id"), sptrIdValue);
+                auto sptrIdentity = Foundation::Identity::CreateShared({sptrIdCell});
 
                 // TRUNCATE EXAMPLE DATA
                 {

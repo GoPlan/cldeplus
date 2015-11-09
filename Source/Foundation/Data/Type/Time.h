@@ -15,16 +15,16 @@ namespace CLDEPlus {
                 class Time : public TimeBasedValue {
 
                     TimeBasedValue::TSTime _time;
-                    bool _hasOffSet;
+                    bool _hasOffSet = false;
 
                 public:
                     Time(int hour, int minute, int second, int millisecond = 0,
                          bool hasOffSet = false, int offset = 0);
 
                     Time();
-                    Time(const Time &) = default;
+                    Time(Time const &) = default;
                     Time(Time &&) = default;
-                    Time &operator=(const Time &) = default;
+                    Time &operator=(Time const &) = default;
                     Time &operator=(Time &&) = default;
                     ~Time() = default;
 
@@ -35,11 +35,11 @@ namespace CLDEPlus {
                     virtual string ToString() const override;
 
                     // IComputable
-                    virtual Value &operator+(const Value &rhs) override;
-                    virtual Value &operator-(const Value &rhs) override;
-                    virtual Value &operator*(const Value &rhs) override;
-                    virtual Value &operator/(const Value &rhs) override;
-                    virtual Value &operator%(const Value &rhs) override;
+                    virtual Value &operator+(Value const &rhs) override;
+                    virtual Value &operator-(Value const &rhs) override;
+                    virtual Value &operator*(Value const &rhs) override;
+                    virtual Value &operator/(Value const &rhs) override;
+                    virtual Value &operator%(Value const &rhs) override;
 
                     // IComparable
                     virtual bool LessThan(const Common::IComparable &target) const override;

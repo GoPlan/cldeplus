@@ -9,12 +9,12 @@ namespace CLDEPlus {
         namespace Data {
             namespace Type {
 
-                Text::Text(const string &text)
+                Text::Text(string const &text)
                         : Text(text.c_str()) {
                     //
                 }
 
-                Text::Text(const char *text)
+                Text::Text(char const *text)
                         : CharacterValue{Data::ValueType::Text, strlen(text) + 1},
                           _buffer{strdup(text)} {
                     //
@@ -27,7 +27,7 @@ namespace CLDEPlus {
                 }
 
                 Text::~Text() {
-                    if(_buffer != nullptr) free(_buffer);
+                    if (_buffer != nullptr) free(_buffer);
                 }
 
                 void *Text::PointerToBuffer() {

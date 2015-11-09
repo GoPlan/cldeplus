@@ -33,6 +33,10 @@ namespace CLDEPlus {
                 return cldeplus_make_shared<Type::Double>(value);
             }
 
+            SPtrValue ValueFactory::CreateInt(int value) {
+                return CreateInt32((int32_t) value);
+            }
+
             SPtrValue ValueFactory::CreateInt16(int16_t value) {
                 return cldeplus_make_shared<Type::Int16>(value);
             }
@@ -49,6 +53,10 @@ namespace CLDEPlus {
                 return cldeplus_make_shared<Type::UInt16>(value);
             }
 
+            SPtrValue ValueFactory::CreateUInt(unsigned int value) {
+                return CreateUInt32((uint32_t) value);
+            }
+
             SPtrValue ValueFactory::CreateUInt32(uint32_t value) {
                 return cldeplus_make_shared<Type::UInt32>(value);
             }
@@ -57,11 +65,11 @@ namespace CLDEPlus {
                 return cldeplus_make_shared<Type::UInt64>(value);
             }
 
-            SPtrValue ValueFactory::CreateVarChar(const char *value) {
+            SPtrValue ValueFactory::CreateVarChar(char const *value) {
                 return cldeplus_make_shared<Type::VarChar>(value);
             }
 
-            SPtrValue ValueFactory::CreateVarChar(const string &value) {
+            SPtrValue ValueFactory::CreateVarChar(string const &value) {
                 return cldeplus_make_shared<Type::VarChar>(value.c_str());
             }
 
@@ -69,7 +77,7 @@ namespace CLDEPlus {
                 return cldeplus_make_shared<Type::VarChar>(length);
             }
 
-            SPtrValue ValueFactory::CreateText(const string &value) {
+            SPtrValue ValueFactory::CreateText(string const &value) {
                 return cldeplus_make_shared<Type::Text>(value);
             }
 
@@ -105,8 +113,7 @@ namespace CLDEPlus {
                 return cldeplus_make_shared<Type::Time>(hour, minute, second, millisecond);
             }
 
-            SPtrValue ValueFactory::CreateTime(int hour, int minute, int second, int millisecond,
-                                               int offset) {
+            SPtrValue ValueFactory::CreateTime(int hour, int minute, int second, int millisecond, int offset) {
                 return cldeplus_make_shared<Type::Time>(hour, minute, second, millisecond, offset);
             }
 
@@ -118,11 +125,8 @@ namespace CLDEPlus {
                 return cldeplus_make_shared<Type::DateTime>(year, month, day);
             }
 
-            SPtrValue ValueFactory::CreateDateTime(int year, int month, int day,
-                                                   int hour, int minute, int second, int millisecond,
-                                                   int offset) {
-                return cldeplus_make_shared<Type::DateTime>(year, month, day, hour, minute, second, millisecond,
-                                                        offset);
+            SPtrValue ValueFactory::CreateDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond, int offset) {
+                return cldeplus_make_shared<Type::DateTime>(year, month, day, hour, minute, second, millisecond, offset);
             }
         }
     }
