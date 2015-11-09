@@ -15,7 +15,7 @@
 #include "../../Source/Drivers/MySql/MySqlSourceDriver.h"
 #include "../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
 #include "../../Source/Foundation/Data/ValueFactory.h"
-#include "../../Source/Foundation/Data/ValueToPrimatives.hpp"
+#include "NumericToPrimative.hpp"
 
 namespace CLDEPlus {
     namespace Test {

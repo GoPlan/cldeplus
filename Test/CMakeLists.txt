@@ -24,6 +24,8 @@ add_executable(cldeplus-test main.cpp
         Application/ProductMap.h
         Application/PreOrderItemsMap.cpp
         Application/PreOrderItemsMap.h
+        Application/MapFactory.cpp
+        Application/MapFactory.h
         Entity/Customer.cpp
         Entity/Customer.h
         Entity/PreOrder.cpp
@@ -38,10 +40,6 @@ add_executable(cldeplus-test main.cpp
         Store/Preparation/PreOrderMySqlStore.h
         Store/Preparation/EnquiryMySqlStore.cpp
         Store/Preparation/EnquiryMySqlStore.h
-        Application/MapFactory.cpp
-        Application/MapFactory.h
-        Segmentation/Segmentation.cpp
-        Segmentation/Transformation.cpp
         Store/SQLiteStore.cpp
         Store/MySqlStore00.cpp
         Store/MySqlStore01.cpp
@@ -49,6 +47,8 @@ add_executable(cldeplus-test main.cpp
         Store/MySqlStore00.cpp
         Store/MySqlStore01.cpp
         Store/MySqlStore02.cpp
+        Segmentation/Segmentation.cpp
+        Segmentation/Transformation.cpp
         Relation/NamedEntity01.cpp
         Relation/NamedEntity02.cpp
         Type/ValueComparison.cpp

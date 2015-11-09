@@ -25,6 +25,15 @@
 #include <functional>
 
 namespace CLDEPlus {
+    namespace Foundation {
+        namespace Data {
+            namespace Helper {
+                template<typename T>
+                class Primitive;
+            }
+        }
+    }
+
     namespace Primitives {
 
         using int16 = int16_t;
@@ -37,6 +46,9 @@ namespace CLDEPlus {
 
         using exception = std::exception;
         using string = std::string;
+
+        template<typename T>
+        using primitive = Foundation::Data::Helper::Primitive<T>;
     }
 
     using namespace Primitives;

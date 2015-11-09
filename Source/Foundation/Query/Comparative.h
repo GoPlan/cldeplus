@@ -23,9 +23,7 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Query {
 
-            class ComparativeFactory {
-
-            public:
+            struct ComparativeFactory {
                 static SPtrCriteria CreateAND(const SPtrCriteria &lhs, const SPtrCriteria &rhs);
                 static SPtrCriteria CreateOR(const SPtrCriteria &lhs, const SPtrCriteria &rhs);
                 static SPtrCriteria CreateEQ(const SPtrColumn &column, const Data::SPtrValue &value);
