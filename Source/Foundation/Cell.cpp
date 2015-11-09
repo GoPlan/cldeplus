@@ -34,5 +34,9 @@ namespace CLDEPlus {
 
             _value = value;
         }
+
+        void Cell::setValue(Data::IPrimitive const &value) {
+            setValue(value.ToValue());
+        }
     }
 }

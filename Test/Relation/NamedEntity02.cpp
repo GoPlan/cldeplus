@@ -58,7 +58,7 @@ namespace CLDEPlus {
                             using namespace Foundation::Query;
 
                             Entity::Customer customer{};
-                            customer.setId(NumericToPrimative<int64_t>(entity.getCell("Id")->getValue()));
+                            customer.setId(ToPrimitive<int64_t>(entity.getCell("Id")->getValue()));
                             customer.setFirstName(entity.getCell("FirstName")->ToString());
                             customer.setLastName(entity.getCell("LastName")->ToString());
                             customer.setEmail(entity.getCell("Email")->ToString());
@@ -92,8 +92,8 @@ namespace CLDEPlus {
                             using namespace Foundation::Query;
 
                             Entity::PreOrder preOrder{};
-                            preOrder.setId(NumericToPrimative<int64_t>(entity.getCell("Id")->getValue()));
-                            preOrder.setCustomerId(NumericToPrimative<int64_t>(entity.getCell("CustId")->getValue()));
+                            preOrder.setId(ToPrimitive<int64_t>(entity.getCell("Id")->getValue()));
+                            preOrder.setCustomerId(ToPrimitive<int64_t>(entity.getCell("CustId")->getValue()));
                             preOrder.setName(entity.getCell("Name")->ToString());
 
                             // LinkToOne to Customer

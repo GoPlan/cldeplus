@@ -27,10 +27,8 @@
 namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
-            namespace Helper {
-                template<typename T>
-                class Primitive;
-            }
+            template<typename T>
+            class Primitive;
         }
     }
 
@@ -48,7 +46,7 @@ namespace CLDEPlus {
         using string = std::string;
 
         template<typename T>
-        using primitive = Foundation::Data::Helper::Primitive<T>;
+        using primitive = Foundation::Data::Primitive<T>;
     }
 
     using namespace Primitives;

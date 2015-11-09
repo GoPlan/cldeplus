@@ -20,13 +20,12 @@
 
 // Data
 #include "Data/Value.h"
+#include "Data/Primitive.h"
 #include "Data/TypeEnums.h"
 #include "Data/ValueFactory.h"
 #include "Data/Comparer/Comparer.h"
 #include "Data/Helper/TypeHelper.h"
 #include "Data/Helper/ValueHelper.h"
-#include "Data/Helper/PrimitiveToValue.h"
-#include "Data/Helper/NumericToPrimative.hpp"
 
 // Store
 #include "Store/AbstractEntity.h"
