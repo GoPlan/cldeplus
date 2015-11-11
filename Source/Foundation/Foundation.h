@@ -26,6 +26,7 @@
 #include "Data/Comparer/Comparer.h"
 #include "Data/Helper/TypeHelper.h"
 #include "Data/Helper/ValueHelper.h"
+#include "Data/Helper/PrimitiveHelper.h"
 
 // Store
 #include "Store/AbstractEntity.h"

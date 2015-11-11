@@ -14,19 +14,6 @@ namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
 
-            template<typename T>
-            T ToPrimitive(SPtrValue const &value) {
-
-                if (!value->isNumeric() || value->getCategory() != ValueCategory::Numeric) {
-                    string msg{"Value is not numeric"};
-                    throw Exception::CLDENonSupportedDataTypeException{msg};
-                }
-
-                T const *ptrResult = reinterpret_cast<const T *>(value->PointerToBuffer());
-
-                return *ptrResult;
-            };
-
             struct IPrimitive {
                 virtual SPtrValue ToValue() const = 0;
             };
