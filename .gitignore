@@ -1,8 +1,11 @@
-CMake
+# Local folders
 Extra
 Build
 Testing
+
+# IDE config folder
 .idea
+
 # Compiled Object files
 *.slo
 *.lo
