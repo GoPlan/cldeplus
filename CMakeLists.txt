@@ -46,15 +46,23 @@ set(COMPLETE_SOURCE
         ${DRIVERS_MYSQL})
 
 
+set(STORAGE /Volumes/External-SSD)
+set(EXTRA_DIR ${STORAGE}/Extra)
+
 # MYSQL
-set(MYSQL_DIR ${CMAKE_SOURCE_DIR}/Extra/mysql-connector-c-6.1.6-osx10.8-x86_64)
+set(MYSQL_DIR ${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64)
 include_directories(${MYSQL_DIR}/include)
 link_directories(${MYSQL_DIR}/lib)
 
 # CLDEPARSER
-set(CLDEPARSER_DIR "${CMAKE_SOURCE_DIR}/Extra/cldeparser-1.0.0")
+set(CLDEPARSER_DIR "${EXTRA_DIR}/cldeparser-1.0.0")
 include_directories(${CLDEPARSER_DIR}/include)
 link_directories(${CLDEPARSER_DIR})
+
+# GTEST
+set(GTEST "${EXTRA_DIR}/gtest-1.7.0")
+include_directories(${GTEST}/include)
+link_directories(${GTEST}/build)
 
 # MAIN TARGETS
 add_library(cldeplus-static STATIC ${COMPLETE_SOURCE})
@@ -67,11 +75,10 @@ set_target_properties(cldeplus cldeplus-static PROPERTIES
         SOVERSION ${VERSION}
 )
 
-if (APPLE)
-    set_property(TARGET cldeplus PROPERTY PREFIX "lib")
-    set_property(TARGET cldeplus PROPERTY SUFFIX ".so")
-endif ()
-
+#if (APPLE)
+#    set_property(TARGET cldeplus PROPERTY PREFIX "lib")
+#    set_property(TARGET cldeplus PROPERTY SUFFIX ".so")
+#endif ()
 
 # INSTALLATION
 set(INSTALL_DIR "${CMAKE_SOURCE_DIR}/Extra")

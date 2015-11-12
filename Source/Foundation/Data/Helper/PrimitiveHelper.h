@@ -19,6 +19,9 @@ limitations under the License.
 #ifndef CLDEPLUS_FOUNDATION_DATA_HELPER_PRIMITIVEHELPER_H
 #define CLDEPLUS_FOUNDATION_DATA_HELPER_PRIMITIVEHELPER_H
 
+#include "../Value.h"
+#include "../../Exception/cldeNonSupportedDataTypeException.h"
+
 namespace CLDEPlus {
     namespace Foundation {
         namespace Data {

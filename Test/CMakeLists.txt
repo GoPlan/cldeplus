@@ -1,16 +1,4 @@
 
-# GTEST
-set(GTEST "${CMAKE_SOURCE_DIR}/Extra/gtest-1.7.0")
-include_directories(${GTEST}/include)
-link_directories(${GTEST}/lib)
-
-# MYSQL
-include_directories(${MYSQL_DIR}/include)
-link_directories(${MYSQL_DIR}/lib)
-
-# CLDEPARSER
-include_directories(${CLDEPARSER_DIR}/include)
-link_directories(${CLDEPARSER_DIR})
 
 # TARGET-EXECUTABLE: cloud_e_plus
 add_executable(cldeplus-test main.cpp

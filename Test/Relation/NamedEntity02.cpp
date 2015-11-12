@@ -14,8 +14,7 @@
 
 #include "../../Source/Drivers/MySql/MySqlSourceDriver.h"
 #include "../../Source/Drivers/SQLite/SQLiteSourceDriver.h"
-#include "../../Source/Foundation/Data/ValueFactory.h"
-#include "NumericToPrimative.hpp"
+#include "../../Source/Foundation/Data/Helper/PrimitiveHelper.h"
 
 namespace CLDEPlus {
     namespace Test {
@@ -25,8 +24,10 @@ namespace CLDEPlus {
 
                 auto sptrCustomerMap = CLDEPlus::cldeplus_make_shared<Application::CustomerMap>();
                 auto sptrPreOrderMap = CLDEPlus::cldeplus_make_shared<Application::PreOrderMap>();
-                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::CreateUnique(sptrCustomerMap);
-                auto sptrPreOrderDriver = (Drivers::MySql::SPtrMySqlSourceDriver) Drivers::MySql::MySqlSourceDriver::CreateUnique(sptrPreOrderMap);
+                auto sptrCustomerDriver = (Drivers::SQLite::SPtrSQLiteSourceDriver) Drivers::SQLite::SQLiteSourceDriver::CreateUnique(
+                        sptrCustomerMap);
+                auto sptrPreOrderDriver = (Drivers::MySql::SPtrMySqlSourceDriver) Drivers::MySql::MySqlSourceDriver::CreateUnique(
+                        sptrPreOrderMap);
 
                 sptrCustomerDriver->OptionArgs().ConnectionString = "example01.db";
                 sptrPreOrderDriver->OptionArgs().Host = "dell-3020";
@@ -56,30 +57,26 @@ namespace CLDEPlus {
 
                             using namespace Foundation::Data;
                             using namespace Foundation::Query;
+                            using PrimitiveHelper = Foundation::Data::Helper::PrimitiveHelper;
 
                             Entity::Customer customer{};
-                            customer.setId(ToPrimitive<int64_t>(entity.getCell("Id")->getValue()));
+                            customer.setId(PrimitiveHelper::ToPrimitive<int64_t>(entity.getCell("Id")->getValue()));
                             customer.setFirstName(entity.getCell("FirstName")->ToString());
                             customer.setLastName(entity.getCell("LastName")->ToString());
                             customer.setEmail(entity.getCell("Email")->ToString());
 
                             // LinkToMany to PreOrder
                             SPtrCriteria criteriaPreOrder = relCustomerToPreOrder.Generate(entity);
-                            customer.setLinkToPreOrders(Relation::CreateLinkToMany(sptrPreOrderQuery,
-                                                                                   criteriaPreOrder));
+                            customer.setLinkToPreOrders(Relation::CreateLinkToMany(sptrPreOrderQuery, criteriaPreOrder));
 
                             auto criteriaAddress = relCustomerAddress.Generate(entity);
 
-                            auto columnsList = {
-                                    sptrCustomerMap->GetColumn("AddrStreet"),
-                                    sptrCustomerMap->GetColumn("AddrZipCode"),
-                                    sptrCustomerMap->GetColumn("AddrCity"),
-                                    sptrCustomerMap->GetColumn("AddrCountry")
-                            };
-
-                            customer.setObjAddress(Relation::CreateMultiCellsObj(sptrCustomerQuery,
-                                                                                 criteriaAddress,
-                                                                                 columnsList));
+                            customer.setObjAddress(Relation::CreateMultiCellsObj(
+                                    sptrCustomerQuery, criteriaAddress,
+                                    {sptrCustomerMap->GetColumn("AddrStreet"),
+                                     sptrCustomerMap->GetColumn("AddrZipCode"),
+                                     sptrCustomerMap->GetColumn("AddrCity"),
+                                     sptrCustomerMap->GetColumn("AddrCountry")}));
 
                             return customer;
                         };
@@ -90,10 +87,12 @@ namespace CLDEPlus {
 
                             using namespace Foundation::Data;
                             using namespace Foundation::Query;
+                            using PrimitiveHelper = Foundation::Data::Helper::PrimitiveHelper;
 
                             Entity::PreOrder preOrder{};
-                            preOrder.setId(ToPrimitive<int64_t>(entity.getCell("Id")->getValue()));
-                            preOrder.setCustomerId(ToPrimitive<int64_t>(entity.getCell("CustId")->getValue()));
+                            preOrder.setId(PrimitiveHelper::ToPrimitive<int64_t>(entity.getCell("Id")->getValue()));
+                            preOrder.setCustomerId(
+                                    PrimitiveHelper::ToPrimitive<int64_t>(entity.getCell("CustId")->getValue()));
                             preOrder.setName(entity.getCell("Name")->ToString());
 
                             // LinkToOne to Customer
@@ -110,15 +109,14 @@ namespace CLDEPlus {
                 {
                     using namespace Foundation::Query;
                     using namespace Foundation::Data;
-                    using CmprFactory = ComparativeFactory;
 
-                    auto sptrPreOrderIdGt00 = CmprFactory::CreateGTE(sptrPreOrderMap->GetColumn("Id"), ValueFactory::CreateInt64(0));
+                    auto sptrPreOrderIdGt00 = ComparativeFactory::CreateGTE(sptrPreOrderMap->GetColumn("Id"), ValueFactory::CreateInt64(0));
                     auto sptrPreOrderProxy = sptrPreOrderQuery->SelectFirst(sptrPreOrderIdGt00);
                     auto sptrPreOrderEntity = sptrPreOrderStore->Summon(sptrPreOrderProxy);
                     auto preOrder = sptrPreOrderStore->NamedEntity(sptrPreOrderEntity);
-
                     auto sptrCustomerProxy = preOrder.LinkToCustomer()->Refer();
                     auto sptrCustomerEntity = sptrCustomerStore->Summon(sptrCustomerProxy);
+
                     EXPECT_TRUE(sptrCustomerProxy.get());
                     EXPECT_TRUE(sptrCustomerEntity.get());
                     EXPECT_TRUE(sptrCustomerEntity->ToString().length() > 0);
@@ -128,14 +126,13 @@ namespace CLDEPlus {
                 {
                     using namespace Foundation::Query;
                     using namespace Foundation::Data;
-                    using CmprFactory = ComparativeFactory;
 
-                    auto sptrCustomerIdGt00 = CmprFactory::CreateGTE(sptrPreOrderMap->GetColumn("Id"), ValueFactory::CreateInt64(0));
+                    auto sptrCustomerIdGt00 = ComparativeFactoryy::CreateGTE(sptrPreOrderMap->GetColumn("Id"), ValueFactory::CreateInt64(0));
                     auto sptrCustomerProxy = sptrCustomerQuery->SelectFirst(sptrCustomerIdGt00);
                     auto sptrCustomerEntity = sptrCustomerStore->Summon(sptrCustomerProxy);
-                    auto customer = (Entity::Customer) sptrCustomerStore->NamedEntity(sptrCustomerEntity);
-
+                    auto customer = sptrCustomerStore->NamedEntity(sptrCustomerEntity);
                     auto sptrPreOrdersVector = customer.LinkToPreOrders()->Refer();
+
                     for (auto &order : sptrPreOrdersVector) {
                         EXPECT_TRUE(order->ToString().length() > 0);
                     }
