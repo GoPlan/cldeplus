@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUE_H
 #define CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUE_H
 
-#include "../../Port/Definitions.h"
+#include "../../Portable/CommonTypes.h"
 #include "../Common/IPrintable.h"
 #include "../Common/IComputable.h"
 #include "../Common/IPrimitiveAssignable.h"

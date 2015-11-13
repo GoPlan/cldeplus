@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEDRIVER_H
 #define CLOUD_E_CPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEDRIVER_H
 
-#include "../../Port/Definitions.h"
+#include "../../Portable/CommonTypes.h"
 #include "../../Foundation/EntitySourceDriver.h"
 #include "../../Foundation/Query/Contract/IPredicateFormatter.h"
 #include "SQLiteSourceException.h"

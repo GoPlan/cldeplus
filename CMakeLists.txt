@@ -33,8 +33,8 @@ file(GLOB_RECURSE DRIVERS_SQLITE Source/Drivers/SQLite/*.cpp Source/Drivers/SQLi
 
 # COMPLETE_SOURCE
 set(COMPLETE_SOURCE
-        Source/Port/Definitions.h
         Source/cldeplus.h
+        Source/definitions.h
         ${FOUNDATION_SOURCE}
         ${RELATION_SOURCE}
         ${SEGMENTATION_SOURCE}

@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLDEPLUS_FOUNDATION_COMMON_IFORMATTER_H
 #define CLDEPLUS_FOUNDATION_COMMON_IFORMATTER_H
 
-#include "../../Port/Definitions.h"
+#include "../../Portable/CommonTypes.h"
 
 namespace CLDEPlus {
     namespace Foundation {

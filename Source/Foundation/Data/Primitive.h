@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLDEPLUS_FOUNDATION_DATA_PRIMITIVE_H
 #define CLDEPLUS_FOUNDATION_DATA_PRIMITIVE_H
 
-#include "../../Port/Definitions.h"
+#include "../../Portable/CommonTypes.h"
 #include "../Exception/cldeNonSupportedDataTypeException.h"
 #include "Value.h"
 #include "ValueFactory.h"

@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_STORE_HELPER_ENTITYSTOREHELPER_H
 #define CLOUD_E_CPLUS_FOUNDATION_STORE_HELPER_ENTITYSTOREHELPER_H
 
-#include "../../../Port/Definitions.h"
+#include "../../../Portable/CommonTypes.h"
 #include "../../EntityProxy.h"
 
 namespace CLDEPlus {

@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
 #define CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
 
-#include "../../../Port/Definitions.h"
+#include "../../../Portable/CommonTypes.h"
 #include "../TimeBasedValue.h"
 
 namespace CLDEPlus {

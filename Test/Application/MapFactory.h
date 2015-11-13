@@ -5,7 +5,7 @@
 #ifndef CLDEPLUS_APPTEST_APPLICATION_MAPFACTORY_H
 #define CLDEPLUS_APPTEST_APPLICATION_MAPFACTORY_H
 
-#include "../../Source/Port/Definitions.h"
+#include "../../Source/Portable/CommonTypes.h"
 
 namespace CLDEPlus {
     namespace Test {

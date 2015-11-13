@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEEXCEPTION_H
 #define CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEEXCEPTION_H
 
-#include "../../Port/Definitions.h"
+#include "../../Portable/CommonTypes.h"
 
 namespace CLDEPlus {
     namespace Foundation {

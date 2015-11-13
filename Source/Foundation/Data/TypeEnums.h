@@ -53,9 +53,6 @@ namespace CLDEPlus {
                 Point,
                 Matrix
             };
-
-            using ValueType = Data::ValueType;
-            using ValueCategory = Data::ValueCategory;
         }
     }
 }

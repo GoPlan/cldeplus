@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOUCRCEDRIVER_H
 #define CLOUD_E_CPLUS_DRIVERS_MYSQL_MYSQLSOUCRCEDRIVER_H
 
-#include "../../Port/Definitions.h"
+#include "../../Portable/CommonTypes.h"
 #include "../../Foundation/EntitySourceDriver.h"
 #include "MySqlSourceException.h"
 

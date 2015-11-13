@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 
-#include "../Port/Definitions.h"
+#include "../Portable/CommonTypes.h"
 #include "Cell.h"
 #include "Identity.h"
 #include "Exception/CLDEEntityException.h"

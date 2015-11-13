@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYMAP_H
 
-#include "../Port/Definitions.h"
+#include "../Portable/CommonTypes.h"
 #include "Exception/CLDEEntityMapException.h"
 #include "Column.h"
 

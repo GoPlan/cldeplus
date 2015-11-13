@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_QUERY_CONTRACT_IPREDICATEFORMATTER_H
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_CONTRACT_IPREDICATEFORMATTER_H
 
-#include "../../../Port/Definitions.h"
+#include "../../../Portable/CommonTypes.h"
 #include "../Criteria.h"
 
 namespace CLDEPlus {

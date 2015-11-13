@@ -20,7 +20,7 @@ limitations under the License.
 #define CLDEPLUS_DRIVERS_MYSQL_HELPER_MYSQLHELPER_H
 
 #include <mysql.h>
-#include "../../Port/Definitions.h"
+#include "../../Portable/CommonTypes.h"
 #include "../../Foundation/Data/TimeBasedValue.h"
 
 namespace CLDEPlus {

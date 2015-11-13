@@ -16,8 +16,8 @@ limitations under the License.
 
 */
 
-#ifndef CLDEPLUS_CLDE_DEFAULT_H
-#define CLDEPLUS_CLDE_DEFAULT_H
+#ifndef CLDEPLUS_PORTABLE_COMMONTYPES_H
+#define CLDEPLUS_PORTABLE_COMMONTYPES_H
 
 /*
  * The idea of of using clde_default is to encapsulate uses of STL components.
@@ -97,5 +97,4 @@ namespace CLDEPlus {
     }
 }
 
-
-#endif //CLDEPLUS_CLDE_DEFAULT_H
+#endif //CLDEPLUS_PORTABLE_COMMONTYPES_H

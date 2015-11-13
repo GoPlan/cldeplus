@@ -16,19 +16,9 @@ limitations under the License.
 
 */
 
-#ifndef CLDEPLUS_CLDEPLUS_H
-#define CLDEPLUS_CLDEPLUS_H
+#ifndef CLDEPLUS_DEFINITIONS_H
+#define CLDEPLUS_DEFINITIONS_H
 
 #include "Portable/CommonTypes.h"
-#include "Foundation/Foundation.h"
-#include "Relation/Relation.h"
-#include "Segmentation/Segmentation.h"
 
-
-namespace CLDEPlus {
-    using ValueFactory = Foundation::Data::ValueFactory;
-    using ValueType = Foundation::Data::ValueType;
-    using Exception = Foundation::Exception::CLDEException;
-}
-
-#endif //CLDEPLUS_CLDEPLUS_H_H
+#endif //CLDEPLUS_DEFINITIONS_H

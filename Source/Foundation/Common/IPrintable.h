@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLDEPLUS_FOUNDATION_COMMON_IPRINTABLE_H
 #define CLDEPLUS_FOUNDATION_COMMON_IPRINTABLE_H
 
-#include "../../Port/Definitions.h"
+#include "../../Portable/CommonTypes.h"
 #include "IFormatter.h"
 
 namespace CLDEPlus {

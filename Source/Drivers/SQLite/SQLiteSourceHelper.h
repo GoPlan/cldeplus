@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLDEPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H
 #define CLDEPLUS_SOURCEDRIVER_SQLITE_SQLITESOURCEHELPER_H
 
-#include "../../Port/Definitions.h"
+#include "../../Portable/CommonTypes.h"
 #include "Amalgamation/sqlite3.h"
 
 namespace CLDEPlus {

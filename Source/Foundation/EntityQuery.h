@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYQUERY_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYQUERY_H
 
-#include "../Port/Definitions.h"
+#include "../Portable/CommonTypes.h"
 #include "EntityProxy.h"
 #include "Query/Criteria.h"
 #include "EntitySourceDriver.h"

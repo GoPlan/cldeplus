@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 
-#include "../Port/Definitions.h"
+#include "../Portable/CommonTypes.h"
 #include "Identity.h"
 #include "Entity.h"
 #include "EntityMap.h"
