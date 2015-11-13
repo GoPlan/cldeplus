@@ -36,12 +36,11 @@ namespace CLDEPlus {
             MultiCellsObject(Foundation::SPtrEntityQuery const &entityQuery,
                              Foundation::Query::SPtrCriteria const &criteria,
                              std::initializer_list<Foundation::SPtrColumn> const &columns)
-                    : LinkToOne{entityQuery, criteria},
-                      _columns{columns} { }
+                    : LinkToOne{entityQuery, criteria}, _columns{columns} { }
 
-            MultiCellsObject(const MultiCellsObject &) = default;
+            MultiCellsObject(MultiCellsObject const &) = default;
             MultiCellsObject(MultiCellsObject &&) = default;
-            MultiCellsObject &operator=(const MultiCellsObject &) = default;
+            MultiCellsObject &operator=(MultiCellsObject const &) = default;
             MultiCellsObject &operator=(MultiCellsObject &&) = default;
             ~MultiCellsObject() = default;
 
@@ -53,6 +52,7 @@ namespace CLDEPlus {
         };
 
         using SPtrMultiCellsObj = shared_ptr<MultiCellsObject>;
+
         SPtrMultiCellsObj CreateMultiCellsObj(Foundation::SPtrEntityQuery &entityQuery,
                                               Foundation::Query::SPtrCriteria &criteria,
                                               std::initializer_list<Foundation::SPtrColumn> &columns);

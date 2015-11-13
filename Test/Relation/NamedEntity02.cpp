@@ -70,13 +70,12 @@ namespace CLDEPlus {
                             customer.setLinkToPreOrders(Relation::CreateLinkToMany(sptrPreOrderQuery, criteriaPreOrder));
 
                             auto criteriaAddress = relCustomerAddress.Generate(entity);
+                            auto sptrColumnList = {sptrCustomerMap->GetColumn("AddrStreet"),
+                                                   sptrCustomerMap->GetColumn("AddrZipCode"),
+                                                   sptrCustomerMap->GetColumn("AddrCity"),
+                                                   sptrCustomerMap->GetColumn("AddrCountry")};
 
-                            customer.setObjAddress(Relation::CreateMultiCellsObj(
-                                    sptrCustomerQuery, criteriaAddress,
-                                    {sptrCustomerMap->GetColumn("AddrStreet"),
-                                     sptrCustomerMap->GetColumn("AddrZipCode"),
-                                     sptrCustomerMap->GetColumn("AddrCity"),
-                                     sptrCustomerMap->GetColumn("AddrCountry")}));
+                            customer.setObjAddress(Relation::CreateMultiCellsObj(sptrCustomerQuery, criteriaAddress, sptrColumnList));
 
                             return customer;
                         };
@@ -127,7 +126,7 @@ namespace CLDEPlus {
                     using namespace Foundation::Query;
                     using namespace Foundation::Data;
 
-                    auto sptrCustomerIdGt00 = ComparativeFactoryy::CreateGTE(sptrPreOrderMap->GetColumn("Id"), ValueFactory::CreateInt64(0));
+                    auto sptrCustomerIdGt00 = ComparativeFactory::CreateGTE(sptrPreOrderMap->GetColumn("Id"), ValueFactory::CreateInt64(0));
                     auto sptrCustomerProxy = sptrCustomerQuery->SelectFirst(sptrCustomerIdGt00);
                     auto sptrCustomerEntity = sptrCustomerStore->Summon(sptrCustomerProxy);
                     auto customer = sptrCustomerStore->NamedEntity(sptrCustomerEntity);
