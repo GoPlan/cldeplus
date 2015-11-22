@@ -16,9 +16,9 @@ limitations under the License.
 
 */
 
-#include "../../Foundation/Data/Helper/TypeHelper.h"
-#include "../Exception/TransformationException.h"
 #include "TypeCaster.h"
+#include "../../Foundation/Data/Helper/ValueEnumsHelper.h"
+#include "../Exception/TransformationException.h"
 
 namespace CLDEPlus {
     namespace Segmentation {
@@ -56,7 +56,7 @@ namespace CLDEPlus {
                 case Foundation::Data::ValueType::VarChar:
                     break;
                 default: {
-                    string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
+                    string type{Foundation::Data::Helper::ValueEnumsHelper::CopyValueTypeToString(value->getDataType())};
                     string msg{type + " converting is not supported"};
                     throw Segmentation::Exception::TransformationException{msg};
                 }

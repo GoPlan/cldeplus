@@ -26,7 +26,7 @@ namespace CLDEPlus {
         namespace Data {
             namespace Helper {
                 struct ValueHelper {
-                    static SPtrValue CopySPtrValue(const SPtrValue &sptrValue);
+                    static SPtrValue CopySPtrValue(SPtrValue const &sptrValue);
                 };
             }
         }

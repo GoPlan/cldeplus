@@ -17,7 +17,7 @@ limitations under the License.
 */
 
 #include "FloatCaster.h"
-#include "../../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../../Foundation/Data/Helper/ValueEnumsHelper.h"
 #include "../../../Foundation/Data/ValueFactory.h"
 #include "../../Exception/TransformationException.h"
 
@@ -28,7 +28,7 @@ namespace CLDEPlus {
                 Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
             if (value->getDataType() != Foundation::Data::ValueType::Float) {
-                string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
+                string type{Foundation::Data::Helper::ValueEnumsHelper::CopyValueTypeToString(value->getDataType())};
                 string msg{type + " is not supported by FloatCaster"};
                 throw Segmentation::Exception::TransformationException{msg};
             }
@@ -55,7 +55,7 @@ namespace CLDEPlus {
                 case Foundation::Data::ValueType::Byte:
                     return Foundation::Data::ValueFactory::CreateByte((char) *tmp);
                 default: {
-                    string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
+                    string type{Foundation::Data::Helper::ValueEnumsHelper::CopyValueTypeToString(dataType)};
                     string msg{"This converter can not convert float into " + type};
                     throw Segmentation::Exception::TransformationException{msg};
                 }

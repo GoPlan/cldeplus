@@ -17,7 +17,7 @@ limitations under the License.
 */
 
 #include "StringCaster.h"
-#include "../../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../../Foundation/Data/Helper/ValueEnumsHelper.h"
 #include "../../../Foundation/Data/ValueFactory.h"
 #include "../../Exception/TransformationException.h"
 
@@ -27,7 +27,7 @@ namespace CLDEPlus {
             Foundation::Data::SPtrValue Caster::StringCaster::Cast(
                     Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
 
-                string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
+                string type{Foundation::Data::Helper::ValueEnumsHelper::CopyValueTypeToString(dataType)};
                 string msg{"This converter can not convert StringCaster into " + type};
                 throw Segmentation::Exception::TransformationException{msg};
             }

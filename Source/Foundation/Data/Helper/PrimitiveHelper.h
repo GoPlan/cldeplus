@@ -28,6 +28,7 @@ namespace CLDEPlus {
             namespace Helper {
 
                 struct PrimitiveHelper {
+
                     template<typename T>
                     static T ToPrimitive(SPtrValue const &value) {
 

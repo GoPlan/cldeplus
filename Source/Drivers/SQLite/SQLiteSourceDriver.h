@@ -68,9 +68,9 @@ namespace CLDEPlus {
 
 
             private:
-                class SQLiteApiImpl;
-                using SPtrSQLiteApiImpl = shared_ptr<SQLiteApiImpl>;
-                SPtrSQLiteApiImpl _sqliteApiImpl;
+                class SQLiteImpl;
+                using UPtrSQLiteImpl = unique_ptr<SQLiteImpl>;
+                UPtrSQLiteImpl _sqliteApiImpl;
 
                 Options _optionArgs;
 

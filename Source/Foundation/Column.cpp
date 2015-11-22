@@ -16,8 +16,8 @@ limitations under the License.
 
 */
 
-#include "Data/Helper/TypeHelper.h"
 #include "Column.h"
+#include "Data/Helper/ValueEnumsHelper.h"
 
 namespace CLDEPlus {
     namespace Foundation {
@@ -34,7 +34,7 @@ namespace CLDEPlus {
         }
 
         string Column::ToString() const {
-            string result{_name + "(" + Data::Helper::TypeHelper::CopyValueTypeToString(_dataType) +
+            string result{_name + "(" + Data::Helper::ValueEnumsHelper::CopyValueTypeToString(_dataType) +
                           "[" + std::to_string(_length) + "]" + ")"};
             return result;
         }

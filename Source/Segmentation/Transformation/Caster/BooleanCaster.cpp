@@ -17,7 +17,7 @@ limitations under the License.
 */
 
 #include "BooleanCaster.h"
-#include "../../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../../Foundation/Data/Helper/ValueEnumsHelper.h"
 #include "../../../Foundation/Data/ValueFactory.h"
 #include "../../Exception/TransformationException.h"
 
@@ -30,7 +30,7 @@ namespace CLDEPlus {
 
                     if (value->getDataType() != Foundation::Data::ValueType::Boolean) {
                         string type{
-                                Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
+                                Foundation::Data::Helper::ValueEnumsHelper::CopyValueTypeToString(value->getDataType())};
                         string msg{type + " is not supported by BooleanCaster"};
                         throw Segmentation::Exception::TransformationException{msg};
                     }
@@ -58,7 +58,7 @@ namespace CLDEPlus {
                             return Foundation::Data::ValueFactory::CreateBoolean((char) *tmp);
 
                         default: {
-                            string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
+                            string type{Foundation::Data::Helper::ValueEnumsHelper::CopyValueTypeToString(dataType)};
                             string msg{"This converter can not convert Boolean into " + type};
                             throw Segmentation::Exception::TransformationException{msg};
                         }

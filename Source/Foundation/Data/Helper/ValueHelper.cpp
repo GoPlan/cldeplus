@@ -39,12 +39,12 @@ limitations under the License.
 #include "../../Exception/CLDENotImplementedException.h"
 #include "../../Exception/CLDENonSupportedDataTypeException.h"
 #include "ValueHelper.h"
-#include "TypeHelper.h"
+#include "ValueEnumsHelper.h"
 
 namespace CLDEPlus {
     namespace Foundation {
 
-        Data::SPtrValue Data::Helper::ValueHelper::CopySPtrValue(const Data::SPtrValue &sptrValue) {
+        Data::SPtrValue Data::Helper::ValueHelper::CopySPtrValue(Data::SPtrValue const &sptrValue) {
 
             switch (sptrValue->getDataType()) {
                 case ValueType::Blob: {
@@ -136,8 +136,8 @@ namespace CLDEPlus {
                     return std::dynamic_pointer_cast<Data::Type::Matrix>(sptrValue);
                 }
                 default: {
-                    using TypeHelper = Foundation::Data::Helper::TypeHelper;
-                    string type{TypeHelper::CopyValueTypeToString(sptrValue->getDataType())};
+                    using TypeHelper = Foundation::Data::Helper::ValueEnumsHelper;
+                    string type{ValueEnumsHelper::CopyValueTypeToString(sptrValue->getDataType())};
                     string msg{"CopySPtrValue does not support " + type + " yet"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }

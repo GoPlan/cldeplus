@@ -23,7 +23,7 @@ limitations under the License.
 #include "../Common/IPrintable.h"
 #include "../Common/IComputable.h"
 #include "../Common/IPrimitiveAssignable.h"
-#include "TypeEnums.h"
+#include "ValueEnums.h"
 
 namespace CLDEPlus {
     namespace Foundation {

@@ -17,7 +17,7 @@ limitations under the License.
 */
 
 #include "Greater.h"
-#include "../Helper/TypeHelper.h"
+#include "../Helper/ValueEnumsHelper.h"
 #include "../Type/String.h"
 #include "../Type/VarChar.h"
 #include "../../Exception/CLDENotImplementedException.h"
@@ -32,8 +32,8 @@ namespace CLDEPlus {
                                                  const Data::SPtrValue &rhs) const {
 
             if (lhs->getDataType() != rhs->getDataType() || lhs->getCategory() != rhs->getCategory()) {
-                string lhsType = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
-                string rhsType = Data::Helper::TypeHelper::CopyValueTypeToString(rhs->getDataType());
+                string lhsType = Data::Helper::ValueEnumsHelper::CopyValueTypeToString(lhs->getDataType());
+                string rhsType = Data::Helper::ValueEnumsHelper::CopyValueTypeToString(rhs->getDataType());
                 string msg{lhsType + " has different type/category with " + rhsType};
                 throw Exception::CLDENonSupportedDataTypeException{msg};
             }
@@ -115,12 +115,12 @@ namespace CLDEPlus {
                     return *ptrLhsTmp > *ptrRhsTmp;
                 }
                 case ValueType::Currency: {
-                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string type = Data::Helper::ValueEnumsHelper::CopyValueTypeToString(lhs->getDataType());
                     string msg{type + " is not supported by the numeric comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
                 default: {
-                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string type = Data::Helper::ValueEnumsHelper::CopyValueTypeToString(lhs->getDataType());
                     string msg{type + " is not supported by the numeric comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
@@ -150,12 +150,12 @@ namespace CLDEPlus {
                                   (const char *) ptrRhsTmp->PointerToBuffer()) > 0;
                 }
                 case ValueType::Text: {
-                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string type = Data::Helper::ValueEnumsHelper::CopyValueTypeToString(lhs->getDataType());
                     string msg{type + " is not supported by the character based comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
                 default: {
-                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string type = Data::Helper::ValueEnumsHelper::CopyValueTypeToString(lhs->getDataType());
                     string msg{type + " is not supported by the character based comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }
@@ -179,7 +179,7 @@ namespace CLDEPlus {
                     return lhsComparable.GreaterThan(rhsComparable);
                 }
                 default: {
-                    string type = Data::Helper::TypeHelper::CopyValueTypeToString(lhs->getDataType());
+                    string type = Data::Helper::ValueEnumsHelper::CopyValueTypeToString(lhs->getDataType());
                     string msg{type + " is not supported by the date&time based comparer"};
                     throw Exception::CLDENonSupportedDataTypeException{msg};
                 }

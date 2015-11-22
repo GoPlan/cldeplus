@@ -21,7 +21,7 @@ limitations under the License.
 #include <mysql.h>
 #include "../../Foundation/Enum/CommonBufferSize.h"
 #include "../../Foundation/Data/ValueFactory.h"
-#include "../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../Foundation/Data/Helper/ValueEnumsHelper.h"
 #include "../../Foundation/Data/Helper/ValueHelper.h"
 #include "../../Foundation/Query/Helper/SqlHelper.h"
 #include "../../Foundation/Store/Helper/EntityStoreHelper.h"
@@ -292,7 +292,7 @@ namespace CLDEPlus {
                                               break;
                                           }
                                           default: {
-                                              using TypeHelper = Foundation::Data::Helper::TypeHelper;
+                                              using TypeHelper = Foundation::Data::Helper::ValueEnumsHelper;
                                               string typeName{TypeHelper::CopyValueTypeToString(dataType)};
                                               string msg{"MySql driver does not support " + typeName + " yet"};
                                               throw MySqlSourceException{msg};
@@ -380,7 +380,7 @@ namespace CLDEPlus {
                             break;
                         }
                         default: {
-                            using TypeHelper = Foundation::Data::Helper::TypeHelper;
+                            using TypeHelper = Foundation::Data::Helper::ValueEnumsHelper;
                             string typeName{TypeHelper::CopyValueTypeToString(dataType)};
                             string msg{"MySqlSourceDriver(SetupBind) does not support " + typeName + " yet"};
                             throw MySqlSourceException{msg};

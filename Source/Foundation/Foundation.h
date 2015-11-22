@@ -22,23 +22,23 @@ limitations under the License.
 #include "Enum/CommonBufferSize.h"
 
 // Basic
-#include "Column.h"
 #include "Cell.h"
-#include "Identity.h"
+#include "Column.h"
 #include "Entity.h"
-#include "EntityProxy.h"
 #include "EntityMap.h"
-#include "EntityStore.h"
+#include "EntityProxy.h"
 #include "EntityQuery.h"
 #include "EntitySourceDriver.h"
+#include "EntityStore.h"
+#include "Identity.h"
 
 // Data
 #include "Data/Value.h"
 #include "Data/Primitive.h"
-#include "Data/TypeEnums.h"
+#include "Data/ValueEnums.h"
 #include "Data/ValueFactory.h"
 #include "Data/Comparer/Comparer.h"
-#include "Data/Helper/TypeHelper.h"
+#include "Data/Helper/ValueEnumsHelper.h"
 #include "Data/Helper/ValueHelper.h"
 #include "Data/Helper/PrimitiveHelper.h"
 

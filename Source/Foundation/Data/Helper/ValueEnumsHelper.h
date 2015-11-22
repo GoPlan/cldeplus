@@ -20,13 +20,13 @@ limitations under the License.
 #define CLDEPLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
 
 #include "../../../Portable/CommonTypes.h"
-#include "../TypeEnums.h"
+#include "../ValueEnums.h"
 
 namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Helper {
-                struct TypeHelper {
+                struct ValueEnumsHelper {
                     static string CopyCategoryToString(const ValueCategory &category);
                     static string CopyValueTypeToString(const ValueType &type);
                 };

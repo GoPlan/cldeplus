@@ -4,7 +4,7 @@ project(cldeplus)
 # Build variables
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(VERSION 0.7.0)
-set(STORAGE /Volumes/External-SSD)
+set(STORAGE "~/Devel")
 set(EXTRA_DIR ${STORAGE}/Extra)
 set(MYSQL_DIR ${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64)
 set(CLDEPARSER_DIR "${EXTRA_DIR}/cldeparser-1.0.0")
@@ -34,7 +34,7 @@ file(GLOB_RECURSE DRIVERS_SQLITE Source/Drivers/SQLite/*.cpp Source/Drivers/SQLi
 # COMPLETE_SOURCE
 set(COMPLETE_SOURCE
         Source/cldeplus.h
-        Source/definitions.h
+        Source/portable.h
         ${FOUNDATION_SOURCE}
         ${RELATION_SOURCE}
         ${SEGMENTATION_SOURCE}
@@ -52,10 +52,10 @@ set_target_properties(cldeplus cldeplus-static PROPERTIES
         SOVERSION ${VERSION}
 )
 
-#if (APPLE)
-#    set_property(TARGET cldeplus PROPERTY PREFIX "lib")
-#    set_property(TARGET cldeplus PROPERTY SUFFIX ".so")
-#endif ()
+if (APPLE)
+    set_property(TARGET cldeplus PROPERTY PREFIX "lib")
+    set_property(TARGET cldeplus PROPERTY SUFFIX ".so")
+endif ()
 
 # INSTALLATION
 set(INSTALL_DIR "${EXTRA_DIR}")

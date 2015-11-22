@@ -21,7 +21,7 @@ limitations under the License.
 
 #include "../Portable/CommonTypes.h"
 #include "Common/IPrintable.h"
-#include "Data/TypeEnums.h"
+#include "Data/ValueEnums.h"
 
 namespace CLDEPlus {
     namespace Foundation {

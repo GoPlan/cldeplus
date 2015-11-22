@@ -16,14 +16,14 @@ limitations under the License.
 
 */
 
-#include "TypeHelper.h"
+#include "ValueEnumsHelper.h"
 
 namespace CLDEPlus {
     namespace Foundation {
         namespace Data {
             namespace Helper {
 
-                string TypeHelper::CopyCategoryToString(const ValueCategory &category) {
+                string ValueEnumsHelper::CopyCategoryToString(const ValueCategory &category) {
 
                     string result;
 
@@ -48,7 +48,7 @@ namespace CLDEPlus {
                     return result;
                 }
 
-                string TypeHelper::CopyValueTypeToString(const ValueType &type) {
+                string ValueEnumsHelper::CopyValueTypeToString(const ValueType &type) {
 
                     string result;
 

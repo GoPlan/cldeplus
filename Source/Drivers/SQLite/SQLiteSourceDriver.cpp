@@ -16,14 +16,12 @@ limitations under the License.
 
 */
 
-#include <cstdlib>
 #include "../../Foundation/Data/ValueFactory.h"
 #include "../../Foundation/Query/CriteriaComposite.h"
 #include "../../Foundation/Query/Comparative.h"
 #include "../../Foundation/Query/Helper/SqlHelper.h"
 #include "../../Foundation/Query/Helper/CriteriaHelper.h"
 #include "../../Foundation/Store/Helper/EntityStoreHelper.h"
-#include "../../Foundation/Exception/CLDENonSupportedDataTypeException.h"
 #include "Amalgamation/sqlite3.h"
 #include "SQLiteSourceDriver.h"
 
@@ -68,17 +66,17 @@ namespace CLDEPlus {
             using ValueType = Foundation::Data::ValueType;
             using UPtrCommand = unique_ptr<Command>;
 
-            class SQLiteSourceDriver::SQLiteApiImpl {
+            class SQLiteSourceDriver::SQLiteImpl {
 
                 string &connectionString;
                 sqlite3 *_ptrSqlite3 = nullptr;
 
             public:
-                SQLiteApiImpl(string &connectionString) : connectionString(connectionString) {
+                SQLiteImpl(string &connectionString) : connectionString(connectionString) {
                     //
                 };
 
-                ~SQLiteApiImpl() {
+                ~SQLiteImpl() {
                     if (_ptrSqlite3 != nullptr) {
                         sqlite3_close(_ptrSqlite3);
                     }
@@ -349,7 +347,7 @@ namespace CLDEPlus {
             };
 
             SQLiteSourceDriver::SQLiteSourceDriver(const Foundation::SPtrEntityMap &entityMap)
-                    : EntitySourceDriver(entityMap), _sqliteApiImpl(new SQLiteApiImpl(_optionArgs.ConnectionString)) {
+                    : EntitySourceDriver(entityMap), _sqliteApiImpl(new SQLiteImpl(_optionArgs.ConnectionString)) {
                 Init();
             }
 
@@ -388,7 +386,7 @@ namespace CLDEPlus {
             void SQLiteSourceDriver::Connect() {
 
                 if (!_sqliteApiImpl) {
-                    _sqliteApiImpl = cldeplus_make_shared<SQLiteApiImpl>(_optionArgs.ConnectionString);
+                    _sqliteApiImpl = cldeplus_make_unique<SQLiteImpl>(_optionArgs.ConnectionString);
                 }
 
                 _sqliteApiImpl->Connect();

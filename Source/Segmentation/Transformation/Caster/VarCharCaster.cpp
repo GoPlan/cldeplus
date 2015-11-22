@@ -17,7 +17,7 @@ limitations under the License.
 */
 
 #include "VarCharCaster.h"
-#include "../../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../../Foundation/Data/Helper/ValueEnumsHelper.h"
 #include "../../Exception/TransformationException.h"
 
 namespace CLDEPlus {
@@ -25,7 +25,7 @@ namespace CLDEPlus {
         namespace Transformation {
             Foundation::Data::SPtrValue Caster::VarCharCaster::Cast(
                     Foundation::Data::ValueType dataType, const Foundation::Data::SPtrValue &value) const {
-                string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
+                string type{Foundation::Data::Helper::ValueEnumsHelper::CopyValueTypeToString(dataType)};
                 string msg{"This converter can not convert VarCharCaster into " + type};
                 throw Segmentation::Exception::TransformationException{msg};
             }

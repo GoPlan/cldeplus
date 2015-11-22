@@ -17,7 +17,7 @@ limitations under the License.
 */
 
 #include "ByteCaster.h"
-#include "../../../Foundation/Data/Helper/TypeHelper.h"
+#include "../../../Foundation/Data/Helper/ValueEnumsHelper.h"
 #include "../../../Foundation/Data/ValueFactory.h"
 #include "../../Exception/TransformationException.h"
 
@@ -31,7 +31,7 @@ namespace CLDEPlus {
 
                     if (value->getDataType() != Foundation::Data::ValueType::Byte) {
                         string type{
-                                Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(value->getDataType())};
+                                Foundation::Data::Helper::ValueEnumsHelper::CopyValueTypeToString(value->getDataType())};
                         string msg{type + " is not supported by ByteCaster"};
                         throw Segmentation::Exception::TransformationException{msg};
                     }
@@ -59,7 +59,7 @@ namespace CLDEPlus {
                             return Foundation::Data::ValueFactory::CreateBoolean((bool) *tmp);
 
                         default: {
-                            string type{Foundation::Data::Helper::TypeHelper::CopyValueTypeToString(dataType)};
+                            string type{Foundation::Data::Helper::ValueEnumsHelper::CopyValueTypeToString(dataType)};
                             string msg{"This converter can not convert byte into " + type};
                             throw Segmentation::Exception::TransformationException{msg};
                         }

@@ -16,8 +16,10 @@ limitations under the License.
 
 */
 
-#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUETYPE_H
-#define CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUETYPE_H
+#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUEENUMS_H
+#define CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUEENUMS_H
+
+#include "../../Portable/CommonTypes.h"
 
 namespace CLDEPlus {
     namespace Foundation {
@@ -57,4 +59,4 @@ namespace CLDEPlus {
     }
 }
 
-#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_CLDEVALUETYPE_H
+#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUEENUMS_H
