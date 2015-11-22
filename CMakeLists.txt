@@ -4,7 +4,7 @@ project(cldeplus)
 # Build variables
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(VERSION 0.7.0)
-set(STORAGE /Volumes/External-SSD)
+set(STORAGE "~/Devel")
 set(EXTRA_DIR ${STORAGE}/Extra)
 set(MYSQL_DIR ${EXTRA_DIR}/mysql-connector-c-6.1.6-osx10.8-x86_64)
 set(CLDEPARSER_DIR "${EXTRA_DIR}/cldeparser-1.0.0")
