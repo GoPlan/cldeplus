@@ -21,6 +21,18 @@ limitations under the License.
 
 namespace CLDEPlus {
 
+    enum CommonBufferSize {
+        ONE = 1,
+        TWO = 2,
+        EIGHT = 8,
+        SIXTEEN = 16,
+        THIRTYTWO = 32,
+        SIXTYFOUR = 64,
+        EIGHTY = 80,
+        ONEHUNDREDTWENTYEIGHT = 128,
+        TWOHUNDREDFIFTYSIX = 256,
+    };
+
     struct IComparable {
         virtual bool LessThan(IComparable const &target) const = 0;
         virtual bool GreaterThan(IComparable const &target) const = 0;

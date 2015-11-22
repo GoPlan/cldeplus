@@ -20,7 +20,7 @@ limitations under the License.
 #define CLDEPLUS_FOUNDATION_STORE_HELPER_ENTITYOUTPUTFORMATTER_H
 
 #include "../../Common/IFormatter.h"
-#include "../../Column.h"
+#include "EntityColumn.h"
 
 namespace CLDEPlus {
     namespace Foundation {

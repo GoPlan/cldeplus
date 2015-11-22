@@ -20,7 +20,7 @@ limitations under the License.
 #define CLOUD_E_CPLUS_FOUNDATION_CELL_H
 
 #include "CldePlus-Portable.h"
-#include "Column.h"
+#include "EntityColumn.h"
 #include "Data/Value.h"
 #include "Data/Primitive.h"
 

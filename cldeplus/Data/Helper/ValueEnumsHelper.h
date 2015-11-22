@@ -16,24 +16,21 @@ limitations under the License.
 
 */
 
-#ifndef CLDEPLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
-#define CLDEPLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
+#ifndef CLDEPLUS_DATA_HELPER_VALUEENUMSHELPER_H
+#define CLDEPLUS_DATA_HELPER_VALUEENUMSHELPER_H
 
-#include "Portable.h"
-#include "../ValueEnums.h"
+#include "../../Value.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
-            namespace Helper {
-                struct ValueEnumsHelper {
-                    static string CopyCategoryToString(const ValueCategory &category);
-                    static string CopyValueTypeToString(const ValueType &type);
-                };
-            }
+    namespace Data {
+        namespace Helper {
+            struct ValueEnumsHelper {
+                static string CopyCategoryToString(ValueCategory const &category);
+                static string CopyValueTypeToString(ValueType const &type);
+            };
         }
     }
 }
 
 
-#endif //CLDEPLUS_FOUNDATION_DATA_HELPER_TYPEHELPER_H
+#endif //CLDEPLUS_DATA_HELPER_VALUEENUMSHELPER_H

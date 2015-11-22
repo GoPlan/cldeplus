@@ -16,22 +16,20 @@ limitations under the License.
 
 */
 
-#ifndef CLDEPLUS_FOUNDATION_TYPE_HELPER_VALUEHELPER_H
-#define CLDEPLUS_FOUNDATION_TYPE_HELPER_VALUEHELPER_H
+#ifndef CLDEPLUS_DATA_TYPE_HELPER_VALUEHELPER_H
+#define CLDEPLUS_DATA_TYPE_HELPER_VALUEHELPER_H
 
-#include "../Value.h"
+#include "../../Value.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
-            namespace Helper {
-                struct ValueHelper {
-                    static SPtrValue CopySPtrValue(SPtrValue const &sptrValue);
-                };
-            }
+    namespace Data {
+        namespace Helper {
+            struct ValueHelper {
+                static SPtrValue CopySPtrValue(SPtrValue const &sptrValue);
+            };
         }
     }
 }
 
 
-#endif //CLDEPLUS_FOUNDATION_TYPE_HELPER_VALUEHELPER_H
+#endif //CLDEPLUS_DATA_TYPE_HELPER_VALUEHELPER_H

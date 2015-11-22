@@ -20,7 +20,7 @@ limitations under the License.
 #define CLOUD_E_CPLUS_FOUNDATION_QUERY_CRITERIA_H
 
 #include "Portable.h"
-#include "../Column.h"
+#include "EntityColumn.h"
 #include "../Data/Value.h"
 #include "../Query/ComparativeType.h"
 

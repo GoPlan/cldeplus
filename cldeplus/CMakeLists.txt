@@ -32,8 +32,9 @@ set(FOUNDATION_SOURCE
         Data/Type/UInt64.cpp
         Data/Type/VarChar.cpp
         Data/Helper/TimeBasedHelper.cpp
+        Data/Helper/ValueEnumsHelper.cpp
         #        Cell.cpp
-        #        Column.cpp
+        EntityColumn.cpp
         #        Entity.cpp
         #        EntityMap.cpp
         #        EntityProxy.cpp

@@ -21,7 +21,7 @@ limitations under the License.
 
 #include "CldePlus-Portable.h"
 #include "Exception/CLDEEntityMapException.h"
-#include "Column.h"
+#include "EntityColumn.h"
 
 namespace CLDEPlus {
     namespace Foundation {
