@@ -17,61 +17,59 @@ limitations under the License.
 */
 
 #include "TimeBasedValue.h"
-#include "../Exception/cldeNonSupportedFunctionException.h"
+#include "DataTypeException.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
+    namespace Data {
 
-            TimeBasedValue::TimeBasedValue(ValueType dataType, size_t size) : Value{dataType, size} {
-                //
-            }
+        TimeBasedValue::TimeBasedValue(ValueType dataType, size_t size) : Value{dataType, size} {
+            //
+        }
 
-            ValueCategory TimeBasedValue::_category{ValueCategory::DateTime};
+        ValueCategory TimeBasedValue::_category{ValueCategory::DateTime};
 
-            const ValueCategory &TimeBasedValue::getCategory() const {
-                return _category;
-            }
+        const ValueCategory &TimeBasedValue::getCategory() const {
+            return _category;
+        }
 
-            bool TimeBasedValue::isNumeric() const {
-                return false;
-            }
+        bool TimeBasedValue::isNumeric() const {
+            return false;
+        }
 
-            Value &TimeBasedValue::operator=(bool value) {
-                throw Exception::CLDENonSupportedFunctionException("operator can not be applied to TimeBasedValue type");
-            }
+        Value &TimeBasedValue::operator=(bool value) {
+            throw DataTypeException("operator can not be applied to TimeBasedValue type");
+        }
 
-            Value &TimeBasedValue::operator=(double value) {
-                throw Exception::CLDENonSupportedFunctionException("operator can not be applied to TimeBasedValue type");
-            }
+        Value &TimeBasedValue::operator=(double value) {
+            throw DataTypeException("operator can not be applied to TimeBasedValue type");
+        }
 
-            Value &TimeBasedValue::operator=(float value) {
-                throw Exception::CLDENonSupportedFunctionException("operator can not be applied to TimeBasedValue type");
-            }
+        Value &TimeBasedValue::operator=(float value) {
+            throw DataTypeException("operator can not be applied to TimeBasedValue type");
+        }
 
-            Value &TimeBasedValue::operator=(int16 value) {
-                throw Exception::CLDENonSupportedFunctionException("operator can not be applied to TimeBasedValue type");
-            }
+        Value &TimeBasedValue::operator=(int16 value) {
+            throw DataTypeException("operator can not be applied to TimeBasedValue type");
+        }
 
-            Value &TimeBasedValue::operator=(int32 value) {
-                throw Exception::CLDENonSupportedFunctionException("operator can not be applied to TimeBasedValue type");
-            }
+        Value &TimeBasedValue::operator=(int32 value) {
+            throw DataTypeException("operator can not be applied to TimeBasedValue type");
+        }
 
-            Value &TimeBasedValue::operator=(int64 value) {
-                throw Exception::CLDENonSupportedFunctionException("operator can not be applied to TimeBasedValue type");
-            }
+        Value &TimeBasedValue::operator=(int64 value) {
+            throw DataTypeException("operator can not be applied to TimeBasedValue type");
+        }
 
-            Value &TimeBasedValue::operator=(uint16 value) {
-                throw Exception::CLDENonSupportedFunctionException("operator can not be applied to TimeBasedValue type");
-            }
+        Value &TimeBasedValue::operator=(uint16 value) {
+            throw DataTypeException("operator can not be applied to TimeBasedValue type");
+        }
 
-            Value &TimeBasedValue::operator=(uint32 value) {
-                throw Exception::CLDENonSupportedFunctionException("operator can not be applied to TimeBasedValue type");
-            }
+        Value &TimeBasedValue::operator=(uint32 value) {
+            throw DataTypeException("operator can not be applied to TimeBasedValue type");
+        }
 
-            Value &TimeBasedValue::operator=(uint64 value) {
-                throw Exception::CLDENonSupportedFunctionException("operator can not be applied to TimeBasedValue type");
-            }
+        Value &TimeBasedValue::operator=(uint64 value) {
+            throw DataTypeException("operator can not be applied to TimeBasedValue type");
         }
     }
 }

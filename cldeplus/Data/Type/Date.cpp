@@ -17,69 +17,67 @@ limitations under the License.
 */
 
 #include "Date.h"
-#include "cldeNonSupportedFunctionException.h"
-#include "cldeNotImplementedException.h"
+#include "../DataTypeException.h"
 #include "../Helper/TimeBasedHelper.h"
+#include "../../Exceptions/NotImplementedException.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
-            namespace Type {
+    namespace Data {
+        namespace Type {
 
-                Date::Date()
-                        : TimeBasedValue{ValueType::Date, sizeof(TimeBasedValue::TSDate)} {
-                    //
-                }
+            Date::Date()
+                    : TimeBasedValue{ValueType::Date, sizeof(TimeBasedValue::TSDate)} {
+                //
+            }
 
-                Date::Date(int year, int month, int day)
-                        : TimeBasedValue{ValueType::Date, sizeof(TimeBasedValue::TSDate)} {
-                    _date.year = year;
-                    _date.month = month;
-                    _date.day = day;
-                }
+            Date::Date(int year, int month, int day)
+                    : TimeBasedValue{ValueType::Date, sizeof(TimeBasedValue::TSDate)} {
+                _date.year = year;
+                _date.month = month;
+                _date.day = day;
+            }
 
-                void *Date::PointerToBuffer() {
-                    return &_date;
-                }
+            void *Date::PointerToBuffer() {
+                return &_date;
+            }
 
-                string Date::ToString() const {
-                    return Data::Helper::TimeBasedHelper::DateToISO8601String(_date);
-                }
+            string Date::ToString() const {
+                return Data::Helper::TimeBasedHelper::DateToISO8601String(_date);
+            }
 
-                Value &Date::operator+(Value const &rhs) {
-                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
-                }
+            Value &Date::operator+(Value const &rhs) {
+                throw DataTypeException("operator% can not be applied to DateTime type");
+            }
 
-                Value &Date::operator-(Value const &rhs) {
-                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
-                }
+            Value &Date::operator-(Value const &rhs) {
+                throw DataTypeException("operator% can not be applied to DateTime type");
+            }
 
-                Value &Date::operator*(Value const &rhs) {
-                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
-                }
+            Value &Date::operator*(Value const &rhs) {
+                throw DataTypeException("operator% can not be applied to DateTime type");
+            }
 
-                Value &Date::operator/(Value const &rhs) {
-                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
-                }
+            Value &Date::operator/(Value const &rhs) {
+                throw DataTypeException("operator% can not be applied to DateTime type");
+            }
 
-                Value &Date::operator%(Value const &rhs) {
-                    throw Exception::CLDENonSupportedFunctionException("operator% can not be applied to DateTime type");
-                }
+            Value &Date::operator%(Value const &rhs) {
+                throw DataTypeException("operator% can not be applied to DateTime type");
+            }
 
-                bool Date::LessThan(Common::IComparable const &target) const {
-                    string msg{"LessThan"};
-                    throw Exception::CLDENotImplementedException{msg};
-                }
+            bool Date::LessThan(IComparable const &target) const {
+                string msg{"LessThan"};
+                throw Exceptions::NotImplementedException{msg};
+            }
 
-                bool Date::GreaterThan(Common::IComparable const &target) const {
-                    string msg{"GreaterThan"};
-                    throw Exception::CLDENotImplementedException{msg};
-                }
+            bool Date::GreaterThan(IComparable const &target) const {
+                string msg{"GreaterThan"};
+                throw Exceptions::NotImplementedException{msg};
+            }
 
-                bool Date::EquivalentTo(Common::IComparable const &target) const {
-                    string msg{"EquivalentTo"};
-                    throw Exception::CLDENotImplementedException{msg};
-                }
+            bool Date::EquivalentTo(IComparable const &target) const {
+                string msg{"EquivalentTo"};
+                throw Exceptions::NotImplementedException{msg};
             }
         }
     }

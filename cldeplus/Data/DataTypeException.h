@@ -16,23 +16,27 @@ limitations under the License.
 
 */
 
-#include "NumericValue.h"
+#ifndef CLDEPLUS_DATA_DATATYPEEXCEPTION_H
+#define CLDEPLUS_DATA_DATATYPEEXCEPTION_H
+
+#include "../Exception.h"
 
 namespace CLDEPlus {
     namespace Data {
 
-        NumericValue::NumericValue(ValueType dataType, size_t size)
-                : Value(dataType, size) {
-            //
-        }
+        class DataTypeException : public Exception {
 
-        ValueCategory NumericValue::_category = ValueCategory::Numeric;
+            static string const _name;
 
-        const ValueCategory &NumericValue::getCategory() const { return _category; }
+        public:
+            explicit DataTypeException(char const *message) : Exception(message) { };
+            explicit DataTypeException(string const &message) : Exception(message) {};
+            virtual ~DataTypeException() = default;
 
-        bool NumericValue::isNumeric() const { return true; }
-
+            // CLDEException
+            virtual const string &Name() const noexcept override;
+        };
     }
 }
 
-
+#endif //CLDEPLUS_DATA_DATATYPEEXCEPTION_H

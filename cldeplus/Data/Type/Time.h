@@ -16,54 +16,46 @@ limitations under the License.
 
 */
 
-#ifndef CLDEPLUS_FOUNDATION_DATA_TYPE_TIME_H
-#define CLDEPLUS_FOUNDATION_DATA_TYPE_TIME_H
+#ifndef CLDEPLUS_DATA_TYPE_TIME_H
+#define CLDEPLUS_DATA_TYPE_TIME_H
 
 #include "../TimeBasedValue.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
-            namespace Type {
+    namespace Data {
+        namespace Type {
 
-                class Time : public TimeBasedValue {
+            class Time : public Data::TimeBasedValue {
 
-                    TimeBasedValue::TSTime _time;
-                    bool _hasOffSet = false;
+                TimeBasedValue::TSTime _time;
+                bool _hasOffSet = false;
 
-                public:
-                    Time(int hour, int minute, int second, int millisecond = 0,
-                         bool hasOffSet = false, int offset = 0);
+            public:
+                Time(int hour, int minute, int second, int millisecond = 0, bool hasOffSet = false, int offset = 0);
+                Time();
+                ~Time() = default;
 
-                    Time();
-                    Time(Time const &) = default;
-                    Time(Time &&) = default;
-                    Time &operator=(Time const &) = default;
-                    Time &operator=(Time &&) = default;
-                    ~Time() = default;
+                // Value
+                virtual void *PointerToBuffer() override;
 
-                    // Value
-                    virtual void *PointerToBuffer() override;
+                // IPrintable
+                virtual string ToString() const override;
 
-                    // IPrintable
-                    virtual string ToString() const override;
+                // IComputable
+                virtual Value &operator+(Value const &rhs) override;
+                virtual Value &operator-(Value const &rhs) override;
+                virtual Value &operator*(Value const &rhs) override;
+                virtual Value &operator/(Value const &rhs) override;
+                virtual Value &operator%(Value const &rhs) override;
 
-                    // IComputable
-                    virtual Value &operator+(Value const &rhs) override;
-                    virtual Value &operator-(Value const &rhs) override;
-                    virtual Value &operator*(Value const &rhs) override;
-                    virtual Value &operator/(Value const &rhs) override;
-                    virtual Value &operator%(Value const &rhs) override;
-
-                    // IComparable
-                    virtual bool LessThan(const Common::IComparable &target) const override;
-                    virtual bool GreaterThan(const Common::IComparable &target) const override;
-                    virtual bool EquivalentTo(const Common::IComparable &target) const override;
-                };
-            }
+                // IComparable
+                virtual bool LessThan( IComparable const&target) const override;
+                virtual bool GreaterThan( IComparable const&target) const override;
+                virtual bool EquivalentTo( IComparable const&target) const override;
+            };
         }
     }
 }
 
 
-#endif //CLDEPLUS_FOUNDATION_DATA_TYPE_TIME_H
+#endif //CLDEPLUS_DATA_TYPE_TIME_H

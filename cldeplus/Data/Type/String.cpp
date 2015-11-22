@@ -19,31 +19,29 @@ limitations under the License.
 #include "String.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
-            namespace Type {
+    namespace Data {
+        namespace Type {
 
-                String::String(string const &string)
-                        : _value(string), CharacterValue(ValueType::String, string.length() + 1) {
-                    //
-                }
+            String::String(string const &string)
+                    : _value(string), CharacterValue(ValueType::String, string.length() + 1) {
+                //
+            }
 
-                String::String(unsigned long size)
-                        : CharacterValue{ValueType::String, size} {
-                    _value.reserve(size);
-                }
+            String::String(unsigned long size)
+                    : CharacterValue{ValueType::String, size} {
+                _value.reserve(size);
+            }
 
-                void *String::PointerToBuffer() {
-                    return &_value;
-                }
+            void *String::PointerToBuffer() {
+                return &_value;
+            }
 
-                size_t String::getActualSize() {
-                    return _value.length() + 1;
-                }
+            size_t String::getActualSize() {
+                return _value.length() + 1;
+            }
 
-                string String::ToString() const {
-                    return _value;
-                }
+            string String::ToString() const {
+                return _value;
             }
         }
     }

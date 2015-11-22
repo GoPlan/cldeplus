@@ -16,8 +16,12 @@ limitations under the License.
 
 */
 
-#include "Blob.h"
+#include "NotImplementedException.h"
 
-
+namespace CLDEPlus {
+    namespace Exceptions {
+        string const NotImplementedException::_name{"NotImplementedException"};
+    }
+}
 
 

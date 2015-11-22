@@ -16,64 +16,89 @@ limitations under the License.
 
 */
 
-#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUE_H
-#define CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUE_H
+#ifndef CLDECPLUS_VALUE_H
+#define CLDECPLUS_VALUE_H
 
-#include "Portable.h"
-#include "ValueEnums.h"
-#include "../Common/IPrintable.h"
-#include "../Common/IComputable.h"
-#include "../Common/IPrimitiveAssignable.h"
+#include "CldePlus-Portable.h"
+#include "CldePlus-Commons.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
 
-            class Value : public Common::IPrintable {
+    enum class ValueCategory {
+        Numeric,
+        DateTime,
+        CharacterBased,
+        Mathematic,
+        UserDefined
+    };
 
-            public:
-                Value(ValueType dataType, size_t size);
+    enum class ValueType {
+        Boolean,
+        Byte,
+        Blob,
+        Int16,
+        Int32,
+        Int64,
+        UInt16,
+        UInt32,
+        UInt64,
+        Double,
+        Float,
+        String,
+        VarChar,
+        Text,
+        Currency,
+        DateTime,
+        Date,
+        Time,
+        Point,
+        Matrix
+    };
 
-                virtual size_t getActualSize() { return _actualSize; }
-                virtual const ValueCategory &getCategory() const = 0;
-                virtual bool isNumeric() const = 0;
-                virtual void *PointerToBuffer() = 0;
-                virtual void *PointerToActualSizeVar() { return &_actualSize; };
+    class Value : public IPrintable {
 
-                //
-                void *PointerToReservedSizeVar() { return &_reservedSize; }
-                size_t getReservedSize() const { return _reservedSize; }
-                ValueType getDataType() const { return _dataType; }
+    public:
+        Value(ValueType dataType, size_t size);
 
-                //
-                virtual Value &operator+(Value const &rhs) = 0;
-                virtual Value &operator-(Value const &rhs) = 0;
-                virtual Value &operator*(Value const &rhs) = 0;
-                virtual Value &operator/(Value const &rhs) = 0;
-                virtual Value &operator%(Value const &rhs) = 0;
+        virtual size_t getActualSize() { return _actualSize; }
+        virtual const ValueCategory &getCategory() const = 0;
+        virtual bool isNumeric() const = 0;
+        virtual void *PointerToBuffer() = 0;
+        virtual void *PointerToActualSizeVar() { return &_actualSize; };
 
-                //
-                virtual Value &operator=(bool value) = 0;
-                virtual Value &operator=(double value) = 0;
-                virtual Value &operator=(float value) = 0;
-                virtual Value &operator=(int16 value) = 0;
-                virtual Value &operator=(int32 value) = 0;
-                virtual Value &operator=(int64 value) = 0;
-                virtual Value &operator=(uint16 value) = 0;
-                virtual Value &operator=(uint32 value) = 0;
-                virtual Value &operator=(uint64 value) = 0;
+        //
+        void *PointerToReservedSizeVar() { return &_reservedSize; }
+        size_t getReservedSize() const { return _reservedSize; }
+        ValueType getDataType() const { return _dataType; }
 
-            protected:
-                ValueType _dataType;
-                size_t _reservedSize;
-                size_t _actualSize;
+        //
+        virtual Value &operator+(Value const &rhs) = 0;
+        virtual Value &operator-(Value const &rhs) = 0;
+        virtual Value &operator*(Value const &rhs) = 0;
+        virtual Value &operator/(Value const &rhs) = 0;
+        virtual Value &operator%(Value const &rhs) = 0;
 
-            };
+        //
+        virtual Value &operator=(bool value) = 0;
+        virtual Value &operator=(double value) = 0;
+        virtual Value &operator=(float value) = 0;
+        virtual Value &operator=(int16 value) = 0;
+        virtual Value &operator=(int32 value) = 0;
+        virtual Value &operator=(int64 value) = 0;
+        virtual Value &operator=(uint16 value) = 0;
+        virtual Value &operator=(uint32 value) = 0;
+        virtual Value &operator=(uint64 value) = 0;
 
-            using SPtrValue = shared_ptr<Value>;
-        }
-    }
+    protected:
+        ValueType _dataType;
+        size_t _reservedSize;
+        size_t _actualSize;
+
+    };
+
+    using SPtrValue = shared_ptr<Value>;
+    using UptrValue = unique_ptr<Value>;
 }
 
 
-#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_VALUE_H
+#endif //CLDECPLUS_VALUE_H

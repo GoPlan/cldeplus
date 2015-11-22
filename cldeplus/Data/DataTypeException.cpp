@@ -16,6 +16,17 @@ limitations under the License.
 
 */
 
-#include "ValueEnums.h"
+#include "DataTypeException.h"
+
+namespace CLDEPlus {
+    namespace Data {
+
+        string const DataTypeException::_name{"DataTypeException"};
+
+        string const &DataTypeException::Name() const noexcept {
+            return _name;
+        }
+    }
+}
 
 

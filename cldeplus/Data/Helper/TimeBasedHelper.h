@@ -16,25 +16,22 @@ limitations under the License.
 
 */
 
-#ifndef CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
-#define CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
+#ifndef CLDEPLUS_DATA_HELPER_TIMEBASEDHELPER_H
+#define CLDEPLUS_DATA_HELPER_TIMEBASEDHELPER_H
 
-#include "Portable.h"
 #include "../TimeBasedValue.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
-            namespace Helper {
-                struct TimeBasedHelper {
-                    static string DateToISO8601String(const TimeBasedValue::TSDate &date);
-                    static string TimeToISO8601String(const TimeBasedValue::TSTime &time, bool hasMilliSecs = true, bool hasOffSet = true);
-                    static string DateTimeToISO8601String(const TimeBasedValue::TSDateTime &dateTime, bool hasMilliSecs = true, bool hasOffSet = true);
-                };
-            }
+    namespace Data {
+        namespace Helper {
+            struct TimeBasedHelper {
+                static string DateToISO8601String(const TimeBasedValue::TSDate &date);
+                static string TimeToISO8601String(const TimeBasedValue::TSTime &time, bool hasMilliSecs = true, bool hasOffSet = true);
+                static string DateTimeToISO8601String(const TimeBasedValue::TSDateTime &dateTime, bool hasMilliSecs = true, bool hasOffSet = true);
+            };
         }
     }
 }
 
 
-#endif //CLDEPLUS_FOUNDATION_DATA_HELPER_TIMEBASEDHELPER_H
+#endif //CLDEPLUS_DATA_HELPER_TIMEBASEDHELPER_H

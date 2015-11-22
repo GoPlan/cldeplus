@@ -21,96 +21,94 @@ limitations under the License.
 #include "VarChar.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
-            namespace Type {
+    namespace Data {
+        namespace Type {
 
-                VarChar::VarChar(size_t length)
-                        : CharacterValue(ValueType::VarChar, sizeof(char) * (length + 1)) {
-                    init();
-                }
+            VarChar::VarChar(size_t length)
+                    : CharacterValue(ValueType::VarChar, sizeof(char) * (length + 1)) {
+                init();
+            }
 
-                VarChar::VarChar(string const &value)
-                        : VarChar(value.c_str()) {
-                    //
-                }
+            VarChar::VarChar(string const &value)
+                    : VarChar(value.c_str()) {
+                //
+            }
 
-                VarChar::VarChar(char const *value)
-                        : CharacterValue(ValueType::VarChar, sizeof(char) * (strlen(value) + 1)) {
-                    init(value);
-                }
+            VarChar::VarChar(char const *value)
+                    : CharacterValue(ValueType::VarChar, sizeof(char) * (strlen(value) + 1)) {
+                init(value);
+            }
 
-                VarChar::VarChar(VarChar const &varchar)
-                        : CharacterValue(ValueType::VarChar, sizeof(char) * (strlen(varchar._value) + 1)),
-                          _value{strdup(varchar._value)} {
-                    //
-                }
+            VarChar::VarChar(VarChar const &varchar)
+                    : CharacterValue(ValueType::VarChar, sizeof(char) * (strlen(varchar._value) + 1)),
+                      _value{strdup(varchar._value)} {
+                //
+            }
 
-                VarChar::VarChar(VarChar &&varchar)
-                        : CharacterValue(ValueType::VarChar, sizeof(char) * (strlen(varchar._value) + 1)),
-                          _value{varchar._value} {
-                    varchar._reservedSize = 0;
-                    varchar._value = nullptr;
-                }
+            VarChar::VarChar(VarChar &&varchar)
+                    : CharacterValue(ValueType::VarChar, sizeof(char) * (strlen(varchar._value) + 1)),
+                      _value{varchar._value} {
+                varchar._reservedSize = 0;
+                varchar._value = nullptr;
+            }
 
-                VarChar &VarChar::operator=(VarChar const &varchar) {
+            VarChar &VarChar::operator=(VarChar const &varchar) {
 
-                    if (this == &varchar)
-                        return *this;
-
-                    if (_value != nullptr && _value != NULL) {
-                        memset(_value, 0x0, _reservedSize);
-                        free(_value);
-                        _value = nullptr;
-                    }
-
-                    _dataType = varchar._dataType;
-                    _reservedSize = varchar._reservedSize;
-                    _value = strdup(varchar._value);
-
+                if (this == &varchar)
                     return *this;
+
+                if (_value != nullptr && _value != NULL) {
+                    memset(_value, 0x0, _reservedSize);
+                    free(_value);
+                    _value = nullptr;
                 }
 
-                VarChar &VarChar::operator=(VarChar &&varchar) {
+                _dataType = varchar._dataType;
+                _reservedSize = varchar._reservedSize;
+                _value = strdup(varchar._value);
 
-                    if (_value != nullptr && _value != NULL) {
-                        memset(_value, 0x0, _reservedSize);
-                        free(_value);
-                        _value = nullptr;
-                    }
+                return *this;
+            }
 
-                    _dataType = std::move(varchar._dataType);
-                    _reservedSize = std::move(varchar._reservedSize);
-                    _value = std::move(varchar._value);
+            VarChar &VarChar::operator=(VarChar &&varchar) {
 
-                    return *this;
+                if (_value != nullptr && _value != NULL) {
+                    memset(_value, 0x0, _reservedSize);
+                    free(_value);
+                    _value = nullptr;
                 }
 
-                VarChar::~VarChar() {
-                    if (_value != nullptr && _value != NULL) {
-                        free(_value);
-                    }
-                }
+                _dataType = std::move(varchar._dataType);
+                _reservedSize = std::move(varchar._reservedSize);
+                _value = std::move(varchar._value);
 
-                string VarChar::ToString() const {
-                    return string(_value);
-                }
+                return *this;
+            }
 
-                void *VarChar::PointerToBuffer() {
-                    return _value;
+            VarChar::~VarChar() {
+                if (_value != nullptr && _value != NULL) {
+                    free(_value);
                 }
+            }
 
-                size_t VarChar::getActualSize() {
-                    return strlen(_value) + 1;
-                }
+            string VarChar::ToString() const {
+                return string(_value);
+            }
 
-                void VarChar::init() {
-                    _value = (char *) calloc(_reservedSize, sizeof(char));
-                }
+            void *VarChar::PointerToBuffer() {
+                return _value;
+            }
 
-                void VarChar::init(char const *value) {
-                    _value = strdup(value);
-                }
+            size_t VarChar::getActualSize() {
+                return strlen(_value) + 1;
+            }
+
+            void VarChar::init() {
+                _value = (char *) calloc(_reservedSize, sizeof(char));
+            }
+
+            void VarChar::init(char const *value) {
+                _value = strdup(value);
             }
         }
     }

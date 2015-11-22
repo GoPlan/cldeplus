@@ -16,42 +16,39 @@ limitations under the License.
 
 */
 
-#ifndef CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_TEXT_H
-#define CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_TEXT_H
+#ifndef CLDEPLUS_DATA_TYPE_TEXT_H
+#define CLDEPLUS_DATA_TYPE_TEXT_H
 
-#include "Portable.h"
 #include "../CharacterValue.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
-            namespace Type {
+    namespace Data {
+        namespace Type {
 
-                class Text : public CharacterValue {
+            class Text : public Data::CharacterValue {
 
-                    char *_buffer = nullptr;
+                char *_buffer = nullptr;
 
-                public:
-                    explicit Text(string const &text);
-                    explicit Text(char const *text);
-                    explicit Text(unsigned long length);
-                    Text(Text const &) = default;
-                    Text(Text &&) = default;
-                    Text &operator=(Text const &) = default;
-                    Text &operator=(Text &&) = default;
-                    ~Text();
+            public:
+                explicit Text(string const &text);
+                explicit Text(char const *text);
+                explicit Text(unsigned long length);
+                Text(Text const &) = default;
+                Text(Text &&) = default;
+                Text &operator=(Text const &) = default;
+                Text &operator=(Text &&) = default;
+                ~Text();
 
-                    // Value
-                    virtual void *PointerToBuffer() override;
-                    virtual size_t getActualSize() override;
+                // Value
+                virtual void *PointerToBuffer() override;
+                virtual size_t getActualSize() override;
 
-                    // IPrintable
-                    virtual string ToString() const override;
-                };
-            }
+                // IPrintable
+                virtual string ToString() const override;
+            };
         }
     }
 }
 
 
-#endif //CLOUD_E_CPLUS_FOUNDATION_DATA_TYPE_TEXT_H
+#endif //CLDEPLUS_DATA_TYPE_TEXT_H

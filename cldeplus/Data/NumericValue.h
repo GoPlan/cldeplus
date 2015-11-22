@@ -16,34 +16,31 @@ limitations under the License.
 
 */
 
-#ifndef CLOUD_E_CPLUS_FOUNDATION_TYPE_NUMERICVALUE_H
-#define CLOUD_E_CPLUS_FOUNDATION_TYPE_NUMERICVALUE_H
+#ifndef CLDEPLUS_DATA_NUMERICVALUE_H
+#define CLDEPLUS_DATA_NUMERICVALUE_H
 
-#include "../Common/IComputable.h"
-#include "Value.h"
+#include "../Value.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
+    namespace Data {
 
-            class NumericValue : public Value {
+        class NumericValue : public Value {
 
-                static ValueCategory _category;
+            static ValueCategory _category;
 
-            public:
-                NumericValue(ValueType dataType, size_t size);
-                NumericValue(NumericValue const &) = default;
-                NumericValue(NumericValue &&) = default;
-                NumericValue &operator=(NumericValue const &) = default;
-                NumericValue &operator=(NumericValue &&) = default;
-                virtual ~NumericValue() = default;
+        public:
+            NumericValue(ValueType dataType, size_t size);
+            NumericValue(NumericValue const &) = default;
+            NumericValue(NumericValue &&) = default;
+            NumericValue &operator=(NumericValue const &) = default;
+            NumericValue &operator=(NumericValue &&) = default;
+            virtual ~NumericValue() = default;
 
-                const ValueCategory &getCategory() const override;
-                bool isNumeric() const override;
-            };
-        }
+            const ValueCategory &getCategory() const override;
+            bool isNumeric() const override;
+        };
     }
 }
 
 
-#endif //CLOUD_E_CPLUS_FOUNDATION_TYPE_NUMERICVALUE_H
+#endif //CLDEPLUS_DATA_NUMERICVALUE_H

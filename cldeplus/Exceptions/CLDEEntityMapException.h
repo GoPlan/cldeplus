@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLDEPLUS_FOUNDATION_EXCEPTION_CLDEENTITYMAPEXCEPTION_H
 #define CLDEPLUS_FOUNDATION_EXCEPTION_CLDEENTITYMAPEXCEPTION_H
 
-#include "cldeException.h"
+#include "Exception.h"
 
 namespace CLDEPlus {
     namespace Foundation {

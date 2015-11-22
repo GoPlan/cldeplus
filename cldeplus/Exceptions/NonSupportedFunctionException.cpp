@@ -16,8 +16,10 @@ limitations under the License.
 
 */
 
-#include "Currency.h"
+#include "NonSupportedFunctionException.h"
 
-
-
-
+namespace CLDEPlus {
+    namespace Exceptions {
+        string const NonSupportedFunctionException::_name{"CLDENonSupportedFunctionException"};
+    }
+}

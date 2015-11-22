@@ -19,7 +19,7 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEENTITYSTOREROUTINEEXCEPTION_H
 #define CLOUD_E_CPLUS_FOUNDATION_EXCEPTION_CLDEENTITYSTOREROUTINEEXCEPTION_H
 
-#include "cldeException.h"
+#include "Exception.h"
 
 namespace CLDEPlus {
     namespace Foundation {

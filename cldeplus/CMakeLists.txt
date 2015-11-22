@@ -1,15 +1,47 @@
 
+
 # FOUNDATION SOURCE
 set(FOUNDATION_SOURCE
-        Cell.cpp
-        Column.cpp
-        Entity.cpp
-        EntityMap.cpp
-        EntityProxy.cpp
-        EntityQuery.cpp
-        EntitySourceDriver.cpp
-        EntityStore.cpp
-        Identity.cpp)
+        Exception.cpp
+        Exceptions/NonSupportedFunctionException.cpp
+        Exceptions/NotImplementedException.cpp
+        Value.cpp
+        ValueFactory.cpp
+        Primitive.cpp
+        Data/DataTypeException.cpp
+        Data/NumericValue.cpp
+        Data/CharacterValue.cpp
+        Data/TimeBasedValue.cpp
+        Data/Type/Boolean.cpp
+        Data/Type/Byte.cpp
+        Data/Type/Date.cpp
+        Data/Type/DateTime.cpp
+        Data/Type/Double.cpp
+        Data/Type/Float.cpp
+        Data/Type/Int16.cpp
+        Data/Type/Int32.cpp
+        Data/Type/Int64.cpp
+        Data/Type/UInt16.cpp
+        Data/Type/UInt32.cpp
+        Data/Type/UInt64.cpp
+        Data/Type/String.cpp
+        Data/Type/Text.cpp
+        Data/Type/Time.cpp
+        Data/Type/UInt16.cpp
+        Data/Type/UInt32.cpp
+        Data/Type/UInt64.cpp
+        Data/Type/VarChar.cpp
+        Data/Helper/TimeBasedHelper.cpp
+        #        Cell.cpp
+        #        Column.cpp
+        #        Entity.cpp
+        #        EntityMap.cpp
+        #        EntityProxy.cpp
+        #        EntityQuery.cpp
+        #        EntitySourceDriver.cpp
+        #        EntityStore.cpp
+        #        Identity.cpp
+        )
 
 
 # MAIN TARGETS
