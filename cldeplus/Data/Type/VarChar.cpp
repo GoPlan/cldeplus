@@ -91,7 +91,7 @@ namespace CLDEPlus {
                 }
             }
 
-            string VarChar::ToString() const {
+            string VarChar::CopyToString() const {
                 return string(_value);
             }
 

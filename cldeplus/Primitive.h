@@ -20,6 +20,7 @@ limitations under the License.
 #define CLDEPLUS_PRIMITIVE_H
 
 #include "CldePlus-Portable.h"
+#include "Exception.h"
 #include "Value.h"
 #include "ValueFactory.h"
 
@@ -127,6 +128,22 @@ namespace CLDEPlus {
         Primitive(uint64 value) : _value{value} { };
         SPtrValue ToValue() const { return ValueFactory::CreateUInt64(_value); };
         SPtrValue operator()() const { return ToValue(); }
+    };
+
+    struct PrimitiveHelper {
+
+        template<typename T>
+        static T ToPrimitive(SPtrValue const &value) {
+
+            if (!value->isNumeric() || value->getCategory() != ValueCategory::Numeric) {
+                string msg{"Value is not numeric"};
+                throw Exception{msg};
+            }
+
+            T const *ptrResult = reinterpret_cast<const T *>(value->PointerToBuffer());
+
+            return *ptrResult;
+        };
     };
 }
 

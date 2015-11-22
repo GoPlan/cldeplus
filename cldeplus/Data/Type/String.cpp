@@ -40,7 +40,7 @@ namespace CLDEPlus {
                 return _value.length() + 1;
             }
 
-            string String::ToString() const {
+            string String::CopyToString() const {
                 return _value;
             }
         }

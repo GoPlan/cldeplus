@@ -39,7 +39,7 @@ namespace CLDEPlus {
                 virtual void *PointerToBuffer() override;
 
                 // IPrintable
-                virtual string ToString() const override;
+                virtual string CopyToString() const override;
 
                 // IComputable
                 virtual Value &operator+(Value const &rhs) override;

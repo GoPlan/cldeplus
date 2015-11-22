@@ -33,7 +33,7 @@ namespace CLDEPlus {
                 return &_value;
             }
 
-            string Boolean::ToString() const {
+            string Boolean::CopyToString() const {
                 return std::to_string(_value);
             }
 

@@ -16,36 +16,20 @@ limitations under the License.
 
 */
 
-#ifndef CLDEPLUS_FOUNDATION_DATA_HELPER_PRIMITIVEHELPER_H
-#define CLDEPLUS_FOUNDATION_DATA_HELPER_PRIMITIVEHELPER_H
+#ifndef CLDEPLUS_DATA_HELPER_PRIMITIVEHELPER_H
+#define CLDEPLUS_DATA_HELPER_PRIMITIVEHELPER_H
 
 #include "../Value.h"
-#include "../../Exception/cldeNonSupportedDataTypeException.h"
+#include "../DataTypeException.h
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Data {
-            namespace Helper {
+    namespace Data {
+        namespace Helper {
 
-                struct PrimitiveHelper {
 
-                    template<typename T>
-                    static T ToPrimitive(SPtrValue const &value) {
-
-                        if (!value->isNumeric() || value->getCategory() != ValueCategory::Numeric) {
-                            string msg{"Value is not numeric"};
-                            throw Exception::CLDENonSupportedDataTypeException{msg};
-                        }
-
-                        T const *ptrResult = reinterpret_cast<const T *>(value->PointerToBuffer());
-
-                        return *ptrResult;
-                    };
-                };
-            }
         }
     }
 }
 
 
-#endif //CLDEPLUS_FOUNDATION_DATA_HELPER_PRIMITIVEHELPER_H
+#endif //CLDEPLUS_DATA_HELPER_PRIMITIVEHELPER_H

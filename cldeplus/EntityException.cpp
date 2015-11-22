@@ -16,13 +16,10 @@ limitations under the License.
 
 */
 
-#include "Identity.h"
+#include "EntityException.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
 
-        Identity::Identity(vector<SPtrCell> const &sptrCells) {
-            Store::AbstractEntity::setMultiCells(sptrCells);
-        }
-    }
+    string const EntityException::_name = "EntityException";
+
 }

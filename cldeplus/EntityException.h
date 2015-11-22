@@ -16,14 +16,26 @@ limitations under the License.
 
 */
 
-#include "cldeNotImplementedException.h"
+#ifndef CLDEPLUS_ENTITYEXCEPTION_H
+#define CLDEPLUS_ENTITYEXCEPTION_H
+
+#include "Exception.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Exception {
-            const string CLDENotImplementedException::_name{"CLDENotImplementedException"};
-        }
-    }
+
+    class EntityException : public Exception {
+
+        static const string _name;
+
+    public:
+        explicit EntityException(char const *message) : Exception(message) { };
+        explicit EntityException(string const &message) : Exception(message) { };
+        ~EntityException() = default;
+
+        // Exception
+        virtual const string &Name() const noexcept override { return _name; };
+    };
 }
 
 
+#endif //CLDEPLUS_ENTITYEXCEPTION_H

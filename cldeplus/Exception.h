@@ -21,15 +21,15 @@ limitations under the License.
 
 #include "CldePlus-Portable.h"
 
-namespace CLDEPlus
-{
+namespace CLDEPlus {
     class Exception : public exception {
 
         mutable string _message;
+        string _name;
 
     public:
-        explicit Exception(string const &message) : _message{message} { };
-        explicit Exception(char const *message) : _message(message) { };
+        explicit Exception(string const &message) : _message{message}, _name{"Exception"} { };
+        explicit Exception(char const *message) : _message(message), _name{"Exception"} { };
         virtual ~Exception() = default;
 
         // Exception
@@ -45,7 +45,7 @@ namespace CLDEPlus
         };
 
         // Locals
-        virtual const string &Name() const noexcept = 0;
+        virtual const string &Name() const noexcept { return _name; };
     };
 }
 

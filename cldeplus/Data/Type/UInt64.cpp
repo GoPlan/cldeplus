@@ -31,7 +31,7 @@ namespace CLDEPlus {
                 return &this->_value;
             }
 
-            string UInt64::ToString() const {
+            string UInt64::CopyToString() const {
                 return std::to_string(_value);
             }
 

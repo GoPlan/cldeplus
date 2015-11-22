@@ -51,7 +51,7 @@ namespace CLDEPlus {
                 return strlen(_buffer) + 1;
             }
 
-            string Text::ToString() const {
+            string Text::CopyToString() const {
                 return string{_buffer};
             }
         }

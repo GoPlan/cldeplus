@@ -41,7 +41,7 @@ namespace CLDEPlus {
                 return &_date;
             }
 
-            string Date::ToString() const {
+            string Date::CopyToString() const {
                 return Data::Helper::TimeBasedHelper::DateToISO8601String(_date);
             }
 

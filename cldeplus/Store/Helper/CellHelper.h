@@ -16,19 +16,17 @@ limitations under the License.
 
 */
 
-#ifndef CLDEPLUS_CELLHELPER_H
-#define CLDEPLUS_CELLHELPER_H
+#ifndef CLDEPLUS_STORE_HELPER_CELLHELPER_H
+#define CLDEPLUS_STORE_HELPER_CELLHELPER_H
 
-#include "../../Cell.h"
+#include "../../EntityCell.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Store {
-            namespace Helper {
-                struct CellHelper {
-                    static SPtrCell CopySPtrCell(SPtrCell const &sptrCell);
-                };
-            }
+    namespace Store {
+        namespace Helper {
+            struct CellHelper {
+                static SPtrCell CopySPtrCell(SPtrCell const &sptrCell);
+            };
         }
     }
 }

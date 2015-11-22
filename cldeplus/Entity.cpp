@@ -17,23 +17,20 @@ limitations under the License.
 */
 
 #include "Entity.h"
-
-using namespace std;
+#include "EntityException.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
 
-        Entity::Entity(SPtrIdentity const &identity) : _identity(identity) {
+    Entity::Entity(SPtrIdentity const &identity) : _identity(identity) {
 
-            if (!identity) {
-                string msg{"Identity can not be nullptr or undefined"};
-                throw Exception::CLDEEntityException{msg};
-            }
+        if (!identity) {
+            string msg{"EntityIdentity can not be nullptr or undefined"};
+            throw EntityException{msg};
+        }
 
-            for (auto fieldPair : _identity->getCellsMap()) {
-                auto field = fieldPair.second;
-                setCell(field);
-            }
+        for (auto fieldPair : _identity->getCellsMap()) {
+            auto field = fieldPair.second;
+            setCell(field);
         }
     }
 }

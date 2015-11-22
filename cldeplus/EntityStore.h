@@ -20,7 +20,7 @@ limitations under the License.
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITYSTORE_H
 
 #include "CldePlus-Portable.h"
-#include "Identity.h"
+#include "EntityIdentity.h"
 #include "Entity.h"
 #include "EntityMap.h"
 

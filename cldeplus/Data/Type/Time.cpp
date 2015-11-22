@@ -44,7 +44,7 @@ namespace CLDEPlus {
                 return &_time;
             }
 
-            string Time::ToString() const {
+            string Time::CopyToString() const {
                 return Data::Helper::TimeBasedHelper::TimeToISO8601String(_time, true, _hasOffSet);
             }
 

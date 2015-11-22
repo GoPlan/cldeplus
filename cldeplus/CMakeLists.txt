@@ -3,6 +3,7 @@
 # FOUNDATION SOURCE
 set(FOUNDATION_SOURCE
         Exception.cpp
+        Exceptions/InvalidInputTypeException.cpp
         Exceptions/NonSupportedFunctionException.cpp
         Exceptions/NotImplementedException.cpp
         Value.cpp
@@ -33,15 +34,21 @@ set(FOUNDATION_SOURCE
         Data/Type/VarChar.cpp
         Data/Helper/TimeBasedHelper.cpp
         Data/Helper/ValueEnumsHelper.cpp
-        #        Cell.cpp
+        Data/Helper/ValueHelper.cpp
         EntityColumn.cpp
-        #        Entity.cpp
-        #        EntityMap.cpp
+        EntityCell.cpp
+        EntityException.cpp
+        EntityMap.cpp
+        DataRecord.cpp
+        Entity.cpp
+        EntityIdentity.cpp
+        Store/Helper/CellHelper.cpp
+
+
         #        EntityProxy.cpp
         #        EntityQuery.cpp
         #        EntitySourceDriver.cpp
         #        EntityStore.cpp
-        #        Identity.cpp
         )
 
 

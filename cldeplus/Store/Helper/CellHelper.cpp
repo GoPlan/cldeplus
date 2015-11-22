@@ -20,18 +20,16 @@ limitations under the License.
 #include "../../Data/Helper/ValueHelper.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
 
-        SPtrCell Store::Helper::CellHelper::CopySPtrCell(SPtrCell const &sptrCell) {
+    SPtrCell Store::Helper::CellHelper::CopySPtrCell(SPtrCell const &sptrCell) {
 
-            Data::SPtrValue sptrValue = Data::Helper::ValueHelper::CopySPtrValue(sptrCell->getValue());
-            SPtrColumn sptrColumn{new Column{*(sptrCell->getColumn())}};
+        SPtrValue sptrValue = Data::Helper::ValueHelper::CopySPtrValue(sptrCell->getValue());
+        SPtrColumn sptrColumn{new EntityColumn{*(sptrCell->getColumn())}};
 
-            SPtrCell sptrNewCell{new Cell{sptrColumn}};
-            sptrNewCell->setValue(sptrValue);
+        SPtrCell sptrNewCell{new EntityCell{sptrColumn}};
+        sptrNewCell->setValue(sptrValue);
 
-            return sptrNewCell;
-        }
+        return sptrNewCell;
     }
 }
 

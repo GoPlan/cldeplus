@@ -16,12 +16,10 @@ limitations under the License.
 
 */
 
-#include "cldeException.h"
+#include "EntityIdentity.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
-        namespace Exception {
-            //
-        }
+    EntityIdentity::EntityIdentity(vector<SPtrCell> const &sptrCells) {
+        DataRecord::setMultiCells(sptrCells);
     }
 }

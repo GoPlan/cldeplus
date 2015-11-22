@@ -72,8 +72,8 @@ namespace CLDEPlus {
     };
 
     struct IPrintable {
-        virtual string ToString() const = 0;
-        virtual string ToString(IFormatter const &formatter) const { return formatter.Format(*this); };
+        virtual string CopyToString() const = 0;
+        virtual string CopyToString(IFormatter const &formatter) const { return formatter.Format(*this); };
     };
 }
 

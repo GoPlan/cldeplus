@@ -31,7 +31,7 @@ namespace CLDEPlus {
         //
     }
 
-    string EntityColumn::ToString() const {
+    string EntityColumn::CopyToString() const {
         string result{_name + "(" + Data::Helper::ValueEnumsHelper::CopyValueTypeToString(_dataType) +
                       "[" + std::to_string(_length) + "]" + ")"};
         return result;

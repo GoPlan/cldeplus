@@ -32,7 +32,7 @@ namespace CLDEPlus {
                 return &_value;
             }
 
-            string Float::ToString() const {
+            string Float::CopyToString() const {
                 return std::to_string(_value);
             }
 

@@ -19,49 +19,42 @@ limitations under the License.
 #ifndef CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 #define CLOUD_E_CPLUS_FOUNDATION_ENTITY_H
 
-#include "../Portable/CommonTypes.h"
-#include "Cell.h"
-#include "Identity.h"
-#include "cldeEntityException.h"
-#include "Store/AbstractEntity.h"
+#include "CldePlus-Portable.h"
+#include "DataRecord.h"
+#include "EntityCell.h"
+#include "EntityIdentity.h"
 
 namespace CLDEPlus {
-    namespace Foundation {
 
-        class Entity : public Store::AbstractEntity {
+    class Entity : public DataRecord {
 
-            SPtrIdentity _identity;
+        SPtrCellMap _cellMap;
+        SPtrIdentity _identity;
 
-        public:
-            explicit Entity(SPtrIdentity const &identity);
-            Entity(Entity const &) = default;
-            Entity(Entity &&) = default;
-            Entity &operator=(Entity const &) = default;
-            Entity &operator=(Entity &&) = default;
-            ~Entity() = default;
+    public:
+        explicit Entity(SPtrIdentity const &identity);
+        Entity(Entity const &) = default;
+        Entity(Entity &&) = default;
+        Entity &operator=(Entity const &) = default;
+        Entity &operator=(Entity &&) = default;
+        ~Entity() = default;
 
-            // Locals
-            SPtrIdentity const &getIdentity() { return _identity; }
+        // Locals
+        SPtrIdentity const &getIdentity() { return _identity; }
 
-            template<class TEntity>
-            TEntity NamedEntity(std::function<TEntity(Entity const &)> converter) { return converter(*this); };
+        template<class TEntity>
+        TEntity NamedEntity(std::function<TEntity(Entity const &)> converter) { return converter(*this); };
 
-            // Factory methods
-            static unique_ptr<Entity> CreateUnique(SPtrIdentity const &identity) {
-                return cldeplus_make_unique<Entity>(identity);
-            }
-            static shared_ptr<Entity> CreateShared(SPtrIdentity const &identity) {
-                return cldeplus_make_shared<Entity>(identity);
-            }
-        };
+        // Factory methods
+        static unique_ptr<Entity> CreateUnique(SPtrIdentity const &identity) { return cldeplus_make_unique<Entity>(identity); }
+        static shared_ptr<Entity> CreateShared(SPtrIdentity const &identity) { return cldeplus_make_shared<Entity>(identity); }
+    };
 
-        using UPtrEntity = unique_ptr<Entity>;
-        using SPtrEntity = shared_ptr<Entity>;
-        using SPtrEntityVector = vector<SPtrEntity>;
-        using SPtrEntityList = list<SPtrEntity>;
-        using SPtrEntitySet = set<SPtrEntity>;
-
-    }
+    using UPtrEntity = unique_ptr<Entity>;
+    using SPtrEntity = shared_ptr<Entity>;
+    using SPtrEntityVector = vector<SPtrEntity>;
+    using SPtrEntityList = list<SPtrEntity>;
+    using SPtrEntitySet = set<SPtrEntity>;
 }
 
 

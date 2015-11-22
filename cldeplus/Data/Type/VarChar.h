@@ -47,7 +47,7 @@ namespace CLDEPlus {
                 virtual size_t getActualSize() override;
 
                 // IPrintable
-                virtual string ToString() const override;
+                virtual string CopyToString() const override;
             };
         }
     }

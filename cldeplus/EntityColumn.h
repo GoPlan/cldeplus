@@ -36,14 +36,10 @@ namespace CLDEPlus {
         EntityColumn() = default;
         EntityColumn(string name, ValueType dataType);
         EntityColumn(string name, ValueType dataType, string datasourceName, size_t length);
-        EntityColumn(EntityColumn const &) = default;
-        EntityColumn(EntityColumn &&) = default;
-        EntityColumn &operator=(EntityColumn const &) = default;
-        EntityColumn &operator=(EntityColumn &&) = default;
         ~EntityColumn() = default;
 
         // IPrintable
-        string ToString() const override;
+        string CopyToString() const override;
 
         // Locals - Mutators
         void setDatasourceName(string const &datasourceName) { _datasourceName = datasourceName; }
@@ -58,6 +54,7 @@ namespace CLDEPlus {
         size_t getLength() const { return _length; }
     };
 
+    using Column = EntityColumn;
     using SPtrColumn = shared_ptr<EntityColumn>;
     using SPtrColumnVector = vector<SPtrColumn>;
     using SPtrColumnMap = unordered_map<string, SPtrColumn>;

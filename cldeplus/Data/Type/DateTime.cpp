@@ -53,7 +53,7 @@ namespace CLDEPlus {
                 return &_dateTime;
             }
 
-            string DateTime::ToString() const {
+            string DateTime::CopyToString() const {
                 return Data::Helper::TimeBasedHelper::DateTimeToISO8601String(_dateTime);
             }
 

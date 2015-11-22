@@ -52,9 +52,6 @@ namespace CLDEPlus {
                 string result;
 
                 switch (type) {
-                    case ValueType::Blob:
-                        result = "Blob";
-                        break;
                     case ValueType::Boolean:
                         result = "Boolean";
                         break;
@@ -94,9 +91,6 @@ namespace CLDEPlus {
                     case ValueType::Text:
                         result = "Text";
                         break;
-                    case ValueType::Currency:
-                        result = "Currency";
-                        break;
                     case ValueType::Date:
                         result = "Date";
                         break;
@@ -105,12 +99,6 @@ namespace CLDEPlus {
                         break;
                     case ValueType::DateTime:
                         result = "DateTime";
-                        break;
-                    case ValueType::Point:
-                        result = "Point";
-                        break;
-                    case ValueType::Matrix:
-                        result = "Matrix";
                         break;
                 }
 

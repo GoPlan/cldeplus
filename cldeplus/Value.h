@@ -35,7 +35,6 @@ namespace CLDEPlus {
     enum class ValueType {
         Boolean,
         Byte,
-        Blob,
         Int16,
         Int32,
         Int64,
@@ -47,12 +46,9 @@ namespace CLDEPlus {
         String,
         VarChar,
         Text,
-        Currency,
         DateTime,
         Date,
         Time,
-        Point,
-        Matrix
     };
 
     class Value : public IPrintable {
