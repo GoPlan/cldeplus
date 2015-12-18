@@ -28,23 +28,23 @@ namespace CLDEPlus {
     class EntityIdentity : public DataRecord {
 
     public:
-    explicit EntityIdentity(vector<SPtrCell> const &sptrCells);
-    EntityIdentity() = default;
-    EntityIdentity(EntityIdentity const &) = default;
-    EntityIdentity(EntityIdentity &&) = default;
-    EntityIdentity &operator=(EntityIdentity const &) = default;
-    EntityIdentity &operator=(EntityIdentity &&) = default;
-    ~EntityIdentity() = default;
+        explicit EntityIdentity(vector<SPtrCell> const &sptrCells);
+        EntityIdentity() = default;
+        EntityIdentity(EntityIdentity const &) = default;
+        EntityIdentity(EntityIdentity &&) = default;
+        EntityIdentity &operator=(EntityIdentity const &) = default;
+        EntityIdentity &operator=(EntityIdentity &&) = default;
+        ~EntityIdentity() = default;
 
-    // Factory methods
-    static unique_ptr<EntityIdentity> CreateUnique() { return cldeplus_make_unique<EntityIdentity>(); }
-    static unique_ptr<EntityIdentity> CreateUnique(SPtrCellVector const &cells) { return cldeplus_make_unique<EntityIdentity>(cells); }
-    static shared_ptr<EntityIdentity> CreateShared() { return cldeplus_make_shared<EntityIdentity>(); }
-    static shared_ptr<EntityIdentity> CreateShared(SPtrCellVector const &cells) { return cldeplus_make_shared<EntityIdentity>(cells); }
-            };
+        // Factory methods
+        static unique_ptr<EntityIdentity> CreateUnique() { return cldeplus_make_unique<EntityIdentity>(); }
+        static unique_ptr<EntityIdentity> CreateUnique(SPtrCellVector const &cells) { return cldeplus_make_unique<EntityIdentity>(cells); }
+        static shared_ptr<EntityIdentity> CreateShared() { return cldeplus_make_shared<EntityIdentity>(); }
+        static shared_ptr<EntityIdentity> CreateShared(SPtrCellVector const &cells) { return cldeplus_make_shared<EntityIdentity>(cells); }
+    };
 
-            using UPtrIdentity = unique_ptr<EntityIdentity>;
-            using SPtrIdentity = shared_ptr<EntityIdentity>;
+    using UPtrIdentity = unique_ptr<EntityIdentity>;
+    using SPtrIdentity = shared_ptr<EntityIdentity>;
 }
 
 #endif //CLDEPLUS_IDENTITY_H
